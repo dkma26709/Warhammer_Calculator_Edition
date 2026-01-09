@@ -1,7 +1,32 @@
 ﻿@page "/"
+@using Warhammer.Calculator
 
-<PageTitle>Home</PageTitle>
+<InputNumber @bind-Value="userInput"></InputNumber>
+<button class="btn btn-primary" @onclick="Calculate">Click me</button>
 
-<h1>Hello, world!</h1>
+<textarea readonly>Number of hits where @hits</textarea>
+<textarea readonly>Percentages where:</textarea>
 
-Welcome to your new app.
+<ul>
+    @foreach (var item in percentages)
+    {
+        <li>@item.RollValue : @item.Percentage %</li>
+    }
+</ul>
+
+@code
+{
+    private DiceSimulator diceSimulator = new DiceSimulator();
+    
+    private int userInput = 4;
+    private List<int> rolls = new List<int>();
+    private List<PercentageRolls> percentages = new List<PercentageRolls>();
+    private int hits = 0;
+    
+    private void Calculate()
+    {
+        rolls = diceSimulator.SimulateD6Rolls();
+        percentages = diceSimulator.CalculatePercentageRolls(rolls);
+        hits = diceSimulator.GetRollsWithinRange(rolls, userInput).Count;
+    }
+}
