@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Warhammer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92b77f34a96cd918adbb026d86d79b65a1dd3dd1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9e88e5da79bb3ef06728c6e225a633c14a8fbca")]
 [assembly: System.Reflection.AssemblyProductAttribute("Warhammer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Warhammer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

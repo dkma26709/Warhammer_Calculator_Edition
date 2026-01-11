@@ -11,12 +11,10 @@ public class CombatCalculator
 
     public CombatResult CalculateCombatRound(IUnit attacker, IUnit defender)
     {
-        var rng = new Random();
-
-        var attackerToHit = 4;
-        var attackerToWound = 3;
-        var defdenderArmorSave = 5;
-        var defenderWardSave = 6;
+        var attackerToHit = GetToHitValue(attacker, defender);
+        var attackerToWound = GetToWoundValue(attacker, defender);
+        var defenderArmorSave = GetArmorSaveValue(defender);
+        var defenderWardSave = GetWardSaveValue(defender);
         
         var attackerAttacks = attacker.Attacks*5 + 5;
         var attackRolls = DiceSimulator.SimulateD6Rolls(attackerAttacks);
@@ -27,7 +25,7 @@ public class CombatCalculator
         var successfulWounds = DiceSimulator.GetD6RollsWithinRange(woundRolls, attackerToWound, 6);
         
         var armorSaveRolls = DiceSimulator.SimulateD6Rolls(successfulWounds.Count);
-        var succesfulArmorSaves = DiceSimulator.GetD6RollsWithinRange(armorSaveRolls, defdenderArmorSave);
+        var succesfulArmorSaves = DiceSimulator.GetD6RollsWithinRange(armorSaveRolls, defenderArmorSave);
         var failedArmorSaves = successfulWounds.Count - succesfulArmorSaves.Count;
         
         var wardSaveRolls = DiceSimulator.SimulateD6Rolls(failedArmorSaves);
@@ -43,7 +41,82 @@ public class CombatCalculator
             WoundsDealtAfterWardSaves = damageDealt,
         };
     }
-    
+
+    private int GetWardSaveValue(IUnit defender)
+    {
+        if(defender.WardSave is null && defender.RegenerationSave is null)
+        {
+            return 7; // Impossible save
+        }
+        
+        if(defender.WardSave is not null)
+        {
+            return defender.WardSave.Value;
+        }
+        
+        if(defender.RegenerationSave is not null)
+        {
+            return defender.RegenerationSave.Value;
+        }
+
+        if (defender.WardSave.Value < 4 || defender.RegenerationSave.Value < 4)
+        {
+            return Math.Min(defender.WardSave.Value, defender.RegenerationSave.Value);
+        }
+            
+        return Math.Max(defender.WardSave.Value - defender.RegenerationSave.Value, 4);
+    }
+
+    private int GetArmorSaveValue(IUnit defender)
+    {
+        if(defender.ArmorSave is null)
+        {
+            return 7; // Impossible save
+        }
+        
+        return Math.Max(defender.ArmorSave.Value, 2);
+    }
+
+    private int GetToWoundValue(IUnit attacker, IUnit defender)
+    {
+        var strentgTougnessDiff = attacker.Strength - defender.Toughness;
+        var toWoundValue = strentgTougnessDiff switch
+        {
+            0 => 4,
+            1 => 3,
+            -1 => 5,
+            >= 2 => 2,
+            <= -2 => 6,
+        };
+        return toWoundValue;
+
+    }
+
+    private int GetToHitValue(IUnit attacker, IUnit defender)
+    {
+        if (attacker.WeaponSkill == defender.WeaponSkill)
+        {
+            return 4;
+        }
+
+        if (attacker.WeaponSkill*2 > defender.WeaponSkill)
+        {
+            return 2;
+        }
+
+        if (attacker.WeaponSkill < defender.WeaponSkill*2)
+        {
+            return 6;
+        }
+        
+        if (attacker.WeaponSkill > defender.WeaponSkill)
+        {
+            return 3;
+        }
+        
+        return 5;
+    }
+
     public List<CombatResult> SimulateCombatRounds(IUnit attacker, IUnit defender, int rounds)
     {
         var results = new List<CombatResult>();

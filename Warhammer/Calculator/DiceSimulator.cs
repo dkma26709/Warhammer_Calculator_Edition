@@ -68,11 +68,15 @@ public interface IUnit
     public int Movement { get; set; }
     public int WeaponSkill { get; set; }
     public int BallisticSkill { get; set; }
+    public int Strength { get; set; }
     public int Toughness { get; set; }
     public int Wounds { get; set; }
     public int Initiative { get; set; }
     public int Attacks { get; set; }
     public int Leadership { get; set; }
+    public int? ArmorSave { get; set; }
+    public int? WardSave { get; set; }
+    public int? RegenerationSave { get; set; }
     
     public List<SpecialRule> SpecialRules { get; set; }
     public List<Weapon> Weapons { get; set; }
@@ -118,15 +122,19 @@ public class Armor
 public class InfantryUnit : IUnit
 {
     public UnitType UnitType { get; set; } = UnitType.Infantry;
-    public int Movement { get; set; }
-    public int WeaponSkill { get; set; }
-    public int BallisticSkill { get; set; }
-    public int Toughness { get; set; }
-    public int Wounds { get; set; }
-    public int Initiative { get; set; }
-    public int Attacks { get; set; }
-    public int Leadership { get; set; }
-    
+    public required int Movement { get; set; }
+    public required int WeaponSkill { get; set; }
+    public required int BallisticSkill { get; set; }
+    public required int Strength { get; set; }
+    public required int Toughness { get; set; }
+    public required int Wounds { get; set; }
+    public required int Initiative { get; set; }
+    public required int Attacks { get; set; }
+    public required int Leadership { get; set; }
+    public int? ArmorSave { get; set; }
+    public int? WardSave { get; set; }
+    public int? RegenerationSave { get; set; }
+
     public List<SpecialRule> SpecialRules { get; set; } = new List<SpecialRule>();
     public List<Weapon> Weapons { get; set; } = new List<Weapon>();
     public List<RangedWeapon> RangedWeapons { get; set; } = new List<RangedWeapon>();
