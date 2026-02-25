@@ -1,5 +1,7 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body, #fff);
+    color: var(--text, inherit);
 }
 
 h1:focus {
