@@ -8,6 +8,8 @@ public class AttackResult
     public int Hits { get; set; }
     public int Wounds { get; set; }
     public int ArmorSavesPassed { get; set; }
+    public int KillingBlowWounds { get; set; }
+    public int WardSavesPassed { get; set; }
     public int WoundsAfterSaves { get; set; }
     public int MountWoundsDealt { get; set; }
 

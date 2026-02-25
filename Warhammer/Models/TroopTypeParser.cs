@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 public enum BaseTroopType
 {
     Infantry,
+    LargeInfantry,
     Cavalry,
     MonstrousInfantry,
     MonstrousCavalry,
@@ -39,7 +40,8 @@ public static class TroopTypeParser
 
         var baseType = baseText.ToLowerInvariant().Replace(" ", "") switch
         {
-            "infantry" or "largeinfantry" => BaseTroopType.Infantry,
+            "infantry" => BaseTroopType.Infantry,
+            "largeinfantry" => BaseTroopType.LargeInfantry,
             "cavalry" => BaseTroopType.Cavalry,
             "monstrousinfantry" => BaseTroopType.MonstrousInfantry,
             "monstrouscavalry" => BaseTroopType.MonstrousCavalry,
@@ -84,11 +86,29 @@ public static class TroopTypeParser
     public static int GetDefaultFilesWidth(BaseTroopType type) => type switch
     {
         BaseTroopType.Infantry => 5,
+        BaseTroopType.LargeInfantry => 5,
         BaseTroopType.Cavalry => 5,
         BaseTroopType.MonstrousInfantry => 3,
         BaseTroopType.MonstrousCavalry => 3,
         BaseTroopType.MonstrousBeast => 3,
         BaseTroopType.Chariot => 3,
         _ => 5
+    };
+
+    /// <summary>
+    /// Minimum number of models per rank required for rank bonus.
+    /// Returns 0 for troop types that cannot gain rank bonus.
+    /// </summary>
+    public static int GetMinimumRankWidth(BaseTroopType type) => type switch
+    {
+        BaseTroopType.Infantry => 5,
+        BaseTroopType.LargeInfantry => 5,
+        BaseTroopType.Swarm => 5,
+        BaseTroopType.Cavalry => 5,
+        BaseTroopType.WarBeast => 5,
+        BaseTroopType.MonstrousInfantry => 3,
+        BaseTroopType.MonstrousCavalry => 3,
+        BaseTroopType.MonstrousBeast => 3,
+        _ => 0 // chariots, monsters, shrines, war machines, unknown — no rank bonus
     };
 }

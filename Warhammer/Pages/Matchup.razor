@@ -1,4 +1,5 @@
 @page "/matchup"
+@inject CoreRulesService CoreRules
 
 <h3 class="mb-3">Combat Matchup Simulator</h3>
 
@@ -10,7 +11,8 @@
         @if (_attackerUnit is not null)
         {
             <UnitConfigurator Unit="_attackerUnit" FactionName="@_attackerFaction"
-                              OnConfigurationChanged="OnAttackerConfigChanged" />
+                              OnConfigurationChanged="OnAttackerConfigChanged"
+                              OpponentConfig="@_defenderConfig" />
         }
     </div>
 
@@ -62,7 +64,8 @@
         @if (_defenderUnit is not null)
         {
             <UnitConfigurator Unit="_defenderUnit" FactionName="@_defenderFaction"
-                              OnConfigurationChanged="OnDefenderConfigChanged" />
+                              OnConfigurationChanged="OnDefenderConfigChanged"
+                              OpponentConfig="@_attackerConfig" />
         }
     </div>
 </div>
@@ -109,7 +112,7 @@
     private bool _isSimulating;
 
     private CombatSimulationSummary? _summary;
-    private CombatCalculator _calculator = new();
+    private CombatCalculator? _calculator;
 
     private bool CanSimulate => _attackerConfig is not null && _defenderConfig is not null && !_isSimulating;
 
@@ -139,9 +142,15 @@
         _defenderConfig = config;
     }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await CoreRules.LoadAsync();
+        _calculator = new CombatCalculator(CoreRules);
+    }
+
     private async Task RunSimulation()
     {
-        if (_attackerConfig is null || _defenderConfig is null) return;
+        if (_attackerConfig is null || _defenderConfig is null || _calculator is null) return;
 
         _isSimulating = true;
         _summary = null;

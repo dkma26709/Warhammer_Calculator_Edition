@@ -101,6 +101,7 @@
       "heavyArmour": "+3 (4+)",
       "fullPlateArmour": "+4 (3+)",
       "shield": "+1",
+      "buckler": "+1 (6+)",
       "barding": "+1 (mounted only)",
       "mountedBonus": "+1 (for riding a mount)"
     },
@@ -188,10 +189,10 @@
     "armourPiercing": "Armour Piercing (X): The attack has an additional -X modifier to armour saves.",
     "flaming": "Flaming Attacks: Wounds caused count as Flaming. Negates Regeneration saves.",
     "hatred": "Re-roll missed To Hit rolls in the first round of close combat.",
-    "killingBlow": "A natural To Wound roll of 6 kills the target outright (no armour save allowed, Ward saves still apply). Only affects Infantry, War Beasts and Swarms.",
-    "heroicKillingBlow": "As Killing Blow, but works against all troop types.",
+    "killingBlow": "A natural To Wound roll of 6 kills the target outright (regardless of Wounds on profile). No armour saves or Regeneration allowed. Ward saves may be taken. Only effective against Infantry, Cavalry and War Beasts. Against other troop types, inflicts 1 Wound ignoring armour saves and Regeneration. Dual-source: triggers on 5+.",
+    "heroicKillingBlow": "As Killing Blow, but works against all troop types except Swarms.",
     "multipleWounds": "Multiple Wounds (X): Each unsaved wound is multiplied into X wounds.",
-    "poisonedAttacks": "A natural To Hit roll of 6 automatically wounds (no To Wound roll needed).",
+    "poisonedAttacks": "+1 modifier to To Wound rolls. Armour saves modified by Strength as normal. Dual-source: also auto-wounds on To Hit roll of 6.",
     "stubbornness": "Always uses unmodified Leadership for Break tests.",
     "unbreakable": "Automatically passes all Break tests. Cannot flee.",
     "frenzy": "+1 Attack. Must pursue and overrun. Must charge if able. Loses Frenzy if broken in combat.",
@@ -227,15 +228,15 @@
         "name": "Spear",
         "range": "Combat",
         "strength": "As user",
-        "specialRules": ["+1 Initiative", "Fight in Extra Ranks (1)", "Mighty Blow (1) when charged to front"],
+        "specialRules": ["+1 Initiative when charged to front", "Fight in Extra Ranks (1)", "Mighty Blow (1) when charged to front"],
         "notes": "Model on foot only. +1 Initiative only when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
       },
       "pike": {
         "name": "Pike",
         "range": "Combat",
         "strength": "As user",
-        "specialRules": ["+2 Initiative", "Fight in Extra Ranks (3)", "Mighty Blow (1) when charged to front", "Requires Two Hands"],
-        "notes": "Model on foot only. +1 Initiative bonus when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
+        "specialRules": ["+2 Initiative when charged to front", "Fight in Extra Ranks (3)", "Mighty Blow (1) when charged to front", "Requires Two Hands"],
+        "notes": "Model on foot only. +2 Initiative bonus when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
       },
       "greatWeapon": {
         "name": "Great Weapon",
@@ -380,6 +381,11 @@
       "name": "Heavy Armour",
       "combatSave": "+3 (4+)",
       "missileSave": "+3 (4+)"
+    },
+    "fullPlateArmour": {
+      "name": "Full Plate Armour",
+      "combatSave": "+4 (3+)",
+      "missileSave": "+4 (3+)"
     },
     "shield": {
       "name": "Shield",

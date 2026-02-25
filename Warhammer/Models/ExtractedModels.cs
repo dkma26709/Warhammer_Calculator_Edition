@@ -72,6 +72,19 @@ public class ExtractedUnit
         var match = System.Text.RegularExpressions.Regex.Match(UnitSize, @"(\d+)");
         return match.Success ? int.Parse(match.Groups[1].Value) : 1;
     }
+
+    /// <summary>
+    /// Parse frontage width in mm from the baseSize field (e.g. "20x20 or 25x25" → 20).
+    /// </summary>
+    public int BaseWidthMm
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(BaseSize)) return 25;
+            var match = System.Text.RegularExpressions.Regex.Match(BaseSize, @"(\d+)x\d+");
+            return match.Success ? int.Parse(match.Groups[1].Value) : 25;
+        }
+    }
 }
 
 public class ExtractedProfile

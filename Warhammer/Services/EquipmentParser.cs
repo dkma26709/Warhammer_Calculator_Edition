@@ -1,5 +1,7 @@
 namespace Warhammer.Services;
 
+using Warhammer.Models;
+
 public class ParsedEquipment
 {
     public WeaponDefinition? DefaultCloseCombatWeapon { get; set; }
@@ -42,7 +44,7 @@ public static class EquipmentParser
             result.UnrecognizedItems.Add(part);
         }
 
-        result.DefaultCloseCombatWeapon ??= coreRules.Weapons["handWeapon"];
+        result.DefaultCloseCombatWeapon ??= coreRules.HandWeapon;
         return result;
     }
 }

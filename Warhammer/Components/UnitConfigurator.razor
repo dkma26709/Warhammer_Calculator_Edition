@@ -50,7 +50,7 @@
                 <div class="col-4">
                     <label class="form-label form-label-sm mb-0">Frontage</label>
                     <input type="number" class="form-control form-control-sm"
-                           min="1" max="20"
+                           min="1" max="@_modelCount"
                            value="@_files" @onchange="OnFilesChanged" />
                 </div>
                 <div class="col-4">
@@ -111,12 +111,70 @@
                 <strong>Effective:</strong>
                 S@(_config?.EffectiveStrength ?? Unit.PrimaryProfile.S ?? 3)
                 | Save @FormatSave()
-                | @(_config?.CalculateAttacks().TotalAttacks ?? 0) total attacks
+                | @(_config?.CalculateAttacks().TotalAttacks ?? 0) max attacks
+                @if (OpponentConfig is not null && _config is not null)
+                {
+                    <text> | @(_config.CalculateAttacks(OpponentConfig).TotalAttacks) effective</text>
+                }
                 @if (_config?.RankBonus > 0)
                 {
                     <text> | +@(_config.RankBonus) rank bonus</text>
                 }
             </div>
+
+            @if (_config?.SpecialRules is { HasAnyCombatRule: true } rules)
+            {
+                <div class="mb-2">
+                    @if (rules.NaturalArmour.HasValue)
+                    {
+                        <span class="badge bg-secondary me-1">Natural Armour (@(rules.NaturalArmour)+)</span>
+                    }
+                    @if (rules.Frenzy)
+                    {
+                        <span class="badge bg-danger me-1">Frenzy (+1A)</span>
+                    }
+                    @if (rules.Hatred)
+                    {
+                        <span class="badge bg-warning text-dark me-1">Hatred</span>
+                    }
+                    @if (rules.PoisonedAttacks)
+                    {
+                        <span class="badge bg-success me-1">Poison (+1 to wound)</span>
+                    }
+                    @if (rules.KillingBlow)
+                    {
+                        <span class="badge bg-dark me-1">Killing Blow</span>
+                    }
+                    @if (rules.HeroicKillingBlow)
+                    {
+                        <span class="badge bg-dark me-1">Heroic Killing Blow</span>
+                    }
+                    @if (rules.FlamingAttacks)
+                    {
+                        <span class="badge bg-danger me-1">Flaming</span>
+                    }
+                    @if (rules.Regeneration.HasValue)
+                    {
+                        <span class="badge bg-info text-dark me-1">Regen (@(rules.Regeneration)+)</span>
+                    }
+                    @if (rules.WardSave.HasValue)
+                    {
+                        <span class="badge bg-info text-dark me-1">Ward (@(rules.WardSave)+)</span>
+                    }
+                    @if (rules.ArmourPiercing > 0)
+                    {
+                        <span class="badge bg-secondary me-1">AP(@(rules.ArmourPiercing))</span>
+                    }
+                    @if (rules.Fear)
+                    {
+                        <span class="badge bg-secondary me-1">Fear</span>
+                    }
+                    @if (rules.Terror)
+                    {
+                        <span class="badge bg-secondary me-1">Terror</span>
+                    }
+                </div>
+            }
 
             <!-- Options Reference -->
             @if (Unit.Options.Count > 0)
@@ -147,6 +205,7 @@
     [Parameter] public ExtractedUnit? Unit { get; set; }
     [Parameter] public string FactionName { get; set; } = "";
     [Parameter] public EventCallback<UnitConfiguration> OnConfigurationChanged { get; set; }
+    [Parameter] public UnitConfiguration? OpponentConfig { get; set; }
 
     private int _modelCount = 10;
     private int _files = 5;
@@ -165,9 +224,16 @@
     private bool _hasStandardOption;
 
     private ExtractedUnit? _previousUnit;
+    private bool _rulesLoaded;
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
+        if (!_rulesLoaded)
+        {
+            await CoreRules.LoadAsync();
+            _rulesLoaded = true;
+        }
+
         if (Unit is not null && Unit != _previousUnit)
         {
             _previousUnit = Unit;
@@ -210,7 +276,7 @@
         var weapons = new List<WeaponDefinition>();
 
         // Always include hand weapon
-        weapons.Add(CoreRules.Weapons["handWeapon"]);
+        weapons.Add(CoreRules.HandWeapon);
 
         // Add the default weapon if not hand weapon
         if (_parsedEquipment?.DefaultCloseCombatWeapon != null &&
@@ -241,6 +307,7 @@
         if (int.TryParse(e.Value?.ToString(), out var val))
         {
             _modelCount = Math.Max(val, _minUnitSize);
+            _files = Math.Min(_files, _modelCount);
             EmitConfig();
         }
     }
@@ -249,7 +316,7 @@
     {
         if (int.TryParse(e.Value?.ToString(), out var val))
         {
-            _files = Math.Max(val, 1);
+            _files = Math.Clamp(val, 1, _modelCount);
             EmitConfig();
         }
     }
@@ -263,7 +330,7 @@
     private string FormatSave()
     {
         if (_config is null) return "-";
-        int save = _config.CalculateArmourSave(3); // Assume S3 for display
+        int save = _config.CalculateArmourSave(3, 0, CoreRules); // Assume S3 for display
         return save <= 6 ? $"{save}+" : "-";
     }
 
@@ -272,7 +339,7 @@
         if (Unit is null) return;
 
         var weapon = CoreRules.Weapons.GetValueOrDefault(_selectedWeaponKey)
-                     ?? CoreRules.Weapons["handWeapon"];
+                     ?? CoreRules.HandWeapon;
 
         _config = new UnitConfiguration
         {
