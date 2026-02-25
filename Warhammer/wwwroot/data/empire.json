@@ -1,0 +1,92 @@
+{
+  "factionName": "The Empire",
+  "units": [
+    {
+      "id": "empire-swordsmen",
+      "name": "Swordsmen",
+      "unitType": "Infantry",
+      "stats": {
+        "movement": 4,
+        "weaponSkill": 3,
+        "ballisticSkill": 3,
+        "strength": 3,
+        "toughness": 3,
+        "wounds": 1,
+        "initiative": 3,
+        "attacks": 1,
+        "leadership": 7
+      },
+      "defaultArmorSave": 5,
+      "defaultEquipment": "Hand weapon, shield, light armour",
+      "wardSave": null,
+      "regenerationSave": null,
+      "specialRules": [],
+      "weaponUpgrades": [
+        {
+          "id": "halberds",
+          "name": "Halberds",
+          "strengthBonus": 1,
+          "attackBonus": 0,
+          "specialRules": [],
+          "replacesDefault": true
+        }
+      ],
+      "armorUpgrades": [],
+      "commandGroup": {
+        "champion": { "available": true, "attackBonus": 1 },
+        "musician": { "available": true },
+        "standardBearer": { "available": true }
+      },
+      "magicBanners": [],
+      "mount": null
+    },
+    {
+      "id": "empire-knights",
+      "name": "Empire Knights",
+      "unitType": "Cavalry",
+      "stats": {
+        "movement": 4,
+        "weaponSkill": 4,
+        "ballisticSkill": 3,
+        "strength": 3,
+        "toughness": 3,
+        "wounds": 1,
+        "initiative": 3,
+        "attacks": 1,
+        "leadership": 8
+      },
+      "defaultArmorSave": 2,
+      "defaultEquipment": "Lance, shield, full plate armour, barding",
+      "wardSave": null,
+      "regenerationSave": null,
+      "specialRules": [],
+      "weaponUpgrades": [
+        {
+          "id": "great-weapons",
+          "name": "Great Weapons",
+          "strengthBonus": 2,
+          "attackBonus": 0,
+          "specialRules": ["AlwaysStrikesLast"],
+          "replacesDefault": true
+        }
+      ],
+      "armorUpgrades": [],
+      "commandGroup": {
+        "champion": { "available": true, "attackBonus": 1 },
+        "musician": { "available": true },
+        "standardBearer": { "available": true }
+      },
+      "magicBanners": [
+        { "id": "war-banner", "name": "War Banner", "combatResolutionBonus": 1 }
+      ],
+      "mount": {
+        "name": "Warhorse",
+        "weaponSkill": 3,
+        "strength": 3,
+        "toughness": 3,
+        "attacks": 1,
+        "initiative": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+@using ApexCharts
+
+@if (Distribution is not null && Distribution.Count > 0)
+{
+    <ApexChart TItem="DistributionEntry"
+               Title="@Title"
+               Height="300">
+        <ApexPointSeries TItem="DistributionEntry"
+                         Items="Distribution"
+                         Name="@SeriesName"
+                         XValue="@(e => e.Value)"
+                         YAggregate="@(e => e.Select(x => x.Percentage).FirstOrDefault())"
+                         SeriesType="SeriesType.Bar" />
+    </ApexChart>
+}
+
+@code {
+    [Parameter] public List<DistributionEntry>? Distribution { get; set; }
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string SeriesName { get; set; } = "% chance";
+}

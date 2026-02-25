@@ -1,0 +1,64 @@
+@if (Summary is not null)
+{
+    <div class="row g-3 mb-3">
+        <!-- Win Rates -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-3">
+                    <h6 class="card-title mb-2">Combat Result (after @Summary.TotalSimulations simulations)</h6>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="fs-3 fw-bold text-success">@Summary.UnitAWinPercentage%</div>
+                            <small class="text-muted">@UnitAName wins</small>
+                        </div>
+                        <div class="col-4">
+                            <div class="fs-3 fw-bold text-secondary">@Summary.DrawPercentage%</div>
+                            <small class="text-muted">Draw</small>
+                        </div>
+                        <div class="col-4">
+                            <div class="fs-3 fw-bold text-danger">@Summary.UnitBWinPercentage%</div>
+                            <small class="text-muted">@UnitBName wins</small>
+                        </div>
+                    </div>
+
+                    <!-- Win rate bar -->
+                    <div class="progress mt-2" style="height: 20px;">
+                        <div class="progress-bar bg-success" style="width: @Summary.UnitAWinPercentage%"></div>
+                        <div class="progress-bar bg-secondary" style="width: @Summary.DrawPercentage%"></div>
+                        <div class="progress-bar bg-danger" style="width: @Summary.UnitBWinPercentage%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Stats -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body p-3">
+                    <h6 class="card-title">@UnitAName</h6>
+                    <table class="table table-sm mb-0">
+                        <tr><td>Avg wounds dealt</td><td class="fw-bold">@Summary.AverageWoundsAtoB</td></tr>
+                        <tr><td>Avg combat resolution</td><td class="fw-bold">@Summary.AverageCombatResA</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body p-3">
+                    <h6 class="card-title">@UnitBName</h6>
+                    <table class="table table-sm mb-0">
+                        <tr><td>Avg wounds dealt</td><td class="fw-bold">@Summary.AverageWoundsBtoA</td></tr>
+                        <tr><td>Avg combat resolution</td><td class="fw-bold">@Summary.AverageCombatResB</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public CombatSimulationSummary? Summary { get; set; }
+    [Parameter] public string UnitAName { get; set; } = "Unit A";
+    [Parameter] public string UnitBName { get; set; } = "Unit B";
+}

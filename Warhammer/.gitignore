@@ -1,0 +1,6 @@
+bin/
+obj/
+.idea/
+.claude/
+*.DotSettings.user
+wwwroot/lib/

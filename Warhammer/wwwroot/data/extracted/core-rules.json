@@ -1,0 +1,404 @@
+{
+  "name": "Warhammer: The Game of Fantasy Battles - 9th Edition v2.32",
+  "shootingToHit": {
+    "description": "Ballistic Skill determines the score needed to hit when shooting. Roll 1D6 per shot.",
+    "table": {
+      "BS1": "6+",
+      "BS2": "5+",
+      "BS3": "4+",
+      "BS4": "3+",
+      "BS5": "2+",
+      "BS6": "1+",
+      "BS7": "reroll 1s on 6+",
+      "BS8": "reroll 1s on 5+",
+      "BS9": "reroll 1s on 4+",
+      "BS10": "reroll 1s on 3+"
+    },
+    "modifiers": {
+      "movingAndShooting": -1,
+      "standAndShoot": -1,
+      "loneModel": -1,
+      "softCover": -1,
+      "hardCover": -2
+    },
+    "notes": [
+      "A natural 1 always misses.",
+      "If required score is 7+, roll a 6 first, then re-roll needing the remainder (7+=6 then 4+, 8+=6 then 5+, 9+=6 then 6+, 10+ impossible).",
+      "Soft and hard cover do not stack - use the best cover available."
+    ]
+  },
+  "closeCombatToHit": {
+    "description": "Compare attacker's Weapon Skill vs target's Weapon Skill. Roll 1D6 per Attack.",
+    "table": [
+      [4, 4, 5, 5, 6, 6, 6, 6, 6, 6],
+      [3, 4, 4, 4, 5, 5, 6, 6, 6, 6],
+      [2, 3, 4, 4, 4, 4, 5, 5, 6, 6],
+      [2, 3, 3, 4, 4, 4, 4, 4, 5, 5],
+      [2, 2, 3, 3, 4, 4, 4, 4, 4, 4],
+      [2, 2, 3, 3, 3, 4, 4, 4, 4, 4],
+      [2, 2, 2, 3, 3, 3, 4, 4, 4, 4],
+      [2, 2, 2, 3, 3, 3, 3, 4, 4, 4],
+      [2, 2, 2, 2, 3, 3, 3, 3, 4, 4],
+      [2, 2, 2, 2, 3, 3, 3, 3, 3, 4]
+    ],
+    "tableAxes": {
+      "rows": "Attacker's WS (1-10)",
+      "columns": "Target's WS (1-10)"
+    },
+    "notes": [
+      "A natural 6 always hits, a natural 1 always misses.",
+      "Equal WS = 4+ to hit.",
+      "Attacker WS > Target WS = 3+ to hit.",
+      "Attacker WS > 2x Target WS = 2+ to hit.",
+      "Target WS > 2x Attacker WS = 5+ to hit.",
+      "Target WS > 2x Attacker WS + 3 = 6+ to hit."
+    ]
+  },
+  "toWound": {
+    "description": "Compare Strength of attack vs Toughness of target. Same table used for both shooting and close combat.",
+    "table": [
+      [4, 5, 6, 6, 6, 6, 6, 6, 6, 6],
+      [3, 4, 5, 6, 6, 6, 6, 6, 6, 6],
+      [2, 3, 4, 5, 6, 6, 6, 6, 6, 6],
+      [2, 2, 3, 4, 5, 6, 6, 6, 6, 6],
+      [2, 2, 2, 3, 4, 5, 6, 6, 6, 6],
+      [2, 2, 2, 2, 3, 4, 5, 6, 6, 6],
+      [2, 2, 2, 2, 2, 3, 4, 5, 6, 6],
+      [2, 2, 2, 2, 2, 2, 3, 4, 5, 6],
+      [2, 2, 2, 2, 2, 2, 2, 3, 4, 5],
+      [2, 2, 2, 2, 2, 2, 2, 2, 3, 4]
+    ],
+    "tableAxes": {
+      "rows": "Attacker's Strength (1-10)",
+      "columns": "Target's Toughness (1-10)"
+    },
+    "notes": [
+      "A natural 6 always wounds, a natural 1 always fails.",
+      "S = T: 4+ to wound.",
+      "S = T+1: 3+ to wound.",
+      "S >= T+2: 2+ to wound.",
+      "S = T-1: 5+ to wound.",
+      "S <= T-2: 6+ to wound."
+    ]
+  },
+  "armourSaves": {
+    "description": "After a wound is caused, the target may attempt an armour save. Saves are modified by the Strength of the attack.",
+    "strengthModifiers": {
+      "S1": 0,
+      "S2": 0,
+      "S3": 0,
+      "S4": -1,
+      "S5": -2,
+      "S6": -3,
+      "S7": -4,
+      "S8": -5,
+      "S9": -6,
+      "S10": -7
+    },
+    "armourValues": {
+      "lightArmour": "+1 (6+)",
+      "mediumArmour": "+2 (5+)",
+      "heavyArmour": "+3 (4+)",
+      "fullPlateArmour": "+4 (3+)",
+      "shield": "+1",
+      "barding": "+1 (mounted only)",
+      "mountedBonus": "+1 (for riding a mount)"
+    },
+    "notes": [
+      "Armour saves are cumulative from different equipment pieces.",
+      "A save can never be better than 1+.",
+      "A natural roll of 1 always fails the save.",
+      "Strength 4+ attacks apply negative modifiers to armour saves."
+    ]
+  },
+  "wardSaves": {
+    "description": "A special save that is never modified by Strength. Taken after armour save fails (or if no armour save).",
+    "notes": [
+      "Ward saves are never modified by Strength of the attack.",
+      "Multiple Ward saves can be combined, but no model may have better than 4+ Ward save from combining.",
+      "A single Ward save source CAN be 2+ or 3+ without the 4+ cap.",
+      "Ward save is taken after armour save fails.",
+      "A natural roll of 1 always fails."
+    ]
+  },
+  "combatResult": {
+    "description": "After all attacks in close combat, calculate combat result to determine winner.",
+    "bonuses": {
+      "woundsInflicted": "+1 per wound caused",
+      "charge": "+1 if the unit charged this turn",
+      "extraRanks": "+1 per extra complete rank beyond the first (max +3)",
+      "outnumber": "+1 if higher Unit Strength than all engaged enemies",
+      "standardBearer": "+1",
+      "battleStandard": "+1 (cumulative with normal standard)",
+      "flankAttack": "+1 (fighting against enemy flank)",
+      "bothFlanks": "+2 (fighting against both enemy flanks)",
+      "rearAttack": "+2 (fighting against enemy rear)",
+      "highGround": "+1 (fighting from higher position)",
+      "overkill": "+1 per excess wound in challenge (max +3)"
+    }
+  },
+  "breakTest": {
+    "description": "The loser of combat must take a Break test. Roll 2D6 against modified Leadership.",
+    "notes": [
+      "Modified Leadership = Leadership - (enemy combat result - your combat result).",
+      "If modified Leadership is 0 or below, the test automatically fails.",
+      "If test is failed, the unit breaks and flees.",
+      "Steadfast: Units with more complete ranks than all individual enemy units take Break test on unmodified Leadership.",
+      "Stubborn: Always use unmodified Leadership for Break tests.",
+      "Unbreakable: Never takes Break tests."
+    ]
+  },
+  "fleeing": {
+    "description": "Fleeing and pursuing units move 2D6 inches. If pursuit >= flee distance, fleeing unit is destroyed.",
+    "fleeDistance": "2D6 inches (or 3D6 for M7+ units)",
+    "pursuitDistance": "2D6 inches (or 3D6 for M7+ units)",
+    "notes": [
+      "If pursuit roll >= flee roll, fleeing unit takes 2 wounds per Unit Strength of pursuers (no saves).",
+      "Victorious unit may choose to pursue or restrain (restraining requires a Leadership test).",
+      "Pursuing units can charge enemy units in their path."
+    ]
+  },
+  "panic": {
+    "description": "Certain events force units to take a Panic test (Leadership test). If failed, the unit flees.",
+    "triggers": [
+      "Heavy Casualties: Unit loses 25% or more of its Unit Strength in a single phase.",
+      "Nearby Friend Annihilated: Friendly unit with US 10+ is destroyed within 6 inches.",
+      "Nearby Friend Breaks: Friendly unit with US 10+ breaks from combat within 6 inches.",
+      "Fled Through: Fleeing unit with US 10+ moves through the unit."
+    ],
+    "exceptions": [
+      "Units in close combat do not take Panic tests.",
+      "Already fleeing units do not take Panic tests.",
+      "Units that already passed a Panic test this phase do not take another."
+    ]
+  },
+  "specialSaveRules": {
+    "regeneration": {
+      "description": "Works like a Ward save, but cannot be used against Flaming Attacks.",
+      "notes": ["Regeneration saves can be combined with Ward saves."]
+    },
+    "magicResistance": {
+      "description": "Adds bonus to dispel attempts and Ward saves against magical attacks.",
+      "notes": ["Magic Resistance (X) grants a X+ Ward save against wounds caused by spells."]
+    }
+  },
+  "commonSpecialRules": {
+    "alwaysStrikesFirst": "Model strikes at Initiative 10 in close combat. If both sides have ASF, cancel out and use normal Initiative.",
+    "alwaysStrikesLast": "Model strikes at Initiative 1 in close combat. If both sides have ASL, cancel out and use normal Initiative.",
+    "armourPiercing": "Armour Piercing (X): The attack has an additional -X modifier to armour saves.",
+    "flaming": "Flaming Attacks: Wounds caused count as Flaming. Negates Regeneration saves.",
+    "hatred": "Re-roll missed To Hit rolls in the first round of close combat.",
+    "killingBlow": "A natural To Wound roll of 6 kills the target outright (no armour save allowed, Ward saves still apply). Only affects Infantry, War Beasts and Swarms.",
+    "heroicKillingBlow": "As Killing Blow, but works against all troop types.",
+    "multipleWounds": "Multiple Wounds (X): Each unsaved wound is multiplied into X wounds.",
+    "poisonedAttacks": "A natural To Hit roll of 6 automatically wounds (no To Wound roll needed).",
+    "stubbornness": "Always uses unmodified Leadership for Break tests.",
+    "unbreakable": "Automatically passes all Break tests. Cannot flee.",
+    "frenzy": "+1 Attack. Must pursue and overrun. Must charge if able. Loses Frenzy if broken in combat.",
+    "fear": "Units in base contact with Fear-causing enemy must pass a Leadership test or hit on 6s only. Fear-causing units do not take Panic from Fear-causing enemies.",
+    "terror": "Causes Fear. Additionally, enemy units must pass a Leadership test when charged or within 6 inches, or flee.",
+    "impactHits": "Impact Hits (X): Inflicts X automatic hits at the model's Strength when charging.",
+    "fightInExtraRank": "Models in one additional rank may fight in close combat (e.g., spears).",
+    "requiresTwoHands": "Cannot use a shield in close combat.",
+    "parry": "Models with hand weapon and shield gain a 6+ Ward save in close combat (not against Strength 2x or more their own)."
+  },
+  "weapons": {
+    "closeCombat": {
+      "handWeapon": {
+        "name": "Hand Weapon",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": [],
+        "notes": "If armed with another close combat weapon, must use that instead."
+      },
+      "additionalHandWeapon": {
+        "name": "Additional Hand Weapon",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": ["+1 Attack", "Parry (6+)", "Requires Two Hands"]
+      },
+      "polearm": {
+        "name": "Polearm",
+        "range": "Combat",
+        "strength": "+1",
+        "specialRules": ["Requires Two Hands"]
+      },
+      "spear": {
+        "name": "Spear",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": ["+1 Initiative", "Fight in Extra Ranks (1)", "Mighty Blow (1) when charged to front"],
+        "notes": "Model on foot only. +1 Initiative only when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
+      },
+      "pike": {
+        "name": "Pike",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": ["+2 Initiative", "Fight in Extra Ranks (3)", "Mighty Blow (1) when charged to front", "Requires Two Hands"],
+        "notes": "Model on foot only. +1 Initiative bonus when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
+      },
+      "greatWeapon": {
+        "name": "Great Weapon",
+        "range": "Combat",
+        "strength": "+2",
+        "specialRules": ["Armour Piercing (1)", "Always Strikes Last", "Requires Two Hands"]
+      },
+      "halberd": {
+        "name": "Halberd",
+        "range": "Combat",
+        "strength": "+1",
+        "specialRules": ["Armour Piercing (1)", "Requires Two Hands"]
+      },
+      "flail": {
+        "name": "Flail",
+        "range": "Combat",
+        "strength": "+2 first round, +1 subsequent",
+        "specialRules": ["Requires Two Hands"]
+      },
+      "morningstar": {
+        "name": "Morning Star",
+        "range": "Combat",
+        "strength": "+1 first round",
+        "specialRules": []
+      },
+      "lightLance": {
+        "name": "Light Lance",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": ["+1 Initiative on charge", "Mighty Blow (1) on charge"],
+        "notes": "Mounted model only. Bonuses only on the turn the model charges."
+      },
+      "heavyLance": {
+        "name": "Heavy Lance",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": ["+2 Initiative on charge", "Mighty Blow (2) on charge"],
+        "notes": "Mounted model only. Bonuses only on the turn the model charges."
+      }
+    },
+    "missile": {
+      "shortbow": {
+        "name": "Shortbow",
+        "range": 18,
+        "strength": 3,
+        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+      },
+      "bow": {
+        "name": "Bow",
+        "range": 24,
+        "strength": 3,
+        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+      },
+      "longbow": {
+        "name": "Longbow",
+        "range": 30,
+        "strength": 3,
+        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+      },
+      "warbow": {
+        "name": "Warbow",
+        "range": 30,
+        "strength": 4,
+        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+      },
+      "greatbow": {
+        "name": "Greatbow",
+        "range": 36,
+        "strength": 5,
+        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+      },
+      "crossbow": {
+        "name": "Crossbow",
+        "range": 30,
+        "strength": 4,
+        "specialRules": ["Ponderous"]
+      },
+      "handgun": {
+        "name": "Handgun",
+        "range": 24,
+        "strength": 4,
+        "specialRules": ["Armour Piercing (1)", "Ponderous"]
+      },
+      "pistol": {
+        "name": "Pistol",
+        "range": 12,
+        "strength": 4,
+        "specialRules": ["Armour Piercing (1)", "Multiple Shots (2) with brace", "Quick to Fire"],
+        "notes": "In close combat counts as additional hand weapon (no Parry)."
+      },
+      "blunderbuss": {
+        "name": "Blunderbuss",
+        "range": 12,
+        "strength": 3,
+        "specialRules": ["Armour Piercing (1)", "Multiple Shots (3)", "Quick to Fire", "Rapid Fire"],
+        "notes": "No penalty for Stand and Shoot."
+      },
+      "javelin": {
+        "name": "Javelin",
+        "range": 12,
+        "strength": "As user",
+        "specialRules": ["Armour Piercing (1)", "Quick to Fire", "Volley Fire"]
+      },
+      "throwingWeapon": {
+        "name": "Throwing Weapon",
+        "range": 8,
+        "strength": "As user",
+        "specialRules": ["Multiple Shots (2)", "Quick to Fire"]
+      },
+      "throwingAxe": {
+        "name": "Throwing Axe",
+        "range": 6,
+        "strength": "As user +1",
+        "specialRules": ["Quick to Fire"]
+      },
+      "sling": {
+        "name": "Sling",
+        "range": 18,
+        "strength": 3,
+        "specialRules": ["Armour Piercing (1)", "Multiple Shots (2) if stationary"]
+      },
+      "blowpipe": {
+        "name": "Blowpipe",
+        "range": 12,
+        "strength": 1,
+        "specialRules": ["Multiple Shots (2)", "Poisoned Attacks", "Quick to Fire", "Rapid Fire"]
+      }
+    }
+  },
+  "armour": {
+    "lightArmour": {
+      "name": "Light Armour",
+      "combatSave": "+1 (6+)",
+      "missileSave": "+1 (6+)"
+    },
+    "mediumArmour": {
+      "name": "Medium Armour",
+      "combatSave": "+2 (5+)",
+      "missileSave": "+2 (5+)"
+    },
+    "heavyArmour": {
+      "name": "Heavy Armour",
+      "combatSave": "+3 (4+)",
+      "missileSave": "+3 (4+)"
+    },
+    "shield": {
+      "name": "Shield",
+      "combatSave": "+1 (6+)",
+      "missileSave": "+1 (6+), +2 on foot vs front",
+      "specialRules": ["Parry (6+) with hand weapon"],
+      "notes": "Models on foot get +1 extra vs missile attacks to the front."
+    },
+    "buckler": {
+      "name": "Buckler",
+      "combatSave": "+1 (6+)",
+      "missileSave": "+1 (6+) on foot vs front",
+      "specialRules": ["Parry (6+) with hand weapon"]
+    },
+    "barding": {
+      "name": "Barding",
+      "combatSave": "+1 (6+)",
+      "missileSave": "+1 (6+)",
+      "specialRules": ["-1 Movement to mount"]
+    }
+  }
+}

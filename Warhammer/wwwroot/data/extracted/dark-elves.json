@@ -1,0 +1,2177 @@
+{
+  "factionName": "Dark Elves",
+  "units": [
+    {
+      "name": "Dreadlord",
+      "category": "Lords",
+      "profiles": [
+        {
+          "name": "Dreadlord",
+          "M": 5,
+          "WS": 7,
+          "BS": 7,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 8,
+          "A": 4,
+          "Ld": 10,
+          "points": 125
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, light armour",
+      "magic": null,
+      "options": [
+        "May choose one of the following:",
+        "Additional hand weapon +3 points",
+        "Spear +3 points",
+        "Light lance +4 points",
+        "Heavy lance +8 points",
+        "Polearm +8 points",
+        "Great weapon +12 points",
+        "May choose one of the following:",
+        "Medium armour +6 points",
+        "Heavy armour +15 points",
+        "May take a Deathrain crossbow +5 points",
+        "May take a shield +3 points",
+        "May take a Sea Dragon Cloak +3 points",
+        "May be mounted on one of the following:",
+        "Dark Steed +21 points",
+        "Cold One +24 points",
+        "Dark Pegasus +30 points",
+        "Cold One Chariot (replacing one of the crew) +100 points",
+        "Manticore +150 points",
+        "Black Dragon +300 points",
+        "May take Magic Items up to a total of 100 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 125,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Supreme Sorceress",
+      "category": "Lords",
+      "profiles": [
+        {
+          "name": "Supreme Sorceress",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 5,
+          "A": 1,
+          "Ld": 9,
+          "points": 185
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": "A Supreme Sorceress is a Level 3 Wizard who uses spells from any of the eight Winds of Magic or Dark\nMagic.",
+      "options": [
+        "May be upgraded to a Level 4 Wizard +35 points",
+        "May be mounted on one of the following:",
+        "Dark Steed +21 points",
+        "Cold One +24 points",
+        "Dark Pegasus +30 points",
+        "Manticore +150 points",
+        "Black Dragon +300 points",
+        "May take Magic Items up to a total of 100 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess\nHAG QUEEN",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 185,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Hag Queen",
+      "category": "Lords",
+      "profiles": [
+        {
+          "name": "Hag Queen",
+          "M": 5,
+          "WS": 7,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 8,
+          "A": 4,
+          "Ld": 10,
+          "points": 140
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        "May choose one of the following:",
+        "Additional hand weapon +3 points",
+        "Polearm +8 points",
+        "May take light armour +3 points",
+        "May be mounted on a Cauldron of Blood (replacing the Keeper of the Cauldron) +160 points",
+        "May take Magic Items and/or Gifts of Khaine up to a total of 100 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 140,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Master",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Master",
+          "M": 5,
+          "WS": 6,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 55
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, light armour",
+      "magic": null,
+      "options": [
+        "One Master may carry the Battle Standard +25 points",
+        "May choose one of the following:",
+        "Additional hand weapon +2 points",
+        "Spear +2 points",
+        "Light lance +3 points",
+        "Heavy lance +6 points",
+        "Polearm +6 points",
+        "Great weapon +8 points",
+        "May choose one of the following:",
+        "Medium armour +4 points",
+        "Heavy armour +10 points",
+        "May take a Deathrain crossbow +5 points",
+        "May take a shield +2 points",
+        "May take a Sea Dragon Cloak +2 points",
+        "May be mounted on one of the following:",
+        "Dark Steed +14 points",
+        "Cold One +16 points",
+        "Dark Pegasus +20 points",
+        "Cold One Chariot (replacing one of the crew) +100 points",
+        "May take Magic Items up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+      "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
+      "notes": null,
+      "pointsCost": 55,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Sorceress",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Sorceress",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 2,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 85
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": "A Sorceress is a Level 1 Wizard who uses spells from any of the eight Winds of Magic or Dark Magic.",
+      "options": [
+        "May be upgraded to a Level 2 Wizard +35 points",
+        "May be mounted on one of the following:",
+        "Dark Steed +14 points",
+        "Cold One +16 points",
+        "Dark Pegasus +20 points",
+        "May take Magic Items up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess\nBLACK ARK FLEETMASTER",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 85,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Fleetmaster",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Fleetmaster",
+          "M": 5,
+          "WS": 6,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 80
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Two hand weapons, light armour, Sea Dragon Cloak",
+      "magic": null,
+      "options": [
+        "May replace additional hand weapon with repeater handbow free",
+        "May take Magic Items up to a total of 50 points"
+      ],
+      "specialRules": "Ambushers, Elven Grace, Hatred (High Elves), Murderous Prowess\n• At Them, You Curs!: If a Black Ark Fleetmaster joins a unit of Black Ark Corsairs, they may both re-roll\nfailed To Hit rolls of 1 in close combat.\n• Show no Weakness: Each unsaved Wound caused by a Fleetmaster counts as two Wounds when calculating\ncombat resolution. In addition, a Fleetmaster must always accept challenges. While fighting challenges, the\nFleetmaster may re-roll all failed rolls To Hit.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 80,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Beastmaster",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Beastmaster",
+          "M": 5,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 6,
+          "A": 2,
+          "Ld": 8,
+          "points": 45
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        "May choose one of the following:",
+        "Additional hand weapon +2 points",
+        "Spear +2 points",
+        "Light lance +4 points",
+        "May take light armour +2 points",
+        "May take a Sea Dragon Cloak +2 points",
+        "May be mounted on one of the following:",
+        "Scourgerunner Chariot (replacing one of the crew) +70 points",
+        "Manticore +150 points",
+        "May take Magic Items up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess\n• Beastslaver: At the start of each of your turns, choose a friendly monster within 6\" of the Beastmaster. That\nmonster has +D3 Attacks until the start of your next turn. A monster can only be affected by this special rule\nonce in each turn.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 45,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Death Hag",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Death Hag",
+          "M": 5,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 70
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        "One Death Hag may carry the Battle Standard +25 points",
+        "May choose one of the following:",
+        "Additional hand weapon +2 points",
+        "Polearm +6 points",
+        "May take light armour +2 points",
+        "May be mounted on a Cauldron of Blood (replacing the Keeper of the Cauldron) +160 points",
+        "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+      "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
+      "notes": null,
+      "pointsCost": 70,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Disciple of Khaine",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Disciple of Khaine",
+          "M": 5,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 6,
+          "A": 2,
+          "Ld": 9,
+          "points": 100
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, light armour",
+      "magic": null,
+      "options": [
+        "May take an additional hand weapon +2 points",
+        "May take medium armour +4 points",
+        "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Murderous Prowess\n• Blessing of Khaine: The model and any unit they join gain a 6+ Ward save.\n• Blood Rites: A model with this special rule knows the three Blood Rites listed below. They may attempt to use\none at the start of each of your turns by taking a Leadership test on their own unmodified Leadership. If\npassed, the prayer is answered and takes immediate effect. Each Blood Rite lasts until the start of your next\nturn. A friendly unit can only be under the effect of one Blood Rite at a time.\n- Catechism of Murder: Whenever a model in the unit causes an unsaved Wound close combat, they may\nimmediately make an additional Attack.\n- Crimson Rejuvenation: All models in the unit gain the Regeneration (6+) special rule.\n- Sacrament of Blood: All models in the unit gain the Swiftstride special rule.\nKHAINITE ASSASSIN",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 100,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Khainite Assassin",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Khainite Assassin",
+          "M": 5,
+          "WS": 9,
+          "BS": 9,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 10,
+          "A": 3,
+          "Ld": 9,
+          "points": 105
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        "May take an additional hand weapon +2 points",
+        "May choose one of the following:",
+        "Repeater handbow +2 points",
+        "Throwing weapons +2 points",
+        "May take light armour +2 points",
+        "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+      ],
+      "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous\nProwess, Poisoned Attacks, Scouts",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 105,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "High Gladiatrix",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "High Gladiatrix",
+          "M": 5,
+          "WS": 8,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 4,
+          "Ld": 9,
+          "points": 145
+        }
+      ],
+      "troopType": "Infantry (Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, light armour",
+      "magic": null,
+      "options": [
+        "May choose one of the following:",
+        "Additional hand weapon +2 points",
+        "Buckler +2 points",
+        "Polearm +8 points",
+        "May take Magic Items up to a total of 50 points"
+      ],
+      "specialRules": "Hatred (High Elves), Immunity (Fear), Killing Blow, Murderous Prowess\n• Dance of Death: Models with this special rule have the Dodge (5+) special rule in close combat and can re-\nroll failed Dodge saves. In addition, at the start of each round of close combat, each unit with this special rule\nchooses one enemy unit in base contact. That unit gains no Rank Bonus and cannot make Parry saves this turn.\n• Paragon of Slaughter: A High Gladiatrix and all Sisters of Slaughter in a unit that is joined by one or more\nHigh Gladiatrixes gain the Armour Piercing (1) special rule.\n• The Trial of Blades: Models with this rule receive +1 To Hit and To Wound if at least one enemy model in\nbase contact with the unit has a Weapon Skill characteristic of 5+ and/or a Strength characteristic of 4+.\nMELUSAI IRONSCALE",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 145,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Melusai Ironscale",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Melusai Ironscale",
+          "M": 6,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 7,
+          "A": 4,
+          "Ld": 9,
+          "points": 190
+        }
+      ],
+      "troopType": "Large Infantry (Character, Dark Elf)",
+      "baseSize": "30x30 or 40x40",
+      "equipment": "Keldrisaíth, medium armour\n• Keldrisaíth: Polearm. A Keldrisaíth gives the wielder the Killing Blow and Magical Attacks special rules. A\nKeldrisaíth can also fire in the shooting phase using the following profile:\nRange: Strength: Special Rules:\n24\" 4 Killing Blow, Magical Attacks, Multiple Shots (2), Quick to Fire",
+      "magic": null,
+      "options": [
+        "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Magic Resistance (1), Murderous Prowess,\nNatural Armour (6+), Swiftstride, Vanguard\n• Gory Offering: If any enemy models are slain by a Melusai Ironscale in close combat, any Melusai in the\nsame unit as her gain the Frenzy special rule for the remainder of the close combat phase.\n• Wrath of the Melusai: Any unit of Melusai joined by a Melusai Ironscale can re-roll failed charge and pursue\ndistances.\n17\n\nCHARACTER MOUNTS\nDARK STEED",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 190,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Dark Steed 9",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Dark Steed 9",
+          "M": 3,
+          "WS": 0,
+          "BS": 3,
+          "S": 3,
+          "T": 1,
+          "W": 4,
+          "I": 1,
+          "A": 5,
+          "Ld": null
+        }
+      ],
+      "troopType": "War Beast (Animal)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        "May take barding +5 points\nCOLD ONE"
+      ],
+      "specialRules": null,
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Cold One 7",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Cold One 7",
+          "M": 3,
+          "WS": 0,
+          "BS": 4,
+          "S": 4,
+          "T": 1,
+          "W": 2,
+          "I": 2,
+          "A": 3,
+          "Ld": null
+        }
+      ],
+      "troopType": "War Beast (Animal)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        "May take barding free\nDARK PEGASUS"
+      ],
+      "specialRules": "Fear, Natural Armour (6+), Stupidity",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Dark Pegasus 8",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Dark Pegasus 8",
+          "M": 3,
+          "WS": 0,
+          "BS": 4,
+          "S": 4,
+          "T": 2,
+          "W": 4,
+          "I": 2,
+          "A": 6,
+          "Ld": null
+        }
+      ],
+      "troopType": "War Beast (Animal)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Fly (9)\n• Impale: Dark Pegasi gain +1 Strength to their Impact Hits.\n18\n\nCHARACTER MOUNTS\nMANTICORE",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Manticore 6",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Manticore 6",
+          "M": 5,
+          "WS": 0,
+          "BS": 5,
+          "S": 5,
+          "T": 4,
+          "W": 5,
+          "I": 4,
+          "A": 5,
+          "Ld": null
+        }
+      ],
+      "troopType": "Monstrous Creature (Chaos Beast)",
+      "baseSize": "50x50, 50x100 or 60x100",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        "May take Rending Fangs +5 points",
+        "May take Bloodrage +15 points",
+        "May take Iron-hard Skin +15 points",
+        "May take Venom Tail +15 points"
+      ],
+      "specialRules": "Fly (8), Frenzy, Killing Blow",
+      "upgrades": "• Bloodrage: The Manticore gains the Hatred special rule.\n• Iron-hard Skin: The Manticore gains the Natural Armour (5+) special rule.\n• Rending Fangs: The Manticore gains the Armour Piercing (1) special rule.\n• Venom Tail: The Manticore gains an additional Attack that has the Poisoned Attacks special rule.\nBLACK DRAGON",
+      "notes": null,
+      "pointsCost": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Black Dragon 6",
+      "category": "Heroes",
+      "profiles": [
+        {
+          "name": "Black Dragon 6",
+          "M": 6,
+          "WS": 0,
+          "BS": 6,
+          "S": 6,
+          "T": 6,
+          "W": 3,
+          "I": 5,
+          "A": 8,
+          "Ld": null
+        }
+      ],
+      "troopType": "Monster (Dragon)",
+      "baseSize": "50x50, 50x100 or 60x100",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Fly (7), Natural Armour (3+).\n• Noxious Breath: A Black Dragon has a Strength 3 Breath Weapon. All models in a unit that has suffered one\nor more casualties from the attack suffer a -1 penalty to their Weapon Skill and Ballistic Skill until the end of\nthe following turn.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Dreadspear",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Dreadspear",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 10
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Spear, medium armour, shield",
+      "magic": null,
+      "options": [
+        "May upgrade one Dreadspear to a Leader +5 points",
+        "May upgrade one Dreadspear to a Musician +5 points",
+        "May upgrade one Dreadspear to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 25 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess\nBLEAKSWORDS",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 10,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Bleaksword",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Bleaksword",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 9
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, medium armour, shield",
+      "magic": null,
+      "options": [
+        "May upgrade one Bleaksword to a Leader +5 points",
+        "May upgrade one Bleaksword to a Musician +5 points",
+        "May upgrade one Bleaksword to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 25 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 9,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Darkshard",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Darkshard",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 13
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, Deathrain crossbow, medium armour",
+      "magic": null,
+      "options": [
+        "May take shields +1 point/model",
+        "May upgrade one Darkshard to a Leader +5 points",
+        "May upgrade one Darkshard to a Musician +5 points",
+        "May upgrade one Darkshard to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 25 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess\nBLACK ARK CORSAIRS",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 13,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Corsair",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Corsair",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 9
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Two hand weapons, light armour, Sea Dragon Cloak",
+      "magic": null,
+      "options": [
+        "May be upgraded to Skirmishers +1 point/model",
+        "May replace one hand weapon with repeater handbows +2 points/model",
+        "May upgrade one Corsair to a Leader +5 points",
+        "May upgrade one Corsair to a Musician +5 points",
+        "May upgrade one Corsair to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 25 points"
+      ],
+      "specialRules": "Ambushers, Elven Grace, Hatred (High Elves), Murderous Prowess\n• Slavers: Whenever a unit containing at least 5 models with this special rule breaks an enemy unit in close\ncombat and pursues them, the fleeing unit must re-roll the highest result on their flee roll.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 9,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Dark Rider",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Dark Rider",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 16
+        },
+        {
+          "name": "Dark Steed",
+          "M": 9,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Dark Elf)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Light lance, light armour",
+      "magic": null,
+      "options": [
+        "May take Deathrain crossbows +5 points/model",
+        "May take shields +1 point/model",
+        "May take barding free",
+        "May upgrade one Dark Rider to a Leader +5 points",
+        "May upgrade one Dark Rider to a Musician +5 points",
+        "May upgrade one Dark Rider to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 25 points"
+      ],
+      "specialRules": "Elven Grace, Fast Cavalry, Hatred (High Elves), Murderous Prowess\nSLAVES",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 16,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": "Dark Steed (Animal)",
+      "drawnBy": null
+    },
+    {
+      "name": "Slave",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Slave",
+          "M": 4,
+          "WS": 2,
+          "BS": 2,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 4,
+          "points": 2
+        },
+        {
+          "name": "Slave Master",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 25
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapons",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace (Slave Master only), Expendable, Hatred (High Elves) (Slave Master only),\nMixed Unit, Murderous Prowess (Slave Master only), Vanguard",
+      "upgrades": null,
+      "notes": "• You must include one Slave Master for every 20 Slaves in the unit.",
+      "pointsCost": 2,
+      "unitSize": "20+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Harpy",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Harpy",
+          "M": 5,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 2,
+          "Ld": 6,
+          "points": 12
+        }
+      ],
+      "troopType": "Infantry (Harpy)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        "May upgrade one Harpy to a Leader +5 points"
+      ],
+      "specialRules": "Expendable, Fly (10)",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 12,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Witch Elf",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Witch Elf",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 6,
+          "A": 1,
+          "Ld": 8,
+          "points": 10
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Two hand weapons",
+      "magic": null,
+      "options": [
+        "May take light armour +0.5 point/model",
+        "May upgrade one Witch Elf to a Leader +5 points",
+        "May upgrade one Witch Elf to a Musician +5 points",
+        "May upgrade one Witch Elf to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 25 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+      "upgrades": null,
+      "notes": "• You may take one unit of Witch Elves as a Core Unit instead of a Special Unit for every Hag Queen or Death\nHag in your army.\nHAR GANETH EXECUTIONERS",
+      "pointsCost": 10,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Executioner",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Executioner",
+          "M": 5,
+          "WS": 5,
+          "BS": 4,
+          "S": 4,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 15
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Great weapon, heavy armour",
+      "magic": null,
+      "options": [
+        "May upgrade one Executioner to a Leader +5 points",
+        "May upgrade one Executioner to a Musician +5 points",
+        "May upgrade one Executioner to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Killing Blow, Khainite, Murderous Prowess",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 15,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Sister of Slaughter",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Sister of Slaughter",
+          "M": 5,
+          "WS": 6,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 6,
+          "A": 2,
+          "Ld": 9,
+          "points": 15
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, buckler",
+      "magic": null,
+      "options": [
+        "May be upgraded to Skirmishers +1 point/model",
+        "May upgrade one Sister of Slaughter to a Leader +5 points",
+        "May upgrade one Sister of Slaughter to a Musician +5 points",
+        "May upgrade one Sister of Slaughter to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 50 points"
+      ],
+      "specialRules": "Hatred (High Elves), Immunity (Fear), Murderous Prowess\n• Dance of Death: Models with this special rule have the Dodge (5+) special rule in close combat and can re-\nroll failed Dodge saves. In addition, at the start of each round of close combat, each unit with this special rule\nchooses one enemy unit in base contact. That unit gains no Rank Bonus and cannot make Parry saves this turn.\n• The Trial of Blades: Models with this rule receive +1 To Hit and To Wound if at least one enemy model in\nbase contact with the unit has a Weapon Skill characteristic of 5+ and/or a Strength characteristic of 4+.\nSHADES",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 15,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Shade",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Shade",
+          "M": 5,
+          "WS": 5,
+          "BS": 5,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 16
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, Deathrain crossbow",
+      "magic": null,
+      "options": [
+        "May take light armour +0.5 point/model",
+        "May upgrade one Shade to a Leader +5 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess, Scouts, Skirmishers",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 16,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Cold One Knight",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Cold One Knight",
+          "M": 7,
+          "WS": 5,
+          "BS": 4,
+          "S": 4,
+          "T": 3,
+          "W": 1,
+          "I": 6,
+          "A": 1,
+          "Ld": 9,
+          "points": 32
+        },
+        {
+          "name": "Cold One",
+          "M": 7,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Dark Elf)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Heavy lance, heavy armour, shield",
+      "magic": null,
+      "options": [
+        "May take barding free",
+        "May upgrade one Cold One Knight to a Leader +5 points",
+        "May upgrade one Cold One Knight to a Musician +5 points",
+        "May upgrade one Cold One Knight to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 50 points"
+      ],
+      "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+),\nStupidity\nCOLD ONE CHARIOT",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 32,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": "Cold One (Animal)",
+      "drawnBy": null
+    },
+    {
+      "name": "Cold One Chariot",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Cold One Chariot",
+          "M": 6,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 5,
+          "W": 4,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 100
+        },
+        {
+          "name": "Charioteer",
+          "M": null,
+          "WS": 5,
+          "BS": 4,
+          "S": 4,
+          "T": null,
+          "W": null,
+          "I": 6,
+          "A": 1,
+          "Ld": 9
+        },
+        {
+          "name": "Cold One",
+          "M": null,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": null,
+          "W": null,
+          "I": 2,
+          "A": 2,
+          "Ld": null
+        }
+      ],
+      "troopType": "Chariot (Armour Save 6+)",
+      "baseSize": "50x100",
+      "equipment": "Light lance, Deathrain crossbow, heavy armour, scythes",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+),\nStupidity",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 100,
+      "unitSize": null,
+      "crew": "2 Charioteers (Dark Elf)",
+      "mount": null,
+      "drawnBy": "2 Cold Ones (Animal)"
+    },
+    {
+      "name": "Scourgerunner Chariot",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Scourgerunner Chariot",
+          "M": 8,
+          "WS": null,
+          "BS": null,
+          "S": 4,
+          "T": 4,
+          "W": 4,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 70
+        },
+        {
+          "name": "Beastmaster Crew",
+          "M": null,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 5,
+          "A": 1,
+          "Ld": 8
+        },
+        {
+          "name": "Dark Steed",
+          "M": null,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": null
+        }
+      ],
+      "troopType": "Chariot (Armour Save 6+)",
+      "baseSize": "50x100",
+      "equipment": "Light lance, Deathrain crossbow, Ravager Harpoon, Sea Dragon Cloak\n• Ravager Harpoon: A Ravager Harpoon has the following profile:\nRange: Strength: Special Rules:\n30\" 5 Armour Piercing (1), Multiple Wounds (D3)\nIf a Monstrous Creature or Monster is Hit by this weapon but survives, it must immediately turn and move D6\"\ntowards the Scourgerunner Chariot, stopping within 1\" of other units or impassable terrain. In its following\nturn, the target may choose to either suffer 1 Wound with no saves allowed or be forced to keep moving D6\"\ntowards the Scourgerunner Chariot instead of moving normally.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess\nREAPER BOLT THROWER",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 70,
+      "unitSize": null,
+      "crew": "2 Beastmaster Crew (Dark Elf)",
+      "mount": null,
+      "drawnBy": "2 Dark Steeds (Animal)"
+    },
+    {
+      "name": "Reaper Bolt Thrower",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Reaper Bolt Thrower",
+          "M": null,
+          "WS": null,
+          "BS": null,
+          "S": null,
+          "T": 7,
+          "W": null,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 60
+        },
+        {
+          "name": "Crew",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8
+        }
+      ],
+      "troopType": "War Machine (Repeater Bolt Thrower)",
+      "baseSize": "50x100",
+      "equipment": "Hand weapon, medium armour",
+      "magic": null,
+      "options": [
+        "May take an additional Crew 11 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 60,
+      "unitSize": null,
+      "crew": "2 (Dark Elf)",
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Melusai",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Melusai",
+          "M": 6,
+          "WS": 5,
+          "BS": 5,
+          "S": 3,
+          "T": 4,
+          "W": 2,
+          "I": 5,
+          "A": 2,
+          "Ld": 8,
+          "points": 28
+        }
+      ],
+      "troopType": "Large Infantry (Dark Elf)",
+      "baseSize": "30x30 or 40x40",
+      "equipment": "Heartshard Glaive, medium armour\n• Heartshard Glaive: Polearm. All attacks made with this weapon have the Magical Attacks and Killing Blow\nspecial rules.\n• Heartseeker Bows: Warbow. All attacks made with this weapon have the Magical Attacks and Killing Blow\nspecial rules.",
+      "magic": null,
+      "options": [
+        "May replace Heartshard Glaives & medium armour with light armour & Heartseeker Bows +2 points/model",
+        "May upgrade one Melusai to a Leader +5 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Murderous Prowess, Natural Armour (6+),\nSwiftstride, Vanguard\nKHINERAI",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 28,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Khinerai",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Khinerai",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 6,
+          "A": 2,
+          "Ld": 8,
+          "points": 15
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": "Hand weapon, light armour, shield",
+      "magic": null,
+      "options": [
+        "May take javelins +2 points/model",
+        "May upgrade one Khinerai to a Leader +5 points"
+      ],
+      "specialRules": "Ambushers, Elven Grace, Fly (10), Hatred (High Elves), Khainite, Murderous Prowess\n• Fight and Flight: In any close combat phase in which a unit with this special rule does not break or break their\nenemy, it may choose to disengage from combat instead of doing a combat reform (if the unit lost the combat\nthey must pass a Leadership test just like when attempting to Reform from Defeat). If the unit manages to\ndisengage from combat, the unit will make a Flee move as if it had broken from combat. This Flee move\nfollows the rules for Feigned Flight. After finishing its move, the unit rallies automatically. The enemy unit is\nnot allowed to Pursue, but may make a Combat Reform as normal.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 15,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Bloodwrack Medusa",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Bloodwrack Medusa",
+          "M": 6,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 5,
+          "A": 3,
+          "Ld": 7,
+          "points": 60
+        }
+      ],
+      "troopType": "Monstrous Beast (Dark Elf)",
+      "baseSize": "40x40",
+      "equipment": "Polearm",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Frenzy, Hatred (High Elves), Murderous Prowess, Natural Armour (6+)\n• Avert Your Gaze!: At the start of each Close Combat phase, before challenges are issued, enemy models in\nbase contact with this model suffer a Strength 4 hit with the Ignores Armour Saves, Magical Attacks and\nKilling Blow special rules. When rolling To Wound, substitute the target's Toughness with its Initiative value.\n• Bloodwrack Stare: Bloodwrack Stare has the following profile:\nRange: Strength: Special Rules:\n12\" 4 Ignores Armour saves, Killing Blow, Magical Attacks, Multiple Shots (5)\nWhen rolling To Wound, substitute the target's Toughness with its Initiative value. This attack does not suffer\nany To Hit penalties.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 60,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Black Guard",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Black Guard",
+          "M": 5,
+          "WS": 5,
+          "BS": 4,
+          "S": 4,
+          "T": 3,
+          "W": 1,
+          "I": 6,
+          "A": 2,
+          "Ld": 9,
+          "points": 18
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Polearm, heavy armour",
+      "magic": null,
+      "options": [
+        "May upgrade one Black Guard to a Leader +5 points",
+        "May upgrade one Black Guard to a Musician +5 points",
+        "May upgrade one Black Guard to a Standard Bearer +10 points",
+        "May take a Magic Standard worth up to 75 points"
+      ],
+      "specialRules": "Elven Grace, Eternal Hatred, Immunity (Psychology), Murderous Prowess, Stubborn\nSHADOWSTALKERS",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 18,
+      "unitSize": "10+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Shadowstalker",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Shadowstalker",
+          "M": 5,
+          "WS": 5,
+          "BS": 5,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 6,
+          "A": 2,
+          "Ld": 8,
+          "points": 16
+        }
+      ],
+      "troopType": "Infantry (Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Two hand weapons, throwing weapons",
+      "magic": null,
+      "options": [
+        "May replace throwing weapons with repeater handbows +2 points/model",
+        "May upgrade one Shadowstalker to a Leader +5 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Loner, Murderous Prowess, Poisoned Attacks, Scouts,\nSkirmishers\n• Harness Shadow: Missile attacks targeting a unit containing one or more models with this special rule suffer\n-1 To Hit.\n• Shadowleap: Instead of moving normally in the Remaining Moves sub-phase, this unit may make a Fly (6)\nmove.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 16,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Doomfire Warlock",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Doomfire Warlock",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 2,
+          "Ld": 8,
+          "points": 26
+        },
+        {
+          "name": "Dark Steed",
+          "M": 9,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Dark Elf)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Hand weapon",
+      "magic": "A unit of Doomfire Warlocks is a Level 1 Wizard that can use spells from the Lore of Shadow, Death or Dark\nMagic.",
+      "options": [
+        "May take barding free",
+        "May upgrade one Doomfire Warlock to a Leader +5 points"
+      ],
+      "specialRules": "Fast Cavalry, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess, Poisoned\nAttacks, Ward Save (4+)\n• Cursed Coven: The unit receives an additional +1 to cast for each rank of 5 or more models it has, after the\nfirst, to a maximum of +3. Each time the unit casts a spell (or is targeted by a special rule that affects a\nWizard), you must nominate one Doomfire Warlock as the caster (or target) for the purposes of line of sight,\nrange, etc. In the event of a Doomfire Warlock unit rolling a miscast, do not roll on the Miscast table. Instead,\nthe unit suffers D3 Wounds with no saves of any kind allowed.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 26,
+      "unitSize": "5+",
+      "crew": null,
+      "mount": "Dark Steed (Animal)",
+      "drawnBy": null
+    },
+    {
+      "name": "Cauldron of Blood",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Cauldron of Blood",
+          "M": 5,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 6,
+          "W": 5,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 165
+        },
+        {
+          "name": "Keeper of the Cauldron",
+          "M": null,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 6,
+          "A": 2,
+          "Ld": 8
+        },
+        {
+          "name": "Guardian",
+          "M": null,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 6,
+          "A": 1,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Shrine (Armour Save 6+)",
+      "baseSize": "60x100",
+      "equipment": "Two hand weapons",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Large Target (5), Murderous Prowess,\nPoisoned Attacks, Terror\n• Bloodshield of Khaine: The Cauldron of Blood has a 4+ Ward save, and models in the same unit have a 6+\nWard save.\n• Fury of Khaine: Innate Bound Spell, power level 5. Fury of Khaine is an augment spell with a range of 12\".\nThe target gains the Frenzy special rule until the start of the Cauldron of Blood's next Magic phase.\n• Strength of Khaine: Friendly units with the Murderous Prowess special rule within 6\" of the Cauldron of\nBlood re-roll failed To Wound rolls in close combat.",
+      "upgrades": null,
+      "notes": "• A Cauldron of Blood has a Line of Sight value of 5.",
+      "pointsCost": 165,
+      "unitSize": null,
+      "crew": "1 Keeper of the Cauldron and 2 Guardians (Dark Elf)",
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Bloodwrack Shrine",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Bloodwrack Shrine",
+          "M": 5,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 6,
+          "W": 5,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 140
+        },
+        {
+          "name": "Shrinekeeper",
+          "M": null,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 5,
+          "A": 1,
+          "Ld": 8
+        },
+        {
+          "name": "Bloodwrack Medusa",
+          "M": null,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": null,
+          "W": null,
+          "I": 5,
+          "A": 3,
+          "Ld": null
+        }
+      ],
+      "troopType": "Shrine (Armour Save 6+)",
+      "baseSize": "60x100",
+      "equipment": "Polearm",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess, Natural Armour (6+), Terror\n• Aura of Agony: Enemy units within 6\" suffer a -2 penalty to their Weapon Skill and Initiative (to a minimum\nof 1) as well as -1 to their Leadership.\n• Avert Your Gaze!: At the start of each Close Combat phase, before challenges are issued, enemy models in\nbase contact with this model suffer a Strength 4 hit with the Ignores Armour Saves, Magical Attacks and\nKilling Blow special rules. When rolling To Wound, substitute the target's Toughness with its Initiative value.\n• Bloodwrack Stare: Bloodwrack Stare has the following profile:\nRange: Strength: Special Rules:\n12\" 4 Ignores Armour saves, Killing Blow, Magical Attacks, Multiple Shots (5)\nWhen rolling To Wound, substitute the target's Toughness with its Initiative value. This attack does not suffer\nany To Hit penalties.",
+      "upgrades": null,
+      "notes": "• A Bloodwrack Shrine has a Line of Sight value of 5.",
+      "pointsCost": 140,
+      "unitSize": null,
+      "crew": "1 Bloodwrack Medusa and 2 Shrinekeepers (Dark Elf)",
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "War Hydra",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "War Hydra",
+          "M": 6,
+          "WS": 4,
+          "BS": 4,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": 2,
+          "A": 8,
+          "Ld": 6,
+          "points": 200
+        },
+        {
+          "name": "Beastmaster Apprentice",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Monster (Hydra)\nHANDLERS: 2 Beastmaster Apprentices (Dark Elf)",
+      "baseSize": "50x100",
+      "equipment": "Two hand weapons (Beastmaster Apprentices only)",
+      "magic": null,
+      "options": [
+        "May choose one of the following:",
+        "Spit Fire +10 points",
+        "Fiery Breath +20 points",
+        "Acid Breath +30 points",
+        "May choose one of the following:",
+        "Bloodthirsty +5 points",
+        "Daerlythe's Aura +5 points",
+        "Battle Lover +10 points",
+        "Chameleon Skin +10 points",
+        "Armour Plates +15 points"
+      ],
+      "specialRules": "Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice\nonly), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Natural Armour (4+), Regeneration (4+)\n• Loss of Heads: For each unsaved Wound the War Hydra has lost during the battle, it loses one Attack.",
+      "upgrades": "• Acid Breath: The model gains a Strength 2 Breath Weapon with the Ignores Armour Saves special rule.\n• Battle Lover: The model gains the Vanguard special rule.\n• Bloodthirsty: The model gains the Devastating Charge special rule.\n• Chameleon Skin: All enemy missile attacks targeting the model suffer -1 To Hit.\n• Daerlythe's Aura: The model gains the Magic Resistance (2) special rule.\n• Fiery Breath: The model gains a Breath Weapon with the Flaming Attacks special rule. The Strength of this\nattack is equal to the War Hydra's remaining Wounds.\n• Armour Plates: The model gains the Natural Armour (6+) special rule.\n• Spit Fire: The model gains a shooting attack with the following profile:\nRange: Strength: Special Rules:\n12\" * Flaming Attacks, Quick to Fire, Multiple Shots (*), Rapid Fire\n*The Strength and Multiple Shots value of this attack is equal to the War Hydra's remaining number of\nWounds.",
+      "notes": null,
+      "pointsCost": 200,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Kharibdyss",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Kharibdyss",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
+          "S": 6,
+          "T": 6,
+          "W": 5,
+          "I": 4,
+          "A": 5,
+          "Ld": 6,
+          "points": 210
+        },
+        {
+          "name": "Beastmaster Apprentice",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Monster (Sea Creature)\nHANDLERS: 2 Beastmaster Apprentices (Dark Elf)",
+      "baseSize": "50x100",
+      "equipment": "Two hand weapons (Beastmaster Apprentices only)",
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster\nApprentice only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Multiple Wounds (D3), Natural\nArmour (4+), Poisoned Attacks\n• Abyssal Howl: Enemy units that are in base contact with a Kharibdyss must re-roll successful Leadership\ntests. This has no effect on models that have Immunity (Fear/Terror/Psychology).\n• Feast of Bones: Roll a D6 for each unsaved Wound caused by this model. On the roll of a 6+, the Kharibdyss\nregains 1 Wound lost previously during the game.\nAVATAR OF KHAINE",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 210,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Avatar of Khaine",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Avatar of Khaine",
+          "M": 6,
+          "WS": 6,
+          "BS": 0,
+          "S": 6,
+          "T": 6,
+          "W": 5,
+          "I": 3,
+          "A": 5,
+          "Ld": 10,
+          "points": 250
+        }
+      ],
+      "troopType": "Monster (Animated Construct)",
+      "baseSize": "50x50",
+      "equipment": "Hand weapon, heavy armour",
+      "magic": null,
+      "options": [],
+      "specialRules": "Animated Construct, Hatred, Killing Blow, Unstable, Ward Save (5+)\n• Idol of Worship: All friendly Dark Elves within 12\" of an Avatar of Khaine gain +1 Leadership.\n• Wrath of Khaine: For each successful Killing Blow scored (before any saves), the Avatar of Khaine\nimmediately gets to make an additional Attack.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 250,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Malekith",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Malekith",
+          "M": 5,
+          "WS": 8,
+          "BS": 7,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 8,
+          "A": 4,
+          "Ld": 10,
+          "points": 495
+        },
+        {
+          "name": "Seraphon (Black Dragon)",
+          "M": 6,
+          "WS": 7,
+          "BS": 0,
+          "S": 6,
+          "T": 6,
+          "W": 6,
+          "I": 3,
+          "A": 6,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": null,
+      "magic": "Malekith is a Level 4 Wizard who uses spells from the Lore of Dark Magic.\nMAGIC ITEMS:\n• Destroyer: Magic Weapon. At the start of every Close Combat phase, all enemy models in base contact with\nMalekith must reveal their magic items. Furthermore, if Malekith scores one or more hits against a model with\nany magic items, roll a D6; on a 4+, one randomly determined magic item is immediately destroyed and cannot\nbe used further in this game. Do not include Magic items that are mounts, magic items that contain bound\nspells that miscast earlier in the game, or any magic items labelled as 'one use only' that have been used. In\naddition, if a Wizard suffers one or more unsaved Wounds from Destroyer, roll a D6; on a 4+, the Wizard\nimmediately loses a Wizard level.\n• Hand of Khaine: Magic Weapon. The Hand of Khaine gives Malekith an extra Attack at Strength 6 which\nIgnores armour saves.\n• Armour of Midnight: Magic Armour. Heavy armour. The Armour of Midnight grants Malekith a 2+ Ward\nsave against all non-magical attacks and the Immunity (Killing Blow/Multiple Wounds) special rule.\n• Supreme Spellshield: Magic Armour. Shield. This item grants Malekith the Magic Resistance (2) special rule.\nIf Malekith is ever the target of an enemy spell that he successfully dispels, the caster's unit immediately\nsuffers D6 magical Strength 6 hits.\n• Circlet of Iron: Arcane Item. Once per Magic phase, Malekith can use the Circlet of Iron to add a single\nbonus dice to any of his failed casting or dispel attempts. This bonus dice can contribute to irresistible force\n(and a miscast).",
+      "options": [
+        "May be mounted on one of the following:",
+        "Cold One +24 points",
+        "Cold One Chariot (replacing one of the crew) +100 points",
+        "Seraphon (Black Dragon) +320 points"
+      ],
+      "specialRules": "Elven Grace, Fear, Eternal Hatred, Hekarti's Blessing, Immunity (Psychology), Murderous\nProwess\n• Absolute Power: If you take Malekith, he must be your Army General. Malekith has the Inspiring Presence\n(18) special rule.\n• Black Guard: If your army includes Malekith, units of Black Guard are taken as Special Units instead of Rare\nunits.",
+      "upgrades": null,
+      "notes": "• At the start of each close combat, you must choose whether Malekith uses the Hand of Khaine or the Supreme\nSpellshield.",
+      "pointsCost": 495,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Morathi",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Morathi",
+          "M": 5,
+          "WS": 5,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 6,
+          "A": 3,
+          "Ld": 10,
+          "points": 355
+        },
+        {
+          "name": "Sulephet (Dark Pegasus)",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 3,
+          "Ld": 6
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": null,
+      "magic": "Morathi is a Level 4 Wizard who uses spells from the Lore of Death, the Lore of Shadow and the Lore of\nDark Magic. She can choose all her spells from the same lore, or from two or more of the above lores in any\ncombination.\nMAGIC ITEMS:\n• Heartrender and the Darksword: Magic Weapon. Light lance. Hits from this weapon have the Killing Blow\nspecial rule in the turn Morathi charges. In addition, for each Hit a Monstrous Creature, Monster or character\ntake from these weapons they suffer -1 to their Strength, Toughness and Attack characteristics (to a minimum\nof 1) for the remainder of the close combat phase.",
+      "options": [
+        "May be mounted on Sulephet (Dark Pegasus) +40 points"
+      ],
+      "specialRules": "Hatred (High Elves), Hekarti's Blessing, Khainite, Magic Resistance (2), Murderous\nProwess, Ward Save (4+)\n• Beloved of Khaine: All Khainite models always treat Morathi as the Army's General for all purposes,\nregardless of what character is the Army General.\n• Enchanting Beauty: All models suffer -1 To Hit against Morathi in close combat. This has no effect on\nmodels with the Immunity (Psychology) special rule.\n• The First Sorceress: Morathi has a +2 casting bonus.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 355,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Malus Darkblade",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Malus Darkblade",
+          "M": 5,
+          "WS": 7,
+          "BS": 7,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 8,
+          "A": 4,
+          "Ld": 10,
+          "points": 210
+        },
+        {
+          "name": "Spite",
+          "M": 7,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 3,
+          "Ld": 4
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour, Sea Dragon Cloak\nMAGIC ITEMS:\n• Warpsword of Khaine: Magic Weapon. The Warpsword of Khaine allow Malus to re-roll failed rolls To\nWound and Ignores Armour saves.",
+      "magic": null,
+      "options": [
+        "May be mounted on Spite (Cold One) +50 points"
+      ],
+      "specialRules": "Elven Grace, Eternal Hatred, Murderous Prowess\n• Tz'arkan: Malus Darkblade may unleash the power of Tz'arkan at the start of any friendly Movement phase.\nOnce the Daemon is released, he cannot be bound back during the battle. If Malus releases Tz'arkan, the\nfollowing rules apply for the rest of the game:\n- Malus Darkblade immediately gains the Frenzy and Ward Save (5+) special rules, but loses Elven Grace,\nHatred, Hatred (High Elves) and Murderous Prowess.\n- Malus Darkblade gains +1 Weapon Skill, +1 Strength, +2 Toughness and +1 Initiative. However, friendly\nunits can no longer use his Leadership.\n- Each time Malus Darkblade makes a To Hit roll of 1, a friendly model in base contact (of your choice) is\nstruck by Malus attack instead. Roll to Wound as normal.\n• Not Just a Dumb Brute: Any unit of Cold One Knights joined by Spite are not subject to their normal\nStupidity.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 210,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Crone Hellebron",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Crone Hellebron",
+          "M": 5,
+          "WS": 7,
+          "BS": 7,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 9,
+          "A": 4,
+          "Ld": 10,
+          "points": 280
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Light armour\nMAGIC ITEMS:\n• Deathsword and the Cursed Blade: Magic Weapon. Two hand weapons. Hits from Deathsword and the\nCursed Blade are resolved at Strength 10. If a model rolls a 1 To Hit whilst attacking Hellebron in close\ncombat, it suffers an automatic Strength 4 hit for each 1 rolled.\n• Amulet of Dark Fire: Talisman. Dispel attempts made against spells that target Hellebron or her unit receive a\n+4 bonus to dispel.\nGIFTS OF KHAINE: Cry of War, Rune of Khaine, Witchbrew",
+      "magic": null,
+      "options": [
+        "May be mounted on one of the following:",
+        "Manticore +150 points",
+        "Cauldron of Blood (replacing the Keeper of the Cauldron) +160 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks\n• Queen of Khaine: If Hellebron is your General, all Witch Elves are taken as Core units rather than as Special\nunits.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 280,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Rakarth",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Rakarth",
+          "M": 5,
+          "WS": 6,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 6,
+          "A": 3,
+          "Ld": 10,
+          "points": 445
+        },
+        {
+          "name": "Bracchus (Black Dragon)",
+          "M": 6,
+          "WS": 6,
+          "BS": 0,
+          "S": 6,
+          "T": 6,
+          "W": 6,
+          "I": 3,
+          "A": 5,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Monster (Special Character, Dark Elf)",
+      "baseSize": "50x50, 50x100 or 60x100\nMAGIC ITEMS:\n• Whip of Agony: Magic Weapon. The Whip of Agony gives Rakarth +1 Strength. In addition, at the beginning\nof any close combat phase, Rakarth may make a special attack with the Always Strikes First rule. If this attack\ncauses an unsaved Wound but does not kill the target, it is overcome with pain and must roll 6's to Hit in that\nround of close combat.\n• Beast Armour of Clar Karond: Magic Armour. Heavy armour. This armour allows Rakarth to re-roll failed\narmour saves.",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Beastslaver (see Beastmaster), Hatred (High Elves), Fly (7), Murderous Prowess, Natural\nArmour (3+), Noxious Breath (see Black Dragon).\n• Beastlord: Any friendly Monster within 12\" of Rakarth treat him as having the Hold Your Ground! special\nrule.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 445,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Bracchus (Dragon)",
+      "drawnBy": null
+    },
+    {
+      "name": "Krethusa",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Krethusa",
+          "M": 5,
+          "WS": 4,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 5,
+          "A": 2,
+          "Ld": 9,
+          "points": 295
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "50x50",
+      "equipment": "Hand weapon",
+      "magic": "Krethusa is a Level 3 Wizard who uses spells from the Lore of Shadow.",
+      "options": [],
+      "specialRules": "Fly (10), Hatred (High Elves), Murderous Prowess, Ward Save (4+)\n• Burnt Offerings: Krethusa knows the three prophecies listed below. She may attempt to use one at the start of\neach of your Magic phases by taking a Leadership test on her own unmodified Leadership If passed, the\nprophecy is fulfilled and takes immediate effect. Each prophecy targets one friendly unit within 12\".\n- Prophecy of Silence: Enemy units within 6\" of the unit cannot benefit from the Inspiring Presence, Hold\nYour Ground or Follow Me rules.\n- Prophecy of Dark Wings: The unit may immediately make an additional move as if it were the\nRemaining Moves sub-phase.\n- Prophecy of Reclamation: Enemy units in base contact with the unit do not gain Combat Resolution\nbonuses from anything except the number of Wounds inflicted unless they contain at least one character.\n• Murder of Crows: Krethusa knows the Flock of Doom spell from the Lore of Beasts as an innate Bound Spell,\npower level 4.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 295,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Kouran Darkhand",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Kouran Darkhand",
+          "M": 5,
+          "WS": 8,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 140
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25\nMAGIC ITEMS:\n• Crimson Death: Magic Weapon. Polearm. Close combat attacks made with the Crimson Death are resolved at\nan additional +1 Strength.\n• The Armour of Grief: Magic Armour. Heavy armour. Each time a model makes a successful To Hit roll\nagainst Kouran Darkhand in close combat, the model that struck the blow immediately suffers a Strength 5 hit.",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Hatred, Hatred (High Elves), Immunity (Psychology), Murderous Prowess,\nStubborn\n• The Right Hand of Darkness: If Kouran Darkhand is in a unit of Black Guard, he and all models in that unit\nhave the Unbreakable special rule.\nTULLARIS DREADBRINGER\nThe Hand of Khaine",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 140,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Tullaris Dreadbringer",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Tullaris Dreadbringer",
+          "M": 5,
+          "WS": 7,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 120
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• The First Draich: Magic Weapon. Great weapon. Tullaris' Killing Blow special rule takes effect on a 5+,\nrather than a 6.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Elven Grace, Hatred (High Elves), Fear, Khainite, Killing Blow, Murderous Prowess\n• Khaine's Sacred Slaughterer: Each time Tullaris inflicts a successful Killing Blow, he and his unit gain a +1\nbonus to their combat resolution score, in addition to any wounds inflicted by him.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 120,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Mengil Manhide",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Mengil Manhide",
+          "M": 5,
+          "WS": 6,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 95
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Great weapon, repeater handbow, medium armour\nMAGIC ITEMS:\n• Banner of Kalad: Magic Standard. Any unit wishing to target Mengil's Manflayers with missile attacks suffer\n-1 to hit. This is increased to -2 if the Manflayers are more than 12\" away from the shooters.",
+      "magic": null,
+      "options": [
+        "May take Magic Items up to a total of 50 points"
+      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess, Poisoned Attacks, Scouts,\nSkirmishers\n• The Manflayers: Mengil Manhide must be accompanied by a unit of Shades chosen from the army list at a\ncost of 22 points per model. This unit is armed with Deathrain crossbows, great weapons and medium armour\nand have the Poisoned Attacks special rule. The unit must be given a full command at a cost of +20 points. The\nStandard Bearer carries the Banner of Kalad above. Mengil Manhide is the unit's Leader and may never choose\nto leave this unit. The regiment may never pursue enemies that they break in close combat. For each enemy\nunit that they break or wipe out in close combat they gain +100 Victory Points.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 95,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Lokhir Fellheart",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Lokhir Fellheart",
+          "M": 5,
+          "WS": 6,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 7,
+          "A": 3,
+          "Ld": 9,
+          "points": 150
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Medium armour, Sea Dragon Cloak\nMAGIC ITEMS:\n• The Red Blades: Magic Weapon. Two hand weapons. Any hits made by the Red Blades re-roll any failed To\nWound roll.\n• Helm of the Kraken: Magic Armour. The Helm of the Kraken grants Lokhir Fellheart a 6+ armour save, +1\nToughness, as well as the Regeneration (6+) and Terror special rules.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Ambushers, At them, you Curs! (see Black Ark Fleetmaster), Elven Grace, Hatred (High\nElves), Murderous Prowess, Show no Weakness (see Black Ark Fleetmaster)\n• Murderous Swashbuckler: If Lokhir makes a successful Parry save, he may immediately make an additional\nAttack back against the model that struck the blow.\n• Merciless Slaver: If an enemy unit breaks from a close combat that includes Lokhir Fellheart, all units taking\nPanic tests as a result of that unit breaking suffer a -1 penalty to their Leadership value for that test.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 150,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    },
+    {
+      "name": "Shadowblade",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Shadowblade",
+          "M": 6,
+          "WS": 10,
+          "BS": 10,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 10,
+          "A": 3,
+          "Ld": 9,
+          "points": 220
+        }
+      ],
+      "troopType": "Infantry (Special Character, Dark Elf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Two hand weapons, throwing weapons\nMAGIC ITEMS:\n• Heart of Woe: Enchanted Item. If Shadowblade is ever slain, centre the small round template over him before\nremoving the model as a casualty. Every model touched by the template immediately suffers a Strength 3 hit.\nAfter any damage has been resolved, remove Shadowblade as a casualty as normal.\n• Potion of Diabolic Strength: Enchanted Item. One use only. The Potion of Diabolic Strength can be drunk at\nthe start of any player's Close Combat phase, after any Assassins have revealed that they are hiding in a unit.\nShadowblade gains +3 Strength until the end of the turn.\nGIFTS OF KHAINE: Black Lotus, Dance of Doom, Dark Venom, Hand of Khaine, Manbane, Touch of Death",
+      "magic": null,
+      "options": [],
+      "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous\nProwess, Poisoned Attacks, Scouts\n• Master of Disguise: Shadowblade can deploy using the Hidden special rule like an Assassin. If he does so, he\ncan change which unit he is hiding in at the start of any Movement or Close Combat phase – keep a note of\nwhere Shadowblade is each time you change your mind. (Clearly Shadowblade is not 'moving' between units,\nhis disguise was simply so good that he was hiding just where he needed to be all along, waiting for the perfect\ntime to strike!). If an opponent has an ability that forces you to state that there are 'hidden' models within a\nunit, you only need to say that Shadowblade is hiding within a unit, but not which unit he is currently in.",
+      "upgrades": null,
+      "notes": null,
+      "pointsCost": 220,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null
+    }
+  ]
+}

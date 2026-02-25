@@ -1,0 +1,85 @@
+{
+  "factionName": "Vampire Counts",
+  "units": [
+    {
+      "id": "skeleton-warriors",
+      "name": "Skeleton Warriors",
+      "unitType": "Infantry",
+      "stats": {
+        "movement": 4,
+        "weaponSkill": 2,
+        "ballisticSkill": 2,
+        "strength": 3,
+        "toughness": 3,
+        "wounds": 1,
+        "initiative": 2,
+        "attacks": 1,
+        "leadership": 3
+      },
+      "defaultArmorSave": 5,
+      "defaultEquipment": "Hand weapon, shield, light armour",
+      "wardSave": null,
+      "regenerationSave": null,
+      "specialRules": [],
+      "weaponUpgrades": [
+        {
+          "id": "spears",
+          "name": "Spears",
+          "strengthBonus": 0,
+          "attackBonus": 0,
+          "specialRules": ["FightInExtraRank"],
+          "replacesDefault": true
+        }
+      ],
+      "armorUpgrades": [],
+      "commandGroup": {
+        "champion": { "available": true, "attackBonus": 1 },
+        "musician": { "available": true },
+        "standardBearer": { "available": true }
+      },
+      "magicBanners": [],
+      "mount": null
+    },
+    {
+      "id": "grave-guard",
+      "name": "Grave Guard",
+      "unitType": "Infantry",
+      "stats": {
+        "movement": 4,
+        "weaponSkill": 3,
+        "ballisticSkill": 0,
+        "strength": 4,
+        "toughness": 4,
+        "wounds": 1,
+        "initiative": 3,
+        "attacks": 1,
+        "leadership": 8
+      },
+      "defaultArmorSave": 4,
+      "defaultEquipment": "Hand weapon, heavy armour, shield",
+      "wardSave": null,
+      "regenerationSave": null,
+      "specialRules": [],
+      "weaponUpgrades": [
+        {
+          "id": "great-weapons",
+          "name": "Great Weapons",
+          "strengthBonus": 2,
+          "attackBonus": 0,
+          "specialRules": ["AlwaysStrikesLast"],
+          "replacesDefault": true
+        }
+      ],
+      "armorUpgrades": [],
+      "commandGroup": {
+        "champion": { "available": true, "attackBonus": 1 },
+        "musician": { "available": true },
+        "standardBearer": { "available": true }
+      },
+      "magicBanners": [
+        { "id": "banner-of-the-barrows", "name": "Banner of the Barrows", "combatResolutionBonus": 0 }
+      ],
+      "mount": null
+    }
+  ]
+}

@@ -1,76 +1,13 @@
-﻿@page "/"
-@using ApexCharts
-@using Warhammer.Calculator
+@page "/"
 
-<button class="btn btn-primary" @onclick="Calculate">Click me</button>
+<h3 class="mb-3">Warhammer Fantasy Combat Simulator</h3>
 
-@if (_percentages.Count > 0)
-{
-    <ApexChart
-        @ref="_chart"
-        Width="500"
-        Height="500"
-        TItem="PercentageRoll"
-        Title="Expected Wounds Dealt Distribution">
+<p>Welcome to the Warhammer Fantasy Battle combat simulator. Use the tools below to calculate likely outcomes of unit matchups.</p>
 
-        <ApexPointSeries TItem="PercentageRoll"
-                         Items="_percentages"
-                         Name="Wounds Dealt"
-                         XValue="@(e => e.RollValue)"
-                         YAggregate="@(e => e.Select(e => e.Percentage).FirstOrDefault())"
-                         OrderByDescending="e => e.Y"
-                         SeriesType="SeriesType.Bar"/>
-    </ApexChart>
-}
-
-@code
-{
-    private ApexChart<PercentageRoll> _chart = new ApexChart<PercentageRoll>();
-    private CombatCalculator _combatCalculator = new CombatCalculator();
-    
-    private List<CombatResult> _combatResults = new List<CombatResult>();
-    private List<PercentageRoll> _percentages = new List<PercentageRoll>();
-
-    
-    private void Calculate()
-    {
-        var attacker = new InfantryUnit
-        {
-            Movement = 4,
-            WeaponSkill = 3,
-            BallisticSkill = 3,
-            Toughness = 4,
-            Wounds = 1,
-            Strength = 4,
-            Initiative = 1,
-            Attacks = 2,
-            Leadership = 8,
-            ArmorSave = 4,
-            UnitType = UnitType.Infantry,
-        };
-        
-        var defender = new InfantryUnit
-        {
-            Movement = 4,
-            WeaponSkill = 3,
-            BallisticSkill = 3,
-            Toughness = 3,
-            Wounds = 1,
-            Strength = 3,
-            Initiative = 3,
-            Attacks = 1,
-            Leadership = 7,
-            ArmorSave = 5,
-            WardSave = 6,
-            UnitType = UnitType.Infantry,
-        };
-
-        _combatResults = _combatCalculator.SimulateCombatRounds(attacker, defender, 10000);
-
-        _percentages = _combatCalculator.CalculateCombatResultsPercentage(_combatResults);
-
-        _chart.UpdateSeriesAsync();
-        StateHasChanged();
-    }
-}
-
+<div class="card" style="max-width: 400px;">
+    <div class="card-body">
+        <h5 class="card-title">Combat Matchup</h5>
+        <p class="card-text">Pit two ranked units against each other and run Monte Carlo simulations to see combat result distributions.</p>
+        <a href="matchup" class="btn btn-danger">Go to Matchup Simulator</a>
+    </div>
+</div>

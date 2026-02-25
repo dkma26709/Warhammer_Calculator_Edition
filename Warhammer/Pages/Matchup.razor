@@ -1,0 +1,160 @@
+@page "/matchup"
+
+<h3 class="mb-3">Combat Matchup Simulator</h3>
+
+<div class="row">
+    <!-- Left: Unit A (Attacker) -->
+    <div class="col-md-5">
+        <h5 class="text-success">Attacker</h5>
+        <UnitSelector Label="Attacker" OnUnitSelected="OnAttackerSelected" />
+        @if (_attackerUnit is not null)
+        {
+            <UnitConfigurator Unit="_attackerUnit" FactionName="@_attackerFaction"
+                              OnConfigurationChanged="OnAttackerConfigChanged" />
+        }
+    </div>
+
+    <!-- Center: Controls -->
+    <div class="col-md-2 text-center d-flex flex-column align-items-center justify-content-center">
+        <h2 class="text-muted my-3">VS</h2>
+
+        <div class="mb-2">
+            <label class="form-label form-label-sm">Simulations</label>
+            <select class="form-select form-select-sm" @bind="_simulationCount">
+                <option value="1000">1,000</option>
+                <option value="5000">5,000</option>
+                <option value="10000">10,000</option>
+                <option value="50000">50,000</option>
+            </select>
+        </div>
+
+        <div class="mb-1">
+            <div class="form-check form-check-sm">
+                <input class="form-check-input" type="checkbox" @bind="_attackerCharged" />
+                <label class="form-check-label small">Attacker charged</label>
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="form-check form-check-sm">
+                <input class="form-check-input" type="checkbox" @bind="_defenderCharged" />
+                <label class="form-check-label small">Defender charged</label>
+            </div>
+        </div>
+
+        <button class="btn btn-danger btn-lg w-100"
+                @onclick="RunSimulation"
+                disabled="@(!CanSimulate)">
+            FIGHT!
+        </button>
+
+        @if (_isSimulating)
+        {
+            <div class="spinner-border spinner-border-sm text-danger mt-2" role="status">
+                <span class="visually-hidden">Simulating...</span>
+            </div>
+        }
+    </div>
+
+    <!-- Right: Unit B (Defender) -->
+    <div class="col-md-5">
+        <h5 class="text-danger">Defender</h5>
+        <UnitSelector Label="Defender" OnUnitSelected="OnDefenderSelected" />
+        @if (_defenderUnit is not null)
+        {
+            <UnitConfigurator Unit="_defenderUnit" FactionName="@_defenderFaction"
+                              OnConfigurationChanged="OnDefenderConfigChanged" />
+        }
+    </div>
+</div>
+
+<!-- Results -->
+@if (_summary is not null)
+{
+    <hr class="my-4" />
+
+    <CombatResultsPanel Summary="_summary"
+                        UnitAName="@(_attackerConfig?.SourceUnit.Name ?? "Attacker")"
+                        UnitBName="@(_defenderConfig?.SourceUnit.Name ?? "Defender")" />
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <CombatDistributionChart Distribution="_summary.WoundsAToBDistribution"
+                                     Title="Wounds: Attacker → Defender"
+                                     SeriesName="% chance" />
+        </div>
+        <div class="col-md-4">
+            <CombatDistributionChart Distribution="_summary.WoundsBToADistribution"
+                                     Title="Wounds: Defender → Attacker"
+                                     SeriesName="% chance" />
+        </div>
+        <div class="col-md-4">
+            <CombatDistributionChart Distribution="_summary.CombatResDiffDistribution"
+                                     Title="Combat Res Difference (+ve = Attacker)"
+                                     SeriesName="% chance" />
+        </div>
+    </div>
+}
+
+@code {
+    private ExtractedUnit? _attackerUnit;
+    private ExtractedUnit? _defenderUnit;
+    private string _attackerFaction = "";
+    private string _defenderFaction = "";
+    private UnitConfiguration? _attackerConfig;
+    private UnitConfiguration? _defenderConfig;
+
+    private int _simulationCount = 10000;
+    private bool _attackerCharged;
+    private bool _defenderCharged;
+    private bool _isSimulating;
+
+    private CombatSimulationSummary? _summary;
+    private CombatCalculator _calculator = new();
+
+    private bool CanSimulate => _attackerConfig is not null && _defenderConfig is not null && !_isSimulating;
+
+    private void OnAttackerSelected((ExtractedUnit unit, string factionName) selection)
+    {
+        _attackerUnit = selection.unit;
+        _attackerFaction = selection.factionName;
+        _attackerConfig = null;
+        _summary = null;
+    }
+
+    private void OnDefenderSelected((ExtractedUnit unit, string factionName) selection)
+    {
+        _defenderUnit = selection.unit;
+        _defenderFaction = selection.factionName;
+        _defenderConfig = null;
+        _summary = null;
+    }
+
+    private void OnAttackerConfigChanged(UnitConfiguration config)
+    {
+        _attackerConfig = config;
+    }
+
+    private void OnDefenderConfigChanged(UnitConfiguration config)
+    {
+        _defenderConfig = config;
+    }
+
+    private async Task RunSimulation()
+    {
+        if (_attackerConfig is null || _defenderConfig is null) return;
+
+        _isSimulating = true;
+        _summary = null;
+        StateHasChanged();
+
+        // Yield to let the UI update before heavy computation
+        await Task.Delay(1);
+
+        var results = _calculator.SimulateMultiple(
+            _attackerConfig, _defenderConfig, _simulationCount,
+            _attackerCharged, _defenderCharged);
+        _summary = _calculator.Summarize(results);
+
+        _isSimulating = false;
+    }
+}
