@@ -4,3 +4,7 @@ obj/
 .claude/
 *.DotSettings.user
 wwwroot/lib/
+
+.vs/
+*.csproj.user
+*.user
