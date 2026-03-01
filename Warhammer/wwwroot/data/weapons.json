@@ -1,0 +1,137 @@
+[
+  {
+    "id": "hand-weapon",
+    "name": "Hand Weapon",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 0,
+    "attackBonus": 0,
+    "specialRules": [],
+    "notes": "If armed with another close combat weapon, this cannot be used (unless specified)."
+  },
+  {
+    "id": "hand-weapon-shield",
+    "name": "Hand Weapon & Shield",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 0,
+    "attackBonus": 0,
+    "specialRules": [ "Parry(6+)" ],
+    "requiresShield": true,
+    "notes": "Shield also provides +1 to armour save in close combat and against shooting."
+  },
+  {
+    "id": "two-hand-weapons",
+    "name": "Two/Additional Hand Weapons",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 0,
+    "attackBonus": 1,
+    "specialRules": ["Parry(6+)", "RequiresTwoHands"],
+    "notes": null
+  },
+  {
+    "id": "polearm",
+    "name": "Polearm",
+    "type": "close-combat",
+    "strengthBonus": 1,
+    "initiativeBonus": 1,
+    "attackBonus": 0,
+    "specialRules": ["RequiresTwoHands"],
+    "notes": null
+  },
+  {
+    "id": "great-weapon",
+    "name": "Great Weapon",
+    "type": "close-combat",
+    "strengthBonus": 1,
+    "initiativeBonus": -2,
+    "attackBonus": 0,
+    "specialRules": ["MightyBlow(1)", "RequiresTwoHands"],
+    "notes": null
+  },
+  {
+    "id": "flail",
+    "name": "Flail",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 0,
+    "attackBonus": 0,
+    "specialRules": ["MightyBlow(2)", "RequiresTwoHands"],
+    "notes": null
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 1,
+    "attackBonus": 0,
+    "specialRules": ["FightInExtraRanks(1)"],
+    "requiresFootOnly": true,
+    "conditionalRules": [
+      {
+        "condition": "chargedToFront",
+        "initiativeBonus": 1,
+        "specialRules": ["MightyBlow(1)"],
+        "excludeAgainst": ["Infantry", "LargeInfantry", "Swarms", "Shrines"]
+      }
+    ],
+    "notes": "On foot only. When charged to front: additional +1 Initiative and Mighty Blow (1), but Mighty Blow does not apply against Infantry, Large Infantry, Swarms and Shrines."
+  },
+  {
+    "id": "pike",
+    "name": "Pike",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 2,
+    "attackBonus": 0,
+    "specialRules": ["FightInExtraRanks(3)", "RequiresTwoHands"],
+    "requiresFootOnly": true,
+    "conditionalRules": [
+      {
+        "condition": "chargedToFront",
+        "initiativeBonus": 1,
+        "specialRules": ["MightyBlow(1)"],
+        "excludeAgainst": ["Infantry", "LargeInfantry", "Swarms", "Shrines"]
+      }
+    ],
+    "notes": "On foot only. When charged to front: additional +1 Initiative and Mighty Blow (1), but Mighty Blow does not apply against Infantry, Large Infantry, Swarms and Shrines."
+  },
+  {
+    "id": "light-lance",
+    "name": "Light Lance",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 0,
+    "attackBonus": 0,
+    "specialRules": [],
+    "requiresMounted": true,
+    "conditionalRules": [
+      {
+        "condition": "charging",
+        "initiativeBonus": 1,
+        "specialRules": ["MightyBlow(1)"]
+      }
+    ],
+    "notes": "Mounted only. Bonuses only apply in turns the model charges, and only against the charged unit."
+  },
+  {
+    "id": "heavy-lance",
+    "name": "Heavy Lance",
+    "type": "close-combat",
+    "strengthBonus": 0,
+    "initiativeBonus": 0,
+    "attackBonus": 0,
+    "specialRules": [],
+    "requiresMounted": true,
+    "conditionalRules": [
+      {
+        "condition": "charging",
+        "initiativeBonus": 2,
+        "specialRules": ["MightyBlow(2)"]
+      }
+    ],
+    "notes": "Mounted only. Bonuses only apply in turns the model charges, and only against the charged unit."
+  }
+]
