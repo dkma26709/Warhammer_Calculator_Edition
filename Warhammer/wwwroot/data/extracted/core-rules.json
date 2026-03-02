@@ -427,6 +427,111 @@
     "requiresTwoHands": "Cannot use a shield in close combat.",
     "parry": "Models with hand weapon and shield gain a 6+ Ward save in close combat (not against Strength 2x or more their own)."
   },
+  "troopTypes": {
+    "infantry": {
+      "name": "Infantry",
+      "ranksMinModels": 5,
+      "supportingAttacks": 1,
+      "unitStrength": 1,
+      "specialRules": []
+    },
+    "largeInfantry": {
+      "name": "Large Infantry",
+      "ranksMinModels": 4,
+      "supportingAttacks": 2,
+      "unitStrength": 1,
+      "specialRules": []
+    },
+    "monstrousInfantry": {
+      "name": "Monstrous Infantry",
+      "ranksMinModels": 3,
+      "supportingAttacks": 2,
+      "unitStrength": 2,
+      "specialRules": [ "Fear", "Swiftstride" ]
+    },
+    "cavalry": {
+      "name": "Cavalry",
+      "ranksMinModels": 5,
+      "supportingAttacks": {
+        "splitProfile": {
+          "rider": 1,
+          "mount": 1
+        },
+        "singleProfile": 2
+      },
+      "unitStrength": 2,
+      "specialRules": [ "Swiftstride", "ImpactHits(1)" ]
+    },
+    "monstrousCavalry": {
+      "name": "Monstrous Cavalry",
+      "ranksMinModels": 3,
+      "supportingAttacks": {
+        "splitProfile": {
+          "rider": 1,
+          "mount": 2
+        },
+        "singleProfile": 3
+      },
+      "unitStrength": 3,
+      "specialRules": [ "Fear", "Swiftstride", "ImpactHits(1)" ]
+    },
+    "swarms": {
+      "name": "Swarms",
+      "ranksMinModels": 3,
+      "supportingAttacks": 5,
+      "unitStrength": 3,
+      "specialRules": [ "Expendable", "Unstable", "Skirmishers" ]
+    },
+    "warBeasts": {
+      "name": "War Beasts",
+      "ranksMinModels": 5,
+      "supportingAttacks": 1,
+      "unitStrength": 1,
+      "specialRules": [ "Expendable", "Vanguard", "Swiftstride" ]
+    },
+    "monstrousBeasts": {
+      "name": "Monstrous Beasts",
+      "ranksMinModels": 3,
+      "supportingAttacks": 2,
+      "unitStrength": 2,
+      "specialRules": [ "Fear", "Swiftstride" ]
+    },
+    "monstrousCreatures": {
+      "name": "Monstrous Creatures",
+      "ranksMinModels": 1,
+      "supportingAttacks": 0,
+      "unitStrength": 4,
+      "specialRules": [ "Terror", "Swiftstride", "Stomp(D3)" ]
+    },
+    "monsters": {
+      "name": "Monsters",
+      "ranksMinModels": 1,
+      "supportingAttacks": 0,
+      "unitStrength": "woundsOnProfile",
+      "specialRules": [ "Terror", "Swiftstride", "Stomp(D6)" ]
+    },
+    "chariots": {
+      "name": "Chariots",
+      "ranksMinModels": 3,
+      "supportingAttacks": 0,
+      "unitStrength": "woundsOnProfile",
+      "specialRules": [ "Swiftstride", "ImpactHits(D6)" ]
+    },
+    "shrines": {
+      "name": "Shrines",
+      "ranksMinModels": 1,
+      "supportingAttacks": 0,
+      "unitStrength": 3,
+      "specialRules": []
+    },
+    "warMachines": {
+      "name": "War Machines",
+      "ranksMinModels": 1,
+      "supportingAttacks": 0,
+      "unitStrength": "woundsOnProfile",
+      "specialRules": [ "MoveOrFire" ]
+    }
+  },
   "weapons": {
     "closeCombat": {
       "handWeapon": {
