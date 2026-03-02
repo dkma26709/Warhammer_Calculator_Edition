@@ -30,16 +30,126 @@
   "closeCombatToHit": {
     "description": "Compare attacker's Weapon Skill vs target's Weapon Skill. Roll 1D6 per Attack.",
     "table": [
-      [4, 4, 5, 5, 6, 6, 6, 6, 6, 6],
-      [3, 4, 4, 4, 5, 5, 6, 6, 6, 6],
-      [2, 3, 4, 4, 4, 4, 5, 5, 6, 6],
-      [2, 3, 3, 4, 4, 4, 4, 4, 5, 5],
-      [2, 2, 3, 3, 4, 4, 4, 4, 4, 4],
-      [2, 2, 3, 3, 3, 4, 4, 4, 4, 4],
-      [2, 2, 2, 3, 3, 3, 4, 4, 4, 4],
-      [2, 2, 2, 3, 3, 3, 3, 4, 4, 4],
-      [2, 2, 2, 2, 3, 3, 3, 3, 4, 4],
-      [2, 2, 2, 2, 3, 3, 3, 3, 3, 4]
+      [
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      [
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4
+      ]
     ],
     "tableAxes": {
       "rows": "Attacker's WS (1-10)",
@@ -57,16 +167,126 @@
   "toWound": {
     "description": "Compare Strength of attack vs Toughness of target. Same table used for both shooting and close combat.",
     "table": [
-      [4, 5, 6, 6, 6, 6, 6, 6, 6, 6],
-      [3, 4, 5, 6, 6, 6, 6, 6, 6, 6],
-      [2, 3, 4, 5, 6, 6, 6, 6, 6, 6],
-      [2, 2, 3, 4, 5, 6, 6, 6, 6, 6],
-      [2, 2, 2, 3, 4, 5, 6, 6, 6, 6],
-      [2, 2, 2, 2, 3, 4, 5, 6, 6, 6],
-      [2, 2, 2, 2, 2, 3, 4, 5, 6, 6],
-      [2, 2, 2, 2, 2, 2, 3, 4, 5, 6],
-      [2, 2, 2, 2, 2, 2, 2, 3, 4, 5],
-      [2, 2, 2, 2, 2, 2, 2, 2, 3, 4]
+      [
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4
+      ]
     ],
     "tableAxes": {
       "rows": "Attacker's Strength (1-10)",
@@ -176,11 +396,15 @@
   "specialSaveRules": {
     "regeneration": {
       "description": "Works like a Ward save, but cannot be used against Flaming Attacks.",
-      "notes": ["Regeneration saves can be combined with Ward saves."]
+      "notes": [
+        "Regeneration saves can be combined with Ward saves."
+      ]
     },
     "magicResistance": {
       "description": "Adds bonus to dispel attempts and Ward saves against magical attacks.",
-      "notes": ["Magic Resistance (X) grants a X+ Ward save against wounds caused by spells."]
+      "notes": [
+        "Magic Resistance (X) grants a X+ Ward save against wounds caused by spells."
+      ]
     }
   },
   "commonSpecialRules": {
@@ -206,163 +430,418 @@
   "weapons": {
     "closeCombat": {
       "handWeapon": {
+        "id": "hand-weapon",
         "name": "Hand Weapon",
-        "range": "Combat",
-        "strength": "As user",
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 0,
+        "attackBonus": 0,
         "specialRules": [],
-        "notes": "If armed with another close combat weapon, must use that instead."
+        "notes": "If armed with another close combat weapon, this cannot be used (unless specified)."
+      },
+      "handWeaponShield": {
+        "id": "hand-weapon-shield",
+        "name": "Hand Weapon & Shield",
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 0,
+        "attackBonus": 0,
+        "specialRules": [
+          "Parry(6+)"
+        ],
+        "requiresShield": true,
+        "notes": "Shield also provides +1 to armour save in close combat and against shooting."
       },
       "additionalHandWeapon": {
-        "name": "Additional Hand Weapon",
-        "range": "Combat",
-        "strength": "As user",
-        "specialRules": ["+1 Attack", "Parry (6+)", "Requires Two Hands"]
+        "id": "two-hand-weapons",
+        "name": "Two/Additional Hand Weapons",
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 0,
+        "attackBonus": 1,
+        "specialRules": [
+          "Parry(6+)",
+          "RequiresTwoHands"
+        ],
+        "notes": null
       },
       "polearm": {
+        "id": "polearm",
         "name": "Polearm",
-        "range": "Combat",
-        "strength": "+1",
-        "specialRules": ["Requires Two Hands"]
-      },
-      "spear": {
-        "name": "Spear",
-        "range": "Combat",
-        "strength": "As user",
-        "specialRules": ["+1 Initiative when charged to front", "Fight in Extra Ranks (1)", "Mighty Blow (1) when charged to front"],
-        "notes": "Model on foot only. +1 Initiative only when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
-      },
-      "pike": {
-        "name": "Pike",
-        "range": "Combat",
-        "strength": "As user",
-        "specialRules": ["+2 Initiative when charged to front", "Fight in Extra Ranks (3)", "Mighty Blow (1) when charged to front", "Requires Two Hands"],
-        "notes": "Model on foot only. +2 Initiative bonus when charged to front. Mighty Blow does not apply to Infantry, Large Infantry, Swarms and Shrines."
+        "type": "close-combat",
+        "strengthBonus": 1,
+        "initiativeBonus": 1,
+        "attackBonus": 0,
+        "specialRules": [
+          "RequiresTwoHands"
+        ],
+        "notes": null
       },
       "greatWeapon": {
+        "id": "great-weapon",
         "name": "Great Weapon",
-        "range": "Combat",
-        "strength": "+2",
-        "specialRules": ["Armour Piercing (1)", "Always Strikes Last", "Requires Two Hands"]
-      },
-      "halberd": {
-        "name": "Halberd",
-        "range": "Combat",
-        "strength": "+1",
-        "specialRules": ["Armour Piercing (1)", "Requires Two Hands"]
+        "type": "close-combat",
+        "strengthBonus": 1,
+        "initiativeBonus": -2,
+        "attackBonus": 0,
+        "specialRules": [
+          "MightyBlow(1)",
+          "RequiresTwoHands"
+        ],
+        "notes": null
       },
       "flail": {
+        "id": "flail",
         "name": "Flail",
-        "range": "Combat",
-        "strength": "+2 first round, +1 subsequent",
-        "specialRules": ["Requires Two Hands"]
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 0,
+        "attackBonus": 0,
+        "specialRules": [
+          "MightyBlow(2)",
+          "RequiresTwoHands"
+        ],
+        "notes": null
       },
-      "morningstar": {
-        "name": "Morning Star",
-        "range": "Combat",
-        "strength": "+1 first round",
-        "specialRules": []
+      "spear": {
+        "id": "spear",
+        "name": "Spear",
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 1,
+        "attackBonus": 0,
+        "specialRules": [
+          "FightInExtraRanks(1)"
+        ],
+        "requiresFootOnly": true,
+        "conditionalRules": [
+          {
+            "condition": "chargedToFront",
+            "initiativeBonus": 1,
+            "specialRules": [
+              "MightyBlow(1)"
+            ],
+            "excludeAgainst": [
+              "Infantry",
+              "LargeInfantry",
+              "Swarms",
+              "Shrines"
+            ]
+          }
+        ],
+        "notes": "On foot only. When charged to front: additional +1 Initiative and Mighty Blow (1), but Mighty Blow does not apply against Infantry, Large Infantry, Swarms and Shrines."
+      },
+      "pike": {
+        "id": "pike",
+        "name": "Pike",
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 2,
+        "attackBonus": 0,
+        "specialRules": [
+          "FightInExtraRanks(3)",
+          "RequiresTwoHands"
+        ],
+        "requiresFootOnly": true,
+        "conditionalRules": [
+          {
+            "condition": "chargedToFront",
+            "initiativeBonus": 1,
+            "specialRules": [
+              "MightyBlow(1)"
+            ],
+            "excludeAgainst": [
+              "Infantry",
+              "LargeInfantry",
+              "Swarms",
+              "Shrines"
+            ]
+          }
+        ],
+        "notes": "On foot only. When charged to front: additional +1 Initiative and Mighty Blow (1), but Mighty Blow does not apply against Infantry, Large Infantry, Swarms and Shrines."
       },
       "lightLance": {
+        "id": "light-lance",
         "name": "Light Lance",
-        "range": "Combat",
-        "strength": "As user",
-        "specialRules": ["+1 Initiative on charge", "Mighty Blow (1) on charge"],
-        "notes": "Mounted model only. Bonuses only on the turn the model charges."
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 0,
+        "attackBonus": 0,
+        "specialRules": [],
+        "requiresMounted": true,
+        "conditionalRules": [
+          {
+            "condition": "charging",
+            "initiativeBonus": 1,
+            "specialRules": [
+              "MightyBlow(1)"
+            ]
+          }
+        ],
+        "notes": "Mounted only. Bonuses only apply in turns the model charges, and only against the charged unit."
       },
       "heavyLance": {
+        "id": "heavy-lance",
         "name": "Heavy Lance",
-        "range": "Combat",
-        "strength": "As user",
-        "specialRules": ["+2 Initiative on charge", "Mighty Blow (2) on charge"],
-        "notes": "Mounted model only. Bonuses only on the turn the model charges."
+        "type": "close-combat",
+        "strengthBonus": 0,
+        "initiativeBonus": 0,
+        "attackBonus": 0,
+        "specialRules": [],
+        "requiresMounted": true,
+        "conditionalRules": [
+          {
+            "condition": "charging",
+            "initiativeBonus": 2,
+            "specialRules": [
+              "MightyBlow(2)"
+            ]
+          }
+        ],
+        "notes": "Mounted only. Bonuses only apply in turns the model charges, and only against the charged unit."
       }
     },
     "missile": {
       "shortbow": {
+        "id": "shortbow",
         "name": "Shortbow",
+        "type": "missile",
         "range": 18,
         "strength": 3,
-        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "VolleyFire"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "stationary",
+            "specialRules": [
+              "MultipleShots(2)"
+            ],
+            "notes": "Cannot be used as a charge reaction."
+          }
+        ],
+        "notes": null
       },
       "bow": {
+        "id": "bow",
         "name": "Bow",
+        "type": "missile",
         "range": 24,
         "strength": 3,
-        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "VolleyFire"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "stationary",
+            "specialRules": [
+              "MultipleShots(2)"
+            ],
+            "notes": "Cannot be used as a charge reaction."
+          }
+        ],
+        "notes": null
       },
       "longbow": {
+        "id": "longbow",
         "name": "Longbow",
+        "type": "missile",
         "range": 30,
         "strength": 3,
-        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "VolleyFire"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "stationary",
+            "specialRules": [
+              "MultipleShots(2)"
+            ],
+            "notes": "Cannot be used as a charge reaction."
+          }
+        ],
+        "notes": null
       },
       "warbow": {
+        "id": "warbow",
         "name": "Warbow",
+        "type": "missile",
         "range": 30,
         "strength": 4,
-        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "VolleyFire"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "stationary",
+            "specialRules": [
+              "MultipleShots(2)"
+            ],
+            "notes": "Cannot be used as a charge reaction."
+          }
+        ],
+        "notes": null
       },
       "greatbow": {
+        "id": "greatbow",
         "name": "Greatbow",
+        "type": "missile",
         "range": 36,
         "strength": 5,
-        "specialRules": ["Multiple Shots (2) if stationary", "Volley Fire"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "VolleyFire"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "stationary",
+            "specialRules": [
+              "MultipleShots(2)"
+            ],
+            "notes": "Cannot be used as a charge reaction."
+          }
+        ],
+        "notes": null
       },
       "crossbow": {
+        "id": "crossbow",
         "name": "Crossbow",
+        "type": "missile",
         "range": 30,
         "strength": 4,
-        "specialRules": ["Ponderous"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "Ponderous"
+        ],
+        "notes": null
       },
       "handgun": {
+        "id": "handgun",
         "name": "Handgun",
+        "type": "missile",
         "range": 24,
         "strength": 4,
-        "specialRules": ["Armour Piercing (1)", "Ponderous"]
-      },
-      "pistol": {
-        "name": "Pistol",
-        "range": 12,
-        "strength": 4,
-        "specialRules": ["Armour Piercing (1)", "Multiple Shots (2) with brace", "Quick to Fire"],
-        "notes": "In close combat counts as additional hand weapon (no Parry)."
+        "strengthBonus": 0,
+        "specialRules": [
+          "ArmourPiercing(1)",
+          "Ponderous"
+        ],
+        "notes": null
       },
       "blunderbuss": {
+        "id": "blunderbuss",
         "name": "Blunderbuss",
+        "type": "missile",
         "range": 12,
         "strength": 3,
-        "specialRules": ["Armour Piercing (1)", "Multiple Shots (3)", "Quick to Fire", "Rapid Fire"],
-        "notes": "No penalty for Stand and Shoot."
+        "strengthBonus": 0,
+        "specialRules": [
+          "ArmourPiercing(1)",
+          "MultipleShots(3)",
+          "QuickToFire",
+          "RapidFire"
+        ],
+        "notes": "Blunderbusses do not suffer any penalties To Hit for Stand and Shoot."
+      },
+      "pistol": {
+        "id": "pistol",
+        "name": "Pistol",
+        "type": "missile",
+        "range": 12,
+        "strength": 4,
+        "strengthBonus": 0,
+        "specialRules": [
+          "ArmourPiercing(1)",
+          "QuickToFire"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "braceOfPistols",
+            "specialRules": [
+              "MultipleShots(2)"
+            ]
+          }
+        ],
+        "notes": "In close combat, a pistol counts as an additional hand weapon that does not give the model the Parry special rule."
       },
       "javelin": {
-        "name": "Javelin",
+        "id": "javelin",
+        "name": "Javelins",
+        "type": "missile",
         "range": 12,
-        "strength": "As user",
-        "specialRules": ["Armour Piercing (1)", "Quick to Fire", "Volley Fire"]
+        "strength": "asUser",
+        "strengthBonus": 0,
+        "specialRules": [
+          "ArmourPiercing(1)",
+          "QuickToFire",
+          "VolleyFire"
+        ],
+        "notes": null
       },
       "throwingWeapon": {
-        "name": "Throwing Weapon",
+        "id": "throwing-weapon",
+        "name": "Throwing Weapons",
+        "type": "missile",
         "range": 8,
-        "strength": "As user",
-        "specialRules": ["Multiple Shots (2)", "Quick to Fire"]
+        "strength": "asUser",
+        "strengthBonus": 0,
+        "specialRules": [
+          "MultipleShots(2)",
+          "QuickToFire"
+        ],
+        "notes": null
       },
       "throwingAxe": {
-        "name": "Throwing Axe",
+        "id": "throwing-axe",
+        "name": "Throwing Axes",
+        "type": "missile",
         "range": 6,
-        "strength": "As user +1",
-        "specialRules": ["Quick to Fire"]
+        "strength": "asUser",
+        "strengthBonus": 1,
+        "specialRules": [
+          "QuickToFire"
+        ],
+        "notes": null
       },
       "sling": {
+        "id": "sling",
         "name": "Sling",
+        "type": "missile",
         "range": 18,
         "strength": 3,
-        "specialRules": ["Armour Piercing (1)", "Multiple Shots (2) if stationary"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "ArmourPiercing(1)"
+        ],
+        "conditionalRules": [
+          {
+            "condition": "stationary",
+            "specialRules": [
+              "MultipleShots(2)"
+            ],
+            "notes": "Cannot be used to Stand and Shoot."
+          }
+        ],
+        "notes": null
       },
       "blowpipe": {
+        "id": "blowpipe",
         "name": "Blowpipe",
+        "type": "missile",
         "range": 12,
         "strength": 1,
-        "specialRules": ["Multiple Shots (2)", "Poisoned Attacks", "Quick to Fire", "Rapid Fire"]
+        "strengthBonus": 0,
+        "specialRules": [
+          "MultipleShots(2)",
+          "PoisonedAttacks",
+          "QuickToFire",
+          "RapidFire"
+        ],
+        "notes": null
       }
     }
   },
@@ -391,20 +870,26 @@
       "name": "Shield",
       "combatSave": "+1 (6+)",
       "missileSave": "+1 (6+), +2 on foot vs front",
-      "specialRules": ["Parry (6+) with hand weapon"],
+      "specialRules": [
+        "Parry (6+) with hand weapon"
+      ],
       "notes": "Models on foot get +1 extra vs missile attacks to the front."
     },
     "buckler": {
       "name": "Buckler",
       "combatSave": "+1 (6+)",
       "missileSave": "+1 (6+) on foot vs front",
-      "specialRules": ["Parry (6+) with hand weapon"]
+      "specialRules": [
+        "Parry (6+) with hand weapon"
+      ]
     },
     "barding": {
       "name": "Barding",
       "combatSave": "+1 (6+)",
       "missileSave": "+1 (6+)",
-      "specialRules": ["-1 Movement to mount"]
+      "specialRules": [
+        "-1 Movement to mount"
+      ]
     }
   }
 }
