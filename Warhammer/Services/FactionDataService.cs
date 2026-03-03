@@ -1,38 +1,91 @@
 using System.Net.Http.Json;
-using Warhammer.Models;
+using System.Text.Json;
+using Warhammer.Models.Json;
 
 namespace Warhammer.Services;
 
 public class FactionDataService
 {
-    private readonly HttpClient _httpClient;
-    private List<FactionIndex>? _factionIndex;
-    private readonly Dictionary<string, ExtractedFactionData> _factionCache = new();
+    private readonly HttpClient _http;
+    private readonly Dictionary<string, FactionData> _unitCache = new();
+    private readonly Dictionary<string, FactionExtrasData> _extrasCache = new();
 
-    public FactionDataService(HttpClient httpClient)
+    private static readonly JsonSerializerOptions JsonOptions = new()
     {
-        _httpClient = httpClient;
+        PropertyNameCaseInsensitive = true
+    };
+
+    public static readonly IReadOnlyList<string> FactionNames =
+    [
+        "beastmen",
+        "bretonnia",
+        "daemons-of-chaos",
+        "dark-elves",
+        "dwarfs",
+        "high-elves",
+        "lizardmen",
+        "ogre-kingdoms",
+        "orcs-and-goblins",
+        "skaven",
+        "the-empire",
+        "tomb-kings",
+        "vampire-counts",
+        "warriors-of-chaos",
+        "wood-elves"
+    ];
+
+    public static readonly IReadOnlyDictionary<string, string> FactionDisplayNames = new Dictionary<string, string>
+    {
+        ["beastmen"] = "Beastmen",
+        ["bretonnia"] = "Bretonnia",
+        ["daemons-of-chaos"] = "Daemons of Chaos",
+        ["dark-elves"] = "Dark Elves",
+        ["dwarfs"] = "Dwarfs",
+        ["high-elves"] = "High Elves",
+        ["lizardmen"] = "Lizardmen",
+        ["ogre-kingdoms"] = "Ogre Kingdoms",
+        ["orcs-and-goblins"] = "Orcs & Goblins",
+        ["skaven"] = "Skaven",
+        ["the-empire"] = "The Empire",
+        ["tomb-kings"] = "Tomb Kings",
+        ["vampire-counts"] = "Vampire Counts",
+        ["warriors-of-chaos"] = "Warriors of Chaos",
+        ["wood-elves"] = "Wood Elves"
+    };
+
+    public FactionDataService(HttpClient http)
+    {
+        _http = http;
     }
 
-    public async Task<List<FactionIndex>> GetFactionsAsync()
+    public async Task<FactionData> GetFactionUnitsAsync(string factionKey)
     {
-        _factionIndex ??= await _httpClient.GetFromJsonAsync<List<FactionIndex>>("data/factions-full.json");
-        return _factionIndex ?? new List<FactionIndex>();
-    }
-
-    public async Task<ExtractedFactionData?> GetFactionDataAsync(string factionId)
-    {
-        if (_factionCache.TryGetValue(factionId, out var cached))
+        if (_unitCache.TryGetValue(factionKey, out var cached))
             return cached;
 
-        var factions = await GetFactionsAsync();
-        var factionInfo = factions.FirstOrDefault(f => f.Id == factionId);
-        if (factionInfo is null) return null;
+        var data = await _http.GetFromJsonAsync<FactionData>(
+            $"data/factions/{factionKey}.json", JsonOptions)
+            ?? throw new InvalidOperationException($"Failed to load {factionKey}.json");
 
-        var data = await _httpClient.GetFromJsonAsync<ExtractedFactionData>(factionInfo.File);
-        if (data is not null)
-            _factionCache[factionId] = data;
-
+        _unitCache[factionKey] = data;
         return data;
+    }
+
+    public async Task<FactionExtrasData> GetFactionExtrasAsync(string factionKey)
+    {
+        if (_extrasCache.TryGetValue(factionKey, out var cached))
+            return cached;
+
+        var data = await _http.GetFromJsonAsync<FactionExtrasData>(
+            $"data/factions/{factionKey}-extras.json", JsonOptions)
+            ?? throw new InvalidOperationException($"Failed to load {factionKey}-extras.json");
+
+        _extrasCache[factionKey] = data;
+        return data;
+    }
+
+    public static string GetDisplayName(string factionKey)
+    {
+        return FactionDisplayNames.TryGetValue(factionKey, out var name) ? name : factionKey;
     }
 }

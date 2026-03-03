@@ -1,0 +1,485 @@
+{
+  "factionName": "tomb-kings",
+  "armySpecialRules": [
+    {
+      "name": "Arrows Of Asaph",
+      "description": "Units with the Arrows of Asaph special rule never\ncount any bonuses or penalties To Hit when shooting,\nregardless of the source of the modifier."
+    },
+    {
+      "name": "Curse Of The Necropolis",
+      "description": "If a model with this special rule is removed from play,\nthen the enemy unit responsible - by inflicting the final\nwound, for example - will immediately suffer D6\nStrength 5 hits (if the model was a Lord), D6 Strength\n4 hits (if the model was a Hero) or D3 Strength 3 Hits\n(if the model was a rank-and-file model). Any Wounds\ncaused have the Ignores Armour Saves special rule.\nIn close combat, any Wounds inflicted count towards\nthe combat result. If more than one unit is responsible\nfor the destruction of the model with this special rule\n(it is destroyed by the combat result in a multiple\ncombat due to its Unstable rule, for example), then all\nguilty units are affected. If the model is killed in a\nchallenge, then only their opponent is cursed, and not\nthe whole enemy unit."
+    },
+    {
+      "name": "Entombed Beneath The Sands",
+      "description": "A unit with this ability has the Ambushers special rule,\nwith the following exceptions.\nWhen these units enter the battle in the Remaining\nMoves sub-phase, they do not move onto the board as\nreinforcements in the normal way. Instead, when a unit\nthat is Entombed Beneath the Sands enters the battle,\nplace a small marker (such as a coin) anywhere on the\nbattlefield, but not in impassable terrain or within 1\" of\na deployed unit.\nRoll a scatter dice and an artillery dice. If you roll a Hit\non the scatter dice, the marker stays in place. If you roll\nan arrow, move the marker the number, in inches,\nindicated by the artillery dice in the direction shown. If\nthe marker is under a friendly unit, impassable terrain\nor a building, place it 1\" away from the closest edge of\nthe unit/terrain.\nOnce the final position of the marker is established,\nplace the emerging unit in a legal formation such that it\ntouches the marker, facing any direction. If the marker\nis under an enemy unit, you may place your unit into\nbase contact with the enemy unit in their front arc; your\nunit will counts as charging this turn.\nIf you roll a misfire, or if for any reason some of the\nmodels in the unit cannot be placed, then the unit does\nnot emerge. Instead, remove the marker and roll on the\nMishap table. If a unit emerges successfully, it may act\nnormally this turn.\nOnly characters that have the Entombed Beneath the\nSands special rule can be deployed within such units. If\nyou have several units Entombed Beneath the Sands,\nthen repeat this process, one unit at a time."
+    },
+    {
+      "name": "Mishap Table",
+      "description": "1-2 Reclaimed by the Desert: The entire unit is\ndestroyed and treated as casualties.\n3-4 Buried Too Deep: The unit is delayed and\ndoes not emerge - but you'll be able to try\nagain next turn to see if it arrives, following\nthe same process.\n5-6 Shifting Sands: The unit enters the\nbattlefield from any point on a randomly\ndetermined board edge, moving on using the\nrules for reinforcements."
+    },
+    {
+      "name": "The Hierophant",
+      "description": "Your army must include at least one Wizard to be the\narmy's Hierophant. If your army includes several\nWizards, this will be the one with the highest Wizard\nLevel. If two or more models have the highest Wizard\nLevel, choose which of them will be the Hierophant.\nThe Hierophant must use the Lore of Nehekhara.\nThe Hierophant, and all models in the same unit, have\nthe Regeneration (6+) special rule.\nAt the end of the phase in which the Hierophant is\nremoved as a casualty, and at the start of every friendly\nturn thereafter, all friendly Undead units (except\ncharacters) on the battlefield must take a Leadership\ntest. If the test is failed, the unit immediately suffers a\nnumber of Wounds equal to the amount by which it\nfailed the Leadership test, with no saves of any kind\nallowed. These Wounds are distributed as if from a\nshooting attack.\nIf, at the start of any of your turns following the death\nof the Hierophant, there is one or more friendly Wizard\nCharacters on the table who know spells from the Lore\nof Nehekhara, then one of these models may be\ndesignated the new Hierophant by passing a Leadership\ntest. If passed, they become the new Hierophant\nfollowing all the normal rules, and no unit in the army\nneeds to take the Leadership test to avoid losing\nWounds while they remain alive."
+    },
+    {
+      "name": "My Will Be Done",
+      "description": "Any unit of Undead accompanied by a model with this\nrule uses the character's unmodified Weapon Skill in\nplace of its own (use the highest Weapon Skill if the\nunit is joined by several characters with this rule).\nIf all characters with the My Will Be Done rule in the\nunit are killed, the unit immediately reverts to using its\nown Weapon Skill. This special rule has no effect on\nmounts or any other characters except Tomb Heralds -\nthese always use their own Weapon Skill."
+    },
+    {
+      "name": "Undead",
+      "description": "All models with the Undead special rule have the\nAnimated Construct, Fear, and Unstable special rules.\nHowever, they may make march moves if they are\nwithin 6\" of the Hierophant or are joined by a character\nwith the My Will Be Done special rule."
+    },
+    {
+      "name": "Banner Of The King",
+      "description": "In addition to the normal rules for the army battle\nstandard, units of Undead within 12\" of their battle\nstandard suffer D3 Wounds less than they normally\nwould due to the Unstable special rule, or following the\ndeath of the army's Hierophant."
+    }
+  ],
+  "magicItems": [
+    {
+      "name": "Spear Of Antarhak",
+      "points": "50",
+      "category": "magic_weapon",
+      "description": "Spear/light lance. For every unsaved Wound inflicted\nby the Spear of Antarhak, the wielder immediately\nregains a single Wound lost earlier in the battle. If the\nbearer is already at their starting number of Wounds\nand inflicts another unsaved Wound with this weapon,\nthey gain the Regeneration (4+) special rule until the\nend of the next player turn."
+    },
+    {
+      "name": "Crook And Flail Of Radiance",
+      "points": "50",
+      "category": "magic_weapon",
+      "description": "Two hand weapons. These weapons gives the wielder\nthe Always Strikes First special rule and +1 Combat\nResolution bonus."
+    },
+    {
+      "name": "Destroyer Of Eternities",
+      "points": "40",
+      "category": "magic_weapon",
+      "description": "Tomb King on foot only. Great weapon. Attacks made\nwith the Destroyer of Eternities have the Heroic Killing\nBlow special rule. The wielder can choose to exchange\nall of their Attacks to make a special attack. If they do\nso, all enemy models in base contact with the wielder\nsuffer a single automatic hit (with Heroic Killing\nBlow). In a challenge, only the models engaged in the\nchallenge count as being in base contact with the Tomb\nKing.",
+      "restriction": "Tomb King on foot only."
+    },
+    {
+      "name": "Phakth'S Blades Of Justice",
+      "points": "35",
+      "category": "magic_weapon",
+      "description": "Infantry only. Two hand weapons. The wielder of these\nweapons gain +1 Attack for each complete rank any\none enemy unit in base contact with them has.",
+      "restriction": "Infantry only."
+    },
+    {
+      "name": "Blade Of Setep",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "The Blade of Setep gives the wielder the Ignores\nArmour Saves special rule. If the enemy model wears\nmagical armour, the first Hit against this model is\nignored, but the magical armour is destroyed for the\nremainder of the battle.\nc and powerful magical artefacts used by the Tomb\nfound in the Warhammer rulebook."
+    },
+    {
+      "name": "Dagger Of Bound Souls",
+      "points": "30",
+      "category": "magic_weapon",
+      "description": "No Ward saves can be taken against Wounds caused by\nthis item. In addition, any model that suffers an\nunsaved Wound from it must pass a Toughness test or\nsuffer an additional Wound with no saves allowed.\nThey must keep taking Toughness tests until they pass\nor are removed as a casualty."
+    },
+    {
+      "name": "Blade Of Mourning",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "If a unit suffers at least one wound from the Blade of\nMourning and loses the combat, any negative modifiers\nto the unit's Leadership for the subsequent Break test\nare doubled."
+    },
+    {
+      "name": "Blades Of Honourable Demise",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Two hand weapons. The wielder of these weapons gain\n+1 To Hit in close combat."
+    },
+    {
+      "name": "The Conqueror'S Blade",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "The wielder of this weapon gains the Killing Blow\nspecial rule. When fighting in a challenge, their Killing\nBlow takes effect on a 5+ rather than a 6."
+    },
+    {
+      "name": "Staff Of Aeons",
+      "points": "10",
+      "category": "magic_weapon",
+      "description": "Wizard only. If the wielder of this item successfully\nHits an enemy unit one or more times in close combat,\nthat unit suffers -1 to their armour saves for the\nduration of the game.",
+      "restriction": "Wizard only."
+    },
+    {
+      "name": "Serpent Staff",
+      "points": "5",
+      "category": "magic_weapon",
+      "description": "Wizards only. The Serpent Staff gives the wielder the\nPoisoned Attacks special rule. In addition, they may re-\nroll failed rolls To Wound.",
+      "restriction": "Wizards only."
+    },
+    {
+      "name": "Scorpion Armour",
+      "points": "40",
+      "category": "magic_armour",
+      "description": "Light armour. The character can never suffer more than\none wound due to combat resolution. If the wearer is\nwith a unit, up to half the wounds suffered due to\ncombat resolution can be allocated against the\ncharacter, which are then ignored save for the first one."
+    },
+    {
+      "name": "Armour Of Eternity",
+      "points": "35",
+      "category": "magic_armour",
+      "description": "Infantry or Cavalry only. Light armour. Enemy models\nmust re-roll successful rolls To Wound against the\nwearer of this armour.",
+      "restriction": "Infantry or Cavalry only."
+    },
+    {
+      "name": "Armour Of The Ages",
+      "points": "30",
+      "category": "magic_armour",
+      "description": "Light armour. When the wearer of this armour is\nreduced to their last Wound, they gain a 3+ Ward save.\nThis has no effect if they suffer their last Wound as a\nresult of an attack that causes Multiple Wounds."
+    },
+    {
+      "name": "Vambraces Of The Sun",
+      "points": "30",
+      "category": "magic_armour",
+      "description": "This item gives the bearer a 6+ armour. In addition, all\nenemy models that attempt to strike the bearer in close\ncombat suffer -1 To Hit."
+    },
+    {
+      "name": "Gauntlet Of Hraklonesh",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "This item gives the bearer a 6+ armour. In addition,\nthey gain +1 Strength and Toughness. However, at the\nstart of each of your turns, they must pass a Toughness\ntest or suffer one Wound with no saves allowed."
+    },
+    {
+      "name": "Shield Of Ptra",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Shield. The bearer of this shield gains the Parry (6+)\nspecial rule even while mounted. If they make a\nsuccessful Parry save, all models in base contact with\nthem suffer -1 To Hit for the remainder of the turn, or\nthe next turn if they have already attacked this turn."
+    },
+    {
+      "name": "Warding Splint",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Wizard only. Light armour. This armour gives the\nwearer a 5+ Ward save in close combat. This armour\nmay be taken even though Wizards may not normally\nwear armour.",
+      "restriction": "Wizard only."
+    },
+    {
+      "name": "Royal Mantle",
+      "points": "15",
+      "category": "magic_armour",
+      "description": "This item gives the bearer a 6+ armour and the\nInspiring Presence (6) special rule."
+    },
+    {
+      "name": "Golden Ankhra",
+      "points": "55",
+      "category": "talisman",
+      "description": "The Ankhra gives the bearer a 4+ Ward save. In\naddition, they may re-roll 1's when taking Ward saves."
+    },
+    {
+      "name": "Amulet Of Pha-Stah",
+      "points": "30",
+      "category": "talisman",
+      "description": "All enemy Talismans, Arcane Items and Enchanted\nItems have no effect while they remain in base contact\nwith the wearer of the Amulet of Pha-Stah."
+    },
+    {
+      "name": "Golden Eye Of Rah-Nutt",
+      "points": "30",
+      "category": "talisman",
+      "description": "Model on Chariot only. The Golden Eye gives the\nbearer a 3+ Ward save against missile attacks.",
+      "restriction": "Model on Chariot only."
+    },
+    {
+      "name": "Collar Of Shapesh",
+      "points": "25",
+      "category": "talisman",
+      "description": "For each unsaved Wound the bearer suffers (before\ncalculating any Multiple Wounds), roll a D6: on a 4+\nthe Wound is transferred to any friendly model in base\ncontact of the bearers choosing, with no saves of any\nkind allowed. These Wounds still counts towards\ncombat resolution as normal. If there are no friendly\nmodels in base contact, then this rule has no effect."
+    },
+    {
+      "name": "Orb Of Ptra",
+      "points": "25",
+      "category": "talisman",
+      "description": "All missile attacks targeting the bearer of this item or\nany unit they are with suffer -1 To Hit."
+    },
+    {
+      "name": "Blue Khepra",
+      "points": "20",
+      "category": "talisman",
+      "description": "The Blue Khepra makes the bearer (but not any unit\nthey are with) immune to the effects of all enemy\nspells."
+    },
+    {
+      "name": "Brooch Of The Great Desert",
+      "points": "15",
+      "category": "talisman",
+      "description": "One use only. The Brooch of the Great Desert can be\nused against any enemy spell cast against it, before\nattempting to dispel. When used, the bearer and any\nunit they are with gain the Magic Resistance (5) special\nrules for the remainder of the turn.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Relic Of The Desert Sun",
+      "points": "15",
+      "category": "talisman",
+      "description": "The bearer of the Relic of the Desert Sun gains a 6+\nWard save and Immunity (Flaming Attacks)."
+    },
+    {
+      "name": "Phazerakt'S Kanopi",
+      "points": "35",
+      "category": "arcane_item",
+      "description": "Bound Spell (power level 6). This item contains an\naugment/summoning spell with a range of 12\". You\ncan choose to either summon 2D6+3 Skeleton Warriors\nto an existing unit (this may take them over their\nstarting value) or create a new unit."
+    },
+    {
+      "name": "Staff Of Osiris",
+      "points": "35",
+      "category": "arcane_item",
+      "description": "Bound Spell (power level 5). This item contains a\nmagic missile with a range of 24\". It inflicts a single\nStrength 6 hit with the Armour Piercing (1) and\nMultiple Wounds (D3) special rules that penetrates\nranks in the same manner as a shot from a Bolt\nThrower."
+    },
+    {
+      "name": "Staff Of Ravening",
+      "points": "35",
+      "category": "arcane_item",
+      "description": "Bound Spell (power level 3). The Staff of Ravening\ncontains a magic missile spell with a range of 18\" that\ncauses 3D6 Strength 2 hits."
+    },
+    {
+      "name": "Neferra'S Scrolls Of Mighty Incantations",
+      "points": "30",
+      "category": "arcane_item",
+      "description": "One use only. A Wizard can declare that he is using\nNeferra's Scrolls of Mighty Incantations immediately\nbefore casting a spell. If he does so, the Wizard must\nadd a number of extra bonus dice, equal to his Wizard\nlevel, to the power dice he is going to roll (you still\nneed to roll at least one dice from the power pool). The\nbonus dice do not count as power dice. However, a roll\nof any double (except 1's) when initially casting a spell\nusing them will counts as rolling a 6 for the purpose of\nUltimate Power.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Staff Of Awakening",
+      "points": "25",
+      "category": "arcane_item",
+      "description": "The wielder of the Staff of Awakening may re-roll the\namount of Wounds recovered from The Restless Dead."
+    },
+    {
+      "name": "Curse-Weaver Wand",
+      "points": "20",
+      "category": "arcane_item",
+      "description": "The Curse-weaver Wand gives the bearer a +2 casting\nbonus when casting a hex spells."
+    },
+    {
+      "name": "Staff Of Mastery",
+      "points": "20",
+      "category": "arcane_item",
+      "description": "The Staff of Mastery gives the bearer a +1 casting\nbonus when using the Lore of Light."
+    },
+    {
+      "name": "Enkhil'S Kanopi",
+      "points": "15",
+      "category": "arcane_item",
+      "description": "Bound spell (power level 3). If cast successfully, roll a\nD6 for every 'remains in play' spell on the tabletop: on\na 2+ that spell is automatically dispelled. For each spell\nthat is ended in this way, add D3 power dice to your\npower pool."
+    },
+    {
+      "name": "Hieratic Jar",
+      "points": "15",
+      "category": "arcane_item",
+      "description": "One use only. The Hieratic Jar may be used at the start\nof any of your Magic phases. The bearer immediately\ngains +D3 Power dice. Only they may use these extra\nPower dice.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Tablet Of Tahoth",
+      "points": "10",
+      "category": "arcane_item",
+      "description": "One use only. This item may be used after rolling the\nPower dice to cast a spell. When used, add a +D3\ncasting bonus to the roll.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Golden Death Mask Of Kharnutt",
+      "points": "40",
+      "category": "enchanted_item",
+      "description": "The model wearing this mask causes Terror. In\naddition, enemy units within 6\" of the wearer cannot\nbenefit from the Inspiring Presence or Hold Your\nGround special rules."
+    },
+    {
+      "name": "Cloak Of The Dunes",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "Infantry only. The wearer of the Cloak of Dunes has\nthe Fly (10) special rule. In addition, if the bearer\nmoves over an unengaged enemy unit in the Remaining\nMoves sub-phase, that enemy unit immediately suffers\n2D6 Strength 2 hits, resolved as for shooting attacks.\nThe bearer can move over several enemy units in the\nsame turn if you wish, causing damage to every unit.\nThe same target unit cannot be affected more than once\nin the same turn.",
+      "restriction": "Infantry only."
+    },
+    {
+      "name": "Amulet Of The Serpent",
+      "points": "30",
+      "category": "enchanted_item",
+      "description": "The bearer of the Amulet of the Serpent and any unit\nthey join gain the Poisoned Attacks special rule in close\ncombat."
+    },
+    {
+      "name": "Scarab Brooch",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "All models using the Entombed Beneath the Sands\nspecial rule may re-roll failed rolls to enter the\nbattlefield and can re-roll the scatter and/or artillery\ndice when emerging if their marker is within 12\" of the\nbearer of this item."
+    },
+    {
+      "name": "Crown Of Kings",
+      "points": "20",
+      "category": "enchanted_item",
+      "description": "Tomb King only. All friendly units within 6\" may make\nMarch moves despite being Undead.",
+      "restriction": "Tomb King only."
+    },
+    {
+      "name": "Chariot Of Fire",
+      "points": "20",
+      "category": "enchanted_item",
+      "description": "Model on Chariot only. The Chariot of Fire causes 2D6\nimpacts hits with the Flaming Attacks and Magical\nAttacks special rules.",
+      "restriction": "Model on Chariot only."
+    },
+    {
+      "name": "Icon Of Rulership",
+      "points": "20",
+      "category": "enchanted_item",
+      "description": "Model on Chariot only. The Icon of Rulership gives the\nbearer a +1 Combat Resolution bonus.",
+      "restriction": "Model on Chariot only."
+    },
+    {
+      "name": "Karitamen'S Death Mask",
+      "points": "10",
+      "category": "enchanted_item",
+      "description": "The bearer of this item gains +1 Leadership and the\nCold-Blooded special rule."
+    },
+    {
+      "name": "Icon Of Rakaph",
+      "points": "50",
+      "category": "magic_standard",
+      "description": "Tomb Guard or Tomb Herald on foot only. The unit\ncarrying the Icon of Rakaph may make a Swift Reform\nat the start of their Movement phase. The unit may then\nmove as normal (including declaring charges).",
+      "restriction": "Tomb Guard or Tomb Herald on foot only."
+    },
+    {
+      "name": "Sigil Of Centuries",
+      "points": "50",
+      "category": "magic_standard",
+      "description": "All enemy units within 6\" of this standard are subject\nto the Always Strikes Last special rule."
+    },
+    {
+      "name": "Standard Of The Sands",
+      "points": "50",
+      "category": "magic_standard",
+      "description": "One use only. The Standard of the Sands may be\nactivated at the beginning of any enemy Movement\nphase. For the remainder of the turn, no models within\n24\" of the banner may March, and all units attempting\nto rally suffer -1 to their Leadership.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Banner Of The Desert Winds",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "Infantry only. The unit carrying this standard gains the\nSwiftstride and Vanguard special rules.",
+      "restriction": "Infantry only."
+    },
+    {
+      "name": "Icon Of The Sacred Eye",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "The unit carrying the Icon of the Sacred Eye (including\nany mounts) may re-roll failed rolls To Hit in the first\nround of close combat."
+    },
+    {
+      "name": "Mirage Standard",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "The Mirage Standard forces all Hits from missile\nattacks targeting the unit carrying it to be re-rolled."
+    },
+    {
+      "name": "Tapestry Of Conquered Lands",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard gains a +D3 Combat\nResolution bonus (roll each time it is used)."
+    },
+    {
+      "name": "Royal Standard Of Settra",
+      "points": "30",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard gains the Hatred\n(Characters) and Terror special rules."
+    },
+    {
+      "name": "Banner Of The Hidden Dead",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard gains the Entombed\nBeneath the Sands special rule."
+    },
+    {
+      "name": "Standard Of The Cursing Word",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "All enemy units in base contact with the unit carrying\nthe Standard of the Cursing Word must pass a\nLeadership test or suffer D6 Wounds which Ignores\nArmour Saves at the start of each round of close\ncombat."
+    },
+    {
+      "name": "Standard Of The Undying Legion",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "Bound Spell (power level 5). This banner contains an\naugment spell that targets the bearer's unit. If\nsuccessfully cast, the bearer's unit immediately\nrecovers a number of Wounds' worth of models, as\ndescribed in the Restless Dead."
+    }
+  ],
+  "loresOfMagic": [
+    {
+      "name": "Nehekhara",
+      "attribute": "Each time a Wizard successfully casts an augment or\nconveyance spell from the Lore of Nehekhara, the\ntarget of the spell immediately recovers a number of\nWounds' worth of models, just like a summoning spell.\nCore Units (except Chariots) recover D6+1 Wounds.\nSpecial Units, Chariots and Monstrous Cavalry recover\nD3 Wounds. Remaining Rare Units recover 1 Wound.\nKHSAR'S INCANTATION OF THE DESERT\nWIND",
+      "spells": [
+        {
+          "name": "Khsar'S Incantation Of The Desert\nWind",
+          "level": 0,
+          "castValue": 5,
+          "description": "Khsar's Incantation of the Desert Wind is a"
+        },
+        {
+          "name": "Djedra'S Incantation Of The Eternal\nDead",
+          "level": 1,
+          "castValue": 5,
+          "description": "Remains in play. Djedra's Incantation of the Eternal"
+        },
+        {
+          "name": "Sekhubi'S Incantation Of\nRetribution",
+          "level": 1,
+          "castValue": 5,
+          "description": "Sekhubi's Incantation of Retribution is a magic missile"
+        },
+        {
+          "name": "Djaf'S Incantation Of Cursed Blades",
+          "level": 1,
+          "castValue": 6,
+          "description": "Djaf's Incantation of Cursed Blades is an augment"
+        },
+        {
+          "name": "Merneptah'S Incantation Of The\nScarab Song",
+          "level": 2,
+          "castValue": 8,
+          "description": "Merneptah's Scroll of the Scarab Song is a direct"
+        },
+        {
+          "name": "Ptra'S Incantation Of Righteous\nSmiting",
+          "level": 2,
+          "castValue": 8,
+          "description": "Ptra's Incantation of Righteous Smiting is an augment"
+        },
+        {
+          "name": "Neru'S Incantation Of Protection",
+          "level": 2,
+          "castValue": 10,
+          "description": "Neru's Incantation of Protection is an augment spell",
+          "type": "augment"
+        },
+        {
+          "name": "Return Of The Golden Age",
+          "level": 3,
+          "castValue": 10,
+          "description": "Return of the Golden Age is an augment spell with a",
+          "type": "augment"
+        },
+        {
+          "name": "Usirian'S Incantation Of Vengeance",
+          "level": 3,
+          "castValue": 10,
+          "description": "Usirian's Incantation of Vengeance is a hex spell with a",
+          "type": "hex"
+        },
+        {
+          "name": "Neferre'S Incantation Of Quaking\nHorror",
+          "level": 3,
+          "castValue": 12,
+          "description": "Neferre's Incantation of Quaking Horror is a hex spell",
+          "type": "hex"
+        },
+        {
+          "name": "Usekhp'S Incantation Of\nDesiccation",
+          "level": 4,
+          "castValue": 12,
+          "description": "U s ekhp's Incantation of Desiccation is a hex spell with",
+          "type": "hex"
+        },
+        {
+          "name": "Mankara'S Incantation Of Urgency",
+          "level": 4,
+          "castValue": 13,
+          "description": "Mankara's Incantation of Urgency is a conveyance"
+        },
+        {
+          "name": "Sakhmet'S Incantation Of The\nSkullstorm",
+          "level": 4,
+          "castValue": 15,
+          "description": "Remains in play. Sakhmet's Incantation of the"
+        }
+      ]
+    }
+  ],
+  "factionUpgrades": {}
+}

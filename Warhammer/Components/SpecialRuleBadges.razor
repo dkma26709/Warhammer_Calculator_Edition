@@ -1,0 +1,40 @@
+@using Warhammer.Models.Domain
+
+@if (Rules?.AllRuleNames?.Count > 0)
+{
+    <div class="d-flex flex-wrap gap-1 mt-2">
+        @foreach (var rule in Rules.AllRuleNames)
+        {
+            <span class="badge @GetBadgeClass(rule)" title="@rule">@rule</span>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public ParsedSpecialRules? Rules { get; set; }
+
+    private static string GetBadgeClass(string ruleName)
+    {
+        var lower = ruleName.ToLowerInvariant();
+
+        // Offensive rules (red-ish)
+        if (lower.Contains("killing blow") || lower.Contains("hatred") || lower.Contains("frenzy")
+            || lower.Contains("poisoned") || lower.Contains("flaming") || lower.Contains("lightning")
+            || lower.Contains("ice attacks") || lower.Contains("armour piercing")
+            || lower.Contains("mighty blow") || lower.Contains("multiple wounds")
+            || lower.Contains("devastating charge") || lower.Contains("impact hits"))
+            return "bg-danger";
+
+        // Defensive rules (blue-ish)
+        if (lower.Contains("ward save") || lower.Contains("regeneration") || lower.Contains("natural armour")
+            || lower.Contains("parry") || lower.Contains("ethereal"))
+            return "bg-primary";
+
+        // Morale/leadership (yellow-ish)
+        if (lower.Contains("fear") || lower.Contains("terror") || lower.Contains("stubborn")
+            || lower.Contains("unbreakable") || lower.Contains("unstable") || lower.Contains("cold-blooded"))
+            return "bg-warning text-dark";
+
+        return "bg-secondary";
+    }
+}

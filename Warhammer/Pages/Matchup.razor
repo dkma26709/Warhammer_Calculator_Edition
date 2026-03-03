@@ -1,117 +1,181 @@
+@page "/"
 @page "/matchup"
-@inherits MatchupBase
 
-<h3>Combat Matchup Simulator</h3>
+@using Warhammer.Models.Json
+@using Warhammer.Models.Domain
+@using Warhammer.Calculator.Models
+@using Warhammer.Services
 
-<div class="matchup-grid">
-    <!-- Row 1: Selectors + Controls -->
-    <div class="mg-cell mg-sel-a">
-        <div class="mg-card-header">ATTACKER</div>
-        <UnitSelector Label="Attacker" OnUnitSelected="OnAttackerSelected" />
-    </div>
+@inject CoreRulesService CoreRules
+@inject FactionDataService FactionData
+@inject CombatEngine CombatEngine
 
-    <div class="mg-cell mg-ctrl">
-        <div class="mg-card-header">BATTLE</div>
-        <div class="mb-2">
-            <label class="form-label form-label-sm mb-0">Simulations</label>
-            <select class="form-select form-select-sm" @bind="_simulationCount">
-                <option value="1000">1,000</option>
-                <option value="5000">5,000</option>
-                <option value="10000">10,000</option>
-                <option value="50000">50,000</option>
-            </select>
+<div class="container-fluid py-3">
+    <div class="row g-3">
+        @* Attacker Panel *@
+        <div class="col-md-5">
+            <UnitPanel Label="Attacker"
+                       SelectedFactionKey="@_attackerFactionKey"
+                       OnFactionSelected="OnAttackerFactionSelected"
+                       FactionData="@_attackerFactionData"
+                       SelectedUnit="@_attackerUnit"
+                       OnUnitSelected="OnAttackerUnitSelected"
+                       Configuration="@_attackerConfig"
+                       ConfigurationChanged="OnAttackerConfigChanged"
+                       CoreRules="CoreRules" />
         </div>
-        <div class="mb-1">
-            <div class="form-check form-check-sm">
-                <input class="form-check-input" type="checkbox" @bind="_attackerCharged" />
-                <label class="form-check-label small">Atk charged</label>
+
+        @* Combat Controls (center) *@
+        <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
+            <CombatControls ChargeState="@_chargeState"
+                            ChargeStateChanged="OnChargeStateChanged"
+                            CanSimulate="@(_attackerConfig != null && _defenderConfig != null)"
+                            IsSimulating="@_isSimulating"
+                            OnSimulate="RunSimulation" />
+        </div>
+
+        @* Defender Panel *@
+        <div class="col-md-5">
+            <UnitPanel Label="Defender"
+                       SelectedFactionKey="@_defenderFactionKey"
+                       OnFactionSelected="OnDefenderFactionSelected"
+                       FactionData="@_defenderFactionData"
+                       SelectedUnit="@_defenderUnit"
+                       OnUnitSelected="OnDefenderUnitSelected"
+                       Configuration="@_defenderConfig"
+                       ConfigurationChanged="OnDefenderConfigChanged"
+                       CoreRules="CoreRules" />
+        </div>
+    </div>
+
+    @* Effective Stats *@
+    @if (_attackerConfig != null && _defenderConfig != null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <EffectiveStatsPanel Attacker="_attackerConfig"
+                                     Defender="_defenderConfig"
+                                     ChargeState="_chargeState"
+                                     CoreRules="CoreRules" />
             </div>
         </div>
-        <div class="mb-2">
-            <div class="form-check form-check-sm">
-                <input class="form-check-input" type="checkbox" @bind="_defenderCharged" />
-                <label class="form-check-label small">Def charged</label>
+    }
+
+    @* Results *@
+    @if (_result != null)
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <ResultsPanel Result="_result"
+                              AttackerName="@(_attackerUnit?.Name ?? "Attacker")"
+                              DefenderName="@(_defenderUnit?.Name ?? "Defender")" />
             </div>
         </div>
-        <button class="btn btn-danger w-100"
-                @onclick="RunSimulation"
-                disabled="@(!CanSimulate)">
-            FIGHT!
-        </button>
-        @if (_isSimulating)
-        {
-            <div class="text-center mt-1">
-                <div class="spinner-border spinner-border-sm text-danger" role="status">
-                    <span class="visually-hidden">Simulating...</span>
-                </div>
-            </div>
-        }
-    </div>
-
-    <div class="mg-cell mg-sel-b">
-        <div class="mg-card-header">DEFENDER</div>
-        <UnitSelector Label="Defender" OnUnitSelected="OnDefenderSelected" />
-    </div>
-
-    <!-- Row 2: Configs + Results -->
-    <div class="mg-cell mg-cfg-a">
-        @if (_attackerUnit is not null)
-        {
-            <UnitConfigurator Unit="_attackerUnit" FactionName="@_attackerFaction"
-                              OnConfigurationChanged="OnAttackerConfigChanged"
-                              OpponentConfig="@_defenderConfig" />
-        }
-    </div>
-
-    <div class="mg-cell mg-results">
-        @if (_summary is not null)
-        {
-            <CombatResultsPanel Summary="_summary"
-                                UnitAName="@AttackerName"
-                                UnitBName="@DefenderName" />
-        }
-        else
-        {
-            <div class="text-center text-muted small py-3">
-                Select units and click FIGHT
-            </div>
-        }
-    </div>
-
-    <div class="mg-cell mg-cfg-b">
-        @if (_defenderUnit is not null)
-        {
-            <UnitConfigurator Unit="_defenderUnit" FactionName="@_defenderFaction"
-                              OnConfigurationChanged="OnDefenderConfigChanged"
-                              OpponentConfig="@_attackerConfig" />
-        }
-    </div>
-
-    <!-- Row 3: Charts -->
-    <div class="mg-cell mg-chart1">
-        @if (_summary is not null)
-        {
-            <CombatDistributionChart Distribution="_summary.WoundsAToBDistribution"
-                                     Title="@($"Wounds: {AttackerName} → {DefenderName}")"
-                                     SeriesName="% chance" />
-        }
-    </div>
-
-    <div class="mg-cell mg-chart2">
-        @if (_summary is not null)
-        {
-            <CombatDistributionChart Distribution="_summary.CombatResDiffDistribution"
-                                     Title="@($"Combat Res Diff (+ve = {AttackerName})")"
-                                     SeriesName="% chance" />
-        }
-    </div>
-
-    <div class="mg-cell mg-chart3">
-        @if (_summary is not null)
-        {
-            <CombatDistributionChart Distribution="_summary.WoundsBToADistribution"
-                                     Title="@($"Wounds: {DefenderName} → {AttackerName}")"
-                                     SeriesName="% chance" />
-        }
-    </div>
+    }
 </div>
+
+@code {
+    // --- Attacker state ---
+    private string? _attackerFactionKey;
+    private FactionData? _attackerFactionData;
+    private UnitEntry? _attackerUnit;
+    private UnitConfiguration? _attackerConfig;
+
+    // --- Defender state ---
+    private string? _defenderFactionKey;
+    private FactionData? _defenderFactionData;
+    private UnitEntry? _defenderUnit;
+    private UnitConfiguration? _defenderConfig;
+
+    // --- Combat ---
+    private ChargeState _chargeState = ChargeState.Neither;
+    private CombatSimulationResult? _result;
+    private bool _isSimulating;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CoreRules.EnsureLoadedAsync();
+    }
+
+    // --- Attacker events ---
+    private async Task OnAttackerFactionSelected(string factionKey)
+    {
+        _attackerFactionKey = factionKey;
+        _attackerUnit = null;
+        _attackerConfig = null;
+        _result = null;
+
+        if (!string.IsNullOrEmpty(factionKey))
+            _attackerFactionData = await FactionData.GetFactionUnitsAsync(factionKey);
+        else
+            _attackerFactionData = null;
+    }
+
+    private void OnAttackerUnitSelected(UnitEntry? unit)
+    {
+        _attackerUnit = unit;
+        _attackerConfig = unit != null ? new UnitConfiguration(unit) : null;
+        _result = null;
+    }
+
+    private void OnAttackerConfigChanged(UnitConfiguration config)
+    {
+        _attackerConfig = config;
+        _result = null;
+    }
+
+    // --- Defender events ---
+    private async Task OnDefenderFactionSelected(string factionKey)
+    {
+        _defenderFactionKey = factionKey;
+        _defenderUnit = null;
+        _defenderConfig = null;
+        _result = null;
+
+        if (!string.IsNullOrEmpty(factionKey))
+            _defenderFactionData = await FactionData.GetFactionUnitsAsync(factionKey);
+        else
+            _defenderFactionData = null;
+    }
+
+    private void OnDefenderUnitSelected(UnitEntry? unit)
+    {
+        _defenderUnit = unit;
+        _defenderConfig = unit != null ? new UnitConfiguration(unit) : null;
+        _result = null;
+    }
+
+    private void OnDefenderConfigChanged(UnitConfiguration config)
+    {
+        _defenderConfig = config;
+        _result = null;
+    }
+
+    // --- Combat ---
+    private void OnChargeStateChanged(ChargeState state)
+    {
+        _chargeState = state;
+        _result = null;
+    }
+
+    private async Task RunSimulation()
+    {
+        if (_attackerConfig == null || _defenderConfig == null) return;
+
+        _isSimulating = true;
+        _result = null;
+        StateHasChanged();
+
+        var context = new CombatContext
+        {
+            Charge = _chargeState,
+            CombatRound = 1
+        };
+
+        _result = await Task.Run(() =>
+            CombatEngine.Simulate(_attackerConfig, _defenderConfig, context));
+
+        _isSimulating = false;
+        StateHasChanged();
+    }
+}

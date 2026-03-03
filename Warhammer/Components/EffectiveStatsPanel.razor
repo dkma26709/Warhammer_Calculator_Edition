@@ -1,0 +1,219 @@
+@using Warhammer.Calculator
+@using Warhammer.Calculator.Models
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Json
+@using Warhammer.Services
+
+@if (Attacker != null && Defender != null && CoreRules != null)
+{
+    var atkStats = ComputeStats(Attacker, Defender, isAttackerSide: true);
+    var defStats = ComputeStats(Defender, Attacker, isAttackerSide: false);
+
+    <div class="card bg-dark text-light border-secondary mt-3">
+        <div class="card-header">
+            <h6 class="card-title mb-0">Effective Stats</h6>
+        </div>
+        <div class="card-body p-2">
+            <div class="row g-2">
+                <div class="col-6">
+                    <h6 class="text-success small mb-1">@(Attacker.Unit.Name)</h6>
+                    @RenderStats(atkStats)
+                </div>
+                <div class="col-6">
+                    <h6 class="text-danger small mb-1">@(Defender.Unit.Name)</h6>
+                    @RenderStats(defStats)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public UnitConfiguration? Attacker { get; set; }
+    [Parameter] public UnitConfiguration? Defender { get; set; }
+    [Parameter] public ChargeState ChargeState { get; set; }
+    [Parameter] public CoreRulesService? CoreRules { get; set; }
+
+    private record UnitStats
+    {
+        public int BaseContact { get; init; }
+        public int TotalAttacks { get; init; }
+        public int MountAttacks { get; init; }
+        public bool HasMount { get; init; }
+        public int EffectiveStrength { get; init; }
+        public int EffectiveInitiative { get; init; }
+        public int ToHitNeeded { get; init; }
+        public int ToWoundNeeded { get; init; }
+        public bool HasPoison { get; init; }
+        public int ArmourSave { get; init; }
+        public int WardSave { get; init; }
+        public int ImpactHits { get; init; }
+        public bool IsCharging { get; init; }
+    }
+
+    private UnitStats ComputeStats(UnitConfiguration unit, UnitConfiguration opponent, bool isAttackerSide)
+    {
+        bool isCharging = (isAttackerSide && ChargeState == ChargeState.AttackerCharged)
+                       || (!isAttackerSide && ChargeState == ChargeState.DefenderCharged);
+        bool isBeingCharged = (isAttackerSide && ChargeState == ChargeState.DefenderCharged)
+                           || (!isAttackerSide && ChargeState == ChargeState.AttackerCharged);
+
+        // Weapon and weapon rules
+        var weapon = CoreRules!.GetCloseCombatWeapon(unit.SelectedWeaponKey)
+            ?? CoreRules.GetHandWeapon();
+        var weaponRules = ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
+
+        // Effective initiative
+        int effectiveI = unit.PrimaryProfile.I ?? 1;
+        effectiveI += weaponRules.InitiativeMod;
+        if (isBeingCharged)
+            effectiveI += weaponRules.ChargedToFrontInitiativeBonus;
+        effectiveI = Math.Max(1, effectiveI);
+
+        // Weapon Mighty Blow
+        int weaponMB = 0;
+        if (weaponRules.MightyBlow != null)
+        {
+            bool applyWeaponMB = !weaponRules.MightyBlowOnlyWhenCharged || isBeingCharged;
+            if (applyWeaponMB)
+                weaponMB = weaponRules.MightyBlow.Value;
+        }
+
+        // Effective strength
+        int effectiveS = unit.EffectiveStrength(weapon, isCharging, 1, weaponMB);
+
+        // Total attacks
+        int totalAttacks = unit.TotalAttacks(isCharging, 1,
+            weaponRules.ExtraAttacks, weaponRules.FightInExtraRanks ?? 0);
+        int mountAttacks = unit.MountAttacks();
+
+        // To-hit
+        int attackerWS = unit.PrimaryProfile.WS ?? 1;
+        int defenderWS = (opponent.MountProfile != null && opponent.TroopType.HasSplitProfile)
+            ? Math.Max(opponent.PrimaryProfile.WS ?? 1, opponent.MountProfile.WS ?? 1)
+            : opponent.PrimaryProfile.WS ?? 1;
+        int toHitNeeded = CoreRules.GetToHitScore(attackerWS, defenderWS);
+
+        // To-wound
+        int defenderT = (opponent.MountProfile != null && opponent.TroopType.HasSplitProfile)
+            ? Math.Max(opponent.PrimaryProfile.T ?? 3, opponent.MountProfile.T ?? 3)
+            : opponent.PrimaryProfile.T ?? 3;
+        int toWoundNeeded = CoreRules.GetToWoundScore(effectiveS, defenderT);
+
+        // Armour save (this unit's save vs opponent's attacks)
+        var opponentWeapon = CoreRules.GetCloseCombatWeapon(opponent.SelectedWeaponKey)
+            ?? CoreRules.GetHandWeapon();
+        var opponentWeaponRules = ParsedWeaponRules.Parse(opponentWeapon.SpecialRules, opponentWeapon.Notes);
+        bool opponentIsCharging = !isCharging && ChargeState != ChargeState.Neither;
+        bool opponentIsBeingCharged = isCharging;
+        int opponentWeaponMB = 0;
+        if (opponentWeaponRules.MightyBlow != null)
+        {
+            bool applyOppMB = !opponentWeaponRules.MightyBlowOnlyWhenCharged || opponentIsBeingCharged;
+            if (applyOppMB)
+                opponentWeaponMB = opponentWeaponRules.MightyBlow.Value;
+        }
+        int opponentS = opponent.EffectiveStrength(opponentWeapon, opponentIsCharging, 1, opponentWeaponMB);
+        int opponentAP = opponent.SpecialRules.ArmourPiercing ?? 0;
+        int strengthMod = CoreRules.GetArmourSaveModifier(opponentS);
+        Func<string, string?> armourLookup = key => CoreRules.GetArmour(key)?.CombatSave;
+        int armourSave = unit.EffectiveArmourSave(opponentS, opponentAP, strengthMod, armourLookup);
+
+        // Ward save (best of ward/regen/parry)
+        int wardValue = unit.SpecialRules.WardSave ?? 7;
+        int regenValue = unit.SpecialRules.Regeneration ?? 7;
+        int parryValue = unit.SpecialRules.Parry ?? 7;
+        int bestWard = Math.Min(Math.Min(wardValue, regenValue), parryValue);
+
+        // Impact hits
+        int impactHits = 0;
+        if (isCharging)
+        {
+            if (unit.SpecialRules.ImpactHits.HasValue)
+                impactHits = unit.SpecialRules.ImpactHits.Value * unit.ModelsInFrontRank;
+            else if (unit.TroopType.BaseType is BaseTroopType.Cavalry or BaseTroopType.MonstrousCavalry)
+                impactHits = unit.ModelsInFrontRank;
+        }
+
+        // Base contact
+        int baseContact = BaseContactCalculator.ModelsInBaseContact(unit, opponent);
+
+        return new UnitStats
+        {
+            BaseContact = baseContact,
+            TotalAttacks = totalAttacks,
+            MountAttacks = mountAttacks,
+            HasMount = unit.MountProfile != null && unit.TroopType.HasSplitProfile,
+            EffectiveStrength = effectiveS,
+            EffectiveInitiative = effectiveI,
+            ToHitNeeded = toHitNeeded,
+            ToWoundNeeded = toWoundNeeded,
+            HasPoison = unit.SpecialRules.PoisonedAttacks,
+            ArmourSave = armourSave,
+            WardSave = bestWard,
+            ImpactHits = impactHits,
+            IsCharging = isCharging
+        };
+    }
+
+    private static RenderFragment RenderStats(UnitStats stats) => __builder =>
+    {
+        <table class="table table-sm table-dark mb-0" style="font-size: 0.85rem;">
+            <tbody>
+                <tr>
+                    <td class="text-body-secondary">Base Contact</td>
+                    <td class="text-end fw-bold">@stats.BaseContact models</td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">Attacks</td>
+                    <td class="text-end fw-bold">
+                        @stats.TotalAttacks
+                        @if (stats.HasMount)
+                        {
+                            <span class="text-body-secondary fw-normal"> (+@stats.MountAttacks mount)</span>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">Eff. Strength</td>
+                    <td class="text-end fw-bold">@stats.EffectiveStrength</td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">Eff. Initiative</td>
+                    <td class="text-end fw-bold">@stats.EffectiveInitiative</td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">To Hit</td>
+                    <td class="text-end fw-bold">@(stats.ToHitNeeded)+</td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">To Wound</td>
+                    <td class="text-end fw-bold">
+                        @(stats.ToWoundNeeded)+
+                        @if (stats.HasPoison)
+                        {
+                            <span class="text-warning fw-normal"> (poison)</span>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">Armour Save</td>
+                    <td class="text-end fw-bold">@FormatSave(stats.ArmourSave)</td>
+                </tr>
+                <tr>
+                    <td class="text-body-secondary">Ward Save</td>
+                    <td class="text-end fw-bold">@FormatSave(stats.WardSave)</td>
+                </tr>
+                @if (stats.ImpactHits > 0)
+                {
+                    <tr>
+                        <td class="text-body-secondary">Impact Hits</td>
+                        <td class="text-end fw-bold">@stats.ImpactHits</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    };
+
+    private static string FormatSave(int save) => save <= 6 ? $"{save}+" : "\u2014";
+}

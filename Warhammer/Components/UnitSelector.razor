@@ -1,109 +1,82 @@
-@inject FactionDataService FactionDataService
+@using Warhammer.Models.Json
+@using Warhammer.Services
 
 <div class="mb-3">
-    <label class="form-label fw-bold">Faction</label>
-    <select class="form-select" value="@_selectedFactionId" @onchange="OnFactionChanged">
+    <label class="form-label small text-body-secondary">Faction</label>
+    <select class="form-select form-select-sm" value="@SelectedFactionKey"
+            @onchange="OnFactionChanged">
         <option value="">-- Select Faction --</option>
-        @if (_factions is not null)
+        @foreach (var key in FactionDataService.FactionNames)
         {
-            @foreach (var faction in _factions)
-            {
-                <option value="@faction.Id">@faction.Name</option>
-            }
+            <option value="@key">@FactionDataService.GetDisplayName(key)</option>
         }
     </select>
 </div>
 
-@if (_loading)
-{
-    <div class="text-muted small"><span class="spinner-border spinner-border-sm"></span> Loading faction data...</div>
-}
-else if (_factionData is not null)
+@if (FactionUnits != null)
 {
     <div class="mb-2">
-        <div class="btn-group btn-group-sm flex-wrap" role="group">
-            @foreach (var cat in _categories)
+        <label class="form-label small text-body-secondary">Category</label>
+        <select class="form-select form-select-sm" value="@_categoryFilter"
+                @onchange="OnCategoryChanged">
+            <option value="">All</option>
+            @foreach (var cat in Categories)
             {
-                <button type="button"
-                        class="btn @(cat == _categoryFilter ? "btn-primary" : "btn-outline-primary")"
-                        @onclick="() => SetCategoryFilter(cat)">
-                    @cat
-                </button>
+                <option value="@cat">@cat</option>
             }
-        </div>
+        </select>
     </div>
 
     <div class="mb-3">
-        <label class="form-label fw-bold">Unit</label>
-        <select class="form-select" value="@_selectedUnitIndex" @onchange="OnUnitChanged">
-            <option value="-1">-- Select Unit --</option>
-            @foreach (var (unit, idx) in FilteredUnits().Select((u, i) => (u, i)))
+        <label class="form-label small text-body-secondary">Unit</label>
+        <select class="form-select form-select-sm" value="@SelectedUnitName"
+                @onchange="OnUnitChanged">
+            <option value="">-- Select Unit --</option>
+            @foreach (var unit in FilteredUnits)
             {
-                <option value="@idx">@unit.Name (@unit.Category, @(unit.PointsCost ?? 0)pts)</option>
+                <option value="@unit.Name">@unit.Name</option>
             }
         </select>
     </div>
 }
 
 @code {
-    [Parameter] public string Label { get; set; } = "Unit";
-    [Parameter] public EventCallback<(ExtractedUnit unit, string factionName)> OnUnitSelected { get; set; }
+    [Parameter] public string? SelectedFactionKey { get; set; }
+    [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
+    [Parameter] public FactionData? FactionUnits { get; set; }
+    [Parameter] public string? SelectedUnitName { get; set; }
+    [Parameter] public EventCallback<UnitEntry?> OnUnitSelected { get; set; }
 
-    private List<FactionIndex>? _factions;
-    private string _selectedFactionId = "";
-    private ExtractedFactionData? _factionData;
-    private string _categoryFilter = "All";
-    private int _selectedUnitIndex = -1;
-    private bool _loading;
+    private string? _categoryFilter;
 
-    private static readonly string[] _categories = ["All", "Core", "Special", "Rare", "Lords", "Heroes", "Named Characters"];
+    private IEnumerable<string> Categories =>
+        FactionUnits?.Units.Select(u => u.Category).Distinct().OrderBy(c => c)
+        ?? Enumerable.Empty<string>();
 
-    protected override async Task OnInitializedAsync()
-    {
-        _factions = await FactionDataService.GetFactionsAsync();
-    }
+    private IEnumerable<UnitEntry> FilteredUnits =>
+        FactionUnits?.Units
+            .Where(u => _categoryFilter == null || u.Category == _categoryFilter)
+            .OrderBy(u => u.Category)
+            .ThenBy(u => u.Name)
+        ?? Enumerable.Empty<UnitEntry>();
 
     private async Task OnFactionChanged(ChangeEventArgs e)
     {
-        _selectedFactionId = e.Value?.ToString() ?? "";
-        _selectedUnitIndex = -1;
-        _factionData = null;
-
-        if (!string.IsNullOrEmpty(_selectedFactionId))
-        {
-            _loading = true;
-            StateHasChanged();
-            _factionData = await FactionDataService.GetFactionDataAsync(_selectedFactionId);
-            _loading = false;
-        }
+        var value = e.Value?.ToString();
+        _categoryFilter = null;
+        await OnFactionSelected.InvokeAsync(value ?? "");
     }
 
-    private void SetCategoryFilter(string cat)
+    private async Task OnCategoryChanged(ChangeEventArgs e)
     {
-        _categoryFilter = cat;
-        _selectedUnitIndex = -1;
-    }
-
-    private List<ExtractedUnit> FilteredUnits()
-    {
-        if (_factionData is null) return new();
-        var units = _factionData.Units;
-        if (_categoryFilter != "All")
-            units = units.Where(u => u.Category == _categoryFilter).ToList();
-        return units;
+        var value = e.Value?.ToString();
+        _categoryFilter = string.IsNullOrEmpty(value) ? null : value;
     }
 
     private async Task OnUnitChanged(ChangeEventArgs e)
     {
-        if (int.TryParse(e.Value?.ToString(), out var idx) && idx >= 0)
-        {
-            _selectedUnitIndex = idx;
-            var filtered = FilteredUnits();
-            if (idx < filtered.Count)
-            {
-                var unit = filtered[idx];
-                await OnUnitSelected.InvokeAsync((unit, _factionData?.FactionName ?? ""));
-            }
-        }
+        var unitName = e.Value?.ToString();
+        var unit = FactionUnits?.Units.FirstOrDefault(u => u.Name == unitName);
+        await OnUnitSelected.InvokeAsync(unit);
     }
 }

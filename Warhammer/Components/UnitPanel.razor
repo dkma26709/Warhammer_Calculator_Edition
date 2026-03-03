@@ -1,0 +1,38 @@
+@using Warhammer.Models.Json
+@using Warhammer.Models.Domain
+@using Warhammer.Services
+
+<div class="card bg-dark text-light border-secondary">
+    <div class="card-header">
+        <h5 class="card-title mb-0">@Label</h5>
+    </div>
+    <div class="card-body">
+        <UnitSelector SelectedFactionKey="@SelectedFactionKey"
+                      OnFactionSelected="OnFactionSelected"
+                      FactionUnits="@FactionData"
+                      SelectedUnitName="@SelectedUnit?.Name"
+                      OnUnitSelected="OnUnitSelected" />
+
+        @if (SelectedUnit != null && Configuration != null)
+        {
+            <hr class="border-secondary" />
+            <UnitConfigurator @key="SelectedUnit.Name"
+                              Unit="SelectedUnit"
+                              Configuration="Configuration"
+                              ConfigurationChanged="ConfigurationChanged"
+                              CoreRules="CoreRules" />
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string? SelectedFactionKey { get; set; }
+    [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
+    [Parameter] public FactionData? FactionData { get; set; }
+    [Parameter] public UnitEntry? SelectedUnit { get; set; }
+    [Parameter] public EventCallback<UnitEntry?> OnUnitSelected { get; set; }
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+    [Parameter] public CoreRulesService? CoreRules { get; set; }
+}

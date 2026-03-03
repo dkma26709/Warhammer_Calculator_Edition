@@ -1,5 +1,0 @@
-[
-  { "id": "empire", "name": "The Empire", "file": "data/empire.json" },
-  { "id": "warriors-of-chaos", "name": "Warriors of Chaos", "file": "data/warriors-of-chaos.json" },
-  { "id": "vampire-counts", "name": "Vampire Counts", "file": "data/vampire-counts.json" }
-]

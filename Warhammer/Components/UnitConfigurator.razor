@@ -1,364 +1,177 @@
-@inject CoreRulesService CoreRules
+@using Warhammer.Models.Json
+@using Warhammer.Models.Domain
+@using Warhammer.Services
 
-@if (Unit is not null)
+@if (Unit != null && Configuration != null)
 {
-    <div class="card mt-2">
-        <div class="card-body p-2">
-            <!-- Statline -->
-            <table class="table table-sm table-bordered mb-1" style="table-layout:fixed">
-                <colgroup>
-                    <col style="width:28%" />
-                    <col span="9" />
-                </colgroup>
-                <thead>
-                    <tr class="table-dark">
-                        <th></th><th>M</th><th>WS</th><th>BS</th><th>S</th><th>T</th>
-                        <th>W</th><th>I</th><th>A</th><th>Ld</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var profile in Unit.Profiles)
-                    {
-                        <tr>
-                            <td><strong>@profile.Name</strong></td>
-                            <td>@(profile.M?.ToString() ?? "-")</td>
-                            <td>@(profile.WS?.ToString() ?? "-")</td>
-                            <td>@(profile.BS?.ToString() ?? "-")</td>
-                            <td>@(profile.S?.ToString() ?? "-")</td>
-                            <td>@(profile.T?.ToString() ?? "-")</td>
-                            <td>@(profile.W?.ToString() ?? "-")</td>
-                            <td>@(profile.I?.ToString() ?? "-")</td>
-                            <td>@(profile.A?.ToString() ?? "-")</td>
-                            <td>@(profile.Ld?.ToString() ?? "-")</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    <StatTable Profile="Configuration.PrimaryProfile" MountProfile="Configuration.MountProfile" />
 
-            <small class="text-muted d-block mb-2">
-                @Unit.TroopType
-                @if (!string.IsNullOrEmpty(Unit.Equipment))
-                {
-                    <text> | @Unit.Equipment</text>
-                }
-            </small>
-
-            <!-- Configuration -->
-            <div class="row g-2 mb-2">
-                <div class="col-4">
-                    <label class="form-label form-label-sm mb-0">Models</label>
-                    <input type="number" class="form-control form-control-sm"
-                           min="@_minUnitSize" max="100"
-                           value="@_modelCount" @onchange="OnModelCountChanged" />
-                </div>
-                <div class="col-4">
-                    <label class="form-label form-label-sm mb-0">Frontage</label>
-                    <input type="number" class="form-control form-control-sm"
-                           min="1" max="@_modelCount"
-                           value="@_files" @onchange="OnFilesChanged" />
-                </div>
-                <div class="col-4">
-                    <label class="form-label form-label-sm mb-0">Ranks</label>
-                    <input type="text" class="form-control form-control-sm" readonly
-                           value="@(_files > 0 ? (int)Math.Ceiling((double)_modelCount / _files) : 0)" />
-                </div>
-            </div>
-
-            <!-- Weapon -->
-            <div class="mb-2">
-                <label class="form-label form-label-sm mb-0">Weapon</label>
-                <select class="form-select form-select-sm" value="@_selectedWeaponKey"
-                        @onchange="OnWeaponChanged">
-                    @foreach (var weapon in _availableWeapons)
-                    {
-                        <option value="@weapon.Key">@weapon.Name (@weapon.EffectSummary)</option>
-                    }
-                </select>
-            </div>
-
-            <!-- Command Group -->
-            @if (_hasChampionOption || _hasMusicianOption || _hasStandardOption)
-            {
-                <div class="mb-2">
-                    <label class="form-label form-label-sm mb-0">Command Group</label>
-                    <div class="d-flex gap-3">
-                        @if (_hasChampionOption)
-                        {
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox"
-                                       checked="@_hasChampion" @onchange="e => { _hasChampion = (bool)(e.Value ?? false); EmitConfig(); }" />
-                                <label class="form-check-label small">Champion</label>
-                            </div>
-                        }
-                        @if (_hasMusicianOption)
-                        {
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox"
-                                       checked="@_hasMusician" @onchange="e => { _hasMusician = (bool)(e.Value ?? false); EmitConfig(); }" />
-                                <label class="form-check-label small">Musician</label>
-                            </div>
-                        }
-                        @if (_hasStandardOption)
-                        {
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox"
-                                       checked="@_hasStandard" @onchange="e => { _hasStandard = (bool)(e.Value ?? false); EmitConfig(); }" />
-                                <label class="form-check-label small">Standard</label>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
-
-            <!-- Effective Stats Summary -->
-            <div class="alert alert-secondary py-1 px-2 mb-2 small">
-                <strong>Effective:</strong>
-                S@(_config?.EffectiveStrength ?? Unit.PrimaryProfile.S ?? 3)
-                | Save @FormatSave()
-                | @(_config?.CalculateAttacks().TotalAttacks ?? 0) max attacks
-                @if (OpponentConfig is not null && _config is not null)
-                {
-                    <text> | @(_config.CalculateAttacks(OpponentConfig).TotalAttacks) effective</text>
-                }
-                @if (_config?.RankBonus > 0)
-                {
-                    <text> | +@(_config.RankBonus) rank bonus</text>
-                }
-            </div>
-
-            @if (_config?.SpecialRules is { HasAnyCombatRule: true } rules)
-            {
-                <div class="mb-2">
-                    @if (rules.NaturalArmour.HasValue)
-                    {
-                        <span class="badge bg-secondary me-1">Natural Armour (@(rules.NaturalArmour)+)</span>
-                    }
-                    @if (rules.Frenzy)
-                    {
-                        <span class="badge bg-danger me-1">Frenzy (+1A)</span>
-                    }
-                    @if (rules.Hatred)
-                    {
-                        <span class="badge bg-warning text-dark me-1">Hatred</span>
-                    }
-                    @if (rules.PoisonedAttacks)
-                    {
-                        <span class="badge bg-success me-1">Poison (+1 to wound)</span>
-                    }
-                    @if (rules.KillingBlow)
-                    {
-                        <span class="badge bg-dark me-1">Killing Blow</span>
-                    }
-                    @if (rules.HeroicKillingBlow)
-                    {
-                        <span class="badge bg-dark me-1">Heroic Killing Blow</span>
-                    }
-                    @if (rules.FlamingAttacks)
-                    {
-                        <span class="badge bg-danger me-1">Flaming</span>
-                    }
-                    @if (rules.Regeneration.HasValue)
-                    {
-                        <span class="badge bg-info text-dark me-1">Regen (@(rules.Regeneration)+)</span>
-                    }
-                    @if (rules.WardSave.HasValue)
-                    {
-                        <span class="badge bg-info text-dark me-1">Ward (@(rules.WardSave)+)</span>
-                    }
-                    @if (rules.ArmourPiercing > 0)
-                    {
-                        <span class="badge bg-secondary me-1">AP(@(rules.ArmourPiercing))</span>
-                    }
-                    @if (rules.Fear)
-                    {
-                        <span class="badge bg-secondary me-1">Fear</span>
-                    }
-                    @if (rules.Terror)
-                    {
-                        <span class="badge bg-secondary me-1">Terror</span>
-                    }
-                </div>
-            }
-
-            <!-- Options Reference -->
-            @if (Unit.Options.Count > 0)
-            {
-                <details class="mb-1">
-                    <summary class="small text-muted">Unit Options (reference)</summary>
-                    <ul class="list-unstyled small text-muted ps-2 mb-0">
-                        @foreach (var opt in Unit.Options)
-                        {
-                            <li>@opt</li>
-                        }
-                    </ul>
-                </details>
-            }
-
-            @if (!string.IsNullOrEmpty(Unit.SpecialRules))
-            {
-                <details class="mb-1">
-                    <summary class="small text-muted">Special Rules</summary>
-                    <p class="small text-muted ps-2 mb-0" style="white-space: pre-wrap;">@Unit.SpecialRules</p>
-                </details>
-            }
+    <div class="row g-2 mb-2">
+        <div class="col-6">
+            <label class="form-label small text-body-secondary">Models</label>
+            <input type="number" class="form-control form-control-sm"
+                   value="@Configuration.ModelCount" min="1" max="100"
+                   @onchange="OnModelCountChangedEvent" />
+        </div>
+        <div class="col-6">
+            <label class="form-label small text-body-secondary">Frontage</label>
+            <input type="number" class="form-control form-control-sm"
+                   value="@Configuration.Frontage" min="1" max="50"
+                   @onchange="OnFrontageChangedEvent" />
         </div>
     </div>
+
+    @if (AvailableWeapons.Count > 1)
+    {
+        <div class="mb-2">
+            <label class="form-label small text-body-secondary">Weapon</label>
+            <select class="form-select form-select-sm" value="@Configuration.SelectedWeaponKey"
+                    @onchange="OnWeaponChanged">
+                @foreach (var (key, name) in AvailableWeapons)
+                {
+                    <option value="@key">@name</option>
+                }
+            </select>
+        </div>
+    }
+
+    @if (!Configuration.TroopType.IsCharacter)
+    {
+        <div class="mb-2">
+            <label class="form-label small text-body-secondary">Command Group</label>
+            <div class="d-flex gap-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@(_id + "-champ")"
+                           checked="@Configuration.HasChampion"
+                           @onchange="e => OnChampionChanged((bool)(e.Value ?? false))" />
+                    <label class="form-check-label small" for="@(_id + "-champ")">Champion</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@(_id + "-mus")"
+                           checked="@Configuration.HasMusician"
+                           @onchange="e => OnMusicianChanged((bool)(e.Value ?? false))" />
+                    <label class="form-check-label small" for="@(_id + "-mus")">Musician</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@(_id + "-std")"
+                           checked="@Configuration.HasStandardBearer"
+                           @onchange="e => OnStandardChanged((bool)(e.Value ?? false))" />
+                    <label class="form-check-label small" for="@(_id + "-std")">Standard</label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Unit.Equipment != null)
+    {
+        <div class="mb-2">
+            <small class="text-body-secondary">Equipment: @(Unit.Equipment.Split('\n')[0])</small>
+        </div>
+    }
+
+    <SpecialRuleBadges Rules="Configuration.SpecialRules" />
 }
 
 @code {
-    [Parameter] public ExtractedUnit? Unit { get; set; }
-    [Parameter] public string FactionName { get; set; } = "";
-    [Parameter] public EventCallback<UnitConfiguration> OnConfigurationChanged { get; set; }
-    [Parameter] public UnitConfiguration? OpponentConfig { get; set; }
+    [Parameter] public UnitEntry? Unit { get; set; }
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+    [Parameter] public CoreRulesService? CoreRules { get; set; }
 
-    private int _modelCount = 10;
-    private int _files = 5;
-    private int _minUnitSize = 1;
-    private string _selectedWeaponKey = "handWeapon";
-    private bool _hasChampion;
-    private bool _hasMusician;
-    private bool _hasStandard;
+    private string _id = Guid.NewGuid().ToString("N")[..8];
 
-    private List<WeaponDefinition> _availableWeapons = new();
-    private ParsedEquipment? _parsedEquipment;
-    private UnitConfiguration? _config;
-
-    private bool _hasChampionOption;
-    private bool _hasMusicianOption;
-    private bool _hasStandardOption;
-
-    private ExtractedUnit? _previousUnit;
-    private bool _rulesLoaded;
-
-    protected override async Task OnParametersSetAsync()
+    private List<(string Key, string Name)> AvailableWeapons
     {
-        if (!_rulesLoaded)
+        get
         {
-            await CoreRules.LoadAsync();
-            _rulesLoaded = true;
-        }
-
-        if (Unit is not null && Unit != _previousUnit)
-        {
-            _previousUnit = Unit;
-            _minUnitSize = Unit.ParseMinUnitSize();
-            _modelCount = Math.Max(_minUnitSize, _modelCount);
-
-            var troopType = TroopTypeParser.Parse(Unit.TroopType);
-            _files = TroopTypeParser.GetDefaultFilesWidth(troopType.BaseType);
-
-            // If it's a character (single model), default to 1
-            if (troopType.IsCharacter || _minUnitSize <= 1)
+            if (Configuration == null || CoreRules == null) return [];
+            var weapons = new List<(string Key, string Name)>();
+            foreach (var key in Configuration.EquipmentWeapons)
             {
-                _modelCount = 1;
-                _files = 1;
+                var w = CoreRules.GetCloseCombatWeapon(key);
+                if (w != null)
+                    weapons.Add((key, w.Name));
             }
-
-            _parsedEquipment = EquipmentParser.Parse(Unit.Equipment, CoreRules);
-            _availableWeapons = GetAvailableWeapons();
-            _selectedWeaponKey = _parsedEquipment.DefaultCloseCombatWeapon?.Key ?? "handWeapon";
-
-            // Detect command group options
-            _hasChampionOption = Unit.Options.Any(o =>
-                o.Contains("Leader", StringComparison.OrdinalIgnoreCase) ||
-                o.Contains("Champion", StringComparison.OrdinalIgnoreCase));
-            _hasMusicianOption = Unit.Options.Any(o =>
-                o.Contains("Musician", StringComparison.OrdinalIgnoreCase));
-            _hasStandardOption = Unit.Options.Any(o =>
-                o.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase));
-
-            _hasChampion = false;
-            _hasMusician = false;
-            _hasStandard = false;
-
-            EmitConfig();
-        }
-    }
-
-    private List<WeaponDefinition> GetAvailableWeapons()
-    {
-        var weapons = new List<WeaponDefinition>();
-
-        // Always include hand weapon
-        weapons.Add(CoreRules.HandWeapon);
-
-        // Add the default weapon if not hand weapon
-        if (_parsedEquipment?.DefaultCloseCombatWeapon != null &&
-            _parsedEquipment.DefaultCloseCombatWeapon.Key != "handWeapon")
-        {
-            weapons.Add(_parsedEquipment.DefaultCloseCombatWeapon);
-        }
-
-        // Check options text for known weapon names
-        foreach (var option in Unit?.Options ?? new())
-        {
-            var lower = option.ToLowerInvariant();
-            foreach (var weapon in CoreRules.GetCommonCloseCombatWeapons())
+            // Also check options for weapon upgrades
+            if (Unit?.Options != null)
             {
-                if (lower.Contains(weapon.Name.ToLowerInvariant()) &&
-                    !weapons.Any(w => w.Key == weapon.Key))
+                foreach (var opt in Unit.Options)
                 {
-                    weapons.Add(weapon);
+                    var lower = opt.ToLowerInvariant();
+                    if (lower.Contains("spear") && !weapons.Any(w => w.Key == "spear"))
+                    {
+                        var w = CoreRules.GetCloseCombatWeapon("spear");
+                        if (w != null) weapons.Add(("spear", w.Name));
+                    }
+                    if (lower.Contains("great weapon") && !weapons.Any(w => w.Key == "greatWeapon"))
+                    {
+                        var w = CoreRules.GetCloseCombatWeapon("greatWeapon");
+                        if (w != null) weapons.Add(("greatWeapon", w.Name));
+                    }
+                    if (lower.Contains("polearm") && !weapons.Any(w => w.Key == "polearm"))
+                    {
+                        var w = CoreRules.GetCloseCombatWeapon("polearm");
+                        if (w != null) weapons.Add(("polearm", w.Name));
+                    }
+                    if ((lower.Contains("additional hand weapon") || lower.Contains("two hand weapons")) && !weapons.Any(w => w.Key == "two_additionalHandWeapons"))
+                    {
+                        var w = CoreRules.GetCloseCombatWeapon("two_additionalHandWeapons");
+                        if (w != null) weapons.Add(("two_additionalHandWeapons", w.Name));
+                    }
+                    if (lower.Contains("flail") && !weapons.Any(w => w.Key == "flail"))
+                    {
+                        var w = CoreRules.GetCloseCombatWeapon("flail");
+                        if (w != null) weapons.Add(("flail", w.Name));
+                    }
                 }
             }
-        }
-
-        return weapons;
-    }
-
-    private void OnModelCountChanged(ChangeEventArgs e)
-    {
-        if (int.TryParse(e.Value?.ToString(), out var val))
-        {
-            _modelCount = Math.Max(val, _minUnitSize);
-            _files = Math.Min(_files, _modelCount);
-            EmitConfig();
+            if (weapons.Count == 0)
+                weapons.Add(("handWeapon", "HAND WEAPON"));
+            return weapons;
         }
     }
 
-    private void OnFilesChanged(ChangeEventArgs e)
+    private async Task OnModelCountChangedEvent(ChangeEventArgs e)
     {
-        if (int.TryParse(e.Value?.ToString(), out var val))
-        {
-            _files = Math.Clamp(val, 1, _modelCount);
-            EmitConfig();
-        }
+        if (Configuration == null) return;
+        var count = int.TryParse(e.Value?.ToString(), out var v) ? v : 1;
+        Configuration.ModelCount = Math.Max(1, count);
+        await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
-    private void OnWeaponChanged(ChangeEventArgs e)
+    private async Task OnFrontageChangedEvent(ChangeEventArgs e)
     {
-        _selectedWeaponKey = e.Value?.ToString() ?? "handWeapon";
-        EmitConfig();
+        if (Configuration == null) return;
+        var frontage = int.TryParse(e.Value?.ToString(), out var v) ? v : 5;
+        Configuration.Frontage = Math.Max(1, frontage);
+        await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
-    private string FormatSave()
+    private async Task OnWeaponChanged(ChangeEventArgs e)
     {
-        if (_config is null) return "-";
-        int save = _config.CalculateArmourSave(3, 0, CoreRules); // Assume S3 for display
-        return save <= 6 ? $"{save}+" : "-";
+        if (Configuration == null) return;
+        Configuration.SelectedWeaponKey = e.Value?.ToString() ?? "handWeapon";
+        await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
-    private void EmitConfig()
+    private async Task OnChampionChanged(bool value)
     {
-        if (Unit is null) return;
+        if (Configuration == null) return;
+        Configuration.HasChampion = value;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
 
-        var weapon = CoreRules.Weapons.GetValueOrDefault(_selectedWeaponKey)
-                     ?? CoreRules.HandWeapon;
+    private async Task OnMusicianChanged(bool value)
+    {
+        if (Configuration == null) return;
+        Configuration.HasMusician = value;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
 
-        _config = new UnitConfiguration
-        {
-            SourceUnit = Unit,
-            FactionName = FactionName,
-            ModelCount = _modelCount,
-            Files = _files,
-            SelectedWeapon = weapon,
-            ArmourPieces = _parsedEquipment?.ArmourPieces ?? new(),
-            HasChampion = _hasChampion,
-            HasMusician = _hasMusician,
-            HasStandardBearer = _hasStandard,
-            TroopType = TroopTypeParser.Parse(Unit.TroopType),
-        };
-
-        OnConfigurationChanged.InvokeAsync(_config);
+    private async Task OnStandardChanged(bool value)
+    {
+        if (Configuration == null) return;
+        Configuration.HasStandardBearer = value;
+        await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }

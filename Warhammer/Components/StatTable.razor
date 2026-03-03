@@ -1,0 +1,46 @@
+@using Warhammer.Models.Json
+
+<table class="table table-sm table-dark table-bordered mb-2">
+    <thead>
+        <tr>
+            <th>Name</th><th>M</th><th>WS</th><th>BS</th><th>S</th>
+            <th>T</th><th>W</th><th>I</th><th>A</th><th>Ld</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Profile.Name</td>
+            <td>@F(Profile.M)</td>
+            <td>@F(Profile.WS)</td>
+            <td>@F(Profile.BS)</td>
+            <td>@F(Profile.S)</td>
+            <td>@F(Profile.T)</td>
+            <td>@F(Profile.W)</td>
+            <td>@F(Profile.I)</td>
+            <td>@F(Profile.A)</td>
+            <td>@F(Profile.Ld)</td>
+        </tr>
+        @if (MountProfile != null)
+        {
+            <tr class="text-body-secondary">
+                <td>@MountProfile.Name</td>
+                <td>@F(MountProfile.M)</td>
+                <td>@F(MountProfile.WS)</td>
+                <td>@F(MountProfile.BS)</td>
+                <td>@F(MountProfile.S)</td>
+                <td>@F(MountProfile.T)</td>
+                <td>@F(MountProfile.W)</td>
+                <td>@F(MountProfile.I)</td>
+                <td>@F(MountProfile.A)</td>
+                <td>@F(MountProfile.Ld)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter] public ProfileEntry Profile { get; set; } = null!;
+    [Parameter] public ProfileEntry? MountProfile { get; set; }
+
+    private static string F(int? value) => value?.ToString() ?? "*";
+}
