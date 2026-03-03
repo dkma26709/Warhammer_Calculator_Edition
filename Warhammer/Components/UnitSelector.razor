@@ -105,22 +105,26 @@
         return parts.Count > 0 ? $"{unit.Name} ({string.Join(", ", parts)})" : unit.Name;
     }
 
+    private FactionData? _previousFactionUnits;
+
     protected override void OnParametersSet()
     {
-        // Sync internal index when parent resets selection
-        if (SelectedUnitName == null && _selectedIndex >= 0)
+        if (FactionUnits != _previousFactionUnits)
         {
+            _previousFactionUnits = FactionUnits;
+            _categoryFilter = null;
             _selectedIndex = -1;
             _duplicateNames = null;
+        }
+        else if (SelectedUnitName == null && _selectedIndex >= 0)
+        {
+            _selectedIndex = -1;
         }
     }
 
     private async Task OnFactionChanged(ChangeEventArgs e)
     {
         var value = e.Value?.ToString();
-        _categoryFilter = null;
-        _selectedIndex = -1;
-        _duplicateNames = null;
         await OnFactionSelected.InvokeAsync(value ?? "");
     }
 
