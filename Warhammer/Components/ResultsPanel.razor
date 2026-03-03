@@ -1,4 +1,5 @@
 @using Warhammer.Calculator.Models
+@using Warhammer.Models.Domain
 
 <div class="card bg-dark text-light border-secondary">
     <div class="card-header">
@@ -156,7 +157,65 @@
             </div>
         </div>
 
-        @* Section E: CR Distribution (vertical bars) *@
+        @* Section E: Points Exchange *@
+        @if (AttackerConfig != null && DefenderConfig != null)
+        {
+            var netPoints = AttackerPointsDestroyed - DefenderPointsDestroyed;
+            var attEff = AttackerConfig.TotalPointsCost > 0
+                ? AttackerPointsDestroyed / AttackerConfig.TotalPointsCost : 0;
+            var defEff = DefenderConfig.TotalPointsCost > 0
+                ? DefenderPointsDestroyed / DefenderConfig.TotalPointsCost : 0;
+
+            var crWinner = Result.AttackerWinPct > Result.DefenderWinPct ? "attacker"
+                         : Result.DefenderWinPct > Result.AttackerWinPct ? "defender" : "draw";
+            var ptsWinner = netPoints > 0.5 ? "attacker"
+                          : netPoints < -0.5 ? "defender" : "draw";
+
+            <div class="row mb-4">
+                <div class="col-6">
+                    <h6 class="text-success small mb-1">@AttackerName Points</h6>
+                    <table class="table table-sm table-dark mb-0">
+                        <tbody>
+                            <tr><td>Invested</td><td class="text-end">@($"{AttackerConfig.TotalPointsCost:F0}") pts</td></tr>
+                            <tr><td>Avg destroyed</td><td class="text-end">@($"{AttackerPointsDestroyed:F1}") pts</td></tr>
+                            <tr><td>Efficiency</td><td class="text-end">@($"{attEff:F2}")</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <h6 class="text-danger small mb-1">@DefenderName Points</h6>
+                    <table class="table table-sm table-dark mb-0">
+                        <tbody>
+                            <tr><td>Invested</td><td class="text-end">@($"{DefenderConfig.TotalPointsCost:F0}") pts</td></tr>
+                            <tr><td>Avg destroyed</td><td class="text-end">@($"{DefenderPointsDestroyed:F1}") pts</td></tr>
+                            <tr><td>Efficiency</td><td class="text-end">@($"{defEff:F2}")</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mb-4 text-center small">
+                @if (ptsWinner == "attacker")
+                {
+                    <span class="text-success fw-bold">@AttackerName wins on points</span>
+                    <span class="text-body-secondary"> (+@($"{Math.Abs(netPoints):F1}") pts net)</span>
+                }
+                else if (ptsWinner == "defender")
+                {
+                    <span class="text-danger fw-bold">@DefenderName wins on points</span>
+                    <span class="text-body-secondary"> (+@($"{Math.Abs(netPoints):F1}") pts net)</span>
+                }
+                else
+                {
+                    <span class="text-body-secondary fw-bold">Even on points</span>
+                }
+                @if (crWinner != ptsWinner && crWinner != "draw" && ptsWinner != "draw")
+                {
+                    <span class="text-warning ms-2">(CR winner: @(crWinner == "attacker" ? AttackerName : DefenderName))</span>
+                }
+            </div>
+        }
+
+        @* Section F: CR Distribution (vertical bars) *@
         <h6 class="small">Combat Resolution Distribution</h6>
         @if (Result.Distribution.Count > 0)
         {
@@ -190,6 +249,20 @@
     [Parameter] public CombatSimulationResult Result { get; set; } = null!;
     [Parameter] public string AttackerName { get; set; } = "Attacker";
     [Parameter] public string DefenderName { get; set; } = "Defender";
+    [Parameter] public UnitConfiguration? AttackerConfig { get; set; }
+    [Parameter] public UnitConfiguration? DefenderConfig { get; set; }
+
+    // Points per wound: target's total cost spread across all wounds in the unit
+    private double AttackerPointsPerWound => DefenderConfig != null
+        ? DefenderConfig.TotalPointsCost / (DefenderConfig.ModelCount * Math.Max(1, DefenderConfig.PrimaryProfile.W ?? 1))
+        : 0;
+
+    private double DefenderPointsPerWound => AttackerConfig != null
+        ? AttackerConfig.TotalPointsCost / (AttackerConfig.ModelCount * Math.Max(1, AttackerConfig.PrimaryProfile.W ?? 1))
+        : 0;
+
+    private double AttackerPointsDestroyed => Result.AvgAttackerWounds * AttackerPointsPerWound;
+    private double DefenderPointsDestroyed => Result.AvgDefenderWounds * DefenderPointsPerWound;
 
     private double AttackerMaxPct => Result.AttackerWoundDistribution.Count > 0
         ? Result.AttackerWoundDistribution.Max(d => d.Percentage) : 1;

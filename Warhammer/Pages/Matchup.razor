@@ -68,7 +68,9 @@
             <div class="col-12">
                 <ResultsPanel Result="_result"
                               AttackerName="@(_attackerUnit?.Name ?? "Attacker")"
-                              DefenderName="@(_defenderUnit?.Name ?? "Defender")" />
+                              DefenderName="@(_defenderUnit?.Name ?? "Defender")"
+                              AttackerConfig="_attackerConfig"
+                              DefenderConfig="_defenderConfig" />
             </div>
         </div>
     }
