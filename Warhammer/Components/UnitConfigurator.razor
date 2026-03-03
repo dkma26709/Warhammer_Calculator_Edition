@@ -6,20 +6,32 @@
 {
     <StatTable Profile="Configuration.PrimaryProfile" MountProfile="Configuration.MountProfile" />
 
-    <div class="row g-2 mb-2">
-        <div class="col-6">
-            <label class="form-label small text-body-secondary">Models</label>
-            <input type="number" class="form-control form-control-sm"
-                   value="@Configuration.ModelCount" min="1" max="100"
-                   @onchange="OnModelCountChangedEvent" />
-        </div>
-        <div class="col-6">
-            <label class="form-label small text-body-secondary">Frontage</label>
-            <input type="number" class="form-control form-control-sm"
-                   value="@Configuration.Frontage" min="1" max="50"
-                   @onchange="OnFrontageChangedEvent" />
-        </div>
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+        <small class="text-body-secondary">
+            @Configuration.BaseModelCost pts/model
+        </small>
+        <span class="fw-bold">
+            @Configuration.TotalPointsCost.ToString("F0") pts
+        </span>
     </div>
+
+    @if (!Configuration.TroopType.IsCharacter)
+    {
+        <div class="row g-2 mb-2">
+            <div class="col-6">
+                <label class="form-label small text-body-secondary">Models</label>
+                <input type="number" class="form-control form-control-sm"
+                       value="@Configuration.ModelCount" min="1" max="100"
+                       @onchange="OnModelCountChangedEvent" />
+            </div>
+            <div class="col-6">
+                <label class="form-label small text-body-secondary">Frontage</label>
+                <input type="number" class="form-control form-control-sm"
+                       value="@Configuration.Frontage" min="1" max="50"
+                       @onchange="OnFrontageChangedEvent" />
+            </div>
+        </div>
+    }
 
     @if (AvailableWeapons.Count > 1)
     {

@@ -35,8 +35,8 @@ public class UnitConfiguration
         (EquipmentWeapons, EquipmentArmour) = EquipmentParser.Parse(unit.Equipment);
 
         // Defaults
-        ModelCount = ParseMinUnitSize(unit.UnitSize);
-        Frontage = TroopType.MinRankWidth;
+        ModelCount = TroopType.IsCharacter ? 1 : ParseMinUnitSize(unit.UnitSize);
+        Frontage = TroopType.IsCharacter ? 1 : TroopType.MinRankWidth;
         SelectedWeaponKey = EquipmentWeapons.FirstOrDefault() ?? "handWeapon";
     }
 
@@ -209,6 +209,98 @@ public class UnitConfiguration
         var mount = profiles.FirstOrDefault(p => p != primary);
 
         return (primary, mount);
+    }
+
+    // --- Points Cost ---
+
+    public double BaseModelCost => Unit.PointsCost ?? PrimaryProfile.Points ?? 0;
+
+    public double WeaponUpgradeCost
+    {
+        get
+        {
+            if (Unit.Options == null) return 0;
+            var searchTerms = SelectedWeaponKey switch
+            {
+                "spear" => new[] { "spear" },
+                "greatWeapon" => new[] { "great weapon" },
+                "polearm" => new[] { "polearm" },
+                "two_additionalHandWeapons" => new[] { "additional hand weapon", "two hand weapons" },
+                "flail" => new[] { "flail" },
+                _ => Array.Empty<string>()
+            };
+            if (searchTerms.Length == 0) return 0;
+            foreach (var opt in Unit.Options)
+            {
+                var lower = opt.ToLowerInvariant();
+                if (searchTerms.Any(t => lower.Contains(t)))
+                {
+                    var (cost, isPerModel) = ParseOptionCost(opt);
+                    return isPerModel ? cost * ModelCount : cost;
+                }
+            }
+            return 0;
+        }
+    }
+
+    public (double Champion, double Musician, double Standard) CommandGroupCosts
+    {
+        get
+        {
+            double champ = 0, mus = 0, std = 0;
+            if (Unit.Options == null) return (0, 0, 0);
+            foreach (var opt in Unit.Options)
+            {
+                var lower = opt.ToLowerInvariant();
+                if ((lower.Contains("leader") || lower.Contains("champion")) && !lower.Contains("standard"))
+                {
+                    var (cost, _) = ParseOptionCost(opt);
+                    champ = cost;
+                }
+                else if (lower.Contains("musician"))
+                {
+                    var (cost, _) = ParseOptionCost(opt);
+                    mus = cost;
+                }
+                else if (lower.Contains("standard bearer"))
+                {
+                    var (cost, _) = ParseOptionCost(opt);
+                    std = cost;
+                }
+            }
+            return (champ, mus, std);
+        }
+    }
+
+    public double TotalPointsCost
+    {
+        get
+        {
+            double baseCost = BaseModelCost * ModelCount;
+            double weaponCost = WeaponUpgradeCost;
+            var (champCost, musCost, stdCost) = CommandGroupCosts;
+            double commandCost = (HasChampion ? champCost : 0)
+                               + (HasMusician ? musCost : 0)
+                               + (HasStandardBearer ? stdCost : 0);
+            return baseCost + weaponCost + commandCost;
+        }
+    }
+
+    /// <summary>
+    /// Parse points cost from option text. Returns (cost, isPerModel).
+    /// Patterns: "+3 points/model", "+0.5 point/model", "+12 points"
+    /// </summary>
+    public static (double Cost, bool IsPerModel) ParseOptionCost(string optionText)
+    {
+        var perModel = Regex.Match(optionText, @"\+(\d+\.?\d*)\s+points?/model");
+        if (perModel.Success)
+            return (double.Parse(perModel.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture), true);
+
+        var flat = Regex.Match(optionText, @"\+(\d+\.?\d*)\s+points?");
+        if (flat.Success)
+            return (double.Parse(flat.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture), false);
+
+        return (0, false);
     }
 
     public static int ParseBaseWidthMm(string? baseSize)

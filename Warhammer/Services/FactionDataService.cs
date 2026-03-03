@@ -67,8 +67,28 @@ public class FactionDataService
             $"data/factions/{factionKey}.json", JsonOptions)
             ?? throw new InvalidOperationException($"Failed to load {factionKey}.json");
 
+        NormalizeMountCategories(data);
         _unitCache[factionKey] = data;
         return data;
+    }
+
+    private static void NormalizeMountCategories(FactionData data)
+    {
+        foreach (var unit in data.Units)
+        {
+            // Already marked as CHARACTER MOUNTS (lizardmen, the-empire) — normalize casing
+            if (string.Equals(unit.Category, "CHARACTER MOUNTS", StringComparison.OrdinalIgnoreCase))
+            {
+                unit.Category = "Character Mounts";
+                continue;
+            }
+
+            // Detect mount entries: no points cost, no unit size, but has a stat profile
+            if (unit.PointsCost == null && unit.UnitSize == null && unit.Profiles.Count > 0)
+            {
+                unit.Category = "Character Mounts";
+            }
+        }
     }
 
     public async Task<FactionExtrasData> GetFactionExtrasAsync(string factionKey)

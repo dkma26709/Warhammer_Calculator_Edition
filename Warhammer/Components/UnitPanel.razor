@@ -16,7 +16,7 @@
         @if (SelectedUnit != null && Configuration != null)
         {
             <hr class="border-secondary" />
-            <UnitConfigurator @key="SelectedUnit.Name"
+            <UnitConfigurator @key="SelectedUnit"
                               Unit="SelectedUnit"
                               Configuration="Configuration"
                               ConfigurationChanged="ConfigurationChanged"

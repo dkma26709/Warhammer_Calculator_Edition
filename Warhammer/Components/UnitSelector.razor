@@ -29,12 +29,12 @@
 
     <div class="mb-3">
         <label class="form-label small text-body-secondary">Unit</label>
-        <select class="form-select form-select-sm" value="@SelectedUnitName"
+        <select class="form-select form-select-sm" value="@_selectedIndex"
                 @onchange="OnUnitChanged">
-            <option value="">-- Select Unit --</option>
-            @foreach (var unit in FilteredUnits)
+            <option value="-1">-- Select Unit --</option>
+            @foreach (var (unit, idx) in FilteredUnitsWithIndex)
             {
-                <option value="@unit.Name">@unit.Name</option>
+                <option value="@idx">@GetDisplayName(unit)</option>
             }
         </select>
     </div>
@@ -48,22 +48,79 @@
     [Parameter] public EventCallback<UnitEntry?> OnUnitSelected { get; set; }
 
     private string? _categoryFilter;
+    private int _selectedIndex = -1;
 
     private IEnumerable<string> Categories =>
         FactionUnits?.Units.Select(u => u.Category).Distinct().OrderBy(c => c)
         ?? Enumerable.Empty<string>();
 
-    private IEnumerable<UnitEntry> FilteredUnits =>
-        FactionUnits?.Units
-            .Where(u => _categoryFilter == null || u.Category == _categoryFilter)
-            .OrderBy(u => u.Category)
-            .ThenBy(u => u.Name)
-        ?? Enumerable.Empty<UnitEntry>();
+    private IEnumerable<(UnitEntry Unit, int Index)> FilteredUnitsWithIndex
+    {
+        get
+        {
+            if (FactionUnits == null) return [];
+            return FactionUnits.Units
+                .Select((u, i) => (Unit: u, Index: i))
+                .Where(x => _categoryFilter == null || x.Unit.Category == _categoryFilter)
+                .OrderBy(x => x.Unit.Category)
+                .ThenBy(x => x.Unit.Name);
+        }
+    }
+
+    private HashSet<string>? _duplicateNames;
+
+    private HashSet<string> DuplicateNames
+    {
+        get
+        {
+            if (_duplicateNames != null) return _duplicateNames;
+            if (FactionUnits == null) return _duplicateNames = [];
+            _duplicateNames = FactionUnits.Units
+                .GroupBy(u => u.Name)
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key)
+                .ToHashSet();
+            return _duplicateNames;
+        }
+    }
+
+    private string GetDisplayName(UnitEntry unit)
+    {
+        if (!DuplicateNames.Contains(unit.Name))
+            return unit.Name;
+
+        // Disambiguate with equipment summary and points
+        var parts = new List<string>();
+        if (!string.IsNullOrEmpty(unit.Equipment))
+        {
+            var firstEquip = unit.Equipment.Split('\n')[0];
+            if (firstEquip.Length > 30) firstEquip = firstEquip[..30] + "...";
+            parts.Add(firstEquip);
+        }
+        if (unit.PointsCost.HasValue)
+            parts.Add($"{unit.PointsCost}pts");
+        if (!string.IsNullOrEmpty(unit.TroopType) && unit.TroopType.StartsWith("Cavalry"))
+            parts.Add("Cavalry");
+
+        return parts.Count > 0 ? $"{unit.Name} ({string.Join(", ", parts)})" : unit.Name;
+    }
+
+    protected override void OnParametersSet()
+    {
+        // Sync internal index when parent resets selection
+        if (SelectedUnitName == null && _selectedIndex >= 0)
+        {
+            _selectedIndex = -1;
+            _duplicateNames = null;
+        }
+    }
 
     private async Task OnFactionChanged(ChangeEventArgs e)
     {
         var value = e.Value?.ToString();
         _categoryFilter = null;
+        _selectedIndex = -1;
+        _duplicateNames = null;
         await OnFactionSelected.InvokeAsync(value ?? "");
     }
 
@@ -75,8 +132,16 @@
 
     private async Task OnUnitChanged(ChangeEventArgs e)
     {
-        var unitName = e.Value?.ToString();
-        var unit = FactionUnits?.Units.FirstOrDefault(u => u.Name == unitName);
+        var indexStr = e.Value?.ToString();
+        if (!int.TryParse(indexStr, out var idx) || idx < 0)
+        {
+            _selectedIndex = -1;
+            await OnUnitSelected.InvokeAsync(null);
+            return;
+        }
+
+        _selectedIndex = idx;
+        var unit = FactionUnits?.Units.ElementAtOrDefault(idx);
         await OnUnitSelected.InvokeAsync(unit);
     }
 }

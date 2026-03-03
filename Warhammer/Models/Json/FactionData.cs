@@ -11,7 +11,7 @@ public record FactionData
 public record UnitEntry
 {
     public string Name { get; init; } = "";
-    public string Category { get; init; } = "";
+    public string Category { get; set; } = "";
     public List<ProfileEntry> Profiles { get; init; } = [];
     public string TroopType { get; init; } = "";
     public string? BaseSize { get; init; }
