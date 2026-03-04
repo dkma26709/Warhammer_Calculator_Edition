@@ -56,6 +56,12 @@ public class CombatResolver
         attackerWoundsDealt += ResolveStomp(attacker, defender, context, rng);
         defenderWoundsDealt += ResolveStomp(defender, attacker, context, rng);
 
+        // Cap total wounds at the target's actual wound pool (can't overkill a unit)
+        int defenderWoundPool = defender.ModelCount * (defender.PrimaryProfile.W ?? 1);
+        int attackerWoundPool = attacker.ModelCount * (attacker.PrimaryProfile.W ?? 1);
+        attackerWoundsDealt = Math.Min(attackerWoundsDealt, defenderWoundPool);
+        defenderWoundsDealt = Math.Min(defenderWoundsDealt, attackerWoundPool);
+
         // Phase 5: Combat Resolution
         var attackerBreakdown = ComputeCombatRes(attacker, defender, attackerWoundsDealt, context, true);
         var defenderBreakdown = ComputeCombatRes(defender, attacker, defenderWoundsDealt, context, false);

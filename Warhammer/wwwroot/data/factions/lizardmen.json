@@ -46,7 +46,8 @@
               "perModel": false
             },
             {
-              "name": "Replace Mage-Priest Palanquin with a Temple Guard Palanquin",
+              "name": "Temple Guard Palanquin",
+              "replaces": "Mage-Priest Palanquin",
               "points": 15,
               "perModel": false
             }
@@ -869,16 +870,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Temple Guard 4",
+          "name": "Temple Guard",
           "M": 4,
-          "WS": 0,
-          "BS": 4,
-          "S": null,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
           "T": null,
-          "W": 2,
-          "I": 8,
+          "W": null,
+          "I": 2,
           "A": 8,
-          "Ld": null
+          "Ld": 8
         }
       ],
       "troopType": "Monstrous Infantry (Lizardman, Saurus)",
@@ -901,16 +902,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Raptadon 8",
-          "M": 3,
-          "WS": 0,
-          "BS": 3,
+          "name": "Raptadon",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
           "S": 3,
-          "T": 1,
-          "W": 3,
-          "I": 1,
-          "A": 3,
-          "Ld": null
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 3
         }
       ],
       "troopType": "War Beast (Saurian)",
@@ -933,16 +934,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Cold One 7",
-          "M": 3,
-          "WS": 0,
-          "BS": 4,
+          "name": "Cold One",
+          "M": 7,
+          "WS": 3,
+          "BS": 0,
           "S": 4,
-          "T": 1,
-          "W": 2,
+          "T": 4,
+          "W": 1,
           "I": 2,
-          "A": 3,
-          "Ld": null
+          "A": 2,
+          "Ld": 3
         }
       ],
       "troopType": "War Beast (Saurian)",
@@ -965,16 +966,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Horned One 8",
-          "M": 3,
-          "WS": 0,
-          "BS": 4,
+          "name": "Horned One",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
           "S": 4,
-          "T": 1,
-          "W": 3,
-          "I": 2,
-          "A": 3,
-          "Ld": null
+          "T": 4,
+          "W": 1,
+          "I": 3,
+          "A": 2,
+          "Ld": 3
         }
       ],
       "troopType": "War Beast (Saurian)",
@@ -997,16 +998,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Terradon 2",
-          "M": 3,
-          "WS": 0,
-          "BS": 4,
-          "S": 3,
-          "T": 2,
+          "name": "Terradon",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
           "W": 2,
-          "I": 1,
-          "A": 3,
-          "Ld": null
+          "I": 2,
+          "A": 1,
+          "Ld": 3
         }
       ],
       "troopType": "War Beast (Saurian)",
@@ -1029,16 +1030,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Ripperdactyl 2",
-          "M": 3,
-          "WS": 0,
-          "BS": 4,
-          "S": 3,
-          "T": 2,
-          "W": 3,
-          "I": 2,
-          "A": 3,
-          "Ld": null
+          "name": "Ripperdactyl",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 3,
+          "A": 2,
+          "Ld": 3
         }
       ],
       "troopType": "War Beast (Saurian)",
@@ -1063,16 +1064,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Aggradon 7",
-          "M": 4,
-          "WS": 0,
-          "BS": 5,
-          "S": 4,
-          "T": 3,
-          "W": 2,
-          "I": 3,
+          "name": "Aggradon",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 2,
           "A": 3,
-          "Ld": null
+          "Ld": 3
         }
       ],
       "troopType": "Monstrous Beast (Saurian)",
@@ -1095,16 +1096,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Carnosaur 7",
-          "M": 4,
-          "WS": 0,
-          "BS": 6,
-          "S": 5,
+          "name": "Carnosaur",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 6,
           "T": 5,
-          "W": 2,
-          "I": 4,
-          "A": 5,
-          "Ld": null
+          "W": 5,
+          "I": 2,
+          "A": 4,
+          "Ld": 5
         }
       ],
       "troopType": "Monster (Saurian)",
@@ -1194,15 +1195,17 @@
           "raw": "May upgrade one Saurus Warrior to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Saurus Warrior to a Standard Bearer +10 points"
+          "raw": "May upgrade one Saurus Warrior to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
@@ -1248,7 +1251,8 @@
               "perModel": true
             },
             {
-              "name": "Replace shields with shortbows",
+              "name": "shortbow",
+              "replaces": "shield",
               "points": 2,
               "perModel": true
             },
@@ -1279,15 +1283,17 @@
           "raw": "May upgrade one Skink to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Skink to a Standard Bearer +10 points"
+          "raw": "May upgrade one Skink to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Aquatic, Cold-blooded, Jungle Poisons, Natural Armour (6+)",
@@ -1445,15 +1451,17 @@
           "raw": "May upgrade one Raptadon Rider to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Raptadon Rider to a Standard Bearer +10 points"
+          "raw": "May upgrade one Raptadon Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Aquatic, Cold-blooded, Fast Cavalry, Jungle Poisons, Natural Armour (6+)",
@@ -1574,15 +1582,17 @@
           "raw": "May upgrade one Temple Guard to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Temple Guard to a Standard Bearer +10 points"
+          "raw": "May upgrade one Temple Guard to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+), Stubborn",
@@ -1664,15 +1674,17 @@
           "raw": "May upgrade one Cold One Rider to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Cold One Rider to a Standard Bearer +10 points"
+          "raw": "May upgrade one Cold One Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": "Cold-blooded, Fear, Predatory Fighter, Natural Armour (4+), Stupidity",
@@ -1863,15 +1875,17 @@
           "raw": "May upgrade one Great Crested Skink to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Great Crested Skink to a Standard Bearer +10 points"
+          "raw": "May upgrade one Great Crested Skink to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Cold-blooded, Fast Cavalry, Fear, Natural Armour (5+)",
@@ -1935,7 +1949,7 @@
               "perModel": true
             },
             {
-              "name": "Fireleech bolas",
+              "name": "fireleech bolas",
               "points": 3,
               "perModel": true
             }
@@ -2216,15 +2230,17 @@
           "raw": "May upgrade one Aggradon Rider to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Aggradon Rider to a Standard Bearer +10 points"
+          "raw": "May upgrade one Aggradon Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": "Blood Frenzy (Aggradon only), Cold-blooded, Predatory Fighter, Natural Armour (4+)",

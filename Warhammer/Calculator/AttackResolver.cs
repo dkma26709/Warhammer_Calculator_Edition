@@ -277,23 +277,40 @@ public class AttackResolver
         string? multipleWoundsRoll = !isMountAttack ? attackerRules.MultipleWoundsRoll : null;
         int defenderW = defender.PrimaryProfile.W ?? 1;
 
+        // Track wounds model-by-model: Multiple Wounds and KB don't carry over between models
+        int modelsRemaining = defender.ModelCount;
+        int currentModelHP = defenderW; // wounds remaining on the frontmost model
         int finalWounds = 0;
 
-        // KB wounds: each kills a model (inflicts remaining wounds)
-        finalWounds += kbUnsaved * defenderW;
-
-        // Normal unsaved wounds
-        if (multipleWoundsValue > 1 || multipleWoundsRoll != null)
+        // KB wounds: each kills one model outright (full W inflicted, remainder lost)
+        for (int i = 0; i < kbUnsaved; i++)
         {
-            for (int i = 0; i < normalUnsaved; i++)
-            {
-                int mw = RollMultipleWounds(multipleWoundsValue, multipleWoundsRoll, rng);
-                finalWounds += Math.Min(mw, defenderW);
-            }
+            if (modelsRemaining <= 0) break;
+            finalWounds += currentModelHP; // kill current model (inflict its remaining HP)
+            modelsRemaining--;
+            currentModelHP = defenderW; // next model starts at full HP
         }
-        else
+
+        // Normal unsaved wounds (with Multiple Wounds if applicable)
+        bool hasMultipleWounds = multipleWoundsValue > 1 || multipleWoundsRoll != null;
+        for (int i = 0; i < normalUnsaved; i++)
         {
-            finalWounds += normalUnsaved;
+            if (modelsRemaining <= 0) break;
+
+            int damagePerHit = hasMultipleWounds
+                ? RollMultipleWounds(multipleWoundsValue, multipleWoundsRoll, rng)
+                : 1;
+
+            // MW capped at current model's remaining HP — excess is lost, not carried over
+            int actualDamage = Math.Min(damagePerHit, currentModelHP);
+            finalWounds += actualDamage;
+            currentModelHP -= actualDamage;
+
+            if (currentModelHP <= 0)
+            {
+                modelsRemaining--;
+                currentModelHP = defenderW;
+            }
         }
 
         return new AttackResult

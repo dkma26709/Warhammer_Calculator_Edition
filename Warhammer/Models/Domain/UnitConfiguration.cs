@@ -243,6 +243,19 @@ public class UnitConfiguration
         }
     }
 
+    // Command group availability — derived from unit options
+    public bool CanHaveChampion => Unit.Options?.Any(opt =>
+    {
+        var lower = opt.ToLowerInvariant();
+        return (lower.Contains("leader") || lower.Contains("champion")) && !lower.Contains("standard");
+    }) ?? false;
+
+    public bool CanHaveMusician => Unit.Options?.Any(opt =>
+        opt.ToLowerInvariant().Contains("musician")) ?? false;
+
+    public bool CanHaveStandardBearer => Unit.Options?.Any(opt =>
+        opt.ToLowerInvariant().Contains("standard bearer")) ?? false;
+
     public (double Champion, double Musician, double Standard) CommandGroupCosts
     {
         get

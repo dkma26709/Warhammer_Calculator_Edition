@@ -47,29 +47,38 @@
         </div>
     }
 
-    @if (!Configuration.TroopType.IsCharacter)
+    @if (Configuration.CanHaveChampion || Configuration.CanHaveMusician || Configuration.CanHaveStandardBearer)
     {
         <div class="mb-2">
             <label class="form-label small text-body-secondary">Command Group</label>
             <div class="d-flex gap-3">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="@(_id + "-champ")"
-                           checked="@Configuration.HasChampion"
-                           @onchange="e => OnChampionChanged((bool)(e.Value ?? false))" />
-                    <label class="form-check-label small" for="@(_id + "-champ")">Champion</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="@(_id + "-mus")"
-                           checked="@Configuration.HasMusician"
-                           @onchange="e => OnMusicianChanged((bool)(e.Value ?? false))" />
-                    <label class="form-check-label small" for="@(_id + "-mus")">Musician</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="@(_id + "-std")"
-                           checked="@Configuration.HasStandardBearer"
-                           @onchange="e => OnStandardChanged((bool)(e.Value ?? false))" />
-                    <label class="form-check-label small" for="@(_id + "-std")">Standard</label>
-                </div>
+                @if (Configuration.CanHaveChampion)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="@(_id + "-champ")"
+                               checked="@Configuration.HasChampion"
+                               @onchange="e => OnChampionChanged((bool)(e.Value ?? false))" />
+                        <label class="form-check-label small" for="@(_id + "-champ")">Champion</label>
+                    </div>
+                }
+                @if (Configuration.CanHaveMusician)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="@(_id + "-mus")"
+                               checked="@Configuration.HasMusician"
+                               @onchange="e => OnMusicianChanged((bool)(e.Value ?? false))" />
+                        <label class="form-check-label small" for="@(_id + "-mus")">Musician</label>
+                    </div>
+                }
+                @if (Configuration.CanHaveStandardBearer)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="@(_id + "-std")"
+                               checked="@Configuration.HasStandardBearer"
+                               @onchange="e => OnStandardChanged((bool)(e.Value ?? false))" />
+                        <label class="form-check-label small" for="@(_id + "-std")">Standard</label>
+                    </div>
+                }
             </div>
         </div>
     }
