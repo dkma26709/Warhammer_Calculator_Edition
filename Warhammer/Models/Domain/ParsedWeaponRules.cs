@@ -38,6 +38,23 @@ public record ParsedWeaponRules
     /// </summary>
     public bool MightyBlowExcludesLightTargets { get; init; }
 
+    /// <summary>
+    /// Apply this weapon's Initiative modifier to a base Initiative value.
+    /// Handles conditional mods (lance: when charging, spear: when being charged)
+    /// and the spear/pike charged-to-front bonus.
+    /// </summary>
+    public int ApplyToInitiative(int baseI, bool isCharging, bool isBeingCharged)
+    {
+        int effective = baseI;
+        if (InitiativeModCondition == WeaponCondition.Always
+            || (InitiativeModCondition == WeaponCondition.WhenCharging && isCharging)
+            || (InitiativeModCondition == WeaponCondition.WhenBeingCharged && isBeingCharged))
+            effective += InitiativeMod;
+        if (isBeingCharged)
+            effective += ChargedToFrontInitiativeBonus;
+        return Math.Max(1, effective);
+    }
+
     public static ParsedWeaponRules Parse(string? specialRules, string? notes = null)
     {
         if (string.IsNullOrWhiteSpace(specialRules))

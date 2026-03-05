@@ -22,21 +22,16 @@ public class CombatResolver
         CombatContext context,
         Random rng)
     {
-        int attackerWoundsDealt = 0; // wounds dealt TO defender
-        int defenderWoundsDealt = 0; // wounds dealt TO attacker
+        int attackerWoundsDealt = 0;
+        int defenderWoundsDealt = 0;
 
         // Phase 1: Impact Hits (charge turn only)
         if (context.Charge == ChargeState.AttackerCharged)
-        {
             attackerWoundsDealt += _attackResolver.ResolveImpactHits(attacker, defender, context, rng);
-        }
         else if (context.Charge == ChargeState.DefenderCharged)
-        {
             defenderWoundsDealt += _attackResolver.ResolveImpactHits(defender, attacker, context, rng);
-        }
 
-        // Phase 2-3: Resolve attacks in strike order
-        // Build attack groups
+        // Phase 2-3: Melee attacks in strike order
         var groups = BuildAttackGroups(attacker, defender, context);
         groups.Sort((a, b) => b.Priority.CompareTo(a.Priority));
 
@@ -44,8 +39,8 @@ public class CombatResolver
         {
             var weapon = group.Weapon ?? _coreRules.GetHandWeapon();
             var result = _attackResolver.ResolveAttacks(
-                group.Unit, group.Opponent, weapon, context, group.IsMountAttack,
-                group.IsAttackerSide, rng);
+                group.Unit, group.Opponent, weapon, context,
+                group.IsMountAttack, group.IsAttackerSide, rng);
 
             if (group.IsAttackerSide)
                 attackerWoundsDealt += result.UnsavedWounds;
@@ -53,24 +48,20 @@ public class CombatResolver
                 defenderWoundsDealt += result.UnsavedWounds;
         }
 
-        // Phase 4: Stomps (Always Strikes Last)
+        // Phase 4: Stomps
         attackerWoundsDealt += ResolveStomp(attacker, defender, context, rng);
         defenderWoundsDealt += ResolveStomp(defender, attacker, context, rng);
 
-        // Cap total wounds at the target's actual wound pool (can't overkill a unit)
-        int defenderWoundPool = defender.ModelCount * (defender.PrimaryProfile.W ?? 1);
-        int attackerWoundPool = attacker.ModelCount * (attacker.PrimaryProfile.W ?? 1);
-        attackerWoundsDealt = Math.Min(attackerWoundsDealt, defenderWoundPool);
-        defenderWoundsDealt = Math.Min(defenderWoundsDealt, attackerWoundPool);
+        // Cap wounds at each unit's total wound pool
+        attackerWoundsDealt = Math.Min(attackerWoundsDealt, defender.ModelCount * (defender.PrimaryProfile.W ?? 1));
+        defenderWoundsDealt = Math.Min(defenderWoundsDealt, attacker.ModelCount * (attacker.PrimaryProfile.W ?? 1));
 
         // Phase 5: Combat Resolution
-        var attackerBreakdown = ComputeCombatRes(attacker, defender, attackerWoundsDealt, context, true);
-        var defenderBreakdown = ComputeCombatRes(defender, attacker, defenderWoundsDealt, context, false);
+        var attackerBreakdown = ComputeCombatRes(attacker, defender, attackerWoundsDealt, context, isAttacker: true);
+        var defenderBreakdown = ComputeCombatRes(defender, attacker, defenderWoundsDealt, context, isAttacker: false);
 
-        int attackerCR = (int)(attackerBreakdown.Wounds + attackerBreakdown.RankBonus +
-            attackerBreakdown.StandardBearer + attackerBreakdown.ChargeBonus + attackerBreakdown.FearBonus);
-        int defenderCR = (int)(defenderBreakdown.Wounds + defenderBreakdown.RankBonus +
-            defenderBreakdown.StandardBearer + defenderBreakdown.ChargeBonus + defenderBreakdown.FearBonus);
+        int attackerCR = SumCR(attackerBreakdown);
+        int defenderCR = SumCR(defenderBreakdown);
 
         // Musician: if combat result is a draw, side with musician wins by 1
         if (attackerCR == defenderCR)
@@ -98,166 +89,115 @@ public class CombatResolver
         };
     }
 
+    // ─── Attack Groups ─────────────────────────────────────────────
+
     private List<AttackGroup> BuildAttackGroups(
         UnitConfiguration attacker, UnitConfiguration defender, CombatContext context)
     {
         var groups = new List<AttackGroup>();
 
-        // Attacker rider attacks
-        var attackerWeapon = _coreRules.GetCloseCombatWeapon(attacker.SelectedWeaponKey)
-            ?? _coreRules.GetHandWeapon();
-        var attackerWeaponRules = ParsedWeaponRules.Parse(attackerWeapon.SpecialRules, attackerWeapon.Notes);
-        int attackerI = attacker.PrimaryProfile.I ?? 1;
-        bool attackerIsCharging = context.Charge == ChargeState.AttackerCharged;
-        bool attackerIsBeingCharged = context.Charge == ChargeState.DefenderCharged;
-
-        // Apply Initiative mod based on weapon condition
-        if (attackerWeaponRules.InitiativeModCondition == WeaponCondition.Always
-            || (attackerWeaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && attackerIsCharging)
-            || (attackerWeaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && attackerIsBeingCharged))
-            attackerI += attackerWeaponRules.InitiativeMod;
-
-        // Spear/Pike: additional +1 I when charged to front
-        if (attackerIsBeingCharged)
-            attackerI += attackerWeaponRules.ChargedToFrontInitiativeBonus;
-
-        groups.Add(new AttackGroup
-        {
-            Unit = attacker,
-            Opponent = defender,
-            Weapon = attackerWeapon,
-            WeaponRules = attackerWeaponRules,
-            IsMountAttack = false,
-            IsAttackerSide = true,
-            Initiative = Math.Max(1, attackerI),
-            HasASF = attacker.SpecialRules.AlwaysStrikesFirst,
-            HasASL = attacker.SpecialRules.AlwaysStrikesLast
-        });
-
-        // Attacker mount attacks (if split profile)
-        if (attacker.MountProfile != null && attacker.TroopType.HasSplitProfile)
-        {
-            groups.Add(new AttackGroup
-            {
-                Unit = attacker,
-                Opponent = defender,
-                Weapon = null, // mounts use natural weapons
-                IsMountAttack = true,
-                IsAttackerSide = true,
-                Initiative = attacker.MountProfile.I ?? 1,
-                HasASF = false,
-                HasASL = false
-            });
-        }
-
-        // Defender rider attacks
-        var defenderWeapon = _coreRules.GetCloseCombatWeapon(defender.SelectedWeaponKey)
-            ?? _coreRules.GetHandWeapon();
-        var defenderWeaponRules = ParsedWeaponRules.Parse(defenderWeapon.SpecialRules, defenderWeapon.Notes);
-        int defenderI = defender.PrimaryProfile.I ?? 1;
-        bool defenderIsCharging = context.Charge == ChargeState.DefenderCharged;
-        bool defenderIsBeingCharged = context.Charge == ChargeState.AttackerCharged;
-
-        // Apply Initiative mod based on weapon condition
-        if (defenderWeaponRules.InitiativeModCondition == WeaponCondition.Always
-            || (defenderWeaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && defenderIsCharging)
-            || (defenderWeaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && defenderIsBeingCharged))
-            defenderI += defenderWeaponRules.InitiativeMod;
-
-        // Spear/Pike: additional +1 I when charged to front
-        if (defenderIsBeingCharged)
-            defenderI += defenderWeaponRules.ChargedToFrontInitiativeBonus;
-
-        groups.Add(new AttackGroup
-        {
-            Unit = defender,
-            Opponent = attacker,
-            Weapon = defenderWeapon,
-            WeaponRules = defenderWeaponRules,
-            IsMountAttack = false,
-            IsAttackerSide = false,
-            Initiative = Math.Max(1, defenderI),
-            HasASF = defender.SpecialRules.AlwaysStrikesFirst,
-            HasASL = defender.SpecialRules.AlwaysStrikesLast
-        });
-
-        // Defender mount attacks
-        if (defender.MountProfile != null && defender.TroopType.HasSplitProfile)
-        {
-            groups.Add(new AttackGroup
-            {
-                Unit = defender,
-                Opponent = attacker,
-                Weapon = null,
-                IsMountAttack = true,
-                IsAttackerSide = false,
-                Initiative = defender.MountProfile.I ?? 1,
-                HasASF = false,
-                HasASL = false
-            });
-        }
+        AddRiderGroup(groups, attacker, defender, isAttackerSide: true, context);
+        AddMountGroup(groups, attacker, defender, isAttackerSide: true);
+        AddRiderGroup(groups, defender, attacker, isAttackerSide: false, context);
+        AddMountGroup(groups, defender, attacker, isAttackerSide: false);
 
         return groups;
     }
 
-    private int ResolveStomp(UnitConfiguration stomper, UnitConfiguration target, CombatContext context, Random rng)
+    private void AddRiderGroup(List<AttackGroup> groups,
+        UnitConfiguration unit, UnitConfiguration opponent,
+        bool isAttackerSide, CombatContext context)
     {
-        // Only Monstrous Infantry, Monstrous Beasts, Monstrous Cavalry, Monsters can stomp
-        bool canStomp = stomper.TroopType.BaseType is
-            BaseTroopType.MonstrousInfantry or
-            BaseTroopType.MonstrousBeasts or
-            BaseTroopType.MonstrousCavalry or
-            BaseTroopType.Monster;
+        var weapon = _coreRules.GetCloseCombatWeapon(unit.SelectedWeaponKey)
+            ?? _coreRules.GetHandWeapon();
+        var weaponRules = ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
 
+        bool isCharging = context.IsCharging(isAttackerSide);
+        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        int effectiveI = weaponRules.ApplyToInitiative(unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged);
+
+        groups.Add(new AttackGroup
+        {
+            Unit = unit,
+            Opponent = opponent,
+            Weapon = weapon,
+            IsMountAttack = false,
+            IsAttackerSide = isAttackerSide,
+            Initiative = effectiveI,
+            HasASF = unit.SpecialRules.AlwaysStrikesFirst,
+            HasASL = unit.SpecialRules.AlwaysStrikesLast
+        });
+    }
+
+    private static void AddMountGroup(List<AttackGroup> groups,
+        UnitConfiguration unit, UnitConfiguration opponent, bool isAttackerSide)
+    {
+        if (unit.MountProfile == null || !unit.TroopType.HasSplitProfile) return;
+
+        groups.Add(new AttackGroup
+        {
+            Unit = unit,
+            Opponent = opponent,
+            Weapon = null,
+            IsMountAttack = true,
+            IsAttackerSide = isAttackerSide,
+            Initiative = unit.MountProfile.I ?? 1,
+            HasASF = false,
+            HasASL = false
+        });
+    }
+
+    // ─── Stomps ────────────────────────────────────────────────────
+
+    private int ResolveStomp(UnitConfiguration stomper, UnitConfiguration target,
+        CombatContext context, Random rng)
+    {
+        bool canStomp = stomper.TroopType.BaseType is
+            BaseTroopType.MonstrousInfantry or BaseTroopType.MonstrousBeasts or
+            BaseTroopType.MonstrousCavalry or BaseTroopType.Monster;
         if (!canStomp) return 0;
 
-        // Can't stomp other monstrous/large targets
         bool targetEligible = target.TroopType.BaseType is
-            BaseTroopType.Infantry or
-            BaseTroopType.LargeInfantry or
-            BaseTroopType.WarBeasts or
-            BaseTroopType.Swarms;
-
+            BaseTroopType.Infantry or BaseTroopType.LargeInfantry or
+            BaseTroopType.WarBeasts or BaseTroopType.Swarms;
         if (!targetEligible) return 0;
 
-        // Stomp from special rules or troop type default
         int stompHits;
         if (stomper.SpecialRules.Stomp.HasValue)
             stompHits = stomper.SpecialRules.Stomp.Value;
         else if (stomper.SpecialRules.StompRoll != null)
-            stompHits = RollDice(stomper.SpecialRules.StompRoll, rng);
+            stompHits = DiceRoller.Roll(stomper.SpecialRules.StompRoll, rng);
         else
-            stompHits = stomper.TroopType.BaseType == BaseTroopType.Monster ? RollDice("D6", rng) : 1;
+            stompHits = stomper.TroopType.BaseType == BaseTroopType.Monster
+                ? DiceRoller.Roll("D6", rng) : 1;
 
-        // Stomps wound using model's Strength + Mighty Blow in first round
         int strength = stomper.PrimaryProfile.S ?? 3;
         if (context.CombatRound == 1 && stomper.SpecialRules.MightyBlow.HasValue)
             strength += stomper.SpecialRules.MightyBlow.Value;
-        int defenderT = (target.MountProfile != null && target.TroopType.HasSplitProfile)
-            ? Math.Max(target.PrimaryProfile.T ?? 3, target.MountProfile.T ?? 3)
-            : target.PrimaryProfile.T ?? 3;
-        int toWoundNeeded = _coreRules.GetToWoundScore(strength, defenderT);
+
+        int toWoundNeeded = _coreRules.GetToWoundScore(strength, target.BestT);
         int strengthMod = _coreRules.GetArmourSaveModifier(strength);
+
+        // Ward save: flaming negates regen, ethereal applies
+        bool flamingStomp = stomper.SpecialRules.FlamingAttacks;
+        int wardVal = target.SpecialRules.WardSave ?? 7;
+        int regenVal = target.SpecialRules.Regeneration ?? 7;
+        int ward = flamingStomp ? wardVal : Math.Min(wardVal, regenVal);
+
+        if (target.SpecialRules.Ethereal)
+        {
+            int etherealWard = stomper.SpecialRules.MagicalAttacks ? 7 : 2;
+            ward = Math.Min(ward, etherealWard);
+        }
 
         int wounds = 0;
         for (int i = 0; i < stompHits; i++)
         {
             if (rng.Next(1, 7) < toWoundNeeded) continue;
 
-            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod, _attackResolver.GetArmourSaveLookup());
+            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod,
+                _attackResolver.GetArmourSaveLookup());
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
-
-            int wardVal = target.SpecialRules.WardSave ?? 7;
-            int regenVal = target.SpecialRules.Regeneration ?? 7;
-            bool flamingStomp = stomper.SpecialRules.FlamingAttacks;
-            int ward = flamingStomp ? wardVal : Math.Min(wardVal, regenVal);
-
-            // Ethereal targets get ward save vs non-magical stomps
-            if (target.SpecialRules.Ethereal)
-            {
-                int etherealWard = stomper.SpecialRules.MagicalAttacks ? 7 : 2;
-                ward = Math.Min(ward, etherealWard);
-            }
 
             if (ward <= 6 && rng.Next(1, 7) >= ward) continue;
 
@@ -267,65 +207,46 @@ public class CombatResolver
         return wounds;
     }
 
+    // ─── Combat Resolution ─────────────────────────────────────────
+
     private static CombatResBreakdown ComputeCombatRes(
-        UnitConfiguration unit,
-        UnitConfiguration opponent,
-        int woundsDealt,
-        CombatContext context,
-        bool isAttacker)
+        UnitConfiguration unit, UnitConfiguration opponent,
+        int woundsDealt, CombatContext context, bool isAttacker)
     {
-        double rankBonus = unit.RankBonus;
-        double standardBearer = unit.HasStandardBearer ? 1 : 0;
+        bool isCharging = context.IsCharging(isAttacker);
 
-        bool isCharging = (isAttacker && context.Charge == ChargeState.AttackerCharged)
-            || (!isAttacker && context.Charge == ChargeState.DefenderCharged);
-        double chargeBonus = isCharging ? 1 : 0;
-
-        // Fear bonus
         double fearBonus = 0;
         if (unit.SpecialRules.Fear || unit.SpecialRules.Terror)
         {
-            // Check if opponent majority causes Fear (immune to Fear CR bonus)
-            bool opponentFearImmune = opponent.SpecialRules.Fear || opponent.SpecialRules.Terror;
-            if (!opponentFearImmune)
+            bool opponentImmune = opponent.SpecialRules.Fear || opponent.SpecialRules.Terror;
+            if (!opponentImmune)
             {
-                fearBonus = 1;
-                // +2 if Fear-causing US >= 2x enemy US in base contact
                 int unitUS = unit.ModelCount * unit.TroopType.UnitStrength;
                 int oppUS = opponent.ModelCount * opponent.TroopType.UnitStrength;
-                if (unitUS >= 2 * oppUS)
-                    fearBonus = 2;
+                fearBonus = unitUS >= 2 * oppUS ? 2 : 1;
             }
         }
 
         return new CombatResBreakdown
         {
             Wounds = woundsDealt,
-            RankBonus = rankBonus,
-            StandardBearer = standardBearer,
-            ChargeBonus = chargeBonus,
+            RankBonus = unit.RankBonus,
+            StandardBearer = unit.HasStandardBearer ? 1 : 0,
+            ChargeBonus = isCharging ? 1 : 0,
             FearBonus = fearBonus
         };
     }
 
-    private static int RollDice(string expr, Random rng)
-    {
-        var upper = expr.ToUpperInvariant().Trim();
-        if (upper == "D6") return rng.Next(1, 7);
-        if (upper == "D3") return rng.Next(1, 4);
-        if (upper.StartsWith("D3+") && int.TryParse(upper[3..], out var d3mod))
-            return rng.Next(1, 4) + d3mod;
-        if (upper.StartsWith("D6+") && int.TryParse(upper[3..], out var d6mod))
-            return rng.Next(1, 7) + d6mod;
-        return 1;
-    }
+    private static int SumCR(CombatResBreakdown b) =>
+        (int)(b.Wounds + b.RankBonus + b.StandardBearer + b.ChargeBonus + b.FearBonus);
+
+    // ─── Types ─────────────────────────────────────────────────────
 
     private class AttackGroup
     {
         public UnitConfiguration Unit { get; init; } = null!;
         public UnitConfiguration Opponent { get; init; } = null!;
         public WeaponEntry? Weapon { get; init; }
-        public ParsedWeaponRules? WeaponRules { get; init; }
         public bool IsMountAttack { get; init; }
         public bool IsAttackerSide { get; init; }
         public int Initiative { get; init; }
@@ -336,9 +257,9 @@ public class CombatResolver
         {
             get
             {
-                if (HasASF && HasASL) return Initiative; // cancel out
-                if (HasASF) return 100 + Initiative; // strikes first
-                if (HasASL) return -100 + Initiative; // strikes last
+                if (HasASF && HasASL) return Initiative;
+                if (HasASF) return 100 + Initiative;
+                if (HasASL) return -100 + Initiative;
                 return Initiative;
             }
         }

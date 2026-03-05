@@ -53,10 +53,9 @@
 
     private UnitStats ComputeStats(UnitConfiguration unit, UnitConfiguration opponent, bool isAttackerSide)
     {
-        bool isCharging = (isAttackerSide && ChargeState == ChargeState.AttackerCharged)
-                       || (!isAttackerSide && ChargeState == ChargeState.DefenderCharged);
-        bool isBeingCharged = (isAttackerSide && ChargeState == ChargeState.DefenderCharged)
-                           || (!isAttackerSide && ChargeState == ChargeState.AttackerCharged);
+        var context = new CombatContext { Charge = ChargeState, CombatRound = 1 };
+        bool isCharging = context.IsCharging(isAttackerSide);
+        bool isBeingCharged = context.IsCharging(!isAttackerSide);
 
         // Weapon and weapon rules
         var weapon = CoreRules!.GetCloseCombatWeapon(unit.SelectedWeaponKey)
@@ -64,14 +63,7 @@
         var weaponRules = ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
 
         // Effective initiative
-        int effectiveI = unit.PrimaryProfile.I ?? 1;
-        if (weaponRules.InitiativeModCondition == WeaponCondition.Always
-            || (weaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && isCharging)
-            || (weaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && isBeingCharged))
-            effectiveI += weaponRules.InitiativeMod;
-        if (isBeingCharged)
-            effectiveI += weaponRules.ChargedToFrontInitiativeBonus;
-        effectiveI = Math.Max(1, effectiveI);
+        int effectiveI = weaponRules.ApplyToInitiative(unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged);
 
         // Weapon Mighty Blow
         int weaponMB = 0;
@@ -97,22 +89,16 @@
 
         // To-hit
         int attackerWS = unit.PrimaryProfile.WS ?? 1;
-        int defenderWS = (opponent.MountProfile != null && opponent.TroopType.HasSplitProfile)
-            ? Math.Max(opponent.PrimaryProfile.WS ?? 1, opponent.MountProfile.WS ?? 1)
-            : opponent.PrimaryProfile.WS ?? 1;
-        int toHitNeeded = CoreRules.GetToHitScore(attackerWS, defenderWS);
+        int toHitNeeded = CoreRules.GetToHitScore(attackerWS, opponent.BestWS);
 
         // To-wound
-        int defenderT = (opponent.MountProfile != null && opponent.TroopType.HasSplitProfile)
-            ? Math.Max(opponent.PrimaryProfile.T ?? 3, opponent.MountProfile.T ?? 3)
-            : opponent.PrimaryProfile.T ?? 3;
-        int toWoundNeeded = CoreRules.GetToWoundScore(effectiveS, defenderT);
+        int toWoundNeeded = CoreRules.GetToWoundScore(effectiveS, opponent.BestT);
 
         // Armour save (this unit's save vs opponent's attacks)
         var opponentWeapon = CoreRules.GetCloseCombatWeapon(opponent.SelectedWeaponKey)
             ?? CoreRules.GetHandWeapon();
         var opponentWeaponRules = ParsedWeaponRules.Parse(opponentWeapon.SpecialRules, opponentWeapon.Notes);
-        bool opponentIsCharging = !isCharging && ChargeState != ChargeState.Neither;
+        bool opponentIsCharging = isBeingCharged;
         bool opponentIsBeingCharged = isCharging;
         int opponentWeaponMB = 0;
         if (opponentWeaponRules.MightyBlow != null)

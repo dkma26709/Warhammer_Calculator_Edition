@@ -117,6 +117,20 @@ public class UnitConfiguration
         return Math.Max(modifiedSave, 2); // 1+ is impossible, minimum useful save is 2+
     }
 
+    /// <summary>Best WS for combat (max of rider/mount for split profiles).</summary>
+    public int BestWS => SplitProfileMax(p => p.WS, 1);
+
+    /// <summary>Best T for combat (max of rider/mount for split profiles).</summary>
+    public int BestT => SplitProfileMax(p => p.T, 3);
+
+    private int SplitProfileMax(Func<ProfileEntry, int?> stat, int fallback)
+    {
+        int primary = stat(PrimaryProfile) ?? fallback;
+        if (MountProfile != null && TroopType.HasSplitProfile)
+            return Math.Max(primary, stat(MountProfile) ?? fallback);
+        return primary;
+    }
+
     /// <summary>
     /// Number of complete ranks (models / frontage, rounded down).
     /// </summary>

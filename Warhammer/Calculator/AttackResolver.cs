@@ -14,16 +14,9 @@ public class AttackResolver
         _coreRules = coreRules;
     }
 
-    /// <summary>
-    /// Lookup function that resolves armour key to its CombatSave field from core-rules.json.
-    /// </summary>
     public Func<string, string?> GetArmourSaveLookup()
     {
-        return key =>
-        {
-            var entry = _coreRules.GetArmour(key);
-            return entry?.CombatSave;
-        };
+        return key => _coreRules.GetArmour(key)?.CombatSave;
     }
 
     /// <summary>
@@ -40,192 +33,273 @@ public class AttackResolver
     {
         var attackerRules = attacker.SpecialRules;
         var defenderRules = defender.SpecialRules;
-        bool isCharging = (context.Charge == ChargeState.AttackerCharged && isAttackerSide)
-                       || (context.Charge == ChargeState.DefenderCharged && !isAttackerSide);
-        bool isBeingCharged = (context.Charge == ChargeState.AttackerCharged && !isAttackerSide)
-                           || (context.Charge == ChargeState.DefenderCharged && isAttackerSide);
+        bool isRider = !isMountAttack;
+        bool isCharging = context.IsCharging(isAttackerSide);
+        bool isBeingCharged = context.IsCharging(!isAttackerSide);
         bool isFirstRound = context.CombatRound == 1;
 
-        // Parse weapon rules
-        var weaponRules = isMountAttack ? null : ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
-
-        // Determine profile to use
+        var weaponRules = isRider ? ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes) : null;
         var profile = isMountAttack ? attacker.MountProfile! : attacker.PrimaryProfile;
 
-        // Count attacks
-        int totalAttacks;
-        if (isMountAttack)
-        {
-            totalAttacks = attacker.MountAttacks();
-        }
-        else
-        {
-            // Random Attacks: roll instead of using profile A
-            int? attacksOverride = null;
-            if (attackerRules.RandomAttacksRoll != null)
-                attacksOverride = RollDice(attackerRules.RandomAttacksRoll, rng);
-            else if (attackerRules.RandomAttacks.HasValue)
-                attacksOverride = attackerRules.RandomAttacks.Value;
+        // ── Count attacks ──────────────────────────────────────────
 
-            int weaponExtraAttacks = weaponRules?.ExtraAttacks ?? 0;
-            int weaponFiER = weaponRules?.FightInExtraRanks ?? 0;
-            totalAttacks = attacker.TotalAttacks(isCharging, context.CombatRound,
-                weaponExtraAttacks, weaponFiER, attacksOverride);
-        }
-
+        int totalAttacks = CountAttacks(attacker, attackerRules, weaponRules,
+            isCharging, context.CombatRound, isMountAttack, rng);
         if (totalAttacks <= 0) return new AttackResult();
 
-        // Effective strength (includes Mighty Blow from unit and/or weapon, using highest)
-        int baseS = profile.S ?? 3;
-        int effectiveStrength;
-        if (isMountAttack)
-        {
-            effectiveStrength = baseS; // Mounts use their own strength, no weapon
-        }
-        else
-        {
-            // Determine weapon's applicable Mighty Blow
-            int weaponMB = 0;
-            if (weaponRules?.MightyBlow != null)
-            {
-                bool applyWeaponMB = weaponRules.MightyBlowCondition switch
-                {
-                    WeaponCondition.WhenCharging => isCharging,
-                    WeaponCondition.WhenBeingCharged => isBeingCharged,
-                    _ => true
-                };
+        // ── Effective strength ─────────────────────────────────────
 
-                // Spear/Pike: MB doesn't apply vs Infantry, Large Infantry, Swarms, Shrines
-                if (applyWeaponMB && weaponRules.MightyBlowExcludesLightTargets)
-                {
-                    bool targetIsLight = defender.TroopType.BaseType is
-                        BaseTroopType.Infantry or BaseTroopType.LargeInfantry or
-                        BaseTroopType.Swarms or BaseTroopType.Shrine;
-                    if (targetIsLight)
-                        applyWeaponMB = false;
-                }
+        int effectiveStrength = ComputeEffectiveStrength(
+            attacker, defender, weapon, weaponRules, profile,
+            isMountAttack, isCharging, isBeingCharged, context.CombatRound);
 
-                if (applyWeaponMB)
-                    weaponMB = weaponRules.MightyBlow.Value;
-            }
-            effectiveStrength = attacker.EffectiveStrength(weapon, isCharging, context.CombatRound, weaponMB);
-        }
+        // ── Roll to hit ────────────────────────────────────────────
 
-        // To-Hit
-        int attackerWS = profile.WS ?? 1;
-        int defenderWS = (defender.MountProfile != null && defender.TroopType.HasSplitProfile)
-            ? Math.Max(defender.PrimaryProfile.WS ?? 1, defender.MountProfile.WS ?? 1)
-            : defender.PrimaryProfile.WS ?? 1;
-        int toHitNeeded = _coreRules.GetToHitScore(attackerWS, defenderWS);
+        int toHitNeeded = _coreRules.GetToHitScore(profile.WS ?? 1, defender.BestWS);
 
-        // Compute effective Initiative for ASF/ASL comparison (weapon mods apply)
         int effectiveAttackerI = profile.I ?? 1;
-        if (!isMountAttack && weaponRules != null)
-        {
-            if (weaponRules.InitiativeModCondition == WeaponCondition.Always
-                || (weaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && isCharging)
-                || (weaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && isBeingCharged))
-                effectiveAttackerI += weaponRules.InitiativeMod;
-            if (isBeingCharged)
-                effectiveAttackerI += weaponRules.ChargedToFrontInitiativeBonus;
-            effectiveAttackerI = Math.Max(1, effectiveAttackerI);
-        }
-        int effectiveDefenderI = defender.PrimaryProfile.I ?? 1;
-        var defWpnForI = _coreRules.GetCloseCombatWeapon(defender.SelectedWeaponKey);
-        if (defWpnForI != null)
-        {
-            var defWpnRulesForI = ParsedWeaponRules.Parse(defWpnForI.SpecialRules, defWpnForI.Notes);
-            bool defIsCharging = (context.Charge == ChargeState.DefenderCharged && isAttackerSide)
-                              || (context.Charge == ChargeState.AttackerCharged && !isAttackerSide);
-            bool defIsBeingCharged = (context.Charge == ChargeState.AttackerCharged && isAttackerSide)
-                                  || (context.Charge == ChargeState.DefenderCharged && !isAttackerSide);
-            if (defWpnRulesForI.InitiativeModCondition == WeaponCondition.Always
-                || (defWpnRulesForI.InitiativeModCondition == WeaponCondition.WhenCharging && defIsCharging)
-                || (defWpnRulesForI.InitiativeModCondition == WeaponCondition.WhenBeingCharged && defIsBeingCharged))
-                effectiveDefenderI += defWpnRulesForI.InitiativeMod;
-            if (defIsBeingCharged)
-                effectiveDefenderI += defWpnRulesForI.ChargedToFrontInitiativeBonus;
-            effectiveDefenderI = Math.Max(1, effectiveDefenderI);
-        }
+        if (isRider && weaponRules != null)
+            effectiveAttackerI = weaponRules.ApplyToInitiative(effectiveAttackerI, isCharging, isBeingCharged);
+        int effectiveDefenderI = ComputeEffectiveI(defender, context, !isAttackerSide);
 
-        // Re-roll flags
-        bool hasHatredReroll = attackerRules.Hatred && isFirstRound;
-        bool hasASFReroll = attackerRules.AlwaysStrikesFirst
-            && !attackerRules.AlwaysStrikesLast
-            && effectiveAttackerI > effectiveDefenderI;
-        bool hasASLPenalty = !attackerRules.AlwaysStrikesFirst
+        bool rerollMisses = (attackerRules.Hatred && isFirstRound)
+            || (attackerRules.AlwaysStrikesFirst && !attackerRules.AlwaysStrikesLast
+                && effectiveAttackerI > effectiveDefenderI);
+        bool rerollHits = !attackerRules.AlwaysStrikesFirst
             && attackerRules.AlwaysStrikesLast
             && effectiveAttackerI < effectiveDefenderI;
 
-        // Roll To Hit
+        int hits = RollToHit(totalAttacks, toHitNeeded, rerollMisses, rerollHits, rng);
+        if (hits == 0) return new AttackResult { TotalHits = 0 };
+
+        // ── Roll to wound ──────────────────────────────────────────
+
+        int toWoundNeeded = _coreRules.GetToWoundScore(effectiveStrength, defender.BestT);
+        int poisonMod = (isRider && attackerRules.PoisonedAttacks) ? 1 : 0;
+        int effectiveToWound = Math.Max(2, toWoundNeeded - poisonMod);
+        bool flamingReroll = isRider && attackerRules.FlamingAttacks && defenderRules.Flammable;
+
+        var (totalWoundsRolled, killingBlows, nonEligibleKBWounds, normalWounds) =
+            RollToWound(hits, effectiveToWound, flamingReroll,
+                isRider && attackerRules.KillingBlow,
+                isRider && attackerRules.HeroicKillingBlow,
+                defender.TroopType, rng);
+
+        // ── Armour saves (normal wounds only; non-eligible KB skip armour) ──
+
+        int ap = (isRider ? attackerRules.ArmourPiercing : null) ?? 0;
+        int strengthMod = _coreRules.GetArmourSaveModifier(effectiveStrength);
+        bool ignoresArmour = isRider && attackerRules.IgnoresArmourSaves;
+        bool lightningAttacks = isRider && attackerRules.LightningAttacks;
+
+        int unsavedNormal = RollArmourSaves(normalWounds, defender, defenderRules,
+            effectiveStrength, ap, strengthMod, ignoresArmour, lightningAttacks, rng);
+
+        // ── Ward saves ─────────────────────────────────────────────
+
+        int wardValue = defenderRules.WardSave ?? 7;
+        int regenValue = defenderRules.Regeneration ?? 7;
+        int parryValue = ResolveDefenderParry(defender, effectiveStrength, isMountAttack);
+        bool flamingNegatesRegen = isRider && attackerRules.FlamingAttacks;
+
+        if (defenderRules.Ethereal)
+        {
+            int etherealWard = (isRider && attackerRules.MagicalAttacks) ? 7 : 2;
+            wardValue = Math.Min(wardValue, etherealWard);
+        }
+
+        int kbUnsaved = RollWardSaves(killingBlows, wardValue, rng);
+        int nonEligKBUnsaved = RollWardSaves(nonEligibleKBWounds, Math.Min(wardValue, parryValue), rng);
+
+        int effectiveWard = flamingNegatesRegen
+            ? Math.Min(wardValue, parryValue)
+            : Math.Min(Math.Min(wardValue, regenValue), parryValue);
+        int normalUnsaved = RollWardSaves(unsavedNormal, effectiveWard, rng);
+
+        // ── Wound allocation ───────────────────────────────────────
+
+        int mwValue = (isRider ? attackerRules.MultipleWounds : null) ?? 1;
+        string? mwRoll = isRider ? attackerRules.MultipleWoundsRoll : null;
+
+        int finalWounds = AllocateWoundsToModels(
+            kbUnsaved, nonEligKBUnsaved, normalUnsaved,
+            defender.PrimaryProfile.W ?? 1, defender.ModelCount, mwValue, mwRoll, rng);
+
+        return new AttackResult
+        {
+            TotalHits = hits,
+            TotalWoundsInflicted = totalWoundsRolled,
+            KillingBlowWounds = kbUnsaved,
+            UnsavedWounds = finalWounds
+        };
+    }
+
+    /// <summary>
+    /// Resolve impact hits (charge only).
+    /// </summary>
+    public int ResolveImpactHits(
+        UnitConfiguration charger,
+        UnitConfiguration target,
+        CombatContext context,
+        Random rng)
+    {
+        int impactHits = GetImpactHitCount(charger, rng);
+        if (impactHits <= 0) return 0;
+
+        int strength = charger.MountProfile?.S ?? charger.PrimaryProfile.S ?? 3;
+        if (context.CombatRound == 1 && charger.SpecialRules.MightyBlow.HasValue)
+            strength += charger.SpecialRules.MightyBlow.Value;
+
+        int toWoundNeeded = _coreRules.GetToWoundScore(strength, target.BestT);
+        int strengthMod = _coreRules.GetArmourSaveModifier(strength);
+
+        bool flamingImpact = charger.SpecialRules.FlamingAttacks;
+        int baseWard = target.SpecialRules.WardSave ?? 7;
+        int baseRegen = target.SpecialRules.Regeneration ?? 7;
+        int impactWard = flamingImpact ? baseWard : Math.Min(baseWard, baseRegen);
+
+        if (target.SpecialRules.Ethereal)
+        {
+            int etherealWard = charger.SpecialRules.MagicalAttacks ? 7 : 2;
+            impactWard = Math.Min(impactWard, etherealWard);
+        }
+
+        int wounds = 0;
+        for (int i = 0; i < impactHits; i++)
+        {
+            if (rng.Next(1, 7) < toWoundNeeded) continue;
+
+            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod, GetArmourSaveLookup());
+            if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
+
+            if (impactWard <= 6 && rng.Next(1, 7) >= impactWard) continue;
+
+            wounds++;
+        }
+
+        return wounds;
+    }
+
+    // ─── Private helpers ───────────────────────────────────────────
+
+    private int ComputeEffectiveI(UnitConfiguration unit, CombatContext context, bool isAttackerSide)
+    {
+        int baseI = unit.PrimaryProfile.I ?? 1;
+        var weapon = _coreRules.GetCloseCombatWeapon(unit.SelectedWeaponKey);
+        if (weapon == null) return baseI;
+
+        var rules = ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
+        return rules.ApplyToInitiative(baseI,
+            context.IsCharging(isAttackerSide),
+            context.IsCharging(!isAttackerSide));
+    }
+
+    private static int CountAttacks(
+        UnitConfiguration attacker, ParsedSpecialRules rules,
+        ParsedWeaponRules? weaponRules, bool isCharging, int combatRound,
+        bool isMountAttack, Random rng)
+    {
+        if (isMountAttack) return attacker.MountAttacks();
+
+        int? attacksOverride = null;
+        if (rules.RandomAttacksRoll != null)
+            attacksOverride = DiceRoller.Roll(rules.RandomAttacksRoll, rng);
+        else if (rules.RandomAttacks.HasValue)
+            attacksOverride = rules.RandomAttacks.Value;
+
+        return attacker.TotalAttacks(isCharging, combatRound,
+            weaponRules?.ExtraAttacks ?? 0,
+            weaponRules?.FightInExtraRanks ?? 0,
+            attacksOverride);
+    }
+
+    private static int ComputeEffectiveStrength(
+        UnitConfiguration attacker, UnitConfiguration defender,
+        WeaponEntry weapon, ParsedWeaponRules? weaponRules,
+        ProfileEntry profile, bool isMountAttack,
+        bool isCharging, bool isBeingCharged, int combatRound)
+    {
+        if (isMountAttack) return profile.S ?? 3;
+
+        int weaponMB = 0;
+        if (weaponRules?.MightyBlow != null)
+        {
+            bool applyWeaponMB = weaponRules.MightyBlowCondition switch
+            {
+                WeaponCondition.WhenCharging => isCharging,
+                WeaponCondition.WhenBeingCharged => isBeingCharged,
+                _ => true
+            };
+
+            if (applyWeaponMB && weaponRules.MightyBlowExcludesLightTargets)
+            {
+                bool targetIsLight = defender.TroopType.BaseType is
+                    BaseTroopType.Infantry or BaseTroopType.LargeInfantry or
+                    BaseTroopType.Swarms or BaseTroopType.Shrine;
+                if (targetIsLight)
+                    applyWeaponMB = false;
+            }
+
+            if (applyWeaponMB)
+                weaponMB = weaponRules.MightyBlow.Value;
+        }
+
+        return attacker.EffectiveStrength(weapon, isCharging, combatRound, weaponMB);
+    }
+
+    private static int RollToHit(int attacks, int needed, bool rerollMisses, bool rerollHits, Random rng)
+    {
         int hits = 0;
-        for (int i = 0; i < totalAttacks; i++)
+        for (int i = 0; i < attacks; i++)
         {
             int roll = rng.Next(1, 7);
-            bool hit = roll == 6 || (roll != 1 && roll >= toHitNeeded);
+            bool hit = roll == 6 || (roll != 1 && roll >= needed);
 
-            if (!hit && (hasHatredReroll || hasASFReroll))
+            if (!hit && rerollMisses)
             {
                 roll = rng.Next(1, 7);
-                hit = roll == 6 || (roll != 1 && roll >= toHitNeeded);
+                hit = roll == 6 || (roll != 1 && roll >= needed);
             }
-            else if (hit && hasASLPenalty)
+            else if (hit && rerollHits)
             {
                 roll = rng.Next(1, 7);
-                hit = roll == 6 || (roll != 1 && roll >= toHitNeeded);
+                hit = roll == 6 || (roll != 1 && roll >= needed);
             }
 
             if (hit) hits++;
         }
+        return hits;
+    }
 
-        if (hits == 0) return new AttackResult { TotalHits = 0 };
-
-        // Effective toughness
-        int defenderT = (defender.MountProfile != null && defender.TroopType.HasSplitProfile)
-            ? Math.Max(defender.PrimaryProfile.T ?? 3, defender.MountProfile.T ?? 3)
-            : defender.PrimaryProfile.T ?? 3;
-
-        // To-Wound
-        int toWoundNeeded = _coreRules.GetToWoundScore(effectiveStrength, defenderT);
-
-        // Poison modifier: +1 to wound (lower the needed score by 1)
-        int poisonMod = (!isMountAttack && attackerRules.PoisonedAttacks) ? 1 : 0;
-        int effectiveToWound = Math.Max(2, toWoundNeeded - poisonMod);
-
-        // Flaming re-roll vs Flammable
-        bool flamingReroll = !isMountAttack && attackerRules.FlamingAttacks && defenderRules.Flammable;
-
-        int totalWoundsRolled = 0;
-        int killingBlows = 0;
-        int nonEligibleKBWounds = 0;
-        int normalWounds = 0;
+    private static (int TotalWounds, int KillingBlows, int NonEligibleKB, int NormalWounds) RollToWound(
+        int hits, int toWoundNeeded, bool flamingReroll,
+        bool hasKB, bool hasHKB, TroopTypeInfo defenderType, Random rng)
+    {
+        int totalWounds = 0, killingBlows = 0, nonEligKB = 0, normalWounds = 0;
 
         for (int i = 0; i < hits; i++)
         {
             int roll = rng.Next(1, 7);
-            bool wounded = roll == 6 || (roll != 1 && roll >= effectiveToWound);
+            bool wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
 
             if (!wounded && flamingReroll)
             {
                 roll = rng.Next(1, 7);
-                wounded = roll == 6 || (roll != 1 && roll >= effectiveToWound);
+                wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
             }
 
             if (!wounded) continue;
+            totalWounds++;
 
-            totalWoundsRolled++;
-
-            // Killing Blow check (only on natural 6 to wound, or 5+ if dual source)
-            bool isKB = !isMountAttack && attackerRules.KillingBlow && roll == 6;
-            bool isHKB = !isMountAttack && attackerRules.HeroicKillingBlow && roll == 6;
+            bool isKB = hasKB && roll == 6;
+            bool isHKB = hasHKB && roll == 6;
 
             if (isKB || isHKB)
             {
-                bool eligible = IsKBEligible(defender.TroopType, isHKB);
-                if (eligible)
+                if (IsKBEligible(defenderType, isHKB))
                     killingBlows++;
                 else
-                    nonEligibleKBWounds++; // ignores armour and regen
+                    nonEligKB++;
             }
             else
             {
@@ -233,40 +307,53 @@ public class AttackResolver
             }
         }
 
-        // Armour Saves for normal wounds (non-eligible KB wounds skip armour entirely)
-        int ap = (!isMountAttack ? attackerRules.ArmourPiercing : null) ?? 0;
-        int strengthMod = _coreRules.GetArmourSaveModifier(effectiveStrength);
-        bool ignoresArmour = !isMountAttack && (attackerRules.IgnoresArmourSaves);
-        bool lightningAttacks = !isMountAttack && attackerRules.LightningAttacks;
+        return (totalWounds, killingBlows, nonEligKB, normalWounds);
+    }
 
-        int unsavedNormal = 0;
-        for (int i = 0; i < normalWounds; i++)
+    private int RollArmourSaves(
+        int wounds, UnitConfiguration defender, ParsedSpecialRules defenderRules,
+        int effectiveStrength, int ap, int strengthMod,
+        bool ignoresArmour, bool lightningAttacks, Random rng)
+    {
+        int unsaved = 0;
+        for (int i = 0; i < wounds; i++)
         {
             if (ignoresArmour || lightningAttacks)
             {
                 if (lightningAttacks && defenderRules.NaturalArmour.HasValue)
                 {
-                    // Lightning: still saved by Natural Armour
-                    int natSave = defenderRules.NaturalArmour.Value;
-                    int modNatSave = natSave - strengthMod; // strength still modifies
+                    int modNatSave = defenderRules.NaturalArmour.Value - strengthMod;
                     if (modNatSave >= 2 && rng.Next(1, 7) >= modNatSave)
-                        continue; // saved by natural armour
+                        continue;
                 }
-                unsavedNormal++;
+                unsaved++;
             }
             else
             {
                 int armourSave = defender.EffectiveArmourSave(effectiveStrength, ap, strengthMod, GetArmourSaveLookup());
                 if (armourSave <= 6 && rng.Next(1, 7) >= armourSave)
-                    continue; // saved
-                unsavedNormal++;
+                    continue;
+                unsaved++;
             }
         }
+        return unsaved;
+    }
 
-        // Ward Saves / Regeneration
-        int wardValue = defenderRules.WardSave ?? 7;
-        int regenValue = defenderRules.Regeneration ?? 7;
-        int parryValue = defenderRules.Parry ?? 7;
+    private static int RollWardSaves(int wounds, int wardNeeded, Random rng)
+    {
+        if (wardNeeded > 6) return wounds;
+        int unsaved = 0;
+        for (int i = 0; i < wounds; i++)
+        {
+            if (rng.Next(1, 7) >= wardNeeded) continue;
+            unsaved++;
+        }
+        return unsaved;
+    }
+
+    private int ResolveDefenderParry(UnitConfiguration defender, int attackerStrength, bool isMountAttack)
+    {
+        int parryValue = defender.SpecialRules.Parry ?? 7;
 
         // Weapon Parry (e.g., Two Hand Weapons: Parry 6+)
         var defenderWeapon = _coreRules.GetCloseCombatWeapon(defender.SelectedWeaponKey);
@@ -293,84 +380,37 @@ public class AttackResolver
             }
         }
 
-        // Ethereal override
-        if (defenderRules.Ethereal)
-        {
-            bool magical = !isMountAttack && attackerRules.MagicalAttacks;
-            int etherealWard = magical ? 7 : 2;
-            wardValue = Math.Min(wardValue, etherealWard);
-        }
-
-        // Parry restrictions
+        // Parry restrictions: attacker S >= defender S+3, or defender is mounted
         int defenderS = defender.PrimaryProfile.S ?? 3;
-        bool parryDisabled = effectiveStrength >= defenderS + 3  // attacker S >= defender S+3
-            || defender.TroopType.HasSplitProfile;               // mounted models can't parry
-        if (parryDisabled)
+        if (attackerStrength >= defenderS + 3 || defender.TroopType.HasSplitProfile)
             parryValue = 7;
 
-        // Flaming negates regeneration
-        bool flamingNegatesRegen = !isMountAttack && attackerRules.FlamingAttacks;
+        return parryValue;
+    }
 
-        // KB wounds: only Ward Save applies (no regen, no parry)
-        int kbUnsaved = 0;
-        for (int i = 0; i < killingBlows; i++)
-        {
-            if (wardValue <= 6 && rng.Next(1, 7) >= wardValue)
-                continue; // ward saved
-            kbUnsaved++;
-        }
-
-        // Non-eligible KB wounds: ward + parry apply, regen does not (KB always negates regen)
-        int nonEligKBWardValue = Math.Min(wardValue, parryValue);
-        int nonEligKBUnsaved = 0;
-        for (int i = 0; i < nonEligibleKBWounds; i++)
-        {
-            if (nonEligKBWardValue <= 6 && rng.Next(1, 7) >= nonEligKBWardValue)
-                continue;
-            nonEligKBUnsaved++;
-        }
-
-        // Normal wounds: best of ward/regen/parry
-        int effectiveWard;
-        if (flamingNegatesRegen)
-            effectiveWard = Math.Min(wardValue, parryValue);
-        else
-            effectiveWard = Math.Min(Math.Min(wardValue, regenValue), parryValue);
-
-        int normalUnsaved = 0;
-        for (int i = 0; i < unsavedNormal; i++)
-        {
-            if (effectiveWard <= 6 && rng.Next(1, 7) >= effectiveWard)
-                continue; // saved
-            normalUnsaved++;
-        }
-
-        // Multiple Wounds
-        int multipleWoundsValue = (!isMountAttack ? attackerRules.MultipleWounds : null) ?? 1;
-        string? multipleWoundsRoll = !isMountAttack ? attackerRules.MultipleWoundsRoll : null;
-        int defenderW = defender.PrimaryProfile.W ?? 1;
-
-        // Track wounds model-by-model: Multiple Wounds and KB don't carry over between models
-        int modelsRemaining = defender.ModelCount;
-        int currentModelHP = defenderW; // wounds remaining on the frontmost model
+    private static int AllocateWoundsToModels(
+        int kbKills, int nonEligKBHits, int normalHits,
+        int defenderW, int modelCount,
+        int mwValue, string? mwRoll, Random rng)
+    {
+        int modelsRemaining = modelCount;
+        int currentModelHP = defenderW;
         int finalWounds = 0;
 
-        // KB wounds: each kills one model outright (full W inflicted, remainder lost)
-        for (int i = 0; i < kbUnsaved; i++)
+        // KB: each kills current model outright
+        for (int i = 0; i < kbKills && modelsRemaining > 0; i++)
         {
-            if (modelsRemaining <= 0) break;
-            finalWounds += currentModelHP; // kill current model (inflict its remaining HP)
+            finalWounds += currentModelHP;
             modelsRemaining--;
-            currentModelHP = defenderW; // next model starts at full HP
+            currentModelHP = defenderW;
         }
 
-        // Non-eligible KB: 1 wound each, no Multiple Wounds, no carry over
-        for (int i = 0; i < nonEligKBUnsaved; i++)
+        // Non-eligible KB: 1 wound each, no Multiple Wounds
+        for (int i = 0; i < nonEligKBHits && modelsRemaining > 0; i++)
         {
-            if (modelsRemaining <= 0) break;
-            int actualDamage = Math.Min(1, currentModelHP);
-            finalWounds += actualDamage;
-            currentModelHP -= actualDamage;
+            int damage = Math.Min(1, currentModelHP);
+            finalWounds += damage;
+            currentModelHP -= damage;
             if (currentModelHP <= 0)
             {
                 modelsRemaining--;
@@ -378,17 +418,14 @@ public class AttackResolver
             }
         }
 
-        // Normal unsaved wounds (with Multiple Wounds if applicable)
-        bool hasMultipleWounds = multipleWoundsValue > 1 || multipleWoundsRoll != null;
-        for (int i = 0; i < normalUnsaved; i++)
+        // Normal: with Multiple Wounds if applicable
+        bool hasMultipleWounds = mwValue > 1 || mwRoll != null;
+        for (int i = 0; i < normalHits && modelsRemaining > 0; i++)
         {
-            if (modelsRemaining <= 0) break;
-
             int damagePerHit = hasMultipleWounds
-                ? RollMultipleWounds(multipleWoundsValue, multipleWoundsRoll, rng)
+                ? (mwRoll != null ? DiceRoller.Roll(mwRoll, rng) : mwValue)
                 : 1;
 
-            // MW capped at current model's remaining HP — excess is lost, not carried over
             int actualDamage = Math.Min(damagePerHit, currentModelHP);
             finalWounds += actualDamage;
             currentModelHP -= actualDamage;
@@ -400,81 +437,17 @@ public class AttackResolver
             }
         }
 
-        return new AttackResult
-        {
-            TotalHits = hits,
-            TotalWoundsInflicted = totalWoundsRolled,
-            KillingBlowWounds = kbUnsaved,
-            UnsavedWounds = finalWounds
-        };
-    }
-
-    /// <summary>
-    /// Resolve impact hits (charge only). Mighty Blow applies to impact hits in first round.
-    /// </summary>
-    public int ResolveImpactHits(
-        UnitConfiguration charger,
-        UnitConfiguration target,
-        CombatContext context,
-        Random rng)
-    {
-        int impactHits = GetImpactHitCount(charger, rng);
-        if (impactHits <= 0) return 0;
-
-        // Impact hits use mount's S for cavalry troop type, otherwise model's S
-        int strength = charger.MountProfile?.S ?? charger.PrimaryProfile.S ?? 3;
-
-        // Mighty Blow applies to impact hits in first round
-        if (context.CombatRound == 1 && charger.SpecialRules.MightyBlow.HasValue)
-            strength += charger.SpecialRules.MightyBlow.Value;
-
-        int defenderT = (target.MountProfile != null && target.TroopType.HasSplitProfile)
-            ? Math.Max(target.PrimaryProfile.T ?? 3, target.MountProfile.T ?? 3)
-            : target.PrimaryProfile.T ?? 3;
-
-        int toWoundNeeded = _coreRules.GetToWoundScore(strength, defenderT);
-        int strengthMod = _coreRules.GetArmourSaveModifier(strength);
-
-        int wounds = 0;
-        for (int i = 0; i < impactHits; i++)
-        {
-            if (rng.Next(1, 7) < toWoundNeeded) continue; // failed to wound
-
-            // Armour save (no AP from impact hits)
-            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod, GetArmourSaveLookup());
-            if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue; // saved
-
-            // Ward save (no parry on impact hits)
-            int wardValue = target.SpecialRules.WardSave ?? 7;
-            int regenValue = target.SpecialRules.Regeneration ?? 7;
-            bool flamingImpact = charger.SpecialRules.FlamingAttacks;
-            int effectiveWard = flamingImpact ? wardValue : Math.Min(wardValue, regenValue);
-
-            if (target.SpecialRules.Ethereal)
-            {
-                bool magicalImpact = charger.SpecialRules.MagicalAttacks;
-                int etherealImpactWard = magicalImpact ? 7 : 2;
-                effectiveWard = Math.Min(effectiveWard, etherealImpactWard);
-            }
-
-            if (effectiveWard <= 6 && rng.Next(1, 7) >= effectiveWard) continue; // ward saved
-
-            wounds++;
-        }
-
-        return wounds;
+        return finalWounds;
     }
 
     private static int GetImpactHitCount(UnitConfiguration unit, Random rng)
     {
-        // From special rules
         int fromRules = 0;
         if (unit.SpecialRules.ImpactHits.HasValue)
             fromRules = unit.SpecialRules.ImpactHits.Value * unit.ModelsInFrontRank;
         else if (unit.SpecialRules.ImpactHitsRoll != null)
-            fromRules = RollDice(unit.SpecialRules.ImpactHitsRoll, rng) * unit.ModelsInFrontRank;
+            fromRules = DiceRoller.Roll(unit.SpecialRules.ImpactHitsRoll, rng) * unit.ModelsInFrontRank;
 
-        // From troop type (Cavalry: 1 per model, Monstrous Cavalry: 1 per model)
         int fromType = unit.TroopType.BaseType switch
         {
             BaseTroopType.Cavalry => unit.ModelsInFrontRank,
@@ -482,7 +455,6 @@ public class AttackResolver
             _ => 0
         };
 
-        // Use highest single source (don't stack)
         return Math.Max(fromRules, fromType);
     }
 
@@ -492,39 +464,10 @@ public class AttackResolver
         if (isHeroic && targetType.BaseType != BaseTroopType.Swarms)
             return true;
 
-        // KB works against Infantry, Large Infantry, Cavalry, War Beasts
         return targetType.BaseType is
             BaseTroopType.Infantry or
             BaseTroopType.LargeInfantry or
             BaseTroopType.Cavalry or
             BaseTroopType.WarBeasts;
-    }
-
-    private static int RollMultipleWounds(int fixedValue, string? rollExpr, Random rng)
-    {
-        if (rollExpr != null)
-            return RollDice(rollExpr, rng);
-        return fixedValue;
-    }
-
-    private static int RollDice(string expr, Random rng)
-    {
-        // Handle "D6", "D3", "D3+1", "2D6", etc.
-        var upper = expr.ToUpperInvariant().Trim();
-
-        if (upper == "D6") return rng.Next(1, 7);
-        if (upper == "D3") return rng.Next(1, 4);
-
-        // D3+N or D6+N
-        if (upper.StartsWith("D3+") && int.TryParse(upper[3..], out var d3mod))
-            return rng.Next(1, 4) + d3mod;
-        if (upper.StartsWith("D6+") && int.TryParse(upper[3..], out var d6mod))
-            return rng.Next(1, 7) + d6mod;
-
-        // 2D6
-        if (upper == "2D6")
-            return rng.Next(1, 7) + rng.Next(1, 7);
-
-        return 1;
     }
 }
