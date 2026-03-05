@@ -38,7 +38,7 @@
             @if (Result.AttackerWinPct > 0)
             {
                 <div class="bg-success d-flex align-items-center justify-content-center text-white fw-bold small"
-                     style="width: @(Result.AttackerWinPct)%;">
+                     style="width: @(Result.AttackerWinPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
                     @if (Result.AttackerWinPct >= 10)
                     {
                         @($"{Result.AttackerWinPct:F0}%")
@@ -48,7 +48,7 @@
             @if (Result.DrawPct > 0)
             {
                 <div class="bg-secondary d-flex align-items-center justify-content-center text-white small"
-                     style="width: @(Result.DrawPct)%;">
+                     style="width: @(Result.DrawPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
                     @if (Result.DrawPct >= 10)
                     {
                         @($"{Result.DrawPct:F0}%")
@@ -58,7 +58,7 @@
             @if (Result.DefenderWinPct > 0)
             {
                 <div class="bg-danger d-flex align-items-center justify-content-center text-white fw-bold small"
-                     style="width: @(Result.DefenderWinPct)%;">
+                     style="width: @(Result.DefenderWinPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
                     @if (Result.DefenderWinPct >= 10)
                     {
                         @($"{Result.DefenderWinPct:F0}%")
