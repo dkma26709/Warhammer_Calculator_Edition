@@ -65,7 +65,10 @@
 
         // Effective initiative
         int effectiveI = unit.PrimaryProfile.I ?? 1;
-        effectiveI += weaponRules.InitiativeMod;
+        if (weaponRules.InitiativeModCondition == WeaponCondition.Always
+            || (weaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && isCharging)
+            || (weaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && isBeingCharged))
+            effectiveI += weaponRules.InitiativeMod;
         if (isBeingCharged)
             effectiveI += weaponRules.ChargedToFrontInitiativeBonus;
         effectiveI = Math.Max(1, effectiveI);
@@ -74,7 +77,12 @@
         int weaponMB = 0;
         if (weaponRules.MightyBlow != null)
         {
-            bool applyWeaponMB = !weaponRules.MightyBlowOnlyWhenCharged || isBeingCharged;
+            bool applyWeaponMB = weaponRules.MightyBlowCondition switch
+            {
+                WeaponCondition.WhenCharging => isCharging,
+                WeaponCondition.WhenBeingCharged => isBeingCharged,
+                _ => true
+            };
             if (applyWeaponMB)
                 weaponMB = weaponRules.MightyBlow.Value;
         }
@@ -109,7 +117,12 @@
         int opponentWeaponMB = 0;
         if (opponentWeaponRules.MightyBlow != null)
         {
-            bool applyOppMB = !opponentWeaponRules.MightyBlowOnlyWhenCharged || opponentIsBeingCharged;
+            bool applyOppMB = opponentWeaponRules.MightyBlowCondition switch
+            {
+                WeaponCondition.WhenCharging => opponentIsCharging,
+                WeaponCondition.WhenBeingCharged => opponentIsBeingCharged,
+                _ => true
+            };
             if (applyOppMB)
                 opponentWeaponMB = opponentWeaponRules.MightyBlow.Value;
         }

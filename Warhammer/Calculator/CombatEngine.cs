@@ -31,8 +31,8 @@ public class CombatEngine
         long totalAttackerCR = 0;
         long totalDefenderCR = 0;
 
-        double sumAttWounds = 0, sumAttRank = 0, sumAttStd = 0, sumAttCharge = 0, sumAttFear = 0;
-        double sumDefWounds = 0, sumDefRank = 0, sumDefStd = 0, sumDefCharge = 0, sumDefFear = 0;
+        double sumAttWounds = 0, sumAttRank = 0, sumAttStd = 0, sumAttCharge = 0, sumAttFear = 0, sumAttMusician = 0;
+        double sumDefWounds = 0, sumDefRank = 0, sumDefStd = 0, sumDefCharge = 0, sumDefFear = 0, sumDefMusician = 0;
 
         var distribution = new Dictionary<int, int>();
         var attackerWoundDist = new Dictionary<int, int>();
@@ -52,12 +52,14 @@ public class CombatEngine
             sumAttStd += result.AttackerBreakdown.StandardBearer;
             sumAttCharge += result.AttackerBreakdown.ChargeBonus;
             sumAttFear += result.AttackerBreakdown.FearBonus;
+            sumAttMusician += result.AttackerBreakdown.MusicianBonus;
 
             sumDefWounds += result.DefenderBreakdown.Wounds;
             sumDefRank += result.DefenderBreakdown.RankBonus;
             sumDefStd += result.DefenderBreakdown.StandardBearer;
             sumDefCharge += result.DefenderBreakdown.ChargeBonus;
             sumDefFear += result.DefenderBreakdown.FearBonus;
+            sumDefMusician += result.DefenderBreakdown.MusicianBonus;
 
             int diff = result.AttackerCombatRes - result.DefenderCombatRes;
             if (diff > 0) attackerWins++;
@@ -87,7 +89,8 @@ public class CombatEngine
                 RankBonus = Math.Round(sumAttRank / n, 2),
                 StandardBearer = Math.Round(sumAttStd / n, 2),
                 ChargeBonus = Math.Round(sumAttCharge / n, 2),
-                FearBonus = Math.Round(sumAttFear / n, 2)
+                FearBonus = Math.Round(sumAttFear / n, 2),
+                MusicianBonus = Math.Round(sumAttMusician / n, 2)
             },
             AvgDefenderBreakdown = new CombatResBreakdown
             {
@@ -95,7 +98,8 @@ public class CombatEngine
                 RankBonus = Math.Round(sumDefRank / n, 2),
                 StandardBearer = Math.Round(sumDefStd / n, 2),
                 ChargeBonus = Math.Round(sumDefCharge / n, 2),
-                FearBonus = Math.Round(sumDefFear / n, 2)
+                FearBonus = Math.Round(sumDefFear / n, 2),
+                MusicianBonus = Math.Round(sumDefMusician / n, 2)
             },
             Distribution = distribution
                 .OrderBy(kv => kv.Key)

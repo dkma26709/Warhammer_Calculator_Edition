@@ -97,12 +97,22 @@ public class UnitConfiguration
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
         }
 
+        // Chaos Armour: +1 save when wearing light, medium, or heavy armour
+        if (SpecialRules.ChaosArmour &&
+            EquipmentArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
+        {
+            totalModifier += 1;
+        }
+
         if (totalModifier == 0) return 7; // no save
 
         int baseSave = 7 - totalModifier;
 
-        // Apply strength modifier and AP
-        int modifiedSave = baseSave - strengthModifier - attackerAP;
+        // Both penalties worsen the save (increase the number needed to roll)
+        // strengthModifier is negative (e.g., -1 for S4), so negate it to get a positive penalty
+        // attackerAP is already positive
+        int penalty = (-strengthModifier) + attackerAP;
+        int modifiedSave = baseSave + penalty;
 
         return Math.Max(modifiedSave, 2); // 1+ is impossible, minimum useful save is 2+
     }
@@ -134,9 +144,9 @@ public class UnitConfiguration
     /// Weapon rules can provide extra attacks and Fight in Extra Ranks.
     /// </summary>
     public int TotalAttacks(bool isCharging, int combatRound,
-        int weaponExtraAttacks = 0, int weaponFiER = 0)
+        int weaponExtraAttacks = 0, int weaponFiER = 0, int? attacksOverride = null)
     {
-        int attacks = PrimaryProfile.A ?? 1;
+        int attacks = attacksOverride ?? PrimaryProfile.A ?? 1;
 
         // Frenzy: +1 Attack
         if (SpecialRules.Frenzy)

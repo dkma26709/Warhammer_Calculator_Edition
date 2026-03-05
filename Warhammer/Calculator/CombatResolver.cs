@@ -44,7 +44,8 @@ public class CombatResolver
         {
             var weapon = group.Weapon ?? _coreRules.GetHandWeapon();
             var result = _attackResolver.ResolveAttacks(
-                group.Unit, group.Opponent, weapon, context, group.IsMountAttack, rng);
+                group.Unit, group.Opponent, weapon, context, group.IsMountAttack,
+                group.IsAttackerSide, rng);
 
             if (group.IsAttackerSide)
                 attackerWoundsDealt += result.UnsavedWounds;
@@ -71,6 +72,21 @@ public class CombatResolver
         int defenderCR = (int)(defenderBreakdown.Wounds + defenderBreakdown.RankBonus +
             defenderBreakdown.StandardBearer + defenderBreakdown.ChargeBonus + defenderBreakdown.FearBonus);
 
+        // Musician: if combat result is a draw, side with musician wins by 1
+        if (attackerCR == defenderCR)
+        {
+            if (attacker.HasMusician && !defender.HasMusician)
+            {
+                attackerBreakdown = attackerBreakdown with { MusicianBonus = 1 };
+                attackerCR += 1;
+            }
+            else if (defender.HasMusician && !attacker.HasMusician)
+            {
+                defenderBreakdown = defenderBreakdown with { MusicianBonus = 1 };
+                defenderCR += 1;
+            }
+        }
+
         return new RoundResult
         {
             AttackerWoundsDealt = attackerWoundsDealt,
@@ -92,9 +108,17 @@ public class CombatResolver
             ?? _coreRules.GetHandWeapon();
         var attackerWeaponRules = ParsedWeaponRules.Parse(attackerWeapon.SpecialRules, attackerWeapon.Notes);
         int attackerI = attacker.PrimaryProfile.I ?? 1;
-        attackerI += attackerWeaponRules.InitiativeMod;
-        bool attackerIsCharged = context.Charge == ChargeState.DefenderCharged;
-        if (attackerIsCharged)
+        bool attackerIsCharging = context.Charge == ChargeState.AttackerCharged;
+        bool attackerIsBeingCharged = context.Charge == ChargeState.DefenderCharged;
+
+        // Apply Initiative mod based on weapon condition
+        if (attackerWeaponRules.InitiativeModCondition == WeaponCondition.Always
+            || (attackerWeaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && attackerIsCharging)
+            || (attackerWeaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && attackerIsBeingCharged))
+            attackerI += attackerWeaponRules.InitiativeMod;
+
+        // Spear/Pike: additional +1 I when charged to front
+        if (attackerIsBeingCharged)
             attackerI += attackerWeaponRules.ChargedToFrontInitiativeBonus;
 
         groups.Add(new AttackGroup
@@ -131,9 +155,17 @@ public class CombatResolver
             ?? _coreRules.GetHandWeapon();
         var defenderWeaponRules = ParsedWeaponRules.Parse(defenderWeapon.SpecialRules, defenderWeapon.Notes);
         int defenderI = defender.PrimaryProfile.I ?? 1;
-        defenderI += defenderWeaponRules.InitiativeMod;
-        bool defenderIsCharged = context.Charge == ChargeState.AttackerCharged;
-        if (defenderIsCharged)
+        bool defenderIsCharging = context.Charge == ChargeState.DefenderCharged;
+        bool defenderIsBeingCharged = context.Charge == ChargeState.AttackerCharged;
+
+        // Apply Initiative mod based on weapon condition
+        if (defenderWeaponRules.InitiativeModCondition == WeaponCondition.Always
+            || (defenderWeaponRules.InitiativeModCondition == WeaponCondition.WhenCharging && defenderIsCharging)
+            || (defenderWeaponRules.InitiativeModCondition == WeaponCondition.WhenBeingCharged && defenderIsBeingCharged))
+            defenderI += defenderWeaponRules.InitiativeMod;
+
+        // Spear/Pike: additional +1 I when charged to front
+        if (defenderIsBeingCharged)
             defenderI += defenderWeaponRules.ChargedToFrontInitiativeBonus;
 
         groups.Add(new AttackGroup
@@ -215,7 +247,18 @@ public class CombatResolver
             int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod, _attackResolver.GetArmourSaveLookup());
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
 
-            int ward = Math.Min(target.SpecialRules.WardSave ?? 7, target.SpecialRules.Regeneration ?? 7);
+            int wardVal = target.SpecialRules.WardSave ?? 7;
+            int regenVal = target.SpecialRules.Regeneration ?? 7;
+            bool flamingStomp = stomper.SpecialRules.FlamingAttacks;
+            int ward = flamingStomp ? wardVal : Math.Min(wardVal, regenVal);
+
+            // Ethereal targets get ward save vs non-magical stomps
+            if (target.SpecialRules.Ethereal)
+            {
+                int etherealWard = stomper.SpecialRules.MagicalAttacks ? 7 : 2;
+                ward = Math.Min(ward, etherealWard);
+            }
+
             if (ward <= 6 && rng.Next(1, 7) >= ward) continue;
 
             wounds++;

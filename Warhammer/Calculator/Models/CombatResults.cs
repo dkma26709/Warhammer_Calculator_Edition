@@ -24,6 +24,7 @@ public record CombatResBreakdown
     public double StandardBearer { get; init; }
     public double ChargeBonus { get; init; }
     public double FearBonus { get; init; }
+    public double MusicianBonus { get; init; }
 }
 
 public record DistributionEntry

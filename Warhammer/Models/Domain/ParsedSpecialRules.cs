@@ -29,6 +29,7 @@ public record ParsedSpecialRules
     public int? NaturalArmour { get; init; }
     public int? Parry { get; init; }
     public bool PoisonedAttacks { get; init; }
+    public bool ChaosArmour { get; init; }
     public int? Regeneration { get; init; }
     public int? WardSave { get; init; }
     public int? Stomp { get; init; }
@@ -69,6 +70,7 @@ public record ParsedSpecialRules
                 "always strikes first" => result with { AlwaysStrikesFirst = true },
                 "always strikes last" => result with { AlwaysStrikesLast = true },
                 "armour piercing" => result with { ArmourPiercing = ParseIntParam(param) ?? 1 },
+                "chaos armour" => result with { ChaosArmour = true },
                 "devastating charge" => result with { DevastatingCharge = true },
                 "ethereal" => result with { Ethereal = true },
                 "fight in extra ranks" => result with { FightInExtraRanks = ParseIntParam(param) ?? 1 },

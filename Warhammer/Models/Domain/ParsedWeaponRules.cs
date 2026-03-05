@@ -2,6 +2,8 @@ using System.Text.RegularExpressions;
 
 namespace Warhammer.Models.Domain;
 
+public enum WeaponCondition { Always, WhenCharging, WhenBeingCharged }
+
 /// <summary>
 /// Parsed weapon special rules from the weapon's SpecialRules string field.
 /// </summary>
@@ -15,14 +17,26 @@ public record ParsedWeaponRules
     public bool RequiresTwoHands { get; init; }
 
     /// <summary>
-    /// Additional Initiative bonus when charged to the front (Spear: +1 extra on top of base +1).
+    /// Additional Initiative bonus when charged to the front (Spear/Pike: +1 extra).
     /// </summary>
     public int ChargedToFrontInitiativeBonus { get; init; }
 
     /// <summary>
-    /// Mighty Blow only applies when charged to front (Spear's conditional MB).
+    /// When the Initiative modifier applies.
+    /// Lances: WhenCharging. Spear/Pike base mod: Always. Default: Always.
     /// </summary>
-    public bool MightyBlowOnlyWhenCharged { get; init; }
+    public WeaponCondition InitiativeModCondition { get; init; }
+
+    /// <summary>
+    /// When the weapon's Mighty Blow applies.
+    /// Spear/Pike: WhenBeingCharged. Lance: WhenCharging. Flail/Great Weapon: Always.
+    /// </summary>
+    public WeaponCondition MightyBlowCondition { get; init; }
+
+    /// <summary>
+    /// Spear/Pike: Mighty Blow does not apply vs Infantry, Large Infantry, Swarms, Shrines.
+    /// </summary>
+    public bool MightyBlowExcludesLightTargets { get; init; }
 
     public static ParsedWeaponRules Parse(string? specialRules, string? notes = null)
     {
@@ -35,20 +49,22 @@ public record ParsedWeaponRules
         int? fier = null;
         int? parry = null;
         bool requiresTwoHands = false;
-        int chargedBonus = 0;
-        bool mbOnlyWhenCharged = false;
+        bool initHasAsterisk = false;
+        bool mbHasAsterisk = false;
 
         var parts = specialRules.Split(',').Select(p => p.Trim()).ToList();
 
         foreach (var part in parts)
         {
             var cleaned = part.TrimEnd('*');
+            bool asterisk = part.TrimEnd().EndsWith('*');
 
             // Initiative modifier: "+1 Initiative" or "-2 Initiative"
             var initMatch = Regex.Match(cleaned, @"^([+-]\d+)\s+Initiative", RegexOptions.IgnoreCase);
             if (initMatch.Success)
             {
                 initMod = int.Parse(initMatch.Groups[1].Value);
+                initHasAsterisk = asterisk;
                 continue;
             }
 
@@ -65,9 +81,7 @@ public record ParsedWeaponRules
             if (mbMatch.Success)
             {
                 mightyBlow = int.Parse(mbMatch.Groups[1].Value);
-                // Check if this part had an asterisk (conditional)
-                if (part.TrimEnd().EndsWith('*'))
-                    mbOnlyWhenCharged = true;
+                mbHasAsterisk = asterisk;
                 continue;
             }
 
@@ -93,11 +107,28 @@ public record ParsedWeaponRules
             }
         }
 
-        // Check notes for charged-to-front Initiative bonus (Spear)
-        if (notes != null && notes.Contains("charged to its front", StringComparison.OrdinalIgnoreCase)
-            && notes.Contains("additional +1", StringComparison.OrdinalIgnoreCase))
+        // Determine condition type from notes
+        // Lances: "the model charges" → WhenCharging
+        // Spear/Pike: "charged to its front" → WhenBeingCharged
+        var condition = WeaponCondition.Always;
+        int chargedBonus = 0;
+        bool mbExcludesLight = false;
+
+        if (notes != null)
         {
-            chargedBonus = 1;
+            if (notes.Contains("the model charges", StringComparison.OrdinalIgnoreCase))
+                condition = WeaponCondition.WhenCharging;
+            else if (notes.Contains("charged to its front", StringComparison.OrdinalIgnoreCase))
+                condition = WeaponCondition.WhenBeingCharged;
+
+            // Spear/Pike: additional +1 Initiative when charged to front
+            if (notes.Contains("additional +1", StringComparison.OrdinalIgnoreCase)
+                && notes.Contains("charged to its front", StringComparison.OrdinalIgnoreCase))
+                chargedBonus = 1;
+
+            // Spear/Pike: MB doesn't apply vs Infantry, Large Infantry, Swarms, Shrines
+            if (notes.Contains("Mighty Blow does not apply towards", StringComparison.OrdinalIgnoreCase))
+                mbExcludesLight = true;
         }
 
         return new ParsedWeaponRules
@@ -109,7 +140,9 @@ public record ParsedWeaponRules
             Parry = parry,
             RequiresTwoHands = requiresTwoHands,
             ChargedToFrontInitiativeBonus = chargedBonus,
-            MightyBlowOnlyWhenCharged = mbOnlyWhenCharged
+            InitiativeModCondition = initHasAsterisk ? condition : WeaponCondition.Always,
+            MightyBlowCondition = mbHasAsterisk ? condition : WeaponCondition.Always,
+            MightyBlowExcludesLightTargets = mbExcludesLight
         };
     }
 }

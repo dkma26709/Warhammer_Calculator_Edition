@@ -135,6 +135,10 @@
                         {
                             <tr><td>Fear</td><td class="text-end">@($"{Result.AvgAttackerBreakdown.FearBonus:F1}")</td></tr>
                         }
+                        @if (Result.AvgAttackerBreakdown.MusicianBonus > 0)
+                        {
+                            <tr><td>Musician</td><td class="text-end">@($"{Result.AvgAttackerBreakdown.MusicianBonus:F1}")</td></tr>
+                        }
                         <tr class="fw-bold"><td>Total CR</td><td class="text-end">@($"{Result.AvgAttackerCombatRes:F2}")</td></tr>
                     </tbody>
                 </table>
@@ -150,6 +154,10 @@
                         @if (Result.AvgDefenderBreakdown.FearBonus > 0)
                         {
                             <tr><td>Fear</td><td class="text-end">@($"{Result.AvgDefenderBreakdown.FearBonus:F1}")</td></tr>
+                        }
+                        @if (Result.AvgDefenderBreakdown.MusicianBonus > 0)
+                        {
+                            <tr><td>Musician</td><td class="text-end">@($"{Result.AvgDefenderBreakdown.MusicianBonus:F1}")</td></tr>
                         }
                         <tr class="fw-bold"><td>Total CR</td><td class="text-end">@($"{Result.AvgDefenderCombatRes:F2}")</td></tr>
                     </tbody>

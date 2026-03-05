@@ -76,7 +76,7 @@ public class AttackResolverTests
         var weapon = coreRules.GetHandWeapon();
         var context = new CombatContext { CombatRound = 1 };
 
-        var result = resolver.ResolveAttacks(attacker, defender, weapon, context, false, rng);
+        var result = resolver.ResolveAttacks(attacker, defender, weapon, context, false, true, rng);
 
         // With 10 attacks, WS4 vs WS4 (need 4+), S3 vs T3 (need 4+), we should get some hits/wounds
         Assert.True(result.TotalHits > 0, "Should have at least 1 hit");
@@ -101,7 +101,7 @@ public class AttackResolverTests
 
             var weapon = coreRules.GetHandWeapon();
             var context = new CombatContext { CombatRound = 1 };
-            var result = resolver.ResolveAttacks(attacker, defender, weapon, context, false, rng);
+            var result = resolver.ResolveAttacks(attacker, defender, weapon, context, false, true, rng);
             kbWounds += result.KillingBlowWounds;
         }
 
@@ -126,7 +126,7 @@ public class AttackResolverTests
 
             var weapon = coreRules.GetHandWeapon();
             var context = new CombatContext { CombatRound = 1 };
-            var result = resolver.ResolveAttacks(attacker, defender, weapon, context, false, rng);
+            var result = resolver.ResolveAttacks(attacker, defender, weapon, context, false, true, rng);
             kbWounds += result.KillingBlowWounds;
         }
 
@@ -158,8 +158,8 @@ public class AttackResolverTests
             var weapon = coreRules.GetHandWeapon();
             var context = new CombatContext { CombatRound = 1 };
 
-            woundsWithout += resolver.ResolveAttacks(attacker1, defenderNoWard, weapon, context, false, rng1).UnsavedWounds;
-            woundsWithWard += resolver.ResolveAttacks(attacker2, defenderWithWard, weapon, context, false, rng2).UnsavedWounds;
+            woundsWithout += resolver.ResolveAttacks(attacker1, defenderNoWard, weapon, context, false, true, rng1).UnsavedWounds;
+            woundsWithWard += resolver.ResolveAttacks(attacker2, defenderWithWard, weapon, context, false, true, rng2).UnsavedWounds;
         }
 
         // Ward save should reduce total wounds
@@ -192,8 +192,8 @@ public class AttackResolverTests
             var weapon = coreRules.GetHandWeapon();
             var context = new CombatContext { CombatRound = 1 };
 
-            woundsWithFlaming += resolver.ResolveAttacks(attackerFlaming, defenderRegen, weapon, context, false, rng1).UnsavedWounds;
-            woundsWithoutFlaming += resolver.ResolveAttacks(attackerNormal, defenderRegen2, weapon, context, false, rng2).UnsavedWounds;
+            woundsWithFlaming += resolver.ResolveAttacks(attackerFlaming, defenderRegen, weapon, context, false, true, rng1).UnsavedWounds;
+            woundsWithoutFlaming += resolver.ResolveAttacks(attackerNormal, defenderRegen2, weapon, context, false, true, rng2).UnsavedWounds;
         }
 
         // Flaming negates regen, so flaming should cause more wounds
@@ -225,8 +225,8 @@ public class AttackResolverTests
             var weapon = coreRules.GetHandWeapon();
             var context = new CombatContext { CombatRound = 1 };
 
-            hitsWithHatred += resolver.ResolveAttacks(attackerHatred, defender, weapon, context, false, rng1).TotalHits;
-            hitsWithout += resolver.ResolveAttacks(attackerNormal, defender2, weapon, context, false, rng2).TotalHits;
+            hitsWithHatred += resolver.ResolveAttacks(attackerHatred, defender, weapon, context, false, true, rng1).TotalHits;
+            hitsWithout += resolver.ResolveAttacks(attackerNormal, defender2, weapon, context, false, true, rng2).TotalHits;
         }
 
         Assert.True(hitsWithHatred > hitsWithout,
@@ -258,8 +258,8 @@ public class AttackResolverTests
             var weapon = coreRules.GetHandWeapon();
             var context = new CombatContext { CombatRound = 1 };
 
-            woundsWithArmour += resolver.ResolveAttacks(attacker1, defenderArmoured, weapon, context, false, rng1).UnsavedWounds;
-            woundsWithout += resolver.ResolveAttacks(attacker2, defenderNaked, weapon, context, false, rng2).UnsavedWounds;
+            woundsWithArmour += resolver.ResolveAttacks(attacker1, defenderArmoured, weapon, context, false, true, rng1).UnsavedWounds;
+            woundsWithout += resolver.ResolveAttacks(attacker2, defenderNaked, weapon, context, false, true, rng2).UnsavedWounds;
         }
 
         Assert.True(woundsWithArmour < woundsWithout,
