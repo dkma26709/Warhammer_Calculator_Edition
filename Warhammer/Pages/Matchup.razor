@@ -29,6 +29,8 @@
         <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
             <CombatControls ChargeState="@_chargeState"
                             ChargeStateChanged="OnChargeStateChanged"
+                            Iterations="@_iterations"
+                            IterationsChanged="OnIterationsChanged"
                             CanSimulate="@(_attackerConfig != null && _defenderConfig != null)"
                             IsSimulating="@_isSimulating"
                             OnSimulate="RunSimulation" />
@@ -91,6 +93,7 @@
 
     // --- Combat ---
     private ChargeState _chargeState = ChargeState.Neither;
+    private int _iterations = 10_000;
     private CombatSimulationResult? _result;
     private bool _isSimulating;
 
@@ -160,6 +163,12 @@
         _result = null;
     }
 
+    private void OnIterationsChanged(int iterations)
+    {
+        _iterations = iterations;
+        _result = null;
+    }
+
     private async Task RunSimulation()
     {
         if (_attackerConfig == null || _defenderConfig == null) return;
@@ -175,7 +184,7 @@
         };
 
         _result = await Task.Run(() =>
-            CombatEngine.Simulate(_attackerConfig, _defenderConfig, context));
+            CombatEngine.Simulate(_attackerConfig, _defenderConfig, context, _iterations));
 
         _isSimulating = false;
         StateHasChanged();

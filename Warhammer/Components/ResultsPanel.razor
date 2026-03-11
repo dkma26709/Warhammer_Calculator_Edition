@@ -3,7 +3,7 @@
 
 <div class="card bg-dark text-light border-secondary">
     <div class="card-header">
-        <h5 class="card-title mb-0">Results <span class="text-body-secondary small fw-normal">(@Result.Iterations.ToString("N0") iterations)</span></h5>
+        <h5 class="card-title mb-0">Results <span class="text-body-secondary small fw-normal">(@Result.Iterations.ToString("N0") iterations in @FormatElapsed(Result.ElapsedMs))</span></h5>
     </div>
     <div class="card-body">
 
@@ -289,4 +289,7 @@
 
     private static string FormatCRLabel(int diff) =>
         diff > 0 ? $"+{diff}" : diff.ToString();
+
+    private static string FormatElapsed(long ms) =>
+        ms < 1000 ? $"{ms}ms" : $"{ms / 1000.0:F1}s";
 }
