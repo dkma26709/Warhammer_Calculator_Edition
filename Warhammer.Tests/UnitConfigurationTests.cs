@@ -15,7 +15,8 @@ public class UnitConfigurationTests
         string? specialRules = null,
         string? unitSize = "10+",
         string? baseSize = "25x25",
-        ProfileEntry? mountProfile = null)
+        ProfileEntry? mountProfile = null,
+        List<UnitOption>? options = null)
     {
         var profiles = new List<ProfileEntry>
         {
@@ -33,7 +34,8 @@ public class UnitConfigurationTests
             Equipment = equipment,
             SpecialRules = specialRules,
             UnitSize = unitSize,
-            BaseSize = baseSize
+            BaseSize = baseSize,
+            Options = options
         };
     }
 
@@ -313,5 +315,298 @@ public class UnitConfigurationTests
         };
         // heavy armour +3, shield +1, natural armour 7-4=3 → total 7 → save = 7-7 = 0, clamped to 2
         Assert.Equal(2, config.EffectiveArmourSave(3, 0, 0, lookup));
+    }
+
+    // --- Equipment Upgrade Tests ---
+
+    private static UnitOption MakeEquipmentOption(
+        string action, List<OptionChoice> choices, string? replaces = null) =>
+        new()
+        {
+            Type = "equipment",
+            Action = action,
+            Replaces = replaces,
+            Choices = choices,
+        };
+
+    private static UnitOption MakeCommandOption(string role, double points) =>
+        new()
+        {
+            Type = "command",
+            Role = role,
+            Points = points,
+        };
+
+    [Fact]
+    public void ShieldUpgrade_AddsToEffectiveArmour()
+    {
+        var unit = MakeUnit(
+            equipment: "Hand weapon, light armour",
+            options:
+            [
+                MakeEquipmentOption("add",
+                [
+                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
+                ])
+            ]);
+
+        var config = new UnitConfiguration(unit);
+        Assert.DoesNotContain("shields", config.EquipmentArmour);
+
+        config.SelectedUpgrades[0] = 0;
+        Assert.Contains("shields", config.EquipmentArmour);
+        Assert.Contains("lightArmour", config.EquipmentArmour);
+    }
+
+    [Fact]
+    public void ShieldUpgrade_ImprovesArmourSave()
+    {
+        var unit = MakeUnit(
+            equipment: "Hand weapon, light armour",
+            options:
+            [
+                MakeEquipmentOption("add",
+                [
+                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
+                ])
+            ]);
+
+        Func<string, string?> lookup = key => key switch
+        {
+            "lightArmour" => "+1/6+",
+            "shields" => "+1/6+",
+            _ => null
+        };
+
+        var config = new UnitConfiguration(unit);
+
+        // Without shield: light armour +1 → save 6+
+        Assert.Equal(6, config.EffectiveArmourSave(3, 0, 0, lookup));
+
+        // With shield: light armour +1 + shield +1 → save 5+
+        config.SelectedUpgrades[0] = 0;
+        Assert.Equal(5, config.EffectiveArmourSave(3, 0, 0, lookup));
+    }
+
+    [Fact]
+    public void EquipmentUpgradeCost_PerModel()
+    {
+        var unit = MakeUnit(
+            options:
+            [
+                MakeEquipmentOption("add",
+                [
+                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
+                ])
+            ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 20 };
+        Assert.Equal(0, config.EquipmentUpgradeCost);
+
+        config.SelectedUpgrades[0] = 0;
+        Assert.Equal(20, config.EquipmentUpgradeCost);
+    }
+
+    [Fact]
+    public void EquipmentUpgradeCost_FlatCost()
+    {
+        var unit = MakeUnit(
+            options:
+            [
+                MakeEquipmentOption("add",
+                [
+                    new OptionChoice { Name = ["heavy armour"], Points = 9, PerModel = false }
+                ])
+            ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 20 };
+        config.SelectedUpgrades[0] = 0;
+        Assert.Equal(9, config.EquipmentUpgradeCost);
+    }
+
+    [Fact]
+    public void EquipmentUpgradeCost_IncludedInTotalPoints()
+    {
+        var unit = MakeUnit(
+            points: 8,
+            options:
+            [
+                MakeEquipmentOption("add",
+                [
+                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
+                ])
+            ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 10 };
+        Assert.Equal(80, config.TotalPointsCost); // 10 * 8 = 80
+
+        config.SelectedUpgrades[0] = 0;
+        Assert.Equal(90, config.TotalPointsCost); // 80 + 10 * 1 = 90
+    }
+
+    [Fact]
+    public void ChooseArmourUpgrade_OnlyOneSelectable()
+    {
+        var unit = MakeUnit(
+            equipment: "Hand weapon, medium armour",
+            options:
+            [
+                MakeEquipmentOption("choose",
+                [
+                    new OptionChoice { Name = ["heavy armour"], Points = 9, PerModel = false },
+                    new OptionChoice { Name = ["shield"], Points = 3, PerModel = false }
+                ])
+            ]);
+
+        var config = new UnitConfiguration(unit);
+
+        // Select heavy armour
+        config.SelectedUpgrades[0] = 0;
+        Assert.Contains("heavyArmour", config.EquipmentArmour);
+        Assert.DoesNotContain("shields", config.EquipmentArmour);
+
+        // Switch to shield
+        config.SelectedUpgrades[0] = 1;
+        Assert.DoesNotContain("heavyArmour", config.EquipmentArmour);
+        Assert.Contains("shields", config.EquipmentArmour);
+    }
+
+    [Fact]
+    public void ReplaceAction_RemovesBaseEquipment()
+    {
+        var unit = MakeUnit(
+            equipment: "Hand weapon, spear",
+            options:
+            [
+                MakeEquipmentOption("replace",
+                [
+                    new OptionChoice { Name = ["pike"], Points = 1.5, PerModel = true }
+                ], replaces: "spear")
+            ]);
+
+        var config = new UnitConfiguration(unit);
+        Assert.Contains("spear", config.EquipmentWeapons);
+        Assert.DoesNotContain("pike", config.EquipmentWeapons);
+
+        config.SelectedUpgrades[0] = 0;
+        Assert.DoesNotContain("spear", config.EquipmentWeapons);
+        Assert.Contains("pike", config.EquipmentWeapons);
+    }
+
+    [Fact]
+    public void ReplaceAction_PointsCostCorrect()
+    {
+        var unit = MakeUnit(
+            equipment: "Hand weapon, spear",
+            options:
+            [
+                MakeEquipmentOption("replace",
+                [
+                    new OptionChoice { Name = ["pike"], Points = 1.5, PerModel = true }
+                ], replaces: "spear")
+            ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 10 };
+        config.SelectedUpgrades[0] = 0;
+        Assert.Equal(15, config.EquipmentUpgradeCost); // 1.5 * 10
+    }
+
+    [Fact]
+    public void CommandGroup_DetectedFromTypedOptions()
+    {
+        var unit = MakeUnit(
+            options:
+            [
+                MakeCommandOption("Leader", 5),
+                MakeCommandOption("Musician", 5),
+                MakeCommandOption("Standard Bearer", 10),
+            ]);
+
+        var config = new UnitConfiguration(unit);
+        Assert.True(config.CanHaveChampion);
+        Assert.True(config.CanHaveMusician);
+        Assert.True(config.CanHaveStandardBearer);
+
+        var (champ, mus, std) = config.CommandGroupCosts;
+        Assert.Equal(5, champ);
+        Assert.Equal(5, mus);
+        Assert.Equal(10, std);
+    }
+
+    [Fact]
+    public void CommandGroup_CostIncludedInTotal()
+    {
+        var unit = MakeUnit(
+            points: 8,
+            options:
+            [
+                MakeCommandOption("Leader", 5),
+                MakeCommandOption("Musician", 5),
+            ]);
+
+        var config = new UnitConfiguration(unit)
+        {
+            ModelCount = 10,
+            HasChampion = true,
+            HasMusician = true,
+        };
+
+        // 10 * 8 = 80 base + 5 champion + 5 musician = 90
+        Assert.Equal(90, config.TotalPointsCost);
+    }
+
+    [Fact]
+    public void MultipleUpgrades_CostsStack()
+    {
+        var unit = MakeUnit(
+            points: 6,
+            equipment: "Hand weapon, light armour",
+            options:
+            [
+                MakeEquipmentOption("add",
+                [
+                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
+                ]),
+                MakeEquipmentOption("choose",
+                [
+                    new OptionChoice { Name = ["spear"], Points = 1, PerModel = true },
+                    new OptionChoice { Name = ["great weapon"], Points = 2, PerModel = true }
+                ]),
+                MakeCommandOption("Musician", 5),
+            ]);
+
+        var config = new UnitConfiguration(unit)
+        {
+            ModelCount = 20,
+            HasMusician = true,
+        };
+
+        // Select shield + great weapon
+        config.SelectedUpgrades[0] = 0; // shield: +1/model
+        config.SelectedUpgrades[1] = 1; // great weapon: +2/model
+
+        // Base: 20 * 6 = 120
+        // Shield: 20 * 1 = 20
+        // Great weapon: 20 * 2 = 40
+        // Musician: 5
+        // Total: 185
+        Assert.Equal(185, config.TotalPointsCost);
+    }
+
+    [Fact]
+    public void NullPointsChoice_TreatedAsZero()
+    {
+        var unit = MakeUnit(
+            options:
+            [
+                MakeEquipmentOption("replace",
+                [
+                    new OptionChoice { Name = ["bow"], Points = null, PerModel = false }
+                ], replaces: "hand weapon")
+            ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 10 };
+        config.SelectedUpgrades[0] = 0;
+        Assert.Equal(0, config.EquipmentUpgradeCost);
     }
 }

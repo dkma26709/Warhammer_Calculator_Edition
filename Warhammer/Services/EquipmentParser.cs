@@ -55,6 +55,42 @@ public static class EquipmentParser
         };
 
     /// <summary>
+    /// Try to normalize an option choice name to a core-rules key.
+    /// Returns false if the name is not recognized.
+    /// </summary>
+    public static bool TryNormalize(string name, out string key, out bool isWeapon)
+    {
+        if (NormMap.TryGetValue(name.Trim().TrimEnd('.'), out var mapped))
+        {
+            key = mapped.Key;
+            isWeapon = mapped.IsWeapon;
+            return true;
+        }
+
+        key = "";
+        isWeapon = false;
+        return false;
+    }
+
+    /// <summary>
+    /// Check if a normalized key is a close combat weapon (used in the combat engine).
+    /// </summary>
+    public static bool IsCloseCombatWeaponKey(string key)
+    {
+        return key is "handWeapon" or "two_additionalHandWeapons" or "polearm"
+            or "greatWeapon" or "flail" or "spear" or "pike" or "lightLance" or "heavyLance";
+    }
+
+    /// <summary>
+    /// Check if a normalized key is an armour key.
+    /// </summary>
+    public static bool IsArmourKey(string key)
+    {
+        return key is "lightArmour" or "mediumArmour" or "heavyArmour"
+            or "shields" or "buckler" or "barding";
+    }
+
+    /// <summary>
     /// Parse equipment text into weapon and armour keys matching core-rules.json dictionary keys.
     /// Only parses the first line (before any \n).
     /// </summary>

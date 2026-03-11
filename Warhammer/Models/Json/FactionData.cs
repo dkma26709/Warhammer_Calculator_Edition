@@ -16,8 +16,7 @@ public record UnitEntry
     public string TroopType { get; init; } = "";
     public string? BaseSize { get; init; }
     public string? Equipment { get; init; }
-    [JsonConverter(typeof(OptionsListConverter))]
-    public List<string>? Options { get; init; }
+    public List<UnitOption>? Options { get; init; }
     public string? SpecialRules { get; init; }
     public string? UnitSize { get; init; }
     public double? PointsCost { get; init; }

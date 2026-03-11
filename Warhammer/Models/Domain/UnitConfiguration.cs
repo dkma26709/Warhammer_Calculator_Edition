@@ -21,12 +21,18 @@ public class UnitConfiguration
     public TreeAspect SelectedTreeAspect { get; set; }
     public bool UseTreeWhack { get; set; }
 
-    // Parsed data
+    /// <summary>
+    /// Tracks selected equipment upgrades. Key = index into Unit.Options,
+    /// Value = index into that option's Choices list. Absent or -1 = none selected.
+    /// </summary>
+    public Dictionary<int, int> SelectedUpgrades { get; } = new();
+
+    // Parsed base data (from equipment text, before upgrades)
     public TroopTypeInfo TroopType { get; }
     public int BaseWidthMm { get; }
     public ParsedSpecialRules SpecialRules { get; }
-    public List<string> EquipmentWeapons { get; }
-    public List<string> EquipmentArmour { get; }
+    public List<string> BaseWeaponKeys { get; }
+    public List<string> BaseArmourKeys { get; }
 
     public UnitConfiguration(UnitEntry unit)
     {
@@ -35,13 +41,79 @@ public class UnitConfiguration
         TroopType = TroopTypeInfo.Parse(unit.TroopType);
         BaseWidthMm = ParseBaseWidthMm(unit.BaseSize);
         SpecialRules = ParsedSpecialRules.Parse(unit.SpecialRules);
-        (EquipmentWeapons, EquipmentArmour) = EquipmentParser.Parse(unit.Equipment);
+        (BaseWeaponKeys, BaseArmourKeys) = EquipmentParser.Parse(unit.Equipment);
 
         // Defaults
         ModelCount = TroopType.IsCharacter ? 1 : ParseMinUnitSize(unit.UnitSize);
         Frontage = TroopType.IsCharacter ? 1 : TroopType.MinRankWidth;
-        SelectedWeaponKey = EquipmentWeapons.FirstOrDefault() ?? "handWeapon";
+        SelectedWeaponKey = BaseWeaponKeys.FirstOrDefault() ?? "handWeapon";
     }
+
+    // --- Effective Equipment (base + upgrades - replacements) ---
+
+    /// <summary>
+    /// All weapon keys the unit currently has, considering base equipment and selected upgrades.
+    /// </summary>
+    public List<string> EquipmentWeapons
+    {
+        get
+        {
+            var weapons = new List<string>(BaseWeaponKeys);
+            ApplySelectedUpgrades(weapons, isWeapon: true);
+            return weapons;
+        }
+    }
+
+    /// <summary>
+    /// All armour keys the unit currently has, considering base equipment and selected upgrades.
+    /// </summary>
+    public List<string> EquipmentArmour
+    {
+        get
+        {
+            var armour = new List<string>(BaseArmourKeys);
+            ApplySelectedUpgrades(armour, isWeapon: false);
+            return armour;
+        }
+    }
+
+    private void ApplySelectedUpgrades(List<string> keys, bool isWeapon)
+    {
+        if (Unit.Options == null) return;
+
+        for (int i = 0; i < Unit.Options.Count; i++)
+        {
+            var option = Unit.Options[i];
+            if (option.Type != "equipment" || option.Choices == null) continue;
+            if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
+            if (choiceIdx >= option.Choices.Count) continue;
+
+            var choice = option.Choices[choiceIdx];
+
+            // Handle replace: remove the replaced item
+            string? replaces = choice.Replaces ?? option.Replaces;
+            if (option.Action == "replace" && replaces != null)
+            {
+                if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
+                    && replacedIsWeapon == isWeapon)
+                {
+                    keys.Remove(replacedKey);
+                }
+            }
+
+            // Add the selected items
+            foreach (var name in choice.Name)
+            {
+                if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
+                    && itemIsWeapon == isWeapon && !keys.Contains(key))
+                {
+                    keys.Add(key);
+                }
+            }
+        }
+    }
+
+    // --- Combat Stats ---
 
     /// <summary>
     /// Calculate effective strength for a given weapon.
@@ -98,8 +170,9 @@ public class UnitConfiguration
     public int ComputeBaseArmourModifier(Func<string, string?>? armourSaveLookup = null)
     {
         int totalModifier = 0;
+        var effectiveArmour = EquipmentArmour;
 
-        foreach (var armourKey in EquipmentArmour)
+        foreach (var armourKey in effectiveArmour)
         {
             string? saveField = armourSaveLookup?.Invoke(armourKey);
             if (saveField != null)
@@ -116,11 +189,11 @@ public class UnitConfiguration
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
 
         if (SpecialRules.ChaosArmour &&
-            EquipmentArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
+            effectiveArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
             totalModifier += 1;
 
         if (SpecialRules.GromrilArmour &&
-            EquipmentArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
+            effectiveArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
             totalModifier += 1;
 
         return totalModifier;
@@ -281,46 +354,45 @@ public class UnitConfiguration
 
     public double BaseModelCost => Unit.PointsCost ?? PrimaryProfile.Points ?? 0;
 
-    public double WeaponUpgradeCost
+    /// <summary>
+    /// Total points cost of all selected equipment upgrades.
+    /// </summary>
+    public double EquipmentUpgradeCost
     {
         get
         {
             if (Unit.Options == null) return 0;
-            var searchTerms = SelectedWeaponKey switch
+            double total = 0;
+
+            for (int i = 0; i < Unit.Options.Count; i++)
             {
-                "spear" => new[] { "spear" },
-                "greatWeapon" => new[] { "great weapon" },
-                "polearm" => new[] { "polearm" },
-                "two_additionalHandWeapons" => new[] { "additional hand weapon", "two hand weapons" },
-                "flail" => new[] { "flail" },
-                _ => Array.Empty<string>()
-            };
-            if (searchTerms.Length == 0) return 0;
-            foreach (var opt in Unit.Options)
-            {
-                var lower = opt.ToLowerInvariant();
-                if (searchTerms.Any(t => lower.Contains(t)))
-                {
-                    var (cost, isPerModel) = ParseOptionCost(opt);
-                    return isPerModel ? cost * ModelCount : cost;
-                }
+                var option = Unit.Options[i];
+                if (option.Type != "equipment" || option.Choices == null) continue;
+                if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
+                if (choiceIdx >= option.Choices.Count) continue;
+
+                var choice = option.Choices[choiceIdx];
+                var pts = choice.Points ?? 0;
+                total += choice.PerModel ? pts * ModelCount : pts;
             }
-            return 0;
+
+            return total;
         }
     }
 
-    // Command group availability — derived from unit options
-    public bool CanHaveChampion => Unit.Options?.Any(opt =>
-    {
-        var lower = opt.ToLowerInvariant();
-        return (lower.Contains("leader") || lower.Contains("champion")) && !lower.Contains("standard");
-    }) ?? false;
+    // Command group availability — derived from typed options
+    public bool CanHaveChampion => Unit.Options?.Any(o =>
+        o.Type == "command" && o.Role != null
+        && (o.Role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
+            || o.Role.Contains("Champion", StringComparison.OrdinalIgnoreCase))) ?? false;
 
-    public bool CanHaveMusician => Unit.Options?.Any(opt =>
-        opt.ToLowerInvariant().Contains("musician")) ?? false;
+    public bool CanHaveMusician => Unit.Options?.Any(o =>
+        o.Type == "command" && o.Role != null
+        && o.Role.Contains("Musician", StringComparison.OrdinalIgnoreCase)) ?? false;
 
-    public bool CanHaveStandardBearer => Unit.Options?.Any(opt =>
-        opt.ToLowerInvariant().Contains("standard bearer")) ?? false;
+    public bool CanHaveStandardBearer => Unit.Options?.Any(o =>
+        o.Type == "command" && o.Role != null
+        && o.Role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase)) ?? false;
 
     public (double Champion, double Musician, double Standard) CommandGroupCosts
     {
@@ -328,25 +400,22 @@ public class UnitConfiguration
         {
             double champ = 0, mus = 0, std = 0;
             if (Unit.Options == null) return (0, 0, 0);
+
             foreach (var opt in Unit.Options)
             {
-                var lower = opt.ToLowerInvariant();
-                if ((lower.Contains("leader") || lower.Contains("champion")) && !lower.Contains("standard"))
-                {
-                    var (cost, _) = ParseOptionCost(opt);
+                if (opt.Type != "command" || opt.Role == null) continue;
+                double cost = opt.Points ?? 0;
+                var role = opt.Role;
+
+                if (role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
+                    || role.Contains("Champion", StringComparison.OrdinalIgnoreCase))
                     champ = cost;
-                }
-                else if (lower.Contains("musician"))
-                {
-                    var (cost, _) = ParseOptionCost(opt);
+                else if (role.Contains("Musician", StringComparison.OrdinalIgnoreCase))
                     mus = cost;
-                }
-                else if (lower.Contains("standard bearer"))
-                {
-                    var (cost, _) = ParseOptionCost(opt);
+                else if (role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase))
                     std = cost;
-                }
             }
+
             return (champ, mus, std);
         }
     }
@@ -356,30 +425,13 @@ public class UnitConfiguration
         get
         {
             double baseCost = BaseModelCost * ModelCount;
-            double weaponCost = WeaponUpgradeCost;
+            double equipmentCost = EquipmentUpgradeCost;
             var (champCost, musCost, stdCost) = CommandGroupCosts;
             double commandCost = (HasChampion ? champCost : 0)
                                + (HasMusician ? musCost : 0)
                                + (HasStandardBearer ? stdCost : 0);
-            return baseCost + weaponCost + commandCost;
+            return baseCost + equipmentCost + commandCost;
         }
-    }
-
-    /// <summary>
-    /// Parse points cost from option text. Returns (cost, isPerModel).
-    /// Patterns: "+3 points/model", "+0.5 point/model", "+12 points"
-    /// </summary>
-    public static (double Cost, bool IsPerModel) ParseOptionCost(string optionText)
-    {
-        var perModel = Regex.Match(optionText, @"\+(\d+\.?\d*)\s+points?/model");
-        if (perModel.Success)
-            return (double.Parse(perModel.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture), true);
-
-        var flat = Regex.Match(optionText, @"\+(\d+\.?\d*)\s+points?");
-        if (flat.Success)
-            return (double.Parse(flat.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture), false);
-
-        return (0, false);
     }
 
     public static int ParseBaseWidthMm(string? baseSize)

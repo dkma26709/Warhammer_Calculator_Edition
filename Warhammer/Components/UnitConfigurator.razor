@@ -33,6 +33,7 @@
         </div>
     }
 
+    @* Close combat weapon selection — from effective weapons *@
     @if (AvailableWeapons.Count > 1)
     {
         <div class="mb-2">
@@ -45,6 +46,67 @@
                 }
             </select>
         </div>
+    }
+
+    @* Equipment upgrade options (weapons, armour, shields) *@
+    @if (Unit.Options != null)
+    {
+        @for (int idx = 0; idx < Unit.Options.Count; idx++)
+        {
+            var option = Unit.Options[idx];
+            if (option.Type != "equipment" || option.Choices == null || option.Choices.Count == 0) continue;
+
+            // Classify what this option group contains
+            var classified = ClassifyChoices(option);
+            if (classified.Count == 0) continue;
+
+            // Skip pure close-combat weapon groups — they're handled by the weapon dropdown
+            if (classified.All(c => c.IsCloseCombatWeapon)) continue;
+
+            var capturedIdx = idx;
+
+            @if (option.Action == "add" && option.Choices.Count == 1)
+            {
+                // Single add option → checkbox
+                var choice = option.Choices[0];
+                var info = classified[0];
+                var isSelected = Configuration.SelectedUpgrades.TryGetValue(capturedIdx, out var selIdx) && selIdx == 0;
+                var costLabel = FormatCost(choice);
+
+                <div class="mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="@(_id + "-opt-" + capturedIdx)"
+                               checked="@isSelected"
+                               @onchange="e => OnUpgradeToggled(capturedIdx, (bool)(e.Value ?? false))" />
+                        <label class="form-check-label small" for="@(_id + "-opt-" + capturedIdx)">
+                            @info.DisplayName @costLabel
+                        </label>
+                    </div>
+                </div>
+            }
+            else
+            {
+                // Choose or replace → dropdown
+                var currentChoice = Configuration.SelectedUpgrades.TryGetValue(capturedIdx, out var curIdx) ? curIdx : -1;
+                var label = option.Action == "replace" && option.Replaces != null
+                    ? $"Replace {option.Replaces}"
+                    : classified.Any(c => !c.IsCloseCombatWeapon && c.IsWeapon) ? "Ranged Weapon" : "Armour";
+
+                <div class="mb-2">
+                    <label class="form-label small text-body-secondary">@label</label>
+                    <select class="form-select form-select-sm" value="@currentChoice"
+                            @onchange="e => OnUpgradeSelected(capturedIdx, int.TryParse(e.Value?.ToString(), out var v) ? v : -1)">
+                        <option value="-1">— None —</option>
+                        @for (int ci = 0; ci < option.Choices.Count; ci++)
+                        {
+                            var choice = option.Choices[ci];
+                            var info = classified[ci];
+                            <option value="@ci">@info.DisplayName @FormatCost(choice)</option>
+                        }
+                    </select>
+                </div>
+            }
+        }
     }
 
     @if (Configuration.SpecialRules.ShadowDancesOfLoec)
@@ -144,53 +206,87 @@
 
     private string _id = Guid.NewGuid().ToString("N")[..8];
 
+    private record ClassifiedChoice(string DisplayName, bool IsWeapon, bool IsCloseCombatWeapon, bool IsArmour);
+
+    private List<ClassifiedChoice> ClassifyChoices(UnitOption option)
+    {
+        var result = new List<ClassifiedChoice>();
+        if (option.Choices == null) return result;
+
+        foreach (var choice in option.Choices)
+        {
+            bool anyWeapon = false, anyCCWeapon = false, anyArmour = false;
+            foreach (var name in choice.Name)
+            {
+                if (EquipmentParser.TryNormalize(name, out var key, out bool isWeapon))
+                {
+                    if (isWeapon)
+                    {
+                        anyWeapon = true;
+                        if (EquipmentParser.IsCloseCombatWeaponKey(key))
+                            anyCCWeapon = true;
+                    }
+                    else
+                    {
+                        anyArmour = true;
+                    }
+                }
+            }
+
+            result.Add(new ClassifiedChoice(choice.DisplayName, anyWeapon, anyCCWeapon, anyArmour));
+        }
+
+        return result;
+    }
+
+    private static string FormatCost(OptionChoice choice)
+    {
+        var cost = choice.Points ?? 0;
+        if (cost == 0) return "(free)";
+        var pts = cost % 1 == 0 ? cost.ToString("F0") : cost.ToString("G");
+        return choice.PerModel ? $"(+{pts} pts/model)" : $"(+{pts} pts)";
+    }
+
     private List<(string Key, string Name)> AvailableWeapons
     {
         get
         {
             if (Configuration == null || CoreRules == null) return [];
             var weapons = new List<(string Key, string Name)>();
-            foreach (var key in Configuration.EquipmentWeapons)
+            var seen = new HashSet<string>();
+
+            // Base equipment close combat weapons
+            foreach (var key in Configuration.BaseWeaponKeys)
             {
+                if (!EquipmentParser.IsCloseCombatWeaponKey(key) || !seen.Add(key)) continue;
                 var w = CoreRules.GetCloseCombatWeapon(key);
-                if (w != null)
-                    weapons.Add((key, w.Name));
+                if (w != null) weapons.Add((key, w.Name));
             }
-            // Also check options for weapon upgrades
+
+            // Close combat weapons from equipment options (all choices, not just selected)
             if (Unit?.Options != null)
             {
-                foreach (var opt in Unit.Options)
+                foreach (var option in Unit.Options)
                 {
-                    var lower = opt.ToLowerInvariant();
-                    if (lower.Contains("spear") && !weapons.Any(w => w.Key == "spear"))
+                    if (option.Type != "equipment" || option.Choices == null) continue;
+                    foreach (var choice in option.Choices)
                     {
-                        var w = CoreRules.GetCloseCombatWeapon("spear");
-                        if (w != null) weapons.Add(("spear", w.Name));
-                    }
-                    if (lower.Contains("great weapon") && !weapons.Any(w => w.Key == "greatWeapon"))
-                    {
-                        var w = CoreRules.GetCloseCombatWeapon("greatWeapon");
-                        if (w != null) weapons.Add(("greatWeapon", w.Name));
-                    }
-                    if (lower.Contains("polearm") && !weapons.Any(w => w.Key == "polearm"))
-                    {
-                        var w = CoreRules.GetCloseCombatWeapon("polearm");
-                        if (w != null) weapons.Add(("polearm", w.Name));
-                    }
-                    if ((lower.Contains("additional hand weapon") || lower.Contains("two hand weapons")) && !weapons.Any(w => w.Key == "two_additionalHandWeapons"))
-                    {
-                        var w = CoreRules.GetCloseCombatWeapon("two_additionalHandWeapons");
-                        if (w != null) weapons.Add(("two_additionalHandWeapons", w.Name));
-                    }
-                    if (lower.Contains("flail") && !weapons.Any(w => w.Key == "flail"))
-                    {
-                        var w = CoreRules.GetCloseCombatWeapon("flail");
-                        if (w != null) weapons.Add(("flail", w.Name));
+                        foreach (var name in choice.Name)
+                        {
+                            if (EquipmentParser.TryNormalize(name, out var key, out bool isWeapon)
+                                && isWeapon && EquipmentParser.IsCloseCombatWeaponKey(key) && seen.Add(key))
+                            {
+                                var w = CoreRules.GetCloseCombatWeapon(key);
+                                if (w != null) weapons.Add((key, w.Name));
+                            }
+                        }
                     }
                 }
             }
+
             if (weapons.Count == 0)
                 weapons.Add(("handWeapon", "HAND WEAPON"));
+
             return weapons;
         }
     }
@@ -213,8 +309,65 @@
 
     private async Task OnWeaponChanged(ChangeEventArgs e)
     {
+        if (Configuration == null || Unit?.Options == null) return;
+        var weaponKey = e.Value?.ToString() ?? "handWeapon";
+        Configuration.SelectedWeaponKey = weaponKey;
+
+        // Sync SelectedUpgrades: find the equipment option group containing this weapon
+        // and select the matching choice (or deselect if it's a base weapon)
+        for (int i = 0; i < Unit.Options.Count; i++)
+        {
+            var option = Unit.Options[i];
+            if (option.Type != "equipment" || option.Choices == null) continue;
+
+            // Check if any choice in this group is a CC weapon
+            bool groupHasCCWeapons = option.Choices.Any(c =>
+                c.Name.Any(n => EquipmentParser.TryNormalize(n, out var k, out bool isW)
+                    && isW && EquipmentParser.IsCloseCombatWeaponKey(k)));
+            if (!groupHasCCWeapons) continue;
+
+            // Find matching choice index
+            int matchIdx = -1;
+            for (int ci = 0; ci < option.Choices.Count; ci++)
+            {
+                foreach (var name in option.Choices[ci].Name)
+                {
+                    if (EquipmentParser.TryNormalize(name, out var k, out _) && k == weaponKey)
+                    {
+                        matchIdx = ci;
+                        break;
+                    }
+                }
+
+                if (matchIdx >= 0) break;
+            }
+
+            if (matchIdx >= 0)
+                Configuration.SelectedUpgrades[i] = matchIdx;
+            else
+                Configuration.SelectedUpgrades.Remove(i);
+        }
+
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnUpgradeToggled(int optionIndex, bool selected)
+    {
         if (Configuration == null) return;
-        Configuration.SelectedWeaponKey = e.Value?.ToString() ?? "handWeapon";
+        if (selected)
+            Configuration.SelectedUpgrades[optionIndex] = 0;
+        else
+            Configuration.SelectedUpgrades.Remove(optionIndex);
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnUpgradeSelected(int optionIndex, int choiceIndex)
+    {
+        if (Configuration == null) return;
+        if (choiceIndex < 0)
+            Configuration.SelectedUpgrades.Remove(optionIndex);
+        else
+            Configuration.SelectedUpgrades[optionIndex] = choiceIndex;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
