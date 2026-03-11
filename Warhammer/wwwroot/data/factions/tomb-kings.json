@@ -24,30 +24,102 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +4 points",
-        "Spear +4 points",
-        "Light lance +4 points",
-        "Flail +8 points",
-        "Polearm +8 points",
-        "Great weapon +12 points",
-        "May take a shield +3 points",
-        "May be mounted on one of the following:",
-        "Skeletal Steed +18 points",
-        "Necroserpent +48 points",
-        "Skeleton Chariot +48 points",
-        "Khemrian Warsphinx (replacing the crew) +225 points",
-        "Necrolith Bone Dragon +235 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 18,
+              "perModel": false
+            },
+            {
+              "name": "Necroserpent",
+              "points": 48,
+              "perModel": false
+            },
+            {
+              "name": "Skeleton Chariot",
+              "points": 48,
+              "perModel": false
+            },
+            {
+              "name": "Khemrian Warsphinx (replacing the crew)",
+              "points": 225,
+              "perModel": false
+            },
+            {
+              "name": "Necrolith Bone Dragon",
+              "points": 235,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Curse of the Necropolis, Flammable, My Will Be Done, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 170,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 170
     },
     {
       "name": "Liche High Priest",
@@ -72,22 +144,54 @@
       "equipment": "Hand weapon",
       "magic": "A Liche High Priest is a Level 3 Wizard who uses spells from the Lore of Light, Death or Nehekhara.",
       "options": [
-        "May be upgraded to a Level 4 Wizard +35 points",
-        "May be mounted on one of the following:",
-        "Skeletal Steed +18 points",
-        "Tomb Barque (replacing one of the crew) +120 points",
-        "Casket of Souls (replacing the Keeper of the Casket) +130 points",
-        "Necrolith Bone Dragon +235 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 4 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 4 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 18,
+              "perModel": false
+            },
+            {
+              "name": "Tomb Barque (replacing one of the crew)",
+              "points": 120,
+              "perModel": false
+            },
+            {
+              "name": "Casket of Souls (replacing the Keeper of the Casket)",
+              "points": 130,
+              "perModel": false
+            },
+            {
+              "name": "Necrolith Bone Dragon",
+              "points": 235,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 165,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 165
     },
     {
       "name": "Tomb Prince",
@@ -112,28 +216,92 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Spear +3 points",
-        "Light lance +3 points",
-        "Flail +6 points",
-        "Polearm +6 points",
-        "Great weapon +9 points",
-        "May take a shield +2 points",
-        "May be mounted on one of the following:",
-        "Skeletal Steed +12 points",
-        "Necroserpent +32 points",
-        "Skeleton Chariot +48 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +2 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 12,
+              "perModel": false
+            },
+            {
+              "name": "Necroserpent",
+              "points": 32,
+              "perModel": false
+            },
+            {
+              "name": "Skeleton Chariot",
+              "points": 48,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Curse of the Necropolis, Flammable, My Will Be Done, Undead\nLICHE PRIEST",
+      "specialRules": "Curse of the Necropolis, Flammable, My Will Be Done, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 90,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 90
     },
     {
       "name": "Liche Priest",
@@ -158,18 +326,38 @@
       "equipment": "Hand weapon",
       "magic": "A Liche High Priest is a Level 1 Wizard who uses spells from the Lore of Light, Death or Nehekhara.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May be mounted on a Skeletal Steed +12 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 12
+            }
+          ],
+          "raw": "May be mounted on a Skeletal Steed +12 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 65,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 65
     },
     {
       "name": "Tomb Herald",
@@ -194,29 +382,99 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "One Tomb Herald may carry the Battle Standard +25 points",
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Spear +3 points",
-        "Light lance +3 points",
-        "Flail +6 points",
-        "Polearm +6 points",
-        "Great weapon +9 points",
-        "May take a shield +2 points",
-        "May be mounted on one of the following:",
-        "Skeletal Steed +12 points",
-        "Necroserpent +32 points",
-        "Skeleton Chariot +48 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Tomb Herald may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +2 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 12,
+              "perModel": false
+            },
+            {
+              "name": "Necroserpent",
+              "points": 32,
+              "perModel": false
+            },
+            {
+              "name": "Skeleton Chariot",
+              "points": 48,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Flammable, Killing Blow, Magical Attacks, Undead\n• Sworn Bodyguard: If you have any Characters with the My Will Be Done special rule in your army, you must\nnominate one of them for the Tomb Herald to protect at the start of the game. The same character may not be\nnominated by several Tomb Heralds. Whenever the nominated character suffers a Wound (before saves are\ntaken) and the Tomb Herald is in the same unit as him, roll a D6. On a 1, the Wound is resolved as normal, but\non a 2+ the Wound is intercepted, and re-allocated to the Tomb Herald. No more than one Wound can be re-\nallocated to each Tomb Herald in each phase. Wounds in a challenge can't be re-allocated.",
+      "specialRules": "Flammable, Killing Blow, Magical Attacks, Undead",
+      "specialRuleDescriptions": [
+        "Sworn Bodyguard: If you have any Characters with the My Will Be Done special rule in your army, you must nominate one of them for the Tomb Herald to protect at the start of the game. The same character may not be nominated by several Tomb Heralds. Whenever the nominated character suffers a Wound (before saves are taken) and the Tomb Herald is in the same unit as him, roll a D6. On a 1, the Wound is resolved as normal, but on a 2+ the Wound is intercepted, and re-allocated to the Tomb Herald. No more than one Wound can be re- allocated to each Tomb Herald in each phase. Wounds in a challenge can't be re-allocated."
+      ],
       "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
       "notes": null,
-      "pointsCost": 50,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
       "name": "Necrotect",
@@ -241,32 +499,40 @@
       "equipment": "Two hand weapons, light armour",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Flammable, Hatred, Undead\n• Stone Shaper: Any friendly unit of Monstrous Infantry, Monstrous Cavalry, Monstrous Beasts or Monsters\nwithin 12\" of one or more models with this special rule gains the Regeneration (6 +) special rule and suffer 1\nWounds less than they normally would due to the Unstable special rule, or following the death of the army's\nHierophant.\n• Wrath of the Creator: The Necrotect confers the Hatred special rule onto his unit. If he leaves the unit, or is\nslain, the unit immediately loses Hatred.\n14\n\nCHARACTER MOUNTS\nSKELETAL STEED",
+      "specialRules": "Flammable, Hatred, Undead",
+      "specialRuleDescriptions": [
+        "Stone Shaper: Any friendly unit of Monstrous Infantry, Monstrous Cavalry, Monstrous Beasts or Monsters within 12\" of one or more models with this special rule gains the Regeneration (6 +) special rule and suffer 1 Wounds less than they normally would due to the Unstable special rule, or following the death of the army's Hierophant.",
+        "Wrath of the Creator: The Necrotect confers the Hatred special rule onto his unit. If he leaves the unit, or is slain, the unit immediately loses Hatred."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
-      "name": "Skeletal Steed 8",
-      "category": "Heroes",
+      "name": "Skeletal Steed",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Skeletal Steed 8",
-          "M": 2,
-          "WS": 0,
-          "BS": 3,
+          "name": "Skeletal Steed",
+          "M": 8,
+          "WS": 2,
+          "BS": 0,
           "S": 3,
-          "T": 1,
-          "W": 2,
-          "I": 1,
-          "A": 3,
-          "Ld": null
+          "T": 3,
+          "W": 1,
+          "I": 2,
+          "A": 1,
+          "Ld": 3
         }
       ],
       "troopType": "War Beast (Animal)",
@@ -274,29 +540,41 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take barding +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take barding +5 points"
+        }
       ],
-      "specialRules": "Undead\nSKELETON CHARIOT",
+      "specialRules": "Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Skeleton Chariot 7",
-      "category": "Heroes",
+      "name": "Skeleton Chariot",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Skeleton Chariot 7",
-          "M": null,
+          "name": "Skeleton Chariot",
+          "M": 7,
           "WS": null,
-          "BS": 4,
+          "BS": null,
           "S": 4,
           "T": 4,
-          "W": null,
+          "W": 4,
           "I": null,
           "A": null,
           "Ld": null
@@ -319,21 +597,44 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take scythes +5 points",
-        "May take barding +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "scythes",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take scythes +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take barding +5 points"
+        }
       ],
-      "specialRules": "Undead\nNECROSERPENT",
+      "specialRules": "Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": "2 Skeletal Steeds (Undead)"
+      "drawnBy": "2 Skeletal Steeds (Undead)",
+      "pointsCost": null
     },
     {
       "name": "Necroserpent",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Necroserpent",
@@ -353,30 +654,31 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Natural Armour (5+), Poisoned Attacks, Undead\n15\n\nCHARACTER MOUNTS\nNECROLITH BONE DRAGON",
+      "specialRules": "Natural Armour (5+), Poisoned Attacks, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Necrolith Bone Dragon 6",
-      "category": "Heroes",
+      "name": "Necrolith Bone Dragon",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Necrolith Bone Dragon 6",
-          "M": 4,
-          "WS": 0,
-          "BS": 6,
+          "name": "Necrolith Bone Dragon",
+          "M": 6,
+          "WS": 4,
+          "BS": 0,
           "S": 6,
           "T": 6,
-          "W": 2,
-          "I": 5,
-          "A": 6,
-          "Ld": null
+          "W": 6,
+          "I": 2,
+          "A": 5,
+          "Ld": 6
         }
       ],
       "troopType": "Monster (Undead, Dragon)",
@@ -384,17 +686,21 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fly (7), Undead\n• Breath of Desiccation: This is a Breath Weapon attack with Strength 3, Magical Attacks and the Multiple\nWounds (2) special rule.\n• Cloud of Dust: All enemy missile attacks suffer -1 To Hit against a Necrolith Bone Dragon.",
+      "specialRules": "Fly (7), Undead",
+      "specialRuleDescriptions": [
+        "Breath of Desiccation: This is a Breath Weapon attack with Strength 3, Magical Attacks and the Multiple Wounds (2) special rule.",
+        "Cloud of Dust: All enemy missile attacks suffer -1 To Hit against a Necrolith Bone Dragon."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Skeleton Warrior",
+      "name": "Skeleton Warriors",
       "category": "Core",
       "profiles": [
         {
@@ -416,24 +722,68 @@
       "equipment": "Hand weapon, shield",
       "magic": null,
       "options": [
-        "May take spears +0.5 point/model",
-        "May take light armour +0.5 point/model",
-        "May upgrade one Skeleton Warrior to a Leader +5 points",
-        "May upgrade one Skeleton Warrior to a Musician +5 points",
-        "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "spear",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take spears +0.5 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Warrior to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Warrior to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Undead\nSKELETON ARCHERS",
+      "specialRules": "Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 4,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 4
     },
     {
-      "name": "Skeleton Archer",
+      "name": "Skeleton Archers",
       "category": "Core",
       "profiles": [
         {
@@ -455,23 +805,56 @@
       "equipment": "Hand weapon, bow",
       "magic": null,
       "options": [
-        "May take light armour +0.5 point/model",
-        "May upgrade one Skeleton Warrior to a Leader +5 points",
-        "May upgrade one Skeleton Warrior to a Musician +5 points",
-        "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Warrior to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Warrior to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Arrows of Asaph, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 8,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 8
     },
     {
-      "name": "Skeleton Skirmisher",
+      "name": "Skeleton Skirmishers",
       "category": "Core",
       "profiles": [
         {
@@ -493,22 +876,55 @@
       "equipment": "Hand weapon, javelin",
       "magic": null,
       "options": [
-        "May take replace javelins with slings +1 point/model",
-        "May take shields +1 point/model",
-        "May upgrade one Skeleton Skirmisher to a Leader +5 points",
-        "May upgrade one Skeleton Skirmisher to a Musician +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "replace javelins with slings",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take replace javelins with slings +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Skirmisher to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Skirmisher to a Musician +5 points"
+        }
       ],
       "specialRules": "Arrows of Asaph, Skirmishers, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 8,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 8
     },
     {
-      "name": "Skeleton Horseman",
+      "name": "Skeleton Horsemen",
       "category": "Core",
       "profiles": [
         {
@@ -542,23 +958,56 @@
       "equipment": "Light lance, shield",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May upgrade one Skeleton Horseman to a Leader +5 points",
-        "May upgrade one Skeleton Horseman to a Musician +5 points",
-        "May upgrade one Skeleton Horseman to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Horseman to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Horseman to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skeleton Horseman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Fast Cavalry, Undead\nSKELETON HORSE ARCHERS",
+      "specialRules": "Fast Cavalry, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 10,
       "unitSize": "5+",
       "crew": null,
       "mount": "Skeletal Steed (Undead)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 10
     },
     {
-      "name": "Skeleton Horse Archer",
+      "name": "Skeleton Horse Archers",
       "category": "Core",
       "profiles": [
         {
@@ -592,23 +1041,56 @@
       "equipment": "Hand weapon, bow",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May upgrade one Skeleton Horse to a Leader +5 points",
-        "May upgrade one Skeleton Horse to a Musician +5 points",
-        "May upgrade one Skeleton Horse to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Horse to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Horse to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skeleton Horse to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Arrows of Asaph, Fast Cavalry, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 10,
       "unitSize": "5+",
       "crew": null,
       "mount": "Skeletal Steed (Undead)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 10
     },
     {
-      "name": "Skeleton Chariot",
+      "name": "Skeleton Chariots",
       "category": "Core",
       "profiles": [
         {
@@ -654,24 +1136,68 @@
       "equipment": "Light lance, bow, javelins",
       "magic": null,
       "options": [
-        "May take light armour +4 points/model",
-        "May take scythes +5 points/model",
-        "May upgrade one Skeleton Chariot to a Leader +5 points",
-        "May upgrade one Skeleton Chariot to a Musician +5 points",
-        "May upgrade one Skeleton Chariot to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 4,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +4 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "scythes",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take scythes +5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Chariot to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Chariot to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skeleton Chariot to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Arrows of Asaph, Undead\nTOMB SWARMS",
+      "specialRules": "Arrows of Asaph, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 50,
       "unitSize": "3+",
       "crew": "2 Skeleton Charioteers (Undead)",
       "mount": null,
-      "drawnBy": "2 Skeletal Steeds (Undead)"
+      "drawnBy": "2 Skeletal Steeds (Undead)",
+      "pointsCost": 50
     },
     {
-      "name": "Tomb Swarm",
+      "name": "Tomb Swarms",
       "category": "Core",
       "profiles": [
         {
@@ -694,13 +1220,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Entombed Beneath the Sands, Poisoned Attacks, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 40,
       "unitSize": "2-10",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 40
     },
     {
       "name": "Tomb Guard",
@@ -725,23 +1252,56 @@
       "equipment": "Hand weapon, light armour, shield",
       "magic": null,
       "options": [
-        "May take polearms +2 points/model",
-        "May upgrade one Tomb Guard to a Leader +5 points",
-        "May upgrade one Tomb Guard to a Musician +5 points",
-        "May upgrade one Tomb Guard to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take polearms +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Tomb Guard to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Tomb Guard to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Tomb Guard to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Killing Blow, Magical Attacks, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 10,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 10
     },
     {
-      "name": "Skeleton Chariot",
+      "name": "Tomb Guard Chariots",
       "category": "Special",
       "profiles": [
         {
@@ -787,27 +1347,90 @@
       "equipment": "Hand weapon, light armour, shield",
       "magic": null,
       "options": [
-        "May take one of the following:",
-        "Light lances +2 points",
-        "Polearms +2 points",
-        "May take barding +3 points/model",
-        "May take scythes +5 points/model",
-        "May upgrade one Skeleton Chariot to a Leader +5 points",
-        "May upgrade one Skeleton Chariot to a Musician +5 points",
-        "May upgrade one Skeleton Chariot to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one of the following:",
+              "points": null,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take barding +3 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "scythes",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take scythes +5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Chariot to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skeleton Chariot to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skeleton Chariot to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Killing Blow, Magical Attacks, Undead\nMUMMIES",
+      "specialRules": "Killing Blow, Magical Attacks, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": "3+",
       "crew": "2 Tomb Guard Charioteer (Undead)",
       "mount": null,
-      "drawnBy": "2 Skeletal Steeds (Undead)"
+      "drawnBy": "2 Skeletal Steeds (Undead)",
+      "pointsCost": 60
     },
     {
-      "name": "Mummy",
+      "name": "Mummies",
       "category": "Special",
       "profiles": [
         {
@@ -830,13 +1453,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Curse of the Necropolis, Flammable, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 17,
       "unitSize": "5-20",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 17
     },
     {
       "name": "Ushabti",
@@ -861,26 +1485,77 @@
       "equipment": "Two hand weapons, light armour",
       "magic": null,
       "options": [
-        "May replace one hand weapon with one of the following:",
-        "Greatbows +3 points/model",
-        "Polearms +3 points/model",
-        "Great weapons +6 points/model",
-        "May choose one of the following:",
-        "Aspect of Asaph +3 points/model",
-        "Aspect of Djaf +3 points/model",
-        "Aspect of Geheb +3 points/model",
-        "Aspect of Phakth +3 points/model",
-        "Aspect of Sobk +3 points/model",
-        "May upgrade one Ushabti to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "one hand weapon",
+          "choices": [
+            {
+              "name": "Greatbows",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "polearm",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace one hand weapon with one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Aspect of Asaph",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Aspect of Djaf",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Aspect of Geheb",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Aspect of Phakth",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Aspect of Sobk",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ushabti to a Leader +5 points"
+        }
       ],
       "specialRules": "Arrows of Asaph, Undead",
-      "upgrades": "• Aspect of Asaph, Goddess of Magic and Vengeance: The unit gains the Magic Resistance (2) special rule.\n• Aspect of Djaf, God of Death: The unit gains the Killing Blow special rule.\n• Aspect of Geheb, God of Earth and Giver of Strength: The unit gains the Mighty Blow (1) special rule.\n• Aspect of Phakth, God of the Sky and Bringer of Justice: The unit gains +1 Movement.\n• Aspect of Sobk, God of Water and War: The unit may re-roll To Hit rolls of 1 with shooting and close\ncombat attacks.\nCARRION",
+      "specialRuleDescriptions": null,
+      "upgrades": "• Aspect of Asaph, Goddess of Magic and Vengeance: The unit gains the Magic Resistance (2) special rule.\n• Aspect of Djaf, God of Death: The unit gains the Killing Blow special rule.\n• Aspect of Geheb, God of Earth and Giver of Strength: The unit gains the Mighty Blow (1) special rule.\n• Aspect of Phakth, God of the Sky and Bringer of Justice: The unit gains +1 Movement.\n• Aspect of Sobk, God of Water and War: The unit may re-roll To Hit rolls of 1 with shooting and close\ncombat attacks.",
       "notes": null,
-      "pointsCost": 42,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 42
     },
     {
       "name": "Carrion",
@@ -906,16 +1581,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Fly (9), Scouts, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 20,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 20
     },
     {
-      "name": "Sepulchral Stalker",
+      "name": "Sepulchral Stalkers",
       "category": "Special",
       "profiles": [
         {
@@ -937,14 +1613,17 @@
       "equipment": "Polearm, medium armour",
       "magic": null,
       "options": [],
-      "specialRules": "Entombed Beneath the Sands, Undead\n• Transmogrifying Gaze: Transmogrifying Gaze has the following profile:\nRange: Strength: Special Rules:\n12\" 4 Ignores Armour saves, Killing Blow, Magical Attacks, Multiple Shots (3)\nWhen rolling To Wound, substitute the target's Toughness with its Initiative value. This attack does not suffer\nany To Hit penalties.\nTOMB SCORPION",
+      "specialRules": "Entombed Beneath the Sands, Undead",
+      "specialRuleDescriptions": [
+        "Transmogrifying Gaze: Transmogrifying Gaze has the following profile: Range: Strength: Special Rules: 12\" 4 Ignores Armour saves, Killing Blow, Magical Attacks, Multiple Shots (3) When rolling To Wound, substitute the target's Toughness with its Initiative value. This attack does not suffer any To Hit penalties."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 48,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 48
     },
     {
       "name": "Tomb Scorpion",
@@ -969,14 +1648,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Entombed Beneath the Sands, Killing Blow, Magic Resistance (1), Natural Armour (5+),\nPoisoned Attacks, Undead\nAMMUT",
+      "specialRules": "Entombed Beneath the Sands, Killing Blow, Magic Resistance (1), Natural Armour (5+),",
+      "specialRuleDescriptions": [
+        "Poisoned Attacks, Undead"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
       "name": "Ammut",
@@ -1001,14 +1683,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (6+), Scouts, Undead\n• Feast of Souls: When the Ammut causes an unsaved Wound, it regains one Wound lost earlier in the battle.\n• Hunter of the Evil and Wicked: The Ammut may re-roll failed To Wound rolls against models from the\nForces of Destruction.",
+      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (6+), Scouts, Undead",
+      "specialRuleDescriptions": [
+        "Feast of Souls: When the Ammut causes an unsaved Wound, it regains one Wound lost earlier in the battle.",
+        "Hunter of the Evil and Wicked: The Ammut may re-roll failed To Wound rolls against models from the Forces of Destruction."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 52,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 52
     },
     {
       "name": "Bastethi",
@@ -1033,17 +1719,20 @@
       "equipment": null,
       "magic": "A unit of Bastethi is a Level 1 Wizard that can use spells from the Lore of Nehekhara.",
       "options": [],
-      "specialRules": "Always Strikes First, Flammable, Undead\n• Necromantic Reservoir: The unit receives an additional +1 to cast for each rank of 5 or more models in the\nunit, after the first, to a maximum of +3. Each time the unit casts a spell, you must nominate one Bastethi as\nthe caster for the purposes of line of sight, range, etc. In the event that a Bastethi unit rolls a miscast, do not\nroll on the Miscast table. Instead, the unit suffers D3 Wounds which Ignores Armour saves. If the unit is\ntargeted by a rule that affects a Wizard, your opponent must choose one Bastethi as the target.\nTOMB BARQUE OF USIRIAN",
+      "specialRules": "Always Strikes First, Flammable, Undead",
+      "specialRuleDescriptions": [
+        "Necromantic Reservoir: The unit receives an additional +1 to cast for each rank of 5 or more models in the unit, after the first, to a maximum of +3. Each time the unit casts a spell, you must nominate one Bastethi as the caster for the purposes of line of sight, range, etc. In the event that a Bastethi unit rolls a miscast, do not roll on the Miscast table. Instead, the unit suffers D3 Wounds which Ignores Armour saves. If the unit is targeted by a rule that affects a Wizard, your opponent must choose one Bastethi as the target."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 20,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 20
     },
     {
-      "name": "Tomb Barque",
+      "name": "Tomb Barque of Usirian",
       "category": "Special",
       "profiles": [
         {
@@ -1077,14 +1766,19 @@
       "equipment": "Light lance, bow, light armour",
       "magic": null,
       "options": [],
-      "specialRules": "Arrows of Asaph, Fly (5), Undead.\n• Hieroglyphs of Protection: The Tomb Barque and friendly units within 6\" of one or more Tomb Barques have\na Ward save (6+).\n• Khepra Beetles: Enemy units in base contact with the Tomb Barque suffers 2D6 Strength 2 hits at the start of\neach close combat phase.\n• Wards of the Gods: At the beginning of each of your turns, you may choose one of the following Wards. Each\nWard lasts until the beginning of your next turn.\n- Ward of Qu'aph: The Tomb Barque gains the Ethereal special rule.\n- Ward of Sokth: Enemy units within 12\" of the Tomb Barque must re-roll 6's when rolling To Hit in close\ncombat.\n- Ward of Tahoth: All friendly Wizards within 6\" gain the Loremaster special rule.",
+      "specialRules": "Arrows of Asaph, Fly (5), Undead.",
+      "specialRuleDescriptions": [
+        "Hieroglyphs of Protection: The Tomb Barque and friendly units within 6\" of one or more Tomb Barques have a Ward save (6+).",
+        "Khepra Beetles: Enemy units in base contact with the Tomb Barque suffers 2D6 Strength 2 hits at the start of each close combat phase.",
+        "Wards of the Gods: At the beginning of each of your turns, you may choose one of the following Wards. Each Ward lasts until the beginning of your next turn. - Ward of Qu'aph: The Tomb Barque gains the Ethereal special rule. - Ward of Sokth: Enemy units within 12\" of the Tomb Barque must re-roll 6's when rolling To Hit in close combat. - Ward of Tahoth: All friendly Wizards within 6\" gain the Loremaster special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 125,
       "unitSize": null,
       "crew": "5 Skeleton Crew (Undead)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 125
     },
     {
       "name": "Bone Thrower",
@@ -1121,16 +1815,28 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take light armour +3 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +3 points"
+        }
       ],
-      "specialRules": "Arrows of Asaph, Undead\nSCREAMING SKULL CATAPULT",
+      "specialRules": "Arrows of Asaph, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 35,
       "unitSize": null,
       "crew": "3 Skeleton Crew (Undead)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 35
     },
     {
       "name": "Screaming Skull Catapult",
@@ -1167,20 +1873,40 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May be upgraded to fire Skulls of the Foe +20 points",
-        "May take light armour +3 points"
+        {
+          "type": "upgrade",
+          "upgrade": "fire Skulls of the Foe",
+          "points": 20,
+          "perModel": false,
+          "raw": "May be upgraded to fire Skulls of the Foe +20 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +3 points"
+        }
       ],
-      "specialRules": "Undead\n• Screaming Skulls: All shooting attacks made by a Screaming Skull Catapult are magical and have the\nFlaming Attacks special rule. In addition, any unit that suffers one or more casualties from a shooting attack by\na Screaming Skull Catapult must take a Panic test as if it had taken 25% casualties.",
+      "specialRules": "Undead",
+      "specialRuleDescriptions": [
+        "Screaming Skulls: All shooting attacks made by a Screaming Skull Catapult are magical and have the Flaming Attacks special rule. In addition, any unit that suffers one or more casualties from a shooting attack by a Screaming Skull Catapult must take a Panic test as if it had taken 25% casualties."
+      ],
       "upgrades": "• Skulls of the Foe: This upgrade adds an additional effect to the catapult's Screaming Skulls. If a target unit\ntakes a Panic test as a result of being hit by the Skulls of the Foe, then they must take the test with a -1 penalty\nto their Leadership.",
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": "3 Skeleton Crew (Undead)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
-      "name": "Necropolis Knight",
+      "name": "Necropolis Knights",
       "category": "Rare",
       "profiles": [
         {
@@ -1214,20 +1940,55 @@
       "equipment": "Light lance, light armour",
       "magic": null,
       "options": [
-        "May take shields +6 points/model",
-        "May upgrade one Necropolis Knight to a Leader +5 points",
-        "May upgrade one Necropolis Knight to a Musician +5 points",
-        "May upgrade one Necropolis Knight to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +6 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Necropolis Knight to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Necropolis Knight to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Necropolis Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only),\nUndead",
+      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only),",
+      "specialRuleDescriptions": [
+        "Undead"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 55,
       "unitSize": "3+",
       "crew": null,
       "mount": "Necroserpent (Undead)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
       "name": "Casket of Souls",
@@ -1276,14 +2037,20 @@
       "equipment": "Hand weapon, great weapon (Casket Guard only), light armour",
       "magic": null,
       "options": [],
-      "specialRules": "Killing Blow (Casket Guard only), Magical Attacks (Casket Guard only), Undead, Ward Save\n(4+)\n• Covenant of Power: You may add 1 Power dice to your pool for each Casket of Souls in your army.\n• Vortex of Souls: The Casket of Souls can use one of the following abilities at the start of your Shooting phase\nas long as the Keeper of the Casket model is alive, and the Casket of Souls has not moved this turn.\n- Light of Death: Light of Death has a range of 36\". One enemy unit within Line of Sight of the Casket\nmust take a Leadership test on an additional D6, discarding the lowest result. For each point the test is\nfailed by, it suffers an automatic Wound which Ignores Armour Saves. Once the Leadership test has been\nresolved, roll a D6: on a 3+, choose another enemy unit within Line of Sight of the Casket that is within 6\"\nof the initial target, which also suffers the effects of the Light of Death. Keep rolling for further victims\n(each within Line of Sight of the Casket and within 6\" of the last target struck), until the roll is failed or\nthere are no more viable targets. A unit can only be the target of Light of Death once per Shooting phase.\n- Light of Protection: Until the start of your next Shooting phase, all friendly units within 12\" gain a 6+\nWard save, and enemy units suffer -1 To Hit against them.\n• Unleashed Souls: If a Casket of Souls is destroyed, roll a D6 for every unit (friend or foe) within 12\" of the\nCasket before it is removed from play. On a roll of 4+, that unit immediately suffers D6 Strength 6 hits, with\nthe Ignores Armour Saves and Magical Attacks special rule. After resolving the effects of Unleashed Souls,\nremove the Casket of Souls as normal.",
+      "specialRules": "Killing Blow (Casket Guard only), Magical Attacks (Casket Guard only), Undead, Ward Save",
+      "specialRuleDescriptions": [
+        "(4+)",
+        "Covenant of Power: You may add 1 Power dice to your pool for each Casket of Souls in your army.",
+        "Vortex of Souls: The Casket of Souls can use one of the following abilities at the start of your Shooting phase as long as the Keeper of the Casket model is alive, and the Casket of Souls has not moved this turn. - Light of Death: Light of Death has a range of 36\". One enemy unit within Line of Sight of the Casket must take a Leadership test on an additional D6, discarding the lowest result. For each point the test is failed by, it suffers an automatic Wound which Ignores Armour Saves. Once the Leadership test has been resolved, roll a D6: on a 3+, choose another enemy unit within Line of Sight of the Casket that is within 6\" of the initial target, which also suffers the effects of the Light of Death. Keep rolling for further victims (each within Line of Sight of the Casket and within 6\" of the last target struck), until the roll is failed or there are no more viable targets. A unit can only be the target of Light of Death once per Shooting phase. - Light of Protection: Until the start of your next Shooting phase, all friendly units within 12\" gain a 6+ Ward save, and enemy units suffer -1 To Hit against them.",
+        "Unleashed Souls: If a Casket of Souls is destroyed, roll a D6 for every unit (friend or foe) within 12\" of the Casket before it is removed from play. On a roll of 4+, that unit immediately suffers D6 Strength 6 hits, with the Ignores Armour Saves and Magical Attacks special rule. After resolving the effects of Unleashed Souls, remove the Casket of Souls as normal."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 135,
       "unitSize": null,
       "crew": "1 Keeper of the Casket & 2 Casket Guard (Undead)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 135
     },
     {
       "name": "Khemrian Warsphinx",
@@ -1320,17 +2087,42 @@
       "equipment": "Light lance (Tomb Guard Crew only), medium armour",
       "magic": null,
       "options": [
-        "May take Envenomed Sting +10 points",
-        "May take Fiery Roar +30 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Envenomed Sting",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Envenomed Sting +10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Fiery Roar",
+              "points": 30,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Fiery Roar +30 points"
+        }
       ],
-      "specialRules": "Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew only), Undead.\n• Thundercrush Attack: After its crew have attacked, a Khemrian Warsphinx may exchange all of its Attacks to\nmake a single Thundercrush Attack (though it can still Stomp). Roll To Hit against the highest Weapon Skill\namongst the enemy models in base contact. If this Attack hits, place the small template anywhere so that it is\ntouching the Khemrian Warsphinx's base. Any Infantry, War Beast or Swarm models that lie underneath the\ntemplate (friend or foe) suffer a single Strength 3 hit. The model under the template's central hole instead\nsuffers a single Strength 9 hit with the Multiple Wounds (D3) special rule. This has no effect on other Troop\nTypes.",
+      "specialRules": "Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew only), Undead.",
+      "specialRuleDescriptions": [
+        "Thundercrush Attack: After its crew have attacked, a Khemrian Warsphinx may exchange all of its Attacks to make a single Thundercrush Attack (though it can still Stomp). Roll To Hit against the highest Weapon Skill amongst the enemy models in base contact. If this Attack hits, place the small template anywhere so that it is touching the Khemrian Warsphinx's base. Any Infantry, War Beast or Swarm models that lie underneath the template (friend or foe) suffer a single Strength 3 hit. The model under the template's central hole instead suffers a single Strength 9 hit with the Multiple Wounds (D3) special rule. This has no effect on other Troop Types."
+      ],
       "upgrades": "• Envenomed Sting: All normal Attacks made by a Khemrian Warsphinx with this upgrade have the Poisoned\nAttacks special rule.\n• Fiery Roar: A Khemrian Warsphinx with this upgrade has a Strength 4 Breath Weapon with the Flaming\nAttacks special rule.",
       "notes": null,
-      "pointsCost": 225,
       "unitSize": null,
       "crew": "4 Tomb Guard Crew (Undead)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 225
     },
     {
       "name": "Necrosphinx",
@@ -1355,16 +2147,28 @@
       "equipment": "Two hand weapons, medium armour",
       "magic": null,
       "options": [
-        "May take Envenomed Sting +10 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Envenomed Sting",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Envenomed Sting +10 points"
+        }
       ],
       "specialRules": "Fly (7), Heroic Killing Blow, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": "• Envenomed Sting: All normal Attacks made by a Necrosphinx with this upgrade have the Poisoned Attacks\nspecial rule.",
       "notes": null,
-      "pointsCost": 250,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 250
     },
     {
       "name": "Necrolith Colossus",
@@ -1389,19 +2193,41 @@
       "equipment": "Two hand weapons, light armour",
       "magic": null,
       "options": [
-        "May replace one hand weapon with one of the following:",
-        "Shield free",
-        "Great weapon free",
-        "Bolt thrower free"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "one hand weapon",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Bolt thrower",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace one hand weapon with one of the following:"
+        }
       ],
-      "specialRules": "Arrows of Asaph, Undead.\n• Unstoppable Assault: In the turn in which a Necrolith Colossus charges, every unsaved Wound that it inflicts\nin close combat immediately allows it to make an additional Attack, up to a maximum of +5 Attacks. Note that\nthese additional Attacks also benefit from the Unstoppable Assault rule, but Stomps do not.\nHIEROTITAN",
+      "specialRules": "Arrows of Asaph, Undead.",
+      "specialRuleDescriptions": [
+        "Unstoppable Assault: In the turn in which a Necrolith Colossus charges, every unsaved Wound that it inflicts in close combat immediately allows it to make an additional Attack, up to a maximum of +5 Attacks. Note that these additional Attacks also benefit from the Unstoppable Assault rule, but Stomps do not."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 210,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 210
     },
     {
       "name": "Hierotitan",
@@ -1426,14 +2252,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Undead\n• Spirit Conduit: Friendly Wizards within 12\" of one or more Hierotitans gains a +1 Casting bonus.",
+      "specialRules": "Undead",
+      "specialRuleDescriptions": [
+        "Spirit Conduit: Friendly Wizards within 12\" of one or more Hierotitans gains a +1 Casting bonus."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 205,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 205
     },
     {
       "name": "Khemric Titan",
@@ -1458,14 +2287,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fly (7), Impact Hits (D6), Natural Armour (5+), Undead\n• Curse of the Fallen: If the Khemric Titan is slain by any means, all enemy units within 6\" from suffer 2D6\nStrength 2 hits which Ignores Armour saves.\n• Khemric Titan Special Attacks: In order to determine what happens, each Close Combat phase that the\nKhemric Titan is in combat, pick a single unit in base contact and roll a D6 on the table below:\nD6 Result\n1-2 Reaping Blades: The Khemric Titan inflicts D6 Strength 6 hits on the enemy unit.\n3 Flesh-eating Scarabs: The Khemric Titan inflicts 3D6 Strength 2 hits on the enemy unit.\n4 Breath of Night: The Khemric Titan does not attack, but instead automatically wins the combat with\na combat resolution of 2 (unless this would be higher from other sources).\n5 Devouring Jaws: The Khemric Titan inflicts a Strength 6 hit with the Heroic Killing Blow special\nrule on all enemy models in base contact.\n6 Soul Slaying Hunger: The Khemric Titan inflicts 2D6 hits on the enemy unit. Roll a D6 for each hit,\non a 5+ it inflicts a Wound with no armour saves allowed and the Multiple Wounds (D3) special rule.\nThis is a Magical Attack.\n• Shrine of Eternities: Once per magic phase the Khemric Titan can unleash a Bound spell. One of the\nfollowing may be chosen:\n- The Gaze of Dust: Bound Spell (power level 5). This is a magic missile with a range of 24\". It causes a\nStrength 6 Hit which penetrates ranks in the same way as a Bolt Thrower.\n- Wrath of the Sands: Bound Spell (power level 3). This is a hex spell with a range of 24\". The target\nsuffers -2 To Hit when shooting and -1 to their charge distance rolls until the start of the caster's next\nMagic phase.\n- Reawakening of Ancient Might: Bound Spell (power level 3). This is an augment spell that targets the\nKhemric Titan itself. When successfully cast, it restores one Wound previously suffered during the battle.",
+      "specialRules": "Fly (7), Impact Hits (D6), Natural Armour (5+), Undead",
+      "specialRuleDescriptions": [
+        "Curse of the Fallen: If the Khemric Titan is slain by any means, all enemy units within 6\" from suffer 2D6 Strength 2 hits which Ignores Armour saves.",
+        "Khemric Titan Special Attacks: In order to determine what happens, each Close Combat phase that the Khemric Titan is in combat, pick a single unit in base contact and roll a D6 on the table below: D6 Result 1-2 Reaping Blades: The Khemric Titan inflicts D6 Strength 6 hits on the enemy unit. 3 Flesh-eating Scarabs: The Khemric Titan inflicts 3D6 Strength 2 hits on the enemy unit. 4 Breath of Night: The Khemric Titan does not attack, but instead automatically wins the combat with a combat resolution of 2 (unless this would be higher from other sources). 5 Devouring Jaws: The Khemric Titan inflicts a Strength 6 hit with the Heroic Killing Blow special rule on all enemy models in base contact. 6 Soul Slaying Hunger: The Khemric Titan inflicts 2D6 hits on the enemy unit. Roll a D6 for each hit, on a 5+ it inflicts a Wound with no armour saves allowed and the Multiple Wounds (D3) special rule. This is a Magical Attack.",
+        "Shrine of Eternities: Once per magic phase the Khemric Titan can unleash a Bound spell. One of the following may be chosen: - The Gaze of Dust: Bound Spell (power level 5). This is a magic missile with a range of 24\". It causes a Strength 6 Hit which penetrates ranks in the same way as a Bolt Thrower. - Wrath of the Sands: Bound Spell (power level 3). This is a hex spell with a range of 24\". The target suffers -2 To Hit when shooting and -1 to their charge distance rolls until the start of the caster's next Magic phase. - Reawakening of Ancient Might: Bound Spell (power level 3). This is an augment spell that targets the Khemric Titan itself. When successfully cast, it restores one Wound previously suffered during the battle."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 320,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 320
     },
     {
       "name": "Settra the Imperishable",
@@ -1514,17 +2348,22 @@
       "equipment": "Scythes",
       "magic": "Settra the Imperishable is a Level 2 Wizard who uses spells from Lore of Nehekhara.\nMAGIC ITEMS:\n• Blessed Blade of Ptra: Magic Weapon. Polearm. This blade gives Settra the Always Strikes First, Armour\nPiercing (1) and Flaming Attacks special rules. In addition, a character or monster that suffers one or more\nunsaved Wounds from the Blessed Blade of Ptra suffers -1 to its rolls To Hit (both shooting and close combat)\nfor the remainder of the game.\n• Armour of Golden Magnificence: Magic Armour. Heavy armour. This armour save cannot be modified in\nany way, and may even be taken against mundane attacks that normally do not allow armour saves.\n• Scarab Brooch of Usirian: Talisman. The Scarab Brooch of Usirian grants Settra the Ward Save (4+) and the\nMagic Resistance (1) special rules.\n• Crown of Nehekhara: Enchanted Item. Settra the Imperishable's My Will Be Done special rule affects all\nfriendly Undead units within 6\" of him, not just the unit he has joined.",
       "options": [],
-      "specialRules": "Flammable, My Will Be Done, Undead\n• Chariot of the Gods: Impact Hits from the Chariot of the Gods have the Flaming Attacks and Magical Attacks\nspecial rules.\n• The Curse of Settra: In addition to the normal Curse of the Necropolis, if Settra is killed by any means, then\nevery enemy unit within 2D6\" suffers 2D6 Strength 2 hits.\n• Settra the Great: If you take Settra the Imperishable, he must be your Army General. Settra has the Inspiring\nPresence (6) special rule in addition to his normal Inspiring Presence.",
+      "specialRules": "Flammable, My Will Be Done, Undead",
+      "specialRuleDescriptions": [
+        "Chariot of the Gods: Impact Hits from the Chariot of the Gods have the Flaming Attacks and Magical Attacks special rules.",
+        "The Curse of Settra: In addition to the normal Curse of the Necropolis, if Settra is killed by any means, then every enemy unit within 2D6\" suffers 2D6 Strength 2 hits.",
+        "Settra the Great: If you take Settra the Imperishable, he must be your Army General. Settra has the Inspiring Presence (6) special rule in addition to his normal Inspiring Presence."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 545,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": "4 Skeletal Steeds (Undead)"
+      "drawnBy": "4 Skeletal Steeds (Undead)",
+      "pointsCost": 545
     },
     {
-      "name": "High Queen Khalida",
+      "name": "High Queen Khalida Neferher",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1546,20 +2385,38 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• Venom Staff: Arcane Item. Bound Spell (power level 5). The Venom Staff contains a magic missile with a\nrange of 24\". If successfully cast, the target takes 2D6 Strength 3 hits with the Poisoned Attacks special rule.",
       "magic": null,
       "options": [
-        "May be mounted on a Necroserpent +48 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Necroserpent",
+              "points": 48
+            }
+          ],
+          "raw": "May be mounted on a Necroserpent +48 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts), My\nWill be Done, Poisoned Attacks, Regeneration (4+), Undead\n• Blessing of Asaph: If Khalida is included in your army, any unit of Skeleton Archers, Horse Archers or\nChariots may be upgraded to gain the Poisoned Attacks special rule for all shooting attacks for +2 points per\nmodel.",
+      "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts), My",
+      "specialRuleDescriptions": [
+        "Will be Done, Poisoned Attacks, Regeneration (4+), Undead",
+        "Blessing of Asaph: If Khalida is included in your army, any unit of Skeleton Archers, Horse Archers or Chariots may be upgraded to gain the Poisoned Attacks special rule for all shooting attacks for +2 points per model."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 270,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 270
     },
     {
-      "name": "Khatep",
+      "name": "Grand Hierophant Khatep",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1581,20 +2438,45 @@
       "equipment": "Hand weapon",
       "magic": "Khatep is a Level 4 Wizard who uses spells from Lore of Nehekhara.\nMAGIC ITEMS:\n• Liche Staff: Arcane Item. Once per Magic phase, Khatep can declare that he is using the Liche Staff\nimmediately after rolling the dice to cast a spell, even if the result indicates a miscast. If Khatep uses the Liche\nStaff, he re-rolls all the casting dice used in the attempt.\n• Scroll of the Cursing Word: Arcane Item. One Use Only. This works exactly the same as a Dispel Scroll. In\naddition the caster must immediately take a Toughness test. If the test is passed, nothing happens. If the test is\nfailed, the enemy Wizard cannot cast any more spells that turn. If the test is failed on the roll of a 6, the caster\nimmediately suffers D3 Wounds as well, with no saves of any kind allowed.",
       "options": [
-        "May be mounted on one of the following",
-        "Skeletal Steed +18 points",
-        "Tomb Barque (replacing one of the crew) +120 points",
-        "Casket of Souls (replacing the Keeper of the Casket) +145 points",
-        "Necrolith Bone Dragon +235 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 18,
+              "perModel": false
+            },
+            {
+              "name": "Tomb Barque (replacing one of the crew)",
+              "points": 120,
+              "perModel": false
+            },
+            {
+              "name": "Casket of Souls (replacing the Keeper of the Casket)",
+              "points": 145,
+              "perModel": false
+            },
+            {
+              "name": "Necrolith Bone Dragon",
+              "points": 235,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following"
+        }
       ],
-      "specialRules": "Loremaster (Lore of Nehekhara), Undead\n• Grand Hierophant of Khemri: If you take Grand Hierophant Khatep, he must be your army's Hierophant. He\ngives his unit the Regeneration (5+) special rule rather than Regeneration (6+). Additionally, when using The\nRestless Dead Lore Attribute, Khatep restores 2D6 Wounds for Core Units (except Chariots), D6 Wounds for\nSpecial Units, Chariots and Monstrous Cavalry, and D3 Wounds for Rare Units.",
+      "specialRules": "Loremaster (Lore of Nehekhara), Undead",
+      "specialRuleDescriptions": [
+        "Grand Hierophant of Khemri: If you take Grand Hierophant Khatep, he must be your army's Hierophant. He gives his unit the Regeneration (5+) special rule rather than Regeneration (6+). Additionally, when using The Restless Dead Lore Attribute, Khatep restores 2D6 Wounds for Core Units (except Chariots), D6 Wounds for Special Units, Chariots and Monstrous Cavalry, and D3 Wounds for Rare Units."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 340,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 340
     },
     {
       "name": "Arkhan the Black",
@@ -1619,16 +2501,29 @@
       "equipment": "Light armour",
       "magic": "Arkhan the Black is a Level 4 Wizard who uses spells from Lore of Death and Nehekhara. He may choose\nspells from both Lores in any combination as he wishes.\nMAGIC ITEMS:\n• Tomb Blade of Arkhan: Magic Weapon. For every unsaved Wound caused by this blade to an enemy in close\ncombat, Arkhan's unit immediately recovers a Wound for each one inflicted, as described in Resurrecting\nFallen Warriors.\n• Liber Mortis: Arcane Item. Whilst Arkhan the Black has the Liber Mortis he gains +1 to cast, +1 to dispel and\none additional spell. If the Liber Mortis is ever destroyed, Arkhan the Black immediately loses a randomly\ndetermined spell.\n• Staff of Nagash: Arcane Item. At the end of the opponent's Magic phase, you can store up to three unused\ndispel dice from your pool in the Staff of Nagash. At the beginning of your next Magic phase, add these dice to\nyour power dice pool. If Arkhan the Black is removed as a casualty before your next Magic phase, these power\ndice are lost.",
       "options": [
-        "May be mounted on a Chariot of the Liche King +85 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Chariot of the Liche King",
+              "points": 85
+            }
+          ],
+          "raw": "May be mounted on a Chariot of the Liche King +85 points"
+        }
       ],
-      "specialRules": "Curse of the Necropolis, Flammable, Undead\n• Chariot of the Liche King: This is a Skeleton Chariot with 2 additional Skeleton Steeds, the Fly (8) and\nTerror special rules.",
+      "specialRules": "Curse of the Necropolis, Flammable, Undead",
+      "specialRuleDescriptions": [
+        "Chariot of the Liche King: This is a Skeleton Chariot with 2 additional Skeleton Steeds, the Fly (8) and Terror special rules."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 330,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 330
     },
     {
       "name": "Sehenesmet",
@@ -1653,17 +2548,21 @@
       "equipment": "Hand weapon",
       "magic": "Sehenesmet is a Level 2 Wizard who uses spells from Lore of Nehekhara.\nMAGIC ITEMS:\n• The Sacred Crook of Shapesh: Magic Weapon. Great weapon. Keep track of the number of unsaved wounds\ninflicted by the Sacred Crook in each Close Combat phase. In each of your Shooting phases, the power of the\nCrook may be unleashed as a special attack with a range of 24\", or against one enemy unit in base contact. The\ntarget suffers a number of Strength 4 hits equal to the number of wounds currently ‘stored’ in the Crook. Once\nunleashed, the number of wounds stored in the staff are returned to 0 until Sehenesmet inflicts more wounds.\nIn addition, it increases the range of Sehenesmet's spells by 6\".",
       "options": [],
-      "specialRules": "Hatred, Magic Resistance (2), Undead\n• Master Stone Shaper: Sehenesmet follows the normal rules for Stone Shaper, but grants Regeneration (5+)\nrather than Regeneration (6+).\n• The Stone Host of Quatar: If Sehenesmet is the Army General, all units of Monstrous Infantry, Monstrous\nCavalry, Monstrous Beasts or Monsters counts as Core/Special units rather than Special/Rare units. However,\nall other Core/Special units will count as Special/Rare units instead. This does not change the number of Wounds\nrestored from The Restless Dead Lore Attribute for the affected units – use the original values for all units.",
+      "specialRules": "Hatred, Magic Resistance (2), Undead",
+      "specialRuleDescriptions": [
+        "Master Stone Shaper: Sehenesmet follows the normal rules for Stone Shaper, but grants Regeneration (5+) rather than Regeneration (6+).",
+        "The Stone Host of Quatar: If Sehenesmet is the Army General, all units of Monstrous Infantry, Monstrous Cavalry, Monstrous Beasts or Monsters counts as Core/Special units rather than Special/Rare units. However, all other Core/Special units will count as Special/Rare units instead. This does not change the number of Wounds restored from The Restless Dead Lore Attribute for the affected units – use the original values for all units."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 425,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 425
     },
     {
-      "name": "Tutankhanut",
+      "name": "Prince Tutankhanut",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1685,17 +2584,34 @@
       "equipment": "Hand weapon, bow, heavy armour",
       "magic": null,
       "options": [
-        "May be mounted on a Skeleton Chariot +48 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeleton Chariot",
+              "points": 48
+            }
+          ],
+          "raw": "May be mounted on a Skeleton Chariot +48 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Arrows of Asaph, Curse of the Necropolis, Flammable, My Will Be Done, Undead\n• Scythan Warriors: If your army contains Tutankhanut you may upgrade units of Skeleton Horse Archers to\nScythan Warriors for +2 points/model. Scythan Warriors do not have the Arrows of Asaph and Undead special\nrules, but instead have +1 Weapon Skill, +1 Ballistic Skull, +1 Initiative, +2 Leadership and the Immunity\n(Fear) special rule. Their mounts have +1 Movement, 1 Weapon Skill and +1 Initiative. Scythan Warriors\nalways treat Tutankhanut as the Army General for all purposes.\nPRINCE APOPHAS\nThe Cursed Scarab Lord",
+      "specialRules": "Arrows of Asaph, Curse of the Necropolis, Flammable, My Will Be Done, Undead",
+      "specialRuleDescriptions": [
+        "Scythan Warriors: If your army contains Tutankhanut you may upgrade units of Skeleton Horse Archers to Scythan Warriors for +2 points/model. Scythan Warriors do not have the Arrows of Asaph and Undead special rules, but instead have +1 Weapon Skill, +1 Ballistic Skull, +1 Initiative, +2 Leadership and the Immunity (Fear) special rule. Their mounts have +1 Movement, 1 Weapon Skill and +1 Initiative. Scythan Warriors always treat Tutankhanut as the Army General for all purposes."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 115,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 115
     },
     {
       "name": "Prince Apophas",
@@ -1720,14 +2636,20 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [],
-      "specialRules": "Entombed Beneath the Sands, Fly (10), Loner, Regeneration (4+), Strider, Terror, Undead\n• Desert Revenant: When rolling to enter the table using the Entombed Beneath the Sands special, you may re-\nroll the Artillery dice.\n• Scarab Prince: Apophas may join units of Tomb Swarms and will benefit from \"Look Out, Sir\" while in such\na unit. In addition, if Apophas is ever destroyed (by any means), then before removing the model all enemy\nunits within 2D6\" of him immediately take 2D6 Strength 1 hits with the Poisoned Attacks special rule.\n• Soul Reaper: As soon as Prince Apophas is placed on the table, nominate one enemy character on the\nbattlefield. Apophas re-rolls any failed To Hit and To Wound rolls against the chosen character.\n• Swarming Mass: Apophas has a Strength 1 Breath Weapon with the Poisoned Attacks special rule.",
+      "specialRules": "Entombed Beneath the Sands, Fly (10), Loner, Regeneration (4+), Strider, Terror, Undead",
+      "specialRuleDescriptions": [
+        "Desert Revenant: When rolling to enter the table using the Entombed Beneath the Sands special, you may re- roll the Artillery dice.",
+        "Scarab Prince: Apophas may join units of Tomb Swarms and will benefit from \"Look Out, Sir\" while in such a unit. In addition, if Apophas is ever destroyed (by any means), then before removing the model all enemy units within 2D6\" of him immediately take 2D6 Strength 1 hits with the Poisoned Attacks special rule.",
+        "Soul Reaper: As soon as Prince Apophas is placed on the table, nominate one enemy character on the battlefield. Apophas re-rolls any failed To Hit and To Wound rolls against the chosen character.",
+        "Swarming Mass: Apophas has a Strength 1 Breath Weapon with the Poisoned Attacks special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 130,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 130
     },
     {
       "name": "The Herald Nekaph",
@@ -1752,20 +2674,46 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• The Flail of Skulls: Magic Weapon. Flail. Attacks made with the Flail of Skulls have the Multiple Wounds (2)\nspecial rule.",
       "magic": null,
       "options": [
-        "May be mounted on one of the following",
-        "Skeletal Steed +12 points",
-        "Skeleton Chariot +30 points",
-        "Necroserpent +32 points",
-        "May take Magic Items up to a total of 25 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skeletal Steed",
+              "points": 12,
+              "perModel": false
+            },
+            {
+              "name": "Skeleton Chariot",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Necroserpent",
+              "points": 32,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
       ],
-      "specialRules": "Flammable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb Herald), Undead\n• Herald of Despair: Enemy units in base contact with Nekaph roll one additional dice when taking a\nLeadership test, discarding the lowest result. This has no effect on units with Immunity (Psychology).\n• Settra's Champion: If able to, Nekaph must always issue and accept challenges. When fighting in a\nchallenge, Nekaph gains a 5+ Ward save and the Killing Blow special rule.",
+      "specialRules": "Flammable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb Herald), Undead",
+      "specialRuleDescriptions": [
+        "Herald of Despair: Enemy units in base contact with Nekaph roll one additional dice when taking a Leadership test, discarding the lowest result. This has no effect on units with Immunity (Psychology).",
+        "Settra's Champion: If able to, Nekaph must always issue and accept challenges. When fighting in a challenge, Nekaph gains a 5+ Ward save and the Killing Blow special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Ramhotep the Visionary",
@@ -1790,16 +2738,25 @@
       "equipment": "Two hand weapons, light armour",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator\n(see Necrotect)\n• Frantic Fervour: Ramhotep confers the Frenzy special rule onto the unit he accompanies. While he remains\nin the unit, the unit can never lose its Frenzy.\n• Master Artisan: At the start of the game, select a single friendly unit of Monstrous Infantry, Monstrous\nCavalry, Monstrous Beast or Monster. The models in this unit gain the Natural Armour (6+) special rule for the\nrest of the battle.",
+      "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator",
+      "specialRuleDescriptions": [
+        "(see Necrotect)",
+        "Frantic Fervour: Ramhotep confers the Frenzy special rule onto the unit he accompanies. While he remains in the unit, the unit can never lose its Frenzy.",
+        "Master Artisan: At the start of the game, select a single friendly unit of Monstrous Infantry, Monstrous Cavalry, Monstrous Beast or Monster. The models in this unit gain the Natural Armour (6+) special rule for the rest of the battle."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     }
   ]
 }

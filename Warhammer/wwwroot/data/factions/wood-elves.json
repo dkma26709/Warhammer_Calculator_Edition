@@ -24,38 +24,165 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Spear +3 points",
-        "Light lance +4 points",
-        "Great weapon +12 points",
-        "May take an Asrai longbow +5 points",
-        "May take light armour +3 points",
-        "May take a shield +3 points",
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point",
-        "Moonfire Shot +1 point",
-        "Starfire Shafts +1 point",
-        "Hagbane Tips +2 points",
-        "Trueflight Arrows +2 points",
-        "Swiftshiver Shards +3 points",
-        "May be mounted on one of the following:",
-        "Elven Steed +21 points",
-        "Warhawk +30 points",
-        "Great Eagle +45 points",
-        "Great Stag +54 points",
-        "Meadow Chariot (replacing one of the crew) +70 points",
-        "Forest Dragon +325 points",
-        "May take one Spite and/or Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Asrai longbow",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an Asrai longbow +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +3 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +3 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Elven Steed",
+              "points": 21,
+              "perModel": false
+            },
+            {
+              "name": "Warhawk",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Great Eagle",
+              "points": 45,
+              "perModel": false
+            },
+            {
+              "name": "Great Stag",
+              "points": 54,
+              "perModel": false
+            },
+            {
+              "name": "Meadow Chariot (replacing one of the crew)",
+              "points": 70,
+              "perModel": false
+            },
+            {
+              "name": "Forest Dragon",
+              "points": 325,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 120,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 120
     },
     {
       "name": "Spellweaver",
@@ -80,25 +207,64 @@
       "equipment": "Hand weapon",
       "magic": "A Spellweaver is a Level 3 Wizard who uses spells from the Lore of Life, Beasts, Light, Heavens, Shadow or\nAthel Loren.",
       "options": [
-        "May be upgraded to a Level 4 Wizard +35 points",
-        "May be mounted on one of the following:",
-        "Elven Steed +21 points",
-        "Warhawk +30 points",
-        "Unicorn +42 points",
-        "Great Eagle +45 points",
-        "May take one Spite and/or Magic Items up to a total of 100 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 4 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 4 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Elven Steed",
+              "points": 21,
+              "perModel": false
+            },
+            {
+              "name": "Warhawk",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Unicorn",
+              "points": 42,
+              "perModel": false
+            },
+            {
+              "name": "Great Eagle",
+              "points": 45,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider\nARCH-REVENANT",
+      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
-      "name": "Arch-Revenant",
+      "name": "Arch-revenant",
       "category": "Lords",
       "profiles": [
         {
@@ -120,16 +286,30 @@
       "equipment": "Polearm, shield",
       "magic": null,
       "options": [
-        "May take one Spite and/or Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Fly (10), Forest Spirit, Natural Armour (6+).\n• Call to Battle: All friendly units with the Forest Spirit special rule within 6\" of the Arch-Revenant are subject\nto the Frenzy special rule as long as they remain within range, and do not lose Frenzy even if losing combat.",
+      "specialRules": "Fly (10), Forest Spirit, Natural Armour (6+).",
+      "specialRuleDescriptions": [
+        "Call to Battle: All friendly units with the Forest Spirit special rule within 6\" of the Arch-Revenant are subject to the Frenzy special rule as long as they remain within range, and do not lose Frenzy even if losing combat."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     },
     {
       "name": "Warsong Revenant",
@@ -154,16 +334,30 @@
       "equipment": "Hand weapon",
       "magic": "A Warsong Revenant is a Level 3 Wizard who uses spells from the Lore of Life or Athel Loren.",
       "options": [
-        "May take one Spite and/or Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Fly (5), Forest Spirit, Regeneration (5+), Natural Armour (6+)\n• Song of Athel Loren: Friendly models within 12\" of one or more Warsong Revenants gain +1 to their\nLeadership. Enemy models within 12\" of one or more Warsong Revenants suffer -1 to their Leadership.\nTREEMAN ANCIENT",
+      "specialRules": "Blessings of the Ancients, Fly (5), Forest Spirit, Regeneration (5+), Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Song of Athel Loren: Friendly models within 12\" of one or more Warsong Revenants gain +1 to their Leadership. Enemy models within 12\" of one or more Warsong Revenants suffer -1 to their Leadership."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 250,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 250
     },
     {
       "name": "Treeman Ancient",
@@ -188,18 +382,48 @@
       "equipment": "Hand weapon",
       "magic": "A Treeman Ancient is a Level 1 Wizard who uses spells from the Lore of Life or Athel Loren.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May take Strangleroots +20 points",
-        "May take Spites up to a total of 100 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Strangleroots",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Strangleroots +20 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Spites up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Spites up to a total of 100 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree\nWhack",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree",
+      "specialRuleDescriptions": [
+        "Whack"
+      ],
       "upgrades": "• Strangleroots: Strangleroots have the following profile:\nRange: Strength: Special Rules:\n12\" 5 Multiple Shots (D6+1), Quick to Fire, Rapid Fire",
       "notes": null,
-      "pointsCost": 235,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 235
     },
     {
       "name": "Glade Captain",
@@ -224,37 +448,160 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "One Glade Captain may carry the Battle Standard +25 points",
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Spear +2 points",
-        "Light lance +3 points",
-        "Great weapon +9 points",
-        "May take an Asrai longbow +5 points",
-        "May take light armour +2 points",
-        "May take a shield +2 points",
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point",
-        "Moonfire Shot +1 point",
-        "Starfire Shafts +1 point",
-        "Hagbane Tips +2 points",
-        "Trueflight Arrows +2 points",
-        "Swiftshiver Shards +3 points",
-        "May be mounted on one of the following:",
-        "Elven Steed +14 points",
-        "Warhawk +20 points",
-        "Great Eagle +30 points",
-        "Meadow Chariot (replacing one of the crew) +70 points",
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Glade Captain may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Asrai longbow",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an Asrai longbow +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Elven Steed",
+              "points": 14,
+              "perModel": false
+            },
+            {
+              "name": "Warhawk",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Great Eagle",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Meadow Chariot (replacing one of the crew)",
+              "points": 70,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
       "notes": null,
-      "pointsCost": 55,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
       "name": "Spellsinger",
@@ -279,22 +626,61 @@
       "equipment": "Hand weapon",
       "magic": "A Spellsinger is a Level 1 Wizard who uses spells from the Lore of Life, Beasts, Light, Heavens, Shadow or\nAthel Loren.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May be mounted on one of the following:",
-        "Elven Steed +14 points",
-        "Warhawk +20 points",
-        "Unicorn +28 points",
-        "Great Eagle +30 points",
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Elven Steed",
+              "points": 14,
+              "perModel": false
+            },
+            {
+              "name": "Warhawk",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Unicorn",
+              "points": 28,
+              "perModel": false
+            },
+            {
+              "name": "Great Eagle",
+              "points": 30,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
       "name": "Shadowdancer",
@@ -319,21 +705,58 @@
       "equipment": "Hand weapon",
       "magic": "A Shadowdancer who is a Wizard uses spells from the Lore of Shadow.",
       "options": [
-        "May be upgraded to a Level 1 Wizard +35 points",
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Spear +2 points",
-        "Great weapon +12 points",
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 1 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 1 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magic Resistance (1), Shadow\nDances of Loec, Ward save (6+)\nWILD HUNTER",
+      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magic Resistance (1), Shadow",
+      "specialRuleDescriptions": [
+        "Dances of Loec, Ward save (6+)"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 105,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 105
     },
     {
       "name": "Wild Hunter",
@@ -370,21 +793,70 @@
       "equipment": "Light lance",
       "magic": null,
       "options": [
-        "May take a shield +2 points",
-        "May take light armour +2 points",
-        "May replace Elven Steed with one of the following:",
-        "Steed of Kurnous +2 points",
-        "Great Stag +22 points",
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "Elven Steed",
+          "choices": [
+            {
+              "name": "Steed of Kurnous",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Great Stag",
+              "points": 22,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace Elven Steed with one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Devastating Charge, Elven Grace, Forest Spirit, Frenzy",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": "Elven Steed (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Waystalker",
@@ -409,24 +881,77 @@
       "equipment": "Hand weapon, Asrai longbow",
       "magic": null,
       "options": [
-        "May take an additional hand weapon +2 points",
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point",
-        "Moonfire Shot +1 point",
-        "Hagbane Tips +2 points",
-        "Starfire Shafts +2 points",
-        "Trueflight Arrows +2 points",
-        "Swiftshiver Shards +3 points",
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional hand weapon +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider, Forest Stalker, Lethal Shot, Scouts, Sniper",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 90,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 90
     },
     {
       "name": "Branchwraith",
@@ -451,16 +976,28 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take Spites up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Spites up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Spites up to a total of 50 points"
+        }
       ],
-      "specialRules": "Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree Aspects\nBRANCHWYCH",
+      "specialRules": "Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree Aspects",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
       "name": "Branchwych",
@@ -485,96 +1022,64 @@
       "equipment": "Hand weapon",
       "magic": "A Branchwych is a Level 1 Wizard who uses spells from the Lore of Life or Athel Loren.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May take a great weapon +6 points",
-        "May take Spites up to a total of 50 points"
-      ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree\nAspects\n18\n\nCHARACTER MOUNTS\nELVEN STEED",
-      "upgrades": null,
-      "notes": null,
-      "pointsCost": 100,
-      "unitSize": null,
-      "crew": null,
-      "mount": null,
-      "drawnBy": null
-    },
-    {
-      "name": "Elven Steed 9",
-      "category": "Heroes",
-      "profiles": [
         {
-          "name": "Elven Steed 9",
-          "M": 3,
-          "WS": 0,
-          "BS": 3,
-          "S": 3,
-          "T": 1,
-          "W": 4,
-          "I": 1,
-          "A": 5,
-          "Ld": null
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a great weapon +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Spites up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Spites up to a total of 50 points"
         }
       ],
-      "troopType": "War Beast (Animal)",
-      "baseSize": "25x50 or 30x60\nSTEED OF KURNOUS",
-      "equipment": null,
-      "magic": null,
-      "options": [],
-      "specialRules": null,
-      "upgrades": null,
-      "notes": null,
-      "pointsCost": null,
-      "unitSize": null,
-      "crew": null,
-      "mount": null,
-      "drawnBy": null
-    },
-    {
-      "name": "Steed of Kurnous 9",
-      "category": "Heroes",
-      "profiles": [
-        {
-          "name": "Steed of Kurnous 9",
-          "M": 3,
-          "WS": 0,
-          "BS": 4,
-          "S": 3,
-          "T": 1,
-          "W": 4,
-          "I": 1,
-          "A": 5,
-          "Ld": null
-        }
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree",
+      "specialRuleDescriptions": [
+        "Aspects"
       ],
-      "troopType": "War Beast (Animal)",
-      "baseSize": "25x50 or 30x60\nUNICORN",
-      "equipment": null,
-      "magic": null,
-      "options": [],
-      "specialRules": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
-      "name": "Unicorn 10",
-      "category": "Heroes",
+      "name": "Elven Steed",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Unicorn 10",
-          "M": 5,
-          "WS": 0,
-          "BS": 4,
-          "S": 4,
-          "T": 2,
-          "W": 5,
-          "I": 2,
-          "A": 8,
-          "Ld": null
+          "name": "Elven Steed",
+          "M": 9,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
         }
       ],
       "troopType": "War Beast (Animal)",
@@ -582,30 +1087,95 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Forest Strider, Impale, Magical Attacks, Magic Resistance (2)\nWARHAWK",
+      "specialRules": null,
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Warhawk 2",
-      "category": "Heroes",
+      "name": "Steed of Kurnous",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Warhawk 2",
-          "M": 4,
-          "WS": 0,
-          "BS": 4,
-          "S": 3,
-          "T": 2,
-          "W": 5,
-          "I": 2,
-          "A": 5,
-          "Ld": null
+          "name": "Steed of Kurnous",
+          "M": 9,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "War Beast (Animal)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Unicorn",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Unicorn",
+          "M": 10,
+          "WS": 5,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 5,
+          "A": 2,
+          "Ld": 8
+        }
+      ],
+      "troopType": "War Beast (Animal)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Forest Strider, Impale, Magical Attacks, Magic Resistance (2)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Warhawk",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Warhawk",
+          "M": 2,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 5,
+          "A": 2,
+          "Ld": 5
         }
       ],
       "troopType": "War Beast (Animal)",
@@ -613,30 +1183,31 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fly (10)\n19\n\nCHARACTER MOUNTS\nGREAT STAG",
+      "specialRules": "Fly (10)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Great Stag 9",
-      "category": "Heroes",
+      "name": "Great Stag",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Great Stag 9",
-          "M": 5,
-          "WS": 0,
-          "BS": 5,
-          "S": 4,
-          "T": 3,
-          "W": 4,
-          "I": 2,
-          "A": 7,
-          "Ld": null
+          "name": "Great Stag",
+          "M": 9,
+          "WS": 5,
+          "BS": 0,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 4,
+          "A": 2,
+          "Ld": 7
         }
       ],
       "troopType": "Monstrous Beast (Animal)",
@@ -645,13 +1216,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Forest Strider, Impact Hits (D3)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Glade Guard",
@@ -676,22 +1248,44 @@
       "equipment": "Spear, shield",
       "magic": null,
       "options": [
-        "May upgrade one Glade Guard to a Leader +5 points",
-        "May upgrade one Glade Guard to a Musician +5 points",
-        "May upgrade one Glade Guard to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Glade Guard to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Glade Guard to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Glade Guard to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Elven Grace, Forest Strider\nGLADE ARCHERS",
+      "specialRules": "Elven Grace, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 7,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 7
     },
     {
-      "name": "Glade Archer",
+      "name": "Glade Archers",
       "category": "Core",
       "profiles": [
         {
@@ -713,29 +1307,81 @@
       "equipment": "Hand weapon, Asrai longbow",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point/model",
-        "Moonfire Shot +1 point/model",
-        "Starfire Shafts +1 point/model",
-        "Hagbane Tips +2 points/model",
-        "Trueflight Arrows +2 points/model",
-        "Swiftshiver Shards +3 points/model",
-        "May upgrade one Glade Archer to a Leader +5 points",
-        "May upgrade one Glade Archer to a Musician +5 points",
-        "May upgrade one Glade Archer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Glade Archer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Glade Archer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Glade Archer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 12,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 12
     },
     {
-      "name": "Deepwood Scout",
+      "name": "Deepwood Scouts",
       "category": "Core",
       "profiles": [
         {
@@ -757,29 +1403,81 @@
       "equipment": "Hand weapon, Asrai longbow",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point/model",
-        "Moonfire Shot +1 point/model",
-        "Starfire Shafts +1 point/model",
-        "Hagbane Tips +2 points/model",
-        "Trueflight Arrows +2 points/model",
-        "Swiftshiver Shards +3 points/model",
-        "May upgrade one Deepwood Scout to a Leader +5 points",
-        "May upgrade one Deepwood Scout to a Musician +5 points",
-        "May upgrade one Deepwood Scout to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Deepwood Scout to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Deepwood Scout to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Deepwood Scout to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider, Scouts, Skirmishers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• You may not have more units of Deepwood Scouts than you have units of Glade Archers.",
-      "pointsCost": 14,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 14
     },
     {
-      "name": "Glade Rider",
+      "name": "Glade Riders",
       "category": "Core",
       "profiles": [
         {
@@ -813,31 +1511,105 @@
       "equipment": "Light lance, Asrai longbow",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take shields +1 point/model",
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point/model",
-        "Moonfire Shot +1 point/model",
-        "Starfire Shafts +1 point/model",
-        "Hagbane Tips +2 points/model",
-        "Trueflight Arrows +2 points/model",
-        "Swiftshiver Shards +3 points/model",
-        "May upgrade one Glade Rider to a Leader +5 points",
-        "May upgrade one Glade Rider to a Musician +5 points",
-        "May upgrade one Glade Rider to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Glade Rider to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Glade Rider to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Glade Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Asrai Archery, Elven Grace, Fast Cavalry, Forest Strider\nDRYADS",
+      "specialRules": "Asrai Archery, Elven Grace, Fast Cavalry, Forest Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 18,
       "unitSize": "5+",
       "crew": null,
       "mount": "Elven Steed (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 18
     },
     {
-      "name": "Dryad",
+      "name": "Dryads",
       "category": "Core",
       "profiles": [
         {
@@ -859,17 +1631,29 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be upgraded to Skirmishers +1 point/model",
-        "May upgrade one Dryad to a Leader +5 points"
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Dryad to a Leader +5 points"
+        }
       ],
       "specialRules": "Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree Aspects",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 11,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 11
     },
     {
       "name": "Eternal Guard",
@@ -894,23 +1678,58 @@
       "equipment": "Saearath, light armour",
       "magic": null,
       "options": [
-        "May take shields +1 point/model",
-        "May upgrade one Eternal Guard to a Leader +5 points",
-        "May upgrade one Eternal Guard to a Musician +5 points",
-        "May upgrade one Eternal Guard to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Eternal Guard to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Eternal Guard to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Eternal Guard to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Stubborn\n• Fortress of Boughs: A unit where the majority of the models have this special rule counts as fighting behind a\ndefended obstacle.",
+      "specialRules": "Elven Grace, Forest Strider, Stubborn",
+      "specialRuleDescriptions": [
+        "Fortress of Boughs: A unit where the majority of the models have this special rule counts as fighting behind a defended obstacle."
+      ],
       "upgrades": null,
-      "notes": "• You may take one unit of Eternal Guard as a Core Unit instead of a Special Unit for every Glade Lord in your\narmy.\nWILDWOOD RANGERS",
-      "pointsCost": 10,
+      "notes": "• You may take one unit of Eternal Guard as a Core Unit instead of a Special Unit for every Glade Lord in your\narmy.",
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 10
     },
     {
-      "name": "Wildwood Ranger",
+      "name": "Wildwood Rangers",
       "category": "Special",
       "profiles": [
         {
@@ -932,22 +1751,46 @@
       "equipment": "Great weapon, light armour",
       "magic": null,
       "options": [
-        "May upgrade one Wildwood Ranger to a Leader +5 points",
-        "May upgrade one Wildwood Ranger to a Musician +5 points",
-        "May upgrade one Wildwood Ranger to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Wildwood Ranger to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Wildwood Ranger to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Wildwood Ranger to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Immunity (Psychology)\n• Guardians of the Wildwood: If a model with this special rule is in base contact with at least one enemy\nmodel with either the Fear or Terror special rule, it gains +1 Attack.",
+      "specialRules": "Elven Grace, Forest Strider, Immunity (Psychology)",
+      "specialRuleDescriptions": [
+        "Guardians of the Wildwood: If a model with this special rule is in base contact with at least one enemy model with either the Fear or Terror special rule, it gains +1 Attack."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Wardancer",
+      "name": "Wardancers",
       "category": "Special",
       "profiles": [
         {
@@ -969,25 +1812,63 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "Must choose at least one of the following:",
-        "Saerath +0.5 point/model",
-        "Additional hand weapons +1 point/model",
-        "May upgrade one Wardancer to a Leader +5 points",
-        "May upgrade one Wardancer to a Musician +5 points",
-        "May upgrade one Wardancer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Saerath",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "additional hand weapon",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "Must choose at least one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Wardancer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Wardancer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Wardancer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Magic Resistance (1), Shadow Dances of Loec, Skirmishers,\nWard save (6+)\nALTERS",
+      "specialRules": "Elven Grace, Forest Strider, Magic Resistance (1), Shadow Dances of Loec, Skirmishers,",
+      "specialRuleDescriptions": [
+        "Ward save (6+)"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Alter",
+      "name": "Alters",
       "category": "Special",
       "profiles": [
         {
@@ -1009,19 +1890,27 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May upgrade one Alter to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Alter to a Leader +5 points"
+        }
       ],
-      "specialRules": "Ambushers, Elven Grace, Fear, Forest Strider, Skirmishers, Swiftstride\n• Animal Form: Models with this special rule may choose one of the following Animal Forms at the start of\neach round of close combat. This is done before Impact Hits are resolved. All models in the same unit must\nchoose the same Animal Form. The effect of each Animal Form lasts until the end of that turn or until a new\nAnimal Form is chosen. Models cannot choose the Animal Form in two consecutive rounds of combat.\n- Bear: The model gains +1 Strength.\n- Boar: The model gains +1 Toughness.\n- Wolf: The model gains +1 Attack and the Armour Piercing (1) special rule.\n- Stag: The model gains the Impact Hits (1) special rule with Strength Bonus (1).",
+      "specialRules": "Ambushers, Elven Grace, Fear, Forest Strider, Skirmishers, Swiftstride",
+      "specialRuleDescriptions": [
+        "Animal Form: Models with this special rule may choose one of the following Animal Forms at the start of each round of close combat. This is done before Impact Hits are resolved. All models in the same unit must choose the same Animal Form. The effect of each Animal Form lasts until the end of that turn or until a new Animal Form is chosen. Models cannot choose the Animal Form in two consecutive rounds of combat. - Bear: The model gains +1 Strength. - Boar: The model gains +1 Toughness. - Wolf: The model gains +1 Attack and the Armour Piercing (1) special rule. - Stag: The model gains the Impact Hits (1) special rule with Strength Bonus (1)."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 14,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 14
     },
     {
-      "name": "Wild Rider",
+      "name": "Wild Riders",
       "category": "Special",
       "profiles": [
         {
@@ -1067,25 +1956,81 @@
       "equipment": "Light lance",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take shields +1 point/model",
-        "May replace Elven Steeds with Steeds of Kurnous +2 points/model",
-        "May upgrade one Wild Rider to a Leader +5 points",
-        "May upgrade one Wild Rider to a Musician +5 points",
-        "May upgrade one Wild Rider to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "Elven Steeds",
+          "choices": [
+            {
+              "name": "Steeds of Kurnous",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace Elven Steeds with Steeds of Kurnous +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Wild Rider to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Wild Rider to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Wild Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Devastating Charge, Elven Grace, Fast Cavalry, Forest Spirit, Frenzy",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 24,
       "unitSize": "5+",
       "crew": null,
       "mount": "Elven Steed (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 24
     },
     {
-      "name": "Warhawk Rider",
+      "name": "Warhawk Riders",
       "category": "Special",
       "profiles": [
         {
@@ -1119,24 +2064,71 @@
       "equipment": "Light lance, Asrai longbow",
       "magic": null,
       "options": [
-        "May take shields +2 points/model",
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point/model",
-        "Moonfire Shot +1 point/model",
-        "Starfire Shafts +1 point/model",
-        "Hagbane Tips +2 points/model",
-        "Trueflight Arrows +2 points/model",
-        "Swiftshiver Shards +3 points/model",
-        "May upgrade one Warhawk Rider to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Warhawk Rider to a Leader +5 points"
+        }
       ],
-      "specialRules": "Asrai Archery, Elven Grace, Fly (10)\nMEADOW CHARIOT",
+      "specialRules": "Asrai Archery, Elven Grace, Fly (10)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 25,
       "unitSize": "3+",
       "crew": null,
       "mount": "Warhawk (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 25
     },
     {
       "name": "Meadow Chariot",
@@ -1185,20 +2177,43 @@
       "equipment": "Light lance, Asrai longbow",
       "magic": null,
       "options": [
-        "May take two additional Elven Steeds +5 points",
-        "May take two additional Charioteers +10 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "two additional Elven Steeds",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take two additional Elven Steeds +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "two additional Charioteers",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take two additional Charioteers +10 points"
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 70,
       "unitSize": null,
       "crew": "2 Charioteers (Wood Elf)",
       "mount": null,
-      "drawnBy": "2 Elven Steeds (Animal)"
+      "drawnBy": "2 Elven Steeds (Animal)",
+      "pointsCost": 70
     },
     {
-      "name": "Tree Revenant",
+      "name": "Tree Revenants",
       "category": "Special",
       "profiles": [
         {
@@ -1220,22 +2235,46 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May upgrade one Tree Revenant to a Leader +5 points",
-        "May upgrade one Tree Revenant to a Musician +5 points",
-        "May upgrade one Tree Revenant to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Tree Revenant to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Tree Revenant to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Tree Revenant to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Forest Spirit, Martial Memories, Natural Armour (6+)\n• Spirit-walk: Instead of moving normally, the unit can walk the spirit paths during the Remaining Moves sub-\nphase. Remove it from play, and set it up so that the centre of the unit is within any wood on the table.\nSPITE REVENANTS",
+      "specialRules": "Forest Spirit, Martial Memories, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Spirit-walk: Instead of moving normally, the unit can walk the spirit paths during the Remaining Moves sub- phase. Remove it from play, and set it up so that the centre of the unit is within any wood on the table."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 15,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 15
     },
     {
-      "name": "Spite Revenant",
+      "name": "Spite Revenants",
       "category": "Special",
       "profiles": [
         {
@@ -1257,19 +2296,43 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May upgrade one Tree Revenant to a Leader +5 points",
-        "May upgrade one Tree Revenant to a Musician +5 points",
-        "May upgrade one Tree Revenant to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Tree Revenant to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Tree Revenant to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Tree Revenant to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Forest Spirit, Hatred, Natural Armour (6+), Scouts, Skirmishers\n• Unbridled Malice: Spite Revenants' Hatred special rule applies in all rounds of close combat, not just the first.\nIn addition, enemy units in base contact with them must re-roll successful Leadership tests. This has no effect\non units that have Immunity (Psychology).",
+      "specialRules": "Forest Spirit, Hatred, Natural Armour (6+), Scouts, Skirmishers",
+      "specialRuleDescriptions": [
+        "Unbridled Malice: Spite Revenants' Hatred special rule applies in all rounds of close combat, not just the first. In addition, enemy units in base contact with them must re-roll successful Leadership tests. This has no effect on units that have Immunity (Psychology)."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 14,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 14
     },
     {
       "name": "Tree Kin",
@@ -1295,16 +2358,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Flammable, Forest Spirit, Natural Armour (4+), Stubborn",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 50,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
-      "name": "Waywatcher",
+      "name": "Waywatchers",
       "category": "Rare",
       "profiles": [
         {
@@ -1326,28 +2390,86 @@
       "equipment": "Hand weapon, Asrai longbow",
       "magic": null,
       "options": [
-        "May take additional hand weapons +1 point/model",
-        "May take traps +15 points",
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point/model",
-        "Moonfire Shot +1 point/model",
-        "Starfire Shafts +1 point/model",
-        "Hagbane Tips +2 points/model",
-        "Trueflight Arrows +2 points/model",
-        "Swiftshiver Shards +3 points/model",
-        "May upgrade one Waywatcher to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take additional hand weapons +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "traps",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May take traps +15 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Starfire Shafts",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Waywatcher to a Leader +5 points"
+        }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider, Forest Stalker, Lethal Shot, Scouts",
+      "specialRuleDescriptions": null,
       "upgrades": "• Traps: A Waywatcher unit which is within a forest is automatically assumed to set traps around its positions.\nAny enemy charging the unit through the forest will activate the traps as soon as the enemy unit touches the\nforest. If the chargers are already inside the forest when the charge is declared the traps are activated as soon as\nthe charge is declared. Roll a dice to determine the type and effect of the trap.\nD6 Result\n1-2 Spikes: The enemy unit suffers D6 Strength 3 hits.\n3 Snares: The enemy unit deducts D3\" from the charge distance.\n4 Nets: All enemy models in base contact with the Waywatchers must pass a Strength test or be unable\nto attack in the ensuing close combat.\n5 Camouflaged Pit: The enemy unit counts as moving through Dangerous Terrain. If the unit would\nalready treat the forest as Dangerous Terrain, they instead fail the test on a 1-2.\n6 Impaler: Treat the unit as being hit by a bolt thrower in the front rank. The file it hits is determined\nby the Wood Elf player.",
       "notes": null,
-      "pointsCost": 20,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 20
     },
     {
-      "name": "Sister of the Thorn",
+      "name": "Sisters of the Thorn",
       "category": "Rare",
       "profiles": [
         {
@@ -1381,22 +2503,47 @@
       "equipment": "Hand weapon, javelins, light armour",
       "magic": "A unit of Sisters of the Thorn is a Level 1 Wizard that can use spells from the Lore of Life, Beasts or Athel\nLoren.",
       "options": [
-        "May upgrade one Sister of the Thorn to a Leader +5 points",
-        "May upgrade one Sister of the Thorn to a Musician +5 points",
-        "May upgrade one Sister of the Thorn to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Sister of the Thorn to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Sister of the Thorn to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Sister of the Thorn to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Asrai Archery, Blessings of the Ancients, Fast Cavalry, Forest Strider, Poisoned Attacks,\nWard save (4+)\n• Deepwood Coven: The unit receives an additional +1 to cast for each rank of 5 or more models it has, after the\nfirst, to a maximum of +3. Each time the unit casts a spell (or is targeted by a special rule that affects a\nWizard), you must nominate one Sister of the Thorn as the caster (or target) for the purposes of line of sight,\nrange, etc. In the event of a Sisters of the Thorn unit rolling a miscast, do not roll on the Miscast table. Instead,\nthe unit suffers D3 Wounds with no saves of any kind allowed.",
+      "specialRules": "Asrai Archery, Blessings of the Ancients, Fast Cavalry, Forest Strider, Poisoned Attacks,",
+      "specialRuleDescriptions": [
+        "Ward save (4+)",
+        "Deepwood Coven: The unit receives an additional +1 to cast for each rank of 5 or more models it has, after the first, to a maximum of +3. Each time the unit casts a spell (or is targeted by a special rule that affects a Wizard), you must nominate one Sister of the Thorn as the caster (or target) for the purposes of line of sight, range, etc. In the event of a Sisters of the Thorn unit rolling a miscast, do not roll on the Miscast table. Instead, the unit suffers D3 Wounds with no saves of any kind allowed."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 25,
       "unitSize": "5+",
       "crew": null,
       "mount": "Steed of Isha (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 25
     },
     {
-      "name": "Wild Rider",
+      "name": "Great Stag Knights",
       "category": "Rare",
       "profiles": [
         {
@@ -1430,21 +2577,65 @@
       "equipment": "Light lance",
       "magic": null,
       "options": [
-        "May take light armour +3 points/model",
-        "May take shields +3 points/model",
-        "May upgrade one Great Stag Knight to a Leader +5 points",
-        "May upgrade one Great Stag Knight to a Musician +5 points",
-        "May upgrade one Great Stag Knight to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +3 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Great Stag Knight to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Great Stag Knight to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Great Stag Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Devastating Charge, Elven Grace, Forest Spirit, Forest Strider, Frenzy, Impact Hits (D3)\nGREAT EAGLE",
+      "specialRules": "Devastating Charge, Elven Grace, Forest Spirit, Forest Strider, Frenzy, Impact Hits (D3)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 58,
       "unitSize": "3+",
       "crew": null,
       "mount": "Great Stag (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 58
     },
     {
       "name": "Great Eagle",
@@ -1469,20 +2660,43 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take Shredding Talons +5 points",
-        "May take Swiftsense +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Shredding Talons",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Shredding Talons +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Swiftsense",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Swiftsense +5 points"
+        }
       ],
       "specialRules": "Fly (9)",
+      "specialRuleDescriptions": null,
       "upgrades": "• Swiftsense: The model gains the Always Strikes First special rule in any turn that they charge.\n• Shredding Talons: The model gains the Armour Piercing (1) special rule.",
       "notes": null,
-      "pointsCost": 50,
       "unitSize": "1-3",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
-      "name": "Gossamid Archer",
+      "name": "Gossamid Archers",
       "category": "Rare",
       "profiles": [
         {
@@ -1504,19 +2718,28 @@
       "equipment": "Hand weapon, Asrai longbow",
       "magic": null,
       "options": [
-        "May upgrade one Gossamid Archer to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Gossamid Archer to a Leader +5 points"
+        }
       ],
-      "specialRules": "Fly (10), Forest Spirit, Martial Memories, Natural Armour (6+).\n• Larval Shafts: If a model with this special rule rolls a natural 6 To Hit with their bows, that Attack\nautomatically Wounds with the Multiple Wounds (D3) special rule.\n• Zephyrspites: After a unit where the majority of the models with this special rule has resolved all their\nmissile attacks and is within 6\" of an enemy unit; they may move directly backwards D6\", keeping the\nsame unit facing.\nSPITERIDER REVENANTS",
+      "specialRules": "Fly (10), Forest Spirit, Martial Memories, Natural Armour (6+).",
+      "specialRuleDescriptions": [
+        "Larval Shafts: If a model with this special rule rolls a natural 6 To Hit with their bows, that Attack automatically Wounds with the Multiple Wounds (D3) special rule.",
+        "Zephyrspites: After a unit where the majority of the models with this special rule has resolved all their missile attacks and is within 6\" of an enemy unit; they may move directly backwards D6\", keeping the same unit facing."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 23,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 23
     },
     {
-      "name": "Spiterider Revenant",
+      "name": "Spiterider Revenants",
       "category": "Rare",
       "profiles": [
         {
@@ -1550,23 +2773,58 @@
       "equipment": "Hand weapon, shields",
       "magic": null,
       "options": [
-        "May take light lances +2 points/model",
-        "May upgrade one Spiterider Revenant to a Leader +5 points",
-        "May upgrade one Spiterider Revenant to a Musician +5 points",
-        "May upgrade one Spiterider Revenant to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light lance",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light lances +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Spiterider Revenant to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Spiterider Revenant to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Spiterider Revenant to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural\nArmour (5+), Regeneration (5+)",
+      "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural",
+      "specialRuleDescriptions": [
+        "Armour (5+), Regeneration (5+)"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": "3+",
       "crew": null,
       "mount": "Dragonspite (Forest Spirit)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
-      "name": "Sylvan Hunter",
+      "name": "Sylvan Hunters",
       "category": "Rare",
       "profiles": [
         {
@@ -1588,20 +2846,44 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "Must choose one of the following:",
-        "Polearms +6 points/model",
-        "Great bows +9 points/model",
-        "Great weapons +9 points/model",
-        "May upgrade one Sylvan Hunter to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "polearm",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "Great bows",
+              "points": 9,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": true
+            }
+          ],
+          "raw": "Must choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Sylvan Hunter to a Leader +5 points"
+        }
       ],
-      "specialRules": "Flammable, Forest Spirit, Natural Armour (4+), Stubborn\nTREEMAN",
+      "specialRules": "Flammable, Forest Spirit, Natural Armour (4+), Stubborn",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 42,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 42
     },
     {
       "name": "Treeman",
@@ -1626,16 +2908,28 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take Strangleroots +20 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Strangleroots",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Strangleroots +20 points"
+        }
       ],
       "specialRules": "Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree Whack",
+      "specialRuleDescriptions": null,
       "upgrades": "• Strangleroots: Strangleroots have the following profile:\nRange: Strength: Special Rules:\n12\" 5 Multiple Shots (D6+1), Quick to Fire, Rapid Fire",
       "notes": null,
-      "pointsCost": 215,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 215
     },
     {
       "name": "Zoat",
@@ -1660,16 +2954,25 @@
       "equipment": "Great weapon",
       "magic": "A Zoat is a Level 1 Wizard that can use spells from the Lore of Life.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        }
       ],
-      "specialRules": "Cold-blooded, Forest Strider, Magic Resistance (1), Natural Armour (4+)\n• Master of the Vengeful Forest: If a Zoat is wholly within a forest, all enemy models treat that forest as\ndangerous terrain and will fail their Dangerous Terrain tests on a roll of a 1 or 2.\n• The Power of the Deepwoods: If a Zoat or wholly within a forest, it gets a +2 casting bonus.\nFOREST DRAGON",
+      "specialRules": "Cold-blooded, Forest Strider, Magic Resistance (1), Natural Armour (4+)",
+      "specialRuleDescriptions": [
+        "Master of the Vengeful Forest: If a Zoat is wholly within a forest, all enemy models treat that forest as dangerous terrain and will fail their Dangerous Terrain tests on a roll of a 1 or 2.",
+        "The Power of the Deepwoods: If a Zoat or wholly within a forest, it gets a +2 casting bonus."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 130,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 130
     },
     {
       "name": "Forest Dragon",
@@ -1694,14 +2997,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fly (7), Forest Spirit, Natural Armour (3+)\n• Soporific Breath: A Forest Dragon has a Strength 2 Breath Weapon. Armour saves taken against Wounds\ncaused by Soporific Breath suffer a -3 penalty. All models in a unit that suffers one or more hits from Soporific\nBreath gain the Stupidity special rule for the remainder of the game.",
+      "specialRules": "Fly (7), Forest Spirit, Natural Armour (3+)",
+      "specialRuleDescriptions": [
+        "Soporific Breath: A Forest Dragon has a Strength 2 Breath Weapon. Armour saves taken against Wounds caused by Soporific Breath suffer a -3 penalty. All models in a unit that suffers one or more hits from Soporific Breath gain the Stupidity special rule for the remainder of the game."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 325,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 325
     },
     {
       "name": "Orion",
@@ -1738,16 +3044,31 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take two Hounds of Orion +20 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "two Hounds of Orion",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May take two Hounds of Orion +20 points"
+        }
       ],
-      "specialRules": "Asrai Archery, Elven Grace, Forest Spirit, Frenzy, Terror, Unbreakable\n• Orion's Equerries: The Hounds of Orion are War Beasts (Forest Spirit) with the Frenzy, Forest Spirit and\nUnbreakable special rules. They must be deployed as a unit with Orion. Orion cannot leave this unit, and\ncannot join other units.\n• The Wild Hunt: Orion must be the Army General. In addition, Wild Riders counts as Core Units instead of\nSpecial Units. An army led by Orion must include at least one unit of Wild Riders.",
+      "specialRules": "Asrai Archery, Elven Grace, Forest Spirit, Frenzy, Terror, Unbreakable",
+      "specialRuleDescriptions": [
+        "Orion's Equerries: The Hounds of Orion are War Beasts (Forest Spirit) with the Frenzy, Forest Spirit and Unbreakable special rules. They must be deployed as a unit with Orion. Orion cannot leave this unit, and cannot join other units.",
+        "The Wild Hunt: Orion must be the Army General. In addition, Wild Riders counts as Core Units instead of Special Units. An army led by Orion must include at least one unit of Wild Riders."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 425,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 425
     },
     {
       "name": "Ariel",
@@ -1772,17 +3093,23 @@
       "equipment": null,
       "magic": "Ariel is a level 4 Wizard who uses spells from the Lore of Athel Loren.\nMAGIC ITEMS:\n• The Dart of Doom: Magic Weapon. One use only. The Dart of Doom has a range of 12\". If the dart hits a\nmodel it causes 1 automatic Wound which Ignores Armour saves. If the wound is not saved the dart sucks\nenergy out of the victim, draining their Strength characteristic by D3 to a minimum of 1.\n• The Heartstone of Athel Loren: Talisman. If Ariel successfully dispels a spell targeted at her, the casting\nWizard must immediately take a Leadership test. If he fails, he immediately loses a Wizard level and may\nnot cast that spell for the remainder of the game.\n• The Wand of Wych Elm: Arcane Item. This staff allows any failed Dispel attempt to be re-rolled.\n• The Berry Wine: Enchanted Item. One use only. The wine can be drunk at the start of any phase. Ariel\nwill immediately regain up to D3 Wounds previously lost during the battle.\n• The Acorn of Ages: Enchanted Item. One use only. At the start of the game, after the battlefield has been\nset up, but before deployment begins, place a forest, no more than 12\" in diameter, on the battlefield. This\nforest can be placed anywhere at least 1\" away from another terrain feature and the edge of the battle\nfield. Once the forest have been placed, it scatters 2D6\". If this scatter causes a forest to end up within 1\"\n(or on top of) other terrain, or within 1\" of the battle field edge, reduce or increase the scatter by the\nsmallest amount necessary to avoid the obstruction. When this has been done, declare which type of\nforest you want it to be from those available in the Main Rulebook.",
       "options": [],
-      "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic\nResistance (3)\n• Aura of the Fey Queen: All friendly units within 6\" of Ariel have the Immunity (Panic) special rule.\n• Earthbind: Any units declaring a charge on Ariel count as moving through Dangerous Terrain for the duration\nof the turn. In addition, if Ariel flees from combat, any enemies attempting to pursue her roll an extra D6 when\ndetermining their pursuit distance and discard the highest result.\n• Screech: Ariel may use Screech when it would normally be her time to attack in close combat. This is a special\nattack that automatically Hits all enemy models in base contact at Strength 4 with the Ignores Armour special\nrule.",
+      "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic",
+      "specialRuleDescriptions": [
+        "Resistance (3)",
+        "Aura of the Fey Queen: All friendly units within 6\" of Ariel have the Immunity (Panic) special rule.",
+        "Earthbind: Any units declaring a charge on Ariel count as moving through Dangerous Terrain for the duration of the turn. In addition, if Ariel flees from combat, any enemies attempting to pursue her roll an extra D6 when determining their pursuit distance and discard the highest result.",
+        "Screech: Ariel may use Screech when it would normally be her time to attack in close combat. This is a special attack that automatically Hits all enemy models in base contact at Strength 4 with the Ignores Armour special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 380,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 380
     },
     {
-      "name": "Naestra",
+      "name": "Naestra & Arahan",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1841,21 +3168,41 @@
       "equipment": "Shield\nMAGIC ITEMS:\n• Talon of Dawn: Magic Weapon. The Talon of Dawn is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n30\" 5 Armour Piercing (1), Flaming Attacks, Multiple Wounds (D6)\nIf an attack from the Talon of Dawn causes one or more unsaved Wounds, they regain a single Wound lost\nearlier in the battle.\n• Talon of Dusk: Magic Weapon. The Talon of Dusk is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n30\" 2 Armour Piercing (1), Multiple Shots (2D6), Poisoned Attacks, Rapid Fire",
       "magic": null,
       "options": [
-        "Must be mounted on one of the following:",
-        "Gwindalor +100 points",
-        "Ceithin-Har +320 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Gwindalor",
+              "points": 100,
+              "perModel": false
+            },
+            {
+              "name": "Ceithin-Har",
+              "points": 320,
+              "perModel": false
+            }
+          ],
+          "raw": "Must be mounted on one of the following:"
+        }
       ],
-      "specialRules": "Asrai Archery, Elven Grace.\n• Conjoined Destiny: If Naestra and Arahan have been reduced to less than 4 Wounds at the end any turn, they\nwill be restored to 4 Wounds.\n• Impetuous: If Ceithin-Har can declare a Charge during the Charge sub-phase, he must do so unless he passes\na Leadership test.\n• Hunter’s Mount: When mounted on Gwindalor, Naestra and Arahan re-roll all failed To Hit rolls when\nmaking shooting attacks.\n• Sisters of Twilight: Naestra’s close combat attacks receive a +1 bonus To Wound against models from the\nForces of Destruction. Arahan’s close combat attacks receive a +1 bonus To Wound against models from the\nForces of Order.",
+      "specialRules": "Asrai Archery, Elven Grace.",
+      "specialRuleDescriptions": [
+        "Conjoined Destiny: If Naestra and Arahan have been reduced to less than 4 Wounds at the end any turn, they will be restored to 4 Wounds.",
+        "Impetuous: If Ceithin-Har can declare a Charge during the Charge sub-phase, he must do so unless he passes a Leadership test.",
+        "Hunter’s Mount: When mounted on Gwindalor, Naestra and Arahan re-roll all failed To Hit rolls when making shooting attacks.",
+        "Sisters of Twilight: Naestra’s close combat attacks receive a +1 bonus To Wound against models from the Forces of Destruction. Arahan’s close combat attacks receive a +1 bonus To Wound against models from the Forces of Order."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 90,
       "unitSize": null,
       "crew": null,
-      "mount": "When mounted on Gwindalor, Naestra and Arahan re-roll all failed To Hit rolls when\nmaking shooting attacks.\n• Sisters of Twilight: Naestra’s close combat attacks receive a +1 bonus To Wound against models from the\nForces of Destruction. Arahan’s close combat attacks receive a +1 bonus To Wound against models from the\nForces of Order.",
-      "drawnBy": null
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 90
     },
     {
-      "name": "Araloth",
+      "name": "Araloth the Bold",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1877,19 +3224,34 @@
       "equipment": "Spear, light armour, shield",
       "magic": null,
       "options": [
-        "May take one Spite and/or Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Ward save (5+)\n• Boldest of the Bold: Whilst Araloth is a lone character, he has the Unbreakable special rule.\n• Skaryn the Eye Thief: At the start of each of your turns, nominate a single enemy model within 18\" of\nAraloth. That model takes a Strength 4 hit. If the Wound is unsaved, and the To Wound roll was a 6, the model\nsuffers a -5 penalty to Weapon Skill, Ballistics Skill, and Initiative (to a minimum of 1) for the rest of the\ngame. A model can only suffer this penalty once.\nTHALANDOR DOOMSTAR\nLord of Argwylon",
+      "specialRules": "Elven Grace, Forest Strider, Ward save (5+)",
+      "specialRuleDescriptions": [
+        "Boldest of the Bold: Whilst Araloth is a lone character, he has the Unbreakable special rule.",
+        "Skaryn the Eye Thief: At the start of each of your turns, nominate a single enemy model within 18\" of Araloth. That model takes a Strength 4 hit. If the Wound is unsaved, and the To Wound roll was a 6, the model suffers a -5 penalty to Weapon Skill, Ballistics Skill, and Initiative (to a minimum of 1) for the rest of the game. A model can only suffer this penalty once."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
-      "name": "Thalandor",
+      "name": "Thalandor Doomstar",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1923,19 +3285,31 @@
       "equipment": "Shield\nMAGIC ITEMS:\n• Spear of Daith: Magic Weapon. Light lance. The Spear of Daith gives Thalandor a Parry save (5+), even\nwhile mounted.\n• Talisman of Qwarr: Talisman. Models targeting against Thalandor and Gwandor with missile attacks suffer -1\nTo Hit.",
       "magic": null,
       "options": [
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Elven Grace, Fly (9)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 235,
       "unitSize": null,
       "crew": null,
       "mount": "Gwandor (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 235
     },
     {
-      "name": "Durthu",
+      "name": "Durthu Oakheart",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1957,16 +3331,31 @@
       "equipment": null,
       "magic": "Durthu is a Level 1 Wizard who uses spells from the Lore of Beasts.\nMAGIC ITEMS:\n• Sword of Daith: Magic Weapon. This sword allows Durthu to re-roll failed To Hit rolls every turn, not just the\nfirst. In addition, he can never lose his Frenzy special rule.",
       "options": [
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Frenzy, Hatred, Natural Armour (3+),\nStrangleroots (see Treeman Ancient), Stubborn, Tree Whack.\n• Unburden of Thieflings: An Unburden of Thieflings is a close combat attack that can be used in addition to\nDurthu's other attacks. It has the following profile:\nRange: Strength: Special Rules:\nCombat 2 Magical Attacks, Poisoned Attacks, Random Attacks (D6)\nAny enemy units that suffer Wounds from any of these attacks suffer -1 To Hit and To Wound as well as -1 to\ntheir armour saves until the start of your next turn.",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Frenzy, Hatred, Natural Armour (3+),",
+      "specialRuleDescriptions": [
+        "Strangleroots (see Treeman Ancient), Stubborn, Tree Whack.",
+        "Unburden of Thieflings: An Unburden of Thieflings is a close combat attack that can be used in addition to Durthu's other attacks. It has the following profile: Range: Strength: Special Rules: Combat 2 Magical Attacks, Poisoned Attacks, Random Attacks (D6) Any enemy units that suffer Wounds from any of these attacks suffer -1 To Hit and To Wound as well as -1 to their armour saves until the start of your next turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 320,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 320
     },
     {
       "name": "Belthanos",
@@ -2003,14 +3392,15 @@
       "equipment": "Polearm\nMAGIC ITEMS:\n• Mantle of Leaves: Talisman: This item allows Belthanos to re-roll failed Ward saves.\n• War-horn of Kurnous: Enchanted Item. One use only. At the start of any turn, the War-horn of Kurnous may\nbe sounded. All friendly units within 12\" may re-roll failed charge distances this turn.",
       "magic": null,
       "options": [],
-      "specialRules": "Flammable, Fly (7), Forest Spirit, Natural Armour (3+)\nTHE LADY OF VINES",
+      "specialRules": "Flammable, Fly (7), Forest Spirit, Natural Armour (3+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 400,
       "unitSize": null,
       "crew": null,
       "mount": "Carnelian Greatspite (Forest Spirit)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 400
     },
     {
       "name": "The Lady of Vines",
@@ -2035,16 +3425,30 @@
       "equipment": null,
       "magic": "The Lady of Vines is a Level 2 Wizard who uses spells from the Lore of Athel Loren.\nMAGIC ITEMS:\n• Kurnotheal's Wrath: Magic Weapon. Spear/javelin. All attacks (both shooting and close combat) made with\nthis weapon may re-roll failed rolls To Hit and have the Multiple Wounds (D3) special rule.\n• Verdian Crown: Talisman. All friendly units with the Forest Spirit special rule within 6\" of the Lady of Vines\ncounts as being in soft cover.",
       "options": [
-        "May take one Spite and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (5+)\n• Writhing Vines: At the start of each round of close combat, the Lady of Vines can choose one of the following\neffects:\n- Protective Barrier: Enemy units targeting the Lady of Vines or any unit she is with suffer -1 To Hit this\nround of close combat.\n- Ensnare Foes: The Lady of Vines and any unit she is with gain +1 To Hit this round of close combat.",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (5+)",
+      "specialRuleDescriptions": [
+        "Writhing Vines: At the start of each round of close combat, the Lady of Vines can choose one of the following effects: - Protective Barrier: Enemy units targeting the Lady of Vines or any unit she is with suffer -1 To Hit this round of close combat. - Ensnare Foes: The Lady of Vines and any unit she is with gain +1 To Hit this round of close combat."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 390,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 390
     },
     {
       "name": "Scarloc",
@@ -2069,25 +3473,63 @@
       "equipment": "Asrai longbow\nMAGIC ITEMS:\n• Runesword of Darkwood: Magic Weapon. This weapon gives Skarloc the Always Strikes First and Armour\nPiercing (1) special rules.",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Arcane Bodkins +1 point",
-        "Moonfire Shot +1 point",
-        "Hagbane Tips +2 points",
-        "Trueflight Arrows +2 points",
-        "Swiftshiver Shards +3 points",
-        "May take one Spite and/or Magic Items up to a total of 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Arcane Bodkins",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Moonfire Shot",
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": "Hagbane Tips",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Trueflight Arrows",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Swiftshiver Shards",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one Spite and/or Magic Items up to a total of 25 points",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one Spite and/or Magic Items up to a total of 25 points"
+        }
       ],
       "specialRules": "Elven Grace, Forest Strider, Scouts",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
-      "name": "Naieth",
+      "name": "Naieth the Prophetess",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2109,14 +3551,17 @@
       "equipment": "Hand weapon",
       "magic": "Naieth is a Level 2 Wizard who uses spells from the Lore of Heavens.\nMAGIC ITEMS:\n• The Rod of Divination: Arcane Items. The Rod of Divination gives Naieth an extra Power dice at the start of\neach Magic phase.",
       "options": [],
-      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider\n• Othu the Owl: Othu may settle on any unit of Wood Elves with a Standard Bearer at the start of the shooting\nphase. This unit may then re-roll To Hit rolls of 1 with missile attacks this turn. The owl never settles on the\nsame unit twice in succession. Othu is not vulnerable to weapons, missiles or magic, but if Naieth is removed\nfrom play Othu flies away.\nWYCHWETHYL",
+      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider",
+      "specialRuleDescriptions": [
+        "Othu the Owl: Othu may settle on any unit of Wood Elves with a Standard Bearer at the start of the shooting phase. This unit may then re-roll To Hit rolls of 1 with missile attacks this turn. The owl never settles on the same unit twice in succession. Othu is not vulnerable to weapons, missiles or magic, but if Naieth is removed from play Othu flies away."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Wychwethyl",
@@ -2141,14 +3586,18 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Drum of Orcskin: Enchanted Item. The Drum of Orcskin gives Wychwethyl and any unit he joins the\nSwiftstride special rule when they roll their charge distance.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Forest Strider, Magic Resistance (1), Ward save (6+)\n• Choose Opponent: In close combat, Wychwethyl can choose to attack any enemy model in the enemy unit,\nnot just the models in base contact with him.\n• Dance of Doom: Wychwethyl can use the Dance of Doom instead of his normal Shadow Dances. If he does\nso, he gains +1 Attack for every enemy model in base contact with him.",
+      "specialRules": "Elven Grace, Forest Strider, Magic Resistance (1), Ward save (6+)",
+      "specialRuleDescriptions": [
+        "Choose Opponent: In close combat, Wychwethyl can choose to attack any enemy model in the enemy unit, not just the models in base contact with him.",
+        "Dance of Doom: Wychwethyl can use the Dance of Doom instead of his normal Shadow Dances. If he does so, he gains +1 Attack for every enemy model in base contact with him."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 105,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 105
     },
     {
       "name": "Skaw",
@@ -2173,17 +3622,20 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Lash of Claws: Magic Weapon. The Lash of Claws gives Skaw the Always Strikes First and Mighty\nBlow (1) special rules. In addition, if the victim is hit but not wounded, it loses 1 Attack for the duration of the\nturn.\n• The Cape of Feathers: Magic Armour. This armour gives Skaw a 6+ Ward save. In addition, he gains the\nNatural Armour (4+) special rule against missile attacks.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Forest Strider\n• Falcons: Skaw may use his 3 falcons in addition to another missile weapon during the start of the Shooting\nphase. The falcons can be directed against any enemy unit within line of sight, regardless of range. The enemy\nunit must take a Weapon Skill test for each falcon targeting them; if failed, the unit takes a Strength 3 Hit. In\nclose combat, the falcons give Skaw an additional 3 Attacks that are resolved at Weapon Skill 4, Strength 3 and\nInitiative 4. These attacks no not benefit from any special rules or items that Skaw might have.",
+      "specialRules": "Elven Grace, Forest Strider",
+      "specialRuleDescriptions": [
+        "Falcons: Skaw may use his 3 falcons in addition to another missile weapon during the start of the Shooting phase. The falcons can be directed against any enemy unit within line of sight, regardless of range. The enemy unit must take a Weapon Skill test for each falcon targeting them; if failed, the unit takes a Strength 3 Hit. In close combat, the falcons give Skaw an additional 3 Attacks that are resolved at Weapon Skill 4, Strength 3 and Initiative 4. These attacks no not benefit from any special rules or items that Skaw might have."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
-      "name": "Gruarth",
+      "name": "Gruath",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2229,14 +3681,18 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Binding Bolas: Magic Weapon. The Blinding Bolas is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n18\" 1 Armour Piercing (1), Multiple Shots (2), Sniper\nIf a target has Unit Strength 3 or less and is Hit, but not slain, then it is temporarily entangled and cannot move\nin their next Movement phase. Entangled enemies may be left behind, counting as casualties, or in the case of a\nCharacter, as if they had left the unit.",
       "magic": null,
       "options": [],
-      "specialRules": "Animal Form (see Alters), Elven Grace, Fear, Forest Strider, Mixed Unit, Natural Armour\n(6+), Skirmishers\n• Beastmaster: During the Movement phase, Fang and Claw may move away from Gruath if they wish, forming\na unit of their own. They may return to Gruath in the Remaining Moves phase by moving within 1\" of him as\nlong as neither of them is fleeing, in which case the unit will revert back to the normal Mixed Unit special rule.\nWhile the wolves are more than 12\" away from Gruath they are subject to Frenzy. If both wolves are slain,\nGruarth becomes subject to Hatred.",
+      "specialRules": "Animal Form (see Alters), Elven Grace, Fear, Forest Strider, Mixed Unit, Natural Armour",
+      "specialRuleDescriptions": [
+        "(6+), Skirmishers",
+        "Beastmaster: During the Movement phase, Fang and Claw may move away from Gruath if they wish, forming a unit of their own. They may return to Gruath in the Remaining Moves phase by moving within 1\" of him as long as neither of them is fleeing, in which case the unit will revert back to the normal Mixed Unit special rule. While the wolves are more than 12\" away from Gruath they are subject to Frenzy. If both wolves are slain, Gruarth becomes subject to Hatred."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 75,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 75
     },
     {
       "name": "Drycha",
@@ -2261,16 +3717,33 @@
       "equipment": null,
       "magic": "Drycha is a Level 2 Wizard who uses spells from the Lore of Life, Shadow or Athel Loren.",
       "options": [
-        "May take Spites up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Spites up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Spites up to a total of 50 points"
+        }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk, Tree\nAspects.\n• Eternal Rage: Drycha has the Hatred special rule which applies in every round of close combat, not just the\nfirst.\n• Fanatical Resolve: If Drycha is reduced to 1 Wound, she gains the Frenzy special rule. She automatically\nloses Frenzy if she is healed back to her starting number of Wounds.\n• Roused to Wrath: You may choose up to D3 units with the Forest Spirit special rule to deploy as Ambushers.\nWhen these unit would normally enter the battlefield, instead place them so that all models in the unit are\nwholly within a forest, and at least 1\" away from other units and impassable terrain. Units that cannot be\ndeployed this way enter the board as normal Ambushers instead. This rule cannot be used if there are no forests\non the battlefield when it is time to deploy your army.",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk, Tree",
+      "specialRuleDescriptions": [
+        "Aspects.",
+        "Eternal Rage: Drycha has the Hatred special rule which applies in every round of close combat, not just the first.",
+        "Fanatical Resolve: If Drycha is reduced to 1 Wound, she gains the Frenzy special rule. She automatically loses Frenzy if she is healed back to her starting number of Wounds.",
+        "Roused to Wrath: You may choose up to D3 units with the Forest Spirit special rule to deploy as Ambushers. When these unit would normally enter the battlefield, instead place them so that all models in the unit are wholly within a forest, and at least 1\" away from other units and impassable terrain. Units that cannot be deployed this way enter the board as normal Ambushers instead. This rule cannot be used if there are no forests on the battlefield when it is time to deploy your army."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     }
   ]
 }

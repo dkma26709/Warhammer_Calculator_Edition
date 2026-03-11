@@ -66,17 +66,17 @@
           "action": "choose",
           "choices": [
             {
-              "name": "Bow",
+              "name": "bow",
               "points": 5,
               "perModel": false
             },
             {
-              "name": "Pistol",
+              "name": "pistol",
               "points": 6,
               "perModel": false
             },
             {
-              "name": "Handgun",
+              "name": "handgun",
               "points": 7,
               "perModel": false
             }
@@ -93,7 +93,7 @@
               "perModel": false
             },
             {
-              "name": "Full plate armour",
+              "name": "full plate armour",
               "points": 21,
               "perModel": false
             }
@@ -284,7 +284,7 @@
               "perModel": false
             },
             {
-              "name": "Flail",
+              "name": "flail",
               "points": 8,
               "perModel": false
             },
@@ -630,17 +630,17 @@
           "action": "choose",
           "choices": [
             {
-              "name": "Pistol",
+              "name": "pistol",
               "points": 5,
               "perModel": false
             },
             {
-              "name": "Bow",
+              "name": "bow",
               "points": 6,
               "perModel": false
             },
             {
-              "name": "Handgun",
+              "name": "handgun",
               "points": 7,
               "perModel": false
             }
@@ -657,7 +657,7 @@
               "perModel": false
             },
             {
-              "name": "Full plate armour",
+              "name": "full plate armour",
               "points": 14,
               "perModel": false
             }
@@ -817,7 +817,7 @@
               "perModel": false
             },
             {
-              "name": "Flail",
+              "name": "flail",
               "points": 6,
               "perModel": false
             },
@@ -1115,22 +1115,22 @@
           "action": "choose",
           "choices": [
             {
-              "name": "Repeater pistol",
+              "name": "repeater pistol",
               "points": 6,
               "perModel": false
             },
             {
-              "name": "Repeater handgun",
+              "name": "repeater handgun",
               "points": 8,
               "perModel": false
             },
             {
-              "name": "Grenade launching blunderbuss",
+              "name": "grenade launching blunderbuss",
               "points": 8,
               "perModel": false
             },
             {
-              "name": "Hochland long rifle",
+              "name": "hochland long rifle",
               "points": 15,
               "perModel": false
             }
@@ -1196,16 +1196,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Warhorse 8",
-          "M": 3,
-          "WS": 0,
-          "BS": 3,
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
           "S": 3,
-          "T": 1,
-          "W": 3,
-          "I": 1,
-          "A": 5,
-          "Ld": null
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
         }
       ],
       "troopType": "War Beast (Animal)",
@@ -1241,16 +1241,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Pegasus 8",
-          "M": 4,
-          "WS": 0,
-          "BS": 4,
+          "name": "Pegasus",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
           "S": 4,
-          "T": 2,
-          "W": 4,
-          "I": 2,
-          "A": 6,
-          "Ld": null
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 6
         }
       ],
       "troopType": "War Beast (Animal)",
@@ -1298,15 +1298,15 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Mechanical Steed 7",
-          "M": 1,
-          "WS": 0,
-          "BS": 4,
+          "name": "Mechanical Steed",
+          "M": 7,
+          "WS": 1,
+          "BS": 0,
           "S": 4,
-          "T": 1,
+          "T": 4,
           "W": 1,
           "I": 1,
-          "A": null,
+          "A": 1,
           "Ld": null
         }
       ],
@@ -1330,16 +1330,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Demigryph 8",
-          "M": 4,
-          "WS": 0,
-          "BS": 4,
+          "name": "Demigryph",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
           "S": 4,
-          "T": 3,
-          "W": 4,
-          "I": 3,
-          "A": 7,
-          "Ld": null
+          "T": 4,
+          "W": 3,
+          "I": 4,
+          "A": 3,
+          "Ld": 7
         }
       ],
       "troopType": "Monstrous Beast (Animal)",
@@ -1362,16 +1362,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Griffon 6",
-          "M": 5,
-          "WS": 0,
-          "BS": 5,
+          "name": "Griffon",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
           "S": 5,
-          "T": 4,
+          "T": 5,
           "W": 4,
           "I": 4,
-          "A": 7,
-          "Ld": null
+          "A": 4,
+          "Ld": 7
         }
       ],
       "troopType": "Monstrous Creature (Animal)",
@@ -1419,16 +1419,16 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Imperial Griffon 6",
-          "M": 5,
-          "WS": 0,
-          "BS": 6,
-          "S": 5,
+          "name": "Imperial Griffon",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
+          "S": 6,
           "T": 5,
-          "W": 4,
+          "W": 5,
           "I": 4,
-          "A": 7,
-          "Ld": null
+          "A": 4,
+          "Ld": 7
         }
       ],
       "troopType": "Monster (Animal)",
@@ -1512,13 +1512,13 @@
       "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "War Altar of Sigmar 7",
-          "M": null,
+          "name": "War Altar of Sigmar",
+          "M": 7,
           "WS": null,
-          "BS": 5,
+          "BS": null,
           "S": 5,
           "T": 5,
-          "W": null,
+          "W": 5,
           "I": null,
           "A": null,
           "Ld": null
@@ -1621,22 +1621,24 @@
           "raw": "May take shields +1 point/model"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "pistol",
-              "points": 3,
-              "perModel": false
-            }
-          ],
-          "raw": "May take a pistol +3 points"
-        },
-        {
           "type": "command",
           "role": "Leader",
           "points": 5,
-          "raw": "May upgrade one Halberdier to a Leader +5 points"
+          "raw": "May upgrade one Halberdier to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
         },
         {
           "type": "command",
@@ -1645,15 +1647,17 @@
           "raw": "May upgrade one Halberdier to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Halberdier to a Standard Bearer +10 points"
+          "raw": "May upgrade one Halberdier to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops",
@@ -1699,7 +1703,8 @@
               "perModel": true
             },
             {
-              "name": "Replace spears with pikes",
+              "name": "pike",
+              "replaces": "spear",
               "points": 1.5,
               "perModel": true
             }
@@ -1719,22 +1724,24 @@
           "raw": "May take light armour +0.5 point/model"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "pistol",
-              "points": 3,
-              "perModel": false
-            }
-          ],
-          "raw": "May take a pistol +3 points"
-        },
-        {
           "type": "command",
           "role": "Leader",
           "points": 5,
-          "raw": "May upgrade one Spearman to a Leader +5 points"
+          "raw": "May upgrade one Spearman to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
         },
         {
           "type": "command",
@@ -1743,15 +1750,17 @@
           "raw": "May upgrade one Spearman to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Spearman to a Standard Bearer +10 points"
+          "raw": "May upgrade one Spearman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops",
@@ -1800,22 +1809,24 @@
           "raw": "May take light armour +0.5 point/model"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "pistol",
-              "points": 3,
-              "perModel": false
-            }
-          ],
-          "raw": "May take a pistol +3 points"
-        },
-        {
           "type": "command",
           "role": "Leader",
           "points": 5,
-          "raw": "May upgrade one Swordsman to a Leader +5 points"
+          "raw": "May upgrade one Swordsman to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
         },
         {
           "type": "command",
@@ -1824,15 +1835,17 @@
           "raw": "May upgrade one Swordsman to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Swordsman to a Standard Bearer +10 points"
+          "raw": "May upgrade one Swordsman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops",
@@ -1881,13 +1894,6 @@
           "raw": "May take light armour +0.5 point/model"
         },
         {
-          "type": "equipment",
-          "action": "replace",
-          "replaces": "handgun",
-          "choices": [],
-          "raw": "May replace handgun with one of the following:"
-        },
-        {
           "type": "command",
           "role": "Leader",
           "points": 5,
@@ -1895,39 +1901,26 @@
         },
         {
           "type": "equipment",
-          "action": "add",
+          "action": "replace",
+          "replaces": "handgun",
           "choices": [
             {
-              "name": "Brace of pistols",
+              "name": "brace of pistols",
               "points": 0,
               "perModel": false
-            }
-          ],
-          "raw": "Brace of pistols free"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
+            },
             {
-              "name": "Repeater handgun",
+              "name": "repeater handgun",
               "points": 5,
               "perModel": false
-            }
-          ],
-          "raw": "Repeater handgun +5 points"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
+            },
             {
-              "name": "Hochland long rifle",
+              "name": "hochland long rifle",
               "points": 10,
               "perModel": false
             }
           ],
-          "raw": "Hochland long rifle +10 points"
+          "raw": "May replace handgun with one of the following:"
         },
         {
           "type": "command",
@@ -1936,15 +1929,17 @@
           "raw": "May upgrade one Handgunner to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Handgunner to a Standard Bearer +10 points"
+          "raw": "May upgrade one Handgunner to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops",
@@ -2005,15 +2000,17 @@
           "raw": "May upgrade one Crossbowman to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Crossbowman to a Standard Bearer +10 points"
+          "raw": "May upgrade one Crossbowman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops",
@@ -2081,15 +2078,17 @@
           "raw": "May upgrade one Archer to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Archer to a Standard Bearer +10 points"
+          "raw": "May upgrade one Archer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops",
@@ -2145,22 +2144,22 @@
           "replaces": "one hand weapon",
           "choices": [
             {
-              "name": "Bucklers",
+              "name": "buckler",
               "points": 0,
               "perModel": false
             },
             {
-              "name": "Bows",
+              "name": "bow",
               "points": 2,
               "perModel": true
             },
             {
-              "name": "Pistols",
+              "name": "pistol",
               "points": 2,
               "perModel": true
             },
             {
-              "name": "Crossbows",
+              "name": "crossbow",
               "points": 4,
               "perModel": true
             }
@@ -2246,23 +2245,25 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "replace",
-          "replaces": "one pistol",
-          "choices": [
-            {
-              "name": "repeater pistol",
-              "points": 5,
-              "perModel": false
-            }
-          ],
-          "raw": "May replace one pistol with a repeater pistol +5 points"
-        },
-        {
           "type": "command",
           "role": "Leader",
           "points": 5,
-          "raw": "May upgrade one Pistolier to a Leader +5 points"
+          "raw": "May upgrade one Pistolier to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "replace",
+              "replaces": "one pistol",
+              "choices": [
+                {
+                  "name": "repeater pistol",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May replace one pistol with a repeater pistol +5 points"
+            }
+          ]
         },
         {
           "type": "command",
@@ -2341,15 +2342,17 @@
           "raw": "May upgrade one Demilancer to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Demilancer to a Standard Bearer +10 points"
+          "raw": "May upgrade one Demilancer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Fast Cavalry",
@@ -2415,15 +2418,17 @@
           "raw": "May upgrade one Greatsword to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Greatsword to a Standard Bearer +10 points"
+          "raw": "May upgrade one Greatsword to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": "State Troops, Stubborn",
@@ -2540,15 +2545,17 @@
           "raw": "May upgrade one Imperial Knight to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Imperial Knight to a Standard Bearer +10 points"
+          "raw": "May upgrade one Imperial Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": null,
@@ -2641,15 +2648,17 @@
           "raw": "May upgrade one Imperial Knight to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Imperial Knight to a Standard Bearer +10 points"
+          "raw": "May upgrade one Imperial Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": null,
@@ -2710,13 +2719,6 @@
           "raw": "May take barding +1 point/model"
         },
         {
-          "type": "equipment",
-          "action": "replace",
-          "replaces": "repeater handgun",
-          "choices": [],
-          "raw": "May replace repeater handgun with one of the following:"
-        },
-        {
           "type": "command",
           "role": "Leader",
           "points": 5,
@@ -2724,39 +2726,26 @@
         },
         {
           "type": "equipment",
-          "action": "add",
+          "action": "replace",
+          "replaces": "repeater handgun",
           "choices": [
             {
               "name": "Brace of pistols including one repeater pistol",
               "points": 0,
               "perModel": false
-            }
-          ],
-          "raw": "Brace of pistols including one repeater pistol free"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
+            },
             {
-              "name": "Grenade launching blunderbuss",
+              "name": "grenade launching blunderbuss",
               "points": 0,
               "perModel": false
-            }
-          ],
-          "raw": "Grenade launching blunderbuss free"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
+            },
             {
-              "name": "Hochland long rifle",
+              "name": "hochland long rifle",
               "points": 5,
               "perModel": false
             }
           ],
-          "raw": "Hochland long rifle +5 points"
+          "raw": "May replace repeater handgun with one of the following:"
         },
         {
           "type": "command",
@@ -2801,10 +2790,10 @@
         {
           "type": "equipment",
           "action": "replace",
-          "replaces": "bows",
+          "replaces": "bow",
           "choices": [
             {
-              "name": "longbows",
+              "name": "longbow",
               "points": 1,
               "perModel": true
             }
@@ -2869,7 +2858,7 @@
           "action": "choose",
           "choices": [
             {
-              "name": "Bucklers",
+              "name": "buckler",
               "points": 0.5,
               "perModel": true
             },
@@ -2921,15 +2910,17 @@
           "raw": "May upgrade one Sister of Sigmar to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Sister of Sigmar to a Standard Bearer +10 points"
+          "raw": "May upgrade one Sister of Sigmar to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Hatred, Immunity (Fear), Magic Resistance (1)",
@@ -2977,7 +2968,7 @@
               "perModel": true
             },
             {
-              "name": "Flails",
+              "name": "flail",
               "points": 2,
               "perModel": true
             }
@@ -3059,12 +3050,12 @@
               "perModel": true
             },
             {
-              "name": "Crossbows",
+              "name": "crossbow",
               "points": 5,
               "perModel": true
             },
             {
-              "name": "Handguns",
+              "name": "handgun",
               "points": 5,
               "perModel": true
             }
@@ -3113,15 +3104,17 @@
           "raw": "May upgrade one Dwarf to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Dwarf to a Standard Bearer +10 points"
+          "raw": "May upgrade one Dwarf to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Hatred (Orcs, Goblins, Skaven), Loner",
@@ -3202,15 +3195,17 @@
           "raw": "May upgrade one Halfling to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Halfling to a Standard Bearer +10 points"
+          "raw": "May upgrade one Halfling to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Loner",
@@ -3253,7 +3248,7 @@
           "action": "choose",
           "choices": [
             {
-              "name": "Bucklers",
+              "name": "buckler",
               "points": 3,
               "perModel": true
             },
@@ -3305,15 +3300,17 @@
           "raw": "May upgrade one Ogre to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 25,
-          "raw": "May take a Magic Standard worth up to 25 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Ogre to a Standard Bearer +10 points"
+          "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
         }
       ],
       "specialRules": "Loner, Natural Armour (6+)",
@@ -3512,15 +3509,17 @@
           "raw": "May upgrade one Inner Circle Knight to a Musician +5 points"
         },
         {
-          "type": "magic_standard",
-          "pointsLimit": 50,
-          "raw": "May take a Magic Standard worth up to 50 points"
-        },
-        {
           "type": "command",
           "role": "Standard Bearer",
           "points": 10,
-          "raw": "May upgrade one Inner Circle Knight to a Standard Bearer +10 points"
+          "raw": "May upgrade one Inner Circle Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
         }
       ],
       "specialRules": null,
@@ -3701,12 +3700,14 @@
           "action": "choose",
           "choices": [
             {
-              "name": "Replace all equipment (except barding) with handguns",
+              "name": "handgun",
+              "replaces": "all equipment (except barding)",
               "points": 10,
               "perModel": false
             },
             {
-              "name": "Replace 3 crew and all equipment (except barding) with a Mortar",
+              "name": "Mortar",
+              "replaces": "3 crew and all equipment (except barding)",
               "points": 40,
               "perModel": false
             }
@@ -3909,7 +3910,7 @@
           "action": "add",
           "choices": [
             {
-              "name": "Hochland long rifle",
+              "name": "hochland long rifle",
               "points": 10,
               "perModel": false
             }
@@ -3917,59 +3918,61 @@
           "raw": "May take a Hochland long rifle +10 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Implacable",
-              "points": 0,
-              "perModel": false
-            }
-          ],
-          "raw": "Implacable free"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Old Reliable",
-              "points": 0,
-              "perModel": false
-            }
-          ],
-          "raw": "Old Reliable free"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Sigmar's Hammer",
-              "points": 0,
-              "perModel": false
-            }
-          ],
-          "raw": "Sigmar's Hammer free"
-        },
-        {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Von Zeppel",
-              "points": 0,
-              "perModel": false
-            }
-          ],
-          "raw": "Von Zeppel free"
-        },
-        {
           "type": "upgrade",
           "upgrade": "one of the following:",
           "points": null,
           "perModel": false,
-          "raw": "May be upgraded to one of the following:"
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Implacable",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Implacable free"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Old Reliable",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Old Reliable free"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Sigmar's Hammer",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Sigmar's Hammer free"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Von Zeppel",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Von Zeppel free"
+            }
+          ]
         }
       ],
       "specialRules": "Animated Construct, Terror",
@@ -4922,7 +4925,7 @@
         {
           "type": "equipment",
           "action": "replace",
-          "replaces": "two hand weapons",
+          "replaces": "additional hand weapon",
           "choices": [
             {
               "name": [

@@ -24,20 +24,50 @@
       "equipment": "Hand weapon",
       "magic": "A Grey Seer is a Level 4 Wizard who uses spells from the Lore of Ruin and/or Lore of Plague. They may use\na combination of spells from both Lores. In addition, they can also choose the following spell:\nCURSE OF THE HORNED RAT\nLevel 4 Cast on 15+\nCurse of the Horned Rat is a direct damage spell with a range of 18\" that targets Infantry. Up to 3D6 models in the unit\nsuffers a Wound which Ignores Armour saves. If the whole unit is removed as casualties, replace them with a number of\nClanrats (armed with hand weapons and no other equipment or upgrades) equal to the number of casualties, facing the\nsame direction as before. The casting player now controls this unit. If the casting player does not have enough models to\nreplace the entire unit, the rest are considered destroyed.",
       "options": [
-        "May be mounted on one of the following:",
-        "War-litter +10 points",
-        "Screaming Bell +200 points",
-        "May take up to 5 Warpstone Tokens 10 points/token",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "War-litter",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Screaming Bell",
+              "points": 200,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 5 Warpstone Tokens 10 points/token",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 5 Warpstone Tokens 10 points/token"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 200,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 200
     },
     {
       "name": "Warlord",
@@ -62,33 +92,140 @@
       "equipment": "Hand weapon, medium armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Polearm +8 points",
-        "Great weapon +12 points",
-        "May choose one of the following:",
-        "Warplock Pistol +7 points",
-        "Ratling Pistol +7 points",
-        "May take heavy armour +9 points",
-        "May take a shield +3 points",
-        "May take a tail weapon +5 points",
-        "May take a Rat Hound Bodyguard +3 points",
-        "May be mounted on one of the following:",
-        "War-litter +12 points",
-        "Great Pox Rat +21 points",
-        "Gnaw-beast +36 points",
-        "Rat Ogre Bonebreaker +75 points",
-        "Brood Horror +150 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warplock Pistol",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "Ratling Pistol",
+              "points": 7,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May take heavy armour +9 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +3 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Rat Hound Bodyguard",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Rat Hound Bodyguard +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "War-litter",
+              "points": 12,
+              "perModel": false
+            },
+            {
+              "name": "Great Pox Rat",
+              "points": 21,
+              "perModel": false
+            },
+            {
+              "name": "Gnaw-beast",
+              "points": 36,
+              "perModel": false
+            },
+            {
+              "name": "Rat Ogre Bonebreaker",
+              "points": 75,
+              "perModel": false
+            },
+            {
+              "name": "Brood Horror",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
       "name": "Verminlord",
@@ -113,20 +250,75 @@
       "equipment": null,
       "magic": "A Verminlord is a Level 4 Wizard who uses spells from the Lore of Ruin and/or Lore of Plague. A Warpseer\nand Warbringer uses spells from the Lore of Ruin, a Deceiver uses spells from the Lore of Stealth and a Corruptor uses\nspells from the Lore of Plague.",
       "options": [
-        "May be upgraded to one of the following",
-        "Corruptor +5 points",
-        "Deceiver +25 points",
-        "Warbringer +25 points",
-        "Warpseer +50 points"
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Corruptor",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "Corruptor +5 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Deceiver",
+                  "points": 25,
+                  "perModel": false
+                }
+              ],
+              "raw": "Deceiver +25 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Warbringer",
+                  "points": 25,
+                  "perModel": false
+                }
+              ],
+              "raw": "Warbringer +25 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Warpseer",
+                  "points": 50,
+                  "perModel": false
+                }
+              ],
+              "raw": "Warpseer +50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "• Daemonic: A Verminlord has the Magical Attacks and Unbreakable special rules. In addition, they have a 5+\nWard save which gets reduced to a 6+ Ward save against Magical Attacks. However, if a Verminlord loses a\nround of close combat it must take a Daemonic Instability test. This works like a normal Break test, except that\nfor every point it fails the test by, it suffers one additional Wound with no saves allowed. The Daemonic\nInstability test can use Inspiring Presence and/or Hold Your Ground as normal.",
+      "specialRules": "• Daemonic: A Verminlord has the Magical Attacks and Unbreakable special rules. In addition, they have a 5+",
+      "specialRuleDescriptions": [
+        "Ward save which gets reduced to a 6+ Ward save against Magical Attacks. However, if a Verminlord loses a round of close combat it must take a Daemonic Instability test. This works like a normal Break test, except that for every point it fails the test by, it suffers one additional Wound with no saves allowed. The Daemonic Instability test can use Inspiring Presence and/or Hold Your Ground as normal."
+      ],
       "upgrades": "• Warpseer: A Warpseer has the following:\n- Master of Lightning: A Verminlord Warpseer must choose all its spells from the Lore of Ruin, and can re-\nroll failed casting attempts when attempting to cast Warp Lightning.\n- Scry-orb: Enchanted Item. A Verminlord Warpseer gains a 6+ Ward Save while it carries this item. Once\nper game, in the Shooting phase, you may choose to throw the Scry-orb. If you do so, the bonus to its\nWard Save is immediately lost for the rest of the game.\nTo throw the Scry-orb, place the small round template with its centre anywhere within 12\" and line of\nsight of the Verminlord Warpseer – it scatters D3\". Models touched by the template must pass an Initiative\ntest or be destroyed, with no saves of any kind allowed.\n• Deceiver: A Deceiver has the following:\n- Shrouded in Darkness: Enemy units that target a Verminlord Deceiver with a shooting attack suffer a -1\nTo Hit modifier in addition to any other modifiers.\n- Shadowstrider: A Verminlord Deceiver must choose all its spells from the Lore of Stealth, and can re-roll\nfailed casting attempts when attempting to cast Skitterleap, and can choose itself as the target of this spell.\n- Warpstiletto: Magic Weapon. Attacks made with this weapon have the Armour Piercing (1) and Poisoned\nAttacks special rules. This replaces the Doom-glaive.\n- Doomstar: Magic Weapon: This is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n12\" As user Arcing Death, Quick to Fire, Poisoned Attacks\nArcing Death: A weapon with this special rule makes as many shots as the number of models in the front\nrank of the target unit that are within range.\n• Corruptor: A Corruptor has the following:\n- Plaguemaster: A Verminlord Corruptor must choose all its spells from the Lore of Plague, and can re-roll\nfailed casting attempts when attempting to cast Plague.\n- Plaguereapers: Magic Weapon. Two hand weapons. Attacks made with these weapons have the Always\nStrikes First special rule. This replaces the Doom-glaive.\n• Warbringer: A Warbringer has the following:\n- Verminous Fury: A Verminlord Warbringer must choose all its spells from the Lore of Ruin, and can re-\nroll failed casting attempts when attempting to cast Death Frenzy.\n- Doom Glaive and Punch-dagger: Magic Weapon. Two hand weapons. Attacks made with these weapons\nhave the Killing Blow and Multiple Wounds (D3) special rules.",
       "notes": null,
-      "pointsCost": 450,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 450
     },
     {
       "name": "Master Assassin",
@@ -151,22 +343,77 @@
       "equipment": "Two hand weapons, throwing weapons",
       "magic": null,
       "options": [
-        "May replace hand weapons with Weeping Blades +20 points",
-        "May choose one of the following:",
-        "Blowpipe +6 points",
-        "Sling +7 points",
-        "May take a tail weapon +5 points",
-        "May take smoke bombs +5 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "hand weapon",
+          "choices": [
+            {
+              "name": "Weeping Blades",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace hand weapons with Weeping Blades +20 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "blowpipe",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "sling",
+              "points": 7,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "smoke bombs",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take smoke bombs +5 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Strength in Numbers, Scurry Away\n• Sensei: A Master Assassin may be the Army General despite being Hidden. However, he can only pass on his\nLeadership value to other units if he is not Hidden.\nESHIN SORCERER LORD",
+      "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Strength in Numbers, Scurry Away",
+      "specialRuleDescriptions": [
+        "Sensei: A Master Assassin may be the Army General despite being Hidden. However, he can only pass on his Leadership value to other units if he is not Hidden."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 155,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 155
     },
     {
       "name": "Eshin Sorcerer Lord",
@@ -191,16 +438,21 @@
       "equipment": "Hand weapon",
       "magic": "An Eshin Sorcerer Lord is a Level 3 Wizard who uses spells from the Lore of Stealth.",
       "options": [
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Poisoned Attacks, Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 190,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 190
     },
     {
       "name": "Master Mutator",
@@ -225,28 +477,94 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Whip +6 points",
-        "Great weapon +9 points",
-        "Things-catcher +18 points",
-        "Shock-prod +24 points",
-        "May take a tail weapon +5 points",
-        "May be mounted on one of the following:",
-        "Great Pox Rat +20 points",
-        "Gnaw-beast +36 points",
-        "Rat Ogre Bonebreaker +75 points",
-        "Brood Horror +150 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "Whip",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "Things-catcher",
+              "points": 18,
+              "perModel": false
+            },
+            {
+              "name": "Shock-prod",
+              "points": 24,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Great Pox Rat",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Gnaw-beast",
+              "points": 36,
+              "perModel": false
+            },
+            {
+              "name": "Rat Ogre Bonebreaker",
+              "points": 75,
+              "perModel": false
+            },
+            {
+              "name": "Brood Horror",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Scurry Away, Strength in Numbers\n• Leader of the Pack: Models with this special rule may join units of Giant Rats or Rat Ogres and act as their\nhandlers following the Mixed Units special rule, or be deployed in the front rank if they wish. All friendly Clan\nMoulder units within 6\" of a Hero or 12\" of a Lord with this special rule gain the Cold-blooded special rule.",
+      "specialRules": "Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": [
+        "Leader of the Pack: Models with this special rule may join units of Giant Rats or Rat Ogres and act as their handlers following the Mixed Units special rule, or be deployed in the front rank if they wish. All friendly Clan Moulder units within 6\" of a Hero or 12\" of a Lord with this special rule gain the Cold-blooded special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 80,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 80
     },
     {
       "name": "Plaguelord",
@@ -271,24 +589,65 @@
       "equipment": "Hand weapon",
       "magic": "A Plaguelord is a Level 2 Wizard who uses spells from the Lore of Plague.",
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Flail +6 points",
-        "Great weapon +9 points",
-        "Plague censer +18 points",
-        "May be mounted on one of the following:",
-        "Great Pox Rat +20 points",
-        "Plague Furnace +150 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "Plague censer",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Great Pox Rat",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Plague Furnace",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Frenzy, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 190,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 190
     },
     {
       "name": "Warlock Master",
@@ -313,31 +672,123 @@
       "equipment": "Hand weapon, light armour",
       "magic": "A Warlock Master is a Level 3 Wizard who can use the spells from the Lore of Ruin.",
       "options": [
-        "May take a polearm +2 points",
-        "May choose one of the following:",
-        "Warplock Pistol +6 points",
-        "Ratling Pistol +6 points",
-        "Warpmusket +9 points",
-        "Warpvolt Obliterator +15 points",
-        "May choose one of the following:",
-        "Gas Mask +6 points",
-        "Warlock Optics +15 points",
-        "May choose one of the following:",
-        "Warp-Blades +5 points",
-        "Supercharged Warp-Power Accumulator +10 points",
-        "Upgraded Warp-Energy Condenser +15 points",
-        "May take a tail weapon +3 points",
-        "May take up to 3 Warpstone Tokens 10 points/token",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a polearm +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warplock Pistol",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Ratling Pistol",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Warpmusket",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "Warpvolt Obliterator",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Gas Mask",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Warlock Optics",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warp-Blades",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Supercharged Warp-Power Accumulator",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Upgraded Warp-Energy Condenser",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +3 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 3 Warpstone Tokens 10 points/token",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 3 Warpstone Tokens 10 points/token"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     },
     {
       "name": "Chieftain",
@@ -362,28 +813,113 @@
       "equipment": "Hand weapon, medium armour",
       "magic": null,
       "options": [
-        "One Chieftain may carry the Battle Standard +25 points",
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Polearm +6 points",
-        "Great weapon +9 points",
-        "May choose one of the following:",
-        "Warplock Pistol +6 points",
-        "Ratling Pistol +6 points",
-        "May take heavy armour +6 points",
-        "May take a shield +2 points",
-        "May take a tail weapon +5 points",
-        "May take a Rat Hound Bodyguard +3 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Chieftain may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warplock Pistol",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Ratling Pistol",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take heavy armour +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Rat Hound Bodyguard",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Rat Hound Bodyguard +3 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
       "notes": null,
-      "pointsCost": 45,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 45
     },
     {
       "name": "Assassin",
@@ -408,22 +944,82 @@
       "equipment": "Two hand weapons, throwing weapons",
       "magic": null,
       "options": [
-        "May replace hand weapons with Weeping Blades +20 points",
-        "May choose one of the following:",
-        "Blowpipe +5 points",
-        "Sling +6 points",
-        "May take a tail weapon +5 points",
-        "May take smoke bombs +5 points",
-        "May Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "hand weapon",
+          "choices": [
+            {
+              "name": "Weeping Blades",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace hand weapons with Weeping Blades +20 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "blowpipe",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "sling",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "smoke bombs",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take smoke bombs +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Strength in Numbers, Scurry Away\nESHIN SORCERER",
+      "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Strength in Numbers, Scurry Away",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Eshin Sorcerer",
@@ -448,17 +1044,27 @@
       "equipment": "Hand weapon",
       "magic": "An Eshin Sorcerer is a Level 1 Wizard who uses spells from the Lore of Stealth.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Poisoned Attacks, Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 75,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 75
     },
     {
       "name": "Master Moulder",
@@ -483,27 +1089,96 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Whip +4 points",
-        "Great weapon +6 points",
-        "Things-catcher +12 points",
-        "Shock-prod +16 points",
-        "May take a tail weapon +5 points",
-        "May be mounted on one of the following:",
-        "Great Pox Rat +20 points",
-        "Gnaw-beast +36 points",
-        "Rat Ogre Bonebreaker +75 points",
-        "May Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "Whip",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Things-catcher",
+              "points": 12,
+              "perModel": false
+            },
+            {
+              "name": "Shock-prod",
+              "points": 16,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Great Pox Rat",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Gnaw-beast",
+              "points": 36,
+              "perModel": false
+            },
+            {
+              "name": "Rat Ogre Bonebreaker",
+              "points": 75,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Scurry Away, Strength in Numbers\n• Leader of the Pack: Models with this special rule may join units of Giant Rats or Rat Ogres and act as their\nhandlers following the Mixed Units special rule, or be deployed in the front rank if they wish. All friendly Clan\nMoulder units within 6\" of a Hero or 12\" of a Lord with this special rule gain the Cold-blooded special rule.",
+      "specialRules": "Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": [
+        "Leader of the Pack: Models with this special rule may join units of Giant Rats or Rat Ogres and act as their handlers following the Mixed Units special rule, or be deployed in the front rank if they wish. All friendly Clan Moulder units within 6\" of a Hero or 12\" of a Lord with this special rule gain the Cold-blooded special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 30,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 30
     },
     {
       "name": "Plague Priest",
@@ -528,21 +1203,48 @@
       "equipment": "Hand weapon",
       "magic": "A Plague Priest is a Level 1 Wizard who uses spells from the Lore of Plague.",
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Flail +6 points",
-        "Great weapon +9 points",
-        "Plague censer +18 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "Plague censer",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Frenzy, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 95,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 95
     },
     {
       "name": "Warlock Engineer",
@@ -567,48 +1269,152 @@
       "equipment": "Hand weapon, light armour",
       "magic": "A Warlock Engineer is a Level 1 Wizard who can use the spells from the Lore of Ruin.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May take a polearm +2 points",
-        "May choose one of the following:",
-        "Warplock Pistol +4 points",
-        "Ratling Pistol +4 points",
-        "Warpmusket +6 points",
-        "Warpvolt Obliterator +10 points",
-        "May choose one of the following:",
-        "Gas Mask +4 points",
-        "Warlock Optics +10 points",
-        "May choose one of the following:",
-        "Warp-Blades +5 points",
-        "Supercharged Warp-Power Accumulator +10 points",
-        "Upgraded Warp-Energy Condenser +15 points",
-        "May take a tail weapon +2 points",
-        "May take a Warpstone Token 10 points",
-        "May Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a polearm +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warplock Pistol",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "Ratling Pistol",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "Warpmusket",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Warpvolt Obliterator",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Gas Mask",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "Warlock Optics",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warp-Blades",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Supercharged Warp-Power Accumulator",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Upgraded Warp-Energy Condenser",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapon",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a tail weapon +2 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Warpstone Token 10 points",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Warpstone Token 10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour\n26\n\nCHARACTER MOUNTS\nWAR-LITTER",
+      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 65,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 65
     },
     {
-      "name": "War-litter 5",
-      "category": "Heroes",
+      "name": "War-litter",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "War-litter 5",
-          "M": 4,
-          "WS": 3,
-          "BS": 4,
-          "S": null,
+          "name": "War-litter",
+          "M": 5,
+          "WS": 4,
+          "BS": 3,
+          "S": 4,
           "T": null,
-          "W": 5,
-          "I": 4,
-          "A": 5,
-          "Ld": null
+          "W": null,
+          "I": 5,
+          "A": 4,
+          "Ld": 5
         }
       ],
       "troopType": "Infantry (Skaven)",
@@ -617,29 +1423,30 @@
       "magic": null,
       "options": [],
       "specialRules": "Scurry Away, Strength in Numbers.",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• A War-litter has a Line of Sight value of 2.\nGREAT POX RAT",
-      "pointsCost": null,
+      "notes": "• A War-litter has a Line of Sight value of 2.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Great Pox Rat 7",
-      "category": "Heroes",
+      "name": "Great Pox Rat",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Great Pox Rat 7",
-          "M": 3,
-          "WS": 0,
-          "BS": 4,
+          "name": "Great Pox Rat",
+          "M": 7,
+          "WS": 3,
+          "BS": 0,
           "S": 4,
-          "T": 1,
-          "W": 5,
-          "I": 2,
+          "T": 4,
+          "W": 1,
+          "I": 5,
           "A": 2,
-          "Ld": null
+          "Ld": 2
         }
       ],
       "troopType": "War Beast (Skaven)",
@@ -647,30 +1454,33 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Poisoned Attacks, Scurry Away\n• Skittering: A model mounted on a Great Pox Rat is treated as an Infantry model for the purpose of 'Look Out,\nSir!'.\nGNAW-BEAST",
+      "specialRules": "Poisoned Attacks, Scurry Away",
+      "specialRuleDescriptions": [
+        "Skittering: A model mounted on a Great Pox Rat is treated as an Infantry model for the purpose of 'Look Out, Sir!'."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Gnaw-beast 8",
-      "category": "Heroes",
+      "name": "Gnaw-beast",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Gnaw-beast 8",
-          "M": 4,
-          "WS": 0,
-          "BS": 4,
+          "name": "Gnaw-beast",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
           "S": 4,
-          "T": 3,
-          "W": 4,
+          "T": 4,
+          "W": 3,
           "I": 4,
-          "A": 5,
-          "Ld": null
+          "A": 4,
+          "Ld": 5
         }
       ],
       "troopType": "Monstrous Beast (Skaven)",
@@ -678,30 +1488,31 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Scurry Away\n27\n\nCHARACTER MOUNTS\nRAT OGRE BONEBREAKER",
+      "specialRules": "Scurry Away",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Bonebreaker 6",
-      "category": "Heroes",
+      "name": "Rat Ogre Bonebreaker",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Bonebreaker 6",
-          "M": 4,
-          "WS": 0,
-          "BS": 5,
+          "name": "Bonebreaker",
+          "M": 6,
+          "WS": 4,
+          "BS": 0,
           "S": 5,
-          "T": 3,
+          "T": 5,
           "W": 3,
-          "I": 4,
-          "A": 5,
-          "Ld": null
+          "I": 3,
+          "A": 4,
+          "Ld": 5
         }
       ],
       "troopType": "Monstrous Beast (Skaven)",
@@ -709,27 +1520,28 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Scurry Away\nPLAGUE FURNACE",
+      "specialRules": "Scurry Away",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Plague Furnace 5",
-      "category": "Heroes",
+      "name": "Plague Furnace",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Plague Furnace 5",
-          "M": null,
+          "name": "Plague Furnace",
+          "M": 5,
           "WS": null,
           "BS": null,
-          "S": 6,
+          "S": null,
           "T": 6,
-          "W": null,
+          "W": 6,
           "I": null,
           "A": null,
           "Ld": null
@@ -752,27 +1564,32 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fear, Frenzy, Magic Resistance (2)\n• Altar of the Horned Rat: This model and any unit it joins has the Stubborn special rule.\n• Billowing Death: Billowing Death follows the rules for Breath Weapons, but can be used in every turn. All\nmodels Hit must pass a Toughness test or suffer a Wound with the Ignores Armour Saves and Magical Attacks\nspecial rules. All Clan Pestilens models gain a +1 bonus for this test.\n• Wrecker Attack: The Plague Furnace may inflict a special attack after all other attacks have been resolved,\ninflicting an Artillery dice's worth of Hits against a single enemy unit to their front. A roll of a Misfire means\nsomething has gone wrong; roll a D6 on the Plague Furnace Mishap chart below.\nPLAGUE FURNACE MISHAP CHART\nD6 Result:\n1-2 Crunch: The Plague Furnace immediately suffers D3 Wounds and the unit pushing it takes D6\nStrength 5 hits.\n3-5 Bilious Cloud: Immediately work out a special Billowing Death attack that causes 2D6 hits on any\nunit pushing the Plague Furnace.\n6 Maddening Fumes: Any unit pushing the Plague Furnace makes an additional full round of close\ncombat attacks against any enemy unit in base contact. After this, they suffer D6 Wounds. Any\ncasualties caused count towards combat resolution.",
+      "specialRules": "Fear, Frenzy, Magic Resistance (2)",
+      "specialRuleDescriptions": [
+        "Altar of the Horned Rat: This model and any unit it joins has the Stubborn special rule.",
+        "Billowing Death: Billowing Death follows the rules for Breath Weapons, but can be used in every turn. All models Hit must pass a Toughness test or suffer a Wound with the Ignores Armour Saves and Magical Attacks special rules. All Clan Pestilens models gain a +1 bonus for this test.",
+        "Wrecker Attack: The Plague Furnace may inflict a special attack after all other attacks have been resolved, inflicting an Artillery dice's worth of Hits against a single enemy unit to their front. A roll of a Misfire means something has gone wrong; roll a D6 on the Plague Furnace Mishap chart below. PLAGUE FURNACE MISHAP CHART D6 Result: 1-2 Crunch: The Plague Furnace immediately suffers D3 Wounds and the unit pushing it takes D6 Strength 5 hits. 3-5 Bilious Cloud: Immediately work out a special Billowing Death attack that causes 2D6 hits on any unit pushing the Plague Furnace. 6 Maddening Fumes: Any unit pushing the Plague Furnace makes an additional full round of close combat attacks against any enemy unit in base contact. After this, they suffer D6 Wounds. Any casualties caused count towards combat resolution."
+      ],
       "upgrades": null,
-      "notes": "• A Plague Furnace has a Line of Sight value of 5.\n28\n\nCHARACTER MOUNTS\nSCREAMING BELL",
-      "pointsCost": null,
+      "notes": "• A Plague Furnace has a Line of Sight value of 5.",
       "unitSize": null,
       "crew": "1 Plague Monk (Skaven, Clan Pestilens)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Screaming Bell 5",
-      "category": "Heroes",
+      "name": "Screaming Bell",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Screaming Bell 5",
-          "M": null,
+          "name": "Screaming Bell",
+          "M": 5,
           "WS": null,
           "BS": null,
-          "S": 6,
+          "S": null,
           "T": 6,
-          "W": null,
+          "W": 6,
           "I": null,
           "A": null,
           "Ld": null
@@ -795,17 +1612,22 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fear, Magic Resistance (2), Ward save (4+)\n• Above the Masses: The Grey Seer may use Verminous Valor to refuse a challenge, but is not moved to the\nback of the unit. The Grey Seer is not moved but cannot fight or be attacked for the duration of that round of\nclose combat.\n• Altar of the Horned Rat: This model and any unit it joins has the Stubborn special rule.\n• Tolling the Bell: In your Magic phase, immediately after generating power dice, you can choose to ring the\nScreaming Bell. The owning player can choose to roll between 1-3 D6's and consult the table below to see\nwhat effect it has. If any doubles are rolled, the unit pushing the Screaming Bell immediately takes D6\nStrength 4 Hits in addition to the result on the chart. If a triple is rolled, the unit pushing the Bell immediately\nsuffers 2D6 Strength 5 hits, and the Screaming Bell itself suffer a single Strength 5 hit in addition to the result\non the chart. If the Screaming Bell suffers one or more wounds inflicted by a shooting attack with a Strength of\n5 or more, it will immediately ring once using one D6, even if it is destroyed as a result of the attack.\nDice Result Effect\n1 Not yet in stride: No effect.\n2-4 Unholy Clamour: The unit pushing the Bell immediately moves using the Random\nMovement (D6) special rule.\n5-8 Emboldened: All friendly Skaven within 24\" of the Bell can re-roll failed Leadership tests\nuntil the start of your next turn.\n9-10 Scorch: The Bell itself (not the Grey Seer) immediately casts the Scorch spell from the Lore\nof Ruin with a Casting Value of 5 (this requires no power dice and cannot be increased in\nany way).\n11-12 Deafening Peals: All enemy Chariots, Shrines and War Machines with Toughness 7 or more\nthat are within 18\" of the Screaming Bell immediately take a Wound with the Multiple\nWounds (D3) special rule. Roll a D6 for each building within 18\" of the Bell – each\ncollapses on a roll of 5+. Models inside collapsed buildings are treated the same as per the\nCracks Call spell from the Lore of Ruin.\n13 A Stirring Beyond the Veil: All enemy units within 12\" of the Bell take D6 Strength 4 hits\n(as from shooting). Additionally, if the unit pushing the Screaming Bell is in combat, it gains\nthe Fight in Extra Ranks (1) special rule for the remainder of the turn.\n14-16 Wall of Unholy Sound: All models in each friendly unit within 12\" of the Screaming Bell\ngain +1 Attack until the end of the player turn. Roll a D6 for each building within 24\" - each\ncollapses on a roll of 4+ (see Deafening Peals).\n17 Avalanche of Energy: All friendly models within 12\" of the Bell gain +1 Attack and may\nre-roll failed To Hit and To Wound rolls until the end of the player turn. Any friendly Skaven\nunits within 12\" of the Screaming Bell and not in close combat can immediately move using\nthe Random Movement (D6) special rule.\n18 Apocalyptic Doom: The Screaming Bell is destroyed. All models within 12\" take a Strength\n4 hit with the Ignores Armour saves special rule.",
+      "specialRules": "Fear, Magic Resistance (2), Ward save (4+)",
+      "specialRuleDescriptions": [
+        "Above the Masses: The Grey Seer may use Verminous Valor to refuse a challenge, but is not moved to the back of the unit. The Grey Seer is not moved but cannot fight or be attacked for the duration of that round of close combat.",
+        "Altar of the Horned Rat: This model and any unit it joins has the Stubborn special rule.",
+        "Tolling the Bell: In your Magic phase, immediately after generating power dice, you can choose to ring the Screaming Bell. The owning player can choose to roll between 1-3 D6's and consult the table below to see what effect it has. If any doubles are rolled, the unit pushing the Screaming Bell immediately takes D6 Strength 4 Hits in addition to the result on the chart. If a triple is rolled, the unit pushing the Bell immediately suffers 2D6 Strength 5 hits, and the Screaming Bell itself suffer a single Strength 5 hit in addition to the result on the chart. If the Screaming Bell suffers one or more wounds inflicted by a shooting attack with a Strength of 5 or more, it will immediately ring once using one D6, even if it is destroyed as a result of the attack. Dice Result Effect 1 Not yet in stride: No effect. 2-4 Unholy Clamour: The unit pushing the Bell immediately moves using the Random Movement (D6) special rule. 5-8 Emboldened: All friendly Skaven within 24\" of the Bell can re-roll failed Leadership tests until the start of your next turn. 9-10 Scorch: The Bell itself (not the Grey Seer) immediately casts the Scorch spell from the Lore of Ruin with a Casting Value of 5 (this requires no power dice and cannot be increased in any way). 11-12 Deafening Peals: All enemy Chariots, Shrines and War Machines with Toughness 7 or more that are within 18\" of the Screaming Bell immediately take a Wound with the Multiple Wounds (D3) special rule. Roll a D6 for each building within 18\" of the Bell – each collapses on a roll of 5+. Models inside collapsed buildings are treated the same as per the Cracks Call spell from the Lore of Ruin. 13 A Stirring Beyond the Veil: All enemy units within 12\" of the Bell take D6 Strength 4 hits (as from shooting). Additionally, if the unit pushing the Screaming Bell is in combat, it gains the Fight in Extra Ranks (1) special rule for the remainder of the turn. 14-16 Wall of Unholy Sound: All models in each friendly unit within 12\" of the Screaming Bell gain +1 Attack until the end of the player turn. Roll a D6 for each building within 24\" - each collapses on a roll of 4+ (see Deafening Peals). 17 Avalanche of Energy: All friendly models within 12\" of the Bell gain +1 Attack and may re-roll failed To Hit and To Wound rolls until the end of the player turn. Any friendly Skaven units within 12\" of the Screaming Bell and not in close combat can immediately move using the Random Movement (D6) special rule. 18 Apocalyptic Doom: The Screaming Bell is destroyed. All models within 12\" take a Strength 4 hit with the Ignores Armour saves special rule."
+      ],
       "upgrades": null,
       "notes": "• A Screaming Bell has a Line of Sight value of 5.",
-      "pointsCost": null,
       "unitSize": null,
       "crew": "1 Rat Ogre (Skaven)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Clanrat",
+      "name": "Clanrats",
       "category": "Core",
       "profiles": [
         {
@@ -827,20 +1649,53 @@
       "equipment": "Hand weapon, light armour, shield",
       "magic": null,
       "options": [
-        "May take spears +0.5 point/model",
-        "May upgrade one Clanrat to a Leader +5 points",
-        "May upgrade one Clanrat to a Musician +5 points",
-        "May upgrade one Clanrat to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "spear",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take spears +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Clanrat to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Clanrat to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Clanrat to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• You may not have more units of any single Core Unit type than you have units of Clanrats.\nSTORMVERMIN",
-      "pointsCost": 4,
+      "notes": "• You may not have more units of any single Core Unit type than you have units of Clanrats.",
       "unitSize": "20+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 4
     },
     {
       "name": "Stormvermin",
@@ -865,26 +1720,94 @@
       "equipment": "Hand weapon, medium armour",
       "magic": null,
       "options": [
-        "May take polearms +2 points/model",
-        "May take shields +1 point/model",
-        "May take heavy armour +1.5 points/model",
-        "May upgrade one Stormvermin to a Leader +5 points",
-        "May take a Warplock Pistol +5 points",
-        "May upgrade one Stormvermin to a Musician +5 points",
-        "May upgrade one Stormvermin to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take polearms +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take heavy armour +1.5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Stormvermin to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Warplock Pistol",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Warplock Pistol +5 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Stormvermin to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Stormvermin to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 6,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 6
     },
     {
-      "name": "Skavenslave",
+      "name": "Skavenslaves",
       "category": "Core",
       "profiles": [
         {
@@ -919,24 +1842,59 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take one of the following:",
-        "Spears +0.5 point/model",
-        "Shields +1 point/model",
-        "Polearms +2 points/model",
-        "Slings +2 points/model",
-        "May upgrade one Skavenslave to a Musician +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one of the following:",
+              "points": null,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "sling",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skavenslave to a Musician +5 points"
+        }
       ],
-      "specialRules": "Expendable, Mixed Unit, Scurry Away, Strength in Numbers\n• Cornered Rats: If a unit of Skavenslaves breaks from combat, any units that they flee through (friend or foe)\nimmediately take D6 Strength 3 hits for each complete rank of 5 or more Skavenslaves left in the unit. The\nbroken unit is then removed as casualties.",
+      "specialRules": "Expendable, Mixed Unit, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": [
+        "Cornered Rats: If a unit of Skavenslaves breaks from combat, any units that they flee through (friend or foe) immediately take D6 Strength 3 hits for each complete rank of 5 or more Skavenslaves left in the unit. The broken unit is then removed as casualties."
+      ],
       "upgrades": null,
-      "notes": "• You must include 1 Pawleader for every 20 Skavenslaves in the unit.\nRAT SWARMS",
-      "pointsCost": 2,
+      "notes": "• You must include 1 Pawleader for every 20 Skavenslaves in the unit.",
       "unitSize": "20+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 2
     },
     {
-      "name": "Rat Swarm",
+      "name": "Rat Swarms",
       "category": "Core",
       "profiles": [
         {
@@ -959,16 +1917,17 @@
       "magic": null,
       "options": [],
       "specialRules": null,
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 25,
       "unitSize": "2-10",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 25
     },
     {
-      "name": "Night Runner",
+      "name": "Night Runners",
       "category": "Core",
       "profiles": [
         {
@@ -990,20 +1949,38 @@
       "equipment": "Two hand weapons, throwing weapons",
       "magic": null,
       "options": [
-        "May replace throwing weapons with slings +2 points/model",
-        "May upgrade one Night Runner to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "throwing weapon",
+          "choices": [
+            {
+              "name": "sling",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace throwing weapons with slings +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Night Runner to a Leader +5 points"
+        }
       ],
       "specialRules": "Scurry Away, Skirmishers, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• If your army General is a Clan Eshin Character, the requirement to take Clanrats does not apply.\nGIANT RATS",
-      "pointsCost": 6,
+      "notes": "• If your army General is a Clan Eshin Character, the requirement to take Clanrats does not apply.",
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 6
     },
     {
-      "name": "Giant Rat",
+      "name": "Giant Rats",
       "category": "Core",
       "profiles": [
         {
@@ -1039,16 +2016,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Fight in Extra Ranks (1), Mixed Unit, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• You must include 1 Packmaster for every 5 Giant Rat in the unit.",
-      "pointsCost": 2,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 2
     },
     {
-      "name": "Plague Monk",
+      "name": "Plague Monks",
       "category": "Core",
       "profiles": [
         {
@@ -1070,22 +2048,44 @@
       "equipment": "Two hand weapons",
       "magic": null,
       "options": [
-        "May upgrade one Plague Monk to a Leader +5 points",
-        "May upgrade one Plague Monk to a Musician +5 points",
-        "May upgrade one Plague Monk to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Plague Monk to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Plague Monk to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Plague Monk to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Frenzy, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• If your army General is a Clan Pestilens Character, the requirement to take Clanrats does not apply.",
-      "pointsCost": 8,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 8
     },
     {
-      "name": "Gutter Runner",
+      "name": "Gutter Runners",
       "category": "Special",
       "profiles": [
         {
@@ -1107,22 +2107,62 @@
       "equipment": "Two hand weapons, throwing weapons\n• Snare-nets: When it is their turn to attack, roll a D6 for each model armed with snare-nets. On a 2+, one\nenemy model in base contact is ensnared and suffers -1 Attack for the remainder of the close combat phase.",
       "magic": null,
       "options": [
-        "May have Poisoned Attacks (excluding slings) +2 points/model",
-        "May take snare-nets +2 points/model",
-        "May replace throwing weapons with slings +2 points/model",
-        "May upgrade one Gutter Runner to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Poisoned Attacks (excluding slings)",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May have Poisoned Attacks (excluding slings) +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "snare-nets",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take snare-nets +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "throwing weapon",
+          "choices": [
+            {
+              "name": "sling",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace throwing weapons with slings +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Gutter Runner to a Leader +5 points"
+        }
       ],
-      "specialRules": "Ambushers, Dodge (6+), Scurry Away, Strength in Numbers, Scouts, Skirmishers\nWOLF RATS",
+      "specialRules": "Ambushers, Dodge (6+), Scurry Away, Strength in Numbers, Scouts, Skirmishers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 10,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 10
     },
     {
-      "name": "Wolf Rat",
+      "name": "Wolf Rats",
       "category": "Special",
       "profiles": [
         {
@@ -1144,22 +2184,46 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take one of the following:",
-        "Pox Feeders +1 point/model",
-        "Warpstone Shard Teeth +1 point/model",
-        "Bloated Mutants +2 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one of the following:",
+              "points": null,
+              "perModel": false
+            },
+            {
+              "name": "Pox Feeders",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Warpstone Shard Teeth",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Bloated Mutants",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take one of the following:"
+        }
       ],
       "specialRules": "Frenzy, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": "• Bloated Mutants: The Wolf Rats gain +1 Toughness but suffer -1 to their Initiative.\n• Pox Feeders: The unit gains the Poisoned Attacks special rule.\n• Warpstone Shard Teeth: The unit gains the Armour Piercing (1) and Magical Attacks special rules.",
       "notes": null,
-      "pointsCost": 6,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 6
     },
     {
-      "name": "Rat Ogre",
+      "name": "Rat Ogres",
       "category": "Special",
       "profiles": [
         {
@@ -1194,25 +2258,56 @@
       "equipment": "Hand weapon, whip, light armour (Packmaster only)",
       "magic": null,
       "options": [
-        "May choose up to two of the following:",
-        "Brain Transplant +3 points/model",
-        "Extra Extremities +3 points/model",
-        "Quadrupedal +3 points/model",
-        "Armoured +5 points/model",
-        "Resilient +6 points/model",
-        "Troll-blooded +6 points/model"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Brain Transplant",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Extra Extremities",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Quadrupedal",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Armoured",
+              "points": 5,
+              "perModel": true
+            },
+            {
+              "name": "Resilient",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "Troll-blooded",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose up to two of the following:"
+        }
       ],
       "specialRules": "Frenzy, Mixed Unit, Scurry Away, Strength in Numbers, Stupidity",
+      "specialRuleDescriptions": null,
       "upgrades": "• Armoured: All Rat Ogres in the unit gain medium armour.\n• Brain Transplant: All Rat Ogres in the unit are no longer subject to Stupidity or Frenzy.\n• Extra Extremities: All Rat Ogres in the unit gain +1 Attack.\n• Quadrupedal: All Rat Ogres in the unit gain +1 Movement.\n• Resilient: All Rat Ogres in the unit gain +1 Toughness.\n• Troll-blooded: All Rat Ogres in the unit gain the Regeneration (5+) special rule.",
       "notes": "• You must include 1 Packmaster for every 2 Rat Ogres in the unit.",
-      "pointsCost": 33,
       "unitSize": "2+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 33
     },
     {
-      "name": "Plague Censer Bearer",
+      "name": "Plague Censer Bearers",
       "category": "Special",
       "profiles": [
         {
@@ -1234,19 +2329,27 @@
       "equipment": "Plague censer",
       "magic": null,
       "options": [
-        "May upgrade one Plague Censer Bearer to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Plague Censer Bearer to a Leader +5 points"
+        }
       ],
-      "specialRules": "Frenzy, Hatred, Scurry Away, Skirmishers, Strength in Numbers\n• Plague Disciples: A unit of Plague Censer Bearers within 3\" of a friendly units of Plague Monks may use the\n\"Look Out, Sir\" rule as if they were characters. In addition, if the Plague Censer Bearers are within 6\" of a\nPlague Furnace they have the Stubborn special rule.\nPLAGUE RAT SWARMS",
+      "specialRules": "Frenzy, Hatred, Scurry Away, Skirmishers, Strength in Numbers",
+      "specialRuleDescriptions": [
+        "Plague Disciples: A unit of Plague Censer Bearers within 3\" of a friendly units of Plague Monks may use the \"Look Out, Sir\" rule as if they were characters. In addition, if the Plague Censer Bearers are within 6\" of a Plague Furnace they have the Stubborn special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Plague Rat Swarm",
+      "name": "Plague Rat Swarms",
       "category": "Special",
       "profiles": [
         {
@@ -1269,16 +2372,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Poisoned Attacks",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 30,
       "unitSize": "2-10",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 30
     },
     {
-      "name": "Warplock Jezzail",
+      "name": "Warplock Jezzails",
       "category": "Special",
       "profiles": [
         {
@@ -1300,20 +2404,39 @@
       "equipment": "Hand weapon, Warplock Jezzail, pavise\n• Warplock Jezzail: Warplock Jezzails have the following profile:\nRange: Strength: Special Rules:\n36\" 6 Armour Piercing (1), Magical Attacks, Move or Fire, Unstable Ammunition\n• Pavise: A pavise gives the model a 4+ armour save against missile attacks to the front.",
       "magic": null,
       "options": [
-        "May upgrade one Warplock Jezzail to a Leader +5 points",
-        "May take Warlock Optics +10 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Warplock Jezzail to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Warlock Optics",
+                  "points": 10,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take Warlock Optics +10 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Scurry Away, Strength in Numbers\nPOISONED WIND GLOBADIERS",
+      "specialRules": "Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 20,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 20
     },
     {
-      "name": "Poisoned Wind Globadier",
+      "name": "Poisoned Wind Globadiers",
       "category": "Special",
       "profiles": [
         {
@@ -1335,17 +2458,34 @@
       "equipment": "Hand weapon, Poisoned Wind Globes, gas mask\n• Poisoned Wind Globes: Poisoned Wind Globes have the following profile:\nRange: Strength: Special Rules:\n8\" n/a Ignores Armour saves, Magical Attacks, Quick to Fire\nModels hit by a Poisoned Wind Globe must pass a Toughness test or suffer a Wound. On the To Hit roll of a 1,\nthe Globadier hits himself instead (including when firing into close combat).",
       "magic": null,
       "options": [
-        "May take light armour +0.5 point/model",
-        "May upgrade one Poisoned Wind Globadier to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Poisoned Wind Globadier to a Leader +5 points"
+        }
       ],
       "specialRules": "Scurry Away, Skirmishers, Strength in Numbers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 8,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 8
     },
     {
       "name": "Warpfire Thrower",
@@ -1371,13 +2511,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Scurry Away, Weapon Team",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Each Warpfire Thrower, Ratling Gun, Warpvolt Scourger and Poisoned Wind Mortar counts as the same\nSpecial choice for the purpose of taking duplicate units.",
-      "pointsCost": 65,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 65
     },
     {
       "name": "Ratling Gun",
@@ -1403,13 +2544,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Scurry Away, Weapon Team",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Each Warpfire Thrower, Ratling Gun, Warpvolt Scourger and Poisoned Wind Mortar counts as the same\nSpecial choice for the purpose of taking duplicate units.",
-      "pointsCost": 55,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
       "name": "Warpvolt Scourger",
@@ -1435,13 +2577,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Scurry Away, Weapon Team",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Each Warpfire Thrower, Ratling Gun, Warpvolt Scourger and Poisoned Wind Mortar counts as the same\nSpecial choice for the purpose of taking duplicate units.",
-      "pointsCost": 50,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
       "name": "Poisoned Wind Mortar",
@@ -1467,13 +2610,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Scurry Away, Weapon Team",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Each Warpfire Thrower, Ratling Gun, Warpvolt Scourger and Poisoned Wind Mortar counts as the same\nSpecial choice for the purpose of taking duplicate units.",
-      "pointsCost": 60,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
       "name": "Warp-grinder",
@@ -1499,13 +2643,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Scurry Away, Weapon Team",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 30,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 30
     },
     {
       "name": "Doom-flayer",
@@ -1542,19 +2687,34 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "May take an additional crew +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional crew",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional crew +5 points"
+        }
       ],
-      "specialRules": "Scurry Away\n• The Best Defence: The Doom-flayer gains +2 to its armour save against all models attacking it from the front.\n• Whirling Death: Instead of attacking normally, the Doom-flayer causes one artillery dice worth of Impact Hits\nat the start of each close combat phase. In case a Misfire is rolled, roll a D6 and consult the Doom-flayer\nMishap chart.\nDOOM-FLAYER MISFIRE CHART\nD6 Result\n1-2 Ba-Blam: Place the large round template over the Doom-flayer. Any model touched by the template\nsuffers a Strength 4 Hit with the Armour Piercing (1) special rule. After this, the Doom-flayer is\nremoved from play as a casualty.\n3-5 ZZZZzap: The Doom-flayer and all models in base contact take a Strength 4 Hit with the Lightning\nAttacks special rule.\n6 Power Failure: The Doom-flayer may not attack or use The Best Defence this turn.",
+      "specialRules": "Scurry Away",
+      "specialRuleDescriptions": [
+        "The Best Defence: The Doom-flayer gains +2 to its armour save against all models attacking it from the front.",
+        "Whirling Death: Instead of attacking normally, the Doom-flayer causes one artillery dice worth of Impact Hits at the start of each close combat phase. In case a Misfire is rolled, roll a D6 and consult the Doom-flayer Mishap chart. DOOM-FLAYER MISFIRE CHART D6 Result 1-2 Ba-Blam: Place the large round template over the Doom-flayer. Any model touched by the template suffers a Strength 4 Hit with the Armour Piercing (1) special rule. After this, the Doom-flayer is removed from play as a casualty. 3-5 ZZZZzap: The Doom-flayer and all models in base contact take a Strength 4 Hit with the Lightning Attacks special rule. 6 Power Failure: The Doom-flayer may not attack or use The Best Defence this turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 30,
       "unitSize": null,
       "crew": "1 Crew (Skaven)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 30
     },
     {
-      "name": "Assassin Adept",
+      "name": "Eshin Triad",
       "category": "Rare",
       "profiles": [
         {
@@ -1576,17 +2736,40 @@
       "equipment": "Two hand weapons, throwing weapons",
       "magic": null,
       "options": [
-        "May take tail weapons +2 points/model",
-        "May take Smoke Bombs +5 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "tail weapons",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take tail weapons +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Smoke Bombs",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Smoke Bombs +5 points/model"
+        }
       ],
       "specialRules": "Ambushers, Dodge (5+), Scurry Away, Poisoned Attacks, Scouts, Skirmishers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 35,
       "unitSize": "3",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 35
     },
     {
       "name": "Stormfiend",
@@ -1608,26 +2791,68 @@
       ],
       "troopType": "Monstrous Creature (Skaven, Clan Moulder)",
       "baseSize": "50x50",
-      "equipment": "Hand weapon, light armour\n• Doom-Flayer Gauntlets: Doom-Flayer Gauntlets use the following profile:\nRange: Strength: Special Rules:\nCombat As user +2D3 Attacks, Impact Hits (D3)\n• Grinderfists: Grinderfists use the following profile:\nRange: Strength: Special Rules:\nCombat As user Magical Attacks\nRather than attacking normally, a model with Grinderfists inflicts 2D3 Impact Hits at the start of each round of\nClose Combat.\nA Stormfiend with Grinderfists has the Ambushers special rule, with the following exceptions.\nWhen the Stormfiend enters the battle in the Remaining Moves sub-phase, it does not move onto the board as\nreinforcements in the normal way. Instead, when the Stormfiend enters the battle, place a small marker (such as\na coin) anywhere on the battlefield, but not in impassable terrain or within 1\"\" of a deployed unit.\nRoll a scatter dice and an artillery dice. If you roll a Hit on the scatter dice, the marker stays in place. If you\nroll an arrow, move the marker the number, in inches, indicated by the artillery dice in the direction shown. If\nthe marker is under a friendly unit, impassable terrain or a building, place it 1\" away from the closest edge of\nthe unit/terrain.\nOnce the final position of the marker is established, place the Stormfiend such that it touches the marker,\nfacing any direction. If the marker is under an enemy unit, you may place your unit into base contact with the\nenemy unit in their front arc; your unit will counts as charging this turn.\nIf you roll a misfire, or if for any reason some of the models in the unit cannot be placed, then the Stormfiend\ndoes not emerge. Instead, the unit is delayed and you will need to roll the scatter and artillery dice again for\nthem next round.\n• Ratling Cannons: Ratling Cannons are Artillery weapons that use the following profile:\nRange: Strength: Special Rules:\n24\" 4 Armour Piercing (1), Magical Attacks, Multiple Shots (3D6), Rapid Fire\nEach To Hit roll result of 1 inflicts one hit on the closest friendly unit in the firing unit's front arc that is within\nrange. If there are no eligible friendly units, then the attack misses.\n• Shock Gauntlets: Shock Gauntlets use the following profile:\nRange: Strength: Special Rules:\nCombat +1 +1 Attack, Impact Hits (D3), Lightning Attacks, Magical Attacks\n45\n\n• Warpfire Projectors: Warpfire Projectors are Fire Throwers with the following profile:\nRange: Strength: Special Rules:\nn/a 5 Flaming Attacks, Magical Attacks, Multiple Wounds (D3), Slow to Fire\nAny failed To Wound rolls with Warpfire Projectors may be re-rolled. If the Warpfire Projector misfires, the\nweapon inflicts D6 automatic hits on the closest friendly unit in the firing unit's front arc that is within 12\". If\nthere are no eligible friendly units, the Warpfire Projector simply does not fire this turn.\n• Windlaunchers: Windlaunchers are Mortars that use the small round temple and the following profile:\nRange: Strength: Special Rules:\n8-36\" n/a Ignores Armour saves, Magical Attacks, Slow to Fire\nModels hit by a Plague Wind must pass a Toughness test or suffer a Wound. Successful tests must be re-rolled.\nDo not roll on the Stone Thrower Misfire chart if the Windlaunchers misfire. Instead, the template for the\nattack scatters 2D6\"",
+      "equipment": "Hand weapon, light armour\n• Doom-Flayer Gauntlets: Doom-Flayer Gauntlets use the following profile:\nRange: Strength: Special Rules:\nCombat As user +2D3 Attacks, Impact Hits (D3)\n• Grinderfists: Grinderfists use the following profile:\nRange: Strength: Special Rules:\nCombat As user Magical Attacks\nRather than attacking normally, a model with Grinderfists inflicts 2D3 Impact Hits at the start of each round of\nClose Combat.\nA Stormfiend with Grinderfists has the Ambushers special rule, with the following exceptions.\nWhen the Stormfiend enters the battle in the Remaining Moves sub-phase, it does not move onto the board as\nreinforcements in the normal way. Instead, when the Stormfiend enters the battle, place a small marker (such as\na coin) anywhere on the battlefield, but not in impassable terrain or within 1\"\" of a deployed unit.\nRoll a scatter dice and an artillery dice. If you roll a Hit on the scatter dice, the marker stays in place. If you\nroll an arrow, move the marker the number, in inches, indicated by the artillery dice in the direction shown. If\nthe marker is under a friendly unit, impassable terrain or a building, place it 1\" away from the closest edge of\nthe unit/terrain.\nOnce the final position of the marker is established, place the Stormfiend such that it touches the marker,\nfacing any direction. If the marker is under an enemy unit, you may place your unit into base contact with the\nenemy unit in their front arc; your unit will counts as charging this turn.\nIf you roll a misfire, or if for any reason some of the models in the unit cannot be placed, then the Stormfiend\ndoes not emerge. Instead, the unit is delayed and you will need to roll the scatter and artillery dice again for\nthem next round.\n• Ratling Cannons: Ratling Cannons are Artillery weapons that use the following profile:\nRange: Strength: Special Rules:\n24\" 4 Armour Piercing (1), Magical Attacks, Multiple Shots (3D6), Rapid Fire\nEach To Hit roll result of 1 inflicts one hit on the closest friendly unit in the firing unit's front arc that is within\nrange. If there are no eligible friendly units, then the attack misses.\n• Shock Gauntlets: Shock Gauntlets use the following profile:\nRange: Strength: Special Rules:\nCombat +1 +1 Attack, Impact Hits (D3), Lightning Attacks, Magical Attacks\n• Warpfire Projectors: Warpfire Projectors are Fire Throwers with the following profile:\nRange: Strength: Special Rules:\nn/a 5 Flaming Attacks, Magical Attacks, Multiple Wounds (D3), Slow to Fire\nAny failed To Wound rolls with Warpfire Projectors may be re-rolled. If the Warpfire Projector misfires, the\nweapon inflicts D6 automatic hits on the closest friendly unit in the firing unit's front arc that is within 12\". If\nthere are no eligible friendly units, the Warpfire Projector simply does not fire this turn.\n• Windlaunchers: Windlaunchers are Mortars that use the small round temple and the following profile:\nRange: Strength: Special Rules:\n8-36\" n/a Ignores Armour saves, Magical Attacks, Slow to Fire\nModels hit by a Plague Wind must pass a Toughness test or suffer a Wound. Successful tests must be re-rolled.\nDo not roll on the Stone Thrower Misfire chart if the Windlaunchers misfire. Instead, the template for the\nattack scatters 2D6\"",
       "magic": null,
       "options": [
-        "Must pick one of the following:",
-        "Doom-flayer Gauntlets +15 points",
-        "Grinderfists +20 points",
-        "Shock Gauntlets +20 points",
-        "Ratling Cannons +45 points",
-        "Windlaunchers +50 points",
-        "Warpfire Projectors +60 points",
-        "May take medium armour (if armed with Doom-flayer Gauntlets, Shock Gauntlets or Grinderfists) +4 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Doom-flayer Gauntlets",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Grinderfists",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Shock Gauntlets",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Ratling Cannons",
+              "points": 45,
+              "perModel": false
+            },
+            {
+              "name": "Windlaunchers",
+              "points": 50,
+              "perModel": false
+            },
+            {
+              "name": "Warpfire Projectors",
+              "points": 60,
+              "perModel": false
+            }
+          ],
+          "raw": "Must pick one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour (if armed with Doom-flayer Gauntlets, Shock Gauntlets or Grinderfists)",
+              "points": 4,
+              "perModel": false
+            }
+          ],
+          "raw": "May take medium armour (if armed with Doom-flayer Gauntlets, Shock Gauntlets or Grinderfists) +4 points"
+        }
       ],
       "specialRules": "Scurry Away",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• You may take 1-2 Stormfiends as a single Rare choice.",
-      "pointsCost": 70,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 70
     },
     {
       "name": "Brood Horror",
@@ -1652,20 +2877,50 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take one of the following:",
-        "Skryre Claws +5 points",
-        "Rusted Armour +10 points",
-        "Lash Tail +15 points",
-        "Pestilent Breath +25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "one of the following:",
+              "points": null,
+              "perModel": false
+            },
+            {
+              "name": "Skryre Claws",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Rusted Armour",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Lash Tail",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Pestilent Breath",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May take one of the following:"
+        }
       ],
-      "specialRules": "Poisoned Attacks, Scurry Away\n• Foul Ichor: If a Brood Horror is slain, all units in base contact with the Brood Horror suffer 2D6 Strength 2\nhits, distributed as shooting attacks.",
+      "specialRules": "Poisoned Attacks, Scurry Away",
+      "specialRuleDescriptions": [
+        "Foul Ichor: If a Brood Horror is slain, all units in base contact with the Brood Horror suffer 2D6 Strength 2 hits, distributed as shooting attacks."
+      ],
       "upgrades": "• Lash Tail: The Brood Horror gains +1 Attack.\n• Pestilent Breath: The Brood Horror gains a Strength 2 Breath Weapon which Ignores Armour saves.\n• Rusted Armour: The Brood Horror gains medium armour.\n• Skryre Claws: The Brood Horror gains the Armour Piercing (1) and Magical Attacks special rule.",
       "notes": null,
-      "pointsCost": 150,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 150
     },
     {
       "name": "Hell Pit Abomination",
@@ -1690,16 +2945,33 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take Warpstone Spikes +10 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Warpstone Spikes",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Warpstone Spikes +10 points"
+        }
       ],
-      "specialRules": "Impact Hits (D6), Immunity (Psychology), Random Movement (3D6), Regeneration (4+),\nStubborn\n• Shambling Horror: If two or more 1's or any triples are rolled when the Abomination is making its Random\nMovement, do not move the Hell Pit Abomination; instead roll a D6 on the Berserk Abomination chart.\nBERSERK ABOMINATION CHART\nD6 Result\n1 Grinding Halt: The beast does not move this turn.\n2-5 Blind Fury: The model moves the distance rolled in a random direction determined by a scatter\ndice.\n6 Fluid Injected: The Hell Pit Abomination moves as normal, and will increase its Strength by +1\nfor the remainder of the game. Further Berserk Abomination rolls of 6 will not increase the beast’s\nprofile, but will instead immediately inflict D6 wounds on it.\n• Special Close Combat Attacks: Abominations do not attack in the same way as other creatures. Roll a D6\nwhen it is the Hell Pit Abomination's turn to attack to see what the mutated beast does:\nCLOSE COMBAT ATTACKS CHART\nD6 Result\n1-2 Feed: All enemy models in base contact suffer an automatic Strength 6 hit with the Multiple\nWounds (D3) special rules.\n3-4 Flailing Fists: The Hell Pit Abomination attacks using the Random Attacks (2D6) special rule.\n5-6 Avalanche of Flesh: Every enemy model in base contact with the Abomination must pass an\nInitiative test or suffer an automatic Strength 6 hit. Additionally, the Hell Pit Abomination attacks\nusing the Random Attacks (D6) special rule.\n• Too Horrible to Die: As soon as the Hell Pit Abomination loses its last Wound, roll a D6 and check the Too\nHorrible to Die chart:\nTOO HORRIBLE TO DIE CHART\nD6 Result\n1-3 Dead: The Hell Pit Abomination is removed from play as casualty.\n4-5 The Rats Emerge: All units in base contact with the Abomination take 2D6 Strength 2 Hits. The\nHell Pit Abomination is then removed from play as a casualty.\n6 It's Alive: The Hell Pit Abomination remains alive with D3 Wounds left.",
+      "specialRules": "Impact Hits (D6), Immunity (Psychology), Random Movement (3D6), Regeneration (4+),",
+      "specialRuleDescriptions": [
+        "Stubborn",
+        "Shambling Horror: If two or more 1's or any triples are rolled when the Abomination is making its Random Movement, do not move the Hell Pit Abomination; instead roll a D6 on the Berserk Abomination chart. BERSERK ABOMINATION CHART D6 Result 1 Grinding Halt: The beast does not move this turn. 2-5 Blind Fury: The model moves the distance rolled in a random direction determined by a scatter dice. 6 Fluid Injected: The Hell Pit Abomination moves as normal, and will increase its Strength by +1 for the remainder of the game. Further Berserk Abomination rolls of 6 will not increase the beast’s profile, but will instead immediately inflict D6 wounds on it.",
+        "Special Close Combat Attacks: Abominations do not attack in the same way as other creatures. Roll a D6 when it is the Hell Pit Abomination's turn to attack to see what the mutated beast does: CLOSE COMBAT ATTACKS CHART D6 Result 1-2 Feed: All enemy models in base contact suffer an automatic Strength 6 hit with the Multiple Wounds (D3) special rules. 3-4 Flailing Fists: The Hell Pit Abomination attacks using the Random Attacks (2D6) special rule. 5-6 Avalanche of Flesh: Every enemy model in base contact with the Abomination must pass an Initiative test or suffer an automatic Strength 6 hit. Additionally, the Hell Pit Abomination attacks using the Random Attacks (D6) special rule.",
+        "Too Horrible to Die: As soon as the Hell Pit Abomination loses its last Wound, roll a D6 and check the Too Horrible to Die chart: TOO HORRIBLE TO DIE CHART D6 Result 1-3 Dead: The Hell Pit Abomination is removed from play as casualty. 4-5 The Rats Emerge: All units in base contact with the Abomination take 2D6 Strength 2 Hits. The Hell Pit Abomination is then removed from play as a casualty. 6 It's Alive: The Hell Pit Abomination remains alive with D3 Wounds left."
+      ],
       "upgrades": "• Warpstone Spikes: The Hell Pit Abomination gains the Magic Resistance (1) and Magical Attacks special\nrule.",
       "notes": null,
-      "pointsCost": 225,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 225
     },
     {
       "name": "Plagueclaw Catapult",
@@ -1737,13 +3009,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Frenzy",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": "3 Plague Monk Crew (Skaven)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Warp Lightning Cannon",
@@ -1781,13 +3054,14 @@
       "magic": null,
       "options": [],
       "specialRules": null,
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": "3 Crew (Skaven)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Ratling Warpblaster",
@@ -1824,14 +3098,17 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Scurry Away\n• Ratling Warpblaster: A Ratling Warpblaster uses the following profile:\nRange: Strength: Special Rules:\n36\" 5 Armour Piercing (1), Magical Attacks, Multiple Shots (Artillery Dice), Rapid\nFire\nAfter the first Artillery Dice is rolled, you can now decide whether to stop or to roll an additional Artillery\nDice, and repeat the process up to a maximum of 3 Artillery Dice. In case a Misfire is rolled, roll a D6 and\nconsult the Warpblaster Misfire chart, no further Artillery Dice may be rolled.\nWARPBLASTER MISFIRE CHART\nD6 Result\n1-2 Slam: Resolve the shots from the previous Artillery Dice rolled. After this, the Ratling Warpblaster is\nremoved from play as a casualty.\n3-4 Uncontrollable Recoil: Resolve the shots from the previous Artillery Dice rolled. After this, the\nRatling Warpblaster fires D6 shots at all units (roll separately for each one) within the model's front\narc that you can draw Line of Sight to.\n5-6 Bbbbrrrrrttt: Resolve the shots from the previous Artillery Dice rolled. The last Artillery Dice is\nignored.",
+      "specialRules": "Scurry Away",
+      "specialRuleDescriptions": [
+        "Ratling Warpblaster: A Ratling Warpblaster uses the following profile: Range: Strength: Special Rules: 36\" 5 Armour Piercing (1), Magical Attacks, Multiple Shots (Artillery Dice), Rapid Fire After the first Artillery Dice is rolled, you can now decide whether to stop or to roll an additional Artillery Dice, and repeat the process up to a maximum of 3 Artillery Dice. In case a Misfire is rolled, roll a D6 and consult the Warpblaster Misfire chart, no further Artillery Dice may be rolled. WARPBLASTER MISFIRE CHART D6 Result 1-2 Slam: Resolve the shots from the previous Artillery Dice rolled. After this, the Ratling Warpblaster is removed from play as a casualty. 3-4 Uncontrollable Recoil: Resolve the shots from the previous Artillery Dice rolled. After this, the Ratling Warpblaster fires D6 shots at all units (roll separately for each one) within the model's front arc that you can draw Line of Sight to. 5-6 Bbbbrrrrrttt: Resolve the shots from the previous Artillery Dice rolled. The last Artillery Dice is ignored."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": "5 Crew (Skaven)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Doomwheel",
@@ -1868,17 +3145,22 @@
       "equipment": "Hand weapon, scythes",
       "magic": null,
       "options": [],
-      "specialRules": "Immunity (Psychology), Random Movement (3D6), Terror\n• Grind Attack: At the beginning of each round of combat in which it did not charge, the Doomwheel inflicts\nD3+1 Impact Hits.\n• Loss of Control: At the end of any phase in which a Doomwheel that is not in close combat or fleeing suffers\na Wound, the Skaven player must take a Loss of Control test. Roll a D6 for each wound suffered in that phase.\nOn the roll of one or more 1's, the Doomwheel goes immediately Out of Control (as detailed in the\nDoomwheel Misfire chart).\n• Zzzzap: In each friendly Shooting phase, even when engaged in close combat or when fleeing, the\nDoomwheel automatically unleashes bolts of warp lightning using the following profile:\nRange: Strength: Special Rules:\n18\" Artillery Lightning Attacks, Magical Attacks, Multiple Shots (3), Multiple Wounds\nDice (D3)\nEach warp lightning bolt will automatically hit the nearest unit (friend or foe), regardless of line of sight and\ndirection. This is a non-physical attack.\nThe Warlock Engineer may choose to take a Leadership test in an attempt to stop the Doomwheel from firing.\nIf the test is failed, the machine fires as normal.\nRoll an Artillery dice to determine the Strength for the bolts, measuring from the Doomwheel's base. If the\nclosest unit dies from the first bolt, the second bolt hits the next closest unit in range, and so on. If two targets\nare equidistant, the owning player may choose which unit is struck.\nIf you roll a misfire result something has gone awry. No more shots are fired this turn and you must\nimmediately roll a D6 and consult the Doomwheel Mishap chart.\nDOOMWHEEL MISFIRE CHART\nD6 Result\n1-2 Disaster: The Doomwheel immediately takes D6 Strength 6 hits. In addition, from now on roll one\nless D6 for the Doomwheel's movement. If reduced to zero dice the Doomwheel is removed as a\ncasualty.\n3-5 Out of Control: If the Doomwheel is unengaged, it immediately moves in a random direction\ndetermined by the scatter dice. If it hits any unit (friend or foe) the Doomwheel inflicts Impact Hits\nas normal and counts as charging if the unit is an enemy. In the case of a Doomwheel hitting a\nfriendly unit, resolve Impact Hits immediately after contact and then move the Doomwheel back 1\".\n6 Burst of Speed: The Doomwheel gains the Random Movement (4D6) special rule.",
+      "specialRules": "Immunity (Psychology), Random Movement (3D6), Terror",
+      "specialRuleDescriptions": [
+        "Grind Attack: At the beginning of each round of combat in which it did not charge, the Doomwheel inflicts D3+1 Impact Hits.",
+        "Loss of Control: At the end of any phase in which a Doomwheel that is not in close combat or fleeing suffers a Wound, the Skaven player must take a Loss of Control test. Roll a D6 for each wound suffered in that phase. On the roll of one or more 1's, the Doomwheel goes immediately Out of Control (as detailed in the Doomwheel Misfire chart).",
+        "Zzzzap: In each friendly Shooting phase, even when engaged in close combat or when fleeing, the Doomwheel automatically unleashes bolts of warp lightning using the following profile: Range: Strength: Special Rules: 18\" Artillery Lightning Attacks, Magical Attacks, Multiple Shots (3), Multiple Wounds Dice (D3) Each warp lightning bolt will automatically hit the nearest unit (friend or foe), regardless of line of sight and direction. This is a non-physical attack. The Warlock Engineer may choose to take a Leadership test in an attempt to stop the Doomwheel from firing. If the test is failed, the machine fires as normal. Roll an Artillery dice to determine the Strength for the bolts, measuring from the Doomwheel's base. If the closest unit dies from the first bolt, the second bolt hits the next closest unit in range, and so on. If two targets are equidistant, the owning player may choose which unit is struck. If you roll a misfire result something has gone awry. No more shots are fired this turn and you must immediately roll a D6 and consult the Doomwheel Mishap chart. DOOMWHEEL MISFIRE CHART D6 Result 1-2 Disaster: The Doomwheel immediately takes D6 Strength 6 hits. In addition, from now on roll one less D6 for the Doomwheel's movement. If reduced to zero dice the Doomwheel is removed as a casualty. 3-5 Out of Control: If the Doomwheel is unengaged, it immediately moves in a random direction determined by the scatter dice. If it hits any unit (friend or foe) the Doomwheel inflicts Impact Hits as normal and counts as charging if the unit is an enemy. In the case of a Doomwheel hitting a friendly unit, resolve Impact Hits immediately after contact and then move the Doomwheel back 1\". 6 Burst of Speed: The Doomwheel gains the Random Movement (4D6) special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 175,
       "unitSize": null,
       "crew": "1 Warlock Engineer (Skaven)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 175
     },
     {
-      "name": "Thanquol",
+      "name": "Grey Seer Thanquol",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1924,19 +3206,50 @@
       "equipment": "Hand weapon, 5 Warpstone Tokens (Thanquol only), Warpfire Thrower (Boneripper and Boneripper\nMk II only)\n• Warpfire Thrower: Warpfire Throwers are Fire Throwers with the following profile:\nRange: Strength: Special Rules:\nn/a 5 Flaming Attacks, Magical Attacks, Multiple Wounds (D3), Slow to Fire\nBoneripper may fire one Warpfire Thrower each turn, while Boneripper Mk II can fire two Warpfire Throwers\neach turn. These attacks are completely resolved one at a time, and may be directed at different targets if\ndesired. Boneripper Mk II may re-roll all failed rolls To Wound with them.\nAny failed To Wound rolls with Warpfire Projectors may be re-rolled. If the Warpfire Projector misfires, the\nweapon inflicts D6 automatic hits on the closest friendly unit in the firing unit's front arc that is within 12\". If\nthere are no eligible friendly units, the Warpfire Projector simply does not fire this turn.",
       "magic": "Thanquol is a Level 4 Wizard who uses spells from the Lore of Ruin and/or Lore of Plague. In addition, he\ncan choose the Curse of the Horned Rat spell.\nMAGIC ITEMS:\n• Amulet of the Horned One: Talisman. As long as Thanquol has at least a single Wound remaining, at the\nbeginning of each of his turns, Thanquol can use the amulet to heal himself. On a roll of 5+, Thanquol regains\na single Wound.\n• Staff of the Horned One: Arcane Item. The Staff of the Horned One gives Thanquol an additional spell.",
       "options": [
-        "Must choose one of the following:",
-        "Be accompanied by Boneripper +160 points",
-        "Be mounted on Boneripper Mk II +320 points",
-        "May exchange Warpfire Thrower for Warpfire Braziers (Boneripper Mk II only) free"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Be accompanied by Boneripper",
+              "points": 160,
+              "perModel": false
+            },
+            {
+              "name": "Be mounted on Boneripper Mk II",
+              "points": 320,
+              "perModel": false
+            }
+          ],
+          "raw": "Must choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "Warpfire Thrower",
+          "choices": [
+            {
+              "name": "Warpfire Braziers (Boneripper Mk II only)",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May exchange Warpfire Thrower for Warpfire Braziers (Boneripper Mk II only) free"
+        }
       ],
-      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour, Unbreakable (Bone-Ripper only)\n• Blessing of the Horned Rat: Thanquol has a 4+ Ward Save. For every wound Thanquol saves, one friendly\nmodel within 6\" (owning player's choice) takes a wound instead. Normal saves apply. If no friendly model is\nwithin 6\" the Wound fails to deflect anywhere and is ignored.\n• Bodyguard of Thanquol: If, at the start of any friendly turn, Boneripper is not within 12\" of Thanquol, he\ncannot do anything at all, and in combat he will be hit automatically and will not strike back. If the game ends\nwhile Boneripper is shut down, he counts as a casualty. If Thanquol is slain or flees off the table, Boneripper is\nremoved as a casualty as well.\n• Warpstone Addiction: When casting a spell, if Thanquol rolls a 1 with any power dice generated by a\nWarpstone Token, he can re-roll the dice. The second result will cause a wound on a roll of 1 or a 2.",
+      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour, Unbreakable (Bone-Ripper only)",
+      "specialRuleDescriptions": [
+        "Blessing of the Horned Rat: Thanquol has a 4+ Ward Save. For every wound Thanquol saves, one friendly model within 6\" (owning player's choice) takes a wound instead. Normal saves apply. If no friendly model is within 6\" the Wound fails to deflect anywhere and is ignored.",
+        "Bodyguard of Thanquol: If, at the start of any friendly turn, Boneripper is not within 12\" of Thanquol, he cannot do anything at all, and in combat he will be hit automatically and will not strike back. If the game ends while Boneripper is shut down, he counts as a casualty. If Thanquol is slain or flees off the table, Boneripper is removed as a casualty as well.",
+        "Warpstone Addiction: When casting a spell, if Thanquol rolls a 1 with any power dice generated by a Warpstone Token, he can re-roll the dice. The second result will cause a wound on a roll of 1 or a 2."
+      ],
       "upgrades": "• Warpfire Braziers: Warpfire Braziers have the following profile:\nRange: Strength: Special Rules:\nCombat +1 Flaming Attacks, Magical Attacks, Multiple Wounds (D3)\nAt the beginning of any Close Combat phase all models in base contact (friend or foe) with Boneripper Mk II\nmust pass a Toughness test or suffer a single wound with the Ignores Armour Saves and Magical Attacks\nspecial rules. All Clan Pestilens models gain a +1 bonus for these tests. Because Boneripper Mk II has four\nWarpfire Braziers, he may re-roll all failed rolls To Wound with them.",
       "notes": null,
-      "pointsCost": 320,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 320
     },
     {
       "name": "Queek Headtaker",
@@ -1961,14 +3274,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Hatred (Dwarfs, Goblins, Orcs), Scurry Away, Strength in Numbers\n• The Red Guard: Queek must be accompanied by a unit of Stormvermin chosen from the army list at a cost of\n+2 points per model. This unit has +1 Strength. Queek may never choose to leave this unit. No Grey Seers may\njoin the unit.\n• Trophy Heads: Queek must issue or accept challenges whenever possible. When fighting in a challenge,\nQueek gains +1 To Hit and To Wound.",
+      "specialRules": "Hatred (Dwarfs, Goblins, Orcs), Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": [
+        "The Red Guard: Queek must be accompanied by a unit of Stormvermin chosen from the army list at a cost of +2 points per model. This unit has +1 Strength. Queek may never choose to leave this unit. No Grey Seers may join the unit.",
+        "Trophy Heads: Queek must issue or accept challenges whenever possible. When fighting in a challenge, Queek gains +1 To Hit and To Wound."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 225,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 225
     },
     {
       "name": "Spinetail",
@@ -1993,16 +3310,24 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour\n• Spined Tail: If Warlord Spinetail is in base contact with an enemy Infantry Character at the start of any close\ncombat phase, he can attempt to throttle them with his tail. If he does, both you and your opponent roll a D6. If\nyou roll the higher result, the enemy Character suffers one Wound which Ignores Armour Saves. If your result\nis at least double your opponent’s, that model suffers D3 Wounds which Ignores Armour Saves instead.\n• Attack-attack: Any unit joined by Spinetail may re-roll To Wound rolls of 1 in close combat.",
+      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": [
+        "Spined Tail: If Warlord Spinetail is in base contact with an enemy Infantry Character at the start of any close combat phase, he can attempt to throttle them with his tail. If he does, both you and your opponent roll a D6. If you roll the higher result, the enemy Character suffers one Wound which Ignores Armour Saves. If your result is at least double your opponent’s, that model suffers D3 Wounds which Ignores Armour Saves instead.",
+        "Attack-attack: Any unit joined by Spinetail may re-roll To Wound rolls of 1 in close combat."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     },
     {
       "name": "Skreech Verminking",
@@ -2027,14 +3352,18 @@
       "equipment": null,
       "magic": "Skreech Verminking is a Level 4 Wizard who uses spells from the Lore of Ruin, Lore of Plague and/or Lore\nof Stealth. In addition, he knows the Curse of the Horned Rat spell.\nMAGIC ITEMS:\n• Doom Glaive: Magic Weapon. Attacks made with this weapon have the Multiple Wounds (D3) special rule.\n• Plaguereaper: Magic Weapon. Attacks made with these weapons have the Always Strikes First special rule.\nThis replaces the Doom-glaive.",
       "options": [],
-      "specialRules": "Daemonic (see Verminlords)\n• Master of Ruin: Skreech Verminking re-rolls failed casting attempts when attempting to cast Curse of the\nHorned Rat.\n• Ruinous Arsenal: At the start of each round of Close Combat, you must declare which weapon Skreech\nVerminking is going to use for that turn.\nDEATHMASTER SNIKCH\nChief Assassin of Clan Eshin",
+      "specialRules": "Daemonic (see Verminlords)",
+      "specialRuleDescriptions": [
+        "Master of Ruin: Skreech Verminking re-rolls failed casting attempts when attempting to cast Curse of the Horned Rat.",
+        "Ruinous Arsenal: At the start of each round of Close Combat, you must declare which weapon Skreech Verminking is going to use for that turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 470,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 470
     },
     {
       "name": "Deathmaster Snikch",
@@ -2060,13 +3389,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Scurry Away, Sensei (see Master Assassin)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 280,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 280
     },
     {
       "name": "Throt the Unclean",
@@ -2091,14 +3421,20 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fear, Leader of the Pack (see Master Mutators), Regeneration (4+), Scurry Away, Strength in\nNumbers\n• Extra Arm: Throt may use both his Magic Weapons in each round of Close Combat.\n• Master Controller: Throt has the Inspiring Presence (6) special rule for all Clan Moulder units.\n• Ravening Hunger: At the start of each of his turns, Throt must pass a Toughness test or start to eat one model\nin base contact of your choosing. This model suffers 1 Wound which Ignores Armour Saves and does not allow\nWard Saves. If this is not possible, Throt will suffer 1 Wound with no saves allowed.",
+      "specialRules": "Fear, Leader of the Pack (see Master Mutators), Regeneration (4+), Scurry Away, Strength in",
+      "specialRuleDescriptions": [
+        "Numbers",
+        "Extra Arm: Throt may use both his Magic Weapons in each round of Close Combat.",
+        "Master Controller: Throt has the Inspiring Presence (6) special rule for all Clan Moulder units.",
+        "Ravening Hunger: At the start of each of his turns, Throt must pass a Toughness test or start to eat one model in base contact of your choosing. This model suffers 1 Wound which Ignores Armour Saves and does not allow Ward Saves. If this is not possible, Throt will suffer 1 Wound with no saves allowed."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 175,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 175
     },
     {
       "name": "Nurglitch",
@@ -2147,14 +3483,20 @@
       "equipment": "Plague Censer (Bilios only)",
       "magic": "Nurglitch is a Level 3 Wizard who uses spells from the Lore of Plague. In addition, he always knows the\nPlague spell from that lore.\nMAGIC ITEMS:\n• Blade of Nurglitch: Magic Weapon. Enemy models lose 1 point of Toughness from their profile for each\nWound they suffer from this blade.\n• Bubonic Sceptre: Arcane Item. Bound Spell, power level 5. The Bubonic Sceptre contains a direct damage\nspell with a range of 18\". Roll a D6 for every model in the unit. For every roll of a 6, that unit suffers a wound\nwith the Ignores Armour Saves special rule.",
       "options": [],
-      "specialRules": "Frenzy, Hatred, Scurry Away, Skittering (see Great Pox Rat), Strength in Numbers, Terror,\nWard Save (5+)\n• The Passion of the Putrid: No friendly Clan Pestilens units will lose their Frenzy whilst Nurglitch is still\nalive.\n• Scion of Corruption: Neither Nurglitch nor any unit he joins will ever suffer wounds from spells cast from the\nLore of Plague or Lore of Nurgle. Furthermore, they automatically pass the test for the effects of Plague\nCensers.\n• The Grim Ague: Any non-Clan Pestilens unit within 6\" of Nurglitch suffer -1 to their Weapon Skill.\nFurthermore, any such model in base contact with Nurglitch at the end of any close combat phase\nautomatically takes a Strength 4 hit with the Ignores Armour Saves special rule that counts towards combat\nresolution.",
+      "specialRules": "Frenzy, Hatred, Scurry Away, Skittering (see Great Pox Rat), Strength in Numbers, Terror,",
+      "specialRuleDescriptions": [
+        "Ward Save (5+)",
+        "The Passion of the Putrid: No friendly Clan Pestilens units will lose their Frenzy whilst Nurglitch is still alive.",
+        "Scion of Corruption: Neither Nurglitch nor any unit he joins will ever suffer wounds from spells cast from the Lore of Plague or Lore of Nurgle. Furthermore, they automatically pass the test for the effects of Plague Censers.",
+        "The Grim Ague: Any non-Clan Pestilens unit within 6\" of Nurglitch suffer -1 to their Weapon Skill. Furthermore, any such model in base contact with Nurglitch at the end of any close combat phase automatically takes a Strength 4 hit with the Ignores Armour Saves special rule that counts towards combat resolution."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 420,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 420
     },
     {
       "name": "Lord Skrolk",
@@ -2179,14 +3521,17 @@
       "equipment": null,
       "magic": "Skrolk is a Level 3 Wizard who uses spells from the Lore of Plague.\nMAGIC ITEMS:\n• Rod of Corruption: Magic Weapon. Plague Censer. Models hit by the rod must pass a single Toughness test\n(regardless of the number of hits) or instantly be removed as a casualty with no saves allowed. If the victim\npasses the Toughness test, roll To Wound as normal.\n• The Liber Bubonicus: Arcane Item. Bound Spell (power level 5). The Liber Bubonicus contains a direct\ndamage spell with a range of 24\". When cast, roll a D6 to see the effect:\nD6 Result\n1 Squeaking, Squealing Nonsense: No effect.\n2-4 A Withering Pox: Each model in the unit suffers a Strength 1 hit with the Ignores Armour saves\nspecial rule.\n5-6 Death Plague: Each model in the unit suffers a Strength 2 hit with the Ignores Armour saves special\nrule.",
       "options": [],
-      "specialRules": "Frenzy, Scurry Away, Strength in Numbers, Terror\n• Aura of Pestilence: Any units in base contact with Lord Skrolk that are not part of Clan Pestilens suffer -1 To\nHit.",
+      "specialRules": "Frenzy, Scurry Away, Strength in Numbers, Terror",
+      "specialRuleDescriptions": [
+        "Aura of Pestilence: Any units in base contact with Lord Skrolk that are not part of Clan Pestilens suffer -1 To Hit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 385,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 385
     },
     {
       "name": "Ikit Claw",
@@ -2212,13 +3557,14 @@
       "magic": "Ikit Claw is a Level 4 Wizard who can use the spells from the Lore of Ruin.",
       "options": [],
       "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 340,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 340
     },
     {
       "name": "Tretch Craventail",
@@ -2243,14 +3589,18 @@
       "equipment": "Two hand weapons, light armour, tail weapon\nMAGIC ITEMS:\n• Lucky Skullhelm: Magic Armour. The Skullhelm gives Tretch a 6+ armour save and a 4+ Ward save (4+). In\naddition, once per game he can re-roll a dice roll. The re-roll can be one of his To Hit, To Wound, armour or\nWard save, Leadership test, or a Stay Here, I'll Get Help roll.",
       "magic": null,
       "options": [],
-      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour.\n• Tretch's Raiders: Tretch can choose one unit of Clanrats or Stormvermin in your army to deploy as\nAmbushers. If so, Tretch must deploy with this unit. In addition, he and his unit re-roll all failed To Hit rolls\nwhen attacking in the flank or rear.\n• Stay Here, I'll Get Help: Once per friendly turn, at the start of any phase, Tretch can leave any unit he is with\nand make a move of 2D6\" as if it was the Remaining Moves phase.\nVESKIT\nHigh Executioner of Clan Eshin",
+      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour.",
+      "specialRuleDescriptions": [
+        "Tretch's Raiders: Tretch can choose one unit of Clanrats or Stormvermin in your army to deploy as Ambushers. If so, Tretch must deploy with this unit. In addition, he and his unit re-roll all failed To Hit rolls when attacking in the flank or rear.",
+        "Stay Here, I'll Get Help: Once per friendly turn, at the start of any phase, Tretch can leave any unit he is with and make a move of 2D6\" as if it was the Remaining Moves phase."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Veskit",
@@ -2275,14 +3625,17 @@
       "equipment": "Light armour\n• Eshin Fighting Claws: Two hand weapons. These claws give Veskit the Armour Piercing (1) and Magical\nAttacks special rules. In addition, they have the following missile profile:\nRange: Strength: Special Rules:\n12\" 5 Armour Piercing (1), Magical Attacks, Multiple Shots (2), Quick to Fire,\nUnstable Ammunition",
       "magic": null,
       "options": [],
-      "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Scurry Away, Sniper\n• No Pain: Successful To Wound rolls against Veskit must be re-rolled.",
+      "specialRules": "Dodge (5+), Hidden, Poisoned Attacks, Scouts, Scurry Away, Sniper",
+      "specialRuleDescriptions": [
+        "No Pain: Successful To Wound rolls against Veskit must be re-rolled."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 165,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 165
     },
     {
       "name": "Skweel Gnawtooth",
@@ -2319,14 +3672,17 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• Warp-lash: Magic Weapon. Whip. Warp-lash gives Skweel the Armour Piercing (1) and Multiple Wounds (2)\nspecial rules.",
       "magic": null,
       "options": [],
-      "specialRules": "Mixed Unit, Scurry Away!, Strength in Numbers, Verminous Valour.\n• Exceptional Pack: If you include Skweel Gnawtooth in your army, you must also include a unit of Giant Rats\nthat he must join. After deploying Skweel into his unit, roll a D6 and consult the chart below to determine the\nGiant Rats' special attributes. Skweel will never leave his special pack and may never join another unit.\nD6 Result\n1-2 Poisoned Attacks: The Giant Rats have the Poisoned Attacks special rule.\n3-4 Additional Attacks. The Giant Rats have +1 Attack.\n5-6 Regenerate: The Giant Rats have the Regeneration (4+) special rule.\nGHORITCH\nCastellan of Hell Pit",
+      "specialRules": "Mixed Unit, Scurry Away!, Strength in Numbers, Verminous Valour.",
+      "specialRuleDescriptions": [
+        "Exceptional Pack: If you include Skweel Gnawtooth in your army, you must also include a unit of Giant Rats that he must join. After deploying Skweel into his unit, roll a D6 and consult the chart below to determine the Giant Rats' special attributes. Skweel will never leave his special pack and may never join another unit. D6 Result 1-2 Poisoned Attacks: The Giant Rats have the Poisoned Attacks special rule. 3-4 Additional Attacks. The Giant Rats have +1 Attack. 5-6 Regenerate: The Giant Rats have the Regeneration (4+) special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
       "name": "Ghoritch",
@@ -2351,14 +3707,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Armour Piercing (3), Leader of the Pack (see Master Mutators), Scurry Away, Strength in\nNumbers\n• Brain Transplant: Ghoritch has the Frenzy special rule. If he ever loses his Frenzy, he will become subject to\nStupidity for the rest of the game.",
+      "specialRules": "Armour Piercing (3), Leader of the Pack (see Master Mutators), Scurry Away, Strength in",
+      "specialRuleDescriptions": [
+        "Numbers",
+        "Brain Transplant: Ghoritch has the Frenzy special rule. If he ever loses his Frenzy, he will become subject to Stupidity for the rest of the game."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 180,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 180
     },
     {
       "name": "Morbus Sanguis",
@@ -2383,14 +3743,18 @@
       "equipment": null,
       "magic": "Morbus Sanguis is a Level 1 Wizard who uses spells from the Lore of Plague.\nMAGIC ITEMS:\n• Censer Mace: Magic Weapon. Great weapon. At the start of each round of close combat, all enemy models in\nbase contact with Morbus Sanguis must pass a Toughness test or suffer a single wound with the Ignores\nArmour Saves and Magical Attacks special rules. All Clan Pestilens models gain a +1 bonus for these tests.",
       "options": [],
-      "specialRules": "Fear, Frenzy, Scurry Away, Strength in Numbers\n• Warp Fleas: All models in base contact with Morbus suffer a -1 To Hit penalty in close combat as they are\ndistracted by the biting fleas.\n• The Yellow Death: If Morbus is included in your army, you may upgrade one unit of Plague Rats to Yellow\nDeath Rats for +10 points per model. Yellow Death Rats have +1 Weapon Skill and Strength.\nKLAWMUNKAST",
+      "specialRules": "Fear, Frenzy, Scurry Away, Strength in Numbers",
+      "specialRuleDescriptions": [
+        "Warp Fleas: All models in base contact with Morbus suffer a -1 To Hit penalty in close combat as they are distracted by the biting fleas.",
+        "The Yellow Death: If Morbus is included in your army, you may upgrade one unit of Plague Rats to Yellow Death Rats for +10 points per model. Yellow Death Rats have +1 Weapon Skill and Strength."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 125,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 125
     },
     {
       "name": "Klawmunkast",
@@ -2415,14 +3779,18 @@
       "equipment": null,
       "magic": "Klawmunkast is a Level 2 Wizard who uses the Lore of Ruin.\nMAGIC ITEMS:\n• Eye of Skraw: Arcane Item. Bound Spell (Power Level 4). The Eye of Skraw contains the Warp Lightning\nspell from the Lore of Ruin. Roll a D6 every time it is used. On a 1, the Eye of Skraw runs out of power and\ncannot be used for the rest of the battle. In addition, the Eye gives Klawmunkast a 6+ Ward save.",
       "options": [],
-      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour\n• Rodent Genius: Any rolls on the Misfire table for all Clan Skryre units within 12\" may be re-rolled.\n• Warpstone Mutants: If Klawmunkast is included in your army, you may upgrade one unit of Skavenslaves to\nWarpstone Mutants for +3 points per model. Warpstone Mutants have +1 Strength and Attacks.",
+      "specialRules": "Scurry Away, Strength in Numbers, Verminous Valour",
+      "specialRuleDescriptions": [
+        "Rodent Genius: Any rolls on the Misfire table for all Clan Skryre units within 12\" may be re-rolled.",
+        "Warpstone Mutants: If Klawmunkast is included in your army, you may upgrade one unit of Skavenslaves to Warpstone Mutants for +3 points per model. Warpstone Mutants have +1 Strength and Attacks."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 165,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 165
     }
   ]
 }

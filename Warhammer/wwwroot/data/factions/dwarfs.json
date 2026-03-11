@@ -24,28 +24,101 @@
       "equipment": "Hand weapon, medium armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Pistol +6 points",
-        "Great weapon +8 points",
-        "May choose one of the following:",
-        "Crossbow +5 points",
-        "Handgun +5 points",
-        "May take heavy armour +9 points",
-        "May take a shield +3 points",
-        "May be mounted on one of the following",
-        "Shieldbearers +5 points",
-        "Oathstone +25 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "pistol",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 8,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "crossbow",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May take heavy armour +9 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Shieldbearers",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Oathstone",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute\nRUNELORD",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 140,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 140
     },
     {
       "name": "Runelord",
@@ -70,22 +143,73 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take a great weapon +4 points",
-        "May choose one of the following:",
-        "Light armour +3 points",
-        "Medium armour +9 points",
-        "May take a shield +3 points",
-        "May be mounted on an Anvil of Doom +120 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 4,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a great weapon +4 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "an Anvil of Doom",
+              "points": 120
+            }
+          ],
+          "raw": "May be mounted on an Anvil of Doom +120 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Forgefire, Gromril Armour, Relentless, Resolute, Rune Lore",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     },
     {
       "name": "Daemon Slayer",
@@ -110,25 +234,77 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +3 points",
-        "Great weapon +8 points",
-        "May choose one of the following:",
-        "Killing Blow +15 points",
-        "Vampire Slayer +15 points",
-        "Beast Slayer +25 points",
-        "Skaven Slayer +25 points",
-        "May have Wards of Grimnir +20 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 8,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Killing Blow",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Vampire Slayer",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Beast Slayer",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Skaven Slayer",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Wards of Grimnir",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May have Wards of Grimnir +20 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Daemon Slayer, Deathblow, Relentless, Unbreakable",
+      "specialRuleDescriptions": null,
       "upgrades": "• Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution\n(excluding Wounds from Overkill in a challenge).\n• Killing Blow: The model gains the Killing Blow special rule.\n• Skaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact\nwith him.\n• Vampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
       "notes": "• For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.",
-      "pointsCost": 140,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 140
     },
     {
       "name": "Thane",
@@ -153,27 +329,100 @@
       "equipment": "Hand weapon, medium armour",
       "magic": null,
       "options": [
-        "One Thane may carry the Battle Standard +25 points",
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Great weapon +6 points",
-        "Pistol +6 points",
-        "May choose one of the following:",
-        "Crossbow +5 points",
-        "Handgun +5 points",
-        "May take heavy armour +6 points",
-        "May take a shield +2 points",
-        "May be mounted on an Oathstone +25 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Thane may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "pistol",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "crossbow",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take heavy armour +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +2 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "an Oathstone",
+              "points": 25
+            }
+          ],
+          "raw": "May be mounted on an Oathstone +25 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
       "notes": null,
-      "pointsCost": 70,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 70
     },
     {
       "name": "Runesmith",
@@ -198,21 +447,62 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take a great weapon +4 points",
-        "May choose one of the following:",
-        "Light armour +2 points",
-        "Medium armour +6 points",
-        "May take a shield +3 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 4,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a great weapon +4 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +3 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Forgefire, Gromril Armour, Relentless, Resolute, Rune Lore",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 100,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Dragon Slayer",
@@ -237,25 +527,77 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Great weapon +6 points",
-        "May choose one of the following:",
-        "Killing Blow +15 points",
-        "Vampire Slayer +15 points",
-        "Beast Slayer +25 points",
-        "Skaven Slayer +25 points",
-        "May have Wards of Grimnir +20 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Killing Blow",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Vampire Slayer",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Beast Slayer",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Skaven Slayer",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Wards of Grimnir",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May have Wards of Grimnir +20 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Relentless, Unbreakable",
+      "specialRuleDescriptions": null,
       "upgrades": "• Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution\n(excluding Wounds from Overkill in a challenge).\n• Killing Blow: The model gains the Killing Blow special rule.\n• Skaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact\nwith him.\n• Vampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
       "notes": null,
-      "pointsCost": 70,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 70
     },
     {
       "name": "Brewmaster",
@@ -280,20 +622,53 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take a great weapon +4 points",
-        "May choose one of the following:",
-        "Light armour +2 points",
-        "Medium armour +6 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 4,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a great weapon +4 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Relentless, Resolute\n• Beer Gut: Enemy attacks against the Brewmaster's front arc suffer -1 To Wound.\n• Beer Casks: At the start of each of your turns, the Brewmaster can bestow one of the following beers to\nhimself and the unit they are with. Roll a D6; on a 1, the Brewmaster and their unit suffer -1 to their Weapon\nSkill, Ballistic Skill and Initiative in addition to the effect of the chosen beer. Each beer effect lasts until the\nstart of your next turn. A unit can only be under the effect of one beer type at a time.\n- Bugman's XXXXXX: The unit gains the Mighty Blow (1) special rule.\n- Dwarf Special Reserve: The unit gains the Immunity (Psychology) special rule.\n- Troll Brew: The unit gains the Regeneration (6+) special rule.",
+      "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": [
+        "Beer Gut: Enemy attacks against the Brewmaster's front arc suffer -1 To Wound.",
+        "Beer Casks: At the start of each of your turns, the Brewmaster can bestow one of the following beers to himself and the unit they are with. Roll a D6; on a 1, the Brewmaster and their unit suffer -1 to their Weapon Skill, Ballistic Skill and Initiative in addition to the effect of the chosen beer. Each beer effect lasts until the start of your next turn. A unit can only be under the effect of one beer type at a time. - Bugman's XXXXXX: The unit gains the Mighty Blow (1) special rule. - Dwarf Special Reserve: The unit gains the Immunity (Psychology) special rule. - Troll Brew: The unit gains the Regeneration (6+) special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
       "name": "Master Engineer",
@@ -318,40 +693,85 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose any of the following:",
-        "Great weapon +4 points",
-        "Handgun +5 points",
-        "Pistol +6 points",
-        "Brace of pistols +8 points",
-        "May choose one of the following:",
-        "Light armour +2 points",
-        "Medium armour +6 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "pistol",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "brace of pistols",
+              "points": 8,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose any of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Relentless, Resolute\n• Artillery Master: One war machine that is within 3\" of a Master Engineer can use his Ballistic Skill or re-roll\none artillery dice or scatter dice during each Shooting phase. This cannot be the artillery dice that determines\nthe distance a cannonball bounces. You must nominate which weapon, if any, will be using this special rule at\nthe start of each Shooting phase, before any such weapons within 3\" of the Master Engineer are fired.\n• Entrenchment: Up to one unit with the troop type war machine can be entrenched for each Master Engineer in\nthe army. An entrenched war machine is treated as being in hard cover when shot at and any charging models\nsuffer a -1 To Hit modifier in close combat. An entrenched war machine can be pivoted to fire, but if it moves\nin any other way, the entrenchment is lost. If the war machine is destroyed, the entrenchment is considered\ndestroyed as well. A war machine can only be entrenched once.\n• \"Stand Back Sir!\": A model with this special rule that is within 3\" of a war machine is allowed to take a\n\"Look Out Sir!\" roll just as if he was within 3\" of a unit of five or more models of the same troop type as\nhimself. If the roll is successful, the hit is resolved instead against the nearest friendly war machine.\n17\n\nCHARACTER MOUNTS\nSHIELDBEARERS",
+      "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": [
+        "Artillery Master: One war machine that is within 3\" of a Master Engineer can use his Ballistic Skill or re-roll one artillery dice or scatter dice during each Shooting phase. This cannot be the artillery dice that determines the distance a cannonball bounces. You must nominate which weapon, if any, will be using this special rule at the start of each Shooting phase, before any such weapons within 3\" of the Master Engineer are fired.",
+        "Entrenchment: Up to one unit with the troop type war machine can be entrenched for each Master Engineer in the army. An entrenched war machine is treated as being in hard cover when shot at and any charging models suffer a -1 To Hit modifier in close combat. An entrenched war machine can be pivoted to fire, but if it moves in any other way, the entrenchment is lost. If the war machine is destroyed, the entrenchment is considered destroyed as well. A war machine can only be entrenched once.",
+        "\"Stand Back Sir!\": A model with this special rule that is within 3\" of a war machine is allowed to take a \"Look Out Sir!\" roll just as if he was within 3\" of a unit of five or more models of the same troop type as himself. If the roll is successful, the hit is resolved instead against the nearest friendly war machine."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
-      "name": "Shieldbearers 3",
-      "category": "Heroes",
+      "name": "Shieldbearers",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Shieldbearers 3",
-          "M": 5,
-          "WS": 3,
-          "BS": 4,
-          "S": null,
+          "name": "Shieldbearers",
+          "M": 3,
+          "WS": 5,
+          "BS": 3,
+          "S": 4,
           "T": null,
-          "W": 2,
+          "W": null,
           "I": 2,
-          "A": 9,
-          "Ld": null
+          "A": 2,
+          "Ld": 9
         }
       ],
       "troopType": "Infantry (Dwarf)",
@@ -359,28 +779,40 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May take an additional shieldbearer +2 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional shieldbearer",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional shieldbearer +2 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• Shieldbearers have a Unit Strength and Line of Sight value of 2.\n• An additional shieldbearer adds +1 Attack and +1 Unit Strength.\n18\n\nCHARACTER MOUNTS\nANVIL OF DOOM",
-      "pointsCost": null,
+      "notes": "• Shieldbearers have a Unit Strength and Line of Sight value of 2.\n• An additional shieldbearer adds +1 Attack and +1 Unit Strength.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Anvil of Doom -",
-      "category": "Heroes",
+      "name": "Anvil of Doom",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Anvil of Doom -",
+          "name": "Anvil of Doom",
           "M": null,
           "WS": null,
           "BS": null,
-          "S": 10,
-          "T": null,
+          "S": null,
+          "T": 10,
           "W": null,
           "I": null,
           "A": null,
@@ -404,17 +836,22 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Relentless, Resolute\n• Anvil of Doom: A Runelord with an Anvil of Doom gains the Ward Save (4+) and Unbreakable special rules.\nIn addition, his troop type changes to War Machine and he counts as being part of the crew. The Runelord can\nnever choose to leave the Anvil during the game. If the Runelord is killed, the whole Anvil is also removed as a\ncasualty.\n• Locus of Power: For each friendly Anvil of Doom on the battlefield at the start of any Magic phase, add one\ndice to your dispel pool.\n• Strike the Runes: A model mounted on an Anvil of Doom can use the following Ancestor Runes once each at\nthe start of each of your turns:\n- Ancestor Rune of Grungni: Choose one friendly Dwarf unit within 24\". Until the start of your next turn,\nthe target gains the Fight in Extra Ranks (1) special rule and may re-roll failed rolls To Hit in close combat\nand with missile weapons.\n- Ancestor Rune of Valaya: Choose one friendly Dwarf unit within 24\". The target regains 2D3 Wounds'\nworth of models slain earlier in the battle, just like a summoning spell.\n- Ancestor Rune of Grimnir: Choose one unengaged enemy unit within 24\"; that unit suffer 2D6 Strength\n4 hits.\nChoose which rune you wish the model to strike. Then the model needs to take a Leadership test on their own\nunmodified Leadership. If passed, the Rune is struck and take immediate effect. If the Leadership test is failed,\nroll a D6 and consult the Failed Rune table below:\nFAILED RUNE TABLE\nD6 Result\n1 Remove the Anvil of Doom, the Runelord and the Anvil Guards as casualties immediately.\n2-3 The rune does not take effect and the Anvil of Doom may not attempt to strike any further runes this\nturn.\n4-6 The rune does not take effect.",
+      "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": [
+        "Anvil of Doom: A Runelord with an Anvil of Doom gains the Ward Save (4+) and Unbreakable special rules. In addition, his troop type changes to War Machine and he counts as being part of the crew. The Runelord can never choose to leave the Anvil during the game. If the Runelord is killed, the whole Anvil is also removed as a casualty.",
+        "Locus of Power: For each friendly Anvil of Doom on the battlefield at the start of any Magic phase, add one dice to your dispel pool.",
+        "Strike the Runes: A model mounted on an Anvil of Doom can use the following Ancestor Runes once each at the start of each of your turns: - Ancestor Rune of Grungni: Choose one friendly Dwarf unit within 24\". Until the start of your next turn, the target gains the Fight in Extra Ranks (1) special rule and may re-roll failed rolls To Hit in close combat and with missile weapons. - Ancestor Rune of Valaya: Choose one friendly Dwarf unit within 24\". The target regains 2D3 Wounds' worth of models slain earlier in the battle, just like a summoning spell. - Ancestor Rune of Grimnir: Choose one unengaged enemy unit within 24\"; that unit suffer 2D6 Strength 4 hits. Choose which rune you wish the model to strike. Then the model needs to take a Leadership test on their own unmodified Leadership. If passed, the Rune is struck and take immediate effect. If the Leadership test is failed, roll a D6 and consult the Failed Rune table below: FAILED RUNE TABLE D6 Result 1 Remove the Anvil of Doom, the Runelord and the Anvil Guards as casualties immediately. 2-3 The rune does not take effect and the Anvil of Doom may not attempt to strike any further runes this turn. 4-6 The rune does not take effect."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": "2 Anvil Guards (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Warrior",
+      "name": "Warriors",
       "category": "Core",
       "profiles": [
         {
@@ -436,26 +873,73 @@
       "equipment": "Hand weapon, medium armour",
       "magic": null,
       "options": [
-        "Must choose at least one of the following:",
-        "Shields +1 point/model",
-        "Great weapons +2 points/model",
-        "May take heavy armour +1.5 points/model",
-        "May upgrade one Warrior to a Leader +5 points",
-        "May upgrade one Warrior to a Musician +5 points",
-        "May upgrade one Warrior to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "Must choose at least one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take heavy armour +1.5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Warrior to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Warrior to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 7,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 7
     },
     {
-      "name": "Quarreller",
+      "name": "Quarrellers",
       "category": "Core",
       "profiles": [
         {
@@ -477,27 +961,85 @@
       "equipment": "Hand weapon, crossbow, light armour",
       "magic": null,
       "options": [
-        "May take great weapons +2 points/model",
-        "May choose one of the following:",
-        "Bucklers +0.5 point/model",
-        "Shields +1 point/model",
-        "May take medium armour +1 point/model",
-        "May upgrade one Quarreller to a Leader +5 points",
-        "May upgrade one Quarreller to a Musician +5 points",
-        "May upgrade one Quarreller to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take great weapons +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "buckler",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take medium armour +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Quarreller to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Quarreller to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Quarreller to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Thunderer",
+      "name": "Thunderers",
       "category": "Core",
       "profiles": [
         {
@@ -519,27 +1061,88 @@
       "equipment": "Hand weapon, handgun, light armour",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Bucklers +0.5 point/model",
-        "Shields +1 point/model",
-        "May take medium armour +1 point/model",
-        "May upgrade one Thunderer to a Leader +5 points",
-        "May replace handgun with brace of pistols free",
-        "May upgrade one Thunderer to a Musician +5 points",
-        "May upgrade one Thunderer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "buckler",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take medium armour +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Thunderer to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "replace",
+              "replaces": "handgun",
+              "choices": [
+                {
+                  "name": "brace of pistols",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "May replace handgun with brace of pistols free"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Thunderer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Thunderer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Miner",
+      "name": "Miners",
       "category": "Core",
       "profiles": [
         {
@@ -561,24 +1164,73 @@
       "equipment": "Great weapon, medium armour\n• Blasting Charges: One use only. Blasting charges have the following profile:\nRange: Strength: Special Rules:\n4\" 4 Armour Piercing (1), Flaming Attacks, Quick to Fire\n• Steam Drill: Great weapon. Steam drills add +1 Strength. A Miner unit equipped with a steam drill can re-roll\na failed arrival for its Ambushers special rule.",
       "magic": null,
       "options": [
-        "May take blasting charges +15 points",
-        "May upgrade one Warrior to a Leader +5 points",
-        "May replace great weapon with steam drill +10 points",
-        "May upgrade one Warrior to a Musician +5 points",
-        "May upgrade one Warrior to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "blasting charges",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May take blasting charges +15 points"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Warrior to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "replace",
+              "replaces": "great weapon",
+              "choices": [
+                {
+                  "name": "steam drill",
+                  "points": 10,
+                  "perModel": false
+                }
+              ],
+              "raw": "May replace great weapon with steam drill +10 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Warrior to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Ancestral Grudge, Relentless, Resolute\n• Underground Advance: Miners have the Ambushers special rule. In addition, instead of deploying like\nnormal Ambushers, a Miner unit can choose to arrive anywhere on the battlefield from below.\nDuring deployment, before Scouts are placed, place a tunnel marker anywhere on the battlefield. The unit will\nthen deploy using the Ambushers special rule. When the unit emerges, roll a scatter dice and an artillery dice.\nIf you roll a hit on the scatter dice, the marker stays in place; if you roll an arrow, move the marker the number\nof inches indicated by the artillery dice in the direction shown by the arrow. If the marker is moved off the\ntabletop, the Miners are considered lost; treat them as casualties. In case a Misfire is rolled, roll a D6 and\nconsult the Underground Mishap chart.\nOnce the final position is established, place the Miner unit so it can touch the marker. If the marker is under a\nfriendly unit or impassable terrain, place it next to the closest edge of the unit/terrain. They may face in any\ndirection.\nIf the marker is under an enemy unit when the Miners emerge, the Miners are considered to have charged.\nPlace the attacking Dwarfs to the front of the enemy unit that is atop the marker.\nUNDERGROUND MISHAP CHART\nD6 Result\n1-2 Cave-in! The Miners are instantly killed.\n3-5 Partial Collapse. All models in the unit must pass a Strength test or be removed as casualties. Any\nmodels that survive may not move or charge on the turn they emerge after a Partial Collapse. If the\nmodels emerge into close combat they have the Always Strikes Last special rule for the remainder of\nthe turn.\n6 Should Have Taken That Left Turn. Your opponent places the marker anywhere within 18\" of the\noriginal position on the table and this is where the Miners emerge. They cannot move or charge on\nthe turn they emerge.",
+      "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": [
+        "Underground Advance: Miners have the Ambushers special rule. In addition, instead of deploying like normal Ambushers, a Miner unit can choose to arrive anywhere on the battlefield from below. During deployment, before Scouts are placed, place a tunnel marker anywhere on the battlefield. The unit will then deploy using the Ambushers special rule. When the unit emerges, roll a scatter dice and an artillery dice. If you roll a hit on the scatter dice, the marker stays in place; if you roll an arrow, move the marker the number of inches indicated by the artillery dice in the direction shown by the arrow. If the marker is moved off the tabletop, the Miners are considered lost; treat them as casualties. In case a Misfire is rolled, roll a D6 and consult the Underground Mishap chart. Once the final position is established, place the Miner unit so it can touch the marker. If the marker is under a friendly unit or impassable terrain, place it next to the closest edge of the unit/terrain. They may face in any direction. If the marker is under an enemy unit when the Miners emerge, the Miners are considered to have charged. Place the attacking Dwarfs to the front of the enemy unit that is atop the marker. UNDERGROUND MISHAP CHART D6 Result 1-2 Cave-in! The Miners are instantly killed. 3-5 Partial Collapse. All models in the unit must pass a Strength test or be removed as casualties. Any models that survive may not move or charge on the turn they emerge after a Partial Collapse. If the models emerge into close combat they have the Always Strikes Last special rule for the remainder of the turn. 6 Should Have Taken That Left Turn. Your opponent places the marker anywhere within 18\" of the original position on the table and this is where the Miners emerge. They cannot move or charge on the turn they emerge."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 9,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 9
     },
     {
-      "name": "Longbeard",
+      "name": "Longbeards",
       "category": "Special",
       "profiles": [
         {
@@ -600,25 +1252,63 @@
       "equipment": "Hand weapon, heavy armour",
       "magic": null,
       "options": [
-        "Must choose at least one of the following:",
-        "Shields +1 point/model",
-        "Great weapons +2 points/model",
-        "May upgrade one Longbeard to a Leader +5 points",
-        "May upgrade one Longbeard to a Musician +5 points",
-        "May upgrade one Longbeard to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "Must choose at least one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Longbeard to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Longbeard to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Longbeard to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Ancestral Grudge, Relentless, Resolute\n• Old Grumblers: Longbeards have the Immunity (Panic) special rule. In addition, any friendly Dwarf units\nwithin 6'' of a unit of Longbeards can re-roll failed Panic tests.",
+      "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": [
+        "Old Grumblers: Longbeards have the Immunity (Panic) special rule. In addition, any friendly Dwarf units within 6'' of a unit of Longbeards can re-roll failed Panic tests."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Ironbreaker",
+      "name": "Ironbreakers",
       "category": "Special",
       "profiles": [
         {
@@ -640,23 +1330,60 @@
       "equipment": "Hand weapon, heavy armour, shield\n• Cinderblast bombs: Cinderblast bombs are stone throwers with the following profile:\nRange: Strength: Special Rules:\n5-8\" 3(6) Armour Piercing (1), Multiple Wounds (D3), Quick to Fire\nWhen resolving the scatter distance, halve the number indicated by the Artillery dice. If the artillery dice result\nis a misfire, roll a D6. On a result of a 1, centre the template over the thrower and work out the damage.",
       "magic": null,
       "options": [
-        "May upgrade one Ironbreaker to a Leader +5 points",
-        "May take cinderblast bombs +15 points",
-        "May upgrade one Ironbreaker to a Musician +5 points",
-        "May upgrade one Ironbreaker to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ironbreaker to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "cinderblast bombs",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take cinderblast bombs +15 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Ironbreaker to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Ironbreaker to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute\n• Shieldwall: Models with this special rule may re-roll failed Parry saves.",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute",
+      "specialRuleDescriptions": [
+        "Shieldwall: Models with this special rule may re-roll failed Parry saves."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 14,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 14
     },
     {
-      "name": "Troll Slayer",
+      "name": "Troll Slayers",
       "category": "Special",
       "profiles": [
         {
@@ -678,23 +1405,51 @@
       "equipment": "Two hand weapons, great weapons",
       "magic": null,
       "options": [
-        "May be upgraded to Skirmishers +1 point/model",
-        "May upgrade one Troll Slayer to a Leader +5 points",
-        "May upgrade one Troll Slayer to a Musician +5 points",
-        "May upgrade one Troll Slayer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Troll Slayer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Troll Slayer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Troll Slayer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Relentless, Unbreakable, Vanguard\nRANGERS",
+      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Relentless, Unbreakable, Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 10,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 10
     },
     {
-      "name": "Ranger",
+      "name": "Rangers",
       "category": "Special",
       "profiles": [
         {
@@ -716,26 +1471,94 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [
-        "May choose any of the following:",
-        "Great weapons +2 points/model",
-        "Throwing axes +2 points/model",
-        "Crossbows +5 points/model",
-        "May take shields +1 point/model",
-        "May take medium armour +1 point/model",
-        "May be upgraded to Skirmishers +1 point/model",
-        "May upgrade one Ranger to a Leader +5 points",
-        "May upgrade one Ranger to a Musician +5 points",
-        "May upgrade one Ranger to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Throwing axes",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "crossbow",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose any of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take medium armour +1 point/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ranger to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Ranger to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Ranger to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Ancestral Grudge, Hill Strider, Relentless, Resolute, Scouts",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 7,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 7
     },
     {
       "name": "Deathroller",
@@ -772,14 +1595,19 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Random Movement (2D6), Resolute\n• The Best Defence: The Deathroller has an armour save of 3+ against all models attacking from the front.\n• Grinding Attack: A Deathroller is moved during combat to crush the enemies trying to dodge the heavy\nmachine. In addition to its normal Impact Hits when charging, the Deathroller inflicts D6 Impact Hits at the\nstart of each close combat round. If you roll a 6 when determining the number of Impact Hits, the driver has\npushed the boiler beyond his limits. Roll a D6 and consult the Boiler Incident Table.\n• Over-Pressured Boiler: If two or more l's are rolled when rolling for its movement, you need to roll another\nD6 and consult the Boiler Incident Table. The driver can take the risk and increase the pressure of the steam\nboiler before choosing to move the Deathroller. This gives the Deathroller the Random Movement (3D6)\nspecial rule.\nBOILER INCIDENT TABLE\nD6 Result:\n1 Remove the Deathroller as a casualty. All units in base contact with the Deathroller suffer D6\nStrength 4 Hits with the Armour Piercing special rule.\n2-4 The Deathroller may not move this turn or use its Grinding Attack. If it breaks from combat this\nround, it is automatically destroyed.\n5-6 The Deathroller may only roll one D6 for each of its Movements this turn (including fleeing and\npursuit).",
+      "specialRules": "Ancestral Grudge, Random Movement (2D6), Resolute",
+      "specialRuleDescriptions": [
+        "The Best Defence: The Deathroller has an armour save of 3+ against all models attacking from the front.",
+        "Grinding Attack: A Deathroller is moved during combat to crush the enemies trying to dodge the heavy machine. In addition to its normal Impact Hits when charging, the Deathroller inflicts D6 Impact Hits at the start of each close combat round. If you roll a 6 when determining the number of Impact Hits, the driver has pushed the boiler beyond his limits. Roll a D6 and consult the Boiler Incident Table.",
+        "Over-Pressured Boiler: If two or more l's are rolled when rolling for its movement, you need to roll another D6 and consult the Boiler Incident Table. The driver can take the risk and increase the pressure of the steam boiler before choosing to move the Deathroller. This gives the Deathroller the Random Movement (3D6) special rule. BOILER INCIDENT TABLE D6 Result: 1 Remove the Deathroller as a casualty. All units in base contact with the Deathroller suffer D6 Strength 4 Hits with the Armour Piercing special rule. 2-4 The Deathroller may not move this turn or use its Grinding Attack. If it breaks from combat this round, it is automatically destroyed. 5-6 The Deathroller may only roll one D6 for each of its Movements this turn (including fleeing and pursuit)."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 80,
       "unitSize": null,
       "crew": "1 Driver (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 80
     },
     {
       "name": "Firethrower",
@@ -804,16 +1632,28 @@
       "equipment": "Hand weapon, firethrower, light armour\n• Firethrower: This is a fire thrower with the following profile:\nRange: Strength: Special Rules:\nn/a 4 Flaming Attacks, Slow to Fire",
       "magic": null,
       "options": [
-        "May take medium armour +2 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take medium armour +2 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• Firethrowers have a Unit Strength of 2.\nBOLT THROWER",
-      "pointsCost": 60,
+      "notes": "• Firethrowers have a Unit Strength of 2.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
       "name": "Bolt Thrower",
@@ -850,17 +1690,40 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take engineering runes up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "engineering runes up to 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take engineering runes up to 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 45,
       "unitSize": null,
       "crew": "3 Crew (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 45
     },
     {
       "name": "Grudge Thrower",
@@ -897,17 +1760,40 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take engineering runes up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "engineering runes up to 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take engineering runes up to 50 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Resolute\nCANNON",
+      "specialRules": "Ancestral Grudge, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 90,
       "unitSize": null,
       "crew": "3 Crew (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 90
     },
     {
       "name": "Cannon",
@@ -944,17 +1830,40 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take engineering runes up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "engineering runes up to 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take engineering runes up to 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 90,
       "unitSize": null,
       "crew": "3 Crew (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 90
     },
     {
       "name": "Gyrocopter",
@@ -991,21 +1900,39 @@
       "equipment": "Hand weapon, steam gun\n• Steam Gun: Stream guns are Breath Weapon attacks with Strength 2, Armour Piercing (1) special rule. It\ncannot not be used in close combat, but it can always be used in the shooting phase.\n• Brimstone Gun: Brimstone Gun have the following profile. These are non-physical attacks.\nRange: Strength: Special Rules:\n18\" 5 Armour Piercing (1), Flaming Attacks, Multiple Shots (3), Quick to Fire\n• Clattergun: Clatterguns have the following profile:\nRange: Strength: Special Rules:\n24\" 4 Armour Piercing (1), Multiple Shots (5), Quick to Fire",
       "magic": null,
       "options": [
-        "May replace steam gun with one of the following:",
-        "Brimstone gun free",
-        "Clattergun free"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "steam gun",
+          "choices": [
+            {
+              "name": "Brimstone gun",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Clattergun",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace steam gun with one of the following:"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Fly (9), Relentless, Resolute.\n• Dive Bomb: Once per game, during the Remaining Moves sub-phase, models with this special rule may drop\nbombs unless they are fleeing.\nTo Dive Bomb, select one unengaged enemy unit that the Gyrocopter moved over in that turn. To determine\nthe damage caused by the bombs, roll an artillery dice; this is the number of hits inflicted. If a misfire is rolled,\nthe Gyrocopter takes a single Wound with no armour save allowed. The Gyrocopter's bombs have the\nfollowing profile:\nRange: Strength: Special Rules:\nn/a 3 Armour Piercing (1)\nIf a Gyrocopter Dive Bombs, it cannot make any other shooting attacks in that turn.",
+      "specialRules": "Ancestral Grudge, Fly (9), Relentless, Resolute.",
+      "specialRuleDescriptions": [
+        "Dive Bomb: Once per game, during the Remaining Moves sub-phase, models with this special rule may drop bombs unless they are fleeing. To Dive Bomb, select one unengaged enemy unit that the Gyrocopter moved over in that turn. To determine the damage caused by the bombs, roll an artillery dice; this is the number of hits inflicted. If a misfire is rolled, the Gyrocopter takes a single Wound with no armour save allowed. The Gyrocopter's bombs have the following profile: Range: Strength: Special Rules: n/a 3 Armour Piercing (1) If a Gyrocopter Dive Bombs, it cannot make any other shooting attacks in that turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 85,
       "unitSize": null,
       "crew": "1 Pilot (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 85
     },
     {
-      "name": "Hammerer",
+      "name": "Hammerers",
       "category": "Rare",
       "profiles": [
         {
@@ -1027,23 +1954,58 @@
       "equipment": "Great weapon, heavy armour",
       "magic": null,
       "options": [
-        "May take shields +1.5 points/model",
-        "May upgrade one Hammerer to a Leader +5 points",
-        "May upgrade one Hammerer to a Musician +5 points",
-        "May upgrade one Hammerer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 75 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1.5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Hammerer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Hammerer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Hammerer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 75 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Ancestral Grudge, Armour Piercing (1), Relentless, Stubborn\n• King's Guard: If the unit is joined by the Army General the unit gain the Immunity (Fear/Terror) special rule\nwhile they remain in the unit.",
+      "specialRules": "Ancestral Grudge, Armour Piercing (1), Relentless, Stubborn",
+      "specialRuleDescriptions": [
+        "King's Guard: If the unit is joined by the Army General the unit gain the Immunity (Fear/Terror) special rule while they remain in the unit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 16,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 16
     },
     {
-      "name": "Irondrake",
+      "name": "Irondrakes",
       "category": "Rare",
       "profiles": [
         {
@@ -1065,26 +2027,76 @@
       "equipment": "Hand weapon, drakegun, heavy armour\n• Drakegun: Drakeguns have the following profile. These are non-physical attacks.\nRange: Strength: Special Rules:\n15\" 5 Armour Piercing (1), Flaming Attacks, Quick to Fire\n• Brace of drakefire pistols: Drakefire pistols have the following profile. These are non-physical attacks.\nRange: Strength: Special Rules:\n10\" 5 Armour Piercing (1), Flaming Attacks, Quick to Fire\n• Trollhammer Torpedo: Trollhammer Torpedoes have the following profile:\nRange: Strength: Special Rules:\n24\" 8 Flaming Attacks, Multiple Wounds (D3), Slow to Fire",
       "magic": null,
       "options": [
-        "May upgrade one Irondrake to a Leader +5 points",
-        "May take cinderblast bombs (see Ironbreakers) +15 points",
-        "May replace drakegun with one of the following:",
-        "Brace of drakefire pistols free",
-        "Trollhammer torpedo +15 points",
-        "May upgrade one Irondrake to a Musician +5 points",
-        "May upgrade one Irondrake to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Irondrake to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "cinderblast bombs (see Ironbreakers)",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take cinderblast bombs (see Ironbreakers) +15 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "drakegun",
+          "choices": [
+            {
+              "name": "Brace of drakefire pistols",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Trollhammer torpedo",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace drakegun with one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Irondrake to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Irondrake to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Ancestral Grudge, Immunity (Flaming Attacks), Gromril Armour, Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 15,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 15
     },
     {
-      "name": "Giant Slayer",
+      "name": "Giant Slayers",
       "category": "Rare",
       "profiles": [
         {
@@ -1106,23 +2118,51 @@
       "equipment": "Two hand weapons, great weapons",
       "magic": null,
       "options": [
-        "May be upgraded to Skirmishers +1 point/model",
-        "May upgrade one Giant Slayer to a Leader +5 points",
-        "May upgrade one Giant Slayer to a Musician +5 points",
-        "May upgrade one Giant Slayer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up 50 points"
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Giant Slayer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Giant Slayer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Giant Slayer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": null,
+              "raw": "May take a Magic Standard worth up 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Ancestral Grudge, Deathblow, Giant Slayer, Relentless, Unbreakable, Vanguard\nDOOMSEEKERS",
+      "specialRules": "Ancestral Grudge, Deathblow, Giant Slayer, Relentless, Unbreakable, Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 15,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 15
     },
     {
-      "name": "Doomseeker",
+      "name": "Doomseekers",
       "category": "Rare",
       "profiles": [
         {
@@ -1144,17 +2184,20 @@
       "equipment": "Doomseeker axes\n• Doomseeker axes: Doomseeker axes have the following profile:\nRange: Strength: Special Rules:\nCombat As user Impact Hits (D6)\nDoomseeker axes inflicts Impact Hits (D6) at the start of each round of close combat, not just when charging.\nIn addition, any close combat attacks directed against a Doomseeker suffer -1 To Hit.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Relentless, Skirmishers, Unbreakable, Wards of\nGrimnir",
+      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Relentless, Skirmishers, Unbreakable, Wards of",
+      "specialRuleDescriptions": [
+        "Grimnir"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 35,
       "unitSize": "2-5",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 35
     },
     {
-      "name": "Rune Guardian",
+      "name": "Rune Guardians",
       "category": "Rare",
       "profiles": [
         {
@@ -1176,24 +2219,65 @@
       "equipment": "Hand weapon, heavy armour",
       "magic": null,
       "options": [
-        "Must choose one of the following:",
-        "Additional hand weapons +3 points/model",
-        "Great weapons +6 points/model",
-        "May choose up to two of the following:",
-        "Rune of Cleaving +3 points/model",
-        "Rune of Warding +3 points/model",
-        "Rune of Fury +5 points/model",
-        "Rune of Striking +5 points/model",
-        "Rune of Stone +6 points/model"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "Must choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Rune of Cleaving",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Rune of Warding",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Rune of Fury",
+              "points": 5,
+              "perModel": true
+            },
+            {
+              "name": "Rune of Striking",
+              "points": 5,
+              "perModel": true
+            },
+            {
+              "name": "Rune of Stone",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose up to two of the following:"
+        }
       ],
       "specialRules": "Animated Construct, Immunity (Poisoned Attacks)",
+      "specialRuleDescriptions": null,
       "upgrades": "• Rune of Cleaving: The Rune Guardian gains the Armour Piercing (1) and Magical Attacks special rule.\n• Rune of Fury: The Rune Guardian gains +1 Attack and the Magical Attacks special rule.\n• Rune of Striking: The Rune Guardian gains +1 Weapon Skill and the Magical Attacks special rule.\n• Rune of Stone: The Rune Guardian gains +1 to its armour save.\n• Rune of Warding: The Rune Guardian gains a Ward save (6+).",
       "notes": null,
-      "pointsCost": 50,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
       "name": "Organ Gun",
@@ -1230,17 +2314,40 @@
       "equipment": "Hand weapon\n• Organ Fire: Organ Guns uses the following profile.\nRange: Strength: Special Rules:\n30\" 5 Armour Piercing (1), Multiple Shots (Artillery Dice + 2D6), Slow to Fire",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take engineering runes up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "engineering runes up to 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take engineering runes up to 50 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Resolute\nFLAME CANNON",
+      "specialRules": "Ancestral Grudge, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 120,
       "unitSize": null,
       "crew": "3 Crew (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 120
     },
     {
       "name": "Flame Cannon",
@@ -1277,20 +2384,43 @@
       "equipment": "Hand weapon\n• Flame Cannon: Flame Cannons uses the following profile. These are non-physical attacks.\nRange: Strength: Special Rules:\n12\" 5 Flaming Attacks, Multiple Wounds (D3), Slow to Fire",
       "magic": null,
       "options": [
-        "May take light armour +1 point/model",
-        "May take engineering runes up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "engineering runes up to 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take engineering runes up to 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 140,
       "unitSize": null,
       "crew": "3 Crew (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 140
     },
     {
-      "name": "Gyrocopter",
+      "name": "Gyrobomber",
       "category": "Rare",
       "profiles": [
         {
@@ -1324,18 +2454,36 @@
       "equipment": "Hand weapon, steam gun (see Gyrocopters)",
       "magic": null,
       "options": [
-        "May replace steam gun with one of the following:",
-        "Brimstone gun (see Gyrocopters) free",
-        "Clattergun (see Gyrocopters) free"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "steam gun",
+          "choices": [
+            {
+              "name": "Brimstone gun (see Gyrocopters)",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Clattergun (see Gyrocopters)",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace steam gun with one of the following:"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Fly (9), Relentless, Resolute.\n• Bombing Run: During the Remaining Moves sub-phase, models with this special rule may drop a bomb\nunless they are fleeing or have declared a charge that turn. To make a Bombing Run, select one unengaged\nenemy unit that the Gyrobomber moved over in that turn and place the large 5\" template anywhere over the\ntarget unit (but note that it cannot cover friendly models) and roll for scatter and damage as for a stone thrower\nfrom the Warhammer rulebook. If a misfire is rolled, use the Bomb Misfire chart below. Grudgebuster bombs\nhave the following profile:\nRange: Strength: Special Rules:\nn/a 3(6) Armour Piercing (1), Multiple Wounds (D3)\nAfter resolving the damage caused by a Grudgebuster bomb, roll a D6. On a 4+, the bomb scatters D6\" from\nwhere it first landed (a Hit! result remains in place). Place the small round (3\") template on the new location\nand resolve damage using the profile above. It cannot bounce a third time.\nBOMB MISFIRE TABLE\nD6 Result\n1 Premature Detonation. The Gyrobomber suffers a Strength 6 hit with the Multiple Wounds (D3)\nspecial rule.\n2-3 Jammed Release. Centre the 3\" template over the Gyrobomber before scattering it and resolving\ndamage as normal. This bomb does not bounce.\n4-6 Dud. Only the model under the template's central hole is hit, suffering a single Strength 4 hit.",
+      "specialRules": "Ancestral Grudge, Fly (9), Relentless, Resolute.",
+      "specialRuleDescriptions": [
+        "Bombing Run: During the Remaining Moves sub-phase, models with this special rule may drop a bomb unless they are fleeing or have declared a charge that turn. To make a Bombing Run, select one unengaged enemy unit that the Gyrobomber moved over in that turn and place the large 5\" template anywhere over the target unit (but note that it cannot cover friendly models) and roll for scatter and damage as for a stone thrower from the Warhammer rulebook. If a misfire is rolled, use the Bomb Misfire chart below. Grudgebuster bombs have the following profile: Range: Strength: Special Rules: n/a 3(6) Armour Piercing (1), Multiple Wounds (D3) After resolving the damage caused by a Grudgebuster bomb, roll a D6. On a 4+, the bomb scatters D6\" from where it first landed (a Hit! result remains in place). Place the small round (3\") template on the new location and resolve damage using the profile above. It cannot bounce a third time. BOMB MISFIRE TABLE D6 Result 1 Premature Detonation. The Gyrobomber suffers a Strength 6 hit with the Multiple Wounds (D3) special rule. 2-3 Jammed Release. Centre the 3\" template over the Gyrobomber before scattering it and resolving damage as normal. This bomb does not bounce. 4-6 Dud. Only the model under the template's central hole is hit, suffering a single Strength 4 hit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 140,
       "unitSize": null,
       "crew": "1 Pilot (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 140
     },
     {
       "name": "Thunderbarge",
@@ -1372,14 +2520,18 @@
       "equipment": "Hand weapon, handgun",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Bombing Run (see Gyrobombers), Fly (6), Unbreakable\n• Disaster! If the Thunderbarge is destroyed it scatters 3D6\" in a random direction and then crashes to the\nground. Place the large template with the hole under its final position. Any model touched by the template\nsuffers a Strength 6 hit.\n• Thunderbarge Cannon: The Thunderbarge is armed with a cannon, which cannot fire grapeshot. The cannon\ncan be fired even if the Thunderbarge marches. If the cannon misfires and roll a \"Destroyed!\" result, then the\nThunderbarge suffers D3 Wounds with no saves allowed, and the weapon may no longer be used for the\nremainder of the game. Other misfires are resolved as normal.",
+      "specialRules": "Ancestral Grudge, Bombing Run (see Gyrobombers), Fly (6), Unbreakable",
+      "specialRuleDescriptions": [
+        "Disaster! If the Thunderbarge is destroyed it scatters 3D6\" in a random direction and then crashes to the ground. Place the large template with the hole under its final position. Any model touched by the template suffers a Strength 6 hit.",
+        "Thunderbarge Cannon: The Thunderbarge is armed with a cannon, which cannot fire grapeshot. The cannon can be fired even if the Thunderbarge marches. If the cannon misfires and roll a \"Destroyed!\" result, then the Thunderbarge suffers D3 Wounds with no saves allowed, and the weapon may no longer be used for the remainder of the game. Other misfires are resolved as normal."
+      ],
       "upgrades": null,
       "notes": "• A Thunderbarge has a Line of Sight value of 5.",
-      "pointsCost": 275,
       "unitSize": null,
       "crew": "6 Crew (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 275
     },
     {
       "name": "Grudgebreaker",
@@ -1404,17 +2556,20 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Animated Construct, Immunity (Poisoned Attacks), Terror.\n• Steam-pressured Engine: The Grudgebreaker follows the rules for Random Movement and Random Attacks.\nIn order to determine the Movement and Attacks value of the Grudgebreaker, roll an Artillery dice rather than a\nset of D6's (roll separately for Movement and Attacks). Whenever you attempt to move or attack with the\nGrudgebreaker you may re-roll the Artillery dice if it didn't score a Misfire. If a Misfire is rolled, roll a D6 and\nconsult the Grudgebreaker Incident Table. If a Misfire results on the re-roll it automatically causes a Clunk\nresult.\nGRUDGEBREAKER INCIDENT TABLE\nD6 Result\n1 Catastrophe! The Grudgebreaker does not Move or Attack this turn, and suffers D6 Wounds with no\nsaves allowed.\n2-3 Malfunction: The Grudgebreaker does not Move or Attack this turn.\n4-5 Clunk: The Grudgebreaker counts as having rolled a 1 for its Movement or Attacks value this turn.\n6 Overdrive: The Grudgebreaker counts as having rolled a 10 for its Movement or Attack value this\nturn. However, the Grudgebreaker also suffers D3 Wounds with no saves allowed after it has\nperformed its Movement or Attacks.",
+      "specialRules": "Animated Construct, Immunity (Poisoned Attacks), Terror.",
+      "specialRuleDescriptions": [
+        "Steam-pressured Engine: The Grudgebreaker follows the rules for Random Movement and Random Attacks. In order to determine the Movement and Attacks value of the Grudgebreaker, roll an Artillery dice rather than a set of D6's (roll separately for Movement and Attacks). Whenever you attempt to move or attack with the Grudgebreaker you may re-roll the Artillery dice if it didn't score a Misfire. If a Misfire is rolled, roll a D6 and consult the Grudgebreaker Incident Table. If a Misfire results on the re-roll it automatically causes a Clunk result. GRUDGEBREAKER INCIDENT TABLE D6 Result 1 Catastrophe! The Grudgebreaker does not Move or Attack this turn, and suffers D6 Wounds with no saves allowed. 2-3 Malfunction: The Grudgebreaker does not Move or Attack this turn. 4-5 Clunk: The Grudgebreaker counts as having rolled a 1 for its Movement or Attacks value this turn. 6 Overdrive: The Grudgebreaker counts as having rolled a 10 for its Movement or Attack value this turn. However, the Grudgebreaker also suffers D3 Wounds with no saves allowed after it has performed its Movement or Attacks."
+      ],
       "upgrades": null,
       "notes": "• A Grudgebreaker has a Line of Sight value of 5.",
-      "pointsCost": 140,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 140
     },
     {
-      "name": "Thorgrim",
+      "name": "Thorgrim Grudgebearer",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1448,14 +2603,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute.\n• High King: Thorgrim must be the Army General. If he is slain, all friendly Dwarf models immediately gain\nthe Frenzy special rule. In addition, one unit of Hammerers may be taken as a Special Unit instead of a Rare\nUnit.\n• The Throne of Power: The Throne of Power adds +4 to Thorgrim's Wounds (included in his profile), gives\nhim Unit Strength 5 and Line of Sight 2. In addition, the Throne gives him the Inspiring Presence (6) special\nrule. However, if Thorgrim joins a unit, he does not benefit from the \"Look Out Sir!\" rule.",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Resolute.",
+      "specialRuleDescriptions": [
+        "High King: Thorgrim must be the Army General. If he is slain, all friendly Dwarf models immediately gain the Frenzy special rule. In addition, one unit of Hammerers may be taken as a Special Unit instead of a Rare Unit.",
+        "The Throne of Power: The Throne of Power adds +4 to Thorgrim's Wounds (included in his profile), gives him Unit Strength 5 and Line of Sight 2. In addition, the Throne gives him the Inspiring Presence (6) special rule. However, if Thorgrim joins a unit, he does not benefit from the \"Look Out Sir!\" rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 500,
       "unitSize": null,
       "crew": null,
       "mount": "Thronebearers",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 500
     },
     {
       "name": "Alrik Ranulfsson",
@@ -1492,17 +2651,21 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless\n• Lord of the Hold: If Alrik is included in your army he must be your army General (unless Thorgrim\nGrudgebearer is also included).\n• Traditional army: If Alrik is in the army then Firedrakes, Firethrowers, Gyrocopters, Flame Cannons, Organ\nGuns, Thunderbarges and Grudgebreakers counts as 2 units for the purpose of duplicate choices that are\nallowed. In addition, your army cannot have more models of Thunderers than Quarrellers.",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless",
+      "specialRuleDescriptions": [
+        "Lord of the Hold: If Alrik is included in your army he must be your army General (unless Thorgrim Grudgebearer is also included).",
+        "Traditional army: If Alrik is in the army then Firedrakes, Firethrowers, Gyrocopters, Flame Cannons, Organ Guns, Thunderbarges and Grudgebreakers counts as 2 units for the purpose of duplicate choices that are allowed. In addition, your army cannot have more models of Thunderers than Quarrellers."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 325,
       "unitSize": null,
       "crew": null,
       "mount": "Shieldbearers",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 325
     },
     {
-      "name": "Kazador",
+      "name": "Kazador Thunderhorn",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1524,14 +2687,15 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless\nBELEGAR IRONHAMMER\nTrue King of the Eight Peaks",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 280,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 280
     },
     {
       "name": "Belegar Ironhammer",
@@ -1556,14 +2720,17 @@
       "equipment": "Heavy armour\nMAGIC ITEMS:\n• The Hammer of Angrund: Magic Weapon. The Hammer of Angrund is inscribed with the Master Rune of\nSwiftness, and Attacks made with it receive a +1 bonus To Wound.\n• Shield of Defiance: Magic Armour. Shield. The Shield of Defiance is inscribed with three Runes of Warding\nand a Rune of Preservation.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Stubborn\n• Revenge Incarnate: Once per game, at the start of any Close Combat phase, Belegar can double his Attacks\ncharacteristic for the remainder of the turn.",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Relentless, Stubborn",
+      "specialRuleDescriptions": [
+        "Revenge Incarnate: Once per game, at the start of any Close Combat phase, Belegar can double his Attacks characteristic for the remainder of the turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 290,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 290
     },
     {
       "name": "Brok Stonefist",
@@ -1588,14 +2755,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless\n• Lord of the Tunnels: Units of Miners in an army including Brok Stonefist gain +1 to the roll to see if they\narrive when using the Underground Advance special rule.\nDRONG THE HARD\nLord of Kazad Thrund",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless",
+      "specialRuleDescriptions": [
+        "Lord of the Tunnels: Units of Miners in an army including Brok Stonefist gain +1 to the roll to see if they arrive when using the Underground Advance special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 290,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 290
     },
     {
       "name": "Drong the Hard",
@@ -1620,16 +2790,21 @@
       "equipment": "Medium armour, shield\nMAGIC ITEMS:\n• Thrund's Hammer: Magic Weapon. Great weapon. This weapon is inscribed with the Rune of Smiting.",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Hatred (Elves), Resolute, Relentless",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
       "name": "Helgar Longplaits",
@@ -1654,16 +2829,21 @@
       "equipment": "Medium armour, shield\nMAGIC ITEMS:\n• Bronn's Axe: Magic Weapon. This weapon gives the wielder the Multiple Wounds (2) special rule against\nCharacters.\n• Bronnling Battle Banner: Magic Standard. This standard is inscribed with three Runes of Battle. Your army\nmust include one Thane that is upgraded to a Battle Standard Bearer. That model must be given this standard.",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 210,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 210
     },
     {
       "name": "Ungrim Ironfist",
@@ -1688,17 +2868,21 @@
       "equipment": "Medium armour\nMAGIC ITEMS:\n• Axe of Dargo: Magic Weapon. Great weapon. The Axe of Dargo is inscribed with the Master Rune of Smiting.\n• The Slayer Crown: Magic Armour. The Slayer Crown is inscribed with a Rune of Fortitude and a Rune of\nStone.\n• Dragon Cloak of Fyrskar: Talisman. The Dragon Cloak of Fyrskar is inscribed with three Runes of Warding\nand a Rune of the Furnace.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Daemon Slayer, Gromril Armour, Relentless, Unbreakable.\n• Slayer King: If Ungrim is the Army General, Troll Slayers are taken as Core units rather than Special units,\nand Giant Slayers are taken as Special units rather than Rare units.\n• Brotherhood of Grimnir: If Ungrim is included in your army, one unit of Troll Slayers or Giant Slayers may\nbe upgraded to the Brotherhood of Grimnir for +1 point per model. These Slayers have the Wards of Grimnir\nspecial rule.",
+      "specialRules": "Ancestral Grudge, Deathblow, Daemon Slayer, Gromril Armour, Relentless, Unbreakable.",
+      "specialRuleDescriptions": [
+        "Slayer King: If Ungrim is the Army General, Troll Slayers are taken as Core units rather than Special units, and Giant Slayers are taken as Special units rather than Rare units.",
+        "Brotherhood of Grimnir: If Ungrim is included in your army, one unit of Troll Slayers or Giant Slayers may be upgraded to the Brotherhood of Grimnir for +1 point per model. These Slayers have the Wards of Grimnir special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 325,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 325
     },
     {
-      "name": "Gotrek Gurnisson",
+      "name": "Gotrek & Felix",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1733,14 +2917,18 @@
       "equipment": "Light armour (Felix only)\nMAGIC ITEMS:\n• Gotrek's Axe: Magic Weapon. Gotrek only. For each of Gotrek's initial Attacks that Hit, he gains one extra\nAttack. In addition, Gotrek's axe also has the Ignore Armour saves special rule, and against enemies with\nToughness 5 or more he may re-roll failed rolls To Wound.\n• Wyrmslayer Blade: Magic Weapon. Felix only. The Wyrmslayer Blade gives +2 Attacks. In addition, Felix\nmust always declare a charge against a Dragon or Drake if it is possible to do so. Against Dragons and Drakes,\nthe Wyrmslayer blade allows Felix to re-roll failed rolls To Hit and To Wound.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge (Gotrek only), Deathblow (Gotrek only), Daemon Slayer (Gotrek only),\nLoner, Relentless.\n• Gotr ek's Doom: As long as Gotrek is alive, he and Felix have a Ward Save (4+), Magic Resistance (2) and the\nUnbreakable special rules.",
+      "specialRules": "Ancestral Grudge (Gotrek only), Deathblow (Gotrek only), Daemon Slayer (Gotrek only),",
+      "specialRuleDescriptions": [
+        "Loner, Relentless.",
+        "Gotr ek's Doom: As long as Gotrek is alive, he and Felix have a Ward Save (4+), Magic Resistance (2) and the Unbreakable special rules."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 270,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 270
     },
     {
       "name": "Thorek Ironbrow",
@@ -1801,14 +2989,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Anvil of Doom, Forgefire, Locus of Power (see Anvil of Doom), Rune\nLore, Strike the Runes (see Anvil of Doom)\n• Kraggi, Assistant at the Forge: Kraggi's forge is represented on the tabletop by a separate miniature that\nalways remains as close as possible to Thorek’s Anvil of Doom. The forge itself plays no part in the game; if it\ngets in the way, simply move it to one side.\nThorek can re-roll a single dice on a failed attempt to Strike the Runes. If this re-rolled dice rolls a 1, Kraggi\nhas done something wrong and Thorek takes a Strength 10 hit. Kraggi is then removed from play and the\nKraggi, Assistant at the Forge special rule cannot be used again for the rest of the game.\n• Master of Ancient Lore: Thorek may roll an additional dice for his Leadership tests when attempting to Strike\nto Runes and discard the highest result. In addition, he knows the following Rune:\n- Rune of Doom: Until the start of the next friendly Magic phase, all friendly Dwarf units within 18\" gains\nthe Fear special rule.",
+      "specialRules": "Ancestral Grudge, Anvil of Doom, Forgefire, Locus of Power (see Anvil of Doom), Rune",
+      "specialRuleDescriptions": [
+        "Lore, Strike the Runes (see Anvil of Doom)",
+        "Kraggi, Assistant at the Forge: Kraggi's forge is represented on the tabletop by a separate miniature that always remains as close as possible to Thorek’s Anvil of Doom. The forge itself plays no part in the game; if it gets in the way, simply move it to one side. Thorek can re-roll a single dice on a failed attempt to Strike the Runes. If this re-rolled dice rolls a 1, Kraggi has done something wrong and Thorek takes a Strength 10 hit. Kraggi is then removed from play and the Kraggi, Assistant at the Forge special rule cannot be used again for the rest of the game.",
+        "Master of Ancient Lore: Thorek may roll an additional dice for his Leadership tests when attempting to Strike to Runes and discard the highest result. In addition, he knows the following Rune: - Rune of Doom: Until the start of the next friendly Magic phase, all friendly Dwarf units within 18\" gains the Fear special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 330,
       "unitSize": null,
       "crew": "Thorek Ironbrow, 2 Anvil Guards, Kraggi (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 330
     },
     {
       "name": "Kragg the Grim",
@@ -1833,14 +3026,15 @@
       "equipment": "Medium armour\nMAGIC ITEMS:\n• Kragg's Hammer: Magic Weapon. Kragg's Hammer is inscribed with a Rune of Fury, a Rune of Fire, and\ngives the wielder Strength 10.\n• Kragg's Armour: Magic Armour. Kragg's Armour is inscribed with a Master Rune of Gromril, a Rune of\nResistance and a Rune of Warding.\n• Kragg's Runestaff: Talisman. Kragg's Runestaff bears a Master Rune of Balance, two Runes of\nSpellbreaking, and a Rune of the Furnace.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Forgefire, Relentless, Resolute, Rune Lore\nKADRIN REDMANE\nRunelord of Karak Varn",
+      "specialRules": "Ancestral Grudge, Forgefire, Relentless, Resolute, Rune Lore",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 395,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 395
     },
     {
       "name": "Kadrin Redmane",
@@ -1866,13 +3060,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Ancestral Grudge, Forgefire, Gromril Armour, Relentless, Rune Lore, Stubborn",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 215,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 215
     },
     {
       "name": "Grombrindal",
@@ -1897,17 +3092,21 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Relentless.\n• Disguised: The White Dwarf has the Hidden special rule. However, if the unit he is Hidden in is wiped out or\nflees then the White Dwarf will be revealed, and will stand his ground even though the rest of the unit may be\nfleeing or slain. Place the model in the middle of the front rank of the unit, then move/remove the rest of the\nunit as normal. The White Dwarf will then operative as a lone character as normal. The White Dwarf may\nnever be the army's General, but units he joins may still use his Leadership once he is no longer Hidden.\n• Grombrindal has no Fear!: Grombrindal is Unbreakable. If his unit flees for any reason he will always stand\nhis ground. If the unit was engaged in combat, he will continue to fight while his unit flees, denying the foe the\nchance to pursue. Grombrindal can even join a unit that does not have the Unbreakable special rule – this is an\nexception to the normal Unbreakable rules.",
+      "specialRules": "Ancestral Grudge, Relentless.",
+      "specialRuleDescriptions": [
+        "Disguised: The White Dwarf has the Hidden special rule. However, if the unit he is Hidden in is wiped out or flees then the White Dwarf will be revealed, and will stand his ground even though the rest of the unit may be fleeing or slain. Place the model in the middle of the front rank of the unit, then move/remove the rest of the unit as normal. The White Dwarf will then operative as a lone character as normal. The White Dwarf may never be the army's General, but units he joins may still use his Leadership once he is no longer Hidden.",
+        "Grombrindal has no Fear!: Grombrindal is Unbreakable. If his unit flees for any reason he will always stand his ground. If the unit was engaged in combat, he will continue to fight while his unit flees, denying the foe the chance to pursue. Grombrindal can even join a unit that does not have the Unbreakable special rule – this is an exception to the normal Unbreakable rules."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 450,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 450
     },
     {
-      "name": "Krudd Mad-Mattock",
+      "name": "Krudd Mad-mattock",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1929,16 +3128,23 @@
       "equipment": "Medium armour\nMAGIC ITEMS:\n• Krudd's Mattock: Magic Weapon. Great weapon. This weapon is inscribed with the Master Rune of\nSwiftness.",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 25 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless\n• Krudd's Pride: Krudd must always accept Challenges.\nSKAG THE STEALTHY",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless",
+      "specialRuleDescriptions": [
+        "Krudd's Pride: Krudd must always accept Challenges."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 95,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 95
     },
     {
       "name": "Skag the Stealthy",
@@ -1963,19 +3169,26 @@
       "equipment": "Great weapon, medium armour\nMAGIC ITEMS:\n• Lucky Runehelm: Magic Armour. This armour gives the wearer a 6+ armour. In addition, it is inscribed with\nthree Runes of Luck, allowing them a total of three re-rolls during the game.",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 25 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless\n• Stealth: If Skag is included in your army, then one unit of Dwarf Warriors may deploy using the Ambushers\nspecial rule.",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Resolute, Relentless",
+      "specialRuleDescriptions": [
+        "Stealth: If Skag is included in your army, then one unit of Dwarf Warriors may deploy using the Ambushers special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 115,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 115
     },
     {
-      "name": "Grung Grudge-Bringer",
+      "name": "Grung Grudge-bringer",
       "category": "Named Characters",
       "profiles": [
         {
@@ -1997,16 +3210,21 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Ancestral Grudge, Forgefire, Hatred (Elves), Relentless, Resolute, Rune Lore",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Grung Grudge-Bringer must always pick The Fiery Ring of Thori as one of their Magic Items.",
-      "pointsCost": 100,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Garagrim Ironfist",
@@ -2031,14 +3249,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Relentless, Unbreakable\n• The War-mourner: Each Wound inflicted by Garagrim counts double towards that round's Combat\nResolution. Against enemies with Toughness 5 or higher, Garagrim has the Multiple Wounds (D6) special rule.\nHowever, Garagrim may never be the Army General.\nLONG DRONG\nCaptain of the Fair Fregar",
+      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Relentless, Unbreakable",
+      "specialRuleDescriptions": [
+        "The War-mourner: Each Wound inflicted by Garagrim counts double towards that round's Combat Resolution. Against enemies with Toughness 5 or higher, Garagrim has the Multiple Wounds (D6) special rule. However, Garagrim may never be the Army General."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
       "name": "Long Drong",
@@ -2063,16 +3284,24 @@
       "equipment": "Brace of pistols",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Relentless, Unbreakable\n• Dwarf Rum: Enemy models in base contact with models with this special rule suffer -1 to their Weapon Skill\nin Close Combat. This does not affect Undead, Daemons or followers of Nurgle. The Slayer Pirates may not be\ndeployed closer than 6\" to any other unit in the army at the start of the battle.\n• Slayer Pirates: Long Drong must be accompanied by a unit of Troll Slayers chosen from the army list at a cost\nof 12 points per model. This unit is equipped with a brace of pistols instead of two hand weapons and great\nweapons and has the Dwarf Rum special rule. Long Drong is the unit's Leader and may never choose to leave\nthis unit.",
+      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Relentless, Unbreakable",
+      "specialRuleDescriptions": [
+        "Dwarf Rum: Enemy models in base contact with models with this special rule suffer -1 to their Weapon Skill in Close Combat. This does not affect Undead, Daemons or followers of Nurgle. The Slayer Pirates may not be deployed closer than 6\" to any other unit in the army at the start of the battle.",
+        "Slayer Pirates: Long Drong must be accompanied by a unit of Troll Slayers chosen from the army list at a cost of 12 points per model. This unit is equipped with a brace of pistols instead of two hand weapons and great weapons and has the Dwarf Rum special rule. Long Drong is the unit's Leader and may never choose to leave this unit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 70,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 70
     },
     {
       "name": "Crazed Khargrim",
@@ -2097,14 +3326,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Hatred (Elves), Loner, Relentless,\nUnbreakable\n• Crazed: Khargrim always counts as charging in the first round of close combat.\nJOSEF BUGMAN\nMysterious Master Brewer",
+      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Hatred (Elves), Loner, Relentless,",
+      "specialRuleDescriptions": [
+        "Unbreakable",
+        "Crazed: Khargrim always counts as charging in the first round of close combat."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
       "name": "Josef Bugman",
@@ -2129,14 +3362,19 @@
       "equipment": "Medium armour\nMAGIC ITEMS:\n• Ol' Trustworthy: Magic Weapon. Ol' Trustworthy is inscribed with two Runes of Cleaving and a Rune of\nFury.\n• Bugman's Tankard: Enchanted Item. Josef Bugman, or a single model in the same unit, can drink from\nBugman’s Tankard at the start of any friendly turn. The imbiber immediately recovers 1 Wound lost previously\nduring the battle.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Beer Gut, Gromril Armour, Relentless, Resolute, Scouts\n• Bugman's Rangers: Josef Bugman must be accompanied by a unit of Rangers chosen from the army list at a\ncost of 17 points per model. This unit has Strength 4 and are equipped with great weapons, crossbows, medium\narmour and shields. Josef Bugman may never choose to leave this unit.\n• Liquid Fortification: As long as Bugman is alive, roll a D6 at the start of each of your turns and consult the\nfollowing chart to see what effects his draughts have upon himself and any unit he has currently joined:\nD6 Result\n1 Bad Brew: The unit gains the Flammable special rule until the start of the next friendly turn.\n2-4 Belligerent: The unit gains the Stubborn special rule until the start of the next friendly turn.\n5-6 Leathered: Each member of the unit gains +1 Toughness until the start of the next friendly turn.\n• Stout Courage: Bugman and any unit he joins have the Immunity (Fear/Terror) special rule as long as he\nremains with the unit.",
+      "specialRules": "Ancestral Grudge, Beer Gut, Gromril Armour, Relentless, Resolute, Scouts",
+      "specialRuleDescriptions": [
+        "Bugman's Rangers: Josef Bugman must be accompanied by a unit of Rangers chosen from the army list at a cost of 17 points per model. This unit has Strength 4 and are equipped with great weapons, crossbows, medium armour and shields. Josef Bugman may never choose to leave this unit.",
+        "Liquid Fortification: As long as Bugman is alive, roll a D6 at the start of each of your turns and consult the following chart to see what effects his draughts have upon himself and any unit he has currently joined: D6 Result 1 Bad Brew: The unit gains the Flammable special rule until the start of the next friendly turn. 2-4 Belligerent: The unit gains the Stubborn special rule until the start of the next friendly turn. 5-6 Leathered: Each member of the unit gains +1 Toughness until the start of the next friendly turn.",
+        "Stout Courage: Bugman and any unit he joins have the Immunity (Fear/Terror) special rule as long as he remains with the unit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
       "name": "Burlok Damminson",
@@ -2161,14 +3399,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master\nEngineers), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)\n• Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm: Burlok's artificial arm gives him +1\nAttack with Strength 6 in close combat.\nGRIMM BURLOKSSON\nUpstart Master Engineer",
+      "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master",
+      "specialRuleDescriptions": [
+        "Engineers), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
+        "Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm: Burlok's artificial arm gives him +1 Attack with Strength 6 in close combat."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 125,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 125
     },
     {
       "name": "Grimm Burloksson",
@@ -2193,14 +3435,18 @@
       "equipment": "• Grudge-raker: The Grudge-raker has the following profile:\nRange: Strength: Special Rules:\n30\" 5 Armour Piercing (1), Dwarf-crafted, Multiple Shots (2D3)\n• Cog Axe: Hand weapon. This weapon has the Armour Piercing (1) special rule. If Grimm scores one or more\nhits in close combat against a model using a magic weapon, roll a D6; on a 5+, that weapon is immediately\ndestroyed and cannot be used further in this game.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Relentless, Resolute, \"Stand Back\nSir!\" (see Master Engineers)\n• Master of Accuracy: At the start of each friendly Shooting phase, Grimm can bestow one of the following\nrules on a single friendly unit within 3\" for the duration of that Shooting phase, though he does not gain any\nbonuses for it himself.\n- Artillery Adjustment: A war machine can use Grimm’s Ballistic Skill or re-roll one artillery dice. This\ncan be the dice that determines the distance a cannonball bounces or a Flame Cannon’s burst of flame\nmoves.\n- Increased Range: The unit’s crossbows and handguns increase their maximum range by 6\".\n- Superior Volley: Models in the unit get +1 to Hit.",
+      "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Relentless, Resolute, \"Stand Back",
+      "specialRuleDescriptions": [
+        "Sir!\" (see Master Engineers)",
+        "Master of Accuracy: At the start of each friendly Shooting phase, Grimm can bestow one of the following rules on a single friendly unit within 3\" for the duration of that Shooting phase, though he does not gain any bonuses for it himself. - Artillery Adjustment: A war machine can use Grimm’s Ballistic Skill or re-roll one artillery dice. This can be the dice that determines the distance a cannonball bounces or a Flame Cannon’s burst of flame moves. - Increased Range: The unit’s crossbows and handguns increase their maximum range by 6\". - Superior Volley: Models in the unit get +1 to Hit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 95,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 95
     },
     {
       "name": "Malakai Makaisson",
@@ -2250,13 +3496,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Slayer, Unbreakable.",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 175,
       "unitSize": null,
       "crew": "Malakai Makaisson, 2 Slayers (Dwarf)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 175
     }
   ]
 }

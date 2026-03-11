@@ -24,30 +24,173 @@
       "equipment": "Hand weapon",
       "magic": "A Daemon Prince who is a Wizard chooses spells from one of the following Lores of Magic:\n• Chaos\n• Death\n• Fire\n• Metal\n• Nurgle (Daemon of Nurgle only)\n• Shadow\n• Slaanesh (Daemon of Slaanesh only)\n• Tzeentch (Daemon of Tzeentch only)",
       "options": [
-        "May be upgraded to one of the following (unless they are a Daemon of Khorne):",
-        "Level 1 Wizard +35 points",
-        "Level 2 Wizard +70 points",
-        "Level 3 Wizard +105 points",
-        "Level 4 Wizard +140 points",
-        "May be upgraded to one of the following:",
-        "Daemon of Slaanesh +5 points",
-        "Daemon of Khorne +15 points",
-        "Daemon of Nurgle +15 points",
-        "Daemon of Tzeentch +15 points",
-        "May choose one of the following:",
-        "Light armour +15 points",
-        "Medium armour +30 points",
-        "May have the Fly (8) special rule +25 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following (unless they are a Daemon of Khorne):",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following (unless they are a Daemon of Khorne):",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 1 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 1 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 2 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 2 Wizard +70 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 3 Wizard",
+                  "points": 105,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 3 Wizard +105 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 4 Wizard",
+                  "points": 140,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 4 Wizard +140 points"
+            }
+          ]
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Slaanesh +5 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Khorne",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Khorne +15 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Nurgle +15 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Tzeentch +15 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 30,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Fly (8) special rule",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May have the Fly (8) special rule +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Daemonic\n• Chaos Armour: Models with this special rule add +1 to their armour saves if they wear light, medium or\nheavy armour.",
+      "specialRules": "Daemonic",
+      "specialRuleDescriptions": [
+        "Chaos Armour: Models with this special rule add +1 to their armour saves if they wear light, medium or heavy armour."
+      ],
       "upgrades": null,
       "notes": "• A Daemon Prince with the Mark of Tzeentch, Nurgle or Slaanesh must use the Lore of Tzeentch, Nurgle, or\nSlaanesh, respectively.",
-      "pointsCost": 250,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 250
     },
     {
       "name": "Bloodthirster",
@@ -72,17 +215,41 @@
       "equipment": "Two hand weapons, medium armour",
       "magic": null,
       "options": [
-        "May replace hand weapons with great weapon free",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 100 points\nGREAT UNCLEAN ONE"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "hand weapon",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace hand weapons with great weapon free"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Daemon of Khorne, Fly (8), Killing Blow, Magic Resistance (1)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 400,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 400
     },
     {
       "name": "Great Unclean One",
@@ -107,21 +274,85 @@
       "equipment": "Hand weapon",
       "magic": "A Great Unclean One is a Level 1 Wizard who chooses spells from the Lore of Nurgle.",
       "options": [
-        "May be upgraded to one of the following:",
-        "Level 2 Wizard +35 points",
-        "Level 3 Wizard +70 points",
-        "Level 4 Wizard +105 points",
-        "May take an additional hand weapon +20 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 2 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 2 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 3 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 3 Wizard +70 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 4 Wizard",
+                  "points": 105,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 4 Wizard +105 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional hand weapon +20 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 400,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 400
     },
     {
       "name": "Keeper of Secrets",
@@ -146,21 +377,85 @@
       "equipment": "Hand weapon",
       "magic": "A Keeper of Secrets is a Level 1 Wizard who chooses spells from the Lore of Slaanesh.",
       "options": [
-        "May be upgraded to one of the following:",
-        "Level 2 Wizard +35 points",
-        "Level 3 Wizard +70 points",
-        "Level 4 Wizard +105 points",
-        "May take a buckler +10 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 100 points\nLORD OF CHANGE"
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 2 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 2 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 3 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 3 Wizard +70 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 4 Wizard",
+                  "points": 105,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 4 Wizard +105 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "buckler",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a buckler +10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 400,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 400
     },
     {
       "name": "Lord of Change",
@@ -185,19 +480,61 @@
       "equipment": "Hand weapon",
       "magic": "A Lord of Change is a Level 2 Wizard who chooses spells from the Lore of Tzeentch.",
       "options": [
-        "May be upgraded to one of the following:",
-        "Level 3 Wizard +35 points",
-        "Level 4 Wizard +70 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 3 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 3 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 4 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 4 Wizard +70 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Daemon of Tzeentch, Fly (8)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 400,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 400
     },
     {
       "name": "Gaunt Summoner",
@@ -222,18 +559,47 @@
       "equipment": "Hand weapon",
       "magic": "A Gaunt Summoner is a Level 3 Wizard who chooses spells from the Lore of Tzeentch.",
       "options": [
-        "May be upgraded to a Level 4 Wizard +35 points",
-        "May be mounted on a Disc of Tzeentch +25 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 4 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 4 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Disc of Tzeentch",
+              "points": 25
+            }
+          ],
+          "raw": "May be mounted on a Disc of Tzeentch +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        }
       ],
-      "specialRules": "Daemon of Tzeentch\n• Summon Daemons: Innate Bound spell (power level 8). Summon Daemons is a summoning spell with a\nrange of 18\" that can target units of Pink Horrors, Brimstone Horrors, Screamers or Flamers. The target unit\nimmediately gains D6 Wounds worth of models.",
+      "specialRules": "Daemon of Tzeentch",
+      "specialRuleDescriptions": [
+        "Summon Daemons: Innate Bound spell (power level 8). Summon Daemons is a summoning spell with a range of 18\" that can target units of Pink Horrors, Brimstone Horrors, Screamers or Flamers. The target unit immediately gains D6 Wounds worth of models."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 240,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 240
     },
     {
       "name": "Exalted Daemon",
@@ -258,29 +624,154 @@
       "equipment": "Hand weapon",
       "magic": "A Daemon Prince who is a Wizard chooses spells from one of the following Lores of Magic:\n• Chaos\n• Death\n• Fire\n• Metal\n• Nurgle (Daemon of Nurgle only)\n• Shadow\n• Slaanesh (Daemon of Slaanesh only)\n• Tzeentch (Daemon of Tzeentch only)",
       "options": [
-        "One Exalted Daemon may carry the Battle Standard +25 points",
-        "May be upgraded to one of the following (unless they are a Daemon of Khorne):",
-        "Level 1 Wizard +35 points",
-        "Level 2 Wizard +70 points",
-        "May be upgraded to one of the following:",
-        "Daemon of Slaanesh +5 points",
-        "Daemon of Khorne +15 points",
-        "Daemon of Nurgle +15 points",
-        "Daemon of Tzeentch +15 points",
-        "May choose one of the following:",
-        "Light armour +12 points",
-        "Medium armour +24 points",
-        "May have the Fly (8) special rule +25 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Exalted Daemon may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following (unless they are a Daemon of Khorne):",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following (unless they are a Daemon of Khorne):",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 1 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 1 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 2 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 2 Wizard +70 points"
+            }
+          ]
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Slaanesh +5 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Khorne",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Khorne +15 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Nurgle +15 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Tzeentch +15 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 12,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 24,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Fly (8) special rule",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May have the Fly (8) special rule +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Daemonic, Terror\n• Chaos Armour: Models with this special rule add +1 to their armour saves if they wear light, medium or\nheavy armour.",
+      "specialRules": "Daemonic, Terror",
+      "specialRuleDescriptions": [
+        "Chaos Armour: Models with this special rule add +1 to their armour saves if they wear light, medium or heavy armour."
+      ],
       "upgrades": null,
       "notes": "• A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic\nstandard can only carry other magic items up to a total of 25 points.\n• An Exalted Daemon with the Mark of Tzeentch, Nurgle or Slaanesh must use the Lore of Tzeentch, Nurgle, or\nSlaanesh, respectively.",
-      "pointsCost": 170,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 170
     },
     {
       "name": "Bloodmaster",
@@ -305,22 +796,74 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "One Bloodmaster may carry the Battle Standard +25 points",
-        "May take a great weapon +6 points",
-        "May take light armour +2 points",
-        "May be mounted on one of the following:",
-        "Juggernaut +50 points",
-        "Blood Throne +150 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Bloodmaster may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a great weapon +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 2,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +2 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Juggernaut",
+              "points": 50,
+              "perModel": false
+            },
+            {
+              "name": "Blood Throne",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Daemon of Khorne, Killing Blow, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic\nstandard can only carry other magic items up to a total of 25 points.",
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Poxbringer",
@@ -345,24 +888,88 @@
       "equipment": "Hand weapon",
       "magic": "A Poxbringer who is a Wizard who chooses spells from the Lore of Nurgle.",
       "options": [
-        "One Poxbringer may carry the Battle Standard +25 points",
-        "May be upgraded to one of the following:",
-        "Level 1 Wizard +35 points",
-        "Level 2 Wizard +70 points",
-        "May be mounted on one of the following:",
-        "Palanquin +25 points",
-        "Plague Toad +35 points",
-        "Rot Fly +45 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Poxbringer may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 1 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 1 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 2 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 2 Wizard +70 points"
+            }
+          ]
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Palanquin",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Plague Toad",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Rot Fly",
+              "points": 45,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic\nstandard can only carry other magic items up to a total of 25 points.",
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Sloppity Bilepiper",
@@ -387,16 +994,30 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points\nSPOILPOX SCRIVENER"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Daemon of Nurgle\n• Jolly Gutpipes: At the start of each close combat phase the Sloppity Bilepiper can play one of the following\ntunes which affects the unit they are with. The effect of that tune lasts until the end of that phase. A unit can\nonly benefit from one tune once per phase.\n- A Stabbing We Will Go!: All models in the unit may re-roll failed rolls To Wound.\n- Early One Evening My Pustule Was Seeping: All models in the unit gain the Multiple Wounds (2)\nspecial rule.\n- My Love Is Like a Ripe, Ripe Fart: All enemy units in base contact with the Sloppity Bilepiper suffer -1\nTo Hit.",
+      "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": [
+        "Jolly Gutpipes: At the start of each close combat phase the Sloppity Bilepiper can play one of the following tunes which affects the unit they are with. The effect of that tune lasts until the end of that phase. A unit can only benefit from one tune once per phase. - A Stabbing We Will Go!: All models in the unit may re-roll failed rolls To Wound. - Early One Evening My Pustule Was Seeping: All models in the unit gain the Multiple Wounds (2) special rule. - My Love Is Like a Ripe, Ripe Fart: All enemy units in base contact with the Sloppity Bilepiper suffer -1 To Hit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 95,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 95
     },
     {
       "name": "Spoilpox Scrivener",
@@ -421,16 +1042,30 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Daemon of Nurgle\n• Keep Counting, I'm Watching You: At the start of each close combat phase the Spoilpox Scrivener can use\none of the following counts which affects the unit they are with. The effect of each counts lasts until the end of\nthat phase. A unit can only benefit from one count once per phase.\n- Tally of Blows: All models in the unit gain +1 Attack.\n- Studied Lacerations: All models in the unit gain the Armour Piercing (1) special rule.\n- Recorded Stamina: Enemies must re-roll To Wound rolls of 6 against all models in the unit.",
+      "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": [
+        "Keep Counting, I'm Watching You: At the start of each close combat phase the Spoilpox Scrivener can use one of the following counts which affects the unit they are with. The effect of each counts lasts until the end of that phase. A unit can only benefit from one count once per phase. - Tally of Blows: All models in the unit gain +1 Attack. - Studied Lacerations: All models in the unit gain the Armour Piercing (1) special rule. - Recorded Stamina: Enemies must re-roll To Wound rolls of 6 against all models in the unit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 95,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 95
     },
     {
       "name": "Viceleader",
@@ -455,24 +1090,88 @@
       "equipment": "Hand weapon",
       "magic": "A Viceleader who is a Wizard who chooses spells from the Lore of Slaanesh.",
       "options": [
-        "One Viceleader may carry the Battle Standard +25 points",
-        "May be upgraded to one of the following:",
-        "Level 1 Wizard +35 points",
-        "Level 2 Wizard +70 points",
-        "May be mounted on one of the following:",
-        "Steed of Slaanesh +25 points",
-        "Serpent of Slaanesh +40 points",
-        "Exalted Chariot (replacing one of the crew) +190 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Viceleader may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 1 Wizard",
+                  "points": 35,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 1 Wizard +35 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Level 2 Wizard",
+                  "points": 70,
+                  "perModel": false
+                }
+              ],
+              "raw": "Level 2 Wizard +70 points"
+            }
+          ]
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Steed of Slaanesh",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Serpent of Slaanesh",
+              "points": 40,
+              "perModel": false
+            },
+            {
+              "name": "Exalted Chariot (replacing one of the crew)",
+              "points": 190,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic\nstandard can only carry other magic items up to a total of 25 points.",
-      "pointsCost": 95,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 95
     },
     {
       "name": "Infernal Enrapturess",
@@ -497,16 +1196,32 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Daemon of Slaanesh\n• Discordant Disruption: All enemy Wizards within 18\" of an Infernal Enrapturess whose casting roll contains\nany double suffers a Strength 4 Hit for each double rolled.\n• Harmonic Alignment: All friendly Daemons of Slaanesh within 6\" of an Infernal Enrapturess may re-roll\nfailed Ward saves.\n• Versatile Instrument: During the Shooting phase, the Infernal Enrapturess can play either Cacophonous\nMelody or Euphonic Blast.\n- Cacophonous Melody: Cacophonous Melody uses the following profile:\nRange: Strength: Special Rules:\n18\" 4 Multiple Shots (2D6)\n- Euphonic Blast: Euphonic Blast has the following profile:\nRange: Strength: Special Rules:\n24\" 6 Multiple Wounds (D3)",
+      "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": [
+        "Discordant Disruption: All enemy Wizards within 18\" of an Infernal Enrapturess whose casting roll contains any double suffers a Strength 4 Hit for each double rolled.",
+        "Harmonic Alignment: All friendly Daemons of Slaanesh within 6\" of an Infernal Enrapturess may re-roll failed Ward saves.",
+        "Versatile Instrument: During the Shooting phase, the Infernal Enrapturess can play either Cacophonous Melody or Euphonic Blast. - Cacophonous Melody: Cacophonous Melody uses the following profile: Range: Strength: Special Rules: 18\" 4 Multiple Shots (2D6) - Euphonic Blast: Euphonic Blast has the following profile: Range: Strength: Special Rules: 24\" 6 Multiple Wounds (D3)"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 135,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 135
     },
     {
       "name": "Changecaster",
@@ -531,25 +1246,60 @@
       "equipment": "Hand weapon",
       "magic": "A Changecaster is a Level 1 Wizard who chooses spells from the Lore of Tzeentch.",
       "options": [
-        "One Changecaster may carry the Battle Standard +25 points",
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May be mounted on one of the following:",
-        "Disc of Tzeentch +25 points",
-        "Burning Chariot (replacing one of the crew) +70 points",
-        "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Changecaster may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Disc of Tzeentch",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Burning Chariot (replacing one of the crew)",
+              "points": 70,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Daemon of Tzeentch",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic\nstandard can only carry other magic items up to a total of 25 points.\n29\n\nCHARACTER MOUNTS\nJUGGERNAUT",
-      "pointsCost": 110,
+      "notes": "• A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic\nstandard can only carry other magic items up to a total of 25 points.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Juggernaut",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Juggernaut",
@@ -569,18 +1319,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Khorne, Natural Armour (6+)\nBLOOD THRONE",
+      "specialRules": "Daemon of Khorne, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Blood Throne",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Blood Throne",
@@ -612,18 +1363,22 @@
       "equipment": "Hand weapon, scythes",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Khorne, Killing Blow (Bloodletter only), Natural Armour (6+)\n• Gorefeast: If this chariot's Impact Hits cause unsaved Wounds, immediately roll a D6 for each Wound caused.\nFor each score of 4+, the chariot regains a single Wound lost earlier in the game.\n• Totem of Endless Bloodletting: Any Daemon of Khorne unit within 6\" of a Bloodmaster on a Blood Throne\ngain the Frenzy special rule.\n30\n\nCHARACTER MOUNTS\nPALANQUIN OF NURGLE",
+      "specialRules": "Daemon of Khorne, Killing Blow (Bloodletter only), Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Gorefeast: If this chariot's Impact Hits cause unsaved Wounds, immediately roll a D6 for each Wound caused. For each score of 4+, the chariot regains a single Wound lost earlier in the game.",
+        "Totem of Endless Bloodletting: Any Daemon of Khorne unit within 6\" of a Bloodmaster on a Blood Throne gain the Frenzy special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": "2 Bloodletters (Daemon)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Palanquin of Nurgle",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Palanquin of Nurgle",
@@ -644,17 +1399,18 @@
       "magic": null,
       "options": [],
       "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• A Palanquin of Nurgle has a Line of Sight Value of 2 and Unit Strength 3.\nPLAGUE TOAD",
-      "pointsCost": null,
+      "notes": "• A Palanquin of Nurgle has a Line of Sight Value of 2 and Unit Strength 3.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Plague Toad",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Plague Toad",
@@ -674,18 +1430,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Nurgle\nROT FLY",
+      "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Rot Fly",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Rot Fly",
@@ -705,18 +1462,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Nurgle, Fly (6)\n31\n\nCHARACTER MOUNTS\nSTEED OF SLAANESH",
+      "specialRules": "Daemon of Nurgle, Fly (6)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Steed of Slaanesh",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Steed of Slaanesh",
@@ -736,18 +1494,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Poisoned Attacks\nSERPENT OF SLAANESH",
+      "specialRules": "Daemon of Slaanesh, Poisoned Attacks",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Serpent of Slaanesh",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Serpent of Slaanesh",
@@ -767,18 +1526,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Poisoned Attacks\nDISC OF TZEENTCH",
+      "specialRules": "Daemon of Slaanesh, Poisoned Attacks",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
       "name": "Disc of Tzeentch",
-      "category": "Heroes",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
           "name": "Disc of Tzeentch",
@@ -799,16 +1559,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Daemon of Tzeentch, Fly (9)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Chaos Fury",
+      "name": "Chaos Furies",
       "category": "Core",
       "profiles": [
         {
@@ -830,24 +1591,88 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +2 points/model",
-        "May be upgraded to one of the following:",
-        "Daemon of Slaanesh +1 points/model",
-        "Daemon of Khorne +2 points/model",
-        "Daemon of Nurgle +2 points/model",
-        "Daemon of Tzeentch +2 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +2 points/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "points": 1,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Slaanesh +1 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Khorne",
+                  "points": 2,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Khorne +2 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "points": 2,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Nurgle +2 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "points": 2,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Tzeentch +2 points/model"
+            }
+          ]
+        }
       ],
-      "specialRules": "Daemonic, Expendable, Fly (10)\nIMP SWARMS",
+      "specialRules": "Daemonic, Expendable, Fly (10)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 14,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 14
     },
     {
-      "name": "Imp Swarm",
+      "name": "Imp Swarms",
       "category": "Core",
       "profiles": [
         {
@@ -869,24 +1694,88 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +5 points/model",
-        "May be upgraded to one of the following:",
-        "Daemon of Slaanesh +3 points/model",
-        "Daemon of Khorne +6 points/model",
-        "Daemon of Nurgle +6 points/model",
-        "Daemon of Tzeentch +6 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +5 points/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "points": 3,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Slaanesh +3 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Khorne",
+                  "points": 6,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Khorne +6 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "points": 6,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Nurgle +6 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "points": 6,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Tzeentch +6 points/model"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemonic, Fly (5)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 35,
       "unitSize": "3-10",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 35
     },
     {
-      "name": "Bloodletter",
+      "name": "Bloodletters",
       "category": "Core",
       "profiles": [
         {
@@ -908,24 +1797,68 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +2 points/model",
-        "May take great weapons +2 points/model",
-        "May upgrade one Bloodletter to a Leader +5 points",
-        "May upgrade one Bloodletter to a Musician +5 points",
-        "May upgrade one Bloodletter to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points\nFLESH HOUNDS"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take great weapons +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Bloodletter to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Bloodletter to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Bloodletter to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Khorne, Killing Blow, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Flesh Hound",
+      "name": "Flesh Hounds",
       "category": "Core",
       "profiles": [
         {
@@ -947,20 +1880,37 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +3 points/model",
-        "May upgrade one Bloodletter to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Bloodletter to a Leader +5 points"
+        }
       ],
       "specialRules": "Daemon of Khorne, Magic Resistance (2), Natural Armour (6+),",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 21,
       "unitSize": "5+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 21
     },
     {
-      "name": "Plaguebearer",
+      "name": "Plaguebearers",
       "category": "Core",
       "profiles": [
         {
@@ -982,23 +1932,56 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +2 points/model",
-        "May upgrade one Plaguebearer to a Leader +5 points",
-        "May upgrade one Plaguebearer to a Musician +5 points",
-        "May upgrade one Plaguebearer to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points\nPLAGUE TOADS"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Plaguebearer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Plaguebearer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Plaguebearer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Plague Toad",
+      "name": "Plague Toads",
       "category": "Core",
       "profiles": [
         {
@@ -1020,16 +2003,28 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +4 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 4,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +4 points/model"
+        }
       ],
       "specialRules": "Daemon of Nurgle, Marsh Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 31,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 31
     },
     {
       "name": "Nurglings",
@@ -1054,19 +2049,31 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +5 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +5 points/model"
+        }
       ],
       "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Nurglings have a Line of Sight value of 1.",
-      "pointsCost": 50,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
-      "name": "Daemonette",
+      "name": "Daemonettes",
       "category": "Core",
       "profiles": [
         {
@@ -1088,23 +2095,56 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +2 points/model",
-        "May upgrade one Daemonette to a Leader +5 points",
-        "May upgrade one Daemonette to a Musician +5 points",
-        "May upgrade one Daemonette to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points\nSEEKERS"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Daemonette to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Daemonette to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Daemonette to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 12,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 12
     },
     {
-      "name": "Daemonette",
+      "name": "Seekers",
       "category": "Core",
       "profiles": [
         {
@@ -1138,23 +2178,56 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +3 points/model",
-        "May upgrade one Seeker to a Leader +5 points",
-        "May upgrade one Seeker to a Musician +5 points",
-        "May upgrade one Seeker to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Seeker to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Seeker to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Seeker to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Slaanesh, Fast Cavalry, Poisoned Attacks (Steed of Slaanesh only)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 20,
       "unitSize": "5+",
       "crew": null,
       "mount": "Steed of Slaanesh (Daemon)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 20
     },
     {
-      "name": "Pink Horror",
+      "name": "Pink Horrors",
       "category": "Core",
       "profiles": [
         {
@@ -1188,23 +2261,59 @@
       "equipment": "Lesser Flames of Tzeentch\n• Lesser Flames of Tzeentch: Lesser Flames of Tzeentch have the following profile:\nRange: Strength: Special Rules:\n12\" 3 Flaming Attacks, Multiple Shots (2), Quick to Fire",
       "magic": "A unit of Pink Horror is a Level 1 Wizard that knows the spell Blue Fire of Tzeentch from the Lore of\nTzeentch.",
       "options": [
-        "May be Summoned from Beyond +2 points/model",
-        "May upgrade one Pink Horror to a Leader +5 points",
-        "May upgrade one Pink Horror to a Musician +5 points",
-        "May upgrade one Pink Horror to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Pink Horror to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Pink Horror to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Pink Horror to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Daemon of Tzeentch\n• Split: When a Pink Horror is slain in close combat (not removed as a result of Daemonic Instability). Roll a\nD6; on the result of 1-3, the Pink Horror inflicts an automatic Strength 3 on the unit that inflicted the Wound,\ndistributed as a missile attack. On the roll of a 4-6, the Pink Horror will split into two Blue Horrors instead;\nreplace the slain Pink Horror with two Blue Horror models at the back of the unit. If you do not have access to\nenough Blue Horrors, treat the result as having rolled a 1-3 instead. When resolving attacks against a unit with\nboth Pink and Blue Horrors present, the Blue Horrors are targeted and removed as casualties first.\n• Whirling Destroyers: The unit receives an additional +1 casting bonus for every 5 five Pink Horrors in the\nunit, to a maximum of +3. If the unit has 15+ Pink Horrors, it counts as a Level 2 Wizard and gains access to\nthe Pink Fire of Tzeentch spell from the Lore of Tzeentch. Each time the unit casts a spell (or is targeted by a\nspecial rule that affects a Wizard), you must nominate one Pink Horror as the caster for the purposes of line of\nsight, range, etc. In the event of a Pink Horror unit rolling a miscast, do not roll on the Miscast table. Instead,\nthe unit suffers D3 Wounds with no saves of any kind allowed.",
+      "specialRules": "Daemon of Tzeentch",
+      "specialRuleDescriptions": [
+        "Split: When a Pink Horror is slain in close combat (not removed as a result of Daemonic Instability). Roll a D6; on the result of 1-3, the Pink Horror inflicts an automatic Strength 3 on the unit that inflicted the Wound, distributed as a missile attack. On the roll of a 4-6, the Pink Horror will split into two Blue Horrors instead; replace the slain Pink Horror with two Blue Horror models at the back of the unit. If you do not have access to enough Blue Horrors, treat the result as having rolled a 1-3 instead. When resolving attacks against a unit with both Pink and Blue Horrors present, the Blue Horrors are targeted and removed as casualties first.",
+        "Whirling Destroyers: The unit receives an additional +1 casting bonus for every 5 five Pink Horrors in the unit, to a maximum of +3. If the unit has 15+ Pink Horrors, it counts as a Level 2 Wizard and gains access to the Pink Fire of Tzeentch spell from the Lore of Tzeentch. Each time the unit casts a spell (or is targeted by a special rule that affects a Wizard), you must nominate one Pink Horror as the caster for the purposes of line of sight, range, etc. In the event of a Pink Horror unit rolling a miscast, do not roll on the Miscast table. Instead, the unit suffers D3 Wounds with no saves of any kind allowed."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 13,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 13
     },
     {
-      "name": "Screamer",
+      "name": "Screamers",
       "category": "Core",
       "profiles": [
         {
@@ -1226,16 +2335,30 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +4 points/model\nBRIMSTONE HORRORS"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 4,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +4 points/model"
+        }
       ],
-      "specialRules": "Daemon of Tzeentch, Fly (9), Multiple Wounds (2)\n• Slashing Attack: If a unit of Screamers moves over one or more unengaged enemy units in the Remaining\nMoves sub-phase, each of those units suffer one Strength 4 Hit per Screamer, distributed as shooting attacks.",
+      "specialRules": "Daemon of Tzeentch, Fly (9), Multiple Wounds (2)",
+      "specialRuleDescriptions": [
+        "Slashing Attack: If a unit of Screamers moves over one or more unengaged enemy units in the Remaining Moves sub-phase, each of those units suffer one Strength 4 Hit per Screamer, distributed as shooting attacks."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 32,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 32
     },
     {
       "name": "Brimstone Horrors",
@@ -1260,19 +2383,31 @@
       "equipment": "Lesser Flames of Tzeentch\n• Lesser Flames of Tzeentch: Lesser Flames of Tzeentch have the following profile:\nRange: Strength: Special Rules:\n12\" 3 Flaming Attacks, Multiple Shots (2), Quick to Fire",
       "magic": null,
       "options": [
-        "May be Summoned from Beyond +2 points/model"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "May be Summoned from Beyond",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May be Summoned from Beyond +2 points/model"
+        }
       ],
       "specialRules": "Daemon of Tzeentch, Flaming Attacks",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Brimstone Horrors have a Line of Sight value of 0.",
-      "pointsCost": 12,
       "unitSize": "10+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 12
     },
     {
-      "name": "Brute",
+      "name": "Brutes",
       "category": "Special",
       "profiles": [
         {
@@ -1294,26 +2429,93 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapons +3 points/model",
-        "Great weapons +9 points/model",
-        "May be upgraded to one of the following:",
-        "Daemon of Slaanesh +3 points/model",
-        "Daemon of Khorne +6 points/model",
-        "Daemon of Nurgle +6 points/model",
-        "Daemon of Tzeentch +6 points/model\nBLOODCRUSHERS"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "points": 3,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Slaanesh +3 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Khorne",
+                  "points": 6,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Khorne +6 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "points": 6,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Nurgle +6 points/model"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "points": 6,
+                  "perModel": true
+                }
+              ],
+              "raw": "Daemon of Tzeentch +6 points/model"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemonic",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 40,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 40
     },
     {
-      "name": "Bloodletter",
+      "name": "Bloodcrushers",
       "category": "Special",
       "profiles": [
         {
@@ -1347,19 +2549,41 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May upgrade one Bloodcrusher to a Leader +5 points",
-        "May upgrade one Bloodcrusher to a Musician +5 points",
-        "May upgrade one Bloodcrusher to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Bloodcrusher to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Bloodcrusher to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Bloodcrusher to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Khorne, Killing Blow, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": "3+",
       "crew": null,
       "mount": "Juggernaut (Daemon)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
       "name": "Blood Chariot",
@@ -1408,19 +2632,26 @@
       "equipment": "Hand weapon, scythes",
       "magic": null,
       "options": [
-        "May be upgraded to a Standard Bearer +10 points\nBLOODBEASTS"
+        {
+          "type": "upgrade",
+          "upgrade": "Standard Bearer",
+          "points": 10,
+          "perModel": false,
+          "raw": "May be upgraded to a Standard Bearer +10 points"
+        }
       ],
       "specialRules": "Daemon of Khorne, Killing Blow (Bloodletter only), Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 150,
       "unitSize": null,
       "crew": "2 Bloodletters (Daemon)",
       "mount": null,
-      "drawnBy": "1 Juggernaut (Daemon)"
+      "drawnBy": "1 Juggernaut (Daemon)",
+      "pointsCost": 150
     },
     {
-      "name": "Bloodbeast",
+      "name": "Bloodbeasts",
       "category": "Special",
       "profiles": [
         {
@@ -1443,16 +2674,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Daemon of Khorne, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 55,
       "unitSize": "1+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
-      "name": "Plaguebearer",
+      "name": "Pox Riders",
       "category": "Special",
       "profiles": [
         {
@@ -1486,22 +2718,44 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May upgrade one Pox Rider to a Leader +5 points",
-        "May upgrade one Pox Rider to a Musician +5 points",
-        "May upgrade one Pox Rider to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Pox Rider to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Pox Rider to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Pox Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Nurgle, Marsh Strider",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 35,
       "unitSize": "3+",
       "crew": null,
       "mount": "Plague Toad (Daemon)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 35
     },
     {
-      "name": "Beast of Nurgle",
+      "name": "Beasts of Nurgle",
       "category": "Special",
       "profiles": [
         {
@@ -1523,14 +2777,18 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Nurgle, Random Attacks (D6+1), Regeneration (6+)\n• Attention Seeker: Beasts of Nurgle can issue and accept challenges as if they were Characters.\n• Slime Trail: Enemy units do not receive combat result bonuses for attacking the flank or rear of models with\nthis special rule.\nPLAGUE CHARIOT",
+      "specialRules": "Daemon of Nurgle, Random Attacks (D6+1), Regeneration (6+)",
+      "specialRuleDescriptions": [
+        "Attention Seeker: Beasts of Nurgle can issue and accept challenges as if they were Characters.",
+        "Slime Trail: Enemy units do not receive combat result bonuses for attacking the flank or rear of models with this special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 55,
       "unitSize": "1+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
       "name": "Plague Chariot",
@@ -1579,19 +2837,28 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May be upgraded to a Standard Bearer +10 points"
+        {
+          "type": "upgrade",
+          "upgrade": "Standard Bearer",
+          "points": 10,
+          "perModel": false,
+          "raw": "May be upgraded to a Standard Bearer +10 points"
+        }
       ],
-      "specialRules": "Daemon of Nurgle, *Random Attacks (D6+1) (Beast of Nurgle only), Regeneration (6+),\nSlime Trail",
+      "specialRules": "Daemon of Nurgle, *Random Attacks (D6+1) (Beast of Nurgle only), Regeneration (6+),",
+      "specialRuleDescriptions": [
+        "Slime Trail"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 130,
       "unitSize": null,
       "crew": "2 Plaguebearer (Daemon)",
       "mount": null,
-      "drawnBy": "1 Beast of Nurgle (Daemon)"
+      "drawnBy": "1 Beast of Nurgle (Daemon)",
+      "pointsCost": 130
     },
     {
-      "name": "Daemonette",
+      "name": "Pleasureseekers",
       "category": "Special",
       "profiles": [
         {
@@ -1625,19 +2892,41 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May upgrade one Pleasureseeker to a Leader +5 points",
-        "May upgrade one Pleasureseeker to a Musician +5 points",
-        "May upgrade one Pleasureseeker to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points\nSEEKER CHARIOT"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Pleasureseeker to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Pleasureseeker to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Pleasureseeker to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Slaanesh, Poisoned Attacks (Serpent of Slaanesh only)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 60,
       "unitSize": "3+",
       "crew": null,
       "mount": "Serpent of Slaanesh (Daemon)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 60
     },
     {
       "name": "Seeker Chariot",
@@ -1699,16 +2988,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Daemon of Slaanesh, Poisoned Attacks (Steed of Slaanesh only)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 80,
       "unitSize": null,
       "crew": "1 Daemonette & 1 Alluress (Daemon)",
       "mount": null,
-      "drawnBy": "2 Steeds of Slaanesh (Daemon)"
+      "drawnBy": "2 Steeds of Slaanesh (Daemon)",
+      "pointsCost": 80
     },
     {
-      "name": "Fiend",
+      "name": "Fiends",
       "category": "Special",
       "profiles": [
         {
@@ -1730,19 +3020,27 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May upgrade one Fiend to a Leader +5 points\nFLAMERS"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Fiend to a Leader +5 points"
+        }
       ],
-      "specialRules": "Daemon of Slaanesh\n• Soporific Musk: Units in base contact with one or more Fiends of Slaanesh suffer a -1 penalty to both Weapon\nSkill and Initiative. This has no effect on Daemons of Slaanesh.",
+      "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": [
+        "Soporific Musk: Units in base contact with one or more Fiends of Slaanesh suffer a -1 penalty to both Weapon Skill and Initiative. This has no effect on Daemons of Slaanesh."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 55,
       "unitSize": "1+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
-      "name": "Flamer",
+      "name": "Flamers",
       "category": "Special",
       "profiles": [
         {
@@ -1764,16 +3062,24 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May upgrade one Flamer to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Flamer to a Leader +5 points"
+        }
       ],
-      "specialRules": "Daemon of Tzeentch, Flaming Attacks, Skirmishers, Strider\n• Flames of Tzeentch: Flames of Tzeentch have the following profile:\nRange: Strength: Special Rules:\n18\" 4 Flaming Attacks, Multiple Shots (D6), Quick to Fire",
+      "specialRules": "Daemon of Tzeentch, Flaming Attacks, Skirmishers, Strider",
+      "specialRuleDescriptions": [
+        "Flames of Tzeentch: Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 18\" 4 Flaming Attacks, Multiple Shots (D6), Quick to Fire"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 32,
       "unitSize": "3-6",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 32
     },
     {
       "name": "Exalted Flamer",
@@ -1798,17 +3104,20 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Tzeentch, Flaming Attacks, Strider\n• Exalted Fire of Tzeentch: During the Shooting phase, the Exalted Flamer can shoot either Pink Fire or Blue\nFire below. If a misfire is rolled when resolving Pink Fire or Blue Fire, the Exalted Flamer suffers D6 Strength\nD6 hits with the Flaming Attacks special rule.\n- Blue Fire: Blue Fire is an organ gun with the following profile:\nRange: Strength: Special Rules:\n12 D3+3 Flaming Attacks, Multiple Shots (Artillery Dice + D6), Rapid Fire, Slow to\nFire\n- Pink Fire: Pink Fire is a fire thrower that uses the following profile:\nRange: Strength: Special Rules:\nn/a D6 Flaming Attacks, Slow to Fire\nFIREWYRMS",
+      "specialRules": "Daemon of Tzeentch, Flaming Attacks, Strider",
+      "specialRuleDescriptions": [
+        "Exalted Fire of Tzeentch: During the Shooting phase, the Exalted Flamer can shoot either Pink Fire or Blue Fire below. If a misfire is rolled when resolving Pink Fire or Blue Fire, the Exalted Flamer suffers D6 Strength D6 hits with the Flaming Attacks special rule. - Blue Fire: Blue Fire is an organ gun with the following profile: Range: Strength: Special Rules: 12 D3+3 Flaming Attacks, Multiple Shots (Artillery Dice + D6), Rapid Fire, Slow to Fire - Pink Fire: Pink Fire is a fire thrower that uses the following profile: Range: Strength: Special Rules: n/a D6 Flaming Attacks, Slow to Fire"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 70,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 70
     },
     {
-      "name": "Firewyrm",
+      "name": "Firewyrms",
       "category": "Special",
       "profiles": [
         {
@@ -1831,13 +3140,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Daemon of Tzeentch, Random Movement (3D6), Random Attacks (D6)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 55,
       "unitSize": "1+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 55
     },
     {
       "name": "Soul Grinder",
@@ -1862,25 +3172,111 @@
       "equipment": "Hand weapon, harvester cannon",
       "magic": null,
       "options": [
-        "May be upgraded to one of the following:",
-        "Daemon of Slaanesh +5 points",
-        "Daemon of Khorne +15 points",
-        "Daemon of Nurgle +15 points",
-        "Daemon of Tzeentch +15 points",
-        "May take a Daemonbone Claw +25 points",
-        "May replace the Harvester Cannon with one of the following:",
-        "Warp Gaze +15 points",
-        "Baleful Torrent +25 points",
-        "Phlegm Bombardment +25 points"
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Slaanesh +5 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Khorne",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Khorne +15 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Nurgle +15 points"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "points": 15,
+                  "perModel": false
+                }
+              ],
+              "raw": "Daemon of Tzeentch +15 points"
+            }
+          ]
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Daemonbone Claw",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Daemonbone Claw +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "Harvester Cannon",
+          "choices": [
+            {
+              "name": "Warp Gaze",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Baleful Torrent",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Phlegm Bombardment",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace the Harvester Cannon with one of the following:"
+        }
       ],
-      "specialRules": "Daemonic, Natural Armour (4+)\n• Caught by the Iron Claw: Immediately before the Soulgrinder makes its Attacks, nominate one model in base\ncontact with the Soulgrinder. That model must pass an Initiative test. If failed, all other attacks the Soulgrinder\nmakes against that model this turn hit automatically.\n• Harvester Cannon: This allows the Soulgrinder to fire grapeshot (see Cannons in the Warhammer Rulebook).\nIf a misfire is rolled on the artillery dice, the Soulgrinder suffers a wound with no saves allowed instead of\nrolling on the chart.",
+      "specialRules": "Daemonic, Natural Armour (4+)",
+      "specialRuleDescriptions": [
+        "Caught by the Iron Claw: Immediately before the Soulgrinder makes its Attacks, nominate one model in base contact with the Soulgrinder. That model must pass an Initiative test. If failed, all other attacks the Soulgrinder makes against that model this turn hit automatically.",
+        "Harvester Cannon: This allows the Soulgrinder to fire grapeshot (see Cannons in the Warhammer Rulebook). If a misfire is rolled on the artillery dice, the Soulgrinder suffers a wound with no saves allowed instead of rolling on the chart."
+      ],
       "upgrades": "• Baleful Torrent: This follows the rules for fire throwers. If a misfire is rolled on the artillery dice, the\nSoulgrinder suffers a wound with no saves allowed instead of rolling on the chart.\n• Daemonbone Claw: If a Soulgrinder has a Daemonbone Claw it can exchange all of its Attacks for a single\nspecial Attack – this is declared after the Caught by the Iron Claw rules is resolved. This Attack is resolved at\nStrength 10 and has the Multiple Wounds (D6) special rule.\n• Phlegm Bombardment: Phlegm Bombardment is a stone thrower with the profile below. If a misfire is rolled\non the artillery dice, the Soulgrinder suffers a wound with no saves allowed instead of rolling on the chart.\nRange: Strength: Special Rules:\n12-36\" 3 Slow to Fire\n• Warp Gaze: Warp Gaze follows the rules for bolt throwers.",
       "notes": null,
-      "pointsCost": 275,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 275
     },
     {
       "name": "Skull Cannon",
@@ -1917,17 +3313,21 @@
       "equipment": "Hand weapon, scythes, skull cannon",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Khorne, Killing Blow (Bloodletter only), Natural Armour (6+)\n• Gorefeast: If this chariot's Impact Hits cause unsaved Wounds, immediately roll a D6 for each Wound caused.\nFor each score of 4+, the chariot regains a single Wound lost earlier in the game.\n• Skull Cannon: Skull cannons are cannons with the following profile:\nRange: Strength: Special Rules:\n12-48\" 10 Flaming Attacks, Multiple Wounds (D6/D3), Slow to Fire\nPLAGUE DRONES",
+      "specialRules": "Daemon of Khorne, Killing Blow (Bloodletter only), Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Gorefeast: If this chariot's Impact Hits cause unsaved Wounds, immediately roll a D6 for each Wound caused. For each score of 4+, the chariot regains a single Wound lost earlier in the game.",
+        "Skull Cannon: Skull cannons are cannons with the following profile: Range: Strength: Special Rules: 12-48\" 10 Flaming Attacks, Multiple Wounds (D6/D3), Slow to Fire"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 240,
       "unitSize": null,
       "crew": "2 Bloodletters (Daemon)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 240
     },
     {
-      "name": "Plaguebearer",
+      "name": "Plague Drones",
       "category": "Rare",
       "profiles": [
         {
@@ -1961,23 +3361,56 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May take Death Heads +5 points/model",
-        "May upgrade one Pleasureseeker to a Leader +5 points",
-        "May upgrade one Pleasureseeker to a Musician +5 points",
-        "May upgrade one Pleasureseeker to a Standard Bearer +10 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Death Heads",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Death Heads +5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Pleasureseeker to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Pleasureseeker to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Pleasureseeker to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Daemon of Nurgle, Fly (6)",
+      "specialRuleDescriptions": null,
       "upgrades": "• Death Heads: Death Heads have the following profile:\nRange: Strength: Special Rules:\n12\" 4 Multiple Wounds (D3), Quick to Fire",
       "notes": null,
-      "pointsCost": 50,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 50
     },
     {
-      "name": "Exalted Chariot",
+      "name": "Exalted Seeker Chariot",
       "category": "Rare",
       "profiles": [
         {
@@ -2035,17 +3468,20 @@
       "equipment": "Scythes",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Impact Hits (3D6), Poisoned Attacks (Steed of Slaanesh only)\n• Totem of Endless Pleasure: Any Daemon of Slaanesh unit within 6\" of an Exalted Chariot gains the Always\nStrikes First special rule.\nHELLFLAYER",
+      "specialRules": "Daemon of Slaanesh, Impact Hits (3D6), Poisoned Attacks (Steed of Slaanesh only)",
+      "specialRuleDescriptions": [
+        "Totem of Endless Pleasure: Any Daemon of Slaanesh unit within 6\" of an Exalted Chariot gains the Always Strikes First special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 210,
       "unitSize": null,
       "crew": "3 Daemonettes & 1 Alluress (Daemon)",
       "mount": null,
-      "drawnBy": "4 Steeds of Slaanesh (Daemon)"
+      "drawnBy": "4 Steeds of Slaanesh (Daemon)",
+      "pointsCost": 210
     },
     {
-      "name": "Exalted Chariot",
+      "name": "Hellflayer",
       "category": "Rare",
       "profiles": [
         {
@@ -2103,14 +3539,17 @@
       "equipment": "Scythes",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Impact Hits (2D6), Poisoned Attacks (Steed of Slaanesh only)\n• Soulscent: If a Hellflayer causes one or more unsaved Wounds with its Impact Hits, all crew members receive\na number of bonus Attacks equal to the number of unsaved Wounds caused. This bonus lasts until the end of\nthe turn.",
+      "specialRules": "Daemon of Slaanesh, Impact Hits (2D6), Poisoned Attacks (Steed of Slaanesh only)",
+      "specialRuleDescriptions": [
+        "Soulscent: If a Hellflayer causes one or more unsaved Wounds with its Impact Hits, all crew members receive a number of bonus Attacks equal to the number of unsaved Wounds caused. This bonus lasts until the end of the turn."
+      ],
       "upgrades": null,
       "notes": "• You may take 1-2 Hellflayers as a single Rare choice.",
-      "pointsCost": 120,
       "unitSize": null,
       "crew": "2 Daemonettes & 1 Alluress (Daemon)",
       "mount": null,
-      "drawnBy": "2 Steeds of Slaanesh (Daemon)"
+      "drawnBy": "2 Steeds of Slaanesh (Daemon)",
+      "pointsCost": 120
     },
     {
       "name": "Contorted Epitome",
@@ -2147,17 +3586,23 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh\n• Acquiescence: Innate Bound Spell, Power Level 5. The Contorted Epitome contains the Acquiescence spell\nfrom the Lore of Slaanesh.\n• Gift of Power: For each friendly Contorted Epitome on the battlefield at the start of your Magic phase, add\none dice to your power pool.\n• Horrible Fascination: At the start of the enemy's turn, each enemy unit that is within 12\" of one or more\nContorted Epitomes and has Line of Sight to it must pass a Psychology test. If failed, that unit may not move in\nthe Movement phase this turn.\n• Swallow Energy: A Contorted Epitome's Ward Save is increased by +1 for every point of Strength above 3\nthat every attack targeting it has. So, against a Strength 4 Attack it has 4+ Ward save, against Strength 5 it has a\n3+ Ward save.\nCHANGEBRINGERS",
+      "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": [
+        "Acquiescence: Innate Bound Spell, Power Level 5. The Contorted Epitome contains the Acquiescence spell from the Lore of Slaanesh.",
+        "Gift of Power: For each friendly Contorted Epitome on the battlefield at the start of your Magic phase, add one dice to your power pool.",
+        "Horrible Fascination: At the start of the enemy's turn, each enemy unit that is within 12\" of one or more Contorted Epitomes and has Line of Sight to it must pass a Psychology test. If failed, that unit may not move in the Movement phase this turn.",
+        "Swallow Energy: A Contorted Epitome's Ward Save is increased by +1 for every point of Strength above 3 that every attack targeting it has. So, against a Strength 4 Attack it has 4+ Ward save, against Strength 5 it has a 3+ Ward save."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 175,
       "unitSize": null,
       "crew": "2 Alluresses (Daemon)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 175
     },
     {
-      "name": "Flamer",
+      "name": "Changebringers",
       "category": "Rare",
       "profiles": [
         {
@@ -2191,16 +3636,24 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May upgrade one Changebringer to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Changebringer to a Leader +5 points"
+        }
       ],
-      "specialRules": "Daemon of Tzeentch, Flaming Attacks, Fly (9)\n• Flames of Tzeentch: Flames of Tzeentch have the following profile:\nRange: Strength: Special Rules:\n18\" 4 Flaming Attacks, Multiple Shots (D6), Quick to Fire",
+      "specialRules": "Daemon of Tzeentch, Flaming Attacks, Fly (9)",
+      "specialRuleDescriptions": [
+        "Flames of Tzeentch: Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 18\" 4 Flaming Attacks, Multiple Shots (D6), Quick to Fire"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 45,
       "unitSize": "3-6",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 45
     },
     {
       "name": "Burning Chariot",
@@ -2261,16 +3714,33 @@
       "equipment": "Exalted Flames of Tzeentch (Exalted Flamer only), scythes",
       "magic": null,
       "options": [
-        "May take 3 Blue Horror crew +12 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "3 Blue Horror crew",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May take 3 Blue Horror crew +12 points"
+        }
       ],
-      "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2)\n(Screamers only)\n• Exalted Flames of Tzeentch: Exalted Flames of Tzeentch have the following profile:\nRange: Strength: Special Rules:\n18\" 4 Flaming Attacks, Multiple Shots (2D6), Quick to Fire\n• Lesser Flames of Tzeentch (Blue Horrors only): Lesser Flames of Tzeentch have the following profile:\nRange: Strength: Special Rules:\n12\" 3 Flaming Attacks, Multiple Shots (2), Quick to Fire\n• Slashing Attack: If a Burning Chariot moves over one or more unengaged enemy units in the Remaining\nMoves sub-phase, each of those units suffer two Strength 4 Hits, distributed as shooting attacks.",
+      "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2)",
+      "specialRuleDescriptions": [
+        "(Screamers only)",
+        "Exalted Flames of Tzeentch: Exalted Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 18\" 4 Flaming Attacks, Multiple Shots (2D6), Quick to Fire",
+        "Lesser Flames of Tzeentch (Blue Horrors only): Lesser Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 12\" 3 Flaming Attacks, Multiple Shots (2), Quick to Fire",
+        "Slashing Attack: If a Burning Chariot moves over one or more unengaged enemy units in the Remaining Moves sub-phase, each of those units suffer two Strength 4 Hits, distributed as shooting attacks."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 120,
       "unitSize": null,
       "crew": "1 Exalted Flamer (Daemon)",
       "mount": null,
-      "drawnBy": "2 Screamers (Daemon)"
+      "drawnBy": "2 Screamers (Daemon)",
+      "pointsCost": 120
     },
     {
       "name": "Be'lakor",
@@ -2295,14 +3765,19 @@
       "equipment": null,
       "magic": "Belakor is a Level 4 Wizard who uses spells from the Lore of Shadow.\nMAGIC ITEMS:\n• The Blade of Shadows: Magic Weapon. The Blade of Shadows has the Ignores Armour Saves special rule.",
       "options": [],
-      "specialRules": "Daemonic, Fly (8), Terror\n• The Dark Master: All enemy units within 12\" of Be'lakor suffer -1 to their Leadership.\n• Lord of Torment: If one or more enemy units failed a Panic or Break test during the previous turn (after any\nre-rolls for special rules such as a Battle Standard Bearer's Hold Your Ground! rule), Be'lakor receives D3\nadditional power dice in the Magic phase, which only he can make use of. Any unused power dice are\ndiscarded at the end of the Magic phase as normal.\n• Shadow Form: Be'lakor has a 6+ Ward save, and any missile attacks targeting him suffer -2 To Hit.",
+      "specialRules": "Daemonic, Fly (8), Terror",
+      "specialRuleDescriptions": [
+        "The Dark Master: All enemy units within 12\" of Be'lakor suffer -1 to their Leadership.",
+        "Lord of Torment: If one or more enemy units failed a Panic or Break test during the previous turn (after any re-rolls for special rules such as a Battle Standard Bearer's Hold Your Ground! rule), Be'lakor receives D3 additional power dice in the Magic phase, which only he can make use of. Any unused power dice are discarded at the end of the Magic phase as normal.",
+        "Shadow Form: Be'lakor has a 6+ Ward save, and any missile attacks targeting him suffer -2 To Hit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 520,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 520
     },
     {
       "name": "Skarbrand",
@@ -2327,14 +3802,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Aura of Fury, Daemon of Khorne, Frenzy, Hatred, Killing Blow, Magic Resistance (1)\n• Bellow of Endless Fury: This is a Strength 5 Breath Weapon as described in the Warhammer rulebook.\n• The Hellforged Host: If Skarbrand is included in your army, you may upgrade one unit of Bloodletters to the\nHellforged Host for a cost of +1 point per model. This unit has the Armour Piercing (1) special rule and may\nre-roll To Wound rolls of 1.\n• Rage Embodied: Skarbrand can never lose his Frenzy. In addition, while Skarbrand is alive, all units within\n12\" (friendly and enemy) of him are subject to the rules for Hatred.\nMAZARALL THE BUTCHER\nDaemon Prince of Khorne",
+      "specialRules": "Aura of Fury, Daemon of Khorne, Frenzy, Hatred, Killing Blow, Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Bellow of Endless Fury: This is a Strength 5 Breath Weapon as described in the Warhammer rulebook.",
+        "The Hellforged Host: If Skarbrand is included in your army, you may upgrade one unit of Bloodletters to the Hellforged Host for a cost of +1 point per model. This unit has the Armour Piercing (1) special rule and may re-roll To Wound rolls of 1.",
+        "Rage Embodied: Skarbrand can never lose his Frenzy. In addition, while Skarbrand is alive, all units within 12\" (friendly and enemy) of him are subject to the rules for Hatred."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 480,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 480
     },
     {
       "name": "Mazarall the Butcher",
@@ -2359,14 +3839,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Khorne, Impact Hits (D3)\n• The Butcher's Due: At the start of each of your close combat phases, choose one friendly Daemon of Khorne\nunit within 12\". The target unit may re-roll failed To Wound rolls of 1's until the start of your next close combat\nphase.",
+      "specialRules": "Daemon of Khorne, Impact Hits (D3)",
+      "specialRuleDescriptions": [
+        "The Butcher's Due: At the start of each of your close combat phases, choose one friendly Daemon of Khorne unit within 12\". The target unit may re-roll failed To Wound rolls of 1's until the start of your next close combat phase."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 430,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 430
     },
     {
       "name": "Ku'gath Plaguefather",
@@ -2403,14 +3886,17 @@
       "equipment": null,
       "magic": "Ku'gath is a Level 1 Wizard who uses spells from the Lore of Nurgle.\nDAEMONIC GIFTS: Nurgling Infestation, Slime Trail\nMAGIC ITEMS:\n• Necrotic Missiles: Magic Weapon. This missile attack is fired according to the rules for a stone thrower, except\nKu'gath may move and fire. It has a range of 12-36\", Strength 5, Ignores Armour Saves and Slow to Fire\nspecial rules. In the event of a misfire, Ku'gath has accidentally squashed the Nurgling and the shot has no\neffect.",
       "options": [],
-      "specialRules": "Daemon of Nurgle, Hatred (Dwarfs)\n• Festering Stooges: If Ku'gath Plaguefather is included in your army, you may upgrade one unit of\nPlaguebearers to the Festering Stooges for a cost of +1 point per model. This unit has the Regeneration (6+)\nspecial rule.",
+      "specialRules": "Daemon of Nurgle, Hatred (Dwarfs)",
+      "specialRuleDescriptions": [
+        "Festering Stooges: If Ku'gath Plaguefather is included in your army, you may upgrade one unit of Plaguebearers to the Festering Stooges for a cost of +1 point per model. This unit has the Regeneration (6+) special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 480,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 480
     },
     {
       "name": "Rotigus",
@@ -2435,17 +3921,21 @@
       "equipment": null,
       "magic": "Rotigus is a Level 3 Wizard who use spells from the Lore of Nurgle.",
       "options": [],
-      "specialRules": "Daemon of Nurgle\n• Blubber and Bile: Each time Rotigus successfully makes a Regeneration save in close combat, he inflicts a\nStrength 4 Hit on the model which caused the Wound.\n• Streams of Brackish Filth: At the start of each of your Shooting phases, all enemy units within 6\" of Rotigus\nsuffer D3 Strength 4 Hits.",
+      "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": [
+        "Blubber and Bile: Each time Rotigus successfully makes a Regeneration save in close combat, he inflicts a Strength 4 Hit on the model which caused the Wound.",
+        "Streams of Brackish Filth: At the start of each of your Shooting phases, all enemy units within 6\" of Rotigus suffer D3 Strength 4 Hits."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 570,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 570
     },
     {
-      "name": "N'Kari",
+      "name": "N'kari",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2467,14 +3957,18 @@
       "equipment": null,
       "magic": "N'Kari is a level 4 Wizard who use spells from the Lore of Slaanesh.\nDAEMONIC GIFTS: Allure of Slaanesh, Spirit Swallower, Siren Song\nMAGIC ITEMS:\n• Witstealer Sword: Magic Weapon. Any model that suffers one or more unsaved Wounds from the Witstealer\nSword must immediately pass an Initiative test or suffer another Wound with the Ignores Armour Saves special\nrule.",
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Hatred (High Elves)\n• Bringers of Beguilement: If N'Kari is included in your army, you may upgrade one unit of Daemonettes to the\nBringers of Beguilement for a cost of +1 point per model. All models in this unit have +1 Movement and may\nre-roll failed charge and pursuit distances.\n• Willing Prey: Enemy units in base contact with N'Kari suffer -1 to their Weapon Skill.\nSHALAXI HELBANE\nMonarch of the Hunt",
+      "specialRules": "Daemon of Slaanesh, Hatred (High Elves)",
+      "specialRuleDescriptions": [
+        "Bringers of Beguilement: If N'Kari is included in your army, you may upgrade one unit of Daemonettes to the Bringers of Beguilement for a cost of +1 point per model. All models in this unit have +1 Movement and may re-roll failed charge and pursuit distances.",
+        "Willing Prey: Enemy units in base contact with N'Kari suffer -1 to their Weapon Skill."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 625,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 625
     },
     {
       "name": "Shalaxi Helbane",
@@ -2499,14 +3993,20 @@
       "equipment": null,
       "magic": "Shalaxi Helbane is a Level 2 Wizard who uses spells from the Lore of Slaanesh",
       "options": [],
-      "specialRules": "Daemon of Slaanesh\n• Irresistible Challenge: Enemy characters who refuses a Challenge from Shalaxi Helbane suffer D3 Strength 5\nHits which Ignores Armour saves.\nMAGIC ITEMS:\n• Soulpiercer: Magic Weapon. Spear. When fighting in a Challenge, Shalaxi Helbane has the Heroic Killing\nBlow special rule.\n• Shining Aegis: Magic Armour. Shield. This shield gives Shalaxi Helbane the Magic Resistance (1) special\nrule.\n• Cloak of Constriction: Talisman. All models attempting to strike Shalaxi Helbane in close combat must pass a\nStrength test or lose 1 Attack.",
+      "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": [
+        "Irresistible Challenge: Enemy characters who refuses a Challenge from Shalaxi Helbane suffer D3 Strength 5 Hits which Ignores Armour saves. MAGIC ITEMS:",
+        "Soulpiercer: Magic Weapon. Spear. When fighting in a Challenge, Shalaxi Helbane has the Heroic Killing Blow special rule.",
+        "Shining Aegis: Magic Armour. Shield. This shield gives Shalaxi Helbane the Magic Resistance (1) special rule.",
+        "Cloak of Constriction: Talisman. All models attempting to strike Shalaxi Helbane in close combat must pass a Strength test or lose 1 Attack."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 525,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 525
     },
     {
       "name": "Azazel",
@@ -2531,17 +4031,21 @@
       "equipment": null,
       "magic": "Azazel is a Level 2 Wizard who uses spells from the Lore of Slaanesh.\nDAEMONIC GIFTS: Soporific Musk, Temptator\nMAGIC ITEMS:\n• Daemonblade: Magic Weapon. All attacks made with the Daemonblade have the Ignores Armour Saves\nspecial rule.",
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Fly (8), Terror\n• Aura of Slaanesh: Any enemy unit in base contact with Azazel suffers a -1 penalty to its Leadership value.\n• Dark Halo: Azazel may re-roll failed Ward saves.",
+      "specialRules": "Daemon of Slaanesh, Fly (8), Terror",
+      "specialRuleDescriptions": [
+        "Aura of Slaanesh: Any enemy unit in base contact with Azazel suffers a -1 penalty to its Leadership value.",
+        "Dark Halo: Azazel may re-roll failed Ward saves."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 425,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 425
     },
     {
-      "name": "Syll",
+      "name": "Syll'esske",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2575,14 +4079,20 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• Axe of Dominion: Magic Weapon. Great weapon. All attacks made by Esske automatically Wound with the\nIgnores Armour saves special rule.\n• Scourging Whip: Magic Weapon. All models in base contact with Syll'Esske lose 1 Attack.",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Terror\n• Deadly Symbiosis: For each successful To Hit roll by Syll, Esske may re-roll one failed To Hit roll the same\nphase.\n• Lithe and Swift: Syll'Esske may re-roll failed charge and pursuit rolls.\n• Subvert: At the start of each of your turns, one enemy Character within 12\" and Line of Sight of Syll'Esske\nmust take a Psychology test. If failed, no units can use that model's Leadership until the start of your next turn.\n• Regal Authority: All friendly Daemons of Slaanesh within 18\" of Syll'Esske may re-roll 1's To Hit in close\ncombat.",
+      "specialRules": "Daemon of Slaanesh, Terror",
+      "specialRuleDescriptions": [
+        "Deadly Symbiosis: For each successful To Hit roll by Syll, Esske may re-roll one failed To Hit roll the same phase.",
+        "Lithe and Swift: Syll'Esske may re-roll failed charge and pursuit rolls.",
+        "Subvert: At the start of each of your turns, one enemy Character within 12\" and Line of Sight of Syll'Esske must take a Psychology test. If failed, no units can use that model's Leadership until the start of your next turn.",
+        "Regal Authority: All friendly Daemons of Slaanesh within 18\" of Syll'Esske may re-roll 1's To Hit in close combat."
+      ],
       "upgrades": null,
       "notes": "• Syll'Esske has a Line of Sight value of 4 and a Unit Strength of 5.",
-      "pointsCost": 350,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 350
     },
     {
       "name": "Dexcessa",
@@ -2607,14 +4117,19 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Fly (8)\n• Joyous Battle Fury: Dexcessa receive +1 Attack for each round of close combat after the first, for as a long as\nthey remain in close combat (to a maximum of 10 Attacks total).\n• Mesmerising Lepidoptera: All enemy attacks targeting Dexcessa suffer a -1 penalty To Hit.\n• Redolence of Violence: During any turn in which Dexcessa makes a successful charge, all friendly Daemon of\nSlaanesh units within 12\" gain +1 Attack for the duration of this turn.",
+      "specialRules": "Daemon of Slaanesh, Fly (8)",
+      "specialRuleDescriptions": [
+        "Joyous Battle Fury: Dexcessa receive +1 Attack for each round of close combat after the first, for as a long as they remain in close combat (to a maximum of 10 Attacks total).",
+        "Mesmerising Lepidoptera: All enemy attacks targeting Dexcessa suffer a -1 penalty To Hit.",
+        "Redolence of Violence: During any turn in which Dexcessa makes a successful charge, all friendly Daemon of Slaanesh units within 12\" gain +1 Attack for the duration of this turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 390,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 390
     },
     {
       "name": "Synessa",
@@ -2639,14 +4154,19 @@
       "equipment": null,
       "magic": "Synessa are a Level 4 Wizard who uses spells from the Lore of Slaanesh.\nMAGIC ITEMS:\n• Staff of Slaanesh: Arcane Item. The Staff of Slaanesh contains a Bound Spell, Power Level 4. This is a direct\ndamage spell with a range of 18\". The target unit suffers 2D6 Wounds. Saves are taken as normal.",
       "options": [],
-      "specialRules": "Daemon of Slaanesh, Fly (8), Loremaster (Lore of Slaanesh)\n• Mesmerising Lepidoptera: All enemy attacks targeting Synessa suffer a -1 penalty To Hit.\n• The Voice of Slaanesh: All friendly models within Line of Sight of Synessa may use their Leadership. In\naddition, any spells that Synessa casts can be targeted at any enemy unit within Line of Sight, regardless of\nrange.\n• Whispers of Doubt: Innate Bound Spell, power level 3. Whispers of Doubt is a hex spell with a range of 24\".\nThe target unit must take a Leadership test using an additional D6; if failed, all close combat attacks targeting\nthat unit gain +1 To Hit until the start of your next Magic phase.",
+      "specialRules": "Daemon of Slaanesh, Fly (8), Loremaster (Lore of Slaanesh)",
+      "specialRuleDescriptions": [
+        "Mesmerising Lepidoptera: All enemy attacks targeting Synessa suffer a -1 penalty To Hit.",
+        "The Voice of Slaanesh: All friendly models within Line of Sight of Synessa may use their Leadership. In addition, any spells that Synessa casts can be targeted at any enemy unit within Line of Sight, regardless of range.",
+        "Whispers of Doubt: Innate Bound Spell, power level 3. Whispers of Doubt is a hex spell with a range of 24\". The target unit must take a Leadership test using an additional D6; if failed, all close combat attacks targeting that unit gain +1 To Hit until the start of your next Magic phase."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 480,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 480
     },
     {
       "name": "Kairos Fateweaver",
@@ -2671,17 +4191,21 @@
       "equipment": "Hand weapon\nDAEMONIC GIFTS: Twin Heads\nMAGIC ITEMS:\n• Staff of Tomorrow: Arcane Item. Kairos allows you to re-roll a single D6 of your choice once per turn –\ndeclare before you make the re-roll. If this is used to re-roll a single dice from a batch of 2D6, 3D6 etc, the\nother dice in that batch cannot be re-rolled.",
       "magic": "Kairos Fateweaver is a Level 4 Wizard who uses spells from the Lore of Tzeentch. In addition, his left head\nmay choose a total of four spells from the following Lores of Magic:\n• Heavens\n• Life\n• Light\n• Metal\nKairos's right head may then choose a total of four spells from the following Lores of Magic:\n• Beasts\n• Death\n• Fire\n• Shadow\nAt the start of each Magic phase, decide which head Kairos is using this turn. He may only cast spells known to that\nhead during this turn, as well as the Lore of Tzeentch.",
       "options": [],
-      "specialRules": "Daemon of Tzeentch, Fly (8), Loremaster (Lore of Tzeentch)\n• Oracle of Eternity: Kairos Fateweaver has a 6+ Ward save.\n• The Blazing Squealers: If Kairos Fateweaver is included in your army, you may upgrade one unit of Pink\nHorrors to the Blazing Squealers for a cost of +2 points per model. The Lesser Flames of Tzeentch from this\nunit are resolved at Strength 4 instead of Strength 3.",
+      "specialRules": "Daemon of Tzeentch, Fly (8), Loremaster (Lore of Tzeentch)",
+      "specialRuleDescriptions": [
+        "Oracle of Eternity: Kairos Fateweaver has a 6+ Ward save.",
+        "The Blazing Squealers: If Kairos Fateweaver is included in your army, you may upgrade one unit of Pink Horrors to the Blazing Squealers for a cost of +2 points per model. The Lesser Flames of Tzeentch from this unit are resolved at Strength 4 instead of Strength 3."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 415,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 415
     },
     {
-      "name": "Amon 'Chakai",
+      "name": "Amon 'chakai",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2703,17 +4227,21 @@
       "equipment": "Hand weapon\nDAEMONIC GIFTS: All-Seeing Eye, Master of Sorcery",
       "magic": "Amon 'Chakai is a Level 4 Wizard who uses spells from the Lore of Tzeentch.",
       "options": [],
-      "specialRules": "Barrage of Knowledge, Daemon of Tzeentch, Fly (8)\n• Daemonic Aura: Amon 'Chakai and all friendly units within 6\" gain +1 to their Ward saves (to a maximum of\n3+) against non-Magical Attacks.\n• The Hand of Destiny: At the start of the game, choose one enemy model. All close combat and shooting\nattacks against this model will automatically Hit for the remainder of the game.",
+      "specialRules": "Barrage of Knowledge, Daemon of Tzeentch, Fly (8)",
+      "specialRuleDescriptions": [
+        "Daemonic Aura: Amon 'Chakai and all friendly units within 6\" gain +1 to their Ward saves (to a maximum of 3+) against non-Magical Attacks.",
+        "The Hand of Destiny: At the start of the game, choose one enemy model. All close combat and shooting attacks against this model will automatically Hit for the remainder of the game."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 570,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 570
     },
     {
-      "name": "Skulltaker",
+      "name": "U'zhul the Skulltaker",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2747,18 +4275,35 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May be mounted on one of the following:",
-        "Khul'tayran (Juggernaut) +50 points",
-        "Blood Throne +150 points"
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Khul'tayran (Juggernaut)",
+              "points": 50,
+              "perModel": false
+            },
+            {
+              "name": "Blood Throne",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        }
       ],
-      "specialRules": "Daemon of Khorne, Natural Armour (6+)\n• Skulls for the Skull Throne!: Skulltaker must always issue and accept challenges.",
+      "specialRules": "Daemon of Khorne, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Skulls for the Skull Throne!: Skulltaker must always issue and accept challenges."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 175,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 175
     },
     {
       "name": "Karanak",
@@ -2783,17 +4328,21 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Khorne, Hatred, Magic Resistance (2), Natural Armour (6+)\n• Prey of the Blood God: At the start of the game, before deployment, nominate one character in the enemy\narmy – this is the quarry of Khorne that Karanak has come to claim. Karanak re-rolls failed To Hit and To\nWound rolls against the chosen character.\n• Hounds of the Blood Hunt: If Karanak is included in your army, you may upgrade one unit of Flesh Hounds\nto the Hounds of the Blood Hunt Host for a cost of +2 points per model. For every unsaved Wound caused by\nthis unit in close combat, they regain 1 Wound's worth of models, just like a summoning spell.",
+      "specialRules": "Daemon of Khorne, Hatred, Magic Resistance (2), Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Prey of the Blood God: At the start of the game, before deployment, nominate one character in the enemy army – this is the quarry of Khorne that Karanak has come to claim. Karanak re-rolls failed To Hit and To Wound rolls against the chosen character.",
+        "Hounds of the Blood Hunt: If Karanak is included in your army, you may upgrade one unit of Flesh Hounds to the Hounds of the Blood Hunt Host for a cost of +2 points per model. For every unsaved Wound caused by this unit in close combat, they regain 1 Wound's worth of models, just like a summoning spell."
+      ],
       "upgrades": null,
       "notes": "• Karanak may never be the Army General, but may join units of Flesh Hounds.",
-      "pointsCost": 125,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 125
     },
     {
-      "name": "Scaarac",
+      "name": "Skaarac the Bloodborn",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2815,17 +4364,24 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Khorne, Loner, Natural Armour (6+)\n• Burning Blood: Scaarac has a Breath Weapon Attack with Strength 4 and the Ignores Armour Saves special\nrule.\n• Life Eater: Roll a D6 for each Wound inflicted by Skaarac in close combat. For each result of a 6, he may\nrestore one Wound previously lost during the battle.\n• Infernal Iron: All Wizards within 12\" of Skaarac suffer a -1 casting penalty.\n• Undying Hate: If this model is slain, before removing it, all models in base contact suffers a Strength 5 Hit\nwhich Ignores Armour saves.\n• Call of the Skull Throne: All friendly Daemons of Khorne within 12\" of Skaarac may re-roll failed charge\ndistances.",
+      "specialRules": "Daemon of Khorne, Loner, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Burning Blood: Scaarac has a Breath Weapon Attack with Strength 4 and the Ignores Armour Saves special rule.",
+        "Life Eater: Roll a D6 for each Wound inflicted by Skaarac in close combat. For each result of a 6, he may restore one Wound previously lost during the battle.",
+        "Infernal Iron: All Wizards within 12\" of Skaarac suffer a -1 casting penalty.",
+        "Undying Hate: If this model is slain, before removing it, all models in base contact suffers a Strength 5 Hit which Ignores Armour saves.",
+        "Call of the Skull Throne: All friendly Daemons of Khorne within 12\" of Skaarac may re-roll failed charge distances."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 325,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 325
     },
     {
-      "name": "Epidemius",
+      "name": "Epidemus",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2859,17 +4415,20 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Nurgle\n• The Tally of Pestilence: Whilst Epidemius is alive, keep a count of all unsaved Wounds caused by any unit he\nis with in close combat (unless he has refused a challenge that turn). At the start of each of your turns, consult\nthe table below to determine the effect of the Tally of Pestilence. Note that these effects are cumulative. If\nEpidemius is killed or leaves the unit, these effects are immediately lost.\nWounds Effect\n0-6 No effect.\n7+ All models in the unit gain +1 Strength.\n14+ All models in the unit gain +1 Toughness.\n21+ All models in the unit gain the Killing Blow special rule.\n28+ All models in the unit re-roll failed Ward saves.",
+      "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": [
+        "The Tally of Pestilence: Whilst Epidemius is alive, keep a count of all unsaved Wounds caused by any unit he is with in close combat (unless he has refused a challenge that turn). At the start of each of your turns, consult the table below to determine the effect of the Tally of Pestilence. Note that these effects are cumulative. If Epidemius is killed or leaves the unit, these effects are immediately lost. Wounds Effect 0-6 No effect. 7+ All models in the unit gain +1 Strength. 14+ All models in the unit gain +1 Toughness. 21+ All models in the unit gain the Killing Blow special rule. 28+ All models in the unit re-roll failed Ward saves."
+      ],
       "upgrades": null,
       "notes": "• Epidemius has a Line of Sight value of 2 and Unit Strength 4.",
-      "pointsCost": 185,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 185
     },
     {
-      "name": "Horticulous",
+      "name": "Horticulous Slimux",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2903,17 +4462,22 @@
       "equipment": "Great weapon\nDAEMONIC GIFTS: Slime Trail",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Nurgle\n• Beast Handler: Friendly Beasts of Nurgle within 12\" of Horticulous Slimux re-roll failed charge rolls and To\nHit rolls of 1.\n• In Death There is Life: All friendly units within 6\" of Horticulous Slimux gain the Regeneration (6+) special\nrule.\n• Cultivating the Garden of Nurgle: Once during the battle, at the start of your turns, you can set up a Venom\nThicket (see the Warhammer Rulebook) within 3\" of Horticulous Slimux and more than 1\" away from any\nother model or terrain feature.\nTHE MASQUE OF SLAANESH\nEternal Dancer",
+      "specialRules": "Daemon of Nurgle",
+      "specialRuleDescriptions": [
+        "Beast Handler: Friendly Beasts of Nurgle within 12\" of Horticulous Slimux re-roll failed charge rolls and To Hit rolls of 1.",
+        "In Death There is Life: All friendly units within 6\" of Horticulous Slimux gain the Regeneration (6+) special rule.",
+        "Cultivating the Garden of Nurgle: Once during the battle, at the start of your turns, you can set up a Venom Thicket (see the Warhammer Rulebook) within 3\" of Horticulous Slimux and more than 1\" away from any other model or terrain feature."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 235,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 235
     },
     {
-      "name": "Masque of Slaanesh",
+      "name": "The Masque of Slaanesh",
       "category": "Named Characters",
       "profiles": [
         {
@@ -2935,14 +4499,18 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Slaanesh\n• The Eternal Dance: At the start of each of the controlling player's Close Combat phases, the Masque must\nchoose one dance to perform from the list given below. These abilities target one enemy unit (which may be in\ncombat). Each dance has a range of 12\" and does not require line of sight. Until the end of the phase, the target\nsuffers a penalty to the characteristic stated (to a minimum of 1).\n- The Fleshspasm Polka: All models in the unit suffer -1 Strength.\n- The Waltz of Lethargy: All models in the unit suffer -D3 Initiative.\n- The Dance of Dreaming: All models in the unit suffer -D3 Leadership.\n• Unnatural Reflexes: The Masque of Slaanesh has the Dodge (6+) special rule, and may re-roll failed Dodge\nsaves.",
+      "specialRules": "Daemon of Slaanesh",
+      "specialRuleDescriptions": [
+        "The Eternal Dance: At the start of each of the controlling player's Close Combat phases, the Masque must choose one dance to perform from the list given below. These abilities target one enemy unit (which may be in combat). Each dance has a range of 12\" and does not require line of sight. Until the end of the phase, the target suffers a penalty to the characteristic stated (to a minimum of 1). - The Fleshspasm Polka: All models in the unit suffer -1 Strength. - The Waltz of Lethargy: All models in the unit suffer -D3 Initiative. - The Dance of Dreaming: All models in the unit suffer -D3 Leadership.",
+        "Unnatural Reflexes: The Masque of Slaanesh has the Dodge (6+) special rule, and may re-roll failed Dodge saves."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     },
     {
       "name": "The Blue Scribes",
@@ -2979,14 +4547,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Daemon of Tzeentch, Fly (9)\n• Spell Syphon: Whenever an enemy successfully casts a spell (including bound spells, etc.), place a counter\nnext to the Blue Scribes. At the start of your next Magic phase, the Blue Scribes can make a channelling\nattempt for each counter. Once the Blue Scribes have attempted to channel, remove all counters from them.",
+      "specialRules": "Daemon of Tzeentch, Fly (9)",
+      "specialRuleDescriptions": [
+        "Spell Syphon: Whenever an enemy successfully casts a spell (including bound spells, etc.), place a counter next to the Blue Scribes. At the start of your next Magic phase, the Blue Scribes can make a channelling attempt for each counter. Once the Blue Scribes have attempted to channel, remove all counters from them."
+      ],
       "upgrades": null,
       "notes": "• The Blue Scribes have a Unit Strength of 3.",
-      "pointsCost": 80,
       "unitSize": null,
       "crew": null,
       "mount": "Disc of Tzeentch (Daemon)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 80
     },
     {
       "name": "The Changeling",
@@ -3011,14 +4582,17 @@
       "equipment": "Hand weapon",
       "magic": "The Changeling is a Level 1 Wizard who uses spells from the Lore of Tzeentch.",
       "options": [],
-      "specialRules": "Daemon of Tzeentch\n• Formless Horror: At the start of each Close Combat phase, choose an enemy model in base contact with the\nChangeling. The Changeling may increase any or all of his Weapon Skill, Strength, Toughness, Initiative and\nAttacks characteristics to match those of the chosen enemy model until the end of that phase. If the chosen\nmodel has more than one value for a characteristic (as is the case with a mounted model), the Changeling may\nalways choose the higher value. The Changeling cannot match the characteristics of an enemy that is fighting\nin a challenge, unless the Changeling is fighting in the same challenge.\n69\n\nCREDITS\nWritten & Edited by:\nMathias Eliasson\nBased on Warhammer Fantasy by Games-Workshop\nSpecial thanks to all the people that have contributed with feedback and ideas",
+      "specialRules": "Daemon of Tzeentch",
+      "specialRuleDescriptions": [
+        "Formless Horror: At the start of each Close Combat phase, choose an enemy model in base contact with the Changeling. The Changeling may increase any or all of his Weapon Skill, Strength, Toughness, Initiative and Attacks characteristics to match those of the chosen enemy model until the end of that phase. If the chosen model has more than one value for a characteristic (as is the case with a mounted model), the Changeling may always choose the higher value. The Changeling cannot match the characteristics of an enemy that is fighting in a challenge, unless the Changeling is fighting in the same challenge. CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 130,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 130
     }
   ]
 }

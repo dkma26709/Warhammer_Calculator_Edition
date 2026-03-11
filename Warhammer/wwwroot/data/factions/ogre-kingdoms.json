@@ -24,34 +24,159 @@
       "equipment": "Hand weapon, gut-plate",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +5 points",
-        "Spear +5 points",
-        "Light lance +5 points",
-        "Polearm +10 points",
-        "Great weapon +15 points",
-        "May choose one of the following:",
-        "Ogre pistol +8 points",
-        "Brace of Ogre pistols +11 points",
-        "May take an ironfist +6 points",
-        "May take light armour +10 points",
-        "May take up to 2 Name-Gnoblars +3 points/Gnoblar",
-        "May take up to 2 Sword-Gnoblars +3 points/Gnoblar",
-        "May take a Luck-Gnoblar +5 points",
-        "May be mounted on one of the following:",
-        "Mournfang +45 points",
-        "Grimhorn Rhinox +96 points",
-        "Rhinox War Chariot (replacing the crew) +135 points",
-        "May take Big Names and/or Magic Items up to a total of 100 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Ogre pistol",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "Brace of Ogre pistols",
+              "points": 11,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "ironfist",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an ironfist +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Name-Gnoblars",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Name-Gnoblars +3 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Sword-Gnoblars",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Sword-Gnoblars +3 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Luck-Gnoblar",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Luck-Gnoblar +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Mournfang",
+              "points": 45,
+              "perModel": false
+            },
+            {
+              "name": "Grimhorn Rhinox",
+              "points": 96,
+              "perModel": false
+            },
+            {
+              "name": "Rhinox War Chariot (replacing the crew)",
+              "points": 135,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Big Names and/or Magic Items up to a total of 100 points",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Big Names and/or Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 215,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 215
     },
     {
       "name": "Slaughtermaster",
@@ -76,23 +201,80 @@
       "equipment": "Hand weapon",
       "magic": "A Slaughtermaster is a Level 3 Wizard who uses spells from the Lore of Beasts, Heavens, Death or the Great\nMaw. However, if you field any Butchers/Slaughtermasters in your army, at least one of them must choose his spells\nfrom the Lore of the Great Maw.",
       "options": [
-        "May be upgraded to a Level 4 Wizard +35 points",
-        "May choose one of the following:",
-        "Additional hand weapon +5 points",
-        "Great weapon +12 points",
-        "May take up to 2 Scalp-Gnoblars +5 points/Gnoblar",
-        "May take up to 2 Tooth-Gnoblars +5 points/Gnoblar",
-        "May take a Great Mawpot +100 points",
-        "May take Magic Items up to a total of 100 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 4 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 4 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Scalp-Gnoblars",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Scalp-Gnoblars +5 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Tooth-Gnoblars",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Tooth-Gnoblars +5 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Great Mawpot",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Great Mawpot +100 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items up to a total of 100 points"
+        }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge, Immunity (Poisoned Attacks)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 255,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 255
     },
     {
       "name": "Bruiser",
@@ -117,35 +299,164 @@
       "equipment": "Hand weapon, gut-plate",
       "magic": null,
       "options": [
-        "One Bruiser may carry the Battle Standard +25 points",
-        "May choose one of the following:",
-        "Additional hand weapon +4 points",
-        "Spear +4 points",
-        "Light lance +4 points",
-        "Polearm +8 points",
-        "Great weapon +12 points",
-        "May choose one of the following:",
-        "Ogre pistol +7 points",
-        "Brace of Ogre pistols +10 points",
-        "May take an ironfist +5 points",
-        "May take light armour +10 points",
-        "May take a Name-Gnoblar +3 points",
-        "May take up to 2 Sword-Gnoblars +3 points/Gnoblar",
-        "May take a Luck-Gnoblar +5 points",
-        "May be mounted on one of the following:",
-        "Mournfang +30 points",
-        "Grimhorn Rhinox +96 points",
-        "Rhinox War Chariot (replacing the crew) +135 points",
-        "May take Big Names and/or Magic Items up to a total of 50 points"
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Bruiser may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Ogre pistol",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "Brace of Ogre pistols",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "ironfist",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an ironfist +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Name-Gnoblar",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Name-Gnoblar +3 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Sword-Gnoblars",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Sword-Gnoblars +3 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Luck-Gnoblar",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Luck-Gnoblar +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Mournfang",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Grimhorn Rhinox",
+              "points": 96,
+              "perModel": false
+            },
+            {
+              "name": "Rhinox War Chariot (replacing the crew)",
+              "points": 135,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Big Names and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Big Names and/or Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": null,
       "upgrades": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model\ncarrying a magic standard can only carry other magic items up to a total of 25 points.",
       "notes": null,
-      "pointsCost": 135,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 135
     },
     {
       "name": "Butcher",
@@ -170,22 +481,68 @@
       "equipment": "Hand weapon",
       "magic": "A Butcher is a Level 1 Wizard who uses spells from the Lore of Beasts, Heavens, Death or the Great Maw.\nHowever, if you field any Butchers/Slaughtermasters in your army, at least one of them must choose his spells from the\nLore of the Great Maw.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May choose one of the following:",
-        "Additional hand weapon +4 points",
-        "Great weapon +9 points",
-        "May take up to 2 Scalp-Gnoblars +5 points/Gnoblar",
-        "May take up to 2 Tooth-Gnoblars +5 points/Gnoblar",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Scalp-Gnoblars",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Scalp-Gnoblars +5 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Tooth-Gnoblars",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Tooth-Gnoblars +5 points/Gnoblar"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge, Immunity (Poisoned Attacks)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 110,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 110
     },
     {
       "name": "Hunter",
@@ -210,27 +567,95 @@
       "equipment": "Hand weapon, gut-plate",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +4 points",
-        "Spear +4 points",
-        "Light lance +4 points",
-        "Great weapon +12 points",
-        "May choose one of the following:",
-        "Blood Vulture +6 points",
-        "Chain trap +6 points",
-        "Great Throwing Spear +6 points",
-        "Harpoon Launcher +10 points",
-        "May be mounted on a Stonehorn (replacing the Rider) +250 points",
-        "May take Big Names and/or Magic Items up to a total of 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Blood Vulture",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Chain trap",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Great Throwing Spear",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "Harpoon Launcher",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Stonehorn (replacing the Rider)",
+              "points": 250
+            }
+          ],
+          "raw": "May be mounted on a Stonehorn (replacing the Rider) +250 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Big Names and/or Magic Items up to a total of 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Big Names and/or Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Loner, Natural Armour (6+), Ogre Charge, Scouts\n• Their Master's Voice: Models with this special rule can join units of War Beasts and Monstrous Beasts.",
+      "specialRules": "Loner, Natural Armour (6+), Ogre Charge, Scouts",
+      "specialRuleDescriptions": [
+        "Their Master's Voice: Models with this special rule can join units of War Beasts and Monstrous Beasts."
+      ],
       "upgrades": null,
       "notes": "• A Hunter mounted on a Stonehorn has Unit Strength 14 and a Line of Sight value of 6. However, they lose the\nNatural Armour (6+) and Scouts special rule.",
-      "pointsCost": 130,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 130
     },
     {
       "name": "Firebelly",
@@ -255,20 +680,46 @@
       "equipment": "Hand weapon, gut-plate",
       "magic": "A Firebelly is a Level 1 Wizard who uses spells from the Lore of Fire.",
       "options": [
-        "May be upgraded to a Level 2 Wizard +35 points",
-        "May choose one of the following:",
-        "Additional hand weapon +4 points",
-        "Great weapon +9 points",
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "wizard_upgrade",
+          "upgrade": "Level 2 Wizard",
+          "points": 35,
+          "raw": "May be upgraded to a Level 2 Wizard +35 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Flaming Attacks, Immunity (Flaming Attacks), Natural Armour (6+), Ogre Charge\n• Fire Breath: A model with this special rule has a Strength 3 Breath Weapon with the Flaming Attacks special\nrule.",
+      "specialRules": "Flaming Attacks, Immunity (Flaming Attacks), Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": [
+        "Fire Breath: A model with this special rule has a Strength 3 Breath Weapon with the Flaming Attacks special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 130,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 130
     },
     {
       "name": "Yhetee Rimespeaker",
@@ -293,18 +744,36 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +4 points",
-        "Great weapon +12 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 4,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        }
       ],
-      "specialRules": "Flammable, Forest Strider, Hill Strider, Ice Attacks, Loner, Magical Attacks\n• Ice Breath: Rimespeakers have a Strength 3 Breath Weapon with the Ice Attacks and Magical Attacks special\nrules.\n• Everwinter Prayers: A model with this special rule knows the three Prayers listed below. They may attempt to\nuse one at the start of each of your turns by taking a Leadership test on their own unmodified Leadership. If\npassed, the Prayers is answered and take immediate effect.\n- Call of the Blizzard: All missile fire targeting the Rimespeaker and their unit suffer -1 to Hit until the start\nof your next turn.\n- Keening Gale: The Rimespeaker and their unit gains +3 Movement until the start of your next turn.\n- Pulverising Hailstorm: All enemy units in base contact with the Rimespeaker suffer D6 Strength 4 Hits.",
+      "specialRules": "Flammable, Forest Strider, Hill Strider, Ice Attacks, Loner, Magical Attacks",
+      "specialRuleDescriptions": [
+        "Ice Breath: Rimespeakers have a Strength 3 Breath Weapon with the Ice Attacks and Magical Attacks special rules.",
+        "Everwinter Prayers: A model with this special rule knows the three Prayers listed below. They may attempt to use one at the start of each of your turns by taking a Leadership test on their own unmodified Leadership. If passed, the Prayers is answered and take immediate effect. - Call of the Blizzard: All missile fire targeting the Rimespeaker and their unit suffer -1 to Hit until the start of your next turn. - Keening Gale: The Rimespeaker and their unit gains +3 Movement until the start of your next turn. - Pulverising Hailstorm: All enemy units in base contact with the Rimespeaker suffer D6 Strength 4 Hits."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     },
     {
       "name": "Gnoblar Honcho",
@@ -329,38 +798,71 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapon +2 points",
-        "Great weapon +9 points",
-        "May choose one of the following:",
-        "Throwing weapons +3 points",
-        "Sling +5 points",
-        "May take Magic Items up to a total of 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 2,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "throwing weapon",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "sling",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
       ],
-      "specialRules": "Beneath Contempt, Bicker\n19\n\nCHARACTER MOUNTS\nMOURNFANG",
+      "specialRules": "Beneath Contempt, Bicker",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 25,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 25
     },
     {
-      "name": "Mournfang 8",
-      "category": "Heroes",
+      "name": "Mournfang",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Mournfang 8",
-          "M": 3,
-          "WS": 0,
-          "BS": 5,
-          "S": 4,
-          "T": 3,
-          "W": 2,
-          "I": 3,
-          "A": 5,
-          "Ld": null
+          "name": "Mournfang",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 2,
+          "A": 3,
+          "Ld": 5
         }
       ],
       "troopType": "Mosntrous Beast (Animal)",
@@ -369,29 +871,30 @@
       "magic": null,
       "options": [],
       "specialRules": "Impact Hits (D3), Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• A model mounted on a Mournfang has a Unit Strength and Line of Sight value of 4.\nGRIMHORN RHINOX",
-      "pointsCost": null,
+      "notes": "• A model mounted on a Mournfang has a Unit Strength and Line of Sight value of 4.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Grimhorn Rhinox 6",
-      "category": "Heroes",
+      "name": "Grimhorn Rhinox",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Grimhorn Rhinox 6",
-          "M": 3,
-          "WS": 0,
-          "BS": 5,
+          "name": "Grimhorn Rhinox",
+          "M": 6,
+          "WS": 3,
+          "BS": 0,
           "S": 5,
-          "T": 4,
-          "W": 2,
-          "I": 4,
-          "A": 5,
-          "Ld": null
+          "T": 5,
+          "W": 4,
+          "I": 2,
+          "A": 4,
+          "Ld": 5
         }
       ],
       "troopType": "Monstrous Creature (Animal)",
@@ -400,26 +903,27 @@
       "magic": null,
       "options": [],
       "specialRules": "Frenzy, Impact Hits (D3), Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• A model mounted on a Grimhorn Rhinox has a Unit Strength and Line of Sight value of 5.\nGREAT MAWPOT",
-      "pointsCost": null,
+      "notes": "• A model mounted on a Grimhorn Rhinox has a Unit Strength and Line of Sight value of 5.",
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Great Mawpot -",
-      "category": "Heroes",
+      "name": "Great Mawpot",
+      "category": "CHARACTER MOUNTS",
       "profiles": [
         {
-          "name": "Great Mawpot -",
+          "name": "Great Mawpot",
           "M": null,
           "WS": null,
           "BS": null,
-          "S": 6,
-          "T": 5,
-          "W": null,
+          "S": null,
+          "T": 6,
+          "W": 5,
           "I": null,
           "A": null,
           "Ld": null
@@ -430,17 +934,21 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "• Vessel of the Gulping God: A Slaughtermaster with a Great Mawpot gains a 4+ Ward save as well as the\nInspiring Presence (6) and Stubborn special rules. In addition, he gains a +1 casting bonus and add +6\" to the\nrange of his spells. Finally, his troop type changes to War Machine and he counts as being part of the crew. The\nSlaughtermaster can never choose to leave the Great Mawpot during the game. If the Slaughtermaster is killed,\nthe Great Mawpot is also removed as a casualty.\n• Battlebroth: Whenever the Slaughtermaster casts an augment spell, the target unit regains 1 Wound's worth of\nmodels, just like a Summoning spell.",
+      "specialRules": "• Vessel of the Gulping God: A Slaughtermaster with a Great Mawpot gains a 4+ Ward save as well as the",
+      "specialRuleDescriptions": [
+        "Inspiring Presence (6) and Stubborn special rules. In addition, he gains a +1 casting bonus and add +6\" to the range of his spells. Finally, his troop type changes to War Machine and he counts as being part of the crew. The Slaughtermaster can never choose to leave the Great Mawpot during the game. If the Slaughtermaster is killed, the Great Mawpot is also removed as a casualty.",
+        "Battlebroth: Whenever the Slaughtermaster casts an augment spell, the target unit regains 1 Wound's worth of models, just like a Summoning spell."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": null,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": null
     },
     {
-      "name": "Ogre Bull",
+      "name": "Ogre Bulls",
       "category": "Core",
       "profiles": [
         {
@@ -462,26 +970,73 @@
       "equipment": "Hand weapon, gut-plate",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapons +3 points/model",
-        "Ironfists +3 points/model",
-        "May upgrade one Ogre Bull to a Leader +5 points",
-        "May upgrade one Ogre Bull to a Musician +5 points",
-        "May upgrade one Ogre Bull to a Standard Bearer +10 points",
-        "May take a Look-out Gnoblar 5 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Ironfists",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ogre Bull to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Ogre Bull to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Ogre Bull to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Look-out Gnoblar 5 points",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Look-out Gnoblar 5 points"
+            },
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Natural Armour (6+), Ogre Charge\nIRONGUTS",
+      "specialRules": "Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 29,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 29
     },
     {
-      "name": "Irongut",
+      "name": "Ironguts",
       "category": "Core",
       "profiles": [
         {
@@ -503,23 +1058,127 @@
       "equipment": "Great weapon, light armour, gut-plate",
       "magic": null,
       "options": [
-        "May upgrade one Irongut to a Leader +5 points",
-        "May upgrade one Irongut to a Musician +5 points",
-        "May upgrade one Irongut to a Standard Bearer +10 points",
-        "May take a Look-out Gnoblar 5 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Irongut to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Irongut to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Irongut to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Look-out Gnoblar 5 points",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Look-out Gnoblar 5 points"
+            },
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Natural Armour (6+), Ogre Charge\n• Down to the Ironguts: If a friendly unit of Ogres within 6\" of an Irongut unit breaks from combat, the\nIronguts may re-roll 1's when rolling To Hit and To Wound in close combat this turn.",
+      "specialRules": "Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": [
+        "Down to the Ironguts: If a friendly unit of Ogres within 6\" of an Irongut unit breaks from combat, the Ironguts may re-roll 1's when rolling To Hit and To Wound in close combat this turn."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 43,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 43
     },
     {
-      "name": "Leadbelcher",
+      "name": "Gnoblar Fighters",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Gnoblar Fighter",
+          "M": 4,
+          "WS": 2,
+          "BS": 3,
+          "S": 2,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5,
+          "points": 2.5
+        }
+      ],
+      "troopType": "Infantry (Gnoblar)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, throwing weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Gnoblar Fighter to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Gnoblar Fighter to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Gnoblar Fighter to a Standard Bearer +10 points"
+        }
+      ],
+      "specialRules": "Beneath Contempt, Bicker",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "20+",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 2.5
+    },
+    {
+      "name": "Leadbelchers",
       "category": "Special",
       "profiles": [
         {
@@ -541,23 +1200,56 @@
       "equipment": "Hand weapon, Leadbelcher gun, gut-plate\n• Leadbelcher gun: Leadbelcher guns have the following profile:\nRange: Strength: Special Rules:\n24 4 Armour Piercing (1), Multiple Shots (D6), Rapid Fire, Slow to Fire",
       "magic": null,
       "options": [
-        "May upgrade one Leadbelcher to a Leader +5 points",
-        "May upgrade one Leadbelcher to a Musician +5 points",
-        "May upgrade one Leadbelcher to a Standard Bearer +10 points",
-        "May take a Look-out Gnoblar 5 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Leadbelcher to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Leadbelcher to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Leadbelcher to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Look-out Gnoblar 5 points",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Look-out Gnoblar 5 points"
+            },
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 42,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 42
     },
     {
-      "name": "Ogre",
+      "name": "Mournfang Cavalry",
       "category": "Special",
       "profiles": [
         {
@@ -591,27 +1283,87 @@
       "equipment": "Hand weapon, light armour, gut-plate",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Ironfists +3 points/model",
-        "Great weapons +9 points/model",
-        "May upgrade one Ogre to a Leader +5 points",
-        "May take a brace of Ogre Pistols 6 points",
-        "May upgrade one Ogre to a Musician +5 points",
-        "May upgrade one Ogre to a Standard Bearer +10 points",
-        "May take a Look-out Gnoblar 5 points",
-        "May take a Magic Standard worth up to 25 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Ironfists",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ogre to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "brace of Ogre Pistols 6 points",
+                  "points": 6,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a brace of Ogre Pistols 6 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Ogre to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Look-out Gnoblar 5 points",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Look-out Gnoblar 5 points"
+            },
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Impact Hits (D3), Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Mournfang Cavalry have a Unit Strength and Line of Sight value of 4.",
-      "pointsCost": 68,
       "unitSize": "2+",
       "crew": null,
       "mount": "Mournfang (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 68
     },
     {
-      "name": "Maneater",
+      "name": "Maneaters",
       "category": "Special",
       "profiles": [
         {
@@ -633,41 +1385,159 @@
       "equipment": "Hand weapon, gut-plate",
       "magic": null,
       "options": [
-        "Any model may be armed with one of the following (different models may have different weapons):",
-        "Additional hand weapons +3 points/model",
-        "Ironfists +3 points/model",
-        "Oriental longsword +3 points/model",
-        "Ogre pistol +6 points/model",
-        "Polearm +6 points/model",
-        "Brace of Ogre pistols +9 points/model",
-        "Great weapon +9 points/model",
-        "Any model may choose one of the following (different models may have different special rules):",
-        "Armour Piercing (1) +1 point/model",
-        "Devastating Charge +1 point/model",
-        "Killing Blow +2 points/model",
-        "Mighty Blow (1) +2 points/model",
-        "Multiple Wounds (2) +2 points/model",
-        "Parry (6+) +2 points/model",
-        "Poisoned Attacks (close combat only) +2 points/model",
-        "Hatred +3 points/model",
-        "May take light armour +3 points/model",
-        "May upgrade one Maneater to a Leader +5 points",
-        "May upgrade one Maneater to a Musician +5 points",
-        "May upgrade one Maneater to a Standard Bearer +10 points",
-        "May take a Look-out Gnoblar 5 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Ironfists",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Oriental longsword",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Ogre pistol",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "polearm",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "Brace of Ogre pistols",
+              "points": 9,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": true
+            }
+          ],
+          "raw": "Any model may be armed with one of the following (different models may have different weapons):"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Armour Piercing (1)",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Devastating Charge",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Killing Blow",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Mighty Blow (1)",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Multiple Wounds (2)",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Parry (6+)",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Poisoned Attacks (close combat only)",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "Hatred",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "Any model may choose one of the following (different models may have different special rules):"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Maneater to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Maneater to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Maneater to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Look-out Gnoblar 5 points",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Look-out Gnoblar 5 points"
+            },
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
-      "specialRules": "Immunity (Psychology), Natural Armour (6+), Ogre Charge, Stubborn\n• Motley Crew: The models in a unit of Maneaters can have a variety of different weapons and special rules. If\nthey do, your opponent must make it clear which model they want to allocate their attacks to. Any excess\nwounds are carried over to the rest of the unit as normal in an order chosen by your opponent.",
+      "specialRules": "Immunity (Psychology), Natural Armour (6+), Ogre Charge, Stubborn",
+      "specialRuleDescriptions": [
+        "Motley Crew: The models in a unit of Maneaters can have a variety of different weapons and special rules. If they do, your opponent must make it clear which model they want to allocate their attacks to. Any excess wounds are carried over to the rest of the unit as normal in an order chosen by your opponent."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 43,
       "unitSize": "3+",
-      "crew": "The models in a unit of Maneaters can have a variety of different weapons and special rules. If\nthey do, your opponent must make it clear which model they want to allocate their attacks to. Any excess\nwounds are carried over to the rest of the unit as normal in an order chosen by your opponent.",
+      "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 43
     },
     {
-      "name": "Yhetee",
+      "name": "Yhetees",
       "category": "Special",
       "profiles": [
         {
@@ -689,19 +1559,25 @@
       "equipment": "Two hand weapons",
       "magic": null,
       "options": [
-        "May upgrade one Yhetee to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Yhetee to a Leader +5 points"
+        }
       ],
-      "specialRules": "Flammable, Forest Strider, Hill Strider, Ice Attacks, Loner, Magical Attacks\nGORGERS",
+      "specialRules": "Flammable, Forest Strider, Hill Strider, Ice Attacks, Loner, Magical Attacks",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 38,
       "unitSize": "3+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 38
     },
     {
-      "name": "Gorger",
+      "name": "Gorgers",
       "category": "Special",
       "profiles": [
         {
@@ -723,22 +1599,42 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapons +3 points/model",
-        "Great weapons +12 points/model",
-        "May upgrade one Gorger to a Leader +5 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 12,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Gorger to a Leader +5 points"
+        }
       ],
       "specialRules": "Ambushers, Frenzy, Killing Blow, Natural Armour (6+), Skirmishers, Unbreakable",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 42,
       "unitSize": "1-5",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 42
     },
     {
-      "name": "Sabretusk",
+      "name": "Sabretusks",
       "category": "Special",
       "profiles": [
         {
@@ -760,22 +1656,41 @@
       "equipment": null,
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Ambushers +1 point/model",
-        "Killing Blow +1 point/model",
-        "Scouts +1 point/model"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Ambushers",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Killing Blow",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "Scouts",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        }
       ],
-      "specialRules": "Fear, Natural Armour (6+)\nCRAGBEASTS",
+      "specialRules": "Fear, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 19,
       "unitSize": "2+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 19
     },
     {
-      "name": "Cragbeast",
+      "name": "Cragbeasts",
       "category": "Special",
       "profiles": [
         {
@@ -798,13 +1713,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 46,
       "unitSize": "1+",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 46
     },
     {
       "name": "Rhinox War Chariot",
@@ -854,16 +1770,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Fear, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
-      "notes": "• A Rhinox War Chariot has a Line of Sight value of 4.\nGNOBLAR TRAPPERS",
-      "pointsCost": 130,
+      "notes": "• A Rhinox War Chariot has a Line of Sight value of 4.",
       "unitSize": null,
       "crew": "1 Charioteer (Ogre)",
       "mount": null,
-      "drawnBy": "1 Young Rhinox (Animal)"
+      "drawnBy": "1 Young Rhinox (Animal)",
+      "pointsCost": 130
     },
     {
-      "name": "Gnoblar Trapper",
+      "name": "Gnoblar Trappers",
       "category": "Special",
       "profiles": [
         {
@@ -885,19 +1802,27 @@
       "equipment": "Hand weapon, throwing weapon",
       "magic": null,
       "options": [
-        "May upgrade one Gnoblar Fighter to a Leader +5 points"
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Gnoblar Fighter to a Leader +5 points"
+        }
       ],
-      "specialRules": "Beneath Contempt, Bicker, Scouts, Skirmishers\n• Trappers: Enemy units that successfully charge a unit of Gnoblar Trappers' front must take 1 Dangerous Terrain test for\neach Trapper in the unit as soon as the charge is completed.",
+      "specialRules": "Beneath Contempt, Bicker, Scouts, Skirmishers",
+      "specialRuleDescriptions": [
+        "Trappers: Enemy units that successfully charge a unit of Gnoblar Trappers' front must take 1 Dangerous Terrain test for each Trapper in the unit as soon as the charge is completed."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 6,
       "unitSize": "5-20",
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 6
     },
     {
-      "name": "Scraplauncher",
+      "name": "Gnoblar Scraplauncher",
       "category": "Special",
       "profiles": [
         {
@@ -944,16 +1869,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Fear, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• A Scraplauncher has a Line of Sight value of 4.",
-      "pointsCost": 130,
       "unitSize": null,
       "crew": "7 Scrappers (Gnoblar)",
       "mount": null,
-      "drawnBy": "1 Young Rhinox (Animal)"
+      "drawnBy": "1 Young Rhinox (Animal)",
+      "pointsCost": 130
     },
     {
-      "name": "Skewerslinger",
+      "name": "Gnoblar Skewerslinger",
       "category": "Special",
       "profiles": [
         {
@@ -1000,16 +1926,17 @@
       "magic": null,
       "options": [],
       "specialRules": "Fear, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• A Skewerslinger has a Line of Sight value of 4.",
-      "pointsCost": 90,
       "unitSize": null,
       "crew": "7 Scrappers (Gnoblar)",
       "mount": null,
-      "drawnBy": "1 Young Rhinox (Animal)"
+      "drawnBy": "1 Young Rhinox (Animal)",
+      "pointsCost": 90
     },
     {
-      "name": "Ogre",
+      "name": "Grimhorn Rhinox Riders",
       "category": "Rare",
       "profiles": [
         {
@@ -1043,25 +1970,89 @@
       "equipment": "Hand weapon, light armour, gut-plate",
       "magic": null,
       "options": [
-        "May choose one of the following:",
-        "Additional hand weapons +3 points/model",
-        "Ironfists +3 points/model",
-        "Great weapons +9 points/model",
-        "May upgrade one Ogre to a Leader +5 points",
-        "May take a brace of Ogre Pistols 6 points",
-        "May upgrade one Ogre to a Musician +5 points",
-        "May upgrade one Ogre to a Standard Bearer +10 points",
-        "May take a Look-out Gnoblar 5 points",
-        "May take a Magic Standard worth up to 50 points"
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "Ironfists",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ogre to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "brace of Ogre Pistols 6 points",
+                  "points": 6,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a brace of Ogre Pistols 6 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Ogre to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Look-out Gnoblar 5 points",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a Look-out Gnoblar 5 points"
+            },
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
       ],
       "specialRules": "Frenzy, Impact Hits (D3), Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Grimhorn Rhinox Riders have a Unit Strength and Line of Sight value of 5.\n• Grimhorn Rhinox Riders follow the rules for Ranks and Supporting Attacks from Monstrous Cavalry.",
-      "pointsCost": 100,
       "unitSize": "2+",
       "crew": null,
       "mount": "Grimhorn Rhinox (Animal)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 100
     },
     {
       "name": "Ironblaster",
@@ -1123,13 +2114,14 @@
       "magic": null,
       "options": [],
       "specialRules": "Fear, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• An Ironblaster has a Line of Sight value of 4.",
-      "pointsCost": 180,
       "unitSize": null,
       "crew": "1 Leadbelcher (Ogre)",
       "mount": null,
-      "drawnBy": "1 Young Rhinox (Animal)"
+      "drawnBy": "1 Young Rhinox (Animal)",
+      "pointsCost": 180
     },
     {
       "name": "Stonehorn",
@@ -1166,16 +2158,32 @@
       "equipment": "Light lance, gut-plate (Beast Rider only)",
       "magic": null,
       "options": [
-        "May replace light lance with a Blood Vulture +3 points"
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "light lance",
+          "choices": [
+            {
+              "name": "Blood Vulture",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace light lance with a Blood Vulture +3 points"
+        }
       ],
-      "specialRules": "Frenzy, Natural Armour (3+)\n• Earth-shattering Charge: A Stonehorn has the Impact Hits (D6) special rule. When a Stonehorn makes a\nsuccessful charge, you may roll 2D6 when determining the number of Impact Hits, and choose the highest\nresult.\n• Stone Skeleton: If an Attack with the Multiple Wounds special rule successfully wounds a Stonehorn, halve\nthe number of Wounds inflicted (rounding fractions up)",
+      "specialRules": "Frenzy, Natural Armour (3+)",
+      "specialRuleDescriptions": [
+        "Earth-shattering Charge: A Stonehorn has the Impact Hits (D6) special rule. When a Stonehorn makes a successful charge, you may roll 2D6 when determining the number of Impact Hits, and choose the highest result.",
+        "Stone Skeleton: If an Attack with the Multiple Wounds special rule successfully wounds a Stonehorn, halve the number of Wounds inflicted (rounding fractions up)"
+      ],
       "upgrades": null,
       "notes": "• A Stonehorn has Unit Strength 14 and a Line of Sight value of 6.",
-      "pointsCost": 260,
       "unitSize": null,
       "crew": "1 Beast Rider (Ogre)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 260
     },
     {
       "name": "Thundertusk",
@@ -1212,14 +2220,18 @@
       "equipment": "Chaintrap, harpoon launcher, gut-plate (Beast Riders only)",
       "magic": null,
       "options": [],
-      "specialRules": "Immunity (Ice Attacks), Impact Hits (D6), Natural Armour (4+)\n• Numbing Chill: Any enemy unit within 6\" of a Thundertusk has the Always Strikes Last special rule. This has\nno effect on models with Immunity (Ice Attacks).\n• Sphere of Frost-wreathed Ice: The Thundertusk can make a stone thrower shooting attack with the following\nprofile:\nRange: Strength: Special Rules:\n6-24\" 3(6) Ice Attacks, Multiple Wounds (D3)\nDo not use the Stone Thrower Misfire chart if the sphere of frost-wreathed ice suffers a misfire. Instead, a\nmisfire means that the sphere does not fire this turn, though it may still fire as normal next turn.",
+      "specialRules": "Immunity (Ice Attacks), Impact Hits (D6), Natural Armour (4+)",
+      "specialRuleDescriptions": [
+        "Numbing Chill: Any enemy unit within 6\" of a Thundertusk has the Always Strikes Last special rule. This has no effect on models with Immunity (Ice Attacks).",
+        "Sphere of Frost-wreathed Ice: The Thundertusk can make a stone thrower shooting attack with the following profile: Range: Strength: Special Rules: 6-24\" 3(6) Ice Attacks, Multiple Wounds (D3) Do not use the Stone Thrower Misfire chart if the sphere of frost-wreathed ice suffers a misfire. Instead, a misfire means that the sphere does not fire this turn, though it may still fire as normal next turn."
+      ],
       "upgrades": null,
       "notes": "• One Beast Rider has a chaintrap, one Beast Rider has a harpoon launcher.\n• A Thundertusk has Unit Strength 16 and a Line of Sight value of 6.",
-      "pointsCost": 260,
       "unitSize": null,
       "crew": "2 Beast Riders (Ogre)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 260
     },
     {
       "name": "Ice Mammoth",
@@ -1256,16 +2268,30 @@
       "equipment": "Chaintrap, harpoon launcher, gut-plate (Beast Riders only)",
       "magic": null,
       "options": [
-        "May take an additional Ogre Beast Rider (armed with either a chaintrap or harpoon launcher) +15 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional Ogre Beast Rider (armed with either a chaintrap or harpoon launcher)",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional Ogre Beast Rider (armed with either a chaintrap or harpoon launcher) +15 points"
+        }
       ],
-      "specialRules": "Impact Hits (D6+1), Immunity (Psychology), Natural Armour (4+)\n35\n\n• Mammoth Attacks: When the Ice Mammoth attacks, roll on the appropriate following table to determine its\naction. If no suitable target is in base contact, roll again on the chart until you get another result.\nMAN-SIZED THINGS CHART\nUse this chart when fighting Infantry, Cavalry, War Beasts or Swarms.\nD6 Attack Type\n1-2 Trample\n3-4 Stomp\n5 Bellow\n6 Pick up and...\nBIG THINGS CHART\nUse this chart when fighting Monsters, Monstrous Beasts, Monstrous Infantry, Monstrous Cavalry,\nChariots, War Machines, and Shrines.\nD6 Attack Type\n1-2 Butt\n3-5 Gore\n6 Bellow\n- Trample: A single enemy unit in base contact suffers D6 Strength 7 hits, plus an additional D3 Hits for\neach rank of five or more models it has.\n- Bellow: Neither the Mammoth nor any unit in contact with it fight if they have not already done so this\nturn. The Mammoth automatically wins the combat by 3 points or more. This result has no effect against\nAnimated Constructs.\n- Butt: The Mammoth inflicts one automatic hit against one model in base contact (your choice), causing\nD3 Strength 7 hits with the Multiple Wounds (D3) special rule\n- Stomp: The Mammoth inflicts 3D6 Hits with its Stomp Attack this turn.\n- Gore: The Mammoth makes D6 attacks against a chosen unit in dose combat with the Heroic Killing\nBlow special rule.\n- Pick up and...: The Mammoth grabs a Character from the target unit (Mammoth player's choice). Roll a\nD6 to see what unfortunate fate befalls the victim.\nD6 Result\n1-2 Throw back into combat: The victim is hurled back into their own unit like a missile. The\nvictim suffers D3 Strength 6 Hits which Ignores Armour saves, and D6 Strength 3 hits are\ninflicted on the unit (save as normal).\n3-4 Hurl: The victim is hurled into an enemy unit within 12\" of the Mammoth – randomly\ndetermine which. The victim is removed as a casualty, and the unit takes D6 Strength 3 hits.\nUnsaved Wounds from these hits count towards the Mammoth's combat result. If no enemy\nunits are in range, treat this as a Throw Back into Combat result instead.\n5 Eat: The victim model is removed as a casualty, and the Mammoth may immediately recover a\nsingle Wound it has lost previously in the game.\n6 Squash and grab another: The model is removed as a casualty and the Mammoth then picks\nanother victim. Roll again on this table to see what happens.",
+      "specialRules": "Impact Hits (D6+1), Immunity (Psychology), Natural Armour (4+)",
+      "specialRuleDescriptions": [
+        "Mammoth Attacks: When the Ice Mammoth attacks, roll on the appropriate following table to determine its action. If no suitable target is in base contact, roll again on the chart until you get another result. MAN-SIZED THINGS CHART Use this chart when fighting Infantry, Cavalry, War Beasts or Swarms. D6 Attack Type 1-2 Trample 3-4 Stomp 5 Bellow 6 Pick up and... BIG THINGS CHART Use this chart when fighting Monsters, Monstrous Beasts, Monstrous Infantry, Monstrous Cavalry, Chariots, War Machines, and Shrines. D6 Attack Type 1-2 Butt 3-5 Gore 6 Bellow - Trample: A single enemy unit in base contact suffers D6 Strength 7 hits, plus an additional D3 Hits for each rank of five or more models it has. - Bellow: Neither the Mammoth nor any unit in contact with it fight if they have not already done so this turn. The Mammoth automatically wins the combat by 3 points or more. This result has no effect against Animated Constructs. - Butt: The Mammoth inflicts one automatic hit against one model in base contact (your choice), causing D3 Strength 7 hits with the Multiple Wounds (D3) special rule - Stomp: The Mammoth inflicts 3D6 Hits with its Stomp Attack this turn. - Gore: The Mammoth makes D6 attacks against a chosen unit in dose combat with the Heroic Killing Blow special rule. - Pick up and...: The Mammoth grabs a Character from the target unit (Mammoth player's choice). Roll a D6 to see what unfortunate fate befalls the victim. D6 Result 1-2 Throw back into combat: The victim is hurled back into their own unit like a missile. The victim suffers D3 Strength 6 Hits which Ignores Armour saves, and D6 Strength 3 hits are inflicted on the unit (save as normal). 3-4 Hurl: The victim is hurled into an enemy unit within 12\" of the Mammoth – randomly determine which. The victim is removed as a casualty, and the unit takes D6 Strength 3 hits. Unsaved Wounds from these hits count towards the Mammoth's combat result. If no enemy units are in range, treat this as a Throw Back into Combat result instead. 5 Eat: The victim model is removed as a casualty, and the Mammoth may immediately recover a single Wound it has lost previously in the game. 6 Squash and grab another: The model is removed as a casualty and the Mammoth then picks another victim. Roll again on this table to see what happens."
+      ],
       "upgrades": null,
       "notes": "• One Beast Rider has a chaintrap, one Beast Rider has a harpoon launcher.\n• An Ice Mammoth has Unit Strength 24 (26 with an additional Beast Rider) and a Line of Sight value of 10.",
-      "pointsCost": 350,
       "unitSize": null,
       "crew": "2 Beast Riders (Ogre)",
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 350
     },
     {
       "name": "Slave Giant",
@@ -1290,14 +2316,18 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Immunity (Psychology), Natural Armour (6+)\n• Fall Over: A Giant must test to see whether it falls over if any of the following apply:\n- If it is beaten in close combat. Test once results are established but before taking a Break test.\n- If it is fleeing at the start of the Movement phase.\n- When it crosses an obstacle. Test when the obstacle is reached.\n- If the Giant decides to Jump Up and Down on an enemy. Test immediately beforehand.\nTo see if a Giant falls over roll a D6. On a roll of 1, the Giant falls over. A slain Giant falls over automatically.\nTo determine in which direction the Giant falls, roll a scatter dice. Place the small round template in base\ncontact with the Giant in the direction of the scatter dice, measured from the centre of the Giant's base. A\nmodel hit by a falling Giant suffers a Strength 6 Hit with the Multiple Wounds (D3) special rule. If the unit is\nin combat and the Giant has fallen over whilst attempting to Jump Up and Down, wounds inflicted by a falling\nGiant count towards the combat result. A Giant that falls over automatically suffers 1 wound. If the Giant is in\ncombat then this Wound counts towards combat resolution.\nOnce on the ground, a Giant may get up in his following Movement phase, but may not move in the Movement\nphase that turn. Whilst on the ground a Giant may not attack, but he can still defend himself after a fashion so\nthe enemy must still roll to score hits on him. If forced to flee whilst on the ground the Giant is slain. If the\nGiant gets the opportunity to pursue his foes whilst he's on the ground he stands up instead. A Giant may attack\nin close combat as usual on the turn he stands up.\n37\n\n• Giant Special Attacks: To determine what a Giant does in each Close Combat phase, pick a unit in base\ncontact with the Giant and roll a D6 on one of the following tables. Which table you use depends on the size of\nthe Giant's victim. If no suitable target is in base contact, roll again on the chart until you get another result.\nMAN-SIZED THINGS CHART\nUse this chart when fighting Infantry, Large Infantry, Cavalry, War Beasts or Swarms.\nD6 Result\n1 Yell and Bawl\n2 Jump Up and Down\n3 Pick Up and...\n4-6 Flail with Chain\nBIG THINGS CHART\nUse this chart when fighting Monsters, Monstrous Creatures, Monstrous Beasts, Monstrous Infantry,\nMonstrous Cavalry, Chariots, War Machines, and Shrines.\nD6 Result\n1 Yell and Bawl\n2-4 Throttle with Chain\n5-6 'Eadbutt\n- 'Eadbutt: The Giant automatically inflicts D3 Wounds which Ignores Armour Saves. If the victim is\nwounded but not slain, then it loses all of its following attacks. If the target has not yet attacked in that\ncombat round, it loses those attacks; if it has already attacked, then it loses the next round's attacks.\n- Flail with Chain: The Giant inflicts D6 Hits this round.\n- Jump Up and Down: The Giant must test to determine if it falls over (see previous page). If it falls over,\nwork out where it falls and calculate damage as already described. Any wounds caused by the fall (on\neither side) count towards the combat result. Otherwise, it will attack using the Stomp (2D6) special rule.\nA Giant that starts to Jump Up and Down will therefore continue to do so on the same target until it falls\nover, the target is destroyed, or the combat ends.\n- Throttle with Chain: Both the Slave Giant and the target roll a D6 and add their respective Strength\nvalues. If the Slave Giant's roll is higher than the target's, the target suffers D6 Wounds which Ignore\nArmour Saves. If the Slave Giant's roll is 1 during the roll-off, they cannot attack at all in the following\nround of the same combat.\n- Yell and Bawl: Neither the Giant nor models in contact with it fight if they have not already done so this\nround. The Giant automatically wins the combat by 2 points.\n- Pick Up and...: The Giant stoops down and grabs a single Character in base contact from the target unit\n(Giant player's choice). The Giant grabs the model and the player rolls a D6 to see what happens next:\nD6 Result\n1 Stuff into Bag: The model is effectively removed as a casualty and can do nothing whilst in the\nbag, but if the Giant should be slain, any enemy trapped in its bag are freed at the end of the\nbattle, and no longer counts as casualties.\n2 Throw Back into Combat: The victim is hurled into its own unit like a living missile. The\nvictim suffers D3 Strength 6 Hits which Ignores Armour saves, and D6 Strength 3 hits are\ninflicted on the unit (save as normal).\n3 Hurl: The victim is hurled into an enemy unit within 12\" of the Giant – randomly determine\nwhich. The victim is removed as a casualty, and the unit takes D6 Strength 3 hits. Unsaved\nWounds from these hits count towards the Giant's combat result. If no enemy units are in range,\ntreat this as a Throw Back into Combat result instead.\n4-5 Squash or Eat: The model is removed as a casualty.\n6 Pick Another: Treat the attack as if the Giant had rolled the Stuff into Bag result, above, and\nthen choose another victim. Roll again on this table to see what the Giant does with it.",
+      "specialRules": "Immunity (Psychology), Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Fall Over: A Giant must test to see whether it falls over if any of the following apply: - If it is beaten in close combat. Test once results are established but before taking a Break test. - If it is fleeing at the start of the Movement phase. - When it crosses an obstacle. Test when the obstacle is reached. - If the Giant decides to Jump Up and Down on an enemy. Test immediately beforehand. To see if a Giant falls over roll a D6. On a roll of 1, the Giant falls over. A slain Giant falls over automatically. To determine in which direction the Giant falls, roll a scatter dice. Place the small round template in base contact with the Giant in the direction of the scatter dice, measured from the centre of the Giant's base. A model hit by a falling Giant suffers a Strength 6 Hit with the Multiple Wounds (D3) special rule. If the unit is in combat and the Giant has fallen over whilst attempting to Jump Up and Down, wounds inflicted by a falling Giant count towards the combat result. A Giant that falls over automatically suffers 1 wound. If the Giant is in combat then this Wound counts towards combat resolution. Once on the ground, a Giant may get up in his following Movement phase, but may not move in the Movement phase that turn. Whilst on the ground a Giant may not attack, but he can still defend himself after a fashion so the enemy must still roll to score hits on him. If forced to flee whilst on the ground the Giant is slain. If the Giant gets the opportunity to pursue his foes whilst he's on the ground he stands up instead. A Giant may attack in close combat as usual on the turn he stands up.",
+        "Giant Special Attacks: To determine what a Giant does in each Close Combat phase, pick a unit in base contact with the Giant and roll a D6 on one of the following tables. Which table you use depends on the size of the Giant's victim. If no suitable target is in base contact, roll again on the chart until you get another result. MAN-SIZED THINGS CHART Use this chart when fighting Infantry, Large Infantry, Cavalry, War Beasts or Swarms. D6 Result 1 Yell and Bawl 2 Jump Up and Down 3 Pick Up and... 4-6 Flail with Chain BIG THINGS CHART Use this chart when fighting Monsters, Monstrous Creatures, Monstrous Beasts, Monstrous Infantry, Monstrous Cavalry, Chariots, War Machines, and Shrines. D6 Result 1 Yell and Bawl 2-4 Throttle with Chain 5-6 'Eadbutt - 'Eadbutt: The Giant automatically inflicts D3 Wounds which Ignores Armour Saves. If the victim is wounded but not slain, then it loses all of its following attacks. If the target has not yet attacked in that combat round, it loses those attacks; if it has already attacked, then it loses the next round's attacks. - Flail with Chain: The Giant inflicts D6 Hits this round. - Jump Up and Down: The Giant must test to determine if it falls over (see previous page). If it falls over, work out where it falls and calculate damage as already described. Any wounds caused by the fall (on either side) count towards the combat result. Otherwise, it will attack using the Stomp (2D6) special rule. A Giant that starts to Jump Up and Down will therefore continue to do so on the same target until it falls over, the target is destroyed, or the combat ends. - Throttle with Chain: Both the Slave Giant and the target roll a D6 and add their respective Strength values. If the Slave Giant's roll is higher than the target's, the target suffers D6 Wounds which Ignore Armour Saves. If the Slave Giant's roll is 1 during the roll-off, they cannot attack at all in the following round of the same combat. - Yell and Bawl: Neither the Giant nor models in contact with it fight if they have not already done so this round. The Giant automatically wins the combat by 2 points. - Pick Up and...: The Giant stoops down and grabs a single Character in base contact from the target unit (Giant player's choice). The Giant grabs the model and the player rolls a D6 to see what happens next: D6 Result 1 Stuff into Bag: The model is effectively removed as a casualty and can do nothing whilst in the bag, but if the Giant should be slain, any enemy trapped in its bag are freed at the end of the battle, and no longer counts as casualties. 2 Throw Back into Combat: The victim is hurled into its own unit like a living missile. The victim suffers D3 Strength 6 Hits which Ignores Armour saves, and D6 Strength 3 hits are inflicted on the unit (save as normal). 3 Hurl: The victim is hurled into an enemy unit within 12\" of the Giant – randomly determine which. The victim is removed as a casualty, and the unit takes D6 Strength 3 hits. Unsaved Wounds from these hits count towards the Giant's combat result. If no enemy units are in range, treat this as a Throw Back into Combat result instead. 4-5 Squash or Eat: The model is removed as a casualty. 6 Pick Another: Treat the attack as if the Giant had rolled the Stuff into Bag result, above, and then choose another victim. Roll again on this table to see what the Giant does with it."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 155,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 155
     },
     {
       "name": "Greasus Goldtooth",
@@ -1322,14 +2352,19 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• Sceptre of the Titans: Magic Weapon. Any friendly Ogre Kingdoms unit that is fleeing at the beginning of the\nOgre player's turn, and is within 12\" from Greasus, rallies automatically. All close combat attacks made with\nthis weapon have a Strength of 10 and the Multiple Wounds (D3) special rule.\n• Overtyrant's Crown: Talisman. The Overtyrant's Crown gives Greasus a 4+ Ward save. In addition, Greasus\nand any unit he joins have the Immunity (Psychology) special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Natural Armour (6+)\n• Everyone Has Their Price: At the start of each enemy turn (before any Stupidity tests are taken) you can\nnominate D3 enemy units that are within 18\" of Greasus to have the Stupidity special rule for the remainder of\nthe turn. This ability has no effect on units that have Immunity (Psychology).\n• The Goldtooth Tribe: At least one unit of Ironguts must be included in an army led by Greasus.\n• Hoardmaster: Unless Greasus is fleeing, all friendly units within 18\" of Greasus (including the Overtyrant\nhimself), add +1 to their combat result scores.",
+      "specialRules": "Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Everyone Has Their Price: At the start of each enemy turn (before any Stupidity tests are taken) you can nominate D3 enemy units that are within 18\" of Greasus to have the Stupidity special rule for the remainder of the turn. This ability has no effect on units that have Immunity (Psychology).",
+        "The Goldtooth Tribe: At least one unit of Ironguts must be included in an army led by Greasus.",
+        "Hoardmaster: Unless Greasus is fleeing, all friendly units within 18\" of Greasus (including the Overtyrant himself), add +1 to their combat result scores."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 370,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 370
     },
     {
       "name": "Ghark Ironskin",
@@ -1366,16 +2401,24 @@
       "equipment": "Hand weapon, gut-plate\nMAGIC ITEMS:\n• Ironskin Armor: Magic Armour. Medium armour. The Ironskin Armor gives Ghark a 6+ Ward save.",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 75 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 75,
+          "raw": "May take Magic Items up to a total of 75 points"
+        }
       ],
-      "specialRules": "Frenzy (Iron Rhinox only), Impact Hits (D3+1), Natural Armour (3+)\n• Iron Rhinox: The Iron Rhinox has a Strength 2 Breath Weapon with the Armour Piercing (2) special rule.\n• The Ironskin Tribe: If Ghark is the Army General, Leadbelchers count as a Core Units instead of Special\nUnits and Grimhorn Rhinox Riders count as a Special Units instead of Rare Units.",
+      "specialRules": "Frenzy (Iron Rhinox only), Impact Hits (D3+1), Natural Armour (3+)",
+      "specialRuleDescriptions": [
+        "Iron Rhinox: The Iron Rhinox has a Strength 2 Breath Weapon with the Armour Piercing (2) special rule.",
+        "The Ironskin Tribe: If Ghark is the Army General, Leadbelchers count as a Core Units instead of Special Units and Grimhorn Rhinox Riders count as a Special Units instead of Rare Units."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 385,
       "unitSize": null,
       "crew": null,
       "mount": "Iron Rhinox (Daemon)",
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 385
     },
     {
       "name": "Skrag the Slaughterer",
@@ -1400,14 +2443,17 @@
       "equipment": "Light armour",
       "magic": "Skrag is a Level 4 Wizard that uses spells from the Lore of the Great Maw.\nMAGIC ITEMS:\n• Cauldron of the Great Maw: Enchanted Item. Skrag and all Gorgers in the army receive the blessings of their\never-hungry god according to the table below. The 'Models Killed' column refers to models killed by Skrag in\nclose combat. Models killed by spells or that were pursued and caught when fleeing do not count towards this\ntotal. When a new level is reached, bonuses take effect immediately and are cumulative.\nModels Killed Effect on Skrag Effect on Gorgers\n1+ Skrag gains Regeneration (4+). All Gorgers that have not entered play do so in\ntheir next turn.\n5+ Skrag gains +1 Attack. All Gorgers gain +1 Attack.\n10+ Skrag gains Hatred. All Gorgers gain Hatred.\n15+ Skrag becomes Unbreakable. All Gorgers gain Regeneration (4+).",
       "options": [],
-      "specialRules": "Frenzy, Immunity (Poisoned Attacks), Killing Blow, Natural Armour (6+), Ogre Charge,\nTerror",
+      "specialRules": "Frenzy, Immunity (Poisoned Attacks), Killing Blow, Natural Armour (6+), Ogre Charge,",
+      "specialRuleDescriptions": [
+        "Terror"
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 460,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 460
     },
     {
       "name": "Groth Onefinger",
@@ -1432,19 +2478,61 @@
       "equipment": "Hand weapon",
       "magic": "Groth Onefinger is a Level 4 Wizard that uses spells from the Lore of the Great Maw.",
       "options": [
-        "May take up to 2 Scalp-Gnoblars +5 points/Gnoblar",
-        "May take up to 2 Tooth-Gnoblars +5 points/Gnoblar",
-        "May take a Great Mawpot +50 points",
-        "May take Magic Items up to a total of 75 points"
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Scalp-Gnoblars",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Scalp-Gnoblars +5 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "up to 2 Tooth-Gnoblars",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take up to 2 Tooth-Gnoblars +5 points/Gnoblar"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Great Mawpot",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Great Mawpot +50 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 75,
+          "raw": "May take Magic Items up to a total of 75 points"
+        }
       ],
-      "specialRules": "Immunity (Poisoned Attacks), Loremaster (Lore of the Great Maw), Mawseeker (see Big\nNames), Natural Armour (6+), Ogre Charge, Terror\n• The First Butcher: Once per turn, Groth may re-roll a dice when casting a spell or when trying to dispel an\nenemy spell.\n• The Lazarghs: Choose one unit of Ogre Bulls or Ironguts in an army including Groth. This unit causes Terror\ninstead of Fear.",
+      "specialRules": "Immunity (Poisoned Attacks), Loremaster (Lore of the Great Maw), Mawseeker (see Big",
+      "specialRuleDescriptions": [
+        "Names), Natural Armour (6+), Ogre Charge, Terror",
+        "The First Butcher: Once per turn, Groth may re-roll a dice when casting a spell or when trying to dispel an enemy spell.",
+        "The Lazarghs: Choose one unit of Ogre Bulls or Ironguts in an army including Groth. This unit causes Terror instead of Fear."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 360,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 360
     },
     {
       "name": "Morg Magmaborn",
@@ -1469,14 +2557,18 @@
       "equipment": "Gut-plate",
       "magic": "Morg Magmaborn is a Level 3 Wizard that uses spells from the Lore of Fire.\nMAGIC ITEMS:\n• The Basalt Staff: Magic Weapon. Morg’s close combat attacks have the Armour Piercing (1) special rule. In\naddition, the Staff contains a Bound Spell, power level 3, which casts the Fire Ball spell from the Lore of Fire.",
       "options": [],
-      "specialRules": "Fire Breath (see Firebellies), Flaming Attacks, Immunity (Flaming Attacks), Natural\nArmour (6+), Ogre Charge\n• Avatar of the Fire Mouth: When Morg suffers an unsaved wound in close combat, enemy models in base\ncontact suffer a Strength 4 Hit with the Flaming Attacks special rule. When Morg is slain, place the small\ntemplate above him. All models underneath the template suffer a Strength 4 hit with the Flaming Attacks\nspecial rule.",
+      "specialRules": "Fire Breath (see Firebellies), Flaming Attacks, Immunity (Flaming Attacks), Natural",
+      "specialRuleDescriptions": [
+        "Armour (6+), Ogre Charge",
+        "Avatar of the Fire Mouth: When Morg suffers an unsaved wound in close combat, enemy models in base contact suffer a Strength 4 Hit with the Flaming Attacks special rule. When Morg is slain, place the small template above him. All models underneath the template suffer a Strength 4 hit with the Flaming Attacks special rule."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 340,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 340
     },
     {
       "name": "Golgfag Maneater",
@@ -1513,16 +2605,23 @@
       "equipment": "Two hand weapons, Ogre pistol, light armour, gut-plate",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Immunity (Psychology), Natural Armour (6+), Ogre Charge, Stubborn\n• Golgfag's Maneaters: Golgfag Maneater must be accompanied by a unit of Maneaters chosen from the army\nlist as normal. The unit must be given a Standard Bearer and Musician. Skaff is the unit's Standard Bearer.\nGolgfag is the unit's Leader and may never choose to leave this unit.\nBRAGG THE GUTSMAN\nChampion Executioner of Ogrekind",
+      "specialRules": "Immunity (Psychology), Natural Armour (6+), Ogre Charge, Stubborn",
+      "specialRuleDescriptions": [
+        "Golgfag's Maneaters: Golgfag Maneater must be accompanied by a unit of Maneaters chosen from the army list as normal. The unit must be given a Standard Bearer and Musician. Skaff is the unit's Standard Bearer. Golgfag is the unit's Leader and may never choose to leave this unit."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 155,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 155
     },
     {
       "name": "Bragg the Gutsman",
@@ -1547,16 +2646,21 @@
       "equipment": "Gut-plate\nMAGIC ITEMS:\n• Great Gutgouger: Magic Weapon. Flail. While Bragg is involved in a challenge, he gains the Heroic Killing\nBlow special rule. In addition, if Bragg slays his foe in a challenge, any enemy units in base contact with him\nare Disrupted for the remainder of the turn.",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 25 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
-      "pointsCost": 150,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 150
     },
     {
       "name": "Braugh Slavelord",
@@ -1593,14 +2697,17 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Natural Armour (6+), Ogre Charge, Stubborn\n• Slavelord: Braugh begins the game with 12 slaves, these must form up with Braugh placed in the centre of the\nunit. Braugh benefits from \"Look Out, Sir!\" as long as there are at least 5 slaves in the unit. He may not\nvoluntarily leave the unit under any circumstances. In addition, as long as Braugh is alive, all slaves have the\nRegeneration (5+) and Stubborn special rules.\nJHARED THE RED\nLongstrider, Hunt-father",
+      "specialRules": "Natural Armour (6+), Ogre Charge, Stubborn",
+      "specialRuleDescriptions": [
+        "Slavelord: Braugh begins the game with 12 slaves, these must form up with Braugh placed in the centre of the unit. Braugh benefits from \"Look Out, Sir!\" as long as there are at least 5 slaves in the unit. He may not voluntarily leave the unit under any circumstances. In addition, as long as Braugh is alive, all slaves have the Regeneration (5+) and Stubborn special rules."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 195,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 195
     },
     {
       "name": "Jhared the Red",
@@ -1625,16 +2732,24 @@
       "equipment": "Hand weapon, great throwing spear, gut-plate",
       "magic": null,
       "options": [
-        "May take Magic Items up to a total of 50 points"
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
       ],
-      "specialRules": "Loner, Ogre Charge, Natural Armour (6+), Scouts, Their Master's Voice (see Hunters)\n• Hunt-father: Jhared may re-roll To Hit and to Wound rolls of 1 when fighting War Beasts, Monstrous Beasts,\nMonstrous Cavalry, Monstrous Creatures and Monsters. In addition, he ignores Terror caused by Monstrous\nCreatures and Monsters.\n• Running with the Pack: If Jhared deploys as part of a Sabretusk pack, then both he and the pack have the\nVanguard special rule. In addition, the entire unit may re-roll failed charge distances.",
+      "specialRules": "Loner, Ogre Charge, Natural Armour (6+), Scouts, Their Master's Voice (see Hunters)",
+      "specialRuleDescriptions": [
+        "Hunt-father: Jhared may re-roll To Hit and to Wound rolls of 1 when fighting War Beasts, Monstrous Beasts, Monstrous Cavalry, Monstrous Creatures and Monsters. In addition, he ignores Terror caused by Monstrous Creatures and Monsters.",
+        "Running with the Pack: If Jhared deploys as part of a Sabretusk pack, then both he and the pack have the Vanguard special rule. In addition, the entire unit may re-roll failed charge distances."
+      ],
       "upgrades": null,
       "notes": null,
-      "pointsCost": 160,
       "unitSize": null,
       "crew": null,
       "mount": null,
-      "drawnBy": null
+      "drawnBy": null,
+      "pointsCost": 160
     }
   ]
 }
