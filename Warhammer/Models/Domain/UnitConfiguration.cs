@@ -71,9 +71,26 @@ public class UnitConfiguration
     public int EffectiveArmourSave(int attackerStrength, int attackerAP, int strengthModifier,
         Func<string, string?>? armourSaveLookup = null)
     {
+        int totalModifier = ComputeBaseArmourModifier(armourSaveLookup);
+        return ApplyArmourPenalty(totalModifier, attackerAP, strengthModifier);
+    }
+
+    /// <summary>
+    /// Fast path: uses a pre-computed base armour modifier to avoid per-call lookups.
+    /// </summary>
+    public int EffectiveArmourSaveFast(int baseArmourModifier, int attackerAP, int strengthModifier)
+    {
+        return ApplyArmourPenalty(baseArmourModifier, attackerAP, strengthModifier);
+    }
+
+    /// <summary>
+    /// Pre-compute the total armour modifier from equipment, natural armour, troop type, and chaos armour.
+    /// Call once and cache the result for use with <see cref="EffectiveArmourSaveFast"/>.
+    /// </summary>
+    public int ComputeBaseArmourModifier(Func<string, string?>? armourSaveLookup = null)
+    {
         int totalModifier = 0;
 
-        // Equipment armour
         foreach (var armourKey in EquipmentArmour)
         {
             string? saveField = armourSaveLookup?.Invoke(armourKey);
@@ -84,37 +101,26 @@ public class UnitConfiguration
             }
         }
 
-        // Natural armour
         if (SpecialRules.NaturalArmour.HasValue)
-        {
-            // Natural Armour (5+) gives +2 modifier (7 - 5 = 2)
             totalModifier += 7 - SpecialRules.NaturalArmour.Value;
-        }
 
-        // Intrinsic armour from troop type (e.g., Chariot Armour Save 4+)
         if (TroopType.IntrinsicArmourSave.HasValue)
-        {
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
-        }
 
-        // Chaos Armour: +1 save when wearing light, medium, or heavy armour
         if (SpecialRules.ChaosArmour &&
             EquipmentArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
-        {
             totalModifier += 1;
-        }
 
-        if (totalModifier == 0) return 7; // no save
+        return totalModifier;
+    }
 
+    private static int ApplyArmourPenalty(int totalModifier, int attackerAP, int strengthModifier)
+    {
+        if (totalModifier == 0) return 7;
         int baseSave = 7 - totalModifier;
-
-        // Both penalties worsen the save (increase the number needed to roll)
-        // strengthModifier is negative (e.g., -1 for S4), so negate it to get a positive penalty
-        // attackerAP is already positive
         int penalty = (-strengthModifier) + attackerAP;
         int modifiedSave = baseSave + penalty;
-
-        return Math.Max(modifiedSave, 2); // 1+ is impossible, minimum useful save is 2+
+        return Math.Max(modifiedSave, 2);
     }
 
     /// <summary>Best WS for combat (max of rider/mount for split profiles).</summary>

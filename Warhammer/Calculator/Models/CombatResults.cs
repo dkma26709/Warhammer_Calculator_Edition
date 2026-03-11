@@ -3,6 +3,7 @@ namespace Warhammer.Calculator.Models;
 public record CombatSimulationResult
 {
     public int Iterations { get; init; }
+    public long ElapsedMs { get; init; }
     public double AttackerWinPct { get; init; }
     public double DefenderWinPct { get; init; }
     public double DrawPct { get; init; }
@@ -34,14 +35,27 @@ public record DistributionEntry
     public double Percentage { get; init; }
 }
 
-public record RoundResult
+public struct RoundResult
 {
-    public int AttackerWoundsDealt { get; init; }
-    public int DefenderWoundsDealt { get; init; }
-    public int AttackerCombatRes { get; init; }
-    public int DefenderCombatRes { get; init; }
-    public CombatResBreakdown AttackerBreakdown { get; init; } = new();
-    public CombatResBreakdown DefenderBreakdown { get; init; } = new();
+    public int AttackerWoundsDealt;
+    public int DefenderWoundsDealt;
+    public int AttackerCombatRes;
+    public int DefenderCombatRes;
+    public MutableBreakdown AttackerBreakdown;
+    public MutableBreakdown DefenderBreakdown;
+}
+
+public struct MutableBreakdown
+{
+    public int Wounds;
+    public int RankBonus;
+    public int StandardBearer;
+    public int ChargeBonus;
+    public double FearBonus;
+    public int MusicianBonus;
+
+    public readonly int Total() =>
+        Wounds + RankBonus + StandardBearer + ChargeBonus + (int)FearBonus + MusicianBonus;
 }
 
 public record WoundDistributionEntry
@@ -51,10 +65,10 @@ public record WoundDistributionEntry
     public double Percentage { get; init; }
 }
 
-public record AttackResult
+public struct AttackResult
 {
-    public int TotalHits { get; init; }
-    public int TotalWoundsInflicted { get; init; }
-    public int KillingBlowWounds { get; init; }
-    public int UnsavedWounds { get; init; }
+    public int TotalHits;
+    public int TotalWoundsInflicted;
+    public int KillingBlowWounds;
+    public int UnsavedWounds;
 }

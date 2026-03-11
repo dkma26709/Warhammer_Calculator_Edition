@@ -9,17 +9,29 @@ public class CombatResolver
 {
     private readonly CoreRulesService _coreRules;
     private readonly AttackResolver _attackResolver;
+    private readonly Func<string, string?> _armourSaveLookup;
 
     public CombatResolver(CoreRulesService coreRules)
     {
         _coreRules = coreRules;
         _attackResolver = new AttackResolver(coreRules);
+        _armourSaveLookup = key => coreRules.GetArmour(key)?.CombatSave;
+    }
+
+    /// <summary>
+    /// Pre-build attack groups and cache weapon lookups. Call once before the simulation loop.
+    /// </summary>
+    public List<AttackGroup> PrepareAttackGroups(
+        UnitConfiguration attacker, UnitConfiguration defender, CombatContext context)
+    {
+        return BuildAttackGroups(attacker, defender, context);
     }
 
     public RoundResult ResolveRound(
         UnitConfiguration attacker,
         UnitConfiguration defender,
         CombatContext context,
+        List<AttackGroup> groups,
         Random rng)
     {
         int attackerWoundsDealt = 0;
@@ -27,20 +39,20 @@ public class CombatResolver
 
         // Phase 1: Impact Hits (charge turn only)
         if (context.Charge == ChargeState.AttackerCharged)
-            attackerWoundsDealt += _attackResolver.ResolveImpactHits(attacker, defender, context, rng);
+            attackerWoundsDealt += _attackResolver.ResolveImpactHits(attacker, defender, context, rng, _armourSaveLookup);
         else if (context.Charge == ChargeState.DefenderCharged)
-            defenderWoundsDealt += _attackResolver.ResolveImpactHits(defender, attacker, context, rng);
+            defenderWoundsDealt += _attackResolver.ResolveImpactHits(defender, attacker, context, rng, _armourSaveLookup);
 
-        // Phase 2-3: Melee attacks in strike order
-        var groups = BuildAttackGroups(attacker, defender, context);
-        groups.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-
+        // Phase 2-3: Melee attacks in strike order (groups are pre-sorted)
         foreach (var group in groups)
         {
             var weapon = group.Weapon ?? _coreRules.GetHandWeapon();
             var result = _attackResolver.ResolveAttacks(
                 group.Unit, group.Opponent, weapon, context,
-                group.IsMountAttack, group.IsAttackerSide, rng);
+                group.IsMountAttack, group.IsAttackerSide,
+                group.CachedWeaponRules, group.CachedDefenderParry,
+                rng, _armourSaveLookup,
+                group.CachedDefenderBaseArmour, group.CachedEffectiveDefenderI);
 
             if (group.IsAttackerSide)
                 attackerWoundsDealt += result.UnsavedWounds;
@@ -60,20 +72,20 @@ public class CombatResolver
         var attackerBreakdown = ComputeCombatRes(attacker, defender, attackerWoundsDealt, context, isAttacker: true);
         var defenderBreakdown = ComputeCombatRes(defender, attacker, defenderWoundsDealt, context, isAttacker: false);
 
-        int attackerCR = SumCR(attackerBreakdown);
-        int defenderCR = SumCR(defenderBreakdown);
+        int attackerCR = attackerBreakdown.Total();
+        int defenderCR = defenderBreakdown.Total();
 
         // Musician: if combat result is a draw, side with musician wins by 1
         if (attackerCR == defenderCR)
         {
             if (attacker.HasMusician && !defender.HasMusician)
             {
-                attackerBreakdown = attackerBreakdown with { MusicianBonus = 1 };
+                attackerBreakdown.MusicianBonus = 1;
                 attackerCR += 1;
             }
             else if (defender.HasMusician && !attacker.HasMusician)
             {
-                defenderBreakdown = defenderBreakdown with { MusicianBonus = 1 };
+                defenderBreakdown.MusicianBonus = 1;
                 defenderCR += 1;
             }
         }
@@ -94,12 +106,14 @@ public class CombatResolver
     private List<AttackGroup> BuildAttackGroups(
         UnitConfiguration attacker, UnitConfiguration defender, CombatContext context)
     {
-        var groups = new List<AttackGroup>();
+        var groups = new List<AttackGroup>(4);
 
         AddRiderGroup(groups, attacker, defender, isAttackerSide: true, context);
         AddMountGroup(groups, attacker, defender, isAttackerSide: true);
         AddRiderGroup(groups, defender, attacker, isAttackerSide: false, context);
         AddMountGroup(groups, defender, attacker, isAttackerSide: false);
+
+        groups.Sort((a, b) => b.Priority.CompareTo(a.Priority));
 
         return groups;
     }
@@ -116,6 +130,20 @@ public class CombatResolver
         bool isBeingCharged = context.IsCharging(!isAttackerSide);
         int effectiveI = weaponRules.ApplyToInitiative(unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged);
 
+        // Pre-compute values that don't change between iterations
+        int defenderParry = _attackResolver.ComputeDefenderParry(opponent, unit, weapon, weaponRules, context, isAttackerSide);
+        int defenderBaseArmour = opponent.ComputeBaseArmourModifier(_armourSaveLookup);
+
+        // Pre-compute defender effective initiative for reroll checks
+        var defWeapon = _coreRules.GetCloseCombatWeapon(opponent.SelectedWeaponKey);
+        int defenderEffI = opponent.PrimaryProfile.I ?? 1;
+        if (defWeapon != null)
+        {
+            var defWepRules = ParsedWeaponRules.Parse(defWeapon.SpecialRules);
+            defenderEffI = defWepRules.ApplyToInitiative(defenderEffI,
+                context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide));
+        }
+
         groups.Add(new AttackGroup
         {
             Unit = unit,
@@ -125,11 +153,15 @@ public class CombatResolver
             IsAttackerSide = isAttackerSide,
             Initiative = effectiveI,
             HasASF = unit.SpecialRules.AlwaysStrikesFirst,
-            HasASL = unit.SpecialRules.AlwaysStrikesLast
+            HasASL = unit.SpecialRules.AlwaysStrikesLast,
+            CachedWeaponRules = weaponRules,
+            CachedDefenderParry = defenderParry,
+            CachedDefenderBaseArmour = defenderBaseArmour,
+            CachedEffectiveDefenderI = defenderEffI
         });
     }
 
-    private static void AddMountGroup(List<AttackGroup> groups,
+    private void AddMountGroup(List<AttackGroup> groups,
         UnitConfiguration unit, UnitConfiguration opponent, bool isAttackerSide)
     {
         if (unit.MountProfile == null || !unit.TroopType.HasSplitProfile) return;
@@ -143,14 +175,18 @@ public class CombatResolver
             IsAttackerSide = isAttackerSide,
             Initiative = unit.MountProfile.I ?? 1,
             HasASF = false,
-            HasASL = false
+            HasASL = false,
+            CachedWeaponRules = null,
+            CachedDefenderParry = 7,
+            CachedDefenderBaseArmour = opponent.ComputeBaseArmourModifier(_armourSaveLookup),
+            CachedEffectiveDefenderI = opponent.PrimaryProfile.I ?? 1
         });
     }
 
     // ─── Stomps ────────────────────────────────────────────────────
 
     private int ResolveStomp(UnitConfiguration stomper, UnitConfiguration target,
-        CombatContext context, Random rng)
+        CombatContext context, Random rng, int targetBaseArmour = -1)
     {
         bool canStomp = stomper.TroopType.BaseType is
             BaseTroopType.MonstrousInfantry or BaseTroopType.MonstrousBeasts or
@@ -195,8 +231,8 @@ public class CombatResolver
         {
             if (rng.Next(1, 7) < toWoundNeeded) continue;
 
-            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod,
-                _attackResolver.GetArmourSaveLookup());
+            int baseArmour = targetBaseArmour >= 0 ? targetBaseArmour : target.ComputeBaseArmourModifier(_armourSaveLookup);
+            int armourSave = target.EffectiveArmourSaveFast(baseArmour, 0, strengthMod);
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
 
             if (ward <= 6 && rng.Next(1, 7) >= ward) continue;
@@ -209,7 +245,7 @@ public class CombatResolver
 
     // ─── Combat Resolution ─────────────────────────────────────────
 
-    private static CombatResBreakdown ComputeCombatRes(
+    private static MutableBreakdown ComputeCombatRes(
         UnitConfiguration unit, UnitConfiguration opponent,
         int woundsDealt, CombatContext context, bool isAttacker)
     {
@@ -227,7 +263,7 @@ public class CombatResolver
             }
         }
 
-        return new CombatResBreakdown
+        return new MutableBreakdown
         {
             Wounds = woundsDealt,
             RankBonus = unit.RankBonus,
@@ -237,12 +273,9 @@ public class CombatResolver
         };
     }
 
-    private static int SumCR(CombatResBreakdown b) =>
-        (int)(b.Wounds + b.RankBonus + b.StandardBearer + b.ChargeBonus + b.FearBonus);
-
     // ─── Types ─────────────────────────────────────────────────────
 
-    private class AttackGroup
+    public class AttackGroup
     {
         public UnitConfiguration Unit { get; init; } = null!;
         public UnitConfiguration Opponent { get; init; } = null!;
@@ -252,6 +285,10 @@ public class CombatResolver
         public int Initiative { get; init; }
         public bool HasASF { get; init; }
         public bool HasASL { get; init; }
+        public ParsedWeaponRules? CachedWeaponRules { get; init; }
+        public int CachedDefenderParry { get; init; }
+        public int CachedDefenderBaseArmour { get; init; }
+        public int CachedEffectiveDefenderI { get; init; }
 
         public int Priority
         {

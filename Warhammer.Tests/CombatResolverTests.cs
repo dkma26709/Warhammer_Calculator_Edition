@@ -71,6 +71,12 @@ public class CombatResolverTests
         };
     }
 
+    private static RoundResult Resolve(CombatResolver resolver, UnitConfiguration attacker, UnitConfiguration defender, CombatContext context, Random rng)
+    {
+        var groups = resolver.PrepareAttackGroups(attacker, defender, context);
+        return resolver.ResolveRound(attacker, defender, context, groups, rng);
+    }
+
     [Fact]
     public void ResolveRound_ImpactHits_OnChargeOnly()
     {
@@ -98,8 +104,8 @@ public class CombatResolverTests
             var chargeContext = new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 };
             var noChargeContext = new CombatContext { Charge = ChargeState.Neither, CombatRound = 1 };
 
-            woundsOnCharge += resolver.ResolveRound(charger, defender, chargeContext, rng1).AttackerWoundsDealt;
-            woundsNoCharge += resolver.ResolveRound(charger2, defender2, noChargeContext, rng2).AttackerWoundsDealt;
+            woundsOnCharge += Resolve(resolver, charger, defender, chargeContext, rng1).AttackerWoundsDealt;
+            woundsNoCharge += Resolve(resolver, charger2, defender2, noChargeContext, rng2).AttackerWoundsDealt;
         }
 
         Assert.True(woundsOnCharge > woundsNoCharge,
@@ -122,7 +128,7 @@ public class CombatResolverTests
                 { ModelCount = 20, Frontage = 5 };
 
             var context = new CombatContext { CombatRound = 1 };
-            totalWounds += resolver.ResolveRound(monster, infantry, context, rng).AttackerWoundsDealt;
+            totalWounds += Resolve(resolver, monster, infantry, context, rng).AttackerWoundsDealt;
         }
 
         // Monstrous Infantry vs Infantry should deal wounds (including stomp)
@@ -144,7 +150,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
         var context = new CombatContext { CombatRound = 1 };
 
-        var result = resolver.ResolveRound(attacker, defender, context, rng);
+        var result = Resolve(resolver, attacker, defender, context, rng);
         // Just verify it doesn't crash and produces valid results
         Assert.True(result.AttackerWoundsDealt >= 0);
         Assert.True(result.DefenderWoundsDealt >= 0);
@@ -163,7 +169,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
 
         var context = new CombatContext { CombatRound = 1 };
-        var result = resolver.ResolveRound(attacker, defender, context, rng);
+        var result = Resolve(resolver, attacker, defender, context, rng);
 
         // Attacker has 20 models/5 frontage = 4 ranks, rank bonus = 3 (capped)
         Assert.Equal(3, result.AttackerBreakdown.RankBonus);
@@ -183,7 +189,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
 
         var context = new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 };
-        var result = resolver.ResolveRound(attacker, defender, context, rng);
+        var result = Resolve(resolver, attacker, defender, context, rng);
 
         Assert.Equal(1, result.AttackerBreakdown.ChargeBonus);
         Assert.Equal(0, result.DefenderBreakdown.ChargeBonus);
@@ -202,7 +208,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
 
         var context = new CombatContext { CombatRound = 1 };
-        var result = resolver.ResolveRound(fearUnit, normalUnit, context, rng);
+        var result = Resolve(resolver, fearUnit, normalUnit, context, rng);
 
         Assert.Equal(1, result.AttackerBreakdown.FearBonus);
         Assert.Equal(0, result.DefenderBreakdown.FearBonus);
@@ -226,7 +232,7 @@ public class CombatResolverTests
         // US=1 per model, 5 models = 5 total US. 12 >= 2*5 = 10, so +2 fear bonus
 
         var context = new CombatContext { CombatRound = 1 };
-        var result = resolver.ResolveRound(fearUnit, smallUnit, context, rng);
+        var result = Resolve(resolver, fearUnit, smallUnit, context, rng);
 
         Assert.Equal(2, result.AttackerBreakdown.FearBonus);
     }
@@ -247,7 +253,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
 
         var context = new CombatContext { CombatRound = 1 };
-        var result = resolver.ResolveRound(fastUnit, slowUnit, context, rng);
+        var result = Resolve(resolver, fastUnit, slowUnit, context, rng);
 
         Assert.True(result.AttackerWoundsDealt >= 0);
         Assert.True(result.DefenderWoundsDealt >= 0);
@@ -270,7 +276,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
 
         var context = new CombatContext { CombatRound = 1 };
-        var result = resolver.ResolveRound(gwUnit, defender, context, rng);
+        var result = Resolve(resolver, gwUnit, defender, context, rng);
 
         // Should complete without errors
         // GW unit effective I = 5-2 = 3, so defender I4 strikes first
@@ -291,7 +297,7 @@ public class CombatResolverTests
             { ModelCount = 10, Frontage = 5 };
 
         var context = new CombatContext { CombatRound = 1 };
-        var result = resolver.ResolveRound(spearUnit, defender, context, rng);
+        var result = Resolve(resolver, spearUnit, defender, context, rng);
 
         Assert.True(result.AttackerWoundsDealt >= 0);
     }
@@ -313,7 +319,7 @@ public class CombatResolverTests
             var defender = new UnitConfiguration(MakeUnit(ws: 3, t: 3)) { ModelCount = 20, Frontage = 5 };
 
             var context = new CombatContext { CombatRound = 1 };
-            totalAttackerWounds += resolver.ResolveRound(cavalry, defender, context, rng).AttackerWoundsDealt;
+            totalAttackerWounds += Resolve(resolver, cavalry, defender, context, rng).AttackerWoundsDealt;
         }
 
         // 10 cavalry should deal some wounds (rider attacks + mount attacks including support)

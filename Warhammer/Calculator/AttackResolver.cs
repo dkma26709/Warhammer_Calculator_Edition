@@ -14,13 +14,9 @@ public class AttackResolver
         _coreRules = coreRules;
     }
 
-    public Func<string, string?> GetArmourSaveLookup()
-    {
-        return key => _coreRules.GetArmour(key)?.CombatSave;
-    }
-
     /// <summary>
     /// Resolve all attacks from one unit against another.
+    /// Accepts pre-cached weapon rules and defender parry to avoid per-iteration allocations.
     /// </summary>
     public AttackResult ResolveAttacks(
         UnitConfiguration attacker,
@@ -29,7 +25,12 @@ public class AttackResolver
         CombatContext context,
         bool isMountAttack,
         bool isAttackerSide,
-        Random rng)
+        ParsedWeaponRules? cachedWeaponRules,
+        int cachedDefenderParry,
+        Random rng,
+        Func<string, string?> armourSaveLookup,
+        int cachedDefenderBaseArmour = -1,
+        int cachedEffectiveDefenderI = -1)
     {
         var attackerRules = attacker.SpecialRules;
         var defenderRules = defender.SpecialRules;
@@ -38,14 +39,14 @@ public class AttackResolver
         bool isBeingCharged = context.IsCharging(!isAttackerSide);
         bool isFirstRound = context.CombatRound == 1;
 
-        var weaponRules = isRider ? ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes) : null;
+        var weaponRules = isRider ? cachedWeaponRules : null;
         var profile = isMountAttack ? attacker.MountProfile! : attacker.PrimaryProfile;
 
         // ── Count attacks ──────────────────────────────────────────
 
         int totalAttacks = CountAttacks(attacker, attackerRules, weaponRules,
             isCharging, context.CombatRound, isMountAttack, rng);
-        if (totalAttacks <= 0) return new AttackResult();
+        if (totalAttacks <= 0) return default;
 
         // ── Effective strength ─────────────────────────────────────
 
@@ -60,7 +61,9 @@ public class AttackResolver
         int effectiveAttackerI = profile.I ?? 1;
         if (isRider && weaponRules != null)
             effectiveAttackerI = weaponRules.ApplyToInitiative(effectiveAttackerI, isCharging, isBeingCharged);
-        int effectiveDefenderI = ComputeEffectiveI(defender, context, !isAttackerSide);
+        int effectiveDefenderI = cachedEffectiveDefenderI >= 0
+            ? cachedEffectiveDefenderI
+            : ComputeEffectiveI(defender, context, !isAttackerSide);
 
         bool rerollMisses = (attackerRules.Hatred && isFirstRound)
             || (attackerRules.AlwaysStrikesFirst && !attackerRules.AlwaysStrikesLast
@@ -92,14 +95,17 @@ public class AttackResolver
         bool ignoresArmour = isRider && attackerRules.IgnoresArmourSaves;
         bool lightningAttacks = isRider && attackerRules.LightningAttacks;
 
+        int defBaseArmour = cachedDefenderBaseArmour >= 0
+            ? cachedDefenderBaseArmour
+            : defender.ComputeBaseArmourModifier(armourSaveLookup);
         int unsavedNormal = RollArmourSaves(normalWounds, defender, defenderRules,
-            effectiveStrength, ap, strengthMod, ignoresArmour, lightningAttacks, rng);
+            ap, strengthMod, ignoresArmour, lightningAttacks, rng, defBaseArmour);
 
         // ── Ward saves ─────────────────────────────────────────────
 
         int wardValue = defenderRules.WardSave ?? 7;
         int regenValue = defenderRules.Regeneration ?? 7;
-        int parryValue = ResolveDefenderParry(defender, effectiveStrength, isMountAttack);
+        int parryValue = cachedDefenderParry;
         bool flamingNegatesRegen = isRider && attackerRules.FlamingAttacks;
 
         if (defenderRules.Ethereal)
@@ -141,7 +147,8 @@ public class AttackResolver
         UnitConfiguration charger,
         UnitConfiguration target,
         CombatContext context,
-        Random rng)
+        Random rng,
+        Func<string, string?> armourSaveLookup)
     {
         int impactHits = GetImpactHitCount(charger, rng);
         if (impactHits <= 0) return 0;
@@ -169,7 +176,7 @@ public class AttackResolver
         {
             if (rng.Next(1, 7) < toWoundNeeded) continue;
 
-            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod, GetArmourSaveLookup());
+            int armourSave = target.EffectiveArmourSave(strength, 0, strengthMod, armourSaveLookup);
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
 
             if (impactWard <= 6 && rng.Next(1, 7) >= impactWard) continue;
@@ -180,6 +187,28 @@ public class AttackResolver
         return wounds;
     }
 
+    /// <summary>
+    /// Compute defender parry value for a given attacker weapon/rules combination.
+    /// Called once during group preparation.
+    /// </summary>
+    public int ComputeDefenderParry(
+        UnitConfiguration defender,
+        UnitConfiguration attacker,
+        WeaponEntry attackerWeapon,
+        ParsedWeaponRules? attackerWeaponRules,
+        CombatContext context,
+        bool isAttackerSide)
+    {
+        bool isCharging = context.IsCharging(isAttackerSide);
+        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        var profile = attacker.PrimaryProfile;
+        int effectiveStrength = ComputeEffectiveStrength(
+            attacker, defender, attackerWeapon, attackerWeaponRules, profile,
+            false, isCharging, isBeingCharged, context.CombatRound);
+
+        return ResolveDefenderParry(defender, effectiveStrength, false);
+    }
+
     // ─── Private helpers ───────────────────────────────────────────
 
     private int ComputeEffectiveI(UnitConfiguration unit, CombatContext context, bool isAttackerSide)
@@ -188,7 +217,7 @@ public class AttackResolver
         var weapon = _coreRules.GetCloseCombatWeapon(unit.SelectedWeaponKey);
         if (weapon == null) return baseI;
 
-        var rules = ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
+        var rules = ParsedWeaponRules.Parse(weapon.SpecialRules);
         return rules.ApplyToInitiative(baseI,
             context.IsCharging(isAttackerSide),
             context.IsCharging(!isAttackerSide));
@@ -310,12 +339,15 @@ public class AttackResolver
         return (totalWounds, killingBlows, nonEligKB, normalWounds);
     }
 
-    private int RollArmourSaves(
+    private static int RollArmourSaves(
         int wounds, UnitConfiguration defender, ParsedSpecialRules defenderRules,
-        int effectiveStrength, int ap, int strengthMod,
-        bool ignoresArmour, bool lightningAttacks, Random rng)
+        int ap, int strengthMod,
+        bool ignoresArmour, bool lightningAttacks, Random rng,
+        int defenderBaseArmour)
     {
         int unsaved = 0;
+        int armourSave = ignoresArmour ? 7 : defender.EffectiveArmourSaveFast(defenderBaseArmour, ap, strengthMod);
+
         for (int i = 0; i < wounds; i++)
         {
             if (ignoresArmour || lightningAttacks)
@@ -330,7 +362,6 @@ public class AttackResolver
             }
             else
             {
-                int armourSave = defender.EffectiveArmourSave(effectiveStrength, ap, strengthMod, GetArmourSaveLookup());
                 if (armourSave <= 6 && rng.Next(1, 7) >= armourSave)
                     continue;
                 unsaved++;

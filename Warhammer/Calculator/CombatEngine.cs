@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Warhammer.Calculator.Models;
 using Warhammer.Models.Domain;
 using Warhammer.Services;
@@ -19,8 +20,12 @@ public class CombatEngine
         CombatContext context,
         int iterations = 10_000)
     {
+        var sw = Stopwatch.StartNew();
         var resolver = new CombatResolver(_coreRules);
         var rng = new Random();
+
+        // Pre-build attack groups once (weapon parsing, parry calc, sorting)
+        var groups = resolver.PrepareAttackGroups(attacker, defender, context);
 
         int attackerWins = 0;
         int defenderWins = 0;
@@ -40,7 +45,7 @@ public class CombatEngine
 
         for (int i = 0; i < iterations; i++)
         {
-            var result = resolver.ResolveRound(attacker, defender, context, rng);
+            var result = resolver.ResolveRound(attacker, defender, context, groups, rng);
 
             totalAttackerWounds += result.AttackerWoundsDealt;
             totalDefenderWounds += result.DefenderWoundsDealt;
@@ -71,11 +76,13 @@ public class CombatEngine
             defenderWoundDist[result.DefenderWoundsDealt] = defenderWoundDist.GetValueOrDefault(result.DefenderWoundsDealt) + 1;
         }
 
+        sw.Stop();
         double n = iterations;
 
         return new CombatSimulationResult
         {
             Iterations = iterations,
+            ElapsedMs = sw.ElapsedMilliseconds,
             AttackerWinPct = Math.Round(attackerWins / n * 100, 1),
             DefenderWinPct = Math.Round(defenderWins / n * 100, 1),
             DrawPct = Math.Round(draws / n * 100, 1),
