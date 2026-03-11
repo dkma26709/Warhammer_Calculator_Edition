@@ -298,4 +298,68 @@ public class AttackResolverTests
 
         Assert.True(totalWounds > 0, "Impact hits should cause some wounds");
     }
+
+    [Fact]
+    public void ResolveAttacks_PredatoryFighter_GeneratesExtraHits()
+    {
+        var coreRules = CreateCoreRules();
+        var resolver = new AttackResolver(coreRules);
+
+        int hitsWithPF = 0;
+        int hitsWithout = 0;
+
+        for (int seed = 0; seed < 100; seed++)
+        {
+            var rng1 = new Random(seed);
+            var rng2 = new Random(seed);
+
+            var attackerPF = new UnitConfiguration(MakeUnit(ws: 4, s: 4, a: 2, specialRules: "Predatory Fighter"))
+                { ModelCount = 10, Frontage = 5 };
+            var attackerNormal = new UnitConfiguration(MakeUnit(ws: 4, s: 4, a: 2))
+                { ModelCount = 10, Frontage = 5 };
+            var defender = new UnitConfiguration(MakeUnit(ws: 3, t: 3)) { ModelCount = 20, Frontage = 5 };
+            var defender2 = new UnitConfiguration(MakeUnit(ws: 3, t: 3)) { ModelCount = 20, Frontage = 5 };
+
+            var weapon = coreRules.GetHandWeapon();
+            var context = new CombatContext { CombatRound = 1 };
+
+            hitsWithPF += ResolveAttacks(resolver, coreRules, attackerPF, defender, weapon, context, false, true, rng1).TotalHits;
+            hitsWithout += ResolveAttacks(resolver, coreRules, attackerNormal, defender2, weapon, context, false, true, rng2).TotalHits;
+        }
+
+        Assert.True(hitsWithPF > hitsWithout,
+            $"Predatory Fighter should generate extra hits: PF={hitsWithPF}, normal={hitsWithout}");
+    }
+
+    [Fact]
+    public void ResolveAttacks_MurderousProwess_RerollOnesToWound()
+    {
+        var coreRules = CreateCoreRules();
+        var resolver = new AttackResolver(coreRules);
+
+        int woundsWithMP = 0;
+        int woundsWithout = 0;
+
+        for (int seed = 0; seed < 100; seed++)
+        {
+            var rng1 = new Random(seed);
+            var rng2 = new Random(seed);
+
+            var attackerMP = new UnitConfiguration(MakeUnit(ws: 4, s: 3, a: 2, specialRules: "Murderous Prowess"))
+                { ModelCount = 10, Frontage = 5 };
+            var attackerNormal = new UnitConfiguration(MakeUnit(ws: 4, s: 3, a: 2))
+                { ModelCount = 10, Frontage = 5 };
+            var defender = new UnitConfiguration(MakeUnit(ws: 3, t: 4)) { ModelCount = 20, Frontage = 5 };
+            var defender2 = new UnitConfiguration(MakeUnit(ws: 3, t: 4)) { ModelCount = 20, Frontage = 5 };
+
+            var weapon = coreRules.GetHandWeapon();
+            var context = new CombatContext { CombatRound = 1 };
+
+            woundsWithMP += ResolveAttacks(resolver, coreRules, attackerMP, defender, weapon, context, false, true, rng1).TotalWoundsInflicted;
+            woundsWithout += ResolveAttacks(resolver, coreRules, attackerNormal, defender2, weapon, context, false, true, rng2).TotalWoundsInflicted;
+        }
+
+        Assert.True(woundsWithMP > woundsWithout,
+            $"Murderous Prowess should increase wounds: MP={woundsWithMP}, normal={woundsWithout}");
+    }
 }

@@ -17,6 +17,9 @@ public class UnitConfiguration
     public bool HasChampion { get; set; }
     public bool HasMusician { get; set; }
     public bool HasStandardBearer { get; set; }
+    public ShadowDance SelectedShadowDance { get; set; }
+    public TreeAspect SelectedTreeAspect { get; set; }
+    public bool UseTreeWhack { get; set; }
 
     // Parsed data
     public TroopTypeInfo TroopType { get; }
@@ -56,6 +59,11 @@ public class UnitConfiguration
         // Mighty Blow: +X Strength in first round of combat
         // Use highest of unit MB and weapon MB (don't stack)
         int unitMB = SpecialRules.MightyBlow ?? 0;
+
+        // Thunderous Charge: Mighty Blow (2) on charge turns only
+        if (isCharging && SpecialRules.ThunderousCharge)
+            unitMB = Math.Max(unitMB, 2);
+
         int effectiveMB = Math.Max(unitMB, weaponMightyBlow);
         if (combatRound == 1 && effectiveMB > 0)
             s += effectiveMB;
@@ -111,6 +119,10 @@ public class UnitConfiguration
             EquipmentArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
             totalModifier += 1;
 
+        if (SpecialRules.GromrilArmour &&
+            EquipmentArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
+            totalModifier += 1;
+
         return totalModifier;
     }
 
@@ -126,8 +138,17 @@ public class UnitConfiguration
     /// <summary>Best WS for combat (max of rider/mount for split profiles).</summary>
     public int BestWS => SplitProfileMax(p => p.WS, 1);
 
-    /// <summary>Best T for combat (max of rider/mount for split profiles).</summary>
-    public int BestT => SplitProfileMax(p => p.T, 3);
+    /// <summary>Best T for combat (max of rider/mount for split profiles), including stance bonuses.</summary>
+    public int BestT
+    {
+        get
+        {
+            int t = SplitProfileMax(p => p.T, 3);
+            if (SelectedTreeAspect == TreeAspect.Oak)
+                t += 1;
+            return t;
+        }
+    }
 
     private int SplitProfileMax(Func<ProfileEntry, int?> stat, int fallback)
     {
@@ -176,6 +197,14 @@ public class UnitConfiguration
         if (isCharging && SpecialRules.DevastatingCharge)
             attacks += 1;
 
+        // Shadow Dance: Storm of Blades (+1 Attack)
+        if (SelectedShadowDance == ShadowDance.StormOfBlades)
+            attacks += 1;
+
+        // Tree Aspect: Birch (+1 Attack)
+        if (SelectedTreeAspect == TreeAspect.Birch)
+            attacks += 1;
+
         // Weapon extra attacks (e.g., Two Hand Weapons: +1 Attack)
         attacks += weaponExtraAttacks;
 
@@ -188,10 +217,17 @@ public class UnitConfiguration
 
         // Fight in Extra Ranks (unit special rules + weapon, use best)
         int extraRanks = Math.Max(SpecialRules.FightInExtraRanks ?? 0, weaponFiER);
+
+        // Lance Formation: FiER(1) and 3 supporting attacks on charge
+        bool lanceCharging = isCharging && SpecialRules.LanceFormation;
+        if (lanceCharging)
+            extraRanks = Math.Max(extraRanks, 1);
+
         int maxSupportRanks = 1 + extraRanks; // base 1 supporting rank + extra
         int actualSupportRanks = Math.Min(supportingRanks, maxSupportRanks);
 
-        int supportAttacksPerModel = Math.Min(attacks, TroopType.MaxSupportingAttacks);
+        int maxSupportAttacks = lanceCharging ? 3 : TroopType.MaxSupportingAttacks;
+        int supportAttacksPerModel = Math.Min(attacks, maxSupportAttacks);
         int supportingModels = actualSupportRanks * Frontage;
         int supportAttacks = supportingModels * supportAttacksPerModel;
 

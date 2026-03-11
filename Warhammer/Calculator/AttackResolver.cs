@@ -42,10 +42,34 @@ public class AttackResolver
         var weaponRules = isRider ? cachedWeaponRules : null;
         var profile = isMountAttack ? attacker.MountProfile! : attacker.PrimaryProfile;
 
+        // ── Tree Whack (replaces normal attacks) ──────────────────
+        if (isRider && attacker.UseTreeWhack && attackerRules.TreeWhack)
+            return ResolveTreeWhacks(attacker, defender, defenderRules, rng);
+
+        // ── Primal Fury (Beastmen) ────────────────────────────────
+        // Roll 2D6 vs Ld: pass = Hatred, double 1s = Hatred + Frenzy
+
+        bool primalFuryHatred = false;
+        bool primalFuryFrenzy = false;
+        if (isRider && attackerRules.PrimalFury && isFirstRound)
+        {
+            int d1 = rng.Next(1, 7);
+            int d2 = rng.Next(1, 7);
+            int ld = profile.Ld ?? 7;
+            if (d1 + d2 <= ld)
+            {
+                primalFuryHatred = true;
+                if (d1 == 1 && d2 == 1)
+                    primalFuryFrenzy = true;
+            }
+        }
+
         // ── Count attacks ──────────────────────────────────────────
 
         int totalAttacks = CountAttacks(attacker, attackerRules, weaponRules,
             isCharging, context.CombatRound, isMountAttack, rng);
+        if (primalFuryFrenzy && !attackerRules.Frenzy && isRider)
+            totalAttacks += attacker.ModelsInFrontRank + Math.Min(Math.Max(0, attacker.Ranks - 1), 1) * attacker.Frontage;
         if (totalAttacks <= 0) return default;
 
         // ── Effective strength ─────────────────────────────────────
@@ -56,7 +80,18 @@ public class AttackResolver
 
         // ── Roll to hit ────────────────────────────────────────────
 
-        int toHitNeeded = _coreRules.GetToHitScore(profile.WS ?? 1, defender.BestWS);
+        // Mark of Nurgle: -1 WS to attackers (applied before to-hit lookup)
+        int defenderEffWS = defender.BestWS;
+        if (defenderRules.Minus1WSToAttackers)
+            defenderEffWS = Math.Max(1, defenderEffWS + 1); // +1 WS for defender = harder to hit
+
+        int toHitNeeded = _coreRules.GetToHitScore(profile.WS ?? 1, defenderEffWS);
+
+        // Stances / Daemon of Nurgle / Curse of the Necropolis: -1 To Hit
+        if (defender.SelectedShadowDance == ShadowDance.TheShadowsCoil
+            || defender.SelectedTreeAspect == TreeAspect.Willow
+            || defenderRules.Minus1ToBeHit)
+            toHitNeeded = Math.Min(toHitNeeded + 1, 6);
 
         int effectiveAttackerI = profile.I ?? 1;
         if (isRider && weaponRules != null)
@@ -65,32 +100,52 @@ public class AttackResolver
             ? cachedEffectiveDefenderI
             : ComputeEffectiveI(defender, context, !isAttackerSide);
 
-        bool rerollMisses = (attackerRules.Hatred && isFirstRound)
-            || (attackerRules.AlwaysStrikesFirst && !attackerRules.AlwaysStrikesLast
+        // Woven Mist: attacker gains ASF
+        bool wovenMistASF = isRider && attacker.SelectedShadowDance == ShadowDance.WovenMist;
+
+        string? opponentFaction = context.GetOpponentFactionKey(isAttackerSide);
+        bool hatredApplies = attackerRules.Hatred
+            && FactionRaces.HatredApplies(attackerRules.HatredTarget, opponentFaction);
+        bool effectiveASF = attackerRules.AlwaysStrikesFirst || wovenMistASF;
+        bool rerollMisses = (hatredApplies && (isFirstRound || attackerRules.EternalHatred))
+            || primalFuryHatred
+            || (effectiveASF && !attackerRules.AlwaysStrikesLast
                 && effectiveAttackerI > effectiveDefenderI);
-        bool rerollHits = !attackerRules.AlwaysStrikesFirst
+        bool rerollHits = !effectiveASF
             && attackerRules.AlwaysStrikesLast
             && effectiveAttackerI < effectiveDefenderI;
 
-        int hits = RollToHit(totalAttacks, toHitNeeded, rerollMisses, rerollHits, rng);
+        bool predatoryFighter = isRider && attackerRules.PredatoryFighter;
+        bool rerollOnesToHit = isRider && (attackerRules.MartialProwess || attackerRules.MartialMemories);
+        int hits = RollToHit(totalAttacks, toHitNeeded, rerollMisses, rerollHits, predatoryFighter, rerollOnesToHit, rng);
         if (hits == 0) return new AttackResult { TotalHits = 0 };
 
         // ── Roll to wound ──────────────────────────────────────────
 
         int toWoundNeeded = _coreRules.GetToWoundScore(effectiveStrength, defender.BestT);
-        int poisonMod = (isRider && attackerRules.PoisonedAttacks) ? 1 : 0;
-        int effectiveToWound = Math.Max(2, toWoundNeeded - poisonMod);
-        bool flamingReroll = isRider && attackerRules.FlamingAttacks && defenderRules.Flammable;
+        int poisonMod = (isRider && attackerRules.PoisonedAttacks && !defenderRules.ImmunityPoisonedAttacks) ? 1 : 0;
+        int vampiricPenalty = defenderRules.Vampiric
+            && !(isRider && attackerRules.MagicalAttacks)
+            && !(isRider && attackerRules.FlamingAttacks) ? 1 : 0;
+        int effectiveToWound = Math.Max(2, toWoundNeeded - poisonMod + vampiricPenalty);
+        bool flamingReroll = isRider && attackerRules.FlamingAttacks && defenderRules.Flammable && !defenderRules.ImmunityFlamingAttacks;
+        bool murderousProwess = isRider && (attackerRules.MurderousProwess || attackerRules.MartialMemories);
+
+        // Whirling Death: AP(1) + Killing Blow
+        bool whirlingDeath = isRider && attacker.SelectedShadowDance == ShadowDance.WhirlingDeath;
+        bool defenderImmuneKB = defenderRules.ImmunityKillingBlow;
+        bool rerollSuccessfulWounds = defenderRules.RerollSuccessfulWoundsAgainst;
 
         var (totalWoundsRolled, killingBlows, nonEligibleKBWounds, normalWounds) =
-            RollToWound(hits, effectiveToWound, flamingReroll,
-                isRider && attackerRules.KillingBlow,
-                isRider && attackerRules.HeroicKillingBlow,
-                defender.TroopType, rng);
+            RollToWound(hits, effectiveToWound, flamingReroll, murderousProwess,
+                isRider && (attackerRules.KillingBlow || whirlingDeath) && !defenderImmuneKB,
+                isRider && attackerRules.HeroicKillingBlow && !defenderImmuneKB,
+                defender.TroopType, rerollSuccessfulWounds, rng);
 
         // ── Armour saves (normal wounds only; non-eligible KB skip armour) ──
 
         int ap = (isRider ? attackerRules.ArmourPiercing : null) ?? 0;
+        if (whirlingDeath) ap = Math.Max(ap, 1);
         int strengthMod = _coreRules.GetArmourSaveModifier(effectiveStrength);
         bool ignoresArmour = isRider && attackerRules.IgnoresArmourSaves;
         bool lightningAttacks = isRider && attackerRules.LightningAttacks;
@@ -106,7 +161,34 @@ public class AttackResolver
         int wardValue = defenderRules.WardSave ?? 7;
         int regenValue = defenderRules.Regeneration ?? 7;
         int parryValue = cachedDefenderParry;
-        bool flamingNegatesRegen = isRider && attackerRules.FlamingAttacks;
+        bool flamingNegatesRegen = isRider && attackerRules.FlamingAttacks && !defenderRules.ImmunityFlamingAttacks;
+
+        // Dodge: ward save in close combat
+        int dodgeValue = defenderRules.Dodge ?? 7;
+
+        // Elven Grace: Dodge (6+) but only if attacker doesn't strike before defender
+        if (defenderRules.ElvenGrace && dodgeValue > 6)
+        {
+            bool attackerStrikesFirst = effectiveAttackerI > effectiveDefenderI
+                || (effectiveASF && !attackerRules.AlwaysStrikesLast);
+            if (!attackerStrikesFirst)
+                dodgeValue = Math.Min(dodgeValue, 6);
+        }
+
+        // Forest Spirit: 5+ Ward (6+ vs Magical Attacks)
+        if (defenderRules.ForestSpirit)
+        {
+            int spiritWard = (isRider && attackerRules.MagicalAttacks) ? 6 : 5;
+            wardValue = Math.Min(wardValue, spiritWard);
+        }
+
+        // Blessing of the Lady: 6+ Ward (parser sets this), upgraded to 5+ vs non-Magical
+        if (defenderRules.BlessingOfTheLady && !(isRider && attackerRules.MagicalAttacks))
+            wardValue = Math.Min(wardValue, 5);
+
+        // Vampiric: -1 to wound unless Magical or Flaming (handled as effective ward)
+        // Note: Vampiric -1 to wound is applied in the to-wound phase, not ward phase.
+        // We'll handle it separately below.
 
         if (defenderRules.Ethereal)
         {
@@ -118,8 +200,8 @@ public class AttackResolver
         int nonEligKBUnsaved = RollWardSaves(nonEligibleKBWounds, Math.Min(wardValue, parryValue), rng);
 
         int effectiveWard = flamingNegatesRegen
-            ? Math.Min(wardValue, parryValue)
-            : Math.Min(Math.Min(wardValue, regenValue), parryValue);
+            ? Math.Min(Math.Min(wardValue, parryValue), dodgeValue)
+            : Math.Min(Math.Min(Math.Min(wardValue, regenValue), parryValue), dodgeValue);
         int normalUnsaved = RollWardSaves(unsavedNormal, effectiveWard, rng);
 
         // ── Wound allocation ───────────────────────────────────────
@@ -156,6 +238,14 @@ public class AttackResolver
         int strength = charger.MountProfile?.S ?? charger.PrimaryProfile.S ?? 3;
         if (context.CombatRound == 1 && charger.SpecialRules.MightyBlow.HasValue)
             strength += charger.SpecialRules.MightyBlow.Value;
+
+        // Ogre Charge / Lance Formation: add rank bonus to impact hit strength
+        if (charger.SpecialRules.OgreCharge || charger.SpecialRules.LanceFormation)
+            strength += charger.RankBonus;
+
+        // Impale: +1 Strength to Impact Hits
+        if (charger.SpecialRules.Impale)
+            strength += 1;
 
         int toWoundNeeded = _coreRules.GetToWoundScore(strength, target.BestT);
         int strengthMod = _coreRules.GetArmourSaveModifier(strength);
@@ -276,15 +366,57 @@ public class AttackResolver
         return attacker.EffectiveStrength(weapon, isCharging, combatRound, weaponMB);
     }
 
-    private static int RollToHit(int attacks, int needed, bool rerollMisses, bool rerollHits, Random rng)
+    private static int RollToHit(int attacks, int needed, bool rerollMisses, bool rerollHits,
+        bool predatoryFighter, bool rerollOnesToHit, Random rng)
     {
         int hits = 0;
+        int bonusAttacks = 0;
+
         for (int i = 0; i < attacks; i++)
+        {
+            int roll = rng.Next(1, 7);
+            bool hit = roll == 6 || (roll != 1 && roll >= needed);
+            bool wasNatural6 = roll == 6;
+
+            if (!hit && rerollMisses)
+            {
+                roll = rng.Next(1, 7);
+                hit = roll == 6 || (roll != 1 && roll >= needed);
+                wasNatural6 = roll == 6;
+            }
+            else if (!hit && roll == 1 && rerollOnesToHit)
+            {
+                roll = rng.Next(1, 7);
+                hit = roll == 6 || (roll != 1 && roll >= needed);
+                wasNatural6 = roll == 6;
+            }
+            else if (hit && rerollHits)
+            {
+                roll = rng.Next(1, 7);
+                hit = roll == 6 || (roll != 1 && roll >= needed);
+                wasNatural6 = roll == 6;
+            }
+
+            if (hit)
+            {
+                hits++;
+                if (predatoryFighter && wasNatural6)
+                    bonusAttacks++;
+            }
+        }
+
+        // Bonus attacks from Predatory Fighter (cannot generate further bonus attacks)
+        for (int i = 0; i < bonusAttacks; i++)
         {
             int roll = rng.Next(1, 7);
             bool hit = roll == 6 || (roll != 1 && roll >= needed);
 
             if (!hit && rerollMisses)
+            {
+                roll = rng.Next(1, 7);
+                hit = roll == 6 || (roll != 1 && roll >= needed);
+            }
+            else if (!hit && roll == 1 && rerollOnesToHit)
             {
                 roll = rng.Next(1, 7);
                 hit = roll == 6 || (roll != 1 && roll >= needed);
@@ -297,12 +429,14 @@ public class AttackResolver
 
             if (hit) hits++;
         }
+
         return hits;
     }
 
     private static (int TotalWounds, int KillingBlows, int NonEligibleKB, int NormalWounds) RollToWound(
-        int hits, int toWoundNeeded, bool flamingReroll,
-        bool hasKB, bool hasHKB, TroopTypeInfo defenderType, Random rng)
+        int hits, int toWoundNeeded, bool flamingReroll, bool rerollOnes,
+        bool hasKB, bool hasHKB, TroopTypeInfo defenderType,
+        bool rerollSuccessfulWounds, Random rng)
     {
         int totalWounds = 0, killingBlows = 0, nonEligKB = 0, normalWounds = 0;
 
@@ -311,13 +445,27 @@ public class AttackResolver
             int roll = rng.Next(1, 7);
             bool wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
 
-            if (!wounded && flamingReroll)
+            if (!wounded && roll == 1 && rerollOnes)
+            {
+                roll = rng.Next(1, 7);
+                wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
+            }
+            else if (!wounded && flamingReroll)
             {
                 roll = rng.Next(1, 7);
                 wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
             }
 
             if (!wounded) continue;
+
+            // Mark of Slaanesh: attacker must reroll successful wound rolls
+            if (rerollSuccessfulWounds)
+            {
+                roll = rng.Next(1, 7);
+                wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
+                if (!wounded) continue;
+            }
+
             totalWounds++;
 
             bool isKB = hasKB && roll == 6;
@@ -479,6 +627,10 @@ public class AttackResolver
         else if (unit.SpecialRules.ImpactHitsRoll != null)
             fromRules = DiceRoller.Roll(unit.SpecialRules.ImpactHitsRoll, rng) * unit.ModelsInFrontRank;
 
+        // Ogre Charge: Impact Hits (1) per model on foot
+        if (unit.SpecialRules.OgreCharge)
+            fromRules = Math.Max(fromRules, unit.ModelsInFrontRank);
+
         int fromType = unit.TroopType.BaseType switch
         {
             BaseTroopType.Cavalry => unit.ModelsInFrontRank,
@@ -487,6 +639,51 @@ public class AttackResolver
         };
 
         return Math.Max(fromRules, fromType);
+    }
+
+    /// <summary>
+    /// Tree Whack: each front-rank model forces an enemy Init test.
+    /// Failure = D6 Wounds, no armour saves. Ward saves still apply.
+    /// </summary>
+    private static AttackResult ResolveTreeWhacks(
+        UnitConfiguration attacker, UnitConfiguration defender,
+        ParsedSpecialRules defenderRules, Random rng)
+    {
+        int models = attacker.ModelsInFrontRank;
+        int defenderI = defender.PrimaryProfile.I ?? 1;
+        int wardValue = defenderRules.WardSave ?? 7;
+        int regenValue = defenderRules.Regeneration ?? 7;
+        int effectiveWard = Math.Min(wardValue, regenValue);
+
+        int totalWounds = 0;
+        int totalHits = 0;
+
+        for (int i = 0; i < models; i++)
+        {
+            // Target must pass an Initiative test (roll D6 <= I)
+            int initRoll = rng.Next(1, 7);
+            if (initRoll <= defenderI) continue;
+
+            totalHits++;
+            int damage = rng.Next(1, 7); // D6 Wounds
+
+            // No armour saves allowed — apply ward saves only
+            int unsaved = 0;
+            for (int w = 0; w < damage; w++)
+            {
+                if (effectiveWard <= 6 && rng.Next(1, 7) >= effectiveWard) continue;
+                unsaved++;
+            }
+
+            totalWounds += unsaved;
+        }
+
+        return new AttackResult
+        {
+            TotalHits = totalHits,
+            TotalWoundsInflicted = totalHits,
+            UnsavedWounds = totalWounds
+        };
     }
 
     private static bool IsKBEligible(TroopTypeInfo targetType, bool isHeroic)

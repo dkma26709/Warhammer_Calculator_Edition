@@ -180,7 +180,9 @@
         var context = new CombatContext
         {
             Charge = _chargeState,
-            CombatRound = 1
+            CombatRound = 1,
+            AttackerFactionKey = _attackerFactionKey,
+            DefenderFactionKey = _defenderFactionKey
         };
 
         _result = await Task.Run(() =>

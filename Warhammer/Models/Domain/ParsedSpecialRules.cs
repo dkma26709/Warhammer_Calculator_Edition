@@ -42,6 +42,34 @@ public record ParsedSpecialRules
     public int? RandomAttacks { get; init; }
     public string? RandomAttacksRoll { get; init; }
     public bool ColdBlooded { get; init; }
+    public bool PredatoryFighter { get; init; }
+    public bool MurderousProwess { get; init; }
+    public bool MartialProwess { get; init; }
+    public bool PrimalFury { get; init; }
+    public bool EternalHatred { get; init; }
+    public bool FearElves { get; init; }
+    public int? Dodge { get; init; }
+    public bool ElvenGrace { get; init; }
+    public bool Deathblow { get; init; }
+    public bool Swordmaster { get; init; }
+    public bool OgreCharge { get; init; }
+    public bool ThunderousCharge { get; init; }
+    public bool GromrilArmour { get; init; }
+    public bool ForestSpirit { get; init; }
+    public bool Vampiric { get; init; }
+    public bool LanceFormation { get; init; }
+    public bool MartialMemories { get; init; }
+    public bool ShadowDancesOfLoec { get; init; }
+    public bool TreeWhack { get; init; }
+    public bool TreeAspects { get; init; }
+    public bool ImmunityKillingBlow { get; init; }
+    public bool ImmunityPoisonedAttacks { get; init; }
+    public bool ImmunityFlamingAttacks { get; init; }
+    public bool Minus1ToBeHit { get; init; }
+    public bool Minus1WSToAttackers { get; init; }
+    public bool RerollSuccessfulWoundsAgainst { get; init; }
+    public bool Impale { get; init; }
+    public bool BlessingOfTheLady { get; init; }
 
     public List<string> AllRuleNames { get; init; } = [];
 
@@ -100,6 +128,67 @@ public record ParsedSpecialRules
                 "terror" => result with { Terror = true },
                 "random attacks" => result with { RandomAttacks = ParseIntParam(param), RandomAttacksRoll = ParseDiceParam(param) },
                 "cold-blooded" or "cold blooded" => result with { ColdBlooded = true },
+                "predatory fighter" => result with { PredatoryFighter = true },
+                "murderous prowess" => result with { MurderousProwess = true },
+                "martial prowess" => result with { MartialProwess = true },
+                "martial memories" => result with { MartialMemories = true },
+                "primal fury" => result with { PrimalFury = true },
+                "eternal hatred" => result with { EternalHatred = true, Hatred = true },
+                "ancestral grudge" => result with { Hatred = true, HatredTarget = param ?? "Orcs, Goblins, Trolls, Skaven" },
+                "valour of ages" => result,
+                "fear elves" => result with { FearElves = true },
+                "dodge" => result with { Dodge = ParseSaveParam(param) ?? 6 },
+                "elven grace" => result with { ElvenGrace = true },
+                "deathblow" => result with { Deathblow = true },
+                "swordmaster" => result with { Swordmaster = true },
+                "ogre charge" => result with { OgreCharge = true },
+                "thunderous charge" => result with { ThunderousCharge = true },
+                "gromril armour" => result with { GromrilArmour = true },
+                "forest spirit" => result with { ForestSpirit = true, Fear = true, MagicalAttacks = true },
+                "vampiric" => result with { Vampiric = true, Fear = true },
+                "lance formation" => result with { LanceFormation = true },
+                "shadow dances of loec" => result with { ShadowDancesOfLoec = true },
+                "tree whack" => result with { TreeWhack = true },
+                "tree aspects" => result with { TreeAspects = true },
+                "jungle poisons" => result,
+                "khainite" => result,
+                "armed to da teef" => result,
+                "animated construct" => result with { Fear = true, Unstable = true },
+                "undead" => result with { Fear = true, Unstable = true },
+                "chill grasp" => result,
+                "strength in numbers" => result,
+                "bloodgreed" => result,
+                "blood frenzy" => result,
+                "resolute" => result,
+                "scurry away" => result,
+                "verminous valour" => result,
+
+                // Daemon marks (compound rules decomposed into existing fields)
+                "daemon of khorne" => result with { Hatred = true },
+                "daemon of slaanesh" => result with { AlwaysStrikesFirst = true, ArmourPiercing = Math.Max(result.ArmourPiercing ?? 0, 1) },
+                "daemon of nurgle" => result with { Minus1ToBeHit = true },
+                "daemon of tzeentch" => result with { WardSave = MinWard(result.WardSave, 6) },
+                "daemonic" => result with { WardSave = MinWard(result.WardSave, 5) },
+
+                // Chaos marks
+                "mark of khorne" => result with { Frenzy = true },
+                "mark of nurgle" => result with { Minus1WSToAttackers = true },
+                "mark of slaanesh" => result with { RerollSuccessfulWoundsAgainst = true },
+                "mark of tzeentch" => result with { WardSave = MinWard(result.WardSave, 6) },
+
+                // Faction-wide defensive rules
+                "the red thirst" => result with { Frenzy = true },
+                "blessing of the lady" => result with { BlessingOfTheLady = true, WardSave = MinWard(result.WardSave, 6) },
+
+                // Immunity variants
+                "immunity" => ParseImmunity(result, param),
+
+                // Tomb Kings
+                "curse of the necropolis" => result with { Minus1ToBeHit = true },
+
+                // Bretonnia / misc
+                "impale" => result with { Impale = true },
+
                 _ => result
             };
         }
@@ -172,5 +261,35 @@ public record ParsedSpecialRules
         if (param == null) return null;
         var m = Regex.Match(param, @"(\d)\+");
         return m.Success ? int.Parse(m.Groups[1].Value) : null;
+    }
+
+    /// <summary>
+    /// Return the better (lower) ward save value, treating null as "no ward".
+    /// </summary>
+    private static int MinWard(int? existing, int proposed) =>
+        existing.HasValue ? Math.Min(existing.Value, proposed) : proposed;
+
+    /// <summary>
+    /// Parse Immunity(target) into the appropriate boolean flags.
+    /// Target can be comma-separated, e.g. "Killing Blow, Poisoned Attacks".
+    /// </summary>
+    private static ParsedSpecialRules ParseImmunity(ParsedSpecialRules result, string? param)
+    {
+        if (string.IsNullOrWhiteSpace(param)) return result;
+
+        var targets = param.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        foreach (var target in targets)
+        {
+            result = target.ToLowerInvariant() switch
+            {
+                "killing blow" => result with { ImmunityKillingBlow = true },
+                "poisoned attacks" => result with { ImmunityPoisonedAttacks = true },
+                "flaming attacks" => result with { ImmunityFlamingAttacks = true },
+                // Psychology immunities — no combat effect, skip
+                _ => result
+            };
+        }
+
+        return result;
     }
 }

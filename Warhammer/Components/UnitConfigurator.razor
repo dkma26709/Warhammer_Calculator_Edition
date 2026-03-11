@@ -47,6 +47,49 @@
         </div>
     }
 
+    @if (Configuration.SpecialRules.ShadowDancesOfLoec)
+    {
+        <div class="mb-2">
+            <label class="form-label small text-body-secondary">Shadow Dance of Loec</label>
+            <select class="form-select form-select-sm" value="@Configuration.SelectedShadowDance"
+                    @onchange="OnShadowDanceChanged">
+                <option value="@ShadowDance.None">— None —</option>
+                <option value="@ShadowDance.WhirlingDeath">Whirling Death (AP1 + KB)</option>
+                <option value="@ShadowDance.StormOfBlades">Storm of Blades (+1 Attack)</option>
+                <option value="@ShadowDance.TheShadowsCoil">The Shadows Coil (-1 to be Hit)</option>
+                <option value="@ShadowDance.WovenMist">Woven Mist (ASF)</option>
+            </select>
+        </div>
+    }
+
+    @if (Configuration.SpecialRules.TreeAspects)
+    {
+        <div class="mb-2">
+            <label class="form-label small text-body-secondary">Tree Aspect</label>
+            <select class="form-select form-select-sm" value="@Configuration.SelectedTreeAspect"
+                    @onchange="OnTreeAspectChanged">
+                <option value="@TreeAspect.None">— None —</option>
+                <option value="@TreeAspect.Birch">Birch (+1 Attack)</option>
+                <option value="@TreeAspect.Oak">Oak (+1 Toughness)</option>
+                <option value="@TreeAspect.Willow">Willow (-1 to be Hit)</option>
+            </select>
+        </div>
+    }
+
+    @if (Configuration.SpecialRules.TreeWhack)
+    {
+        <div class="mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="@(_id + "-treewhack")"
+                       checked="@Configuration.UseTreeWhack"
+                       @onchange="e => OnTreeWhackChanged((bool)(e.Value ?? false))" />
+                <label class="form-check-label small" for="@(_id + "-treewhack")">
+                    Tree Whack (single attack: Init test or D6 Wounds, no armour)
+                </label>
+            </div>
+        </div>
+    }
+
     @if (Configuration.CanHaveChampion || Configuration.CanHaveMusician || Configuration.CanHaveStandardBearer)
     {
         <div class="mb-2">
@@ -193,6 +236,29 @@
     {
         if (Configuration == null) return;
         Configuration.HasStandardBearer = value;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnShadowDanceChanged(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        if (Enum.TryParse<ShadowDance>(e.Value?.ToString(), out var dance))
+            Configuration.SelectedShadowDance = dance;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnTreeAspectChanged(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        if (Enum.TryParse<TreeAspect>(e.Value?.ToString(), out var aspect))
+            Configuration.SelectedTreeAspect = aspect;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnTreeWhackChanged(bool value)
+    {
+        if (Configuration == null) return;
+        Configuration.UseTreeWhack = value;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }
