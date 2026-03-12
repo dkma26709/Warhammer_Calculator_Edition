@@ -96,9 +96,6 @@ public static class TestHelpers
         };
     }
 
-    public static Func<string, string?> ArmourLookup(CoreRulesService coreRules) =>
-        key => coreRules.GetArmour(key)?.CombatSave;
-
     // ─── Statistical Helpers ────────────────────────────────────────
 
     /// <summary>

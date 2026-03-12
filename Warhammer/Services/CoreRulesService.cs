@@ -64,40 +64,6 @@ public class CoreRulesService
         return Data.ArmourSaves.StrengthModifiers.TryGetValue(key, out var mod) ? mod : 0;
     }
 
-    public WeaponEntry? GetCloseCombatWeapon(string key)
-    {
-        return Data.Weapons.CloseCombat.TryGetValue(key, out var w) ? w : null;
-    }
-
-    public WeaponEntry? GetMissileWeapon(string key)
-    {
-        return Data.Weapons.Missile.TryGetValue(key, out var w) ? w : null;
-    }
-
-    public WeaponEntry GetHandWeapon()
-    {
-        return Data.Weapons.CloseCombat["handWeapon"];
-    }
-
-    public ArmourEntry? GetArmour(string key)
-    {
-        return Data.Armour.TryGetValue(key, out var a) ? a : null;
-    }
-
-    public SpecialRuleEntry? GetSpecialRule(string key)
-    {
-        return Data.CommonSpecialRules.TryGetValue(key, out var r) ? r : null;
-    }
-
-    public IReadOnlyDictionary<string, SpecialRuleEntry> AllSpecialRules =>
-        Data.CommonSpecialRules;
-
-    public IReadOnlyDictionary<string, WeaponEntry> AllCloseCombatWeapons =>
-        Data.Weapons.CloseCombat;
-
-    public IReadOnlyDictionary<string, ArmourEntry> AllArmour =>
-        Data.Armour;
-
     /// <summary>
     /// Parse weapon strength field: "As user" -> userS, "+1" -> userS+1, "3" -> 3
     /// </summary>

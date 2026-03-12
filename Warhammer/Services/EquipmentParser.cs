@@ -82,15 +82,6 @@ public static class EquipmentParser
     }
 
     /// <summary>
-    /// Check if a normalized key is an armour key.
-    /// </summary>
-    public static bool IsArmourKey(string key)
-    {
-        return key is "lightArmour" or "mediumArmour" or "heavyArmour"
-            or "shields" or "buckler" or "barding";
-    }
-
-    /// <summary>
     /// Parse equipment text into weapon and armour keys matching core-rules.json dictionary keys.
     /// Only parses the first line (before any \n).
     /// </summary>
