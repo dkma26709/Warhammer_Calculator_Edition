@@ -13,6 +13,7 @@ builder.Services.AddScoped(sp =>
 
 builder.Services.AddScoped<CoreRulesService>();
 builder.Services.AddScoped<FactionDataService>();
+builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
 builder.Services.AddTransient<CombatEngine>();
 
 await builder.Build().RunAsync();
