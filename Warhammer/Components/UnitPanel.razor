@@ -1,6 +1,5 @@
 @using Warhammer.Models.Json
 @using Warhammer.Models.Domain
-@using Warhammer.Services
 
 <div class="card bg-dark text-light border-secondary">
     <div class="card-header">
@@ -19,8 +18,7 @@
             <UnitConfigurator @key="SelectedUnit"
                               Unit="SelectedUnit"
                               Configuration="Configuration"
-                              ConfigurationChanged="ConfigurationChanged"
-                              CoreRules="CoreRules" />
+                              ConfigurationChanged="ConfigurationChanged" />
         }
     </div>
 </div>
@@ -34,5 +32,4 @@
     [Parameter] public EventCallback<UnitEntry?> OnUnitSelected { get; set; }
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
-    [Parameter] public CoreRulesService? CoreRules { get; set; }
 }

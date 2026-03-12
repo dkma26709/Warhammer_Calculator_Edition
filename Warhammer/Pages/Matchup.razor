@@ -6,7 +6,7 @@
 @using Warhammer.Calculator.Models
 @using Warhammer.Services
 
-@inject CoreRulesService CoreRules
+@inject IGameDataRepository Repo
 @inject FactionDataService FactionData
 @inject CombatEngine CombatEngine
 
@@ -21,8 +21,7 @@
                        SelectedUnit="@_attackerUnit"
                        OnUnitSelected="OnAttackerUnitSelected"
                        Configuration="@_attackerConfig"
-                       ConfigurationChanged="OnAttackerConfigChanged"
-                       CoreRules="CoreRules" />
+                       ConfigurationChanged="OnAttackerConfigChanged" />
         </div>
 
         @* Combat Controls (center) *@
@@ -45,8 +44,7 @@
                        SelectedUnit="@_defenderUnit"
                        OnUnitSelected="OnDefenderUnitSelected"
                        Configuration="@_defenderConfig"
-                       ConfigurationChanged="OnDefenderConfigChanged"
-                       CoreRules="CoreRules" />
+                       ConfigurationChanged="OnDefenderConfigChanged" />
         </div>
     </div>
 
@@ -57,8 +55,7 @@
             <div class="col-12">
                 <EffectiveStatsPanel Attacker="_attackerConfig"
                                      Defender="_defenderConfig"
-                                     ChargeState="_chargeState"
-                                     CoreRules="CoreRules" />
+                                     ChargeState="_chargeState" />
             </div>
         </div>
     }
@@ -99,7 +96,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await CoreRules.EnsureLoadedAsync();
+        await Repo.EnsureLoadedAsync();
     }
 
     // --- Attacker events ---

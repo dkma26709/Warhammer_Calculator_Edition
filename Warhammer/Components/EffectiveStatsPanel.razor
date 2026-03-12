@@ -1,10 +1,12 @@
 @using Warhammer.Calculator
 @using Warhammer.Calculator.Models
 @using Warhammer.Models.Domain
-@using Warhammer.Models.Json
+@using Warhammer.Models.Enums
 @using Warhammer.Services
 
-@if (Attacker != null && Defender != null && CoreRules != null)
+@inject IGameDataRepository Repo
+
+@if (Attacker != null && Defender != null)
 {
     var atkStats = ComputeStats(Attacker, Defender, isAttackerSide: true);
     var defStats = ComputeStats(Defender, Attacker, isAttackerSide: false);
@@ -32,7 +34,6 @@
     [Parameter] public UnitConfiguration? Attacker { get; set; }
     [Parameter] public UnitConfiguration? Defender { get; set; }
     [Parameter] public ChargeState ChargeState { get; set; }
-    [Parameter] public CoreRulesService? CoreRules { get; set; }
 
     private record UnitStats
     {
@@ -51,6 +52,17 @@
         public bool IsCharging { get; init; }
     }
 
+    private Weapon ResolveWeapon(UnitConfiguration unit)
+    {
+        if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(unit.SelectedWeaponKey, out var enumKey))
+        {
+            var w = Repo.GetWeapon(enumKey);
+            if (w != null) return w;
+        }
+
+        return Repo.GetHandWeapon();
+    }
+
     private UnitStats ComputeStats(UnitConfiguration unit, UnitConfiguration opponent, bool isAttackerSide)
     {
         var context = new CombatContext { Charge = ChargeState, CombatRound = 1 };
@@ -58,25 +70,23 @@
         bool isBeingCharged = context.IsCharging(!isAttackerSide);
 
         // Weapon and weapon rules
-        var weapon = CoreRules!.GetCloseCombatWeapon(unit.SelectedWeaponKey)
-            ?? CoreRules.GetHandWeapon();
-        var weaponRules = ParsedWeaponRules.Parse(weapon.SpecialRules, weapon.Notes);
+        var weapon = ResolveWeapon(unit);
 
         // Effective initiative
-        int effectiveI = weaponRules.ApplyToInitiative(unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged);
+        int effectiveI = weapon.Rules.ApplyToInitiative(unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged);
 
         // Weapon Mighty Blow
         int weaponMB = 0;
-        if (weaponRules.MightyBlow != null)
+        if (weapon.Rules.MightyBlow != null)
         {
-            bool applyWeaponMB = weaponRules.MightyBlowCondition switch
+            bool applyWeaponMB = weapon.Rules.MightyBlowCondition switch
             {
                 WeaponCondition.WhenCharging => isCharging,
                 WeaponCondition.WhenBeingCharged => isBeingCharged,
                 _ => true
             };
             if (applyWeaponMB)
-                weaponMB = weaponRules.MightyBlow.Value;
+                weaponMB = weapon.Rules.MightyBlow.Value;
         }
 
         // Effective strength
@@ -84,38 +94,45 @@
 
         // Total attacks
         int totalAttacks = unit.TotalAttacks(isCharging, 1,
-            weaponRules.ExtraAttacks, weaponRules.FightInExtraRanks ?? 0);
+            weapon.Rules.ExtraAttacks, weapon.Rules.FightInExtraRanks ?? 0);
         int mountAttacks = unit.MountAttacks();
 
         // To-hit
         int attackerWS = unit.PrimaryProfile.WS ?? 1;
-        int toHitNeeded = CoreRules.GetToHitScore(attackerWS, opponent.BestWS);
+        int toHitNeeded = Repo.GetToHitScore(attackerWS, opponent.BestWS);
 
         // To-wound
-        int toWoundNeeded = CoreRules.GetToWoundScore(effectiveS, opponent.BestT);
+        int toWoundNeeded = Repo.GetToWoundScore(effectiveS, opponent.BestT);
 
         // Armour save (this unit's save vs opponent's attacks)
-        var opponentWeapon = CoreRules.GetCloseCombatWeapon(opponent.SelectedWeaponKey)
-            ?? CoreRules.GetHandWeapon();
-        var opponentWeaponRules = ParsedWeaponRules.Parse(opponentWeapon.SpecialRules, opponentWeapon.Notes);
+        var opponentWeapon = ResolveWeapon(opponent);
         bool opponentIsCharging = isBeingCharged;
         bool opponentIsBeingCharged = isCharging;
         int opponentWeaponMB = 0;
-        if (opponentWeaponRules.MightyBlow != null)
+        if (opponentWeapon.Rules.MightyBlow != null)
         {
-            bool applyOppMB = opponentWeaponRules.MightyBlowCondition switch
+            bool applyOppMB = opponentWeapon.Rules.MightyBlowCondition switch
             {
                 WeaponCondition.WhenCharging => opponentIsCharging,
                 WeaponCondition.WhenBeingCharged => opponentIsBeingCharged,
                 _ => true
             };
             if (applyOppMB)
-                opponentWeaponMB = opponentWeaponRules.MightyBlow.Value;
+                opponentWeaponMB = opponentWeapon.Rules.MightyBlow.Value;
         }
         int opponentS = opponent.EffectiveStrength(opponentWeapon, opponentIsCharging, 1, opponentWeaponMB);
         int opponentAP = opponent.SpecialRules.ArmourPiercing ?? 0;
-        int strengthMod = CoreRules.GetArmourSaveModifier(opponentS);
-        Func<string, string?> armourLookup = key => CoreRules.GetArmour(key)?.CombatSave;
+        int strengthMod = Repo.GetArmourSaveModifier(opponentS);
+        Func<string, string?> armourLookup = key =>
+        {
+            if (ArmourKeyExtensions.TryFromJsonKey(key, out var armourKey))
+            {
+                var a = Repo.GetArmour(armourKey);
+                if (a != null) return $"+{a.CombatSaveModifier}/{a.CombatStandaloneSave}+";
+            }
+
+            return null;
+        };
         int armourSave = unit.EffectiveArmourSave(opponentS, opponentAP, strengthMod, armourLookup);
 
         // Ward save (best of ward/regen/parry)

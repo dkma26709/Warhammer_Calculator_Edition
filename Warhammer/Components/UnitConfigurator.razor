@@ -1,6 +1,9 @@
 @using Warhammer.Models.Json
 @using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
 @using Warhammer.Services
+
+@inject IGameDataRepository Repo
 
 @if (Unit != null && Configuration != null)
 {
@@ -202,7 +205,6 @@
     [Parameter] public UnitEntry? Unit { get; set; }
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
-    [Parameter] public CoreRulesService? CoreRules { get; set; }
 
     private string _id = Guid.NewGuid().ToString("N")[..8];
 
@@ -251,7 +253,7 @@
     {
         get
         {
-            if (Configuration == null || CoreRules == null) return [];
+            if (Configuration == null) return [];
             var weapons = new List<(string Key, string Name)>();
             var seen = new HashSet<string>();
 
@@ -259,8 +261,11 @@
             foreach (var key in Configuration.BaseWeaponKeys)
             {
                 if (!EquipmentParser.IsCloseCombatWeaponKey(key) || !seen.Add(key)) continue;
-                var w = CoreRules.GetCloseCombatWeapon(key);
-                if (w != null) weapons.Add((key, w.Name));
+                if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey))
+                {
+                    var w = Repo.GetWeapon(enumKey);
+                    if (w != null) weapons.Add((key, w.Name));
+                }
             }
 
             // Close combat weapons from equipment options (all choices, not just selected)
@@ -276,8 +281,11 @@
                             if (EquipmentParser.TryNormalize(name, out var key, out bool isWeapon)
                                 && isWeapon && EquipmentParser.IsCloseCombatWeaponKey(key) && seen.Add(key))
                             {
-                                var w = CoreRules.GetCloseCombatWeapon(key);
-                                if (w != null) weapons.Add((key, w.Name));
+                                if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey))
+                                {
+                                    var w = Repo.GetWeapon(enumKey);
+                                    if (w != null) weapons.Add((key, w.Name));
+                                }
                             }
                         }
                     }
