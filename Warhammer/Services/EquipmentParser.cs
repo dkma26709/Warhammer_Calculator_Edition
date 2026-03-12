@@ -73,15 +73,6 @@ public static class EquipmentParser
     }
 
     /// <summary>
-    /// Check if a normalized key is a close combat weapon (used in the combat engine).
-    /// </summary>
-    public static bool IsCloseCombatWeaponKey(string key)
-    {
-        return key is "handWeapon" or "two_additionalHandWeapons" or "polearm"
-            or "greatWeapon" or "flail" or "spear" or "pike" or "lightLance" or "heavyLance";
-    }
-
-    /// <summary>
     /// Parse equipment text into weapon and armour keys matching core-rules.json dictionary keys.
     /// Only parses the first line (before any \n).
     /// </summary>

@@ -55,8 +55,8 @@ public class UnitConfiguration
     public TroopTypeInfo TroopType { get; }
     public int BaseWidthMm { get; }
     public ParsedSpecialRules SpecialRules { get; }
-    public List<string> BaseWeaponKeys { get; }
-    public List<string> BaseArmourKeys { get; }
+    public List<CloseCombatWeaponKey> BaseWeaponKeys { get; }
+    public List<ArmourKey> BaseArmourKeys { get; }
 
     // ─── Constructors ────────────────────────────────────────────
 
@@ -73,8 +73,8 @@ public class UnitConfiguration
         TroopType = unit.BaseModel.TroopType;
         BaseWidthMm = unit.BaseWidthMm;
         SpecialRules = unit.BaseModel.SpecialRules;
-        BaseWeaponKeys = unit.BaseModel.Weapons.Select(w => w.Key.ToJsonKey()).ToList();
-        BaseArmourKeys = unit.BaseModel.Armour.Select(a => a.Key.ToJsonKey()).ToList();
+        BaseWeaponKeys = unit.BaseModel.Weapons.Select(w => w.Key).ToList();
+        BaseArmourKeys = unit.BaseModel.Armour.Select(a => a.Key).ToList();
 
         // Defaults
         ModelCount = unit.BaseModel.TroopType.IsCharacter ? 1 : unit.MinUnitSize;
@@ -100,15 +100,12 @@ public class UnitConfiguration
     public int ComputeBaseArmourModifier()
     {
         int totalModifier = 0;
-        var effectiveArmour = EquipmentArmour;
+        var effectiveArmour = EffectiveArmour;
 
         foreach (var armourKey in effectiveArmour)
         {
-            if (ArmourKeyExtensions.TryFromJsonKey(armourKey, out var key)
-                && ResolvedUnit.AvailableArmour.TryGetValue(key, out var armour))
-            {
+            if (ResolvedUnit.AvailableArmour.TryGetValue(armourKey, out var armour))
                 totalModifier += armour.CombatSaveModifier;
-            }
         }
 
         if (SpecialRules.NaturalArmour.HasValue)
@@ -118,7 +115,7 @@ public class UnitConfiguration
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
 
         bool hasConventionalArmour = effectiveArmour
-            .Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour");
+            .Any(k => k is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
 
         if (SpecialRules.ChaosArmour && hasConventionalArmour)
             totalModifier += 1;
@@ -132,14 +129,14 @@ public class UnitConfiguration
     // ─── Effective Equipment (base + upgrades - replacements) ────
 
     /// <summary>
-    /// All weapon keys the unit currently has, considering base equipment and selected upgrades.
+    /// All close combat weapon keys the unit currently has, considering base equipment and selected upgrades.
     /// </summary>
-    public List<string> EquipmentWeapons
+    public List<CloseCombatWeaponKey> EffectiveWeapons
     {
         get
         {
-            var weapons = new List<string>(BaseWeaponKeys);
-            ApplySelectedUpgrades(weapons, isWeapon: true);
+            var weapons = new List<CloseCombatWeaponKey>(BaseWeaponKeys);
+            ApplyWeaponUpgrades(weapons);
             return weapons;
         }
     }
@@ -147,17 +144,17 @@ public class UnitConfiguration
     /// <summary>
     /// All armour keys the unit currently has, considering base equipment and selected upgrades.
     /// </summary>
-    public List<string> EquipmentArmour
+    public List<ArmourKey> EffectiveArmour
     {
         get
         {
-            var armour = new List<string>(BaseArmourKeys);
-            ApplySelectedUpgrades(armour, isWeapon: false);
+            var armour = new List<ArmourKey>(BaseArmourKeys);
+            ApplyArmourUpgrades(armour);
             return armour;
         }
     }
 
-    private void ApplySelectedUpgrades(List<string> keys, bool isWeapon)
+    private void ApplyWeaponUpgrades(List<CloseCombatWeaponKey> keys)
     {
         if (UnitEntry.Options == null) return;
 
@@ -175,9 +172,10 @@ public class UnitConfiguration
             if (option.Action == "replace" && replaces != null)
             {
                 if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
-                    && replacedIsWeapon == isWeapon)
+                    && replacedIsWeapon
+                    && CloseCombatWeaponKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
                 {
-                    keys.Remove(replacedKey);
+                    keys.Remove(replacedEnumKey);
                 }
             }
 
@@ -185,9 +183,50 @@ public class UnitConfiguration
             foreach (var name in choice.Name)
             {
                 if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
-                    && itemIsWeapon == isWeapon && !keys.Contains(key))
+                    && itemIsWeapon
+                    && CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey)
+                    && !keys.Contains(enumKey))
                 {
-                    keys.Add(key);
+                    keys.Add(enumKey);
+                }
+            }
+        }
+    }
+
+    private void ApplyArmourUpgrades(List<ArmourKey> keys)
+    {
+        if (UnitEntry.Options == null) return;
+
+        for (int i = 0; i < UnitEntry.Options.Count; i++)
+        {
+            var option = UnitEntry.Options[i];
+            if (option.Type != "equipment" || option.Choices == null) continue;
+            if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
+            if (choiceIdx >= option.Choices.Count) continue;
+
+            var choice = option.Choices[choiceIdx];
+
+            // Handle replace: remove the replaced item
+            string? replaces = choice.Replaces ?? option.Replaces;
+            if (option.Action == "replace" && replaces != null)
+            {
+                if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
+                    && !replacedIsWeapon
+                    && ArmourKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
+                {
+                    keys.Remove(replacedEnumKey);
+                }
+            }
+
+            // Add the selected items
+            foreach (var name in choice.Name)
+            {
+                if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
+                    && !itemIsWeapon
+                    && ArmourKeyExtensions.TryFromJsonKey(key, out var enumKey)
+                    && !keys.Contains(enumKey))
+                {
+                    keys.Add(enumKey);
                 }
             }
         }

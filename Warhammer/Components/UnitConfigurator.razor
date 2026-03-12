@@ -44,7 +44,7 @@
                     @onchange="OnWeaponChanged">
                 @foreach (var (key, name) in AvailableWeapons)
                 {
-                    <option value="@key">@name</option>
+                    <option value="@key.ToJsonKey()">@name</option>
                 }
             </select>
         </div>
@@ -224,7 +224,7 @@
                     if (isWeapon)
                     {
                         anyWeapon = true;
-                        if (EquipmentParser.IsCloseCombatWeaponKey(key))
+                        if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out _))
                             anyCCWeapon = true;
                     }
                     else
@@ -248,23 +248,20 @@
         return choice.PerModel ? $"(+{pts} pts/model)" : $"(+{pts} pts)";
     }
 
-    private List<(string Key, string Name)> AvailableWeapons
+    private List<(CloseCombatWeaponKey Key, string Name)> AvailableWeapons
     {
         get
         {
             if (Configuration == null) return [];
-            var weapons = new List<(string Key, string Name)>();
-            var seen = new HashSet<string>();
+            var weapons = new List<(CloseCombatWeaponKey Key, string Name)>();
+            var seen = new HashSet<CloseCombatWeaponKey>();
 
-            // Base equipment close combat weapons
+            // Base equipment close combat weapons (already CC-only enum keys)
             foreach (var key in Configuration.BaseWeaponKeys)
             {
-                if (!EquipmentParser.IsCloseCombatWeaponKey(key) || !seen.Add(key)) continue;
-                if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey))
-                {
-                    var w = Repo.GetWeapon(enumKey);
-                    if (w != null) weapons.Add((key, w.Name));
-                }
+                if (!seen.Add(key)) continue;
+                var w = Repo.GetWeapon(key);
+                if (w != null) weapons.Add((key, w.Name));
             }
 
             // Close combat weapons from equipment options (all choices, not just selected)
@@ -277,14 +274,13 @@
                     {
                         foreach (var name in choice.Name)
                         {
-                            if (EquipmentParser.TryNormalize(name, out var key, out bool isWeapon)
-                                && isWeapon && EquipmentParser.IsCloseCombatWeaponKey(key) && seen.Add(key))
+                            if (EquipmentParser.TryNormalize(name, out var normalized, out bool isWeapon)
+                                && isWeapon
+                                && CloseCombatWeaponKeyExtensions.TryFromJsonKey(normalized, out var enumKey)
+                                && seen.Add(enumKey))
                             {
-                                if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey))
-                                {
-                                    var w = Repo.GetWeapon(enumKey);
-                                    if (w != null) weapons.Add((key, w.Name));
-                                }
+                                var w = Repo.GetWeapon(enumKey);
+                                if (w != null) weapons.Add((enumKey, w.Name));
                             }
                         }
                     }
@@ -292,7 +288,7 @@
             }
 
             if (weapons.Count == 0)
-                weapons.Add(("handWeapon", "HAND WEAPON"));
+                weapons.Add((CloseCombatWeaponKey.HandWeapon, "HAND WEAPON"));
 
             return weapons;
         }
@@ -330,7 +326,7 @@
             // Check if any choice in this group is a CC weapon
             bool groupHasCCWeapons = option.Choices.Any(c =>
                 c.Name.Any(n => EquipmentParser.TryNormalize(n, out var k, out bool isW)
-                    && isW && EquipmentParser.IsCloseCombatWeaponKey(k)));
+                    && isW && CloseCombatWeaponKeyExtensions.TryFromJsonKey(k, out _)));
             if (!groupHasCCWeapons) continue;
 
             // Find matching choice index

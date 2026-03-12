@@ -329,11 +329,11 @@ public class UnitConfigurationTests
             ]);
 
         var config = new UnitConfiguration(unit);
-        Assert.DoesNotContain("shields", config.EquipmentArmour);
+        Assert.DoesNotContain(ArmourKey.Shields, config.EffectiveArmour);
 
         config.SelectedUpgrades[0] = 0;
-        Assert.Contains("shields", config.EquipmentArmour);
-        Assert.Contains("lightArmour", config.EquipmentArmour);
+        Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
+        Assert.Contains(ArmourKey.LightArmour, config.EffectiveArmour);
     }
 
     [Fact]
@@ -433,13 +433,13 @@ public class UnitConfigurationTests
 
         // Select heavy armour
         config.SelectedUpgrades[0] = 0;
-        Assert.Contains("heavyArmour", config.EquipmentArmour);
-        Assert.DoesNotContain("shields", config.EquipmentArmour);
+        Assert.Contains(ArmourKey.HeavyArmour, config.EffectiveArmour);
+        Assert.DoesNotContain(ArmourKey.Shields, config.EffectiveArmour);
 
         // Switch to shield
         config.SelectedUpgrades[0] = 1;
-        Assert.DoesNotContain("heavyArmour", config.EquipmentArmour);
-        Assert.Contains("shields", config.EquipmentArmour);
+        Assert.DoesNotContain(ArmourKey.HeavyArmour, config.EffectiveArmour);
+        Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
     }
 
     [Fact]
@@ -456,12 +456,12 @@ public class UnitConfigurationTests
             ]);
 
         var config = new UnitConfiguration(unit);
-        Assert.Contains("spear", config.EquipmentWeapons);
-        Assert.DoesNotContain("pike", config.EquipmentWeapons);
+        Assert.Contains(CloseCombatWeaponKey.Spear, config.EffectiveWeapons);
+        Assert.DoesNotContain(CloseCombatWeaponKey.Pike, config.EffectiveWeapons);
 
         config.SelectedUpgrades[0] = 0;
-        Assert.DoesNotContain("spear", config.EquipmentWeapons);
-        Assert.Contains("pike", config.EquipmentWeapons);
+        Assert.DoesNotContain(CloseCombatWeaponKey.Spear, config.EffectiveWeapons);
+        Assert.Contains(CloseCombatWeaponKey.Pike, config.EffectiveWeapons);
     }
 
     [Fact]
