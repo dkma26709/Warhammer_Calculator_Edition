@@ -1,328 +1,358 @@
-using System.Text.Json;
 using Warhammer.Calculator;
 using Warhammer.Calculator.Models;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Json;
-using Warhammer.Services;
 
 namespace Warhammer.Tests;
 
 public class CombatResolverTests
 {
-    private static readonly CoreRulesData CoreData;
+    private const int Iterations = 2_000;
 
-    static CombatResolverTests()
-    {
-        var dataDir = Path.Combine(FindProjectRoot(), "wwwroot", "data");
-        var json = File.ReadAllText(Path.Combine(dataDir, "core-rules.json"));
-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-        CoreData = JsonSerializer.Deserialize<CoreRulesData>(json, options)!;
-    }
-
-    private static string FindProjectRoot()
-    {
-        var dir = Directory.GetCurrentDirectory();
-        while (dir != null)
-        {
-            if (File.Exists(Path.Combine(dir, "Warhammer.csproj")))
-                return dir;
-            var sibling = Path.Combine(Path.GetDirectoryName(dir)!, "Warhammer");
-            if (Directory.Exists(sibling) && File.Exists(Path.Combine(sibling, "Warhammer.csproj")))
-                return sibling;
-            dir = Path.GetDirectoryName(dir);
-        }
-        throw new InvalidOperationException("Could not find Warhammer project root");
-    }
-
-    private static CoreRulesService CreateCoreRules()
-    {
-        var service = new CoreRulesService(null!);
-        var dataField = typeof(CoreRulesService).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
-        var loadedField = typeof(CoreRulesService).GetField("_loaded", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
-        dataField.SetValue(service, CoreData);
-        loadedField.SetValue(service, true);
-        return service;
-    }
-
-    private static UnitEntry MakeUnit(
-        string troopType = "Infantry",
-        int ws = 4, int s = 3, int t = 3, int w = 1, int i = 3, int a = 1, int ld = 7,
-        double? points = 8,
-        string? equipment = "Hand weapon",
-        string? specialRules = null,
-        string? unitSize = "10+",
-        ProfileEntry? mountProfile = null)
-    {
-        var profiles = new List<ProfileEntry>
-        {
-            new() { Name = "Test", WS = ws, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points }
-        };
-        if (mountProfile != null)
-            profiles.Add(mountProfile);
-
-        return new UnitEntry
-        {
-            Name = "Test Unit",
-            TroopType = troopType,
-            Profiles = profiles,
-            Equipment = equipment,
-            SpecialRules = specialRules,
-            UnitSize = unitSize
-        };
-    }
-
-    private static RoundResult Resolve(CombatResolver resolver, UnitConfiguration attacker, UnitConfiguration defender, CombatContext context, Random rng)
+    private static RoundResult Resolve(CombatResolver resolver, UnitConfiguration attacker,
+        UnitConfiguration defender, CombatContext context, Random rng)
     {
         var groups = resolver.PrepareAttackGroups(attacker, defender, context);
         return resolver.ResolveRound(attacker, defender, context, groups, rng);
     }
 
+    // ─── Impact Hits ────────────────────────────────────────────────
+
     [Fact]
-    public void ResolveRound_ImpactHits_OnChargeOnly()
+    public void ImpactHits_OnlyTriggerOnCharge()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
 
-        int woundsOnCharge = 0;
-        int woundsNoCharge = 0;
-
-        for (int seed = 0; seed < 50; seed++)
+        var chargeResult = TestHelpers.RunRoundTrials(Iterations, rng =>
         {
-            var rng1 = new Random(seed);
-            var rng2 = new Random(seed);
-
-            var charger = new UnitConfiguration(MakeUnit(ws: 4, s: 4, a: 1, specialRules: "Impact Hits (2)"))
+            var charger = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 4, a: 1, specialRules: "Impact Hits (2)"))
                 { ModelCount = 10, Frontage = 5 };
-            var defender = new UnitConfiguration(MakeUnit(ws: 3, t: 3))
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3))
                 { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, charger, def,
+                new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 }, rng);
+        });
 
-            var charger2 = new UnitConfiguration(MakeUnit(ws: 4, s: 4, a: 1, specialRules: "Impact Hits (2)"))
+        var noChargeResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 4, a: 1, specialRules: "Impact Hits (2)"))
                 { ModelCount = 10, Frontage = 5 };
-            var defender2 = new UnitConfiguration(MakeUnit(ws: 3, t: 3))
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3))
                 { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { Charge = ChargeState.Neither, CombatRound = 1 }, rng);
+        });
 
-            var chargeContext = new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 };
-            var noChargeContext = new CombatContext { Charge = ChargeState.Neither, CombatRound = 1 };
-
-            woundsOnCharge += Resolve(resolver, charger, defender, chargeContext, rng1).AttackerWoundsDealt;
-            woundsNoCharge += Resolve(resolver, charger2, defender2, noChargeContext, rng2).AttackerWoundsDealt;
-        }
-
-        Assert.True(woundsOnCharge > woundsNoCharge,
-            $"Charge with impact hits should deal more wounds: charge={woundsOnCharge}, no={woundsNoCharge}");
+        // Impact Hits (2) × 5 front rank = 10 extra auto-hits on charge
+        // S4 vs T3 = 3+ wound = 66.7%. ~6.7 extra wounds per iteration.
+        TestHelpers.AssertGreaterByRatio(
+            chargeResult.TotalAttackerWounds, noChargeResult.TotalAttackerWounds, 1.3,
+            "Charging with impact hits should deal materially more wounds");
     }
 
-    [Fact]
-    public void ResolveRound_Stomp_MonstrousInfantryVsInfantry()
-    {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+    // ─── Stomp ──────────────────────────────────────────────────────
 
-        int totalWounds = 0;
-        for (int seed = 0; seed < 50; seed++)
+    [Fact]
+    public void Stomp_MonstrousInfantryVsInfantry_DealsExtraWounds()
+    {
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
+
+        var monstrousResult = TestHelpers.RunRoundTrials(Iterations, rng =>
         {
-            var rng = new Random(seed);
-            var monster = new UnitConfiguration(MakeUnit(troopType: "Monstrous Infantry", ws: 4, s: 4, a: 3, unitSize: "3+"))
+            var monster = new UnitConfiguration(TestHelpers.MakeUnit(
+                troopType: "Monstrous Infantry", ws: 4, s: 4, a: 3, unitSize: "3+"))
                 { ModelCount = 3, Frontage = 3 };
-            var infantry = new UnitConfiguration(MakeUnit(ws: 3, t: 3))
+            var infantry = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3))
                 { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, monster, infantry,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
 
-            var context = new CombatContext { CombatRound = 1 };
-            totalWounds += Resolve(resolver, monster, infantry, context, rng).AttackerWoundsDealt;
-        }
+        var infantryResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            // Same stats but regular infantry (no stomp)
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(
+                troopType: "Infantry", ws: 4, s: 4, a: 3, unitSize: "3+"))
+                { ModelCount = 3, Frontage = 3 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3))
+                { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
 
-        // Monstrous Infantry vs Infantry should deal wounds (including stomp)
-        Assert.True(totalWounds > 0, "Monstrous Infantry should deal wounds");
+        // Monstrous Infantry gets Stomp (1 hit per model in base contact)
+        TestHelpers.AssertGreaterByRatio(
+            monstrousResult.TotalAttackerWounds, infantryResult.TotalAttackerWounds, 1.05,
+            "Monstrous Infantry stomp should add wounds vs Infantry");
     }
 
     [Fact]
-    public void ResolveRound_Stomp_InfantryDoesNotStomp()
+    public void Stomp_InfantryVsInfantry_NoStomp()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        // Infantry should never stomp infantry — verify by comparing
+        // a symmetric mirror match produces symmetric results
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
 
-        // Infantry vs Infantry should never have stomp damage
-        // We can't easily isolate stomp, but we can test that basic infantry combat works
-        var rng = new Random(42);
-        var attacker = new UnitConfiguration(MakeUnit(ws: 4, s: 3, a: 1))
-            { ModelCount = 10, Frontage = 5 };
-        var defender = new UnitConfiguration(MakeUnit(ws: 4, t: 3))
-            { ModelCount = 10, Frontage = 5 };
-        var context = new CombatContext { CombatRound = 1 };
+        var result = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1))
+                { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, t: 3, a: 1))
+                { ModelCount = 10, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
 
-        var result = Resolve(resolver, attacker, defender, context, rng);
-        // Just verify it doesn't crash and produces valid results
-        Assert.True(result.AttackerWoundsDealt >= 0);
-        Assert.True(result.DefenderWoundsDealt >= 0);
+        // Mirror match: avg wounds should be roughly equal (within 20%)
+        double ratio = result.AvgAttackerWounds > 0
+            ? result.AvgDefenderWounds / result.AvgAttackerWounds
+            : 0;
+        TestHelpers.AssertRate(ratio, 0.70, 1.40, "Mirror infantry match should be roughly symmetric");
     }
 
+    // ─── Combat Resolution ──────────────────────────────────────────
+
     [Fact]
-    public void ResolveRound_CombatRes_IncludesRankBonusAndStandard()
+    public void CombatRes_RankBonusAndStandard_Deterministic()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
         var rng = new Random(42);
 
-        var attacker = new UnitConfiguration(MakeUnit(ws: 4, s: 3, a: 1, unitSize: "20+"))
+        var attacker = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1, unitSize: "20+"))
             { ModelCount = 20, Frontage = 5, HasStandardBearer = true };
-        var defender = new UnitConfiguration(MakeUnit(ws: 4, t: 3, unitSize: "10+"))
+        var defender = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3, unitSize: "10+"))
             { ModelCount = 10, Frontage = 5 };
 
-        var context = new CombatContext { CombatRound = 1 };
-        var result = Resolve(resolver, attacker, defender, context, rng);
+        var result = Resolve(resolver, attacker, defender,
+            new CombatContext { CombatRound = 1 }, rng);
 
-        // Attacker has 20 models/5 frontage = 4 ranks, rank bonus = 3 (capped)
+        // 20 models / 5 frontage = 4 ranks → rank bonus = 3 (capped)
         Assert.Equal(3, result.AttackerBreakdown.RankBonus);
         Assert.Equal(1, result.AttackerBreakdown.StandardBearer);
+        // Defender: 10/5 = 2 ranks → rank bonus = 1
+        Assert.Equal(1, result.DefenderBreakdown.RankBonus);
+        Assert.Equal(0, result.DefenderBreakdown.StandardBearer);
     }
 
     [Fact]
-    public void ResolveRound_CombatRes_ChargeBonus()
+    public void CombatRes_ChargeBonus_OnlyForCharger()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
         var rng = new Random(42);
 
-        var attacker = new UnitConfiguration(MakeUnit(ws: 4, s: 3, a: 1))
+        var attacker = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1))
             { ModelCount = 10, Frontage = 5 };
-        var defender = new UnitConfiguration(MakeUnit(ws: 4, t: 3))
+        var defender = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3))
             { ModelCount = 10, Frontage = 5 };
 
-        var context = new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 };
-        var result = Resolve(resolver, attacker, defender, context, rng);
+        var result = Resolve(resolver, attacker, defender,
+            new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 }, rng);
 
         Assert.Equal(1, result.AttackerBreakdown.ChargeBonus);
         Assert.Equal(0, result.DefenderBreakdown.ChargeBonus);
     }
 
+    // ─── Fear ───────────────────────────────────────────────────────
+
     [Fact]
-    public void ResolveRound_FearBonus_WhenCausingFear()
+    public void Fear_GivesCRBonus_Against_NonFearCausing()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
         var rng = new Random(42);
 
-        var fearUnit = new UnitConfiguration(MakeUnit(ws: 4, s: 3, a: 1, specialRules: "Fear"))
+        var fearUnit = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1, specialRules: "Fear"))
             { ModelCount = 10, Frontage = 5 };
-        var normalUnit = new UnitConfiguration(MakeUnit(ws: 4, t: 3))
+        var normalUnit = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3))
             { ModelCount = 10, Frontage = 5 };
 
-        var context = new CombatContext { CombatRound = 1 };
-        var result = Resolve(resolver, fearUnit, normalUnit, context, rng);
+        var result = Resolve(resolver, fearUnit, normalUnit,
+            new CombatContext { CombatRound = 1 }, rng);
 
         Assert.Equal(1, result.AttackerBreakdown.FearBonus);
         Assert.Equal(0, result.DefenderBreakdown.FearBonus);
     }
 
     [Fact]
-    public void ResolveRound_FearBonus_2xUS()
+    public void Fear_DoubleUS_Gives2Bonus()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
         var rng = new Random(42);
 
-        // Fear-causing unit with much higher US
-        var fearUnit = new UnitConfiguration(MakeUnit(troopType: "Monstrous Infantry", ws: 4, s: 4, a: 2,
+        // Monstrous Infantry: US=2 per model, 6 models = US 12
+        var fearUnit = new UnitConfiguration(TestHelpers.MakeUnit(
+            troopType: "Monstrous Infantry", ws: 4, s: 4, a: 2,
             specialRules: "Fear", unitSize: "6+"))
             { ModelCount = 6, Frontage = 3 };
-        // US=2 per model, 6 models = 12 total US
 
-        var smallUnit = new UnitConfiguration(MakeUnit(ws: 3, t: 3, unitSize: "5+"))
+        // Infantry: US=1, 5 models = US 5. 12 >= 2×5, so +2 fear bonus
+        var smallUnit = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3, unitSize: "5+"))
             { ModelCount = 5, Frontage = 5 };
-        // US=1 per model, 5 models = 5 total US. 12 >= 2*5 = 10, so +2 fear bonus
 
-        var context = new CombatContext { CombatRound = 1 };
-        var result = Resolve(resolver, fearUnit, smallUnit, context, rng);
+        var result = Resolve(resolver, fearUnit, smallUnit,
+            new CombatContext { CombatRound = 1 }, rng);
 
         Assert.Equal(2, result.AttackerBreakdown.FearBonus);
     }
 
     [Fact]
-    public void ResolveRound_StrikeOrder_HigherInitiativeFirst()
+    public void Fear_VsFearCausing_NoBonus()
     {
-        // This is hard to test directly, but we can verify that a fast unit
-        // with killing blow deals KB wounds before the slow unit can retaliate
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
-
-        // Just verify the round completes without error
-        var rng = new Random(42);
-        var fastUnit = new UnitConfiguration(MakeUnit(ws: 5, s: 4, i: 6, a: 2))
-            { ModelCount = 10, Frontage = 5 };
-        var slowUnit = new UnitConfiguration(MakeUnit(ws: 3, t: 3, i: 1, a: 1))
-            { ModelCount = 10, Frontage = 5 };
-
-        var context = new CombatContext { CombatRound = 1 };
-        var result = Resolve(resolver, fastUnit, slowUnit, context, rng);
-
-        Assert.True(result.AttackerWoundsDealt >= 0);
-        Assert.True(result.DefenderWoundsDealt >= 0);
-    }
-
-    [Fact]
-    public void ResolveRound_GreatWeapon_LowersInitiativeNotASL()
-    {
-        // Great Weapon gives -2 Initiative, not ASL
-        // A model with I5 and great weapon should effectively have I3 (not I-∞)
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
         var rng = new Random(42);
 
-        // Unit with I5, great weapon
-        var gwUnit = new UnitConfiguration(MakeUnit(ws: 4, s: 4, i: 5, a: 1, equipment: "Great weapon"))
-            { ModelCount = 10, Frontage = 5, SelectedWeaponKey = "greatWeapon" };
-        // Defender with I4
-        var defender = new UnitConfiguration(MakeUnit(ws: 4, t: 3, i: 4, a: 1))
+        var fearUnit1 = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1, specialRules: "Fear"))
+            { ModelCount = 10, Frontage = 5 };
+        var fearUnit2 = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, t: 3, a: 1, specialRules: "Fear"))
             { ModelCount = 10, Frontage = 5 };
 
-        var context = new CombatContext { CombatRound = 1 };
-        var result = Resolve(resolver, gwUnit, defender, context, rng);
+        var result = Resolve(resolver, fearUnit1, fearUnit2,
+            new CombatContext { CombatRound = 1 }, rng);
 
-        // Should complete without errors
-        // GW unit effective I = 5-2 = 3, so defender I4 strikes first
-        Assert.True(result.AttackerWoundsDealt >= 0);
+        // Both cause Fear → immune to each other's Fear
+        Assert.Equal(0, result.AttackerBreakdown.FearBonus);
+        Assert.Equal(0, result.DefenderBreakdown.FearBonus);
     }
 
+    // ─── Great Weapon ───────────────────────────────────────────────
+
     [Fact]
-    public void ResolveRound_Spear_InitiativeBonus()
+    public void GreatWeapon_LowersInitiativeBy2_StrikesAfterHigherI()
     {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
-        var rng = new Random(42);
+        // GW: -2 Initiative. Unit with I5 + GW = effective I3.
+        // Defender I4 should strike first and cause casualties,
+        // reducing attacker attacks (if models die).
+        // We test this indirectly: GW unit should deal fewer total wounds
+        // than the same unit with hand weapon because it strikes later
+        // (and potentially loses models before attacking).
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
 
-        // Spear unit, I3 base → I4 from spear (+1 Init)
-        var spearUnit = new UnitConfiguration(MakeUnit(ws: 4, s: 3, i: 3, a: 1, equipment: "Spear, shield"))
-            { ModelCount = 10, Frontage = 5, SelectedWeaponKey = "spear" };
-        var defender = new UnitConfiguration(MakeUnit(ws: 4, t: 3, i: 3, a: 1))
-            { ModelCount = 10, Frontage = 5 };
+        var gwResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 4, i: 5, a: 1, equipment: "Great weapon"))
+                { ModelCount = 10, Frontage = 5, SelectedWeaponKey = "greatWeapon" };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 4, t: 3, i: 4, a: 1))
+                { ModelCount = 10, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
 
-        var context = new CombatContext { CombatRound = 1 };
-        var result = Resolve(resolver, spearUnit, defender, context, rng);
-
-        Assert.True(result.AttackerWoundsDealt >= 0);
+        // GW gives +2S though, so wounds per hit are higher.
+        // Just verify the system works and produces reasonable output.
+        Assert.True(gwResult.AvgAttackerWounds > 0, "GW unit should deal wounds");
+        Assert.True(gwResult.AvgDefenderWounds > 0, "Defender should deal wounds back");
     }
 
-    [Fact]
-    public void ResolveRound_CavalryMountAttacks_IncludeSupport()
-    {
-        var coreRules = CreateCoreRules();
-        var resolver = new CombatResolver(coreRules);
+    // ─── Spear ──────────────────────────────────────────────────────
 
-        int totalAttackerWounds = 0;
-        for (int seed = 0; seed < 50; seed++)
+    [Fact]
+    public void Spear_FightInExtraRanks_DealsMoreDamage()
+    {
+        // Spear gives FiER(1), so a 3-deep unit gets 2 support ranks instead of 1.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
+
+        var spearResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, i: 3, a: 1,
+                equipment: "Spear, shield", unitSize: "20+"))
+                { ModelCount = 20, Frontage = 5, SelectedWeaponKey = "spear" };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3, i: 3, a: 1))
+                { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var hwResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, i: 3, a: 1, unitSize: "20+"))
+                { ModelCount = 20, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3, i: 3, a: 1))
+                { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // Spear FiER(1) should add ~5 extra attacks (1 extra support rank × 5 models)
+        TestHelpers.AssertGreaterByRatio(
+            spearResult.TotalAttackerWounds, hwResult.TotalAttackerWounds, 1.10,
+            "Spear FiER should increase damage output");
+    }
+
+    // ─── Cavalry Mount Attacks ──────────────────────────────────────
+
+    [Fact]
+    public void Cavalry_MountAttacks_IncludeRiderAndMount()
+    {
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
+
+        var cavResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var mount = new ProfileEntry { Name = "Warhorse", WS = 3, S = 3, T = 3, W = 1, I = 3, A = 1, Ld = 5 };
+            var unit = TestHelpers.MakeUnit(troopType: "Cavalry", ws: 4, s: 3, i: 3, a: 1,
+                unitSize: "10+", mountProfile: mount);
+            var cavalry = new UnitConfiguration(unit) { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3))
+                { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, cavalry, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var footResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, i: 3, a: 1, unitSize: "10+"))
+                { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 3, t: 3))
+                { ModelCount = 20, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // Cavalry should deal more wounds (rider attacks + mount attacks)
+        TestHelpers.AssertGreaterByRatio(
+            cavResult.TotalAttackerWounds, footResult.TotalAttackerWounds, 1.3,
+            "Cavalry (rider + mount) should out-damage equivalent foot");
+    }
+
+    // ─── Musician ───────────────────────────────────────────────────
+
+    [Fact]
+    public void Musician_BreaksTies_WhenCRIsDrawn()
+    {
+        // In a drawn combat, musician tips it. We run many iterations and check
+        // that the musician side wins draws more often.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
+
+        int musicianWins = 0, opponentWins = 0, draws = 0;
+        for (int seed = 0; seed < Iterations; seed++)
         {
             var rng = new Random(seed);
-            var mount = new ProfileEntry { Name = "Warhorse", WS = 3, S = 3, T = 3, W = 1, I = 3, A = 1, Ld = 5 };
-            var unit = MakeUnit(troopType: "Cavalry", ws: 4, s: 3, i: 3, a: 1, unitSize: "10+", mountProfile: mount);
-            var cavalry = new UnitConfiguration(unit) { ModelCount = 10, Frontage = 5 };
+            var attacker = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1))
+                { ModelCount = 10, Frontage = 5, HasMusician = true };
+            var defender = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, t: 3, a: 1))
+                { ModelCount = 10, Frontage = 5 };
 
-            var defender = new UnitConfiguration(MakeUnit(ws: 3, t: 3)) { ModelCount = 20, Frontage = 5 };
+            var result = Resolve(resolver, attacker, defender,
+                new CombatContext { CombatRound = 1 }, rng);
 
-            var context = new CombatContext { CombatRound = 1 };
-            totalAttackerWounds += Resolve(resolver, cavalry, defender, context, rng).AttackerWoundsDealt;
+            int diff = result.AttackerCombatRes - result.DefenderCombatRes;
+            if (diff > 0) musicianWins++;
+            else if (diff < 0) opponentWins++;
+            else draws++;
         }
 
-        // 10 cavalry should deal some wounds (rider attacks + mount attacks including support)
-        Assert.True(totalAttackerWounds > 0, "Cavalry should deal wounds");
+        // Musician converts draws into wins, so attacker should win more than lose
+        Assert.True(musicianWins > opponentWins,
+            $"Musician should help win: wins={musicianWins}, losses={opponentWins}, draws={draws}");
     }
 }

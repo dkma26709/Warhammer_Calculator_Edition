@@ -17,27 +17,8 @@ public class UnitConfigurationTests
         string? baseSize = "25x25",
         ProfileEntry? mountProfile = null,
         List<UnitOption>? options = null)
-    {
-        var profiles = new List<ProfileEntry>
-        {
-            new() { Name = name, M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points }
-        };
-
-        if (mountProfile != null)
-            profiles.Add(mountProfile);
-
-        return new UnitEntry
-        {
-            Name = name,
-            TroopType = troopType,
-            Profiles = profiles,
-            Equipment = equipment,
-            SpecialRules = specialRules,
-            UnitSize = unitSize,
-            BaseSize = baseSize,
-            Options = options
-        };
-    }
+        => TestHelpers.MakeUnit(name, troopType, m, ws, bs, s, t, w, i, a, ld, points,
+            equipment, specialRules, unitSize, baseSize, mountProfile, options);
 
     [Fact]
     public void TotalAttacks_BasicInfantry_10Models_Frontage5()

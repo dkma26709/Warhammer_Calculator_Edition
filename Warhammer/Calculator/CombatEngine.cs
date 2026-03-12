@@ -7,11 +7,11 @@ namespace Warhammer.Calculator;
 
 public class CombatEngine
 {
-    private readonly CoreRulesService _coreRules;
+    private readonly IGameDataRepository _repo;
 
-    public CombatEngine(CoreRulesService coreRules)
+    public CombatEngine(IGameDataRepository repo)
     {
-        _coreRules = coreRules;
+        _repo = repo;
     }
 
     public CombatSimulationResult Simulate(
@@ -21,7 +21,7 @@ public class CombatEngine
         int iterations = 10_000)
     {
         var sw = Stopwatch.StartNew();
-        var resolver = new CombatResolver(_coreRules);
+        var resolver = new CombatResolver(_repo);
         var rng = new Random();
 
         // Pre-build attack groups once (weapon parsing, parry calc, sorting)
