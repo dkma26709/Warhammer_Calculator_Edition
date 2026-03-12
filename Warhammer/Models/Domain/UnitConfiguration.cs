@@ -9,18 +9,11 @@ public class UnitConfiguration
 {
     // ─── Source data ─────────────────────────────────────────────
 
-    /// <summary>
-    /// The fully-resolved unit template. Null when constructed from raw UnitEntry (legacy path).
-    /// </summary>
-    public Unit? ResolvedUnit { get; }
+    /// <summary>The fully-resolved unit template.</summary>
+    public Unit ResolvedUnit { get; }
 
-    /// <summary>
-    /// The raw JSON unit entry. Available on both construction paths.
-    /// </summary>
+    /// <summary>The raw JSON unit entry (from <see cref="Unit.RawEntry"/>).</summary>
     public UnitEntry UnitEntry { get; }
-
-    /// <summary>Kept for backward compatibility. Prefer <see cref="UnitEntry"/>.</summary>
-    public UnitEntry Unit => UnitEntry;
 
     public ProfileEntry PrimaryProfile { get; }
     public ProfileEntry? MountProfile { get; }
@@ -30,10 +23,10 @@ public class UnitConfiguration
     public int ModelCount { get; set; }
     public int Frontage { get; set; }
 
-    /// <summary>Selected weapon as enum. Preferred over <see cref="SelectedWeaponKey"/>.</summary>
+    /// <summary>Selected weapon as enum key.</summary>
     public CloseCombatWeaponKey SelectedWeapon { get; set; }
 
-    /// <summary>Selected weapon as string key (legacy). Kept in sync with <see cref="SelectedWeapon"/>.</summary>
+    /// <summary>String accessor for <see cref="SelectedWeapon"/> — used by Blazor select binding.</summary>
     public string SelectedWeaponKey
     {
         get => SelectedWeapon.ToJsonKey();
@@ -68,7 +61,7 @@ public class UnitConfiguration
     // ─── Constructors ────────────────────────────────────────────
 
     /// <summary>
-    /// Construct from a fully-resolved <see cref="Domain.Unit"/>. Preferred path.
+    /// Construct from a fully-resolved <see cref="Domain.Unit"/>.
     /// No parsing happens here — all data is pre-resolved by the repository.
     /// </summary>
     public UnitConfiguration(Unit unit)
@@ -91,55 +84,32 @@ public class UnitConfiguration
             .FirstOrDefault(CloseCombatWeaponKey.HandWeapon);
     }
 
-    /// <summary>
-    /// Construct from raw JSON <see cref="UnitEntry"/>. Legacy path — parses on construction.
-    /// </summary>
-    public UnitConfiguration(UnitEntry unit)
-    {
-        ResolvedUnit = null;
-        UnitEntry = unit;
-        (PrimaryProfile, MountProfile) = ResolveProfiles(unit);
-        TroopType = TroopTypeInfo.Parse(unit.TroopType);
-        BaseWidthMm = ParseBaseWidthMm(unit.BaseSize);
-        SpecialRules = ParsedSpecialRules.Parse(unit.SpecialRules);
-        (BaseWeaponKeys, BaseArmourKeys) = EquipmentParser.Parse(unit.Equipment);
-
-        // Defaults
-        ModelCount = TroopType.IsCharacter ? 1 : ParseMinUnitSize(unit.UnitSize);
-        Frontage = TroopType.IsCharacter ? 1 : TroopType.MinRankWidth;
-        SelectedWeaponKey = BaseWeaponKeys.FirstOrDefault() ?? "handWeapon";
-    }
-
     // ─── Resolved equipment access ───────────────────────────────
 
-    /// <summary>
-    /// Get the selected weapon as a resolved <see cref="Weapon"/> domain object.
-    /// Only available when constructed from <see cref="Domain.Unit"/>.
-    /// </summary>
+    /// <summary>Get the selected weapon as a resolved <see cref="Weapon"/> domain object.</summary>
     public Weapon? GetSelectedResolvedWeapon()
     {
-        if (ResolvedUnit == null) return null;
         return ResolvedUnit.BaseModel.Weapons
             .FirstOrDefault(w => w.Key == SelectedWeapon);
     }
 
     /// <summary>
-    /// Pre-compute base armour modifier from resolved <see cref="Armour"/> objects.
-    /// Only available when constructed from <see cref="Domain.Unit"/>. No lambda needed.
+    /// Pre-compute base armour modifier from resolved <see cref="Armour"/> objects,
+    /// including equipment upgrades. Uses <see cref="Unit.AvailableArmour"/> for lookup.
     /// </summary>
-    public int ComputeResolvedBaseArmourModifier()
+    public int ComputeBaseArmourModifier()
     {
-        if (ResolvedUnit == null)
-            throw new InvalidOperationException("Cannot compute resolved armour without a resolved Unit. Use ComputeBaseArmourModifier(lookup) instead.");
-
         int totalModifier = 0;
+        var effectiveArmour = EquipmentArmour;
 
-        // Base armour from resolved objects
-        foreach (var armour in ResolvedUnit.BaseModel.Armour)
-            totalModifier += armour.CombatSaveModifier;
-
-        // TODO: apply upgrade armour from SelectedUpgrades once
-        // the upgrade resolution is migrated to use resolved Armour objects.
+        foreach (var armourKey in effectiveArmour)
+        {
+            if (ArmourKeyExtensions.TryFromJsonKey(armourKey, out var key)
+                && ResolvedUnit.AvailableArmour.TryGetValue(key, out var armour))
+            {
+                totalModifier += armour.CombatSaveModifier;
+            }
+        }
 
         if (SpecialRules.NaturalArmour.HasValue)
             totalModifier += 7 - SpecialRules.NaturalArmour.Value;
@@ -147,21 +117,14 @@ public class UnitConfiguration
         if (TroopType.IntrinsicArmourSave.HasValue)
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
 
-        if (SpecialRules.ChaosArmour)
-        {
-            bool hasConventionalArmour = ResolvedUnit.BaseModel.Armour
-                .Any(a => a.Key is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
-            if (hasConventionalArmour)
-                totalModifier += 1;
-        }
+        bool hasConventionalArmour = effectiveArmour
+            .Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour");
 
-        if (SpecialRules.GromrilArmour)
-        {
-            bool hasConventionalArmour = ResolvedUnit.BaseModel.Armour
-                .Any(a => a.Key is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
-            if (hasConventionalArmour)
-                totalModifier += 1;
-        }
+        if (SpecialRules.ChaosArmour && hasConventionalArmour)
+            totalModifier += 1;
+
+        if (SpecialRules.GromrilArmour && hasConventionalArmour)
+            totalModifier += 1;
 
         return totalModifier;
     }
@@ -236,21 +199,6 @@ public class UnitConfiguration
     /// Calculate effective strength for a given weapon.
     /// Weapon Mighty Blow and unit Mighty Blow use the highest value (don't stack).
     /// </summary>
-    public int EffectiveStrength(WeaponEntry? weapon, bool isCharging, int combatRound,
-        int weaponMightyBlow = 0)
-    {
-        int baseS = PrimaryProfile.S ?? 3;
-        int s = baseS;
-
-        if (weapon != null)
-            s = CoreRulesService.ParseWeaponStrength(weapon.Strength, baseS);
-
-        return ApplyMightyBlow(s, isCharging, combatRound, weaponMightyBlow);
-    }
-
-    /// <summary>
-    /// Calculate effective strength using a resolved <see cref="Weapon"/>.
-    /// </summary>
     public int EffectiveStrength(Weapon? weapon, bool isCharging, int combatRound,
         int weaponMightyBlow = 0)
     {
@@ -274,16 +222,10 @@ public class UnitConfiguration
         return strength;
     }
 
-    /// <summary>
-    /// Calculate effective armour save value (lower is better, 7+ = no save).
-    /// Uses a lookup function to get armour save values from core-rules.json.
-    /// </summary>
-    public int EffectiveArmourSave(int attackerStrength, int attackerAP, int strengthModifier,
-        Func<string, string?>? armourSaveLookup = null)
+    /// <summary>Calculate effective armour save value (lower is better, 7+ = no save).</summary>
+    public int EffectiveArmourSave(int attackerStrength, int attackerAP, int strengthModifier)
     {
-        int totalModifier = ResolvedUnit != null
-            ? ComputeResolvedBaseArmourModifier()
-            : ComputeBaseArmourModifier(armourSaveLookup);
+        int totalModifier = ComputeBaseArmourModifier();
         return ApplyArmourPenalty(totalModifier, attackerAP, strengthModifier);
     }
 
@@ -293,42 +235,6 @@ public class UnitConfiguration
     public int EffectiveArmourSaveFast(int baseArmourModifier, int attackerAP, int strengthModifier)
     {
         return ApplyArmourPenalty(baseArmourModifier, attackerAP, strengthModifier);
-    }
-
-    /// <summary>
-    /// Pre-compute the total armour modifier from equipment, natural armour, troop type, and chaos armour.
-    /// Call once and cache the result for use with <see cref="EffectiveArmourSaveFast"/>.
-    /// </summary>
-    public int ComputeBaseArmourModifier(Func<string, string?>? armourSaveLookup = null)
-    {
-        int totalModifier = 0;
-        var effectiveArmour = EquipmentArmour;
-
-        foreach (var armourKey in effectiveArmour)
-        {
-            string? saveField = armourSaveLookup?.Invoke(armourKey);
-            if (saveField != null)
-            {
-                var (mod, _) = CoreRulesService.ParseArmourSave(saveField);
-                totalModifier += mod;
-            }
-        }
-
-        if (SpecialRules.NaturalArmour.HasValue)
-            totalModifier += 7 - SpecialRules.NaturalArmour.Value;
-
-        if (TroopType.IntrinsicArmourSave.HasValue)
-            totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
-
-        if (SpecialRules.ChaosArmour &&
-            effectiveArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
-            totalModifier += 1;
-
-        if (SpecialRules.GromrilArmour &&
-            effectiveArmour.Any(k => k is "lightArmour" or "mediumArmour" or "heavyArmour"))
-            totalModifier += 1;
-
-        return totalModifier;
     }
 
     private static int ApplyArmourPenalty(int totalModifier, int attackerAP, int strengthModifier)
@@ -474,7 +380,7 @@ public class UnitConfiguration
 
     // ─── Points Cost ─────────────────────────────────────────────
 
-    public double BaseModelCost => ResolvedUnit?.BaseModelCost ?? UnitEntry.PointsCost ?? PrimaryProfile.Points ?? 0;
+    public double BaseModelCost => ResolvedUnit.BaseModelCost;
 
     /// <summary>Total points cost of all selected equipment upgrades.</summary>
     public double EquipmentUpgradeCost
@@ -502,51 +408,16 @@ public class UnitConfiguration
 
     // ─── Command group ───────────────────────────────────────────
 
-    public bool CanHaveChampion => ResolvedUnit?.Command.CanHaveChampion
-        ?? UnitEntry.Options?.Any(o =>
-            o.Type == "command" && o.Role != null
-            && (o.Role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
-                || o.Role.Contains("Champion", StringComparison.OrdinalIgnoreCase))) ?? false;
-
-    public bool CanHaveMusician => ResolvedUnit?.Command.CanHaveMusician
-        ?? UnitEntry.Options?.Any(o =>
-            o.Type == "command" && o.Role != null
-            && o.Role.Contains("Musician", StringComparison.OrdinalIgnoreCase)) ?? false;
-
-    public bool CanHaveStandardBearer => ResolvedUnit?.Command.CanHaveStandardBearer
-        ?? UnitEntry.Options?.Any(o =>
-            o.Type == "command" && o.Role != null
-            && o.Role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase)) ?? false;
+    public bool CanHaveChampion => ResolvedUnit.Command.CanHaveChampion;
+    public bool CanHaveMusician => ResolvedUnit.Command.CanHaveMusician;
+    public bool CanHaveStandardBearer => ResolvedUnit.Command.CanHaveStandardBearer;
 
     public (double Champion, double Musician, double Standard) CommandGroupCosts
     {
         get
         {
-            if (ResolvedUnit != null)
-            {
-                var cmd = ResolvedUnit.Command;
-                return (cmd.ChampionCost, cmd.MusicianCost, cmd.StandardBearerCost);
-            }
-
-            double champ = 0, mus = 0, std = 0;
-            if (UnitEntry.Options == null) return (0, 0, 0);
-
-            foreach (var opt in UnitEntry.Options)
-            {
-                if (opt.Type != "command" || opt.Role == null) continue;
-                double cost = opt.Points ?? 0;
-                var role = opt.Role;
-
-                if (role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
-                    || role.Contains("Champion", StringComparison.OrdinalIgnoreCase))
-                    champ = cost;
-                else if (role.Contains("Musician", StringComparison.OrdinalIgnoreCase))
-                    mus = cost;
-                else if (role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase))
-                    std = cost;
-            }
-
-            return (champ, mus, std);
+            var cmd = ResolvedUnit.Command;
+            return (cmd.ChampionCost, cmd.MusicianCost, cmd.StandardBearerCost);
         }
     }
 

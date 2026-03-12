@@ -14,6 +14,7 @@ namespace Warhammer.Tests;
 public static class TestHelpers
 {
     public static readonly CoreRulesData CoreData;
+    private static readonly Lazy<GameDataRepository> LazyRepo;
 
     static TestHelpers()
     {
@@ -21,7 +22,11 @@ public static class TestHelpers
         var json = File.ReadAllText(Path.Combine(dataDir, "core-rules.json"));
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         CoreData = JsonSerializer.Deserialize<CoreRulesData>(json, options)!;
+        LazyRepo = new Lazy<GameDataRepository>(CreateRepository);
     }
+
+    /// <summary>Shared repository instance for test unit resolution.</summary>
+    public static GameDataRepository Repo => LazyRepo.Value;
 
     public static string FindProjectRoot()
     {
@@ -52,18 +57,20 @@ public static class TestHelpers
 
     /// <summary>
     /// Create a GameDataRepository with core rules pre-loaded (weapons + armour resolved).
-    /// Uses synchronous initialization to avoid async in tests.
     /// </summary>
     public static GameDataRepository CreateRepository()
     {
         var coreRules = CreateCoreRules();
         var repo = new GameDataRepository(coreRules, null!);
-        // Force EnsureLoadedAsync synchronously — core rules already loaded via reflection
         repo.EnsureLoadedAsync().GetAwaiter().GetResult();
         return repo;
     }
 
-    public static UnitEntry MakeUnit(
+    /// <summary>
+    /// Build a fully-resolved <see cref="Unit"/> with real weapon/armour data from core-rules.json.
+    /// Equipment strings are parsed and resolved to domain objects.
+    /// </summary>
+    public static Unit MakeUnit(
         string name = "Test Unit",
         string troopType = "Infantry",
         int m = 4, int ws = 4, int bs = 3, int s = 3, int t = 3, int w = 1, int i = 3, int a = 1, int ld = 7,
@@ -75,15 +82,69 @@ public static class TestHelpers
         ProfileEntry? mountProfile = null,
         List<UnitOption>? options = null)
     {
-        var profiles = new List<ProfileEntry>
+        var repo = Repo;
+        var primaryProfile = new ProfileEntry
         {
-            new() { Name = name, M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points }
+            Name = name, M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points
         };
 
-        if (mountProfile != null)
-            profiles.Add(mountProfile);
+        var parsedTroopType = TroopTypeInfo.Parse(troopType);
+        var parsedRules = ParsedSpecialRules.Parse(specialRules);
 
-        return new UnitEntry
+        // Resolve equipment
+        var (weaponStringKeys, armourStringKeys) = EquipmentParser.Parse(equipment);
+        var weapons = new List<Weapon>();
+        foreach (var wKey in weaponStringKeys)
+        {
+            if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(wKey, out var wk))
+            {
+                var weapon = repo.GetWeapon(wk);
+                if (weapon != null) weapons.Add(weapon);
+            }
+        }
+
+        var armour = new List<Armour>();
+        foreach (var aKey in armourStringKeys)
+        {
+            if (ArmourKeyExtensions.TryFromJsonKey(aKey, out var ak))
+            {
+                var arm = repo.GetArmour(ak);
+                if (arm != null) armour.Add(arm);
+            }
+        }
+
+        var baseModel = new Model
+        {
+            Name = name,
+            Stats = primaryProfile,
+            TroopType = parsedTroopType,
+            SpecialRules = parsedRules,
+            Weapons = weapons,
+            Armour = armour,
+        };
+
+        Model? mount = null;
+        if (mountProfile != null && parsedTroopType.HasSplitProfile)
+        {
+            mount = new Model
+            {
+                Name = mountProfile.Name,
+                Stats = mountProfile,
+                TroopType = parsedTroopType,
+                SpecialRules = parsedRules,
+                Weapons = [],
+                Armour = [],
+            };
+        }
+
+        // Resolve command availability
+        var command = ResolveCommand(options);
+
+        // Build the raw UnitEntry for RawEntry
+        var profiles = new List<ProfileEntry> { primaryProfile };
+        if (mountProfile != null) profiles.Add(mountProfile);
+
+        var rawEntry = new UnitEntry
         {
             Name = name,
             TroopType = troopType,
@@ -92,7 +153,75 @@ public static class TestHelpers
             SpecialRules = specialRules,
             UnitSize = unitSize,
             BaseSize = baseSize,
-            Options = options
+            Options = options,
+        };
+
+        // Build available armour dictionary from repo (all armour types)
+        var availableArmour = new Dictionary<ArmourKey, Armour>();
+        foreach (var ak in Enum.GetValues<ArmourKey>())
+        {
+            var arm = repo.GetArmour(ak);
+            if (arm != null) availableArmour[ak] = arm;
+        }
+
+        return new Unit
+        {
+            Name = name,
+            Faction = FactionKey.TheEmpire,
+            Category = UnitCategory.Core,
+            BaseModel = baseModel,
+            Mount = mount,
+            BaseWidthMm = UnitConfiguration.ParseBaseWidthMm(baseSize),
+            Options = options ?? [],
+            MinUnitSize = parsedTroopType.IsCharacter ? 1 : UnitConfiguration.ParseMinUnitSize(unitSize),
+            MaxUnitSize = null,
+            BaseModelCost = points ?? 0,
+            Command = command,
+            AvailableArmour = availableArmour,
+            RawEntry = rawEntry,
+        };
+    }
+
+    private static CommandAvailability ResolveCommand(List<UnitOption>? options)
+    {
+        if (options == null || options.Count == 0)
+            return CommandAvailability.None;
+
+        bool canChamp = false, canMus = false, canStd = false;
+        double champCost = 0, musCost = 0, stdCost = 0;
+
+        foreach (var opt in options)
+        {
+            if (opt.Type != "command" || opt.Role == null) continue;
+            double cost = opt.Points ?? 0;
+            var role = opt.Role;
+
+            if (role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
+                || role.Contains("Champion", StringComparison.OrdinalIgnoreCase))
+            {
+                canChamp = true;
+                champCost = cost;
+            }
+            else if (role.Contains("Musician", StringComparison.OrdinalIgnoreCase))
+            {
+                canMus = true;
+                musCost = cost;
+            }
+            else if (role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase))
+            {
+                canStd = true;
+                stdCost = cost;
+            }
+        }
+
+        return new CommandAvailability
+        {
+            CanHaveChampion = canChamp,
+            ChampionCost = champCost,
+            CanHaveMusician = canMus,
+            MusicianCost = musCost,
+            CanHaveStandardBearer = canStd,
+            StandardBearerCost = stdCost,
         };
     }
 

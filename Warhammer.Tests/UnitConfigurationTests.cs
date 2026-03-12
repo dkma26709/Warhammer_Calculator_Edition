@@ -1,4 +1,5 @@
 using Warhammer.Models.Domain;
+using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
 using Warhammer.Services;
 
@@ -6,7 +7,7 @@ namespace Warhammer.Tests;
 
 public class UnitConfigurationTests
 {
-    private static UnitEntry MakeUnit(
+    private static Unit MakeUnit(
         string name = "Test Unit",
         string troopType = "Infantry",
         int m = 4, int ws = 4, int bs = 3, int s = 3, int t = 3, int w = 1, int i = 3, int a = 1, int ld = 7,
@@ -89,8 +90,7 @@ public class UnitConfigurationTests
     public void MountAttacks_Cavalry_FrontRankOnly()
     {
         var mount = new ProfileEntry { Name = "Warhorse", M = 8, WS = 3, BS = 0, S = 3, T = 3, W = 1, I = 3, A = 1, Ld = 5 };
-        var unit = MakeUnit(troopType: "Cavalry", unitSize: "5+");
-        unit = unit with { Profiles = [unit.Profiles[0], mount] };
+        var unit = MakeUnit(troopType: "Cavalry", unitSize: "5+", mountProfile: mount);
         var config = new UnitConfiguration(unit) { ModelCount = 5, Frontage = 5 };
         // 5 front * 1A = 5 mount attacks, no support (only 1 rank)
         Assert.Equal(5, config.MountAttacks());
@@ -100,8 +100,7 @@ public class UnitConfigurationTests
     public void MountAttacks_Cavalry_WithSupportRank()
     {
         var mount = new ProfileEntry { Name = "Warhorse", M = 8, WS = 3, BS = 0, S = 3, T = 3, W = 1, I = 3, A = 1, Ld = 5 };
-        var unit = MakeUnit(troopType: "Cavalry", unitSize: "10+");
-        unit = unit with { Profiles = [unit.Profiles[0], mount] };
+        var unit = MakeUnit(troopType: "Cavalry", unitSize: "10+", mountProfile: mount);
         var config = new UnitConfiguration(unit) { ModelCount = 10, Frontage = 5 };
         // 5 front * 1A = 5, 1 support rank * 5 models * 1 mount support attack = 5
         Assert.Equal(10, config.MountAttacks());
@@ -111,8 +110,7 @@ public class UnitConfigurationTests
     public void MountAttacks_MonstrousCavalry_WithSupportRank()
     {
         var mount = new ProfileEntry { Name = "Monster", M = 7, WS = 3, BS = 0, S = 4, T = 4, W = 3, I = 2, A = 2, Ld = 5 };
-        var unit = MakeUnit(troopType: "Monstrous Cavalry", unitSize: "6+");
-        unit = unit with { Profiles = [unit.Profiles[0], mount] };
+        var unit = MakeUnit(troopType: "Monstrous Cavalry", unitSize: "6+", mountProfile: mount);
         var config = new UnitConfiguration(unit) { ModelCount = 6, Frontage = 3 };
         // 3 front * 2A = 6, 1 support rank * 3 models * 2 mount support = 6
         Assert.Equal(12, config.MountAttacks());
@@ -130,7 +128,7 @@ public class UnitConfigurationTests
     public void ResolveProfiles_SingleProfile_NullMount()
     {
         var unit = MakeUnit();
-        var (primary, mount) = UnitConfiguration.ResolveProfiles(unit);
+        var (primary, mount) = UnitConfiguration.ResolveProfiles(unit.RawEntry);
         Assert.NotNull(primary);
         Assert.Null(mount);
     }
@@ -204,7 +202,11 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(s: 3);
         var config = new UnitConfiguration(unit);
-        var weapon = new WeaponEntry { Name = "Hand Weapon", Strength = "As user" };
+        var weapon = new Weapon
+        {
+            Key = CloseCombatWeaponKey.HandWeapon, Name = "Hand Weapon",
+            Strength = WeaponStrength.Parse("As user"), Rules = new ParsedWeaponRules(),
+        };
         Assert.Equal(3, config.EffectiveStrength(weapon, false, 1));
     }
 
@@ -213,7 +215,11 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(s: 4);
         var config = new UnitConfiguration(unit);
-        var weapon = new WeaponEntry { Name = "Great Weapon", Strength = "+1" };
+        var weapon = new Weapon
+        {
+            Key = CloseCombatWeaponKey.GreatWeapon, Name = "Great Weapon",
+            Strength = WeaponStrength.Parse("+1"), Rules = new ParsedWeaponRules(),
+        };
         Assert.Equal(5, config.EffectiveStrength(weapon, false, 2)); // no MB, round 2
     }
 
@@ -222,7 +228,11 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(s: 3, specialRules: "Mighty Blow (1)");
         var config = new UnitConfiguration(unit);
-        var weapon = new WeaponEntry { Name = "Hand Weapon", Strength = "As user" };
+        var weapon = new Weapon
+        {
+            Key = CloseCombatWeaponKey.HandWeapon, Name = "Hand Weapon",
+            Strength = WeaponStrength.Parse("As user"), Rules = new ParsedWeaponRules(),
+        };
         Assert.Equal(4, config.EffectiveStrength(weapon, false, 1)); // round 1: +1 MB
         Assert.Equal(3, config.EffectiveStrength(weapon, false, 2)); // round 2: no MB
     }
@@ -232,7 +242,11 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(s: 3, specialRules: "Mighty Blow (1)");
         var config = new UnitConfiguration(unit);
-        var weapon = new WeaponEntry { Name = "Flail", Strength = "As user" };
+        var weapon = new Weapon
+        {
+            Key = CloseCombatWeaponKey.Flail, Name = "Flail",
+            Strength = WeaponStrength.Parse("As user"), Rules = new ParsedWeaponRules(),
+        };
         // Unit MB=1, Weapon MB=2 → use highest = 2
         Assert.Equal(5, config.EffectiveStrength(weapon, false, 1, weaponMightyBlow: 2));
     }
@@ -246,18 +260,12 @@ public class UnitConfigurationTests
     }
 
     [Fact]
-    public void EffectiveArmourSave_WithLookup()
+    public void EffectiveArmourSave_WithArmour()
     {
         var unit = MakeUnit(equipment: "Hand weapon, heavy armour, shield");
         var config = new UnitConfiguration(unit);
         // heavy armour +3, shield +1 → total modifier = 4, save = 7-4 = 3+
-        Func<string, string?> lookup = key => key switch
-        {
-            "heavyArmour" => "+3/4+",
-            "shields" => "+1/6+",
-            _ => null
-        };
-        Assert.Equal(3, config.EffectiveArmourSave(3, 0, 0, lookup));
+        Assert.Equal(3, config.EffectiveArmourSave(3, 0, 0));
     }
 
     [Fact]
@@ -265,13 +273,8 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(equipment: "Hand weapon, heavy armour");
         var config = new UnitConfiguration(unit);
-        Func<string, string?> lookup = key => key switch
-        {
-            "heavyArmour" => "+3/4+",
-            _ => null
-        };
         // base save 4+, strength mod -1 → 5+
-        Assert.Equal(5, config.EffectiveArmourSave(4, 0, -1, lookup));
+        Assert.Equal(5, config.EffectiveArmourSave(4, 0, -1));
     }
 
     [Fact]
@@ -288,14 +291,8 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(equipment: "Hand weapon, heavy armour, shield", specialRules: "Natural Armour (4+)");
         var config = new UnitConfiguration(unit);
-        Func<string, string?> lookup = key => key switch
-        {
-            "heavyArmour" => "+3/4+",
-            "shields" => "+1/6+",
-            _ => null
-        };
         // heavy armour +3, shield +1, natural armour 7-4=3 → total 7 → save = 7-7 = 0, clamped to 2
-        Assert.Equal(2, config.EffectiveArmourSave(3, 0, 0, lookup));
+        Assert.Equal(2, config.EffectiveArmourSave(3, 0, 0));
     }
 
     // --- Equipment Upgrade Tests ---
@@ -352,21 +349,14 @@ public class UnitConfigurationTests
                 ])
             ]);
 
-        Func<string, string?> lookup = key => key switch
-        {
-            "lightArmour" => "+1/6+",
-            "shields" => "+1/6+",
-            _ => null
-        };
-
         var config = new UnitConfiguration(unit);
 
         // Without shield: light armour +1 → save 6+
-        Assert.Equal(6, config.EffectiveArmourSave(3, 0, 0, lookup));
+        Assert.Equal(6, config.EffectiveArmourSave(3, 0, 0));
 
         // With shield: light armour +1 + shield +1 → save 5+
         config.SelectedUpgrades[0] = 0;
-        Assert.Equal(5, config.EffectiveArmourSave(3, 0, 0, lookup));
+        Assert.Equal(5, config.EffectiveArmourSave(3, 0, 0));
     }
 
     [Fact]

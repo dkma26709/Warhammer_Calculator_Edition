@@ -195,6 +195,7 @@ public class GameDataRepository : IGameDataRepository
             BaseModelCost = entry.PointsCost ?? primaryProfile.Points ?? 0,
             Command = command,
             MagicItemAllowance = magicItemAllowance,
+            AvailableArmour = _armour ?? new Dictionary<ArmourKey, Armour>(),
             RawEntry = entry,
         };
     }

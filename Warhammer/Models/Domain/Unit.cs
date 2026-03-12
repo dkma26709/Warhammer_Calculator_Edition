@@ -50,9 +50,12 @@ public sealed record Unit
     public int? WizardLevel { get; init; }
 
     /// <summary>
-    /// The raw <see cref="UnitEntry"/> from JSON. Retained for backward compatibility
-    /// during the migration — will be removed once all consumers use resolved types.
+    /// Full armour lookup table for resolving equipment upgrades.
+    /// Set by the repository — contains all armour types, not just this unit's base equipment.
     /// </summary>
+    public required IReadOnlyDictionary<ArmourKey, Armour> AvailableArmour { get; init; }
+
+    /// <summary>The raw <see cref="UnitEntry"/> from JSON.</summary>
     public required UnitEntry RawEntry { get; init; }
 }
 

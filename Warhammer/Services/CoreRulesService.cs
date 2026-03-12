@@ -64,33 +64,4 @@ public class CoreRulesService
         return Data.ArmourSaves.StrengthModifiers.TryGetValue(key, out var mod) ? mod : 0;
     }
 
-    /// <summary>
-    /// Parse weapon strength field: "As user" -> userS, "+1" -> userS+1, "3" -> 3
-    /// </summary>
-    public static int ParseWeaponStrength(string strengthField, int userStrength)
-    {
-        if (string.Equals(strengthField, "As user", StringComparison.OrdinalIgnoreCase))
-            return userStrength;
-        if (strengthField.StartsWith('+') && int.TryParse(strengthField, out var mod))
-            return userStrength + mod;
-        if (int.TryParse(strengthField, out var fixedVal))
-            return fixedVal;
-        return userStrength;
-    }
-
-    /// <summary>
-    /// Parse armour save field "+N/M+" into (modifier, standaloneSave).
-    /// E.g., "+3/4+" -> (3, 4)
-    /// </summary>
-    public static (int Modifier, int StandaloneSave) ParseArmourSave(string saveField)
-    {
-        var match = System.Text.RegularExpressions.Regex.Match(saveField, @"\+(\d)/(\d)\+");
-        if (match.Success)
-        {
-            int modifier = int.Parse(match.Groups[1].Value);
-            int standalone = int.Parse(match.Groups[2].Value);
-            return (modifier, standalone);
-        }
-        return (0, 7);
-    }
 }

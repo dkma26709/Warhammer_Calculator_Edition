@@ -38,37 +38,4 @@ public class CoreRulesServiceTests
         Assert.Equal(expected, service.GetArmourSaveModifier(strength));
     }
 
-    [Fact]
-    public void ParseWeaponStrength_AsUser()
-    {
-        Assert.Equal(4, CoreRulesService.ParseWeaponStrength("As user", 4));
-    }
-
-    [Fact]
-    public void ParseWeaponStrength_Plus()
-    {
-        Assert.Equal(5, CoreRulesService.ParseWeaponStrength("+1", 4));
-    }
-
-    [Fact]
-    public void ParseWeaponStrength_Fixed()
-    {
-        Assert.Equal(6, CoreRulesService.ParseWeaponStrength("6", 4));
-    }
-
-    [Fact]
-    public void ParseArmourSave_Standard()
-    {
-        var (mod, save) = CoreRulesService.ParseArmourSave("+3/4+");
-        Assert.Equal(3, mod);
-        Assert.Equal(4, save);
-    }
-
-    [Fact]
-    public void ParseArmourSave_Light()
-    {
-        var (mod, save) = CoreRulesService.ParseArmourSave("+1/6+");
-        Assert.Equal(1, mod);
-        Assert.Equal(6, save);
-    }
 }

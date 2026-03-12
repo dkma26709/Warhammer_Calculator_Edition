@@ -275,25 +275,10 @@ public class AttackResolver
         return ResolveDefenderParry(defender, effectiveStrength, false);
     }
 
-    /// <summary>
-    /// Compute base armour modifier for a unit, using resolved armour if available.
-    /// </summary>
+    /// <summary>Compute base armour modifier for a unit from resolved armour data.</summary>
     public int ComputeBaseArmour(UnitConfiguration unit)
     {
-        if (unit.ResolvedUnit != null)
-            return unit.ComputeResolvedBaseArmourModifier();
-
-        // Legacy path: build lambda from repo
-        return unit.ComputeBaseArmourModifier(key =>
-        {
-            if (ArmourKeyExtensions.TryFromJsonKey(key, out var armourKey))
-            {
-                var armour = _repo.GetArmour(armourKey);
-                if (armour != null)
-                    return $"+{armour.CombatSaveModifier}/{armour.CombatStandaloneSave}+";
-            }
-            return null;
-        });
+        return unit.ComputeBaseArmourModifier();
     }
 
     // ─── Private helpers ───────────────────────────────────────────
