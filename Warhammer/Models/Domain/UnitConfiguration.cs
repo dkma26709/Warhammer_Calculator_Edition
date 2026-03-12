@@ -281,7 +281,9 @@ public class UnitConfiguration
     public int EffectiveArmourSave(int attackerStrength, int attackerAP, int strengthModifier,
         Func<string, string?>? armourSaveLookup = null)
     {
-        int totalModifier = ComputeBaseArmourModifier(armourSaveLookup);
+        int totalModifier = ResolvedUnit != null
+            ? ComputeResolvedBaseArmourModifier()
+            : ComputeBaseArmourModifier(armourSaveLookup);
         return ApplyArmourPenalty(totalModifier, attackerAP, strengthModifier);
     }
 

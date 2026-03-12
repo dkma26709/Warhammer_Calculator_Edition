@@ -123,17 +123,7 @@
         int opponentS = opponent.EffectiveStrength(opponentWeapon, opponentIsCharging, 1, opponentWeaponMB);
         int opponentAP = opponent.SpecialRules.ArmourPiercing ?? 0;
         int strengthMod = Repo.GetArmourSaveModifier(opponentS);
-        Func<string, string?> armourLookup = key =>
-        {
-            if (ArmourKeyExtensions.TryFromJsonKey(key, out var armourKey))
-            {
-                var a = Repo.GetArmour(armourKey);
-                if (a != null) return $"+{a.CombatSaveModifier}/{a.CombatStandaloneSave}+";
-            }
-
-            return null;
-        };
-        int armourSave = unit.EffectiveArmourSave(opponentS, opponentAP, strengthMod, armourLookup);
+        int armourSave = unit.EffectiveArmourSave(opponentS, opponentAP, strengthMod);
 
         // Ward save (best of ward/regen/parry)
         int wardValue = unit.SpecialRules.WardSave ?? 7;
