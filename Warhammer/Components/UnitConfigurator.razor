@@ -1,4 +1,3 @@
-@using Warhammer.Models.Json
 @using Warhammer.Models.Domain
 @using Warhammer.Models.Enums
 @using Warhammer.Services
@@ -191,10 +190,10 @@
         </div>
     }
 
-    @if (Unit.Equipment != null)
+    @if (Unit.RawEntry.Equipment != null)
     {
         <div class="mb-2">
-            <small class="text-body-secondary">Equipment: @(Unit.Equipment.Split('\n')[0])</small>
+            <small class="text-body-secondary">Equipment: @(Unit.RawEntry.Equipment.Split('\n')[0])</small>
         </div>
     }
 
@@ -202,7 +201,7 @@
 }
 
 @code {
-    [Parameter] public UnitEntry? Unit { get; set; }
+    [Parameter] public Unit? Unit { get; set; }
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
 

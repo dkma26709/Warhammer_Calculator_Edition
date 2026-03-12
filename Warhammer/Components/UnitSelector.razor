@@ -1,14 +1,14 @@
-@using Warhammer.Models.Json
-@using Warhammer.Services
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
 
 <div class="mb-3">
     <label class="form-label small text-body-secondary">Faction</label>
     <select class="form-select form-select-sm" value="@SelectedFactionKey"
             @onchange="OnFactionChanged">
         <option value="">-- Select Faction --</option>
-        @foreach (var key in FactionDataService.FactionNames)
+        @foreach (var faction in FactionKeyExtensions.All)
         {
-            <option value="@key">@FactionDataService.GetDisplayName(key)</option>
+            <option value="@faction.ToJsonKey()">@faction.ToDisplayName()</option>
         }
     </select>
 </div>
@@ -43,25 +43,25 @@
 @code {
     [Parameter] public string? SelectedFactionKey { get; set; }
     [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
-    [Parameter] public FactionData? FactionUnits { get; set; }
+    [Parameter] public IReadOnlyList<Unit>? FactionUnits { get; set; }
     [Parameter] public string? SelectedUnitName { get; set; }
-    [Parameter] public EventCallback<UnitEntry?> OnUnitSelected { get; set; }
+    [Parameter] public EventCallback<Unit?> OnUnitSelected { get; set; }
 
     private string? _categoryFilter;
     private int _selectedIndex = -1;
 
     private IEnumerable<string> Categories =>
-        FactionUnits?.Units.Select(u => u.Category).Distinct().OrderBy(c => c)
+        FactionUnits?.Select(u => u.Category.ToJsonKey()).Distinct().OrderBy(c => c)
         ?? Enumerable.Empty<string>();
 
-    private IEnumerable<(UnitEntry Unit, int Index)> FilteredUnitsWithIndex
+    private IEnumerable<(Unit Unit, int Index)> FilteredUnitsWithIndex
     {
         get
         {
             if (FactionUnits == null) return [];
-            return FactionUnits.Units
+            return FactionUnits
                 .Select((u, i) => (Unit: u, Index: i))
-                .Where(x => _categoryFilter == null || x.Unit.Category == _categoryFilter)
+                .Where(x => _categoryFilter == null || x.Unit.Category.ToJsonKey() == _categoryFilter)
                 .OrderBy(x => x.Unit.Category)
                 .ThenBy(x => x.Unit.Name);
         }
@@ -75,7 +75,7 @@
         {
             if (_duplicateNames != null) return _duplicateNames;
             if (FactionUnits == null) return _duplicateNames = [];
-            _duplicateNames = FactionUnits.Units
+            _duplicateNames = FactionUnits
                 .GroupBy(u => u.Name)
                 .Where(g => g.Count() > 1)
                 .Select(g => g.Key)
@@ -84,28 +84,29 @@
         }
     }
 
-    private string GetDisplayName(UnitEntry unit)
+    private string GetDisplayName(Unit unit)
     {
         if (!DuplicateNames.Contains(unit.Name))
             return unit.Name;
 
         // Disambiguate with equipment summary and points
         var parts = new List<string>();
-        if (!string.IsNullOrEmpty(unit.Equipment))
+        var equipment = unit.RawEntry.Equipment;
+        if (!string.IsNullOrEmpty(equipment))
         {
-            var firstEquip = unit.Equipment.Split('\n')[0];
+            var firstEquip = equipment.Split('\n')[0];
             if (firstEquip.Length > 30) firstEquip = firstEquip[..30] + "...";
             parts.Add(firstEquip);
         }
-        if (unit.PointsCost.HasValue)
-            parts.Add($"{unit.PointsCost}pts");
-        if (!string.IsNullOrEmpty(unit.TroopType) && unit.TroopType.StartsWith("Cavalry"))
+        if (unit.BaseModelCost > 0)
+            parts.Add($"{unit.BaseModelCost}pts");
+        if (unit.BaseModel.TroopType.BaseType == BaseTroopType.Cavalry)
             parts.Add("Cavalry");
 
         return parts.Count > 0 ? $"{unit.Name} ({string.Join(", ", parts)})" : unit.Name;
     }
 
-    private FactionData? _previousFactionUnits;
+    private IReadOnlyList<Unit>? _previousFactionUnits;
 
     protected override void OnParametersSet()
     {
@@ -145,7 +146,7 @@
         }
 
         _selectedIndex = idx;
-        var unit = FactionUnits?.Units.ElementAtOrDefault(idx);
+        var unit = FactionUnits?.Count > idx ? FactionUnits[idx] : null;
         await OnUnitSelected.InvokeAsync(unit);
     }
 }

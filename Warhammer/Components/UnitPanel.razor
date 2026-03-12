@@ -1,4 +1,3 @@
-@using Warhammer.Models.Json
 @using Warhammer.Models.Domain
 
 <div class="card bg-dark text-light border-secondary">
@@ -8,7 +7,7 @@
     <div class="card-body">
         <UnitSelector SelectedFactionKey="@SelectedFactionKey"
                       OnFactionSelected="OnFactionSelected"
-                      FactionUnits="@FactionData"
+                      FactionUnits="@FactionUnits"
                       SelectedUnitName="@SelectedUnit?.Name"
                       OnUnitSelected="OnUnitSelected" />
 
@@ -27,9 +26,9 @@
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public string? SelectedFactionKey { get; set; }
     [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
-    [Parameter] public FactionData? FactionData { get; set; }
-    [Parameter] public UnitEntry? SelectedUnit { get; set; }
-    [Parameter] public EventCallback<UnitEntry?> OnUnitSelected { get; set; }
+    [Parameter] public IReadOnlyList<Unit>? FactionUnits { get; set; }
+    [Parameter] public Unit? SelectedUnit { get; set; }
+    [Parameter] public EventCallback<Unit?> OnUnitSelected { get; set; }
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
 }

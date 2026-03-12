@@ -1,13 +1,12 @@
 @page "/"
 @page "/matchup"
 
-@using Warhammer.Models.Json
 @using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
 @using Warhammer.Calculator.Models
 @using Warhammer.Services
 
 @inject IGameDataRepository Repo
-@inject FactionDataService FactionData
 @inject CombatEngine CombatEngine
 
 <div class="container-fluid py-3">
@@ -17,7 +16,7 @@
             <UnitPanel Label="Attacker"
                        SelectedFactionKey="@_attackerFactionKey"
                        OnFactionSelected="OnAttackerFactionSelected"
-                       FactionData="@_attackerFactionData"
+                       FactionUnits="@_attackerFactionUnits"
                        SelectedUnit="@_attackerUnit"
                        OnUnitSelected="OnAttackerUnitSelected"
                        Configuration="@_attackerConfig"
@@ -40,7 +39,7 @@
             <UnitPanel Label="Defender"
                        SelectedFactionKey="@_defenderFactionKey"
                        OnFactionSelected="OnDefenderFactionSelected"
-                       FactionData="@_defenderFactionData"
+                       FactionUnits="@_defenderFactionUnits"
                        SelectedUnit="@_defenderUnit"
                        OnUnitSelected="OnDefenderUnitSelected"
                        Configuration="@_defenderConfig"
@@ -78,14 +77,14 @@
 @code {
     // --- Attacker state ---
     private string? _attackerFactionKey;
-    private FactionData? _attackerFactionData;
-    private UnitEntry? _attackerUnit;
+    private IReadOnlyList<Unit>? _attackerFactionUnits;
+    private Unit? _attackerUnit;
     private UnitConfiguration? _attackerConfig;
 
     // --- Defender state ---
     private string? _defenderFactionKey;
-    private FactionData? _defenderFactionData;
-    private UnitEntry? _defenderUnit;
+    private IReadOnlyList<Unit>? _defenderFactionUnits;
+    private Unit? _defenderUnit;
     private UnitConfiguration? _defenderConfig;
 
     // --- Combat ---
@@ -107,13 +106,13 @@
         _attackerConfig = null;
         _result = null;
 
-        if (!string.IsNullOrEmpty(factionKey))
-            _attackerFactionData = await FactionData.GetFactionUnitsAsync(factionKey);
+        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+            _attackerFactionUnits = await Repo.GetUnitsAsync(fk);
         else
-            _attackerFactionData = null;
+            _attackerFactionUnits = null;
     }
 
-    private void OnAttackerUnitSelected(UnitEntry? unit)
+    private void OnAttackerUnitSelected(Unit? unit)
     {
         _attackerUnit = unit;
         _attackerConfig = unit != null ? new UnitConfiguration(unit) : null;
@@ -134,13 +133,13 @@
         _defenderConfig = null;
         _result = null;
 
-        if (!string.IsNullOrEmpty(factionKey))
-            _defenderFactionData = await FactionData.GetFactionUnitsAsync(factionKey);
+        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+            _defenderFactionUnits = await Repo.GetUnitsAsync(fk);
         else
-            _defenderFactionData = null;
+            _defenderFactionUnits = null;
     }
 
-    private void OnDefenderUnitSelected(UnitEntry? unit)
+    private void OnDefenderUnitSelected(Unit? unit)
     {
         _defenderUnit = unit;
         _defenderConfig = unit != null ? new UnitConfiguration(unit) : null;
