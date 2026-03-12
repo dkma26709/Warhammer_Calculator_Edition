@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
 using Warhammer.Services;
 
@@ -6,14 +7,43 @@ namespace Warhammer.Models.Domain;
 
 public class UnitConfiguration
 {
-    public UnitEntry Unit { get; }
+    // ─── Source data ─────────────────────────────────────────────
+
+    /// <summary>
+    /// The fully-resolved unit template. Null when constructed from raw UnitEntry (legacy path).
+    /// </summary>
+    public Unit? ResolvedUnit { get; }
+
+    /// <summary>
+    /// The raw JSON unit entry. Available on both construction paths.
+    /// </summary>
+    public UnitEntry UnitEntry { get; }
+
+    /// <summary>Kept for backward compatibility. Prefer <see cref="UnitEntry"/>.</summary>
+    public UnitEntry Unit => UnitEntry;
+
     public ProfileEntry PrimaryProfile { get; }
     public ProfileEntry? MountProfile { get; }
 
-    // User configuration
+    // ─── User configuration ─────────────────────────────────────
+
     public int ModelCount { get; set; }
     public int Frontage { get; set; }
-    public string SelectedWeaponKey { get; set; }
+
+    /// <summary>Selected weapon as enum. Preferred over <see cref="SelectedWeaponKey"/>.</summary>
+    public CloseCombatWeaponKey SelectedWeapon { get; set; }
+
+    /// <summary>Selected weapon as string key (legacy). Kept in sync with <see cref="SelectedWeapon"/>.</summary>
+    public string SelectedWeaponKey
+    {
+        get => SelectedWeapon.ToJsonKey();
+        set
+        {
+            if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(value, out var key))
+                SelectedWeapon = key;
+        }
+    }
+
     public bool HasChampion { get; set; }
     public bool HasMusician { get; set; }
     public bool HasStandardBearer { get; set; }
@@ -27,16 +57,47 @@ public class UnitConfiguration
     /// </summary>
     public Dictionary<int, int> SelectedUpgrades { get; } = new();
 
-    // Parsed base data (from equipment text, before upgrades)
+    // ─── Parsed base data ────────────────────────────────────────
+
     public TroopTypeInfo TroopType { get; }
     public int BaseWidthMm { get; }
     public ParsedSpecialRules SpecialRules { get; }
     public List<string> BaseWeaponKeys { get; }
     public List<string> BaseArmourKeys { get; }
 
+    // ─── Constructors ────────────────────────────────────────────
+
+    /// <summary>
+    /// Construct from a fully-resolved <see cref="Domain.Unit"/>. Preferred path.
+    /// No parsing happens here — all data is pre-resolved by the repository.
+    /// </summary>
+    public UnitConfiguration(Unit unit)
+    {
+        ResolvedUnit = unit;
+        UnitEntry = unit.RawEntry;
+        PrimaryProfile = unit.BaseModel.Stats;
+        MountProfile = unit.Mount?.Stats;
+        TroopType = unit.BaseModel.TroopType;
+        BaseWidthMm = unit.BaseWidthMm;
+        SpecialRules = unit.BaseModel.SpecialRules;
+        BaseWeaponKeys = unit.BaseModel.Weapons.Select(w => w.Key.ToJsonKey()).ToList();
+        BaseArmourKeys = unit.BaseModel.Armour.Select(a => a.Key.ToJsonKey()).ToList();
+
+        // Defaults
+        ModelCount = unit.BaseModel.TroopType.IsCharacter ? 1 : unit.MinUnitSize;
+        Frontage = unit.BaseModel.TroopType.IsCharacter ? 1 : unit.BaseModel.TroopType.MinRankWidth;
+        SelectedWeapon = unit.BaseModel.Weapons
+            .Select(w => w.Key)
+            .FirstOrDefault(CloseCombatWeaponKey.HandWeapon);
+    }
+
+    /// <summary>
+    /// Construct from raw JSON <see cref="UnitEntry"/>. Legacy path — parses on construction.
+    /// </summary>
     public UnitConfiguration(UnitEntry unit)
     {
-        Unit = unit;
+        ResolvedUnit = null;
+        UnitEntry = unit;
         (PrimaryProfile, MountProfile) = ResolveProfiles(unit);
         TroopType = TroopTypeInfo.Parse(unit.TroopType);
         BaseWidthMm = ParseBaseWidthMm(unit.BaseSize);
@@ -49,7 +110,63 @@ public class UnitConfiguration
         SelectedWeaponKey = BaseWeaponKeys.FirstOrDefault() ?? "handWeapon";
     }
 
-    // --- Effective Equipment (base + upgrades - replacements) ---
+    // ─── Resolved equipment access ───────────────────────────────
+
+    /// <summary>
+    /// Get the selected weapon as a resolved <see cref="Weapon"/> domain object.
+    /// Only available when constructed from <see cref="Domain.Unit"/>.
+    /// </summary>
+    public Weapon? GetSelectedResolvedWeapon()
+    {
+        if (ResolvedUnit == null) return null;
+        return ResolvedUnit.BaseModel.Weapons
+            .FirstOrDefault(w => w.Key == SelectedWeapon);
+    }
+
+    /// <summary>
+    /// Pre-compute base armour modifier from resolved <see cref="Armour"/> objects.
+    /// Only available when constructed from <see cref="Domain.Unit"/>. No lambda needed.
+    /// </summary>
+    public int ComputeResolvedBaseArmourModifier()
+    {
+        if (ResolvedUnit == null)
+            throw new InvalidOperationException("Cannot compute resolved armour without a resolved Unit. Use ComputeBaseArmourModifier(lookup) instead.");
+
+        int totalModifier = 0;
+
+        // Base armour from resolved objects
+        foreach (var armour in ResolvedUnit.BaseModel.Armour)
+            totalModifier += armour.CombatSaveModifier;
+
+        // TODO: apply upgrade armour from SelectedUpgrades once
+        // the upgrade resolution is migrated to use resolved Armour objects.
+
+        if (SpecialRules.NaturalArmour.HasValue)
+            totalModifier += 7 - SpecialRules.NaturalArmour.Value;
+
+        if (TroopType.IntrinsicArmourSave.HasValue)
+            totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
+
+        if (SpecialRules.ChaosArmour)
+        {
+            bool hasConventionalArmour = ResolvedUnit.BaseModel.Armour
+                .Any(a => a.Key is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
+            if (hasConventionalArmour)
+                totalModifier += 1;
+        }
+
+        if (SpecialRules.GromrilArmour)
+        {
+            bool hasConventionalArmour = ResolvedUnit.BaseModel.Armour
+                .Any(a => a.Key is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
+            if (hasConventionalArmour)
+                totalModifier += 1;
+        }
+
+        return totalModifier;
+    }
+
+    // ─── Effective Equipment (base + upgrades - replacements) ────
 
     /// <summary>
     /// All weapon keys the unit currently has, considering base equipment and selected upgrades.
@@ -79,11 +196,11 @@ public class UnitConfiguration
 
     private void ApplySelectedUpgrades(List<string> keys, bool isWeapon)
     {
-        if (Unit.Options == null) return;
+        if (UnitEntry.Options == null) return;
 
-        for (int i = 0; i < Unit.Options.Count; i++)
+        for (int i = 0; i < UnitEntry.Options.Count; i++)
         {
-            var option = Unit.Options[i];
+            var option = UnitEntry.Options[i];
             if (option.Type != "equipment" || option.Choices == null) continue;
             if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
             if (choiceIdx >= option.Choices.Count) continue;
@@ -113,7 +230,7 @@ public class UnitConfiguration
         }
     }
 
-    // --- Combat Stats ---
+    // ─── Combat Stats ────────────────────────────────────────────
 
     /// <summary>
     /// Calculate effective strength for a given weapon.
@@ -128,8 +245,22 @@ public class UnitConfiguration
         if (weapon != null)
             s = CoreRulesService.ParseWeaponStrength(weapon.Strength, baseS);
 
-        // Mighty Blow: +X Strength in first round of combat
-        // Use highest of unit MB and weapon MB (don't stack)
+        return ApplyMightyBlow(s, isCharging, combatRound, weaponMightyBlow);
+    }
+
+    /// <summary>
+    /// Calculate effective strength using a resolved <see cref="Weapon"/>.
+    /// </summary>
+    public int EffectiveStrength(Weapon? weapon, bool isCharging, int combatRound,
+        int weaponMightyBlow = 0)
+    {
+        int baseS = PrimaryProfile.S ?? 3;
+        int s = weapon?.Strength.Resolve(baseS) ?? baseS;
+        return ApplyMightyBlow(s, isCharging, combatRound, weaponMightyBlow);
+    }
+
+    private int ApplyMightyBlow(int strength, bool isCharging, int combatRound, int weaponMightyBlow)
+    {
         int unitMB = SpecialRules.MightyBlow ?? 0;
 
         // Thunderous Charge: Mighty Blow (2) on charge turns only
@@ -138,14 +269,13 @@ public class UnitConfiguration
 
         int effectiveMB = Math.Max(unitMB, weaponMightyBlow);
         if (combatRound == 1 && effectiveMB > 0)
-            s += effectiveMB;
+            strength += effectiveMB;
 
-        return s;
+        return strength;
     }
 
     /// <summary>
     /// Calculate effective armour save value (lower is better, 7+ = no save).
-    /// Takes into account all equipment armour, natural armour, and strength/AP modifiers.
     /// Uses a lookup function to get armour save values from core-rules.json.
     /// </summary>
     public int EffectiveArmourSave(int attackerStrength, int attackerAP, int strengthModifier,
@@ -231,14 +361,10 @@ public class UnitConfiguration
         return primary;
     }
 
-    /// <summary>
-    /// Number of complete ranks (models / frontage, rounded down).
-    /// </summary>
+    /// <summary>Number of complete ranks (models / frontage, rounded down).</summary>
     public int Ranks => Frontage > 0 ? ModelCount / Frontage : 1;
 
-    /// <summary>
-    /// Rank bonus for combat resolution. Max +3, requires minimum rank width.
-    /// </summary>
+    /// <summary>Rank bonus for combat resolution. Max +3, requires minimum rank width.</summary>
     public int RankBonus
     {
         get
@@ -248,9 +374,7 @@ public class UnitConfiguration
         }
     }
 
-    /// <summary>
-    /// Number of models that can fight in the front rank.
-    /// </summary>
+    /// <summary>Number of models that can fight in the front rank.</summary>
     public int ModelsInFrontRank => Math.Min(Frontage, ModelCount);
 
     /// <summary>
@@ -296,7 +420,7 @@ public class UnitConfiguration
         if (lanceCharging)
             extraRanks = Math.Max(extraRanks, 1);
 
-        int maxSupportRanks = 1 + extraRanks; // base 1 supporting rank + extra
+        int maxSupportRanks = 1 + extraRanks;
         int actualSupportRanks = Math.Min(supportingRanks, maxSupportRanks);
 
         int maxSupportAttacks = lanceCharging ? 3 : TroopType.MaxSupportingAttacks;
@@ -309,20 +433,16 @@ public class UnitConfiguration
 
     /// <summary>
     /// Calculate mount attacks including supporting ranks.
-    /// Cavalry: 1 mount support attack per supporting model.
-    /// Monstrous Cavalry: 2 mount support attacks per supporting model.
     /// </summary>
     public int MountAttacks()
     {
         if (MountProfile == null || !TroopType.HasSplitProfile) return 0;
         int mountA = MountProfile.A ?? 1;
 
-        // Front rank: full mount attacks
         int frontAttacks = ModelsInFrontRank * mountA;
 
-        // Supporting ranks: mount support attacks per model
         int supportingRanks = Math.Max(0, Ranks - 1);
-        int actualSupportRanks = Math.Min(supportingRanks, 1); // base 1 support rank
+        int actualSupportRanks = Math.Min(supportingRanks, 1);
 
         int mountSupportPerModel = TroopType.BaseType switch
         {
@@ -350,23 +470,21 @@ public class UnitConfiguration
         return (primary, mount);
     }
 
-    // --- Points Cost ---
+    // ─── Points Cost ─────────────────────────────────────────────
 
-    public double BaseModelCost => Unit.PointsCost ?? PrimaryProfile.Points ?? 0;
+    public double BaseModelCost => ResolvedUnit?.BaseModelCost ?? UnitEntry.PointsCost ?? PrimaryProfile.Points ?? 0;
 
-    /// <summary>
-    /// Total points cost of all selected equipment upgrades.
-    /// </summary>
+    /// <summary>Total points cost of all selected equipment upgrades.</summary>
     public double EquipmentUpgradeCost
     {
         get
         {
-            if (Unit.Options == null) return 0;
+            if (UnitEntry.Options == null) return 0;
             double total = 0;
 
-            for (int i = 0; i < Unit.Options.Count; i++)
+            for (int i = 0; i < UnitEntry.Options.Count; i++)
             {
-                var option = Unit.Options[i];
+                var option = UnitEntry.Options[i];
                 if (option.Type != "equipment" || option.Choices == null) continue;
                 if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
                 if (choiceIdx >= option.Choices.Count) continue;
@@ -380,28 +498,38 @@ public class UnitConfiguration
         }
     }
 
-    // Command group availability — derived from typed options
-    public bool CanHaveChampion => Unit.Options?.Any(o =>
-        o.Type == "command" && o.Role != null
-        && (o.Role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
-            || o.Role.Contains("Champion", StringComparison.OrdinalIgnoreCase))) ?? false;
+    // ─── Command group ───────────────────────────────────────────
 
-    public bool CanHaveMusician => Unit.Options?.Any(o =>
-        o.Type == "command" && o.Role != null
-        && o.Role.Contains("Musician", StringComparison.OrdinalIgnoreCase)) ?? false;
+    public bool CanHaveChampion => ResolvedUnit?.Command.CanHaveChampion
+        ?? UnitEntry.Options?.Any(o =>
+            o.Type == "command" && o.Role != null
+            && (o.Role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
+                || o.Role.Contains("Champion", StringComparison.OrdinalIgnoreCase))) ?? false;
 
-    public bool CanHaveStandardBearer => Unit.Options?.Any(o =>
-        o.Type == "command" && o.Role != null
-        && o.Role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase)) ?? false;
+    public bool CanHaveMusician => ResolvedUnit?.Command.CanHaveMusician
+        ?? UnitEntry.Options?.Any(o =>
+            o.Type == "command" && o.Role != null
+            && o.Role.Contains("Musician", StringComparison.OrdinalIgnoreCase)) ?? false;
+
+    public bool CanHaveStandardBearer => ResolvedUnit?.Command.CanHaveStandardBearer
+        ?? UnitEntry.Options?.Any(o =>
+            o.Type == "command" && o.Role != null
+            && o.Role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase)) ?? false;
 
     public (double Champion, double Musician, double Standard) CommandGroupCosts
     {
         get
         {
-            double champ = 0, mus = 0, std = 0;
-            if (Unit.Options == null) return (0, 0, 0);
+            if (ResolvedUnit != null)
+            {
+                var cmd = ResolvedUnit.Command;
+                return (cmd.ChampionCost, cmd.MusicianCost, cmd.StandardBearerCost);
+            }
 
-            foreach (var opt in Unit.Options)
+            double champ = 0, mus = 0, std = 0;
+            if (UnitEntry.Options == null) return (0, 0, 0);
+
+            foreach (var opt in UnitEntry.Options)
             {
                 if (opt.Type != "command" || opt.Role == null) continue;
                 double cost = opt.Points ?? 0;
@@ -433,6 +561,8 @@ public class UnitConfiguration
             return baseCost + equipmentCost + commandCost;
         }
     }
+
+    // ─── Static helpers ──────────────────────────────────────────
 
     public static int ParseBaseWidthMm(string? baseSize)
     {
