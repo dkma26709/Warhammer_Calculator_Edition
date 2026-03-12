@@ -54,13 +54,7 @@
 
     private Weapon ResolveWeapon(UnitConfiguration unit)
     {
-        if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(unit.SelectedWeaponKey, out var enumKey))
-        {
-            var w = Repo.GetWeapon(enumKey);
-            if (w != null) return w;
-        }
-
-        return Repo.GetHandWeapon();
+        return Repo.GetWeapon(unit.SelectedWeapon) ?? Repo.GetHandWeapon();
     }
 
     private UnitStats ComputeStats(UnitConfiguration unit, UnitConfiguration opponent, bool isAttackerSide)
