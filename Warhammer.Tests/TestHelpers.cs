@@ -194,23 +194,24 @@ public static class TestHelpers
         {
             if (opt.Type != "command" || opt.Role == null) continue;
             double cost = opt.Points ?? 0;
-            var role = opt.Role;
 
-            if (role.Contains("Leader", StringComparison.OrdinalIgnoreCase)
-                || role.Contains("Champion", StringComparison.OrdinalIgnoreCase))
+            if (!CommandRoleExtensions.TryFromRoleText(opt.Role, out var role))
+                continue;
+
+            switch (role)
             {
-                canChamp = true;
-                champCost = cost;
-            }
-            else if (role.Contains("Musician", StringComparison.OrdinalIgnoreCase))
-            {
-                canMus = true;
-                musCost = cost;
-            }
-            else if (role.Contains("Standard Bearer", StringComparison.OrdinalIgnoreCase))
-            {
-                canStd = true;
-                stdCost = cost;
+                case CommandRole.Champion:
+                    canChamp = true;
+                    champCost = cost;
+                    break;
+                case CommandRole.Musician:
+                    canMus = true;
+                    musCost = cost;
+                    break;
+                case CommandRole.StandardBearer:
+                    canStd = true;
+                    stdCost = cost;
+                    break;
             }
         }
 

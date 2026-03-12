@@ -534,27 +534,16 @@ public class AttackResolver
             parryValue = Math.Min(parryValue, defenderWeapon.Rules.Parry.Value);
 
         // Shield/Buckler Parry (only with hand weapon)
+        // Uses EquipmentArmour (base + upgrades) so an upgrade-added shield is detected.
         if (defender.SelectedWeapon == CloseCombatWeaponKey.HandWeapon)
         {
-            if (defender.ResolvedUnit != null)
+            foreach (var armourKey in defender.EquipmentArmour)
             {
-                foreach (var armour in defender.ResolvedUnit.BaseModel.Armour)
+                if (ArmourKeyExtensions.TryFromJsonKey(armourKey, out var aKey)
+                    && defender.ResolvedUnit.AvailableArmour.TryGetValue(aKey, out var armour)
+                    && armour.ParryValue.HasValue)
                 {
-                    if (armour.ParryValue.HasValue)
-                        parryValue = Math.Min(parryValue, armour.ParryValue.Value);
-                }
-            }
-            else
-            {
-                // Legacy path
-                foreach (var armourKey in defender.EquipmentArmour)
-                {
-                    if (ArmourKeyExtensions.TryFromJsonKey(armourKey, out var aKey))
-                    {
-                        var armour = _repo.GetArmour(aKey);
-                        if (armour?.ParryValue.HasValue == true)
-                            parryValue = Math.Min(parryValue, armour.ParryValue.Value);
-                    }
+                    parryValue = Math.Min(parryValue, armour.ParryValue.Value);
                 }
             }
         }
