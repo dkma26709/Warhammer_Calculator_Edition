@@ -421,8 +421,8 @@ public class UnitConfiguration
 
     public double BaseModelCost => ResolvedUnit.BaseModelCost;
 
-    /// <summary>Total points cost of all selected equipment upgrades.</summary>
-    public double EquipmentUpgradeCost
+    /// <summary>Total points cost of all selected upgrades (equipment, mounts, upgrades, etc.).</summary>
+    public double UpgradeCost
     {
         get
         {
@@ -432,13 +432,32 @@ public class UnitConfiguration
             for (int i = 0; i < UnitEntry.Options.Count; i++)
             {
                 var option = UnitEntry.Options[i];
-                if (option.Type != "equipment" || option.Choices == null) continue;
                 if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
-                if (choiceIdx >= option.Choices.Count) continue;
 
-                var choice = option.Choices[choiceIdx];
-                var pts = choice.Points ?? 0;
-                total += choice.PerModel ? pts * ModelCount : pts;
+                switch (option.Type)
+                {
+                    case "equipment" or "mount":
+                        if (option.Choices == null || choiceIdx >= option.Choices.Count) continue;
+                        var choice = option.Choices[choiceIdx];
+                        var choicePts = choice.Points ?? 0;
+                        total += choice.PerModel ? choicePts * ModelCount : choicePts;
+                        break;
+
+                    case "upgrade" when option.SubOptions != null:
+                        if (choiceIdx >= option.SubOptions.Count) continue;
+                        var subOption = option.SubOptions[choiceIdx];
+                        var subChoice = subOption.Choices?.FirstOrDefault();
+                        var subPts = subChoice?.Points ?? subOption.Points ?? 0;
+                        var subPerModel = subChoice?.PerModel ?? subOption.PerModel ?? false;
+                        total += subPerModel ? subPts * ModelCount : subPts;
+                        break;
+
+                    case "upgrade" or "wizard_upgrade" or "blessed_spawning":
+                        var flatPts = option.Points ?? 0;
+                        var flatPerModel = option.PerModel ?? false;
+                        total += flatPerModel ? flatPts * ModelCount : flatPts;
+                        break;
+                }
             }
 
             return total;
@@ -465,7 +484,7 @@ public class UnitConfiguration
         get
         {
             double baseCost = BaseModelCost * ModelCount;
-            double equipmentCost = EquipmentUpgradeCost;
+            double equipmentCost = UpgradeCost;
             var (champCost, musCost, stdCost) = CommandGroupCosts;
             double commandCost = (HasChampion ? champCost : 0)
                                + (HasMusician ? musCost : 0)

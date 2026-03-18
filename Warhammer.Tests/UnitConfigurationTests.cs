@@ -360,7 +360,7 @@ public class UnitConfigurationTests
     }
 
     [Fact]
-    public void EquipmentUpgradeCost_PerModel()
+    public void UpgradeCost_PerModel()
     {
         var unit = MakeUnit(
             options:
@@ -372,14 +372,14 @@ public class UnitConfigurationTests
             ]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        Assert.Equal(0, config.EquipmentUpgradeCost);
+        Assert.Equal(0, config.UpgradeCost);
 
         config.SelectedUpgrades[0] = 0;
-        Assert.Equal(20, config.EquipmentUpgradeCost);
+        Assert.Equal(20, config.UpgradeCost);
     }
 
     [Fact]
-    public void EquipmentUpgradeCost_FlatCost()
+    public void UpgradeCost_FlatCost()
     {
         var unit = MakeUnit(
             options:
@@ -392,11 +392,11 @@ public class UnitConfigurationTests
 
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
         config.SelectedUpgrades[0] = 0;
-        Assert.Equal(9, config.EquipmentUpgradeCost);
+        Assert.Equal(9, config.UpgradeCost);
     }
 
     [Fact]
-    public void EquipmentUpgradeCost_IncludedInTotalPoints()
+    public void UpgradeCost_IncludedInTotalPoints()
     {
         var unit = MakeUnit(
             points: 8,
@@ -479,7 +479,7 @@ public class UnitConfigurationTests
 
         var config = new UnitConfiguration(unit) { ModelCount = 10 };
         config.SelectedUpgrades[0] = 0;
-        Assert.Equal(15, config.EquipmentUpgradeCost); // 1.5 * 10
+        Assert.Equal(15, config.UpgradeCost); // 1.5 * 10
     }
 
     [Fact]
@@ -578,6 +578,6 @@ public class UnitConfigurationTests
 
         var config = new UnitConfiguration(unit) { ModelCount = 10 };
         config.SelectedUpgrades[0] = 0;
-        Assert.Equal(0, config.EquipmentUpgradeCost);
+        Assert.Equal(0, config.UpgradeCost);
     }
 }
