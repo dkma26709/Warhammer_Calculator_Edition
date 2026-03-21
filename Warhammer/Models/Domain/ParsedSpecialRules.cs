@@ -73,6 +73,102 @@ public record ParsedSpecialRules
 
     public List<string> AllRuleNames { get; init; } = [];
 
+    /// <summary>
+    /// Merge another set of special rules into this one.
+    /// Booleans OR, save-type values take best (lowest), bonus-type values take best (highest),
+    /// strings prefer non-null (this wins ties), AllRuleNames concatenate.
+    /// </summary>
+    public ParsedSpecialRules Merge(ParsedSpecialRules other)
+    {
+        return this with
+        {
+            // Booleans: OR
+            AlwaysStrikesFirst = AlwaysStrikesFirst || other.AlwaysStrikesFirst,
+            AlwaysStrikesLast = AlwaysStrikesLast || other.AlwaysStrikesLast,
+            DevastatingCharge = DevastatingCharge || other.DevastatingCharge,
+            Ethereal = Ethereal || other.Ethereal,
+            FlamingAttacks = FlamingAttacks || other.FlamingAttacks,
+            Flammable = Flammable || other.Flammable,
+            Frenzy = Frenzy || other.Frenzy,
+            Hatred = Hatred || other.Hatred,
+            IceAttacks = IceAttacks || other.IceAttacks,
+            IgnoresArmourSaves = IgnoresArmourSaves || other.IgnoresArmourSaves,
+            KillingBlow = KillingBlow || other.KillingBlow,
+            HeroicKillingBlow = HeroicKillingBlow || other.HeroicKillingBlow,
+            LightningAttacks = LightningAttacks || other.LightningAttacks,
+            MagicalAttacks = MagicalAttacks || other.MagicalAttacks,
+            PoisonedAttacks = PoisonedAttacks || other.PoisonedAttacks,
+            ChaosArmour = ChaosArmour || other.ChaosArmour,
+            Stubborn = Stubborn || other.Stubborn,
+            Unbreakable = Unbreakable || other.Unbreakable,
+            Unstable = Unstable || other.Unstable,
+            Fear = Fear || other.Fear,
+            Terror = Terror || other.Terror,
+            ColdBlooded = ColdBlooded || other.ColdBlooded,
+            PredatoryFighter = PredatoryFighter || other.PredatoryFighter,
+            MurderousProwess = MurderousProwess || other.MurderousProwess,
+            MartialProwess = MartialProwess || other.MartialProwess,
+            PrimalFury = PrimalFury || other.PrimalFury,
+            EternalHatred = EternalHatred || other.EternalHatred,
+            FearElves = FearElves || other.FearElves,
+            ElvenGrace = ElvenGrace || other.ElvenGrace,
+            Deathblow = Deathblow || other.Deathblow,
+            Swordmaster = Swordmaster || other.Swordmaster,
+            OgreCharge = OgreCharge || other.OgreCharge,
+            ThunderousCharge = ThunderousCharge || other.ThunderousCharge,
+            GromrilArmour = GromrilArmour || other.GromrilArmour,
+            ForestSpirit = ForestSpirit || other.ForestSpirit,
+            Vampiric = Vampiric || other.Vampiric,
+            LanceFormation = LanceFormation || other.LanceFormation,
+            MartialMemories = MartialMemories || other.MartialMemories,
+            ShadowDancesOfLoec = ShadowDancesOfLoec || other.ShadowDancesOfLoec,
+            TreeWhack = TreeWhack || other.TreeWhack,
+            TreeAspects = TreeAspects || other.TreeAspects,
+            ImmunityKillingBlow = ImmunityKillingBlow || other.ImmunityKillingBlow,
+            ImmunityPoisonedAttacks = ImmunityPoisonedAttacks || other.ImmunityPoisonedAttacks,
+            ImmunityFlamingAttacks = ImmunityFlamingAttacks || other.ImmunityFlamingAttacks,
+            Minus1ToBeHit = Minus1ToBeHit || other.Minus1ToBeHit,
+            Minus1WSToAttackers = Minus1WSToAttackers || other.Minus1WSToAttackers,
+            RerollSuccessfulWoundsAgainst = RerollSuccessfulWoundsAgainst || other.RerollSuccessfulWoundsAgainst,
+            Impale = Impale || other.Impale,
+            BlessingOfTheLady = BlessingOfTheLady || other.BlessingOfTheLady,
+
+            // Save-type: take best (lower is better)
+            WardSave = MinNullable(WardSave, other.WardSave),
+            Regeneration = MinNullable(Regeneration, other.Regeneration),
+            Parry = MinNullable(Parry, other.Parry),
+            Dodge = MinNullable(Dodge, other.Dodge),
+            NaturalArmour = MinNullable(NaturalArmour, other.NaturalArmour),
+
+            // Bonus-type: take best (higher is better)
+            ArmourPiercing = MaxNullable(ArmourPiercing, other.ArmourPiercing),
+            MightyBlow = MaxNullable(MightyBlow, other.MightyBlow),
+            MultipleWounds = MaxNullable(MultipleWounds, other.MultipleWounds),
+            FightInExtraRanks = MaxNullable(FightInExtraRanks, other.FightInExtraRanks),
+            ImpactHits = MaxNullable(ImpactHits, other.ImpactHits),
+            Stomp = MaxNullable(Stomp, other.Stomp),
+            RandomAttacks = MaxNullable(RandomAttacks, other.RandomAttacks),
+
+            // Strings: prefer non-null, this wins ties
+            HatredTarget = HatredTarget ?? other.HatredTarget,
+            ImpactHitsRoll = ImpactHitsRoll ?? other.ImpactHitsRoll,
+            MultipleWoundsRoll = MultipleWoundsRoll ?? other.MultipleWoundsRoll,
+            StompRoll = StompRoll ?? other.StompRoll,
+            RandomAttacksRoll = RandomAttacksRoll ?? other.RandomAttacksRoll,
+
+            // Lists: concatenate
+            AllRuleNames = [.. AllRuleNames, .. other.AllRuleNames],
+        };
+    }
+
+    private static int? MinNullable(int? a, int? b) =>
+        a.HasValue && b.HasValue ? Math.Min(a.Value, b.Value) :
+        a ?? b;
+
+    private static int? MaxNullable(int? a, int? b) =>
+        a.HasValue && b.HasValue ? Math.Max(a.Value, b.Value) :
+        a ?? b;
+
     public static ParsedSpecialRules Parse(string? specialRulesText)
     {
         if (string.IsNullOrWhiteSpace(specialRulesText))

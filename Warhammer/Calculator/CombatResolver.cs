@@ -65,13 +65,13 @@ public class CombatResolver
         }
 
         // Phase 3.5: Deathblow
-        if (attacker.SpecialRules.Deathblow && defenderWoundsDealt > 0)
+        if (attacker.EffectiveSpecialRules.Deathblow && defenderWoundsDealt > 0)
         {
             int slain = Math.Min(defenderWoundsDealt, attacker.ModelCount);
             attackerWoundsDealt += ResolveDeathblows(attacker, defender, slain, context, rng);
         }
 
-        if (defender.SpecialRules.Deathblow && attackerWoundsDealt > 0)
+        if (defender.EffectiveSpecialRules.Deathblow && attackerWoundsDealt > 0)
         {
             int slain = Math.Min(attackerWoundsDealt, defender.ModelCount);
             defenderWoundsDealt += ResolveDeathblows(defender, attacker, slain, context, rng);
@@ -145,7 +145,8 @@ public class CombatResolver
         bool isCharging = context.IsCharging(isAttackerSide);
         bool isBeingCharged = context.IsCharging(!isAttackerSide);
         int baseI = unit.PrimaryProfile.I ?? 1;
-        int effectiveI = unit.SpecialRules.Swordmaster
+        var unitRules = unit.EffectiveSpecialRules;
+        int effectiveI = unitRules.Swordmaster
             ? baseI
             : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged);
 
@@ -155,7 +156,7 @@ public class CombatResolver
         // Pre-compute defender effective initiative
         var defWeapon = ResolveWeapon(opponent);
         int defenderEffI = opponent.PrimaryProfile.I ?? 1;
-        if (!opponent.SpecialRules.Swordmaster)
+        if (!opponent.EffectiveSpecialRules.Swordmaster)
         {
             defenderEffI = defWeapon.Rules.ApplyToInitiative(defenderEffI,
                 context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide));
@@ -169,8 +170,8 @@ public class CombatResolver
             IsMountAttack = false,
             IsAttackerSide = isAttackerSide,
             Initiative = effectiveI,
-            HasASF = unit.SpecialRules.AlwaysStrikesFirst || unit.SelectedShadowDance == ShadowDance.WovenMist,
-            HasASL = unit.SpecialRules.AlwaysStrikesLast,
+            HasASF = unitRules.AlwaysStrikesFirst || unit.SelectedShadowDance == ShadowDance.WovenMist,
+            HasASL = unitRules.AlwaysStrikesLast,
             CachedWeaponRules = weaponRules,
             CachedDefenderParry = defenderParry,
             CachedDefenderBaseArmour = defenderBaseArmour,
@@ -223,20 +224,23 @@ public class CombatResolver
     private int ResolveDeathblows(UnitConfiguration deathblower, UnitConfiguration target,
         int slainCount, CombatContext context, Random rng)
     {
+        var targetRules = target.EffectiveSpecialRules;
+        var deathblowerRules = deathblower.EffectiveSpecialRules;
+
         int targetWS = target.BestWS;
-        if (target.SpecialRules.Minus1WSToAttackers)
+        if (targetRules.Minus1WSToAttackers)
             targetWS = Math.Max(1, targetWS + 1);
         int toHitNeeded = _repo.GetToHitScore(deathblower.PrimaryProfile.WS ?? 1, targetWS);
-        if (target.SpecialRules.Minus1ToBeHit)
+        if (targetRules.Minus1ToBeHit)
             toHitNeeded = Math.Min(toHitNeeded + 1, 6);
         int strength = deathblower.PrimaryProfile.S ?? 3;
         int toWoundNeeded = _repo.GetToWoundScore(strength, target.BestT);
         int strengthMod = _repo.GetArmourSaveModifier(strength);
         int defBaseArmour = _attackResolver.ComputeBaseArmour(target);
 
-        int wardVal = target.SpecialRules.WardSave ?? 7;
-        int regenVal = target.SpecialRules.Regeneration ?? 7;
-        bool flaming = deathblower.SpecialRules.FlamingAttacks;
+        int wardVal = targetRules.WardSave ?? 7;
+        int regenVal = targetRules.Regeneration ?? 7;
+        bool flaming = deathblowerRules.FlamingAttacks;
         int ward = flaming ? wardVal : Math.Min(wardVal, regenVal);
 
         int wounds = 0;
@@ -274,30 +278,33 @@ public class CombatResolver
             BaseTroopType.WarBeasts or BaseTroopType.Swarms;
         if (!targetEligible) return 0;
 
+        var stomperRules = stomper.EffectiveSpecialRules;
+        var targetRules = target.EffectiveSpecialRules;
+
         int stompHits;
-        if (stomper.SpecialRules.Stomp.HasValue)
-            stompHits = stomper.SpecialRules.Stomp.Value;
-        else if (stomper.SpecialRules.StompRoll != null)
-            stompHits = DiceRoller.Roll(stomper.SpecialRules.StompRoll, rng);
+        if (stomperRules.Stomp.HasValue)
+            stompHits = stomperRules.Stomp.Value;
+        else if (stomperRules.StompRoll != null)
+            stompHits = DiceRoller.Roll(stomperRules.StompRoll, rng);
         else
             stompHits = stomper.TroopType.BaseType == BaseTroopType.Monster
                 ? DiceRoller.Roll("D6", rng) : 1;
 
         int strength = stomper.PrimaryProfile.S ?? 3;
-        if (context.CombatRound == 1 && stomper.SpecialRules.MightyBlow.HasValue)
-            strength += stomper.SpecialRules.MightyBlow.Value;
+        if (context.CombatRound == 1 && stomperRules.MightyBlow.HasValue)
+            strength += stomperRules.MightyBlow.Value;
 
         int toWoundNeeded = _repo.GetToWoundScore(strength, target.BestT);
         int strengthMod = _repo.GetArmourSaveModifier(strength);
 
-        bool flamingStomp = stomper.SpecialRules.FlamingAttacks;
-        int wardVal = target.SpecialRules.WardSave ?? 7;
-        int regenVal = target.SpecialRules.Regeneration ?? 7;
+        bool flamingStomp = stomperRules.FlamingAttacks;
+        int wardVal = targetRules.WardSave ?? 7;
+        int regenVal = targetRules.Regeneration ?? 7;
         int ward = flamingStomp ? wardVal : Math.Min(wardVal, regenVal);
 
-        if (target.SpecialRules.Ethereal)
+        if (targetRules.Ethereal)
         {
-            int etherealWard = stomper.SpecialRules.MagicalAttacks ? 7 : 2;
+            int etherealWard = stomperRules.MagicalAttacks ? 7 : 2;
             ward = Math.Min(ward, etherealWard);
         }
 
@@ -327,10 +334,13 @@ public class CombatResolver
     {
         bool isCharging = context.IsCharging(isAttacker);
 
-        double fearBonus = 0;
-        bool causesFear = unit.SpecialRules.Fear || unit.SpecialRules.Terror;
+        var unitRules = unit.EffectiveSpecialRules;
+        var opponentRules = opponent.EffectiveSpecialRules;
 
-        if (!causesFear && opponent.SpecialRules.FearElves)
+        double fearBonus = 0;
+        bool causesFear = unitRules.Fear || unitRules.Terror;
+
+        if (!causesFear && opponentRules.FearElves)
         {
             string? unitFaction = isAttacker ? context.AttackerFactionKey : context.DefenderFactionKey;
             if (FactionRaces.IsElf(unitFaction))
@@ -339,7 +349,7 @@ public class CombatResolver
 
         if (causesFear)
         {
-            bool opponentImmune = opponent.SpecialRules.Fear || opponent.SpecialRules.Terror;
+            bool opponentImmune = opponentRules.Fear || opponentRules.Terror;
             if (!opponentImmune)
             {
                 int unitUS = unit.ModelCount * unit.TroopType.UnitStrength;

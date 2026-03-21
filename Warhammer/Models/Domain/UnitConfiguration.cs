@@ -50,6 +50,12 @@ public class UnitConfiguration
     /// </summary>
     public Dictionary<int, int> SelectedUpgrades { get; } = new();
 
+    /// <summary>Selected magic items with their configured combat modifiers.</summary>
+    public List<SelectedMagicItem> SelectedMagicItems { get; } = [];
+
+    /// <summary>Generic modifiers applied to this unit (from magic items, spells, or manual entry).</summary>
+    public List<UnitModifier> Modifiers { get; } = [];
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }
@@ -57,6 +63,30 @@ public class UnitConfiguration
     public ParsedSpecialRules SpecialRules { get; }
     public List<CloseCombatWeaponKey> BaseWeaponKeys { get; }
     public List<ArmourKey> BaseArmourKeys { get; }
+
+    // ─── Modifier system ─────────────────────────────────────────
+
+    /// <summary>All modifiers combined: magic item modifiers + standalone modifiers.</summary>
+    private IEnumerable<UnitModifier> AllModifiers =>
+        SelectedMagicItems.Select(mi => mi.Modifier).Concat(Modifiers);
+
+    /// <summary>Aggregate of all modifiers — stat bonuses summed, booleans ORed, saves take best.</summary>
+    public UnitModifier AggregateModifier => UnitModifier.Aggregate(AllModifiers);
+
+    /// <summary>
+    /// Base special rules merged with all modifier rule overrides.
+    /// Use this instead of <see cref="SpecialRules"/> in combat calculations.
+    /// </summary>
+    public ParsedSpecialRules EffectiveSpecialRules
+    {
+        get
+        {
+            var aggregate = AggregateModifier;
+            return aggregate.RuleOverrides != null
+                ? SpecialRules.Merge(aggregate.RuleOverrides)
+                : SpecialRules;
+        }
+    }
 
     // ─── Constructors ────────────────────────────────────────────
 
@@ -108,8 +138,10 @@ public class UnitConfiguration
                 totalModifier += armour.CombatSaveModifier;
         }
 
-        if (SpecialRules.NaturalArmour.HasValue)
-            totalModifier += 7 - SpecialRules.NaturalArmour.Value;
+        var rules = EffectiveSpecialRules;
+
+        if (rules.NaturalArmour.HasValue)
+            totalModifier += 7 - rules.NaturalArmour.Value;
 
         if (TroopType.IntrinsicArmourSave.HasValue)
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
@@ -117,11 +149,13 @@ public class UnitConfiguration
         bool hasConventionalArmour = effectiveArmour
             .Any(k => k is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
 
-        if (SpecialRules.ChaosArmour && hasConventionalArmour)
+        if (rules.ChaosArmour && hasConventionalArmour)
             totalModifier += 1;
 
-        if (SpecialRules.GromrilArmour && hasConventionalArmour)
+        if (rules.GromrilArmour && hasConventionalArmour)
             totalModifier += 1;
+
+        totalModifier += AggregateModifier.ArmourSaveBonus ?? 0;
 
         return totalModifier;
     }
@@ -241,17 +275,17 @@ public class UnitConfiguration
     public int EffectiveStrength(Weapon? weapon, bool isCharging, int combatRound,
         int weaponMightyBlow = 0)
     {
-        int baseS = PrimaryProfile.S ?? 3;
+        int baseS = (PrimaryProfile.S ?? 3) + (AggregateModifier.StrengthBonus ?? 0);
         int s = weapon?.Strength.Resolve(baseS) ?? baseS;
         return ApplyMightyBlow(s, isCharging, combatRound, weaponMightyBlow);
     }
 
     private int ApplyMightyBlow(int strength, bool isCharging, int combatRound, int weaponMightyBlow)
     {
-        int unitMB = SpecialRules.MightyBlow ?? 0;
+        int unitMB = EffectiveSpecialRules.MightyBlow ?? 0;
 
         // Thunderous Charge: Mighty Blow (2) on charge turns only
-        if (isCharging && SpecialRules.ThunderousCharge)
+        if (isCharging && EffectiveSpecialRules.ThunderousCharge)
             unitMB = Math.Max(unitMB, 2);
 
         int effectiveMB = Math.Max(unitMB, weaponMightyBlow);
@@ -285,10 +319,10 @@ public class UnitConfiguration
         return Math.Max(modifiedSave, 2);
     }
 
-    /// <summary>Best WS for combat (max of rider/mount for split profiles).</summary>
-    public int BestWS => SplitProfileMax(p => p.WS, 1);
+    /// <summary>Best WS for combat (max of rider/mount for split profiles), including modifier bonuses.</summary>
+    public int BestWS => SplitProfileMax(p => p.WS, 1) + (AggregateModifier.WeaponSkillBonus ?? 0);
 
-    /// <summary>Best T for combat (max of rider/mount for split profiles), including stance bonuses.</summary>
+    /// <summary>Best T for combat (max of rider/mount for split profiles), including stance and modifier bonuses.</summary>
     public int BestT
     {
         get
@@ -296,6 +330,7 @@ public class UnitConfiguration
             int t = SplitProfileMax(p => p.T, 3);
             if (SelectedTreeAspect == TreeAspect.Oak)
                 t += 1;
+            t += AggregateModifier.ToughnessBonus ?? 0;
             return t;
         }
     }
@@ -331,14 +366,16 @@ public class UnitConfiguration
     public int TotalAttacks(bool isCharging, int combatRound,
         int weaponExtraAttacks = 0, int weaponFiER = 0, int? attacksOverride = null)
     {
-        int attacks = attacksOverride ?? PrimaryProfile.A ?? 1;
+        int attacks = (attacksOverride ?? PrimaryProfile.A ?? 1) + (AggregateModifier.AttacksBonus ?? 0);
+
+        var rules = EffectiveSpecialRules;
 
         // Frenzy: +1 Attack
-        if (SpecialRules.Frenzy)
+        if (rules.Frenzy)
             attacks += 1;
 
         // Devastating Charge: +1 Attack on charge
-        if (isCharging && SpecialRules.DevastatingCharge)
+        if (isCharging && rules.DevastatingCharge)
             attacks += 1;
 
         // Shadow Dance: Storm of Blades (+1 Attack)
@@ -360,10 +397,10 @@ public class UnitConfiguration
         int supportingRanks = Math.Max(0, Ranks - 1);
 
         // Fight in Extra Ranks (unit special rules + weapon, use best)
-        int extraRanks = Math.Max(SpecialRules.FightInExtraRanks ?? 0, weaponFiER);
+        int extraRanks = Math.Max(rules.FightInExtraRanks ?? 0, weaponFiER);
 
         // Lance Formation: FiER(1) and 3 supporting attacks on charge
-        bool lanceCharging = isCharging && SpecialRules.LanceFormation;
+        bool lanceCharging = isCharging && rules.LanceFormation;
         if (lanceCharging)
             extraRanks = Math.Max(extraRanks, 1);
 
@@ -489,7 +526,8 @@ public class UnitConfiguration
             double commandCost = (HasChampion ? champCost : 0)
                                + (HasMusician ? musCost : 0)
                                + (HasStandardBearer ? stdCost : 0);
-            return baseCost + equipmentCost + commandCost;
+            double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
+            return baseCost + equipmentCost + commandCost + magicItemsCost;
         }
     }
 

@@ -32,8 +32,8 @@ public class AttackResolver
         int cachedDefenderBaseArmour = -1,
         int cachedEffectiveDefenderI = -1)
     {
-        var attackerRules = attacker.SpecialRules;
-        var defenderRules = defender.SpecialRules;
+        var attackerRules = attacker.EffectiveSpecialRules;
+        var defenderRules = defender.EffectiveSpecialRules;
         bool isRider = !isMountAttack;
         bool isCharging = context.IsCharging(isAttackerSide);
         bool isBeingCharged = context.IsCharging(!isAttackerSide);
@@ -214,27 +214,30 @@ public class AttackResolver
         int impactHits = GetImpactHitCount(charger, rng);
         if (impactHits <= 0) return 0;
 
-        int strength = charger.MountProfile?.S ?? charger.PrimaryProfile.S ?? 3;
-        if (context.CombatRound == 1 && charger.SpecialRules.MightyBlow.HasValue)
-            strength += charger.SpecialRules.MightyBlow.Value;
+        var chargerRules = charger.EffectiveSpecialRules;
+        var targetRules = target.EffectiveSpecialRules;
 
-        if (charger.SpecialRules.OgreCharge || charger.SpecialRules.LanceFormation)
+        int strength = charger.MountProfile?.S ?? charger.PrimaryProfile.S ?? 3;
+        if (context.CombatRound == 1 && chargerRules.MightyBlow.HasValue)
+            strength += chargerRules.MightyBlow.Value;
+
+        if (chargerRules.OgreCharge || chargerRules.LanceFormation)
             strength += charger.RankBonus;
 
-        if (charger.SpecialRules.Impale)
+        if (chargerRules.Impale)
             strength += 1;
 
         int toWoundNeeded = _repo.GetToWoundScore(strength, target.BestT);
         int strengthMod = _repo.GetArmourSaveModifier(strength);
 
-        bool flamingImpact = charger.SpecialRules.FlamingAttacks;
-        int baseWard = target.SpecialRules.WardSave ?? 7;
-        int baseRegen = target.SpecialRules.Regeneration ?? 7;
+        bool flamingImpact = chargerRules.FlamingAttacks;
+        int baseWard = targetRules.WardSave ?? 7;
+        int baseRegen = targetRules.Regeneration ?? 7;
         int impactWard = flamingImpact ? baseWard : Math.Min(baseWard, baseRegen);
 
-        if (target.SpecialRules.Ethereal)
+        if (targetRules.Ethereal)
         {
-            int etherealWard = charger.SpecialRules.MagicalAttacks ? 7 : 2;
+            int etherealWard = chargerRules.MagicalAttacks ? 7 : 2;
             impactWard = Math.Min(impactWard, etherealWard);
         }
 
@@ -525,7 +528,7 @@ public class AttackResolver
 
     private int ResolveDefenderParry(UnitConfiguration defender, int attackerStrength, bool isMountAttack)
     {
-        int parryValue = defender.SpecialRules.Parry ?? 7;
+        int parryValue = defender.EffectiveSpecialRules.Parry ?? 7;
 
         // Weapon Parry — use resolved weapon if available, fall back to enum lookup
         var defenderWeapon = defender.GetSelectedResolvedWeapon()
@@ -605,13 +608,14 @@ public class AttackResolver
 
     private static int GetImpactHitCount(UnitConfiguration unit, Random rng)
     {
+        var rules = unit.EffectiveSpecialRules;
         int fromRules = 0;
-        if (unit.SpecialRules.ImpactHits.HasValue)
-            fromRules = unit.SpecialRules.ImpactHits.Value * unit.ModelsInFrontRank;
-        else if (unit.SpecialRules.ImpactHitsRoll != null)
-            fromRules = DiceRoller.Roll(unit.SpecialRules.ImpactHitsRoll, rng) * unit.ModelsInFrontRank;
+        if (rules.ImpactHits.HasValue)
+            fromRules = rules.ImpactHits.Value * unit.ModelsInFrontRank;
+        else if (rules.ImpactHitsRoll != null)
+            fromRules = DiceRoller.Roll(rules.ImpactHitsRoll, rng) * unit.ModelsInFrontRank;
 
-        if (unit.SpecialRules.OgreCharge)
+        if (rules.OgreCharge)
             fromRules = Math.Max(fromRules, unit.ModelsInFrontRank);
 
         int fromType = unit.TroopType.BaseType switch

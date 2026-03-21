@@ -115,22 +115,24 @@
                 opponentWeaponMB = opponentWeapon.Rules.MightyBlow.Value;
         }
         int opponentS = opponent.EffectiveStrength(opponentWeapon, opponentIsCharging, 1, opponentWeaponMB);
-        int opponentAP = opponent.SpecialRules.ArmourPiercing ?? 0;
+        var opponentRules = opponent.EffectiveSpecialRules;
+        int opponentAP = opponentRules.ArmourPiercing ?? 0;
         int strengthMod = Repo.GetArmourSaveModifier(opponentS);
         int armourSave = unit.EffectiveArmourSave(opponentS, opponentAP, strengthMod);
 
         // Ward save (best of ward/regen/parry)
-        int wardValue = unit.SpecialRules.WardSave ?? 7;
-        int regenValue = unit.SpecialRules.Regeneration ?? 7;
-        int parryValue = unit.SpecialRules.Parry ?? 7;
+        var unitRules = unit.EffectiveSpecialRules;
+        int wardValue = unitRules.WardSave ?? 7;
+        int regenValue = unitRules.Regeneration ?? 7;
+        int parryValue = unitRules.Parry ?? 7;
         int bestWard = Math.Min(Math.Min(wardValue, regenValue), parryValue);
 
         // Impact hits
         int impactHits = 0;
         if (isCharging)
         {
-            if (unit.SpecialRules.ImpactHits.HasValue)
-                impactHits = unit.SpecialRules.ImpactHits.Value * unit.ModelsInFrontRank;
+            if (unitRules.ImpactHits.HasValue)
+                impactHits = unitRules.ImpactHits.Value * unit.ModelsInFrontRank;
             else if (unit.TroopType.BaseType is BaseTroopType.Cavalry or BaseTroopType.MonstrousCavalry)
                 impactHits = unit.ModelsInFrontRank;
         }
@@ -148,7 +150,7 @@
             EffectiveInitiative = effectiveI,
             ToHitNeeded = toHitNeeded,
             ToWoundNeeded = toWoundNeeded,
-            HasPoison = unit.SpecialRules.PoisonedAttacks,
+            HasPoison = unitRules.PoisonedAttacks,
             ArmourSave = armourSave,
             WardSave = bestWard,
             ImpactHits = impactHits,
