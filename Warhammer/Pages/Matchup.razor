@@ -3,6 +3,7 @@
 
 @using Warhammer.Models.Domain
 @using Warhammer.Models.Enums
+@using Warhammer.Models.Json
 @using Warhammer.Calculator.Models
 @using Warhammer.Services
 
@@ -17,6 +18,7 @@
                        SelectedFactionKey="@_attackerFactionKey"
                        OnFactionSelected="OnAttackerFactionSelected"
                        FactionUnits="@_attackerFactionUnits"
+                       FactionExtras="@_attackerExtras"
                        SelectedUnit="@_attackerUnit"
                        OnUnitSelected="OnAttackerUnitSelected"
                        Configuration="@_attackerConfig"
@@ -40,6 +42,7 @@
                        SelectedFactionKey="@_defenderFactionKey"
                        OnFactionSelected="OnDefenderFactionSelected"
                        FactionUnits="@_defenderFactionUnits"
+                       FactionExtras="@_defenderExtras"
                        SelectedUnit="@_defenderUnit"
                        OnUnitSelected="OnDefenderUnitSelected"
                        Configuration="@_defenderConfig"
@@ -78,12 +81,14 @@
     // --- Attacker state ---
     private string? _attackerFactionKey;
     private IReadOnlyList<Unit>? _attackerFactionUnits;
+    private FactionExtrasData? _attackerExtras;
     private Unit? _attackerUnit;
     private UnitConfiguration? _attackerConfig;
 
     // --- Defender state ---
     private string? _defenderFactionKey;
     private IReadOnlyList<Unit>? _defenderFactionUnits;
+    private FactionExtrasData? _defenderExtras;
     private Unit? _defenderUnit;
     private UnitConfiguration? _defenderConfig;
 
@@ -107,9 +112,15 @@
         _result = null;
 
         if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        {
             _attackerFactionUnits = await Repo.GetUnitsAsync(fk);
+            _attackerExtras = await Repo.GetFactionExtrasAsync(fk);
+        }
         else
+        {
             _attackerFactionUnits = null;
+            _attackerExtras = null;
+        }
     }
 
     private void OnAttackerUnitSelected(Unit? unit)
@@ -134,9 +145,15 @@
         _result = null;
 
         if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        {
             _defenderFactionUnits = await Repo.GetUnitsAsync(fk);
+            _defenderExtras = await Repo.GetFactionExtrasAsync(fk);
+        }
         else
+        {
             _defenderFactionUnits = null;
+            _defenderExtras = null;
+        }
     }
 
     private void OnDefenderUnitSelected(Unit? unit)

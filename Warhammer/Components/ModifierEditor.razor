@@ -1,0 +1,239 @@
+@using Warhammer.Models.Domain
+
+<div class="border border-secondary rounded p-2 mb-2 small">
+    @* ── Stat Bonuses ── *@
+    <div class="row g-1 mb-1">
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">WS</label>
+            <input type="number" class="form-control form-control-sm" value="@(_ws)" @onchange="e => OnStatChanged(e, v => _ws = v)" /></div>
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">S</label>
+            <input type="number" class="form-control form-control-sm" value="@(_strength)" @onchange="e => OnStatChanged(e, v => _strength = v)" /></div>
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">T</label>
+            <input type="number" class="form-control form-control-sm" value="@(_toughness)" @onchange="e => OnStatChanged(e, v => _toughness = v)" /></div>
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">I</label>
+            <input type="number" class="form-control form-control-sm" value="@(_initiative)" @onchange="e => OnStatChanged(e, v => _initiative = v)" /></div>
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">A</label>
+            <input type="number" class="form-control form-control-sm" value="@(_attacks)" @onchange="e => OnStatChanged(e, v => _attacks = v)" /></div>
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">W</label>
+            <input type="number" class="form-control form-control-sm" value="@(_wounds)" @onchange="e => OnStatChanged(e, v => _wounds = v)" /></div>
+        <div class="col"><label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">Arm</label>
+            <input type="number" class="form-control form-control-sm" value="@(_armourSave)" @onchange="e => OnStatChanged(e, v => _armourSave = v)" /></div>
+    </div>
+
+    @* ── Saves ── *@
+    <div class="row g-1 mb-1">
+        <div class="col">
+            <label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">Ward Save</label>
+            <select class="form-select form-select-sm" value="@_wardSave" @onchange="e => OnSaveChanged(e, v => _wardSave = v)">
+                <option value="0">—</option>
+                <option value="6">6+</option>
+                <option value="5">5+</option>
+                <option value="4">4+</option>
+                <option value="3">3+</option>
+                <option value="2">2+</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">Regen</label>
+            <select class="form-select form-select-sm" value="@_regeneration" @onchange="e => OnSaveChanged(e, v => _regeneration = v)">
+                <option value="0">—</option>
+                <option value="6">6+</option>
+                <option value="5">5+</option>
+                <option value="4">4+</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">AP</label>
+            <input type="number" class="form-control form-control-sm" min="0" max="6"
+                   value="@_armourPiercing" @onchange="e => OnStatChanged(e, v => _armourPiercing = v)" />
+        </div>
+        <div class="col">
+            <label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">MW</label>
+            <input type="number" class="form-control form-control-sm" min="0" max="6"
+                   value="@_multipleWounds" @onchange="e => OnStatChanged(e, v => _multipleWounds = v)" />
+        </div>
+    </div>
+
+    @* ── Attack Rules ── *@
+    <div class="d-flex flex-wrap gap-2 mb-1">
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_killingBlow" @onchange="e => OnBoolChanged(e, v => _killingBlow = v)" /> KB</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_heroicKillingBlow" @onchange="e => OnBoolChanged(e, v => _heroicKillingBlow = v)" /> HKB</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_flamingAttacks" @onchange="e => OnBoolChanged(e, v => _flamingAttacks = v)" /> Flaming</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_poisonedAttacks" @onchange="e => OnBoolChanged(e, v => _poisonedAttacks = v)" /> Poison</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_magicalAttacks" @onchange="e => OnBoolChanged(e, v => _magicalAttacks = v)" /> Magical</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_ignoresArmour" @onchange="e => OnBoolChanged(e, v => _ignoresArmour = v)" /> Ign Armour</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_alwaysStrikesFirst" @onchange="e => OnBoolChanged(e, v => _alwaysStrikesFirst = v)" /> ASF</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_alwaysStrikesLast" @onchange="e => OnBoolChanged(e, v => _alwaysStrikesLast = v)" /> ASL</label>
+    </div>
+    <div class="d-flex flex-wrap gap-2 mb-1">
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_hatred" @onchange="e => OnBoolChanged(e, v => _hatred = v)" /> Hatred</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_frenzy" @onchange="e => OnBoolChanged(e, v => _frenzy = v)" /> Frenzy</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_devastatingCharge" @onchange="e => OnBoolChanged(e, v => _devastatingCharge = v)" /> Dev Charge</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_fear" @onchange="e => OnBoolChanged(e, v => _fear = v)" /> Fear</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_terror" @onchange="e => OnBoolChanged(e, v => _terror = v)" /> Terror</label>
+        <label class="form-check form-check-inline mb-0 small">
+            <input class="form-check-input" type="checkbox" checked="@_ethereal" @onchange="e => OnBoolChanged(e, v => _ethereal = v)" /> Ethereal</label>
+    </div>
+
+    @* ── Roll Modifiers ── *@
+    <div class="row g-1">
+        <div class="col">
+            <label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">To-Hit mod</label>
+            <input type="number" class="form-control form-control-sm"
+                   value="@_toHitMod" @onchange="e => OnStatChanged(e, v => _toHitMod = v)" />
+        </div>
+        <div class="col">
+            <label class="form-label mb-0 text-body-secondary" style="font-size:0.7rem">To-Wound mod</label>
+            <input type="number" class="form-control form-control-sm"
+                   value="@_toWoundMod" @onchange="e => OnStatChanged(e, v => _toWoundMod = v)" />
+        </div>
+        <div class="col pt-3">
+            <label class="form-check form-check-inline mb-0 small">
+                <input class="form-check-input" type="checkbox" checked="@_rerollHit" @onchange="e => OnBoolChanged(e, v => _rerollHit = v)" /> RR Hit</label>
+        </div>
+        <div class="col pt-3">
+            <label class="form-check form-check-inline mb-0 small">
+                <input class="form-check-input" type="checkbox" checked="@_rerollWound" @onchange="e => OnBoolChanged(e, v => _rerollWound = v)" /> RR Wound</label>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public UnitModifier Value { get; set; } = new();
+    [Parameter] public EventCallback<UnitModifier> ValueChanged { get; set; }
+
+    // Stat bonuses
+    private int _ws, _strength, _toughness, _initiative, _attacks, _wounds, _armourSave;
+    // Saves & damage
+    private int _wardSave, _regeneration, _armourPiercing, _multipleWounds;
+    // Attack rules
+    private bool _killingBlow, _heroicKillingBlow, _flamingAttacks, _poisonedAttacks, _magicalAttacks;
+    private bool _ignoresArmour, _alwaysStrikesFirst, _alwaysStrikesLast;
+    private bool _hatred, _frenzy, _devastatingCharge, _fear, _terror, _ethereal;
+    // Roll mods
+    private int _toHitMod, _toWoundMod;
+    private bool _rerollHit, _rerollWound;
+
+    protected override void OnParametersSet()
+    {
+        LoadFromModifier(Value);
+    }
+
+    private void LoadFromModifier(UnitModifier m)
+    {
+        _ws = m.WeaponSkillBonus ?? 0;
+        _strength = m.StrengthBonus ?? 0;
+        _toughness = m.ToughnessBonus ?? 0;
+        _initiative = m.InitiativeBonus ?? 0;
+        _attacks = m.AttacksBonus ?? 0;
+        _wounds = m.WoundsBonus ?? 0;
+        _armourSave = m.ArmourSaveBonus ?? 0;
+        _toHitMod = m.ToHitModifier ?? 0;
+        _toWoundMod = m.ToWoundModifier ?? 0;
+        _rerollHit = m.RerollFailedToHit;
+        _rerollWound = m.RerollFailedToWound;
+
+        var r = m.RuleOverrides ?? new ParsedSpecialRules();
+        _wardSave = r.WardSave ?? 0;
+        _regeneration = r.Regeneration ?? 0;
+        _armourPiercing = r.ArmourPiercing ?? 0;
+        _multipleWounds = r.MultipleWounds ?? 0;
+        _killingBlow = r.KillingBlow;
+        _heroicKillingBlow = r.HeroicKillingBlow;
+        _flamingAttacks = r.FlamingAttacks;
+        _poisonedAttacks = r.PoisonedAttacks;
+        _magicalAttacks = r.MagicalAttacks;
+        _ignoresArmour = r.IgnoresArmourSaves;
+        _alwaysStrikesFirst = r.AlwaysStrikesFirst;
+        _alwaysStrikesLast = r.AlwaysStrikesLast;
+        _hatred = r.Hatred;
+        _frenzy = r.Frenzy;
+        _devastatingCharge = r.DevastatingCharge;
+        _fear = r.Fear;
+        _terror = r.Terror;
+        _ethereal = r.Ethereal;
+    }
+
+    private UnitModifier BuildModifier()
+    {
+        bool hasRules = _wardSave > 0 || _regeneration > 0 || _armourPiercing > 0 || _multipleWounds > 0
+            || _killingBlow || _heroicKillingBlow || _flamingAttacks || _poisonedAttacks || _magicalAttacks
+            || _ignoresArmour || _alwaysStrikesFirst || _alwaysStrikesLast
+            || _hatred || _frenzy || _devastatingCharge || _fear || _terror || _ethereal;
+
+        ParsedSpecialRules? rules = hasRules ? new ParsedSpecialRules
+        {
+            WardSave = _wardSave > 0 ? _wardSave : null,
+            Regeneration = _regeneration > 0 ? _regeneration : null,
+            ArmourPiercing = _armourPiercing > 0 ? _armourPiercing : null,
+            MultipleWounds = _multipleWounds > 0 ? _multipleWounds : null,
+            KillingBlow = _killingBlow,
+            HeroicKillingBlow = _heroicKillingBlow,
+            FlamingAttacks = _flamingAttacks,
+            PoisonedAttacks = _poisonedAttacks,
+            MagicalAttacks = _magicalAttacks,
+            IgnoresArmourSaves = _ignoresArmour,
+            AlwaysStrikesFirst = _alwaysStrikesFirst,
+            AlwaysStrikesLast = _alwaysStrikesLast,
+            Hatred = _hatred,
+            Frenzy = _frenzy,
+            DevastatingCharge = _devastatingCharge,
+            Fear = _fear,
+            Terror = _terror,
+            Ethereal = _ethereal,
+        } : null;
+
+        return new UnitModifier
+        {
+            Label = Value.Label,
+            Source = Value.Source,
+            WeaponSkillBonus = _ws != 0 ? _ws : null,
+            StrengthBonus = _strength != 0 ? _strength : null,
+            ToughnessBonus = _toughness != 0 ? _toughness : null,
+            InitiativeBonus = _initiative != 0 ? _initiative : null,
+            AttacksBonus = _attacks != 0 ? _attacks : null,
+            WoundsBonus = _wounds != 0 ? _wounds : null,
+            ArmourSaveBonus = _armourSave != 0 ? _armourSave : null,
+            ToHitModifier = _toHitMod != 0 ? _toHitMod : null,
+            ToWoundModifier = _toWoundMod != 0 ? _toWoundMod : null,
+            RerollFailedToHit = _rerollHit,
+            RerollFailedToWound = _rerollWound,
+            RuleOverrides = rules,
+        };
+    }
+
+    private async Task EmitChange()
+    {
+        await ValueChanged.InvokeAsync(BuildModifier());
+    }
+
+    private async Task OnStatChanged(ChangeEventArgs e, Action<int> setter)
+    {
+        setter(int.TryParse(e.Value?.ToString(), out var v) ? v : 0);
+        await EmitChange();
+    }
+
+    private async Task OnSaveChanged(ChangeEventArgs e, Action<int> setter)
+    {
+        setter(int.TryParse(e.Value?.ToString(), out var v) ? v : 0);
+        await EmitChange();
+    }
+
+    private async Task OnBoolChanged(ChangeEventArgs e, Action<bool> setter)
+    {
+        setter((bool)(e.Value ?? false));
+        await EmitChange();
+    }
+}

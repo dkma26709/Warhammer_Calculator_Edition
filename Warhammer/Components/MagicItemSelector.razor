@@ -1,0 +1,142 @@
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Json
+
+@if (MagicItems.Count > 0 && Configuration != null)
+{
+    <div class="mb-2">
+        <label class="form-label small text-body-secondary">
+            Magic Items (@PointsUsed.ToString("F0") / @PointsBudget pts)
+        </label>
+
+        @* ── Selected items ── *@
+        @foreach (var (item, index) in Configuration.SelectedMagicItems.Select((item, i) => (item, i)))
+        {
+            <div class="border border-secondary rounded p-2 mb-1">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <strong class="small">@item.Name</strong>
+                        <span class="text-body-secondary small">(@item.PointsCost pts)</span>
+                    </div>
+                    <button class="btn btn-outline-danger btn-sm py-0 px-1" style="font-size:0.7rem"
+                            @onclick="() => RemoveItem(index)">✕</button>
+                </div>
+                @if (_expandedIndex == index)
+                {
+                    <ModifierEditor Value="@item.Modifier"
+                                    ValueChanged="m => OnModifierChanged(index, m)" />
+                }
+                else
+                {
+                    <button class="btn btn-outline-secondary btn-sm mt-1 py-0 px-1" style="font-size:0.7rem"
+                            @onclick="() => _expandedIndex = index">Configure effect</button>
+                    @if (HasAnyEffect(item.Modifier))
+                    {
+                        <span class="text-success small ms-1">✓ configured</span>
+                    }
+                }
+            </div>
+        }
+
+        @* ── Item picker ── *@
+        @if (PointsRemaining > 0)
+        {
+            <select class="form-select form-select-sm" value="" @onchange="OnItemSelected">
+                <option value="">— Add magic item —</option>
+                @foreach (var category in _groupedItems)
+                {
+                    <optgroup label="@FormatCategory(category.Key)">
+                        @foreach (var item in category)
+                        {
+                            var cost = ParsePoints(item.Points);
+                            var disabled = cost > PointsRemaining;
+                            <option value="@item.Name" disabled="@disabled">
+                                @item.Name (@item.Points pts)@(item.Restriction != null ? $" [{item.Restriction}]" : "")
+                            </option>
+                        }
+                    </optgroup>
+                }
+            </select>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public List<MagicItemEntry> MagicItems { get; set; } = [];
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+
+    private int _expandedIndex = -1;
+    private IEnumerable<IGrouping<string, MagicItemEntry>> _groupedItems = [];
+
+    private double PointsBudget => Configuration?.ResolvedUnit.MagicItemAllowance ?? 0;
+    private double PointsUsed => Configuration?.SelectedMagicItems.Sum(i => i.PointsCost) ?? 0;
+    private double PointsRemaining => PointsBudget - PointsUsed;
+
+    protected override void OnParametersSet()
+    {
+        _groupedItems = MagicItems
+            .OrderBy(i => i.Category)
+            .ThenBy(i => ParsePoints(i.Points))
+            .GroupBy(i => i.Category);
+    }
+
+    private async Task OnItemSelected(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        var name = e.Value?.ToString();
+        if (string.IsNullOrEmpty(name)) return;
+
+        var entry = MagicItems.FirstOrDefault(i => i.Name == name);
+        if (entry == null) return;
+
+        var cost = ParsePoints(entry.Points);
+        if (cost > PointsRemaining) return;
+
+        Configuration.SelectedMagicItems.Add(new SelectedMagicItem
+        {
+            Name = entry.Name,
+            Category = entry.Category,
+            PointsCost = cost,
+        });
+
+        _expandedIndex = Configuration.SelectedMagicItems.Count - 1;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task RemoveItem(int index)
+    {
+        if (Configuration == null || index < 0 || index >= Configuration.SelectedMagicItems.Count) return;
+        Configuration.SelectedMagicItems.RemoveAt(index);
+        if (_expandedIndex >= Configuration.SelectedMagicItems.Count)
+            _expandedIndex = -1;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnModifierChanged(int index, UnitModifier modifier)
+    {
+        if (Configuration == null || index < 0 || index >= Configuration.SelectedMagicItems.Count) return;
+        var item = Configuration.SelectedMagicItems[index];
+        Configuration.SelectedMagicItems[index] = item with { Modifier = modifier };
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private static double ParsePoints(string points) =>
+        double.TryParse(points, out var v) ? v : 0;
+
+    private static string FormatCategory(string category) => category switch
+    {
+        "magic_weapon" => "Magic Weapons",
+        "magic_armour" => "Magic Armour",
+        "talisman" => "Talismans",
+        "arcane_item" => "Arcane Items",
+        "enchanted_item" => "Enchanted Items",
+        "magic_standard" => "Magic Standards",
+        _ => category,
+    };
+
+    private static bool HasAnyEffect(UnitModifier m) =>
+        m.StrengthBonus.HasValue || m.ToughnessBonus.HasValue || m.AttacksBonus.HasValue
+        || m.WeaponSkillBonus.HasValue || m.InitiativeBonus.HasValue || m.WoundsBonus.HasValue
+        || m.ArmourSaveBonus.HasValue || m.ToHitModifier.HasValue || m.ToWoundModifier.HasValue
+        || m.RerollFailedToHit || m.RerollFailedToWound || m.RuleOverrides != null;
+}
