@@ -58,6 +58,9 @@ public class FactionDataService
         _http = http;
     }
 
+    /// <summary>Expose the HTTP client for loading additional data files.</summary>
+    public HttpClient GetHttpClient() => _http;
+
     public async Task<FactionData> GetFactionUnitsAsync(string factionKey)
     {
         if (_unitCache.TryGetValue(factionKey, out var cached))

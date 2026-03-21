@@ -19,7 +19,8 @@
                               Unit="SelectedUnit"
                               Configuration="Configuration"
                               ConfigurationChanged="ConfigurationChanged"
-                              FactionExtras="FactionExtras" />
+                              FactionExtras="FactionExtras"
+                              CommonMagicItems="CommonMagicItems" />
         }
     </div>
 </div>
@@ -30,6 +31,7 @@
     [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
     [Parameter] public IReadOnlyList<Unit>? FactionUnits { get; set; }
     [Parameter] public FactionExtrasData? FactionExtras { get; set; }
+    [Parameter] public IReadOnlyList<MagicItemEntry>? CommonMagicItems { get; set; }
     [Parameter] public Unit? SelectedUnit { get; set; }
     [Parameter] public EventCallback<Unit?> OnUnitSelected { get; set; }
     [Parameter] public UnitConfiguration? Configuration { get; set; }

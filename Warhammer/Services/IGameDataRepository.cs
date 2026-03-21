@@ -29,6 +29,9 @@ public interface IGameDataRepository
     /// <summary>Load faction extras (army rules, magic items, lores, upgrades).</summary>
     Task<FactionExtrasData> GetFactionExtrasAsync(FactionKey faction);
 
+    /// <summary>Load common magic items available to all factions.</summary>
+    Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync();
+
     // ─── Weapons & Armour ────────────────────────────────────────
 
     /// <summary>Get a resolved close combat weapon by key.</summary>

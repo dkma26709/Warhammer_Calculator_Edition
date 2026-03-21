@@ -19,6 +19,7 @@
                        OnFactionSelected="OnAttackerFactionSelected"
                        FactionUnits="@_attackerFactionUnits"
                        FactionExtras="@_attackerExtras"
+                       CommonMagicItems="@_commonMagicItems"
                        SelectedUnit="@_attackerUnit"
                        OnUnitSelected="OnAttackerUnitSelected"
                        Configuration="@_attackerConfig"
@@ -43,6 +44,7 @@
                        OnFactionSelected="OnDefenderFactionSelected"
                        FactionUnits="@_defenderFactionUnits"
                        FactionExtras="@_defenderExtras"
+                       CommonMagicItems="@_commonMagicItems"
                        SelectedUnit="@_defenderUnit"
                        OnUnitSelected="OnDefenderUnitSelected"
                        Configuration="@_defenderConfig"
@@ -98,9 +100,13 @@
     private CombatSimulationResult? _result;
     private bool _isSimulating;
 
+    // --- Common magic items (loaded once) ---
+    private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
+
     protected override async Task OnInitializedAsync()
     {
         await Repo.EnsureLoadedAsync();
+        _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
     }
 
     // --- Attacker events ---

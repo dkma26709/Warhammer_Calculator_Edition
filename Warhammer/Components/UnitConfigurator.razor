@@ -145,9 +145,9 @@
     }
 
     @* ── Magic Items ── *@
-    @if (Configuration.ResolvedUnit.MagicItemAllowance.HasValue && FactionExtras != null)
+    @if (Configuration.ResolvedUnit.MagicItemAllowance.HasValue && AllMagicItems.Count > 0)
     {
-        <MagicItemSelector MagicItems="FactionExtras.MagicItems"
+        <MagicItemSelector MagicItems="AllMagicItems"
                            Configuration="Configuration"
                            ConfigurationChanged="ConfigurationChanged" />
     }
@@ -188,6 +188,10 @@
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
     [Parameter] public FactionExtrasData? FactionExtras { get; set; }
+    [Parameter] public IReadOnlyList<MagicItemEntry>? CommonMagicItems { get; set; }
+
+    private List<MagicItemEntry> AllMagicItems =>
+        [.. CommonMagicItems ?? [], .. FactionExtras?.MagicItems ?? []];
 
     private string _id = Guid.NewGuid().ToString("N")[..8];
 

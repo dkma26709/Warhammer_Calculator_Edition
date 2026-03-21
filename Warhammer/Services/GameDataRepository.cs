@@ -1,3 +1,4 @@
+using System.Net.Http.Json;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
@@ -16,6 +17,7 @@ public class GameDataRepository : IGameDataRepository
     private Dictionary<CloseCombatWeaponKey, Weapon>? _weapons;
     private Dictionary<ArmourKey, Armour>? _armour;
     private readonly Dictionary<FactionKey, IReadOnlyList<Unit>> _unitCache = new();
+    private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
 
     public GameDataRepository(CoreRulesService coreRules, FactionDataService factionData)
     {
@@ -110,6 +112,19 @@ public class GameDataRepository : IGameDataRepository
     public async Task<FactionExtrasData> GetFactionExtrasAsync(FactionKey faction)
     {
         return await _factionData.GetFactionExtrasAsync(faction.ToJsonKey());
+    }
+
+    public async Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync()
+    {
+        if (_commonMagicItems != null)
+            return _commonMagicItems;
+
+        var http = _factionData.GetHttpClient();
+        var items = await http.GetFromJsonAsync<List<MagicItemEntry>>(
+            "data/common-magic-items.json",
+            new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        _commonMagicItems = items ?? [];
+        return _commonMagicItems;
     }
 
     // ─── Weapons & Armour ────────────────────────────────────────
