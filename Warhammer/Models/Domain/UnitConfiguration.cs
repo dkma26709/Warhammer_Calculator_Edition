@@ -352,7 +352,7 @@ public class UnitConfiguration
         get
         {
             if (Frontage < TroopType.MinRankWidth) return 0;
-            return Math.Min(Ranks - 1, 3);
+            return Math.Clamp(Ranks - 1, 0, 3);
         }
     }
 

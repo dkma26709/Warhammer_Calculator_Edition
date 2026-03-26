@@ -25,6 +25,10 @@ public class CombatResolver
         return BuildAttackGroups(attacker, defender, context);
     }
 
+    /// <summary>
+    /// Resolve a single combat round. Creates internal casualty state and restores
+    /// ModelCount after the round (safe for repeated single-round iterations).
+    /// </summary>
     public RoundResult ResolveRound(
         UnitConfiguration attacker,
         UnitConfiguration defender,
@@ -32,58 +36,162 @@ public class CombatResolver
         List<AttackGroup> groups,
         Random rng)
     {
+        int origAttModels = attacker.ModelCount;
+        int origDefModels = defender.ModelCount;
+        var attackerState = new CombatUnitState(attacker.ModelCount, attacker.PrimaryProfile.W ?? 1);
+        var defenderState = new CombatUnitState(defender.ModelCount, defender.PrimaryProfile.W ?? 1);
+
+        try
+        {
+            return ResolveRound(attacker, defender, context, groups, rng,
+                ref attackerState, ref defenderState);
+        }
+        finally
+        {
+            attacker.ModelCount = origAttModels;
+            defender.ModelCount = origDefModels;
+        }
+    }
+
+    /// <summary>
+    /// Resolve a single combat round with caller-provided casualty state.
+    /// ModelCount on both units is updated to reflect casualties; the caller
+    /// is responsible for restoring them if needed.
+    /// </summary>
+    public RoundResult ResolveRound(
+        UnitConfiguration attacker,
+        UnitConfiguration defender,
+        CombatContext context,
+        List<AttackGroup> groups,
+        Random rng,
+        ref CombatUnitState attackerState,
+        ref CombatUnitState defenderState)
+    {
         int attackerWoundsDealt = 0;
         int defenderWoundsDealt = 0;
 
         // Phase 1: Impact Hits (charge turn only)
+        // Casualties from impact hits reduce the target's model count before melee.
         if (context.Charge == ChargeState.AttackerCharged)
         {
             int targetBaseArmour = _attackResolver.ComputeBaseArmour(defender);
-            attackerWoundsDealt += _attackResolver.ResolveImpactHits(attacker, defender, context, rng, targetBaseArmour);
+            int impactWounds = _attackResolver.ResolveImpactHits(attacker, defender, context, rng, targetBaseArmour);
+            int capped = Math.Min(impactWounds, defenderState.TotalRemainingHP);
+            defenderState.ApplyCasualties(capped);
+            attackerWoundsDealt += capped;
+            defender.ModelCount = defenderState.CurrentModelCount;
         }
         else if (context.Charge == ChargeState.DefenderCharged)
         {
             int targetBaseArmour = _attackResolver.ComputeBaseArmour(attacker);
-            defenderWoundsDealt += _attackResolver.ResolveImpactHits(defender, attacker, context, rng, targetBaseArmour);
+            int impactWounds = _attackResolver.ResolveImpactHits(defender, attacker, context, rng, targetBaseArmour);
+            int capped = Math.Min(impactWounds, attackerState.TotalRemainingHP);
+            attackerState.ApplyCasualties(capped);
+            defenderWoundsDealt += capped;
+            attacker.ModelCount = attackerState.CurrentModelCount;
         }
 
-        // Phase 2-3: Melee attacks in strike order (groups are pre-sorted)
-        foreach (var group in groups)
-        {
-            var weapon = group.Weapon ?? _repo.GetHandWeapon();
-            var result = _attackResolver.ResolveAttacks(
-                group.Unit, group.Opponent, weapon, context,
-                group.IsMountAttack, group.IsAttackerSide,
-                group.CachedWeaponRules, group.CachedDefenderParry,
-                rng,
-                group.CachedDefenderBaseArmour, group.CachedEffectiveDefenderI);
+        // Phase 2-3: Melee attacks in strike order (groups are pre-sorted by Priority desc).
+        // Groups at the same Priority strike simultaneously — casualties are applied
+        // only between initiative steps, not within them.
+        int attModelsBeforeMelee = attackerState.CurrentModelCount;
+        int defModelsBeforeMelee = defenderState.CurrentModelCount;
 
-            if (group.IsAttackerSide)
-                attackerWoundsDealt += result.UnsavedWounds;
-            else
-                defenderWoundsDealt += result.UnsavedWounds;
+        int gi = 0;
+        while (gi < groups.Count)
+        {
+            int currentPriority = groups[gi].Priority;
+
+            // Sync model counts for this initiative step
+            attacker.ModelCount = attackerState.CurrentModelCount;
+            defender.ModelCount = defenderState.CurrentModelCount;
+
+            int stepAttackerWounds = 0;
+            int stepDefenderWounds = 0;
+
+            // Resolve all groups at this initiative simultaneously
+            while (gi < groups.Count && groups[gi].Priority == currentPriority)
+            {
+                var group = groups[gi];
+                gi++;
+
+                // Skip if the attacking unit has no models left
+                if (group.IsAttackerSide && attackerState.CurrentModelCount <= 0) continue;
+                if (!group.IsAttackerSide && defenderState.CurrentModelCount <= 0) continue;
+                // Skip if the target unit has no models left
+                if (group.IsAttackerSide && defenderState.CurrentModelCount <= 0) continue;
+                if (!group.IsAttackerSide && attackerState.CurrentModelCount <= 0) continue;
+
+                var weapon = group.Weapon ?? _repo.GetHandWeapon();
+                var result = _attackResolver.ResolveAttacks(
+                    group.Unit, group.Opponent, weapon, context,
+                    group.IsMountAttack, group.IsAttackerSide,
+                    group.CachedWeaponRules, group.CachedDefenderParry,
+                    rng,
+                    group.CachedDefenderBaseArmour, group.CachedEffectiveDefenderI);
+
+                if (group.IsAttackerSide)
+                    stepAttackerWounds += result.UnsavedWounds;
+                else
+                    stepDefenderWounds += result.UnsavedWounds;
+            }
+
+            // Cap wounds at remaining HP and apply casualties from this initiative step
+            int cappedAtt = Math.Min(stepAttackerWounds, defenderState.TotalRemainingHP);
+            int cappedDef = Math.Min(stepDefenderWounds, attackerState.TotalRemainingHP);
+
+            defenderState.ApplyCasualties(cappedAtt);
+            attackerState.ApplyCasualties(cappedDef);
+
+            attackerWoundsDealt += cappedAtt;
+            defenderWoundsDealt += cappedDef;
         }
 
-        // Phase 3.5: Deathblow
-        if (attacker.EffectiveSpecialRules.Deathblow && defenderWoundsDealt > 0)
+        // Phase 3.5: Deathblow — dying models get one last strike.
+        // Use actual models killed during melee (not wounds, which may differ for multi-wound models).
+        int attModelsKilledInMelee = attModelsBeforeMelee - attackerState.CurrentModelCount;
+        int defModelsKilledInMelee = defModelsBeforeMelee - defenderState.CurrentModelCount;
+
+        attacker.ModelCount = attackerState.CurrentModelCount;
+        defender.ModelCount = defenderState.CurrentModelCount;
+
+        if (attacker.EffectiveSpecialRules.Deathblow && attModelsKilledInMelee > 0)
         {
-            int slain = Math.Min(defenderWoundsDealt, attacker.ModelCount);
-            attackerWoundsDealt += ResolveDeathblows(attacker, defender, slain, context, rng);
+            int deathblowWounds = ResolveDeathblows(attacker, defender, attModelsKilledInMelee, context, rng);
+            int capped = Math.Min(deathblowWounds, defenderState.TotalRemainingHP);
+            defenderState.ApplyCasualties(capped);
+            attackerWoundsDealt += capped;
+            defender.ModelCount = defenderState.CurrentModelCount;
         }
 
-        if (defender.EffectiveSpecialRules.Deathblow && attackerWoundsDealt > 0)
+        if (defender.EffectiveSpecialRules.Deathblow && defModelsKilledInMelee > 0)
         {
-            int slain = Math.Min(attackerWoundsDealt, defender.ModelCount);
-            defenderWoundsDealt += ResolveDeathblows(defender, attacker, slain, context, rng);
+            int deathblowWounds = ResolveDeathblows(defender, attacker, defModelsKilledInMelee, context, rng);
+            int capped = Math.Min(deathblowWounds, attackerState.TotalRemainingHP);
+            attackerState.ApplyCasualties(capped);
+            defenderWoundsDealt += capped;
+            attacker.ModelCount = attackerState.CurrentModelCount;
         }
 
         // Phase 4: Stomps
-        attackerWoundsDealt += ResolveStomp(attacker, defender, context, rng);
-        defenderWoundsDealt += ResolveStomp(defender, attacker, context, rng);
+        attacker.ModelCount = attackerState.CurrentModelCount;
+        defender.ModelCount = defenderState.CurrentModelCount;
 
-        // Cap wounds
-        attackerWoundsDealt = Math.Min(attackerWoundsDealt, defender.ModelCount * (defender.PrimaryProfile.W ?? 1));
-        defenderWoundsDealt = Math.Min(defenderWoundsDealt, attacker.ModelCount * (attacker.PrimaryProfile.W ?? 1));
+        int stompAttWounds = ResolveStomp(attacker, defender, context, rng);
+        int stompDefWounds = ResolveStomp(defender, attacker, context, rng);
+
+        int cappedStompAtt = Math.Min(stompAttWounds, defenderState.TotalRemainingHP);
+        int cappedStompDef = Math.Min(stompDefWounds, attackerState.TotalRemainingHP);
+
+        defenderState.ApplyCasualties(cappedStompAtt);
+        attackerState.ApplyCasualties(cappedStompDef);
+
+        attackerWoundsDealt += cappedStompAtt;
+        defenderWoundsDealt += cappedStompDef;
+
+        // Sync final model counts for CR calculation (rank bonus, fear US)
+        attacker.ModelCount = attackerState.CurrentModelCount;
+        defender.ModelCount = defenderState.CurrentModelCount;
 
         // Phase 5: Combat Resolution
         var attackerBreakdown = ComputeCombatRes(attacker, defender, attackerWoundsDealt, context, isAttacker: true);

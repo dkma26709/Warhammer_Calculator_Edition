@@ -1,0 +1,365 @@
+@using Warhammer.Calculator.Models
+
+<div class="card bg-dark text-light border-secondary">
+    <div class="card-header">
+        <h5 class="card-title mb-0">
+            Multi-Round Results
+            <span class="text-body-secondary small fw-normal">
+                (@Result.Iterations.ToString("N0") iterations, up to @Result.MaxRounds rounds in @FormatElapsed(Result.ElapsedMs))
+            </span>
+        </h5>
+    </div>
+    <div class="card-body">
+
+        @* Section A: Outcome Distribution *@
+        <h6 class="small mb-2">Combat Outcomes</h6>
+        <div class="d-flex mb-3 rounded overflow-hidden" style="height: 1.5rem;">
+            @foreach (var (outcome, pct) in SortedOutcomes)
+            {
+                if (pct <= 0) continue;
+                var color = GetOutcomeColor(outcome);
+                <div class="d-flex align-items-center justify-content-center text-white small fw-bold"
+                     style="width: @(pct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%; background-color: @color;"
+                     title="@($"{FormatOutcome(outcome)}: {pct:F1}%")">
+                    @if (pct >= 8)
+                    {
+                        @($"{pct:F0}%")
+                    }
+                </div>
+            }
+        </div>
+        <div class="row mb-4 small">
+            @foreach (var (outcome, pct) in SortedOutcomes)
+            {
+                if (pct <= 0) continue;
+                <div class="col-auto mb-1">
+                    <span style="display:inline-block;width:10px;height:10px;background-color:@GetOutcomeColor(outcome);border-radius:2px;" class="me-1"></span>
+                    @FormatOutcome(outcome): @($"{pct:F1}")%
+                </div>
+            }
+        </div>
+
+        @* Section B: Summary Stats *@
+        <div class="row mb-4 text-center">
+            <div class="col-4">
+                <div class="display-6 fw-bold text-info">@($"{Result.AvgRoundsPlayed:F1}")</div>
+                <div class="small text-body-secondary">avg rounds</div>
+            </div>
+            @if (Result.RoundSummaries.Count > 0)
+            {
+                var r1 = Result.RoundSummaries[0];
+                <div class="col-4">
+                    <div class="display-6 fw-bold text-success">@($"{r1.AvgAttackerWounds:F1}")</div>
+                    <div class="small text-body-secondary">@AttackerName R1 wounds</div>
+                </div>
+                <div class="col-4">
+                    <div class="display-6 fw-bold text-danger">@($"{r1.AvgDefenderWounds:F1}")</div>
+                    <div class="small text-body-secondary">@DefenderName R1 wounds</div>
+                </div>
+            }
+        </div>
+
+        @* Section C: Overview Table *@
+        @if (Result.RoundSummaries.Count > 1)
+        {
+            <h6 class="small mb-2">Round Overview</h6>
+            <table class="table table-sm table-dark mb-4">
+                <thead>
+                    <tr>
+                        <th>Rnd</th>
+                        <th class="text-end text-success">@AttackerName left</th>
+                        <th class="text-end text-danger">@DefenderName left</th>
+                        <th class="text-end text-success">Avg wounds</th>
+                        <th class="text-end text-danger">Avg wounds</th>
+                        <th class="text-end text-success">Fled</th>
+                        <th class="text-end text-danger">Fled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var round in Result.RoundSummaries)
+                    {
+                        <tr>
+                            <td>@round.Round</td>
+                            <td class="text-end text-success">@($"{round.AvgAttackerModelsRemaining:F1}")</td>
+                            <td class="text-end text-danger">@($"{round.AvgDefenderModelsRemaining:F1}")</td>
+                            <td class="text-end text-success">@($"{round.AvgAttackerWounds:F1}")</td>
+                            <td class="text-end text-danger">@($"{round.AvgDefenderWounds:F1}")</td>
+                            <td class="text-end text-success">@(round.AttackerFledPct > 0 ? $"{round.AttackerFledPct:F1}%" : "—")</td>
+                            <td class="text-end text-danger">@(round.DefenderFledPct > 0 ? $"{round.DefenderFledPct:F1}%" : "—")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        @* Section D: Individual Round Details *@
+        @foreach (var round in Result.RoundSummaries)
+        {
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2 cursor-pointer"
+                     @onclick="() => ToggleRound(round.Round)">
+                    <h6 class="small mb-0 me-2">
+                        Round @round.Round
+                        <span class="text-body-secondary fw-normal">
+                            (@round.IterationsReached.ToString("N0") iterations)
+                        </span>
+                    </h6>
+                    <span class="small text-body-secondary">@(IsRoundExpanded(round.Round) ? "▼" : "▶")</span>
+                </div>
+
+                @* Always show the win bar *@
+                <div class="d-flex mb-2 rounded overflow-hidden" style="height: 1.2rem;">
+                    @if (round.AttackerWinPct > 0)
+                    {
+                        <div class="bg-success d-flex align-items-center justify-content-center text-white small fw-bold"
+                             style="width: @(round.AttackerWinPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
+                            @if (round.AttackerWinPct >= 10) { @($"{round.AttackerWinPct:F0}%") }
+                        </div>
+                    }
+                    @if (round.DrawPct > 0)
+                    {
+                        <div class="bg-secondary d-flex align-items-center justify-content-center text-white small"
+                             style="width: @(round.DrawPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
+                            @if (round.DrawPct >= 10) { @($"{round.DrawPct:F0}%") }
+                        </div>
+                    }
+                    @if (round.DefenderWinPct > 0)
+                    {
+                        <div class="bg-danger d-flex align-items-center justify-content-center text-white small fw-bold"
+                             style="width: @(round.DefenderWinPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
+                            @if (round.DefenderWinPct >= 10) { @($"{round.DefenderWinPct:F0}%") }
+                        </div>
+                    }
+                </div>
+
+                @if (IsRoundExpanded(round.Round))
+                {
+                    @* Headline stats *@
+                    <div class="row mb-3">
+                        <div class="col-5">
+                            <div class="card bg-dark border-success text-center p-2">
+                                <div class="text-success fw-bold small">@AttackerName</div>
+                                <div class="small text-body-secondary">
+                                    @($"{round.AvgAttackerModelsStart:F1}") models → @($"{round.AvgAttackerModelsRemaining:F1}")
+                                </div>
+                                <div class="fs-4 fw-bold text-success">@($"{round.AvgAttackerWounds:F1}")</div>
+                                <div class="small text-body-secondary">avg wounds dealt</div>
+                                <div class="small fw-bold text-success">@($"{round.AttackerWinPct:F1}")% win</div>
+                            </div>
+                        </div>
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                            <div class="text-center">
+                                <div class="text-body-secondary small">Draw</div>
+                                <div class="fw-bold small">@($"{round.DrawPct:F1}")%</div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="card bg-dark border-danger text-center p-2">
+                                <div class="text-danger fw-bold small">@DefenderName</div>
+                                <div class="small text-body-secondary">
+                                    @($"{round.AvgDefenderModelsStart:F1}") models → @($"{round.AvgDefenderModelsRemaining:F1}")
+                                </div>
+                                <div class="fs-4 fw-bold text-danger">@($"{round.AvgDefenderWounds:F1}")</div>
+                                <div class="small text-body-secondary">avg wounds dealt</div>
+                                <div class="small fw-bold text-danger">@($"{round.DefenderWinPct:F1}")% win</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @* Break Test Stats *@
+                    @if (round.AttackerTestedPct > 0 || round.DefenderTestedPct > 0)
+                    {
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                @if (round.AttackerTestedPct > 0)
+                                {
+                                    <div class="small text-success mb-1">Break Test</div>
+                                    <div class="d-flex align-items-center gap-2 small">
+                                        <div class="flex-grow-1 rounded overflow-hidden" style="height: 0.8rem; background: #1a3a2a;">
+                                            <div style="width: @((round.AttackerFledPct / round.AttackerTestedPct * 100).ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%; height: 100%; background: #dc3545;"></div>
+                                        </div>
+                                        <span>@($"{round.AttackerFledPct:F1}")% fled / @($"{round.AttackerTestedPct:F1}")% tested</span>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-6">
+                                @if (round.DefenderTestedPct > 0)
+                                {
+                                    <div class="small text-danger mb-1">Break Test</div>
+                                    <div class="d-flex align-items-center gap-2 small">
+                                        <div class="flex-grow-1 rounded overflow-hidden" style="height: 0.8rem; background: #3a1a1a;">
+                                            <div style="width: @((round.DefenderFledPct / round.DefenderTestedPct * 100).ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%; height: 100%; background: #dc3545;"></div>
+                                        </div>
+                                        <span>@($"{round.DefenderFledPct:F1}")% fled / @($"{round.DefenderTestedPct:F1}")% tested</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    @* Wound Distribution Charts *@
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="small text-success mb-1">Wound Distribution</div>
+                            @if (round.AttackerWoundDistribution.Count > 0)
+                            {
+                                var attMaxPct = round.AttackerWoundDistribution.Max(d => d.Percentage);
+                                <div class="d-flex align-items-end justify-content-center gap-0" style="height: 80px; overflow-x: auto;">
+                                    @foreach (var entry in round.AttackerWoundDistribution)
+                                    {
+                                        var barH = GetBarHeight(entry.Percentage, attMaxPct, 60);
+                                        <div class="d-flex flex-column align-items-center" style="min-width: 16px; flex: 1; max-width: 28px;">
+                                            <span class="text-body-secondary" style="font-size: 0.55rem; line-height: 1;">
+                                                @if (entry.Percentage >= 2) { @($"{entry.Percentage:F0}") }
+                                            </span>
+                                            <div class="bg-success rounded-top mt-auto" style="width: 70%; height: @(barH)px;"
+                                                 title="@($"{entry.Wounds} wounds: {entry.Percentage:F1}%")"></div>
+                                            <span class="text-body-secondary" style="font-size: 0.55rem;">@entry.Wounds</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="col-6">
+                            <div class="small text-danger mb-1">Wound Distribution</div>
+                            @if (round.DefenderWoundDistribution.Count > 0)
+                            {
+                                var defMaxPct = round.DefenderWoundDistribution.Max(d => d.Percentage);
+                                <div class="d-flex align-items-end justify-content-center gap-0" style="height: 80px; overflow-x: auto;">
+                                    @foreach (var entry in round.DefenderWoundDistribution)
+                                    {
+                                        var barH = GetBarHeight(entry.Percentage, defMaxPct, 60);
+                                        <div class="d-flex flex-column align-items-center" style="min-width: 16px; flex: 1; max-width: 28px;">
+                                            <span class="text-body-secondary" style="font-size: 0.55rem; line-height: 1;">
+                                                @if (entry.Percentage >= 2) { @($"{entry.Percentage:F0}") }
+                                            </span>
+                                            <div class="bg-danger rounded-top mt-auto" style="width: 70%; height: @(barH)px;"
+                                                 title="@($"{entry.Wounds} wounds: {entry.Percentage:F1}%")"></div>
+                                            <span class="text-body-secondary" style="font-size: 0.55rem;">@entry.Wounds</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    @* CR Breakdown Tables *@
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="small text-success mb-1">CR Breakdown</div>
+                            <table class="table table-sm table-dark mb-0 small">
+                                <tbody>
+                                    <tr><td>Wounds dealt</td><td class="text-end">@($"{round.AvgAttackerBreakdown.Wounds:F2}")</td></tr>
+                                    <tr><td>Rank bonus</td><td class="text-end">@($"{round.AvgAttackerBreakdown.RankBonus:F1}")</td></tr>
+                                    <tr><td>Standard</td><td class="text-end">@($"{round.AvgAttackerBreakdown.StandardBearer:F0}")</td></tr>
+                                    <tr><td>Charge</td><td class="text-end">@($"{round.AvgAttackerBreakdown.ChargeBonus:F0}")</td></tr>
+                                    @if (round.AvgAttackerBreakdown.FearBonus > 0)
+                                    { <tr><td>Fear</td><td class="text-end">@($"{round.AvgAttackerBreakdown.FearBonus:F1}")</td></tr> }
+                                    @if (round.AvgAttackerBreakdown.MusicianBonus > 0)
+                                    { <tr><td>Musician</td><td class="text-end">@($"{round.AvgAttackerBreakdown.MusicianBonus:F1}")</td></tr> }
+                                    <tr class="fw-bold"><td>Total CR</td><td class="text-end">@($"{round.AvgAttackerCombatRes:F2}")</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <div class="small text-danger mb-1">CR Breakdown</div>
+                            <table class="table table-sm table-dark mb-0 small">
+                                <tbody>
+                                    <tr><td>Wounds dealt</td><td class="text-end">@($"{round.AvgDefenderBreakdown.Wounds:F2}")</td></tr>
+                                    <tr><td>Rank bonus</td><td class="text-end">@($"{round.AvgDefenderBreakdown.RankBonus:F1}")</td></tr>
+                                    <tr><td>Standard</td><td class="text-end">@($"{round.AvgDefenderBreakdown.StandardBearer:F0}")</td></tr>
+                                    <tr><td>Charge</td><td class="text-end">@($"{round.AvgDefenderBreakdown.ChargeBonus:F0}")</td></tr>
+                                    @if (round.AvgDefenderBreakdown.FearBonus > 0)
+                                    { <tr><td>Fear</td><td class="text-end">@($"{round.AvgDefenderBreakdown.FearBonus:F1}")</td></tr> }
+                                    @if (round.AvgDefenderBreakdown.MusicianBonus > 0)
+                                    { <tr><td>Musician</td><td class="text-end">@($"{round.AvgDefenderBreakdown.MusicianBonus:F1}")</td></tr> }
+                                    <tr class="fw-bold"><td>Total CR</td><td class="text-end">@($"{round.AvgDefenderCombatRes:F2}")</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    @* CR Distribution Chart *@
+                    @if (round.Distribution.Count > 0)
+                    {
+                        var crMaxPct = round.Distribution.Max(d => d.Percentage);
+                        <div class="small text-body-secondary mb-1">CR Distribution</div>
+                        <div class="d-flex align-items-end justify-content-center gap-0 mb-2" style="height: 80px; overflow-x: auto;">
+                            @foreach (var entry in round.Distribution)
+                            {
+                                var barH = GetBarHeight(entry.Percentage, crMaxPct, 60);
+                                var color = entry.CombatResDifference > 0 ? "success" : entry.CombatResDifference < 0 ? "danger" : "secondary";
+                                var label = entry.CombatResDifference > 0 ? $"+{entry.CombatResDifference}" : entry.CombatResDifference.ToString();
+                                <div class="d-flex flex-column align-items-center" style="min-width: 16px; flex: 1; max-width: 24px;">
+                                    <span class="text-body-secondary" style="font-size: 0.55rem; line-height: 1;">
+                                        @if (entry.Percentage >= 2) { @($"{entry.Percentage:F0}") }
+                                    </span>
+                                    <div class="bg-@color rounded-top mt-auto" style="width: 70%; height: @(barH)px;"
+                                         title="@($"CR diff {label}: {entry.Percentage:F1}%")"></div>
+                                    <span class="text-body-secondary" style="font-size: 0.55rem;">@label</span>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public MultiRoundSimulationResult Result { get; set; } = null!;
+    [Parameter] public string AttackerName { get; set; } = "Attacker";
+    [Parameter] public string DefenderName { get; set; } = "Defender";
+
+    private HashSet<int> _expandedRounds = new() { 1 };
+
+    private bool IsRoundExpanded(int round) => _expandedRounds.Contains(round);
+
+    private void ToggleRound(int round)
+    {
+        if (!_expandedRounds.Remove(round))
+            _expandedRounds.Add(round);
+    }
+
+    private List<(CombatOutcome Outcome, double Pct)> SortedOutcomes =>
+        Result.OutcomePcts
+            .OrderByDescending(kv => kv.Value)
+            .Select(kv => (kv.Key, kv.Value))
+            .ToList();
+
+    private static string GetOutcomeColor(CombatOutcome outcome) => outcome switch
+    {
+        CombatOutcome.DefenderWipedOut => "#198754",
+        CombatOutcome.DefenderBrokeCaught => "#20c997",
+        CombatOutcome.DefenderBrokeEscaped => "#6edba7",
+        CombatOutcome.AttackerWipedOut => "#dc3545",
+        CombatOutcome.AttackerBrokeCaught => "#e06070",
+        CombatOutcome.AttackerBrokeEscaped => "#f0a0a8",
+        CombatOutcome.BothWipedOut => "#6c757d",
+        CombatOutcome.MaxRoundsReached => "#ffc107",
+        _ => "#6c757d"
+    };
+
+    private static string FormatOutcome(CombatOutcome outcome) => outcome switch
+    {
+        CombatOutcome.DefenderWipedOut => "Defender wiped out",
+        CombatOutcome.DefenderBrokeCaught => "Defender broke (caught)",
+        CombatOutcome.DefenderBrokeEscaped => "Defender broke (escaped)",
+        CombatOutcome.AttackerWipedOut => "Attacker wiped out",
+        CombatOutcome.AttackerBrokeCaught => "Attacker broke (caught)",
+        CombatOutcome.AttackerBrokeEscaped => "Attacker broke (escaped)",
+        CombatOutcome.BothWipedOut => "Both wiped out",
+        CombatOutcome.MaxRoundsReached => "Max rounds reached",
+        _ => outcome.ToString()
+    };
+
+    private static int GetBarHeight(double percentage, double maxPct, double maxHeight)
+    {
+        if (maxPct <= 0) return 1;
+        return Math.Max(1, (int)(percentage / maxPct * maxHeight));
+    }
+
+    private static string FormatElapsed(long ms) =>
+        ms < 1000 ? $"{ms}ms" : $"{ms / 1000.0:F1}s";
+}

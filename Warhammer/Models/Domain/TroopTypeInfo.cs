@@ -28,6 +28,15 @@ public record TroopTypeInfo
     public int UnitStrength { get; init; }
     public bool HasSplitProfile { get; init; }
 
+    /// <summary>
+    /// Whether this troop type has inherent Swiftstride (Cavalry, Monstrous Cavalry,
+    /// Monstrous Infantry, Monstrous Beasts, War Beasts).
+    /// </summary>
+    public bool HasInherentSwiftstride => BaseType is
+        BaseTroopType.Cavalry or BaseTroopType.MonstrousCavalry or
+        BaseTroopType.MonstrousInfantry or BaseTroopType.MonstrousBeasts or
+        BaseTroopType.WarBeasts;
+
     public static TroopTypeInfo Parse(string? troopTypeString)
     {
         if (string.IsNullOrWhiteSpace(troopTypeString))

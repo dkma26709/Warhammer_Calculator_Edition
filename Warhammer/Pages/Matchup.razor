@@ -7,6 +7,8 @@
 @using Warhammer.Calculator.Models
 @using Warhammer.Services
 
+@using Warhammer.Calculator
+
 @inject IGameDataRepository Repo
 @inject CombatEngine CombatEngine
 
@@ -30,6 +32,8 @@
         <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
             <CombatControls ChargeState="@_chargeState"
                             ChargeStateChanged="OnChargeStateChanged"
+                            MaxRounds="@_maxRounds"
+                            MaxRoundsChanged="OnMaxRoundsChanged"
                             Iterations="@_iterations"
                             IterationsChanged="OnIterationsChanged"
                             CanSimulate="@(_attackerConfig != null && _defenderConfig != null)"
@@ -77,6 +81,16 @@
             </div>
         </div>
     }
+    else if (_multiRoundResult != null)
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <MultiRoundResultsPanel Result="_multiRoundResult"
+                                        AttackerName="@(_attackerUnit?.Name ?? "Attacker")"
+                                        DefenderName="@(_defenderUnit?.Name ?? "Defender")" />
+            </div>
+        </div>
+    }
 </div>
 
 @code {
@@ -96,8 +110,10 @@
 
     // --- Combat ---
     private ChargeState _chargeState = ChargeState.Neither;
+    private int _maxRounds = 1;
     private int _iterations = 10_000;
     private CombatSimulationResult? _result;
+    private MultiRoundSimulationResult? _multiRoundResult;
     private bool _isSimulating;
 
     // --- Common magic items (loaded once) ---
@@ -115,7 +131,7 @@
         _attackerFactionKey = factionKey;
         _attackerUnit = null;
         _attackerConfig = null;
-        _result = null;
+        ClearResults();
 
         if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
         {
@@ -133,13 +149,13 @@
     {
         _attackerUnit = unit;
         _attackerConfig = unit != null ? new UnitConfiguration(unit) : null;
-        _result = null;
+        ClearResults();
     }
 
     private void OnAttackerConfigChanged(UnitConfiguration config)
     {
         _attackerConfig = config;
-        _result = null;
+        ClearResults();
     }
 
     // --- Defender events ---
@@ -148,7 +164,7 @@
         _defenderFactionKey = factionKey;
         _defenderUnit = null;
         _defenderConfig = null;
-        _result = null;
+        ClearResults();
 
         if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
         {
@@ -166,26 +182,38 @@
     {
         _defenderUnit = unit;
         _defenderConfig = unit != null ? new UnitConfiguration(unit) : null;
-        _result = null;
+        ClearResults();
     }
 
     private void OnDefenderConfigChanged(UnitConfiguration config)
     {
         _defenderConfig = config;
-        _result = null;
+        ClearResults();
     }
 
     // --- Combat ---
     private void OnChargeStateChanged(ChargeState state)
     {
         _chargeState = state;
-        _result = null;
+        ClearResults();
+    }
+
+    private void OnMaxRoundsChanged(int maxRounds)
+    {
+        _maxRounds = maxRounds;
+        ClearResults();
     }
 
     private void OnIterationsChanged(int iterations)
     {
         _iterations = iterations;
+        ClearResults();
+    }
+
+    private void ClearResults()
+    {
         _result = null;
+        _multiRoundResult = null;
     }
 
     private async Task RunSimulation()
@@ -193,7 +221,7 @@
         if (_attackerConfig == null || _defenderConfig == null) return;
 
         _isSimulating = true;
-        _result = null;
+        ClearResults();
         StateHasChanged();
 
         var context = new CombatContext
@@ -204,8 +232,16 @@
             DefenderFactionKey = _defenderFactionKey
         };
 
-        _result = await Task.Run(() =>
-            CombatEngine.Simulate(_attackerConfig, _defenderConfig, context, _iterations));
+        if (_maxRounds <= 1)
+        {
+            _result = await Task.Run(() =>
+                CombatEngine.Simulate(_attackerConfig, _defenderConfig, context, _iterations));
+        }
+        else
+        {
+            _multiRoundResult = await Task.Run(() =>
+                CombatEngine.SimulateMultiRound(_attackerConfig, _defenderConfig, context, _maxRounds, _iterations));
+        }
 
         _isSimulating = false;
         StateHasChanged();

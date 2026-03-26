@@ -62,6 +62,7 @@ public record ParsedSpecialRules
     public bool ShadowDancesOfLoec { get; init; }
     public bool TreeWhack { get; init; }
     public bool TreeAspects { get; init; }
+    public bool Swiftstride { get; init; }
     public bool ImmunityKillingBlow { get; init; }
     public bool ImmunityPoisonedAttacks { get; init; }
     public bool ImmunityFlamingAttacks { get; init; }
@@ -124,6 +125,7 @@ public record ParsedSpecialRules
             ShadowDancesOfLoec = ShadowDancesOfLoec || other.ShadowDancesOfLoec,
             TreeWhack = TreeWhack || other.TreeWhack,
             TreeAspects = TreeAspects || other.TreeAspects,
+            Swiftstride = Swiftstride || other.Swiftstride,
             ImmunityKillingBlow = ImmunityKillingBlow || other.ImmunityKillingBlow,
             ImmunityPoisonedAttacks = ImmunityPoisonedAttacks || other.ImmunityPoisonedAttacks,
             ImmunityFlamingAttacks = ImmunityFlamingAttacks || other.ImmunityFlamingAttacks,
@@ -236,6 +238,7 @@ public record ParsedSpecialRules
                 "dodge" => result with { Dodge = ParseSaveParam(param) ?? 6 },
                 "elven grace" => result with { ElvenGrace = true },
                 "deathblow" => result with { Deathblow = true },
+                "swiftstride" => result with { Swiftstride = true },
                 "swordmaster" => result with { Swordmaster = true },
                 "ogre charge" => result with { OgreCharge = true },
                 "thunderous charge" => result with { ThunderousCharge = true },

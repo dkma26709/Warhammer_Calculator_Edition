@@ -122,9 +122,11 @@ public class CombatResolverTests
         var resolver = new CombatResolver(repo);
         var rng = new Random(42);
 
-        var attacker = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1, unitSize: "20+"))
+        // Use A=0 so no attacks are made, isolating rank/standard from casualty effects.
+        // CR rank bonus uses post-casualty model count (which here stays unchanged).
+        var attacker = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 0, unitSize: "20+"))
             { ModelCount = 20, Frontage = 5, HasStandardBearer = true };
-        var defender = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3, unitSize: "10+"))
+        var defender = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3, a: 0, unitSize: "10+"))
             { ModelCount = 10, Frontage = 5 };
 
         var result = Resolve(resolver, attacker, defender,
@@ -354,5 +356,72 @@ public class CombatResolverTests
         // Musician converts draws into wins, so attacker should win more than lose
         Assert.True(musicianWins > opponentWins,
             $"Musician should help win: wins={musicianWins}, losses={opponentWins}, draws={draws}");
+    }
+
+    // ─── Intra-Round Casualty Removal ─────────────────────────────────
+
+    [Fact]
+    public void HighInitiative_KillsModels_ReducesRetaliationAttacks()
+    {
+        // Attacker: I6, S5, A2 — strikes first and hard.
+        // Defender: I1, same stats — strikes last with reduced model count.
+        // Compare to a mirror match at the same I: the slow side should deal
+        // fewer average wounds because it loses models before striking.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
+
+        // Fast attacker vs slow defender
+        var fastResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 5, i: 6, a: 2))
+                { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 5, t: 3, i: 1, a: 2))
+                { ModelCount = 10, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // Same stats but defender has same initiative (simultaneous)
+        var simultaneousResult = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 5, i: 6, a: 2))
+                { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 5, t: 3, i: 6, a: 2))
+                { ModelCount = 10, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // The slow defender should deal fewer wounds than the simultaneous one,
+        // because it loses models before striking.
+        Assert.True(fastResult.AvgDefenderWounds < simultaneousResult.AvgDefenderWounds,
+            $"Slow defender ({fastResult.AvgDefenderWounds:F2}) should deal fewer wounds than " +
+            $"simultaneous ({simultaneousResult.AvgDefenderWounds:F2}) due to casualty removal");
+    }
+
+    [Fact]
+    public void SameInitiative_StrikeSimultaneously_NoPreemptiveRemoval()
+    {
+        // Both sides at I3: neither loses models before the other strikes.
+        // The attacker and defender wound outputs should be symmetric-ish
+        // (same stats, same count).
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new CombatResolver(repo);
+
+        var result = TestHelpers.RunRoundTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, i: 3, a: 1))
+                { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, t: 3, i: 3, a: 1))
+                { ModelCount = 10, Frontage = 5 };
+            return Resolve(resolver, att, def,
+                new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // With identical stats and simultaneous strikes, wounds should be roughly equal
+        double ratio = result.AvgAttackerWounds / Math.Max(result.AvgDefenderWounds, 0.01);
+        Assert.True(ratio > 0.8 && ratio < 1.2,
+            $"Symmetric match should be roughly equal: att={result.AvgAttackerWounds:F2}, " +
+            $"def={result.AvgDefenderWounds:F2}");
     }
 }
