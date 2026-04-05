@@ -35,6 +35,7 @@ public class AttackResolver
         var attackerRules = attacker.EffectiveSpecialRules;
         var defenderRules = defender.EffectiveSpecialRules;
         bool isRider = !isMountAttack;
+        var aggMod = isRider ? attacker.AggregateModifier : null;
         bool isCharging = context.IsCharging(isAttackerSide);
         bool isBeingCharged = context.IsCharging(!isAttackerSide);
         bool isFirstRound = context.CombatRound == 1;
@@ -107,6 +108,14 @@ public class AttackResolver
             && attackerRules.AlwaysStrikesLast
             && effectiveAttackerI < effectiveDefenderI;
 
+        // ── Tier 3 roll modifiers (to-hit) ──────────────────────────
+        if (aggMod?.FixedToHit is { } fixedHit)
+            toHitNeeded = fixedHit;
+        else if (aggMod?.ToHitModifier is { } hitMod)
+            toHitNeeded = Math.Clamp(toHitNeeded + hitMod, 2, 6);
+        if (aggMod is { RerollFailedToHit: true })
+            rerollMisses = true;
+
         bool predatoryFighter = isRider && attackerRules.PredatoryFighter;
         bool rerollOnesToHit = isRider && (attackerRules.MartialProwess || attackerRules.MartialMemories);
         int hits = RollToHit(totalAttacks, toHitNeeded, rerollMisses, rerollHits, predatoryFighter, rerollOnesToHit, rng);
@@ -119,7 +128,16 @@ public class AttackResolver
             && !(isRider && attackerRules.MagicalAttacks)
             && !(isRider && attackerRules.FlamingAttacks) ? 1 : 0;
         int effectiveToWound = Math.Max(2, toWoundNeeded - poisonMod + vampiricPenalty);
+
+        // ── Tier 3 roll modifiers (to-wound) ─────────────────────────
+        if (aggMod?.FixedToWound is { } fixedWound)
+            effectiveToWound = fixedWound;
+        else if (aggMod?.ToWoundModifier is { } woundMod)
+            effectiveToWound = Math.Clamp(effectiveToWound + woundMod, 2, 6);
+
         bool flamingReroll = isRider && attackerRules.FlamingAttacks && defenderRules.Flammable && !defenderRules.ImmunityFlamingAttacks;
+        if (aggMod is { RerollFailedToWound: true })
+            flamingReroll = true;
         bool murderousProwess = isRider && (attackerRules.MurderousProwess || attackerRules.MartialMemories);
 
         bool whirlingDeath = isRider && attacker.SelectedShadowDance == ShadowDance.WhirlingDeath;

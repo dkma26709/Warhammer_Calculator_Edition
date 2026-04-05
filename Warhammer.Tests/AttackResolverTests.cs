@@ -342,4 +342,177 @@ public class AttackResolverTests
         TestHelpers.AssertGreaterByRatio(withMP.TotalWounds, noMP.TotalWounds, 1.03,
             "Murderous Prowess should increase wounds");
     }
+
+    // ─── Tier 3 Roll Modifiers ──────────────────────────────────────
+
+    [Fact]
+    public void ToHitModifier_Minus1_IncreasesHitRate()
+    {
+        // WS4 vs WS4 = need 4+ (50%). With ToHitModifier -1, need 3+ (66.7%).
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var baseline = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var modified = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { ToHitModifier = -1 });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        TestHelpers.AssertGreaterByRatio(modified.TotalHits, baseline.TotalHits, 1.25,
+            "ToHitModifier -1 should boost hit rate from ~50% to ~67%");
+    }
+
+    [Fact]
+    public void ToHitModifier_Plus1_DecreasesHitRate()
+    {
+        // WS4 vs WS4 = need 4+ (50%). With ToHitModifier +1, need 5+ (33.3%).
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var baseline = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var modified = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { ToHitModifier = 1 });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        TestHelpers.AssertGreaterByRatio(baseline.TotalHits, modified.TotalHits, 1.35,
+            "ToHitModifier +1 should reduce hit rate from ~50% to ~33%");
+    }
+
+    [Fact]
+    public void FixedToHit_2Plus_HitsAlmost_Always()
+    {
+        // Fixed 2+ = 83.3% hit rate regardless of WS matchup.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var agg = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 1, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { FixedToHit = 2 });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 10, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // WS1 vs WS10 would normally need 5+ (33.3%). Fixed 2+ = 83.3%.
+        double hitRate = agg.HitRate(10);
+        TestHelpers.AssertRate(hitRate, 0.78, 0.88, "FixedToHit 2+ hit rate");
+    }
+
+    [Fact]
+    public void ToWoundModifier_Minus1_IncreasesWoundRate()
+    {
+        // S3 vs T3 = need 4+ (50%). With ToWoundModifier -1, need 3+ (66.7%).
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var baseline = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 10, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 1, t: 3)) { ModelCount = 20, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var modified = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 10, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { ToWoundModifier = -1 });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 1, t: 3)) { ModelCount = 20, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        TestHelpers.AssertGreaterByRatio(modified.TotalWounds, baseline.TotalWounds, 1.25,
+            "ToWoundModifier -1 should boost wound rate from ~50% to ~67%");
+    }
+
+    [Fact]
+    public void FixedToWound_2Plus_WoundsAlmostAlways()
+    {
+        // Fixed 2+ = 83.3% wound rate regardless of S vs T.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var agg = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 10, s: 1, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { FixedToWound = 2 });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 1, t: 10)) { ModelCount = 20, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // S1 vs T10 would normally need 6+ (16.7%). Fixed 2+ = 83.3%.
+        double woundsPerHit = agg.TotalHits > 0 ? (double)agg.TotalWounds / agg.TotalHits : 0;
+        TestHelpers.AssertRate(woundsPerHit, 0.78, 0.88, "FixedToWound 2+ wound rate per hit");
+    }
+
+    [Fact]
+    public void RerollFailedToHit_IncreasesHitRate()
+    {
+        // WS4 vs WS4 = need 4+ (50%). With reroll: 1 - (0.5)^2 = 75%.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var baseline = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var rerolling = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { RerollFailedToHit = true });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 4, t: 3)) { ModelCount = 10, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        // Rerolling misses at 50% base → 75% effective. ~50% increase in hits.
+        TestHelpers.AssertGreaterByRatio(rerolling.TotalHits, baseline.TotalHits, 1.35,
+            "RerollFailedToHit should boost hits significantly");
+    }
+
+    [Fact]
+    public void RerollFailedToWound_IncreasesWoundRate()
+    {
+        // S3 vs T3 = need 4+ (50%). With reroll: 1 - (0.5)^2 = 75%.
+        var repo = TestHelpers.CreateRepository();
+        var resolver = new AttackResolver(repo);
+
+        var baseline = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 10, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 1, t: 3)) { ModelCount = 20, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        var rerolling = TestHelpers.RunAttackTrials(Iterations, rng =>
+        {
+            var att = new UnitConfiguration(TestHelpers.MakeUnit(ws: 10, s: 3, a: 1)) { ModelCount = 10, Frontage = 5 };
+            att.Modifiers.Add(new UnitModifier { RerollFailedToWound = true });
+            var def = new UnitConfiguration(TestHelpers.MakeUnit(ws: 1, t: 3)) { ModelCount = 20, Frontage = 5 };
+            return RunSingle(repo, resolver, att, def, new CombatContext { CombatRound = 1 }, rng);
+        });
+
+        TestHelpers.AssertGreaterByRatio(rerolling.TotalWounds, baseline.TotalWounds, 1.35,
+            "RerollFailedToWound should boost wounds significantly");
+    }
 }
