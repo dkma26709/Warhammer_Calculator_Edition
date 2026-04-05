@@ -1,0 +1,519 @@
+@page "/gauntlet"
+
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
+@using Warhammer.Models.Json
+@using Warhammer.Calculator.Models
+@using Warhammer.Services
+@using Warhammer.Calculator
+
+@inject IGameDataRepository Repo
+@inject CombatEngine CombatEngine
+
+<div class="container-fluid py-3">
+    <div class="row g-3">
+
+        @* ── Subject Unit (left) ── *@
+        <div class="col-md-4">
+            <UnitPanel Label="Subject Unit"
+                       SelectedFactionKey="@_subjectFactionKey"
+                       OnFactionSelected="OnSubjectFactionSelected"
+                       FactionUnits="@_subjectFactionUnits"
+                       FactionExtras="@_subjectExtras"
+                       CommonMagicItems="@_commonMagicItems"
+                       SelectedUnit="@_subjectUnit"
+                       OnUnitSelected="OnSubjectUnitSelected"
+                       Configuration="@_subjectConfig"
+                       ConfigurationChanged="OnSubjectConfigChanged" />
+
+            @* Combat settings *@
+            <div class="card bg-dark text-light border-secondary mt-3">
+                <div class="card-header"><h6 class="mb-0">Combat Settings</h6></div>
+                <div class="card-body">
+                    <CombatControls ChargeState="@_chargeState"
+                                    ChargeStateChanged="OnChargeStateChanged"
+                                    MaxRounds="@_maxRounds"
+                                    MaxRoundsChanged="OnMaxRoundsChanged"
+                                    Iterations="@_iterations"
+                                    IterationsChanged="OnIterationsChanged"
+                                    CanSimulate="@(_subjectConfig != null && _opponents.Count > 0 && !_isSimulating)"
+                                    IsSimulating="@_isSimulating"
+                                    OnSimulate="RunGauntlet" />
+                </div>
+            </div>
+        </div>
+
+        @* ── Opponent Roster (right) ── *@
+        <div class="col-md-8">
+            @* Preset loader *@
+            <div class="card bg-dark text-light border-secondary mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Opponent Roster (@_opponents.Count)</h6>
+                    <div class="d-flex gap-2 align-items-center">
+                        <select class="form-select form-select-sm" style="width: auto"
+                                @onchange="OnPresetChanged">
+                            <option value="">Load preset...</option>
+                            <option value="Infantry">Infantry</option>
+                            <option value="Cavalry">Cavalry</option>
+                            <option value="MonstrousInfantry">Monstrous Infantry</option>
+                            <option value="LargeInfantry">Large Infantry</option>
+                            <option value="MonstrousCavalry">Monstrous Cavalry</option>
+                        </select>
+                        @if (_opponents.Count > 0)
+                        {
+                            <button class="btn btn-outline-secondary btn-sm" @onclick="ClearRoster">Clear All</button>
+                        }
+                    </div>
+                </div>
+
+                @* Batch controls *@
+                @if (_opponents.Count > 0)
+                {
+                    <div class="card-body py-2 border-bottom border-secondary">
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <span class="small text-body-secondary">Model count:</span>
+                            <input type="number" class="form-control form-control-sm" style="width: 80px"
+                                   min="1" max="100" value="@_batchModelCount"
+                                   @onchange="OnBatchModelCountChanged" />
+                            <button class="btn btn-outline-secondary btn-sm" @onclick="ApplyBatchModelCount">
+                                Apply
+                            </button>
+                            @if (_subjectConfig != null)
+                            {
+                                <button class="btn btn-outline-info btn-sm"
+                                        @onclick="MatchSubjectModelCount"
+                                        title="Set all opponents to match the subject unit's model count">
+                                    Match Count (@_subjectConfig.ModelCount)
+                                </button>
+                                <span class="border-start border-secondary mx-1" style="height: 1.5rem"></span>
+                                <button class="btn btn-outline-info btn-sm"
+                                        @onclick="MatchSubjectPoints"
+                                        title="Adjust each opponent's model count to approximate the subject unit's total points">
+                                    Match Points (@($"{_subjectConfig.TotalPointsCost:F0}") pts)
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @* Opponent list *@
+                @if (_opponents.Count > 0)
+                {
+                    <div class="card-body p-0">
+                        <table class="table table-dark table-sm table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Unit</th>
+                                    <th>Faction</th>
+                                    <th class="text-end">Models</th>
+                                    <th>Weapon</th>
+                                    <th class="text-end">Pts</th>
+                                    <th style="width: 80px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < _opponents.Count; i++)
+                                {
+                                    var idx = i;
+                                    var opp = _opponents[i];
+                                    <tr>
+                                        <td>@opp.Unit.Name</td>
+                                        <td class="text-body-secondary">@opp.FactionKey</td>
+                                        <td class="text-end">@opp.Config.ModelCount</td>
+                                        <td class="text-body-secondary small">@opp.Config.SelectedWeapon.ToJsonKey()</td>
+                                        <td class="text-end">@($"{opp.Config.TotalPointsCost:F0}")</td>
+                                        <td class="text-end">
+                                            <button class="btn btn-outline-secondary btn-sm py-0 px-1 me-1"
+                                                    title="Duplicate"
+                                                    @onclick="() => DuplicateOpponent(idx)">
+                                                <small>&#x2398;</small>
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-sm py-0 px-1"
+                                                    title="Remove"
+                                                    @onclick="() => RemoveOpponent(idx)">
+                                                &times;
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+            @* Add opponent staging area *@
+            <div class="card bg-dark text-light border-secondary">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Add Opponent</h6>
+                    @if (_stagingUnit != null && _stagingConfig != null)
+                    {
+                        <button class="btn btn-success btn-sm" @onclick="AddStagedOpponent">
+                            + Add to Roster
+                        </button>
+                    }
+                </div>
+                <div class="card-body">
+                    <UnitSelector SelectedFactionKey="@_stagingFactionKey"
+                                  OnFactionSelected="OnStagingFactionSelected"
+                                  FactionUnits="@_stagingFactionUnits"
+                                  SelectedUnitName="@_stagingUnit?.Name"
+                                  OnUnitSelected="OnStagingUnitSelected" />
+
+                    @if (_stagingUnit != null && _stagingConfig != null)
+                    {
+                        <hr class="border-secondary" />
+                        <UnitConfigurator @key="_stagingKey"
+                                          Unit="_stagingUnit"
+                                          Configuration="_stagingConfig"
+                                          ConfigurationChanged="OnStagingConfigChanged"
+                                          FactionExtras="_stagingExtras"
+                                          CommonMagicItems="_commonMagicItems" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ── Progress ── *@
+    @if (_isSimulating)
+    {
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="progress" style="height: 24px">
+                    <div class="progress-bar bg-danger" role="progressbar"
+                         style="width: @(_progressPct)%">
+                        @_progressCurrent / @_opponents.Count
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @* ── Results ── *@
+    @if (_results.Count > 0 && !_isSimulating)
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <GauntletResultsPanel Results="_results"
+                                       SubjectName="@(_subjectUnit?.Name ?? "Subject")"
+                                       SubjectConfig="_subjectConfig" />
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    // ── Subject state ──
+    private string? _subjectFactionKey;
+    private IReadOnlyList<Unit>? _subjectFactionUnits;
+    private FactionExtrasData? _subjectExtras;
+    private Unit? _subjectUnit;
+    private UnitConfiguration? _subjectConfig;
+
+    // ── Staging area (add opponent) ──
+    private string? _stagingFactionKey;
+    private IReadOnlyList<Unit>? _stagingFactionUnits;
+    private FactionExtrasData? _stagingExtras;
+    private Unit? _stagingUnit;
+    private UnitConfiguration? _stagingConfig;
+    private object _stagingKey = new(); // forces re-render of UnitConfigurator
+
+    // ── Opponent roster ──
+    private readonly List<OpponentEntry> _opponents = [];
+    private int _batchModelCount = 20;
+
+    // ── Combat settings ──
+    private ChargeState _chargeState = ChargeState.Neither;
+    private int _maxRounds = 1;
+    private int _iterations = 5_000;
+
+    // ── Simulation state ──
+    private bool _isSimulating;
+    private int _progressCurrent;
+    private int _progressPct;
+    private readonly List<GauntletMatchup> _results = [];
+
+    // ── Shared data ──
+    private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Repo.EnsureLoadedAsync();
+        _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
+    }
+
+    // ── Subject events ──
+
+    private async Task OnSubjectFactionSelected(string factionKey)
+    {
+        _subjectFactionKey = factionKey;
+        _subjectUnit = null;
+        _subjectConfig = null;
+        ClearResults();
+
+        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        {
+            _subjectFactionUnits = await Repo.GetUnitsAsync(fk);
+            _subjectExtras = await Repo.GetFactionExtrasAsync(fk);
+        }
+        else
+        {
+            _subjectFactionUnits = null;
+            _subjectExtras = null;
+        }
+    }
+
+    private void OnSubjectUnitSelected(Unit? unit)
+    {
+        _subjectUnit = unit;
+        _subjectConfig = unit != null ? new UnitConfiguration(unit) : null;
+        ClearResults();
+    }
+
+    private void OnSubjectConfigChanged(UnitConfiguration config)
+    {
+        _subjectConfig = config;
+        ClearResults();
+    }
+
+    // ── Staging area events ──
+
+    private async Task OnStagingFactionSelected(string factionKey)
+    {
+        _stagingFactionKey = factionKey;
+        _stagingUnit = null;
+        _stagingConfig = null;
+
+        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        {
+            _stagingFactionUnits = await Repo.GetUnitsAsync(fk);
+            _stagingExtras = await Repo.GetFactionExtrasAsync(fk);
+        }
+        else
+        {
+            _stagingFactionUnits = null;
+            _stagingExtras = null;
+        }
+    }
+
+    private void OnStagingUnitSelected(Unit? unit)
+    {
+        _stagingUnit = unit;
+        _stagingConfig = unit != null ? new UnitConfiguration(unit) : null;
+        _stagingKey = new object();
+    }
+
+    private void OnStagingConfigChanged(UnitConfiguration config)
+    {
+        _stagingConfig = config;
+    }
+
+    // ── Roster management ──
+
+    private void AddStagedOpponent()
+    {
+        if (_stagingUnit == null || _stagingConfig == null) return;
+        _opponents.Add(new OpponentEntry(_stagingUnit, _stagingConfig, _stagingFactionKey));
+        // Reset staging for next add
+        _stagingUnit = null;
+        _stagingConfig = null;
+        _stagingKey = new object();
+        ClearResults();
+    }
+
+    private void DuplicateOpponent(int index)
+    {
+        var opp = _opponents[index];
+        var newConfig = CloneConfig(opp.Unit, opp.Config);
+        _opponents.Insert(index + 1, new OpponentEntry(opp.Unit, newConfig, opp.FactionKey));
+        ClearResults();
+    }
+
+    private void RemoveOpponent(int index)
+    {
+        _opponents.RemoveAt(index);
+        ClearResults();
+    }
+
+    private void ClearRoster()
+    {
+        _opponents.Clear();
+        ClearResults();
+    }
+
+    private void OnBatchModelCountChanged(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var val) && val >= 1)
+            _batchModelCount = val;
+    }
+
+    private void ApplyBatchModelCount()
+    {
+        foreach (var opp in _opponents)
+            opp.Config.ModelCount = _batchModelCount;
+        ClearResults();
+    }
+
+    private void MatchSubjectModelCount()
+    {
+        if (_subjectConfig == null) return;
+        _batchModelCount = _subjectConfig.ModelCount;
+        ApplyBatchModelCount();
+    }
+
+    private void MatchSubjectPoints()
+    {
+        if (_subjectConfig == null) return;
+        double targetPts = _subjectConfig.TotalPointsCost;
+
+        foreach (var opp in _opponents)
+        {
+            double costPerModel = opp.Unit.BaseModelCost;
+            if (costPerModel <= 0) continue;
+
+            // Subtract fixed costs (command, upgrades, magic items) to get the model budget
+            var probe = new UnitConfiguration(opp.Unit)
+            {
+                ModelCount = 1,
+                HasChampion = opp.Config.HasChampion,
+                HasMusician = opp.Config.HasMusician,
+                HasStandardBearer = opp.Config.HasStandardBearer,
+                SelectedWeapon = opp.Config.SelectedWeapon,
+            };
+            foreach (var kvp in opp.Config.SelectedUpgrades)
+                probe.SelectedUpgrades[kvp.Key] = kvp.Value;
+
+            double fixedCost = probe.TotalPointsCost - costPerModel;
+            double modelBudget = targetPts - fixedCost;
+            int models = Math.Max(1, (int)Math.Round(modelBudget / costPerModel));
+            opp.Config.ModelCount = models;
+        }
+
+        ClearResults();
+    }
+
+    private async Task OnPresetChanged(ChangeEventArgs e)
+    {
+        var preset = e.Value?.ToString();
+        if (string.IsNullOrEmpty(preset)) return;
+
+        if (!Enum.TryParse<BaseTroopType>(preset, out var targetType)) return;
+
+        foreach (var fk in FactionKeyExtensions.All)
+        {
+            var units = await Repo.GetUnitsAsync(fk);
+            foreach (var unit in units)
+            {
+                if (unit.BaseModel.TroopType.IsCharacter) continue;
+                if (unit.BaseModel.TroopType.BaseType != targetType) continue;
+
+                var config = new UnitConfiguration(unit);
+                _opponents.Add(new OpponentEntry(unit, config, fk.ToJsonKey()));
+            }
+        }
+
+        ClearResults();
+    }
+
+    // ── Combat settings ──
+
+    private void OnChargeStateChanged(ChargeState state)
+    {
+        _chargeState = state;
+        ClearResults();
+    }
+
+    private void OnMaxRoundsChanged(int maxRounds)
+    {
+        _maxRounds = maxRounds;
+        ClearResults();
+    }
+
+    private void OnIterationsChanged(int iterations)
+    {
+        _iterations = iterations;
+        ClearResults();
+    }
+
+    // ── Simulation ──
+
+    private async Task RunGauntlet()
+    {
+        if (_subjectConfig == null || _opponents.Count == 0) return;
+
+        _isSimulating = true;
+        _progressCurrent = 0;
+        _progressPct = 0;
+        _results.Clear();
+        StateHasChanged();
+
+        for (int i = 0; i < _opponents.Count; i++)
+        {
+            var opp = _opponents[i];
+            var context = new CombatContext
+            {
+                Charge = _chargeState,
+                CombatRound = 1,
+                AttackerFactionKey = _subjectFactionKey,
+                DefenderFactionKey = opp.FactionKey
+            };
+
+            CombatSimulationResult? singleResult = null;
+            MultiRoundSimulationResult? multiResult = null;
+
+            if (_maxRounds <= 1)
+            {
+                singleResult = await Task.Run(() =>
+                    CombatEngine.Simulate(_subjectConfig, opp.Config, context, _iterations));
+            }
+            else
+            {
+                multiResult = await Task.Run(() =>
+                    CombatEngine.SimulateMultiRound(_subjectConfig, opp.Config, context, _maxRounds, _iterations));
+            }
+
+            _results.Add(new GauntletMatchup(opp.Unit, opp.Config, opp.FactionKey, singleResult, multiResult));
+
+            _progressCurrent = i + 1;
+            _progressPct = (int)((i + 1) * 100.0 / _opponents.Count);
+            StateHasChanged();
+            await Task.Yield();
+        }
+
+        _isSimulating = false;
+        StateHasChanged();
+    }
+
+    private void ClearResults() => _results.Clear();
+
+    // ── Helpers ──
+
+    private static UnitConfiguration CloneConfig(Unit unit, UnitConfiguration source)
+    {
+        var clone = new UnitConfiguration(unit)
+        {
+            ModelCount = source.ModelCount,
+            Frontage = source.Frontage,
+            SelectedWeapon = source.SelectedWeapon,
+            HasChampion = source.HasChampion,
+            HasMusician = source.HasMusician,
+            HasStandardBearer = source.HasStandardBearer,
+            SelectedShadowDance = source.SelectedShadowDance,
+            SelectedTreeAspect = source.SelectedTreeAspect,
+            UseTreeWhack = source.UseTreeWhack,
+        };
+        foreach (var kvp in source.SelectedUpgrades)
+            clone.SelectedUpgrades[kvp.Key] = kvp.Value;
+        foreach (var mi in source.SelectedMagicItems)
+            clone.SelectedMagicItems.Add(mi);
+        foreach (var mod in source.Modifiers)
+            clone.Modifiers.Add(mod);
+        return clone;
+    }
+
+    // ── Types ──
+
+    private record OpponentEntry(Unit Unit, UnitConfiguration Config, string? FactionKey);
+
+}

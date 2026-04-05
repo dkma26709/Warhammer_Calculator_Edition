@@ -1,0 +1,247 @@
+@using Warhammer.Calculator.Models
+@using Warhammer.Models.Domain
+
+<div class="card bg-dark text-light border-secondary">
+    <div class="card-header">
+        <h5 class="card-title mb-0">
+            Gauntlet Results
+            <span class="text-body-secondary small fw-normal">
+                (@Results.Count matchups, @FormatElapsed(TotalElapsedMs))
+            </span>
+        </h5>
+    </div>
+    <div class="card-body">
+
+        @* ── Aggregate Summary ── *@
+        <div class="row mb-4 g-3">
+            <div class="col-md-2">
+                <div class="text-center">
+                    <div class="small text-body-secondary">Overall Win Rate</div>
+                    <div class="display-6 fw-bold @WinColour(AvgWinPct)">@($"{AvgWinPct:F1}")%</div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="text-center">
+                    <div class="small text-body-secondary">Draw</div>
+                    <div class="h4 fw-bold text-body-secondary">@($"{AvgDrawPct:F1}")%</div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="text-center">
+                    <div class="small text-body-secondary">Overall Loss Rate</div>
+                    <div class="h4 fw-bold text-danger">@($"{AvgLossPct:F1}")%</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="small text-body-secondary">Avg Wounds Dealt / Taken</div>
+                    <div class="h5">
+                        <span class="text-success fw-bold">@($"{AvgWoundsDealt:F1}")</span>
+                        <span class="text-body-secondary mx-1">/</span>
+                        <span class="text-danger fw-bold">@($"{AvgWoundsTaken:F1}")</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                @if (BestMatchup != null && WorstMatchup != null)
+                {
+                    <div class="small">
+                        <div>
+                            <span class="text-body-secondary">Best:</span>
+                            <span class="text-success">@BestMatchup.Opponent.Name</span>
+                            <span class="text-body-secondary">(@($"{BestMatchup.WinPct:F0}")%)</span>
+                        </div>
+                        <div>
+                            <span class="text-body-secondary">Worst:</span>
+                            <span class="text-danger">@WorstMatchup.Opponent.Name</span>
+                            <span class="text-body-secondary">(@($"{WorstMatchup.WinPct:F0}")%)</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @* ── Aggregate Win/Draw/Loss Bar ── *@
+        <div class="d-flex mb-4 rounded overflow-hidden" style="height: 1.5rem;">
+            @if (AvgWinPct > 0)
+            {
+                <div class="bg-success d-flex align-items-center justify-content-center text-white fw-bold small"
+                     style="width: @Pct(AvgWinPct);">
+                    @if (AvgWinPct >= 10) { @($"{AvgWinPct:F0}%") }
+                </div>
+            }
+            @if (AvgDrawPct > 0)
+            {
+                <div class="bg-secondary d-flex align-items-center justify-content-center text-white fw-bold small"
+                     style="width: @Pct(AvgDrawPct);">
+                    @if (AvgDrawPct >= 10) { @($"{AvgDrawPct:F0}%") }
+                </div>
+            }
+            @if (AvgLossPct > 0)
+            {
+                <div class="bg-danger d-flex align-items-center justify-content-center text-white fw-bold small"
+                     style="width: @Pct(AvgLossPct);">
+                    @if (AvgLossPct >= 10) { @($"{AvgLossPct:F0}%") }
+                </div>
+            }
+        </div>
+
+        @* ── Per-Matchup Table ── *@
+        <table class="table table-dark table-sm table-hover mb-0">
+            <thead>
+                <tr>
+                    <th @onclick='() => SortBy("name")' role="button">Opponent @SortIndicator("name")</th>
+                    <th @onclick='() => SortBy("faction")' role="button">Faction @SortIndicator("faction")</th>
+                    <th class="text-end" @onclick='() => SortBy("pts")' role="button">Pts @SortIndicator("pts")</th>
+                    <th class="text-end" @onclick='() => SortBy("win")' role="button">Win% @SortIndicator("win")</th>
+                    <th class="text-end" @onclick='() => SortBy("draw")' role="button">Draw% @SortIndicator("draw")</th>
+                    <th class="text-end" @onclick='() => SortBy("loss")' role="button">Loss% @SortIndicator("loss")</th>
+                    <th class="text-end" @onclick='() => SortBy("dealt")' role="button">Dealt @SortIndicator("dealt")</th>
+                    <th class="text-end" @onclick='() => SortBy("taken")' role="button">Taken @SortIndicator("taken")</th>
+                    <th class="text-end" @onclick='() => SortBy("ptseff")' role="button">Pts Eff @SortIndicator("ptseff")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var matchup in SortedResults)
+                {
+                    var m = matchup;
+                    var ptsEff = ComputePtsEfficiency(m);
+                    <tr @onclick="() => ToggleDetail(m)" role="button"
+                        class="@(m == _expandedMatchup ? "table-active" : "")">
+                        <td>@m.Opponent.Name</td>
+                        <td class="text-body-secondary">@m.OpponentFactionKey</td>
+                        <td class="text-end">@($"{m.OpponentConfig.TotalPointsCost:F0}")</td>
+                        <td class="text-end @WinColour(m.WinPct)">@($"{m.WinPct:F1}")</td>
+                        <td class="text-end text-body-secondary">@($"{m.DrawPct:F1}")</td>
+                        <td class="text-end text-danger">@($"{m.LossPct:F1}")</td>
+                        <td class="text-end text-success">@($"{m.AvgWoundsDealt:F1}")</td>
+                        <td class="text-end text-danger">@($"{m.AvgWoundsTaken:F1}")</td>
+                        <td class="text-end @PtsEffColour(ptsEff)">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
+                    </tr>
+                    @if (m == _expandedMatchup)
+                    {
+                        <tr>
+                            <td colspan="9" class="p-0">
+                                @if (m.SingleRound != null)
+                                {
+                                    <ResultsPanel Result="m.SingleRound"
+                                                  AttackerName="@SubjectName"
+                                                  DefenderName="@m.Opponent.Name"
+                                                  AttackerConfig="SubjectConfig"
+                                                  DefenderConfig="m.OpponentConfig" />
+                                }
+                                else if (m.MultiRound != null)
+                                {
+                                    <MultiRoundResultsPanel Result="m.MultiRound"
+                                                            AttackerName="@SubjectName"
+                                                            DefenderName="@m.Opponent.Name" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public List<GauntletMatchup> Results { get; set; } = [];
+    [Parameter] public string SubjectName { get; set; } = "Subject";
+    [Parameter] public UnitConfiguration? SubjectConfig { get; set; }
+
+    private GauntletMatchup? _expandedMatchup;
+    private string _sortColumn = "win";
+    private bool _sortDescending = true;
+
+    // ── Aggregates ──
+
+    private double AvgWinPct => Results.Count > 0 ? Results.Average(r => r.WinPct) : 0;
+    private double AvgLossPct => Results.Count > 0 ? Results.Average(r => r.LossPct) : 0;
+    private double AvgDrawPct => Results.Count > 0 ? Results.Average(r => r.DrawPct) : 0;
+    private double AvgWoundsDealt => Results.Count > 0 ? Results.Average(r => r.AvgWoundsDealt) : 0;
+    private double AvgWoundsTaken => Results.Count > 0 ? Results.Average(r => r.AvgWoundsTaken) : 0;
+    private GauntletMatchup? BestMatchup => Results.Count > 0 ? Results.MaxBy(r => r.WinPct) : null;
+    private GauntletMatchup? WorstMatchup => Results.Count > 0 ? Results.MinBy(r => r.WinPct) : null;
+    private long TotalElapsedMs => Results.Sum(r => r.SingleRound?.ElapsedMs ?? r.MultiRound?.ElapsedMs ?? 0);
+
+    // ── Sorting ──
+
+    private IEnumerable<GauntletMatchup> SortedResults
+    {
+        get
+        {
+            IEnumerable<GauntletMatchup> sorted = _sortColumn switch
+            {
+                "name" => Results.OrderBy(r => r.Opponent.Name),
+                "faction" => Results.OrderBy(r => r.OpponentFactionKey),
+                "pts" => Results.OrderBy(r => r.OpponentConfig.TotalPointsCost),
+                "win" => Results.OrderBy(r => r.WinPct),
+                "draw" => Results.OrderBy(r => r.DrawPct),
+                "loss" => Results.OrderBy(r => r.LossPct),
+                "dealt" => Results.OrderBy(r => r.AvgWoundsDealt),
+                "taken" => Results.OrderBy(r => r.AvgWoundsTaken),
+                "ptseff" => Results.OrderBy(r => ComputePtsEfficiency(r)),
+                _ => Results
+            };
+            return _sortDescending ? sorted.Reverse() : sorted;
+        }
+    }
+
+    private void SortBy(string column)
+    {
+        if (_sortColumn == column)
+            _sortDescending = !_sortDescending;
+        else
+        {
+            _sortColumn = column;
+            _sortDescending = column is not ("name" or "faction");
+        }
+    }
+
+    private string SortIndicator(string column) =>
+        _sortColumn == column ? (_sortDescending ? "\u25BC" : "\u25B2") : "";
+
+    // ── Detail expand ──
+
+    private void ToggleDetail(GauntletMatchup matchup)
+    {
+        _expandedMatchup = _expandedMatchup == matchup ? null : matchup;
+    }
+
+    // ── Helpers ──
+
+    private double ComputePtsEfficiency(GauntletMatchup m)
+    {
+        if (SubjectConfig == null) return 0;
+        double subjectPts = SubjectConfig.TotalPointsCost;
+        double opponentPts = m.OpponentConfig.TotalPointsCost;
+        if (subjectPts <= 0 || opponentPts <= 0) return 0;
+        // Positive = subject is more efficient (higher win rate per point spent)
+        return (m.WinPct - m.LossPct) * opponentPts / subjectPts / 10.0;
+    }
+
+    private static string WinColour(double winPct) => winPct switch
+    {
+        >= 60 => "text-success",
+        >= 40 => "text-warning",
+        _ => "text-danger"
+    };
+
+    private static string PtsEffColour(double eff) => eff switch
+    {
+        > 0.5 => "text-success",
+        < -0.5 => "text-danger",
+        _ => "text-body-secondary"
+    };
+
+    private static string Pct(double value) =>
+        $"{value.ToString("F1", System.Globalization.CultureInfo.InvariantCulture)}%";
+
+    private static string FormatElapsed(long ms)
+    {
+        if (ms < 1000) return $"{ms}ms";
+        return $"{ms / 1000.0:F1}s";
+    }
+
+}
