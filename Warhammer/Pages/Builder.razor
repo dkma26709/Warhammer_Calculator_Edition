@@ -312,10 +312,14 @@
             HasMusician = src.HasMusician,
             HasStandardBearer = src.HasStandardBearer,
             SelectedWeapon = src.SelectedWeapon,
+            WizardLevel = src.WizardLevel,
+            SelectedLore = src.SelectedLore,
+            SelectedBanner = src.SelectedBanner,
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
         clone.Modifiers.AddRange(src.Modifiers);
+        clone.SelectedSpells.AddRange(src.SelectedSpells);
 
         var idx = _armyList.Units.IndexOf(src);
         _armyList.Units.Insert(idx + 1, clone);

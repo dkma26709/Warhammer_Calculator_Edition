@@ -203,6 +203,40 @@
         </div>
     }
 
+    @* ── Magic Banner ── *@
+    @if (Configuration.HasStandardBearer && Configuration.BannerBudget is int bannerCap && AvailableBanners.Count > 0)
+    {
+        <div class="mb-3 border border-secondary rounded p-2">
+            <label class="form-label small text-body-secondary">
+                Magic Standard (@(Configuration.SelectedBanner?.PointsCost ?? 0) / @bannerCap pts)
+            </label>
+            @if (Configuration.SelectedBanner != null)
+            {
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="small"><strong>@Configuration.SelectedBanner.Name</strong>
+                        <span class="text-body-secondary">(@Configuration.SelectedBanner.PointsCost pts)</span>
+                    </span>
+                    <button class="btn btn-outline-danger btn-sm py-0 px-1" style="font-size:0.7rem"
+                            @onclick="RemoveBanner">✕</button>
+                </div>
+            }
+            else
+            {
+                <select class="form-select form-select-sm" value="" @onchange="OnBannerSelected">
+                    <option value="">— Add magic standard —</option>
+                    @foreach (var banner in AvailableBanners)
+                    {
+                        var cost = ParseBannerPoints(banner.Points);
+                        var disabled = cost > bannerCap;
+                        <option value="@banner.Name" disabled="@disabled">
+                            @banner.Name (@banner.Points pts)
+                        </option>
+                    }
+                </select>
+            }
+        </div>
+    }
+
     @* ── Magic Items ── *@
     @if (Configuration.ResolvedUnit.MagicItemAllowance.HasValue && AllMagicItems.Count > 0)
     {
@@ -697,6 +731,7 @@
     {
         if (Configuration == null) return;
         Configuration.HasStandardBearer = value;
+        if (!value) Configuration.SelectedBanner = null;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
@@ -791,6 +826,42 @@
         {
             Configuration.SelectedSpells.Remove(spellName);
         }
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    // ─── Magic banner ────────────────────────────────────────────
+
+    private List<MagicItemEntry> AvailableBanners =>
+        AllMagicItems.Where(m => m.Category == "magic_standard").ToList();
+
+    private static double ParseBannerPoints(string points) =>
+        double.TryParse(points, out var v) ? v : 0;
+
+    private async Task OnBannerSelected(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        var name = e.Value?.ToString();
+        if (string.IsNullOrEmpty(name)) return;
+
+        var banner = AvailableBanners.FirstOrDefault(b => b.Name == name);
+        if (banner == null) return;
+
+        var cost = ParseBannerPoints(banner.Points);
+        if (Configuration.BannerBudget is int cap && cost > cap) return;
+
+        Configuration.SelectedBanner = new SelectedMagicItem
+        {
+            Name = banner.Name,
+            Category = banner.Category,
+            PointsCost = cost,
+        };
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task RemoveBanner()
+    {
+        if (Configuration == null) return;
+        Configuration.SelectedBanner = null;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }

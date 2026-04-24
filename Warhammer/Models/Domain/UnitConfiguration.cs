@@ -69,6 +69,17 @@ public class UnitConfiguration
     public bool IsWizardCapable =>
         ResolvedUnit.Options.Any(o => o.Type == "wizard_upgrade");
 
+    /// <summary>Magic standard (banner) selected by the unit. Null when none chosen.</summary>
+    public SelectedMagicItem? SelectedBanner { get; set; }
+
+    /// <summary>Points cap for this unit's magic standard. Null when the unit can't carry one.</summary>
+    public int? BannerBudget =>
+        ResolvedUnit.Options
+            .FirstOrDefault(o => o.Role == "Standard Bearer" && o.SubOptions != null)?
+            .SubOptions!
+            .FirstOrDefault(s => s.Type == "magic_standard")?
+            .PointsLimit;
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }
@@ -540,7 +551,8 @@ public class UnitConfiguration
                                + (HasMusician ? musCost : 0)
                                + (HasStandardBearer ? stdCost : 0);
             double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
-            return baseCost + equipmentCost + commandCost + magicItemsCost;
+            double bannerCost = SelectedBanner?.PointsCost ?? 0;
+            return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost;
         }
     }
 
