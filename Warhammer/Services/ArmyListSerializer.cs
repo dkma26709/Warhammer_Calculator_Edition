@@ -74,6 +74,8 @@ public class ArmyListSerializer
         ShadowDance = u.SelectedShadowDance.ToString(),
         TreeAspect = u.SelectedTreeAspect.ToString(),
         UseTreeWhack = u.UseTreeWhack,
+        IsGeneral = u.IsGeneral,
+        IsBattleStandardBearer = u.IsBattleStandardBearer,
     };
 
     // ─── Import ──────────────────────────────────────────────────
@@ -139,6 +141,8 @@ public class ArmyListSerializer
             WizardLevel = dto.WizardLevel,
             SelectedLore = dto.SelectedLore,
             UseTreeWhack = dto.UseTreeWhack,
+            IsGeneral = dto.IsGeneral,
+            IsBattleStandardBearer = dto.IsBattleStandardBearer,
         };
 
         if (!string.IsNullOrEmpty(dto.SelectedWeapon))

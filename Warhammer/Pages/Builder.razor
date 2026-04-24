@@ -82,6 +82,47 @@
     }
     else
     {
+        @* ─── Top: Army overview (total + per-category bars) ──────── *@
+        <div class="card bg-dark text-light border-secondary mb-3">
+            <div class="card-body p-2">
+                @{
+                    var total = _armyList.TotalPoints;
+                    var target = _armyList.PointsTarget;
+                    var totalPct = target > 0 ? Math.Min(100.0, total / target * 100.0) : 0;
+                    var totalOver = total > target;
+                    var totalClass = totalOver ? "bg-danger" : (total == target ? "bg-success" : "bg-info");
+                }
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                    <strong>@_armyList.Name</strong>
+                    <span class="@(totalOver ? "text-danger" : "")">
+                        <strong>@total.ToString("F0")</strong>
+                        <span class="text-body-secondary"> / @target pts</span>
+                    </span>
+                </div>
+                <div class="progress mb-2" style="height: 8px; background-color: #333;">
+                    <div class="progress-bar @totalClass" role="progressbar" style="width: @totalPct.ToString("F0")%"></div>
+                </div>
+
+                <div class="row g-2">
+                    @foreach (var (cat, used, cap, isMin) in CategoryBars)
+                    {
+                        var pct = cap > 0 ? Math.Min(100.0, used / cap * 100.0) : 0;
+                        var over = isMin ? used < cap : used > cap;
+                        var barClass = over ? "bg-danger" : "bg-success";
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <div class="d-flex justify-content-between" style="font-size: 0.75rem;">
+                                <span>@cat @(isMin ? "(min)" : "")</span>
+                                <span>@used.ToString("F0")/@cap.ToString("F0")</span>
+                            </div>
+                            <div class="progress" style="height: 5px; background-color: #333;">
+                                <div class="progress-bar @barClass" role="progressbar" style="width: @pct.ToString("F0")%"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
         <div class="row g-3">
 
             @* ─── Left: Unit browser ────────────────────────────── *@
@@ -145,12 +186,28 @@
                                         <div class="border border-secondary rounded mb-2" @key="entry">
                                             <div class="d-flex align-items-center p-2">
                                                 <div class="flex-grow-1">
-                                                    <div>@entry.ResolvedUnit.Name</div>
+                                                    <div>
+                                                        @entry.ResolvedUnit.Name
+                                                        @if (entry.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
+                                                        @if (entry.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
+                                                    </div>
                                                     <small class="text-body-secondary">
                                                         @entry.ModelCount model@(entry.ModelCount == 1 ? "" : "s") ·
                                                         @entry.TotalPointsCost.ToString("F0") pts
                                                     </small>
                                                 </div>
+                                                @if (cat is UnitCategory.Lords or UnitCategory.Heroes)
+                                                {
+                                                    <button class="btn btn-sm me-1 @(entry.IsGeneral ? "btn-warning" : "btn-outline-warning")"
+                                                            title="Designate General"
+                                                            @onclick="() => ToggleGeneral(entry)">General</button>
+                                                }
+                                                @if (entry.IsBattleStandardEligible)
+                                                {
+                                                    <button class="btn btn-sm me-1 @(entry.IsBattleStandardBearer ? "btn-info" : "btn-outline-info")"
+                                                            title="Battle Standard Bearer"
+                                                            @onclick="() => ToggleBsb(entry)">BSB</button>
+                                                }
                                                 <button class="btn btn-sm btn-outline-secondary me-1"
                                                         title="Edit"
                                                         @onclick="() => ToggleExpand(entry)">
@@ -189,44 +246,24 @@
             </div>
         </div>
 
-        @* ─── Bottom: Summary + Validation ────────────────────────── *@
+        @* ─── Bottom: Validation ────────────────────────────────── *@
         <div class="row g-3 mt-2">
-            <div class="col-lg-8 offset-lg-4">
+            <div class="col-12">
                 <div class="card bg-dark text-light border-secondary">
-                    <div class="card-header py-2"><strong>Composition</strong></div>
+                    <div class="card-header py-2"><strong>Validation</strong></div>
                     <div class="card-body p-2">
-                        @foreach (var (cat, used, cap, isMin) in CategoryBars)
+                        @if (_issues.Count == 0)
                         {
-                            var pct = cap > 0 ? Math.Min(100.0, used / cap * 100.0) : 0;
-                            var over = isMin ? used < cap : used > cap;
-                            var barClass = over ? "bg-danger" : "bg-success";
-                            <div class="mb-2">
-                                <div class="d-flex justify-content-between small">
-                                    <span>@cat @(isMin ? "(min)" : "(max)")</span>
-                                    <span>@used.ToString("F0") / @cap.ToString("F0")</span>
-                                </div>
-                                <div class="progress" style="height: 6px; background-color: #333;">
-                                    <div class="progress-bar @barClass"
-                                         role="progressbar"
-                                         style="width: @pct.ToString("F0")%"></div>
-                                </div>
-                            </div>
+                            <div class="text-success small">✓ List is valid.</div>
                         }
-
-                        <div class="mt-3">
-                            @if (_issues.Count == 0)
+                        else
+                        {
+                            @foreach (var issue in _issues)
                             {
-                                <div class="text-success small">✓ List is valid.</div>
+                                var colour = issue.Severity == ValidationSeverity.Error ? "text-danger" : "text-warning";
+                                <div class="small @colour">@issue.Message</div>
                             }
-                            else
-                            {
-                                @foreach (var issue in _issues)
-                                {
-                                    var colour = issue.Severity == ValidationSeverity.Error ? "text-danger" : "text-warning";
-                                    <div class="small @colour">@issue.Message</div>
-                                }
-                            }
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -364,6 +401,7 @@
             WizardLevel = src.WizardLevel,
             SelectedLore = src.SelectedLore,
             SelectedBanner = src.SelectedBanner,
+            // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
@@ -378,6 +416,34 @@
     private void ToggleExpand(UnitConfiguration entry)
     {
         if (!_expanded.Remove(entry)) _expanded.Add(entry);
+    }
+
+    private void ToggleGeneral(UnitConfiguration entry)
+    {
+        if (entry.IsGeneral)
+        {
+            entry.IsGeneral = false;
+        }
+        else
+        {
+            foreach (var u in _armyList.Units) u.IsGeneral = false;
+            entry.IsGeneral = true;
+        }
+        Revalidate();
+    }
+
+    private void ToggleBsb(UnitConfiguration entry)
+    {
+        if (entry.IsBattleStandardBearer)
+        {
+            entry.IsBattleStandardBearer = false;
+        }
+        else
+        {
+            foreach (var u in _armyList.Units) u.IsBattleStandardBearer = false;
+            entry.IsBattleStandardBearer = true;
+        }
+        Revalidate();
     }
 
     private void OnEntryChanged(UnitConfiguration _)

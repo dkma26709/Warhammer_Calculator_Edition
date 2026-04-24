@@ -34,6 +34,8 @@ public sealed record ArmyListUnitDto
     public string ShadowDance { get; init; } = "None";
     public string TreeAspect { get; init; } = "None";
     public bool UseTreeWhack { get; init; }
+    public bool IsGeneral { get; init; }
+    public bool IsBattleStandardBearer { get; init; }
 }
 
 public sealed record MagicItemDto

@@ -41,8 +41,10 @@ public class ArmyListValidatorTests
     [Fact]
     public void ValidList_ReturnsNoIssues()
     {
+        var lord = MakeEntry("Lord", UnitCategory.Lords, 200, 1);
+        lord.IsGeneral = true;
         var list = MakeList(2000,
-            MakeEntry("Lord", UnitCategory.Lords, 200, 1),          // 200 (10%)
+            lord,                                                    // 200 (10%)
             MakeEntry("Warriors", UnitCategory.Core, 10, 60),       // 600 (30%)
             MakeEntry("Ironbreakers", UnitCategory.Special, 15, 20) // 300 (15%)
         );
@@ -50,6 +52,49 @@ public class ArmyListValidatorTests
         var issues = V.Validate(list);
 
         Assert.Empty(issues);
+    }
+
+    [Fact]
+    public void NoGeneralDesignated_WithCharacter_WarnsNotErrors()
+    {
+        var list = MakeList(2000,
+            MakeEntry("Lord", UnitCategory.Lords, 200, 1),
+            MakeEntry("Warriors", UnitCategory.Core, 10, 60));
+
+        var issues = V.Validate(list);
+
+        var general = Assert.Single(issues, i => i.Code == "NO_GENERAL_DESIGNATED");
+        Assert.Equal(ValidationSeverity.Warning, general.Severity);
+        Assert.DoesNotContain(issues, i => i.Code == "NO_GENERAL");
+    }
+
+    [Fact]
+    public void MultipleGenerals_FlagsError()
+    {
+        var lord = MakeEntry("Lord", UnitCategory.Lords, 200, 1);
+        lord.IsGeneral = true;
+        var thane = MakeEntry("Thane", UnitCategory.Heroes, 100, 1);
+        thane.IsGeneral = true;
+        var list = MakeList(2000, lord, thane, MakeEntry("Warriors", UnitCategory.Core, 10, 60));
+
+        var codes = V.Validate(list).Select(i => i.Code).ToList();
+
+        Assert.Contains("MULTIPLE_GENERALS", codes);
+    }
+
+    [Fact]
+    public void MultipleBsb_FlagsError()
+    {
+        var lord = MakeEntry("Lord", UnitCategory.Lords, 200, 1);
+        lord.IsGeneral = true;
+        lord.IsBattleStandardBearer = true;
+        var thane = MakeEntry("Thane", UnitCategory.Heroes, 100, 1);
+        thane.IsBattleStandardBearer = true;
+        var list = MakeList(2000, lord, thane, MakeEntry("Warriors", UnitCategory.Core, 10, 60));
+
+        var codes = V.Validate(list).Select(i => i.Code).ToList();
+
+        Assert.Contains("MULTIPLE_BSB", codes);
     }
 
     // ─── Invalid target ─────────────────────────────────────────────

@@ -52,12 +52,43 @@ public class ArmyListValidator
         CheckMaxPercent(issues, list, UnitCategory.Rare,
             ArmyCompositionRules.RareMaxPercent, "RARE_OVER_CAP", "Rare");
 
-        bool hasCharacter = list.Units.Any(u =>
-            u.ResolvedUnit.Category is UnitCategory.Lords or UnitCategory.Heroes);
-        if (!hasCharacter)
+        var characters = list.Units
+            .Where(u => u.ResolvedUnit.Category is UnitCategory.Lords or UnitCategory.Heroes)
+            .ToList();
+        if (characters.Count == 0)
         {
             issues.Add(new(ValidationSeverity.Error, "NO_GENERAL",
                 "Army must include at least one Lord or Hero to act as General"));
+        }
+        else
+        {
+            var generals = characters.Where(c => c.IsGeneral).ToList();
+            if (generals.Count == 0)
+            {
+                issues.Add(new(ValidationSeverity.Warning, "NO_GENERAL_DESIGNATED",
+                    "No General designated — pick one character to lead the army"));
+            }
+            else if (generals.Count > 1)
+            {
+                issues.Add(new(ValidationSeverity.Error, "MULTIPLE_GENERALS",
+                    $"Exactly one character may be General (found {generals.Count})"));
+            }
+        }
+
+        var bsbs = list.Units.Where(u => u.IsBattleStandardBearer).ToList();
+        if (bsbs.Count > 1)
+        {
+            issues.Add(new(ValidationSeverity.Error, "MULTIPLE_BSB",
+                $"Only one character may carry the Battle Standard (found {bsbs.Count})"));
+        }
+        foreach (var bsb in bsbs)
+        {
+            if (!bsb.IsBattleStandardEligible)
+            {
+                issues.Add(new(ValidationSeverity.Error, "INVALID_BSB",
+                    $"{bsb.ResolvedUnit.Name} cannot carry the Battle Standard",
+                    bsb));
+            }
         }
 
         if (list.TotalPoints > list.PointsTarget)

@@ -80,6 +80,22 @@ public class UnitConfiguration
             .FirstOrDefault(s => s.Type == "magic_standard")?
             .PointsLimit;
 
+    /// <summary>True when this character is designated as the army's General.</summary>
+    public bool IsGeneral { get; set; }
+
+    /// <summary>True when this character is the army's Battle Standard Bearer.</summary>
+    public bool IsBattleStandardBearer { get; set; }
+
+    /// <summary>Extra points cost for carrying the Battle Standard, if eligible and enabled.</summary>
+    public double BattleStandardCost =>
+        IsBattleStandardBearer
+            ? ResolvedUnit.Options.FirstOrDefault(o => o.Type == "battle_standard")?.Points ?? 0
+            : 0;
+
+    /// <summary>True when this unit is a character that can carry the Battle Standard.</summary>
+    public bool IsBattleStandardEligible =>
+        ResolvedUnit.Options.Any(o => o.Type == "battle_standard");
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }
@@ -552,7 +568,7 @@ public class UnitConfiguration
                                + (HasStandardBearer ? stdCost : 0);
             double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
             double bannerCost = SelectedBanner?.PointsCost ?? 0;
-            return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost;
+            return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost + BattleStandardCost;
         }
     }
 
