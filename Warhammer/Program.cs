@@ -16,5 +16,6 @@ builder.Services.AddScoped<FactionDataService>();
 builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
 builder.Services.AddTransient<CombatEngine>();
 builder.Services.AddSingleton<ArmyListValidator>();
+builder.Services.AddScoped<ArmyListSerializer>();
 
 await builder.Build().RunAsync();

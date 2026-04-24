@@ -1,5 +1,7 @@
 @page "/builder"
 
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.JSInterop
 @using Warhammer.Models.Domain
 @using Warhammer.Models.Enums
 @using Warhammer.Models.Json
@@ -7,6 +9,8 @@
 
 @inject IGameDataRepository Repo
 @inject ArmyListValidator Validator
+@inject ArmyListSerializer Serializer
+@inject IJSRuntime JS
 
 <div class="container-fluid py-3">
 
@@ -48,7 +52,25 @@
             <input type="text" class="form-control form-control-sm"
                    value="@_armyList.Name" @onchange="OnNameChanged" />
         </div>
+        <div class="col-auto d-flex align-items-end gap-1">
+            <button type="button" class="btn btn-sm btn-outline-light"
+                    disabled="@(_factionKey == null)"
+                    @onclick="ExportList">Export</button>
+            <label class="btn btn-sm btn-outline-light mb-0">
+                Import
+                <InputFile OnChange="OnImportFileSelected" accept=".json" style="display:none;" />
+            </label>
+            <button type="button" class="btn btn-sm btn-outline-secondary"
+                    @onclick="NewList">New</button>
+        </div>
     </div>
+
+    @if (!string.IsNullOrEmpty(_statusMessage))
+    {
+        <div class="alert @(_statusIsError ? "alert-danger" : "alert-info") py-1 px-2 small" role="alert">
+            @_statusMessage
+        </div>
+    }
 
     @if (_factionKey == null)
     {
@@ -232,10 +254,37 @@
     private List<ValidationIssue> _issues = [];
     private readonly HashSet<UnitConfiguration> _expanded = new();
 
+    private string? _statusMessage;
+    private bool _statusIsError;
+    private const string StorageKey = "warhammer.armylist.active";
+
     protected override async Task OnInitializedAsync()
     {
         await Repo.EnsureLoadedAsync();
         _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
+        await TryLoadFromStorage();
+    }
+
+    private async Task TryLoadFromStorage()
+    {
+        string? saved;
+        try { saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", StorageKey); }
+        catch { return; }
+
+        if (string.IsNullOrWhiteSpace(saved)) return;
+
+        var result = await Serializer.DeserializeAsync(saved);
+        if (result.Success && result.List != null)
+        {
+            _armyList = result.List;
+            _factionKey = result.List.Faction.ToJsonKey();
+            _pointsPreset = PointsPresets.Contains(result.List.PointsTarget)
+                ? result.List.PointsTarget.ToString()
+                : "custom";
+            _factionUnits = await Repo.GetUnitsAsync(result.List.Faction);
+            _factionExtras = await Repo.GetFactionExtrasAsync(result.List.Faction);
+            Revalidate();
+        }
     }
 
     // ─── Faction + points + name ──────────────────────────────────
@@ -342,6 +391,86 @@
     private void Revalidate()
     {
         _issues = Validator.Validate(_armyList);
+        _ = AutosaveAsync();
+    }
+
+    private async Task AutosaveAsync()
+    {
+        if (_factionKey == null) return;
+        try
+        {
+            var json = Serializer.Serialize(_armyList);
+            await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, json);
+        }
+        catch
+        {
+            // Storage unavailable (private mode, quota) — non-fatal.
+        }
+    }
+
+    // ─── Export / Import / New ────────────────────────────────────
+
+    private async Task ExportList()
+    {
+        var json = Serializer.Serialize(_armyList);
+        var safeName = string.Concat((_armyList.Name ?? "army-list").Split(Path.GetInvalidFileNameChars()));
+        var filename = $"{safeName}.json";
+        await JS.InvokeVoidAsync("armyBuilder.downloadJson", filename, json);
+        SetStatus($"Exported '{filename}'.", isError: false);
+    }
+
+    private async Task OnImportFileSelected(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            await using var stream = e.File.OpenReadStream(maxAllowedSize: 2 * 1024 * 1024);
+            using var reader = new StreamReader(stream);
+            var json = await reader.ReadToEndAsync();
+            var result = await Serializer.DeserializeAsync(json);
+
+            if (!result.Success)
+            {
+                SetStatus("Import failed: " + string.Join("; ", result.Errors), isError: true);
+                return;
+            }
+
+            _armyList = result.List!;
+            _factionKey = _armyList.Faction.ToJsonKey();
+            _pointsPreset = PointsPresets.Contains(_armyList.PointsTarget)
+                ? _armyList.PointsTarget.ToString()
+                : "custom";
+            _factionUnits = await Repo.GetUnitsAsync(_armyList.Faction);
+            _factionExtras = await Repo.GetFactionExtrasAsync(_armyList.Faction);
+            _expanded.Clear();
+
+            var msg = $"Imported {_armyList.Units.Count} units.";
+            if (result.Warnings.Count > 0) msg += " Warnings: " + string.Join("; ", result.Warnings);
+            SetStatus(msg, isError: false);
+            Revalidate();
+        }
+        catch (Exception ex)
+        {
+            SetStatus($"Import error: {ex.Message}", isError: true);
+        }
+    }
+
+    private async Task NewList()
+    {
+        _armyList = new ArmyList
+        {
+            Faction = _armyList.Faction,
+            PointsTarget = _armyList.PointsTarget,
+        };
+        _expanded.Clear();
+        Revalidate();
+        try { await JS.InvokeVoidAsync("armyBuilder.clearLocal", StorageKey); } catch { }
+        SetStatus("New list started.", isError: false);
+    }
+
+    private void SetStatus(string message, bool isError)
+    {
+        _statusMessage = message;
+        _statusIsError = isError;
     }
 
     private IEnumerable<(string Label, double Used, double Cap, bool IsMin)> CategoryBars
