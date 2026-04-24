@@ -395,10 +395,102 @@
             case "upgrade" when option.SubOptions != null:
                 RenderSubOptionsDropdown(builder, idx, option);
                 break;
+            case "blessed_spawning" when HasFactionUpgradeCategory(option):
+                RenderFactionUpgradeMultiSelect(builder, option);
+                break;
             case "upgrade" or "wizard_upgrade" or "blessed_spawning":
                 RenderFlatCheckbox(builder, idx, option);
                 break;
         }
+    };
+
+    private bool HasFactionUpgradeCategory(UnitOption option)
+    {
+        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.Type);
+        if (category is null || FactionExtras?.FactionUpgrades is null) return false;
+        return FactionExtras.FactionUpgrades.TryGetValue(category, out var entries) && entries.Count > 0;
+    }
+
+    private void RenderFactionUpgradeMultiSelect(
+        Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
+        UnitOption option)
+    {
+        if (Configuration is null || FactionExtras?.FactionUpgrades is null) return;
+        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.Type);
+        if (category is null) return;
+        if (!FactionExtras.FactionUpgrades.TryGetValue(category, out var entries)) return;
+
+        var selected = Configuration.SelectedFactionUpgrades.TryGetValue(category, out var list)
+            ? list
+            : (Configuration.SelectedFactionUpgrades[category] = new List<string>());
+
+        var label = FormatUpgradeCategory(category);
+        var perPick = option.Points ?? 0;
+        var costSuffix = option.PerModel == true
+            ? $"+{perPick:F0} pt/model each"
+            : $"+{perPick:F0} pts each";
+
+        builder.OpenElement(0, "div");
+        builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
+
+        builder.OpenElement(2, "label");
+        builder.AddAttribute(3, "class", "form-label small text-body-secondary");
+        builder.AddContent(4, $"{label} ({costSuffix})");
+        builder.CloseElement();
+
+        int seq = 10;
+        foreach (var entry in entries)
+        {
+            var checkedNow = selected.Contains(entry.Name);
+            var inputId = _id + "-fup-" + entry.Name.GetHashCode();
+
+            builder.OpenElement(seq++, "div");
+            builder.AddAttribute(seq++, "class", "form-check small");
+
+            builder.OpenElement(seq++, "input");
+            builder.AddAttribute(seq++, "class", "form-check-input");
+            builder.AddAttribute(seq++, "type", "checkbox");
+            builder.AddAttribute(seq++, "id", inputId);
+            builder.AddAttribute(seq++, "checked", checkedNow);
+            builder.AddAttribute(seq++, "onchange",
+                Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
+                    this, async e => await OnFactionUpgradeToggled(category, entry.Name, (bool)(e.Value ?? false))));
+            builder.CloseElement();
+
+            builder.OpenElement(seq++, "label");
+            builder.AddAttribute(seq++, "class", "form-check-label");
+            builder.AddAttribute(seq++, "for", inputId);
+            builder.AddContent(seq++, entry.Name);
+            if (!string.IsNullOrEmpty(entry.Points) && entry.Points.Any(char.IsDigit))
+            {
+                builder.AddContent(seq++, $" ({entry.Points} pts)");
+            }
+            builder.CloseElement();
+
+            builder.CloseElement();
+        }
+        builder.CloseElement();
+    }
+
+    private async Task OnFactionUpgradeToggled(string category, string name, bool isChecked)
+    {
+        if (Configuration is null) return;
+        if (!Configuration.SelectedFactionUpgrades.TryGetValue(category, out var list))
+        {
+            list = new List<string>();
+            Configuration.SelectedFactionUpgrades[category] = list;
+        }
+
+        if (isChecked && !list.Contains(name)) list.Add(name);
+        else if (!isChecked) list.Remove(name);
+
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private static string FormatUpgradeCategory(string category) => category switch
+    {
+        "blessed_spawnings" => "Blessed Spawnings",
+        _ => category.Replace('_', ' '),
     };
 
     private void RenderEquipmentOption(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option)

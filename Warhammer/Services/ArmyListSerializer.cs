@@ -76,6 +76,8 @@ public class ArmyListSerializer
         UseTreeWhack = u.UseTreeWhack,
         IsGeneral = u.IsGeneral,
         IsBattleStandardBearer = u.IsBattleStandardBearer,
+        SelectedFactionUpgrades = u.SelectedFactionUpgrades
+            .ToDictionary(kv => kv.Key, kv => kv.Value.ToList()),
     };
 
     // ─── Import ──────────────────────────────────────────────────
@@ -150,6 +152,9 @@ public class ArmyListSerializer
 
         foreach (var (k, v) in dto.SelectedUpgrades)
             cfg.SelectedUpgrades[k] = v;
+
+        foreach (var (category, names) in dto.SelectedFactionUpgrades)
+            cfg.SelectedFactionUpgrades[category] = new List<string>(names);
 
         foreach (var mi in dto.MagicItems)
         {

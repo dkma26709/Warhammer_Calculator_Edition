@@ -404,6 +404,8 @@
             // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
+        foreach (var (cat, picks) in src.SelectedFactionUpgrades)
+            clone.SelectedFactionUpgrades[cat] = new List<string>(picks);
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
         clone.Modifiers.AddRange(src.Modifiers);
         clone.SelectedSpells.AddRange(src.SelectedSpells);

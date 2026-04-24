@@ -36,6 +36,7 @@ public sealed record ArmyListUnitDto
     public bool UseTreeWhack { get; init; }
     public bool IsGeneral { get; init; }
     public bool IsBattleStandardBearer { get; init; }
+    public Dictionary<string, List<string>> SelectedFactionUpgrades { get; init; } = new();
 }
 
 public sealed record MagicItemDto

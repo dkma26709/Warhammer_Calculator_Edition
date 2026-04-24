@@ -96,6 +96,43 @@ public class UnitConfiguration
     public bool IsBattleStandardEligible =>
         ResolvedUnit.Options.Any(o => o.Type == "battle_standard");
 
+    /// <summary>
+    /// Faction-specific upgrade selections keyed by category (e.g. "blessed_spawnings",
+    /// "marks_of_chaos"). Values are the chosen upgrade names for that category.
+    /// </summary>
+    public Dictionary<string, List<string>> SelectedFactionUpgrades { get; } = new();
+
+    /// <summary>
+    /// Aggregate cost for faction upgrade selections tied to a per-model option
+    /// (e.g. blessed_spawning at +1pt/model × selected spawnings × model count).
+    /// </summary>
+    public double FactionUpgradeCost
+    {
+        get
+        {
+            double total = 0;
+            foreach (var option in ResolvedUnit.Options)
+            {
+                if (option.Type is null) continue;
+                var category = FactionUpgradeCategoryFor(option.Type);
+                if (category is null) continue;
+                if (!SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
+
+                double perPick = option.Points ?? 0;
+                double multiplier = option.PerModel == true ? ModelCount : 1;
+                total += perPick * multiplier * picks.Count;
+            }
+            return total;
+        }
+    }
+
+    /// <summary>Map an option Type to the factionUpgrades category name.</summary>
+    public static string? FactionUpgradeCategoryFor(string optionType) => optionType switch
+    {
+        "blessed_spawning" => "blessed_spawnings",
+        _ => null,
+    };
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }
@@ -568,7 +605,8 @@ public class UnitConfiguration
                                + (HasStandardBearer ? stdCost : 0);
             double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
             double bannerCost = SelectedBanner?.PointsCost ?? 0;
-            return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost + BattleStandardCost;
+            return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost
+                 + BattleStandardCost + FactionUpgradeCost;
         }
     }
 
