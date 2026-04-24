@@ -476,7 +476,7 @@ public class SaurusGauntletTests
         foreach (var (label, cost, mod) in new[] { ("Saurus BASE", 13.0, (UnitModifier?)null), ("Saurus BUFF", 14.0, (UnitModifier?)buffMod) })
         {
             int n = (int)(375.0 / cost);
-            double tw = 0, tl = 0, td = 0, tDealt = 0, tTaken = 0;
+            double tw = 0, tl = 0, tDealt = 0, tTaken = 0;
             int ct = 0;
             foreach (var (_, ccUnit, ccFaction) in ccUnits)
             {
