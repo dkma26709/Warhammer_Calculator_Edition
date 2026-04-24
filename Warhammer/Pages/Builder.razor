@@ -1,0 +1,363 @@
+@page "/builder"
+
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
+@using Warhammer.Models.Json
+@using Warhammer.Services
+
+@inject IGameDataRepository Repo
+@inject ArmyListValidator Validator
+
+<div class="container-fluid py-3">
+
+    @* ─── Header: faction + points target ─────────────────────────── *@
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label small text-body-secondary">Faction</label>
+            <select class="form-select form-select-sm" value="@_factionKey"
+                    @onchange="OnFactionChanged">
+                <option value="">-- Select Faction --</option>
+                @foreach (var f in FactionKeyExtensions.All)
+                {
+                    <option value="@f.ToJsonKey()">@f.ToDisplayName()</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label small text-body-secondary">Points</label>
+            <select class="form-select form-select-sm" value="@_pointsPreset"
+                    @onchange="OnPointsPresetChanged">
+                @foreach (var p in PointsPresets)
+                {
+                    <option value="@p">@p pts</option>
+                }
+                <option value="custom">Custom…</option>
+            </select>
+        </div>
+        @if (_pointsPreset == "custom")
+        {
+            <div class="col-md-2">
+                <label class="form-label small text-body-secondary">Custom pts</label>
+                <input type="number" class="form-control form-control-sm" min="1" step="100"
+                       value="@_armyList.PointsTarget"
+                       @onchange="OnCustomPointsChanged" />
+            </div>
+        }
+        <div class="col">
+            <label class="form-label small text-body-secondary">Name</label>
+            <input type="text" class="form-control form-control-sm"
+                   value="@_armyList.Name" @onchange="OnNameChanged" />
+        </div>
+    </div>
+
+    @if (_factionKey == null)
+    {
+        <div class="alert alert-secondary">Select a faction to begin.</div>
+    }
+    else if (_factionUnits == null)
+    {
+        <div class="alert alert-secondary">Loading…</div>
+    }
+    else
+    {
+        <div class="row g-3">
+
+            @* ─── Left: Unit browser ────────────────────────────── *@
+            <div class="col-lg-4">
+                <div class="card bg-dark text-light border-secondary">
+                    <div class="card-header py-2">
+                        <strong>Add units</strong>
+                    </div>
+                    <div class="card-body p-2" style="max-height: 70vh; overflow-y: auto;">
+                        @foreach (var cat in BrowseCategories)
+                        {
+                            var units = UnitsInCategory(cat);
+                            if (units.Count == 0) continue;
+
+                            <div class="mb-2">
+                                <div class="small text-body-secondary fw-bold mb-1">@cat.ToJsonKey()</div>
+                                @foreach (var unit in units)
+                                {
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-light w-100 text-start d-flex justify-content-between mb-1"
+                                            @onclick="() => AddUnit(unit)">
+                                        <span>@unit.Name</span>
+                                        <span class="text-body-secondary">@unit.BaseModelCost pts</span>
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @* ─── Right: Active list ─────────────────────────────── *@
+            <div class="col-lg-8">
+                <div class="card bg-dark text-light border-secondary">
+                    <div class="card-header py-2 d-flex justify-content-between">
+                        <strong>Army List</strong>
+                        <span class="text-body-secondary">
+                            @_armyList.TotalPoints.ToString("F0") / @_armyList.PointsTarget pts
+                        </span>
+                    </div>
+                    <div class="card-body p-2">
+                        @if (_armyList.Units.Count == 0)
+                        {
+                            <div class="text-center text-body-secondary py-4">
+                                <em>No units — pick from the left to start building.</em>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var cat in BrowseCategories)
+                            {
+                                var entries = _armyList.Units
+                                    .Where(u => u.ResolvedUnit.Category == cat)
+                                    .ToList();
+                                if (entries.Count == 0) continue;
+
+                                <div class="mb-3">
+                                    <div class="small text-body-secondary fw-bold mb-1">@cat.ToJsonKey()</div>
+                                    @foreach (var entry in entries)
+                                    {
+                                        <div class="border border-secondary rounded mb-2" @key="entry">
+                                            <div class="d-flex align-items-center p-2">
+                                                <div class="flex-grow-1">
+                                                    <div>@entry.ResolvedUnit.Name</div>
+                                                    <small class="text-body-secondary">
+                                                        @entry.ModelCount model@(entry.ModelCount == 1 ? "" : "s") ·
+                                                        @entry.TotalPointsCost.ToString("F0") pts
+                                                    </small>
+                                                </div>
+                                                <button class="btn btn-sm btn-outline-secondary me-1"
+                                                        title="Edit"
+                                                        @onclick="() => ToggleExpand(entry)">
+                                                    @(_expanded.Contains(entry) ? "Collapse" : "Edit")
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-secondary me-1"
+                                                        title="Duplicate"
+                                                        @onclick="() => DuplicateUnit(entry)">
+                                                    Duplicate
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger"
+                                                        title="Remove"
+                                                        @onclick="() => RemoveUnit(entry)">
+                                                    ✕
+                                                </button>
+                                            </div>
+
+                                            @if (_expanded.Contains(entry))
+                                            {
+                                                <div class="border-top border-secondary p-2">
+                                                    <UnitConfigurator @key="@($"cfg-{entry.GetHashCode()}")"
+                                                                      Unit="entry.ResolvedUnit"
+                                                                      Configuration="entry"
+                                                                      ConfigurationChanged="OnEntryChanged"
+                                                                      FactionExtras="_factionExtras"
+                                                                      CommonMagicItems="_commonMagicItems" />
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* ─── Bottom: Summary + Validation ────────────────────────── *@
+        <div class="row g-3 mt-2">
+            <div class="col-lg-8 offset-lg-4">
+                <div class="card bg-dark text-light border-secondary">
+                    <div class="card-header py-2"><strong>Composition</strong></div>
+                    <div class="card-body p-2">
+                        @foreach (var (cat, used, cap, isMin) in CategoryBars)
+                        {
+                            var pct = cap > 0 ? Math.Min(100.0, used / cap * 100.0) : 0;
+                            var over = isMin ? used < cap : used > cap;
+                            var barClass = over ? "bg-danger" : "bg-success";
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between small">
+                                    <span>@cat @(isMin ? "(min)" : "(max)")</span>
+                                    <span>@used.ToString("F0") / @cap.ToString("F0")</span>
+                                </div>
+                                <div class="progress" style="height: 6px; background-color: #333;">
+                                    <div class="progress-bar @barClass"
+                                         role="progressbar"
+                                         style="width: @pct.ToString("F0")%"></div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="mt-3">
+                            @if (_issues.Count == 0)
+                            {
+                                <div class="text-success small">✓ List is valid.</div>
+                            }
+                            else
+                            {
+                                @foreach (var issue in _issues)
+                                {
+                                    var colour = issue.Severity == ValidationSeverity.Error ? "text-danger" : "text-warning";
+                                    <div class="small @colour">@issue.Message</div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private static readonly int[] PointsPresets = [1000, 1500, 2000, 2500, 3000];
+    private static readonly UnitCategory[] BrowseCategories =
+        [UnitCategory.Lords, UnitCategory.Heroes, UnitCategory.Core, UnitCategory.Special, UnitCategory.Rare];
+
+    private string? _factionKey;
+    private string _pointsPreset = "2000";
+    private IReadOnlyList<Unit>? _factionUnits;
+    private FactionExtrasData? _factionExtras;
+    private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
+
+    private ArmyList _armyList = new()
+    {
+        Faction = FactionKeyExtensions.All.First(),
+        PointsTarget = 2000,
+    };
+
+    private List<ValidationIssue> _issues = [];
+    private readonly HashSet<UnitConfiguration> _expanded = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Repo.EnsureLoadedAsync();
+        _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
+    }
+
+    // ─── Faction + points + name ──────────────────────────────────
+
+    private async Task OnFactionChanged(ChangeEventArgs e)
+    {
+        var key = e.Value?.ToString();
+        _factionKey = string.IsNullOrEmpty(key) ? null : key;
+        _factionUnits = null;
+        _factionExtras = null;
+        _expanded.Clear();
+
+        if (_factionKey != null && FactionKeyExtensions.TryFromJsonKey(_factionKey, out var fk))
+        {
+            _armyList = _armyList with { Faction = fk, Units = new() };
+            _factionUnits = await Repo.GetUnitsAsync(fk);
+            _factionExtras = await Repo.GetFactionExtrasAsync(fk);
+        }
+
+        Revalidate();
+    }
+
+    private void OnPointsPresetChanged(ChangeEventArgs e)
+    {
+        _pointsPreset = e.Value?.ToString() ?? "2000";
+        if (_pointsPreset != "custom" && int.TryParse(_pointsPreset, out var n))
+        {
+            _armyList = _armyList with { PointsTarget = n };
+            Revalidate();
+        }
+    }
+
+    private void OnCustomPointsChanged(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var n) && n > 0)
+        {
+            _armyList = _armyList with { PointsTarget = n };
+            Revalidate();
+        }
+    }
+
+    private void OnNameChanged(ChangeEventArgs e)
+    {
+        _armyList = _armyList with { Name = e.Value?.ToString() ?? "Untitled List" };
+    }
+
+    // ─── Unit operations ──────────────────────────────────────────
+
+    private IReadOnlyList<Unit> UnitsInCategory(UnitCategory cat) =>
+        _factionUnits?.Where(u => u.Category == cat).OrderBy(u => u.Name).ToList()
+        ?? [];
+
+    private void AddUnit(Unit unit)
+    {
+        var cfg = new UnitConfiguration(unit);
+        _armyList.Units.Add(cfg);
+        Revalidate();
+    }
+
+    private void RemoveUnit(UnitConfiguration entry)
+    {
+        _armyList.Units.Remove(entry);
+        _expanded.Remove(entry);
+        Revalidate();
+    }
+
+    private void DuplicateUnit(UnitConfiguration src)
+    {
+        var clone = new UnitConfiguration(src.ResolvedUnit)
+        {
+            ModelCount = src.ModelCount,
+            Frontage = src.Frontage,
+            HasChampion = src.HasChampion,
+            HasMusician = src.HasMusician,
+            HasStandardBearer = src.HasStandardBearer,
+            SelectedWeapon = src.SelectedWeapon,
+        };
+        foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
+        clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
+        clone.Modifiers.AddRange(src.Modifiers);
+
+        var idx = _armyList.Units.IndexOf(src);
+        _armyList.Units.Insert(idx + 1, clone);
+        Revalidate();
+    }
+
+    private void ToggleExpand(UnitConfiguration entry)
+    {
+        if (!_expanded.Remove(entry)) _expanded.Add(entry);
+    }
+
+    private void OnEntryChanged(UnitConfiguration _)
+    {
+        // UnitConfigurator mutates the same instance — just revalidate.
+        Revalidate();
+    }
+
+    // ─── Validation + summary ─────────────────────────────────────
+
+    private void Revalidate()
+    {
+        _issues = Validator.Validate(_armyList);
+    }
+
+    private IEnumerable<(string Label, double Used, double Cap, bool IsMin)> CategoryBars
+    {
+        get
+        {
+            double target = _armyList.PointsTarget;
+            yield return ("Lords", _armyList.PointsInCategory(UnitCategory.Lords),
+                target * ArmyCompositionRules.LordsMaxPercent, false);
+            yield return ("Heroes", _armyList.PointsInCategory(UnitCategory.Heroes),
+                target * ArmyCompositionRules.HeroesMaxPercent, false);
+            yield return ("Characters (combined)",
+                _armyList.PointsInCategory(UnitCategory.Lords) + _armyList.PointsInCategory(UnitCategory.Heroes),
+                target * ArmyCompositionRules.CharactersCombinedMaxPercent, false);
+            yield return ("Core", _armyList.PointsInCategory(UnitCategory.Core),
+                target * ArmyCompositionRules.CoreMinPercent, true);
+            yield return ("Special", _armyList.PointsInCategory(UnitCategory.Special),
+                target * ArmyCompositionRules.SpecialMaxPercent, false);
+            yield return ("Rare", _armyList.PointsInCategory(UnitCategory.Rare),
+                target * ArmyCompositionRules.RareMaxPercent, false);
+        }
+    }
+}
