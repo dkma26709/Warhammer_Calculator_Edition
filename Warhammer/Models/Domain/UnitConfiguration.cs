@@ -56,6 +56,19 @@ public class UnitConfiguration
     /// <summary>Generic modifiers applied to this unit (from magic items, spells, or manual entry).</summary>
     public List<UnitModifier> Modifiers { get; } = [];
 
+    /// <summary>Wizard level (1-4) for casting spells. Default 2; only meaningful for wizard-capable units.</summary>
+    public int WizardLevel { get; set; } = 2;
+
+    /// <summary>Selected lore name (matches LoreEntry.Name from faction extras). Null if not a wizard or unset.</summary>
+    public string? SelectedLore { get; set; }
+
+    /// <summary>Names of spells the wizard knows (picked from the selected lore at army creation time).</summary>
+    public List<string> SelectedSpells { get; } = [];
+
+    /// <summary>True when this unit has any wizard_upgrade option, indicating it can cast spells.</summary>
+    public bool IsWizardCapable =>
+        ResolvedUnit.Options.Any(o => o.Type == "wizard_upgrade");
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }

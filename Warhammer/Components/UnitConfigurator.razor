@@ -144,6 +144,65 @@
         </div>
     }
 
+    @* ── Wizard: lore + spells ── *@
+    @if (Configuration.IsWizardCapable && AvailableLores.Count > 0)
+    {
+        <div class="mb-3 border border-secondary rounded p-2">
+            <label class="form-label small text-body-secondary">Wizard</label>
+            <div class="row g-2">
+                <div class="col-4">
+                    <label class="form-label small text-body-secondary mb-0">Level</label>
+                    <select class="form-select form-select-sm" value="@Configuration.WizardLevel"
+                            @onchange="OnWizardLevelChanged">
+                        @for (int lvl = 1; lvl <= 4; lvl++)
+                        {
+                            <option value="@lvl">@lvl</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-8">
+                    <label class="form-label small text-body-secondary mb-0">Lore</label>
+                    <select class="form-select form-select-sm" value="@(Configuration.SelectedLore ?? "")"
+                            @onchange="OnLoreChanged">
+                        <option value="">— Select lore —</option>
+                        @foreach (var lore in AvailableLores)
+                        {
+                            <option value="@lore.Name">@lore.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            @if (SelectedLoreEntry != null)
+            {
+                var spellsPicked = Configuration.SelectedSpells.Count;
+                var atLimit = spellsPicked >= Configuration.WizardLevel;
+                <div class="mt-2">
+                    <label class="form-label small text-body-secondary mb-1">
+                        Spells (@spellsPicked / @Configuration.WizardLevel)
+                    </label>
+                    @foreach (var spell in SelectedLoreEntry.Spells)
+                    {
+                        var checkedNow = Configuration.SelectedSpells.Contains(spell.Name);
+                        var disabled = !checkedNow && atLimit;
+                        <div class="form-check small">
+                            <input class="form-check-input" type="checkbox"
+                                   id="@(_id + "-spell-" + spell.Name.GetHashCode())"
+                                   checked="@checkedNow"
+                                   disabled="@disabled"
+                                   @onchange="e => OnSpellToggled(spell.Name, (bool)(e.Value ?? false))" />
+                            <label class="form-check-label" for="@(_id + "-spell-" + spell.Name.GetHashCode())">
+                                @spell.Name
+                                @if (spell.Level > 0) { <span class="text-body-secondary"> (L@(spell.Level))</span> }
+                                @if (spell.CastValue > 0) { <span class="text-body-secondary"> cast @(spell.CastValue)+</span> }
+                            </label>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
     @* ── Magic Items ── *@
     @if (Configuration.ResolvedUnit.MagicItemAllowance.HasValue && AllMagicItems.Count > 0)
     {
@@ -684,6 +743,54 @@
     {
         if (Configuration == null || index < 0 || index >= Configuration.Modifiers.Count) return;
         Configuration.Modifiers[index] = modifier;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    // ─── Wizard: lore + spells ───────────────────────────────────
+
+    private List<LoreEntry> AvailableLores =>
+        FactionExtras?.LoresOfMagic ?? new List<LoreEntry>();
+
+    private LoreEntry? SelectedLoreEntry =>
+        Configuration?.SelectedLore == null
+            ? null
+            : AvailableLores.FirstOrDefault(l => l.Name == Configuration.SelectedLore);
+
+    private async Task OnWizardLevelChanged(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        if (int.TryParse(e.Value?.ToString(), out var lvl) && lvl is >= 1 and <= 4)
+        {
+            Configuration.WizardLevel = lvl;
+            // Drop any spells that now exceed the new lower cap.
+            while (Configuration.SelectedSpells.Count > lvl)
+                Configuration.SelectedSpells.RemoveAt(Configuration.SelectedSpells.Count - 1);
+        }
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnLoreChanged(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        var name = e.Value?.ToString();
+        Configuration.SelectedLore = string.IsNullOrEmpty(name) ? null : name;
+        Configuration.SelectedSpells.Clear();
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnSpellToggled(string spellName, bool isChecked)
+    {
+        if (Configuration == null) return;
+        if (isChecked)
+        {
+            if (Configuration.SelectedSpells.Count >= Configuration.WizardLevel) return;
+            if (!Configuration.SelectedSpells.Contains(spellName))
+                Configuration.SelectedSpells.Add(spellName);
+        }
+        else
+        {
+            Configuration.SelectedSpells.Remove(spellName);
+        }
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }
