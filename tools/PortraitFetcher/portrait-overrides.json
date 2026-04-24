@@ -1,0 +1,5 @@
+{
+  "_comment": "Manual overrides for WAP-unit → TW-wiki-file mapping. Keys are 'faction-key/wap-unit-name' (lowercased). Values are the raw TW file name (e.g. 'wh2_main_lzd_inf_saurus_warriors.png'). Null skips a unit entirely. Auto-matching populates the rest.",
+  "overrides": {},
+  "skip": []
+}

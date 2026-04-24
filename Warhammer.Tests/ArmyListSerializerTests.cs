@@ -161,6 +161,48 @@ public class ArmyListSerializerTests
     }
 
     [Fact]
+    public async Task DeserializeAsync_RoundTripsCustomName()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Empire Captain", points: 65);
+        var config = new UnitConfiguration(unit)
+        {
+            ModelCount = 1,
+            CustomName = "Aldric the Bold",
+        };
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Dwarfs,
+            PointsTarget = 2000,
+            Units = { config },
+        };
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit));
+        var json = serializer.Serialize(list);
+        Assert.Contains("Aldric the Bold", json);
+
+        var result = await serializer.DeserializeAsync(json);
+        Assert.True(result.Success);
+        Assert.Equal("Aldric the Bold", result.List!.Units[0].CustomName);
+    }
+
+    [Fact]
+    public void Serialize_OmitsCustomNameWhenNullOrBlank()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Empire Captain", points: 65);
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Dwarfs,
+            PointsTarget = 2000,
+            Units = { new UnitConfiguration(unit) { CustomName = "   " } },
+        };
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit));
+        var json = serializer.Serialize(list);
+
+        Assert.DoesNotContain("customName", json);
+    }
+
+    [Fact]
     public void Serialize_IncludesBannerWhenPresent()
     {
         var warriors = TestHelpers.MakeUnit(name: "Warriors", points: 8);

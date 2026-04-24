@@ -4,3 +4,6 @@ obj/
 .claude/
 *.DotSettings.user
 wwwroot/lib/
+
+# PortraitFetcher generated output
+tools/PortraitFetcher/portrait-report.json

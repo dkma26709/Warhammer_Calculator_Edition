@@ -18,6 +18,7 @@ public sealed record ArmyListDto
 public sealed record ArmyListUnitDto
 {
     public string UnitName { get; init; } = "";
+    public string? CustomName { get; init; }
     public int ModelCount { get; init; } = 1;
     public int Frontage { get; init; } = 1;
     public string? SelectedWeapon { get; init; }

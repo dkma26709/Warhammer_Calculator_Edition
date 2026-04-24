@@ -7,6 +7,17 @@
 
 @if (Unit != null && Configuration != null)
 {
+    @if (ShowCustomNameField)
+    {
+        <div class="mb-2">
+            <label class="form-label small text-body-secondary">Custom name</label>
+            <input type="text" class="form-control form-control-sm"
+                   placeholder="@CustomNamePlaceholder"
+                   value="@Configuration.CustomName"
+                   @onchange="OnCustomNameChanged" />
+        </div>
+    }
+
     <StatTable Profile="Configuration.PrimaryProfile" MountProfile="Configuration.MountProfile" />
 
     <div class="mb-2 d-flex justify-content-between align-items-center">
@@ -282,6 +293,17 @@
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
     [Parameter] public FactionExtrasData? FactionExtras { get; set; }
     [Parameter] public IReadOnlyList<MagicItemEntry>? CommonMagicItems { get; set; }
+
+    /// <summary>
+    /// When true, render the custom-name input. Only meaningful in the Army Builder,
+    /// not in ad-hoc matchup configuration. Defaults to false to preserve existing behaviour.
+    /// </summary>
+    [Parameter] public bool ShowCustomNameField { get; set; }
+
+    private string CustomNamePlaceholder =>
+        Configuration?.TroopType.IsCharacter == true
+            ? "e.g. Aldric the Bold"
+            : "e.g. The Emerald Guard";
 
     private List<MagicItemEntry> AllMagicItems =>
         [.. CommonMagicItems ?? [], .. FactionExtras?.MagicItems ?? []];
@@ -728,6 +750,14 @@
     }
 
     // ─── Event handlers ──────────────────────────────────────────
+
+    private async Task OnCustomNameChanged(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        var raw = e.Value?.ToString();
+        Configuration.CustomName = string.IsNullOrWhiteSpace(raw) ? null : raw.Trim();
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
 
     private async Task OnModelCountChangedEvent(ChangeEventArgs e)
     {

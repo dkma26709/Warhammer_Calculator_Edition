@@ -1,0 +1,60 @@
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
+@using Warhammer.Services
+
+@inject PortraitService Portraits
+
+@if (Unit != null)
+{
+    var heightPx = $"{Height}px";
+    var border = ShowBorder ? "1px solid #444" : "none";
+
+    @if (Portraits.HasPortrait(Unit.Faction, Unit.Name))
+    {
+        <img src="@Portraits.GetPortraitUrl(Unit.Faction, Unit.Name)"
+             alt="@Unit.Name"
+             title="@Unit.Name"
+             class="unit-portrait"
+             style="height:@heightPx; width:auto; border-radius:2px; border:@border; flex-shrink:0; display:block;" />
+    }
+    else
+    {
+        @* Fallback: 2:3 rectangle with category-coloured background + unit initials. *@
+        var fallbackWidth = (int)Math.Round(Height * 0.6);
+        <span class="unit-portrait-fallback"
+              title="@Unit.Name"
+              style="height:@heightPx; width:@(fallbackWidth)px; border-radius:2px; background:@CategoryColour(Unit.Category);
+                     color:#fff; display:inline-flex; align-items:center; justify-content:center;
+                     font-weight:600; font-size:@(Height * 0.28)px; letter-spacing:-0.5px;
+                     border:@border; flex-shrink:0;">
+            @Initials(Unit.Name)
+        </span>
+    }
+}
+
+@code {
+    [Parameter, EditorRequired] public Unit? Unit { get; set; }
+
+    /// <summary>Height in pixels. Width auto-scales to preserve the portrait's natural aspect ratio.</summary>
+    [Parameter] public int Height { get; set; } = 48;
+
+    [Parameter] public bool ShowBorder { get; set; } = true;
+
+    private static string Initials(string name)
+    {
+        var words = name.Split(new[] { ' ', '-', '\'' }, StringSplitOptions.RemoveEmptyEntries);
+        if (words.Length == 0) return "?";
+        if (words.Length == 1) return words[0][..Math.Min(2, words[0].Length)].ToUpperInvariant();
+        return $"{char.ToUpperInvariant(words[0][0])}{char.ToUpperInvariant(words[1][0])}";
+    }
+
+    private static string CategoryColour(UnitCategory cat) => cat switch
+    {
+        UnitCategory.Lords   => "#8a6a1f",
+        UnitCategory.Heroes  => "#5a5a5a",
+        UnitCategory.Core    => "#3a5a3a",
+        UnitCategory.Special => "#2a4a7a",
+        UnitCategory.Rare    => "#5a2a5a",
+        _                    => "#3a3a3a",
+    };
+}

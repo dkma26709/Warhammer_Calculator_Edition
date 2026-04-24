@@ -23,6 +23,12 @@ public class UnitConfiguration
     public int ModelCount { get; set; }
     public int Frontage { get; set; }
 
+    /// <summary>
+    /// Optional user-supplied name (e.g. "Aldric the Bold" on an Empire Captain).
+    /// Displayed alongside the unit's book name, not as a replacement.
+    /// </summary>
+    public string? CustomName { get; set; }
+
     /// <summary>Selected weapon as enum key.</summary>
     public CloseCombatWeaponKey SelectedWeapon { get; set; }
 

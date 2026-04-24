@@ -2,8 +2,15 @@
 @using Warhammer.Models.Json
 
 <div class="card bg-dark text-light border-secondary">
-    <div class="card-header">
+    <div class="card-header d-flex align-items-center gap-2">
         <h5 class="card-title mb-0">@Label</h5>
+        @if (SelectedUnit != null)
+        {
+            <UnitPortrait Unit="SelectedUnit" Height="36" />
+            <span class="text-body-secondary text-truncate" title="@SelectedUnit.Name">
+                @SelectedUnit.Name
+            </span>
+        }
     </div>
     <div class="card-body">
         <UnitSelector SelectedFactionKey="@SelectedFactionKey"

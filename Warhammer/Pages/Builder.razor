@@ -10,6 +10,7 @@
 @inject IGameDataRepository Repo
 @inject ArmyListValidator Validator
 @inject ArmyListSerializer Serializer
+@inject PortraitService Portraits
 @inject IJSRuntime JS
 
 <div class="container-fluid py-3">
@@ -142,9 +143,10 @@
                                 @foreach (var unit in units)
                                 {
                                     <button type="button"
-                                            class="btn btn-sm btn-outline-light w-100 text-start d-flex justify-content-between mb-1"
+                                            class="btn btn-sm btn-outline-light w-100 text-start d-flex align-items-center gap-2 mb-1"
                                             @onclick="() => AddUnit(unit)">
-                                        <span>@unit.Name</span>
+                                        <UnitPortrait Unit="unit" Height="32" ShowBorder="false" />
+                                        <span class="flex-grow-1">@unit.Name</span>
                                         <span class="text-body-secondary">@unit.BaseModelCost pts</span>
                                     </button>
                                 }
@@ -184,13 +186,26 @@
                                     @foreach (var entry in entries)
                                     {
                                         <div class="border border-secondary rounded mb-2" @key="entry">
-                                            <div class="d-flex align-items-center p-2">
+                                            <div class="d-flex align-items-center p-2 gap-2">
+                                                <UnitPortrait Unit="entry.ResolvedUnit" Height="56" />
                                                 <div class="flex-grow-1">
-                                                    <div>
-                                                        @entry.ResolvedUnit.Name
-                                                        @if (entry.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
-                                                        @if (entry.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
-                                                    </div>
+                                                    @if (!string.IsNullOrWhiteSpace(entry.CustomName))
+                                                    {
+                                                        <div>
+                                                            <strong>@entry.CustomName</strong>
+                                                            <span class="text-body-secondary"> · @entry.ResolvedUnit.Name</span>
+                                                            @if (entry.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
+                                                            @if (entry.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            @entry.ResolvedUnit.Name
+                                                            @if (entry.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
+                                                            @if (entry.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
+                                                        </div>
+                                                    }
                                                     <small class="text-body-secondary">
                                                         @entry.ModelCount model@(entry.ModelCount == 1 ? "" : "s") ·
                                                         @entry.TotalPointsCost.ToString("F0") pts
@@ -233,7 +248,8 @@
                                                                       Configuration="entry"
                                                                       ConfigurationChanged="OnEntryChanged"
                                                                       FactionExtras="_factionExtras"
-                                                                      CommonMagicItems="_commonMagicItems" />
+                                                                      CommonMagicItems="_commonMagicItems"
+                                                                      ShowCustomNameField="true" />
                                                 </div>
                                             }
                                         </div>
@@ -298,6 +314,7 @@
     protected override async Task OnInitializedAsync()
     {
         await Repo.EnsureLoadedAsync();
+        await Portraits.EnsureLoadedAsync();
         _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
         await TryLoadFromStorage();
     }
@@ -402,6 +419,7 @@
             SelectedLore = src.SelectedLore,
             SelectedBanner = src.SelectedBanner,
             // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
+            // CustomName is also not copied — a named character should not share its identity with its clone.
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
         foreach (var (cat, picks) in src.SelectedFactionUpgrades)

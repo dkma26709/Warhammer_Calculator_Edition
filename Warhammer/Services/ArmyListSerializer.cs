@@ -46,6 +46,7 @@ public class ArmyListSerializer
     private static ArmyListUnitDto UnitToDto(UnitConfiguration u) => new()
     {
         UnitName = u.ResolvedUnit.Name,
+        CustomName = string.IsNullOrWhiteSpace(u.CustomName) ? null : u.CustomName.Trim(),
         ModelCount = u.ModelCount,
         Frontage = u.Frontage,
         SelectedWeapon = u.SelectedWeaponKey,
@@ -135,6 +136,7 @@ public class ArmyListSerializer
     {
         var cfg = new UnitConfiguration(unit)
         {
+            CustomName = dto.CustomName,
             ModelCount = dto.ModelCount,
             Frontage = dto.Frontage,
             HasChampion = dto.HasChampion,
