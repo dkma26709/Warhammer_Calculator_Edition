@@ -350,9 +350,9 @@
 
     private OptionSection GetOptionSection(UnitOption option)
     {
-        switch (option.Type)
+        switch (option.GetOptionType())
         {
-            case "equipment":
+            case OptionType.Equipment:
                 if (option.Choices == null || option.Choices.Count == 0) return OptionSection.Skip;
                 var classified = ClassifyChoices(option);
                 if (classified.Count == 0) return OptionSection.Skip;
@@ -360,10 +360,10 @@
                 if (classified.All(c => c.IsArmour)) return OptionSection.Armour;
                 return OptionSection.Other;
 
-            case "mount":
-            case "upgrade":
-            case "wizard_upgrade":
-            case "blessed_spawning":
+            case OptionType.Mount:
+            case OptionType.Upgrade:
+            case OptionType.WizardUpgrade:
+            case OptionType.BlessedSpawning:
                 return OptionSection.Other;
 
             default:
@@ -406,21 +406,21 @@
 
     private RenderFragment RenderOptionControl(int idx, UnitOption option) => builder =>
     {
-        switch (option.Type)
+        switch (option.GetOptionType())
         {
-            case "equipment":
+            case OptionType.Equipment:
                 RenderEquipmentOption(builder, idx, option);
                 break;
-            case "mount":
+            case OptionType.Mount:
                 RenderChoicesDropdown(builder, idx, option, "Mount");
                 break;
-            case "upgrade" when option.SubOptions != null:
+            case OptionType.Upgrade when option.SubOptions != null:
                 RenderSubOptionsDropdown(builder, idx, option);
                 break;
-            case "blessed_spawning" when HasFactionUpgradeCategory(option):
+            case OptionType.BlessedSpawning when HasFactionUpgradeCategory(option):
                 RenderFactionUpgradeMultiSelect(builder, option);
                 break;
-            case "upgrade" or "wizard_upgrade" or "blessed_spawning":
+            case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
                 RenderFlatCheckbox(builder, idx, option);
                 break;
         }
@@ -428,7 +428,7 @@
 
     private bool HasFactionUpgradeCategory(UnitOption option)
     {
-        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.Type);
+        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.GetOptionType());
         if (category is null || FactionExtras?.FactionUpgrades is null) return false;
         return FactionExtras.FactionUpgrades.TryGetValue(category, out var entries) && entries.Count > 0;
     }
@@ -438,7 +438,7 @@
         UnitOption option)
     {
         if (Configuration is null || FactionExtras?.FactionUpgrades is null) return;
-        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.Type);
+        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.GetOptionType());
         if (category is null) return;
         if (!FactionExtras.FactionUpgrades.TryGetValue(category, out var entries)) return;
 

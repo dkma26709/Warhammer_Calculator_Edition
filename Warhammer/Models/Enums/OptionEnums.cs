@@ -1,3 +1,5 @@
+using Warhammer.Models.Json;
+
 namespace Warhammer.Models.Enums;
 
 /// <summary>
@@ -58,6 +60,25 @@ public static class OptionTypeExtensions
 
     public static bool TryFromJsonKey(string jsonKey, out OptionType result)
         => FromJson.TryGetValue(jsonKey, out result);
+}
+
+public static class UnitOptionExtensions
+{
+    /// <summary>Parsed <see cref="OptionType"/> for this option, or null when Type is missing or unknown.</summary>
+    public static OptionType? GetOptionType(this UnitOption option) =>
+        option.Type != null && OptionTypeExtensions.TryFromJsonKey(option.Type, out var type)
+            ? type
+            : null;
+
+    /// <summary>True when the option's Type matches the given <see cref="OptionType"/>.</summary>
+    public static bool IsType(this UnitOption option, OptionType type) =>
+        option.GetOptionType() == type;
+
+    /// <summary>True when the option's Role text matches the given <see cref="CommandRole"/>.</summary>
+    public static bool IsRole(this UnitOption option, CommandRole role) =>
+        option.Role != null
+        && CommandRoleExtensions.TryFromRoleText(option.Role, out var parsed)
+        && parsed == role;
 }
 
 public static class OptionActionExtensions

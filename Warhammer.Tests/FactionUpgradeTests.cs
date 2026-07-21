@@ -1,4 +1,5 @@
 using Warhammer.Models.Domain;
+using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
 
 namespace Warhammer.Tests;
@@ -9,13 +10,14 @@ public class FactionUpgradeTests
     public void FactionUpgradeCategoryFor_BlessedSpawning_MapsToPlural()
     {
         Assert.Equal("blessed_spawnings",
-            UnitConfiguration.FactionUpgradeCategoryFor("blessed_spawning"));
+            UnitConfiguration.FactionUpgradeCategoryFor(OptionType.BlessedSpawning));
     }
 
     [Fact]
     public void FactionUpgradeCategoryFor_Unknown_ReturnsNull()
     {
-        Assert.Null(UnitConfiguration.FactionUpgradeCategoryFor("something_else"));
+        Assert.Null(UnitConfiguration.FactionUpgradeCategoryFor(OptionType.Command));
+        Assert.Null(UnitConfiguration.FactionUpgradeCategoryFor(null));
     }
 
     [Fact]

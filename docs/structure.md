@@ -1,9 +1,11 @@
 # Project Structure
 
+> **Note:** this document describes the layout as of the initial Matchup-only release and has not been fully updated since. The repo has since gained the Gauntlet (`Pages/Gauntlet.razor`) and Builder (`Pages/Builder.razor`) pages, army builder services (`ArmyListValidator`, `ArmyListSerializer`), the `IGameDataRepository`/`GameDataRepository` facade, `PortraitService` + `tools/PortraitFetcher`, multi-round combat (`BreakTestResolver`, `FleeAndPursueResolver`), and many more components and tests. See `AGENTS.md` at the repo root for the current layout.
+
 ## Repository Layout
 
 ```
-E:\Git\Warhammer\
+<repo root>\
 ├── Warhammer/                      # Main Blazor WASM app
 │   ├── Program.cs                  # Entry point, service registration
 │   ├── App.razor                   # Router configuration
@@ -78,7 +80,11 @@ E:\Git\Warhammer\
 ```csharp
 builder.Services.AddScoped<CoreRulesService>();
 builder.Services.AddScoped<FactionDataService>();
-builder.Services.AddScoped<CombatEngine>();
+builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
+builder.Services.AddTransient<CombatEngine>();
+builder.Services.AddSingleton<ArmyListValidator>();
+builder.Services.AddScoped<ArmyListSerializer>();
+builder.Services.AddScoped<PortraitService>();
 ```
 
-All services are scoped (one instance per browser tab).
+Note: in Blazor WASM there is a single DI scope for the app's lifetime, so Scoped and Singleton behave identically here — data services are effectively app-wide caches either way.
