@@ -20,7 +20,7 @@ Three pages:
 # Run the app (from repo root)
 cd Warhammer && dotnet run          # then open https://localhost:{port}/
 
-# Run tests (~291 xUnit test methods across ~25 classes)
+# Run tests (~300 xUnit test methods across ~26 classes)
 cd Warhammer.Tests && dotnet test
 
 # Build everything
@@ -29,7 +29,8 @@ dotnet build Warhammer/Warhammer.sln
 
 - Tests are **xUnit** (`[Fact]`/`[Theory]`). (An older doc says MSTest — that is wrong.)
 - Test project: `Warhammer.Tests/`, references the main project directly. `TestHelpers.cs` has shared builders.
-- No CI configured; run tests locally before committing.
+- CI: `.github/workflows/test.yml` builds and tests on pushes to `main` and PRs.
+- `CombatEngine.Simulate`/`SimulateMultiRound` accept an optional `seed` parameter for reproducible runs.
 
 ## Repo Layout
 
@@ -37,8 +38,11 @@ dotnet build Warhammer/Warhammer.sln
 Warhammer/                  # Main Blazor WASM project (also contains Warhammer.sln)
 ├── Program.cs              # Entry point + DI registration
 ├── Pages/                  # Matchup, Gauntlet, Builder
-├── Components/             # Reusable Razor components (UnitPanel, UnitConfigurator,
-│                           #   MagicItemSelector, ModifierEditor, ResultsPanel, ...)
+├── Components/             # Reusable Razor components. UnitConfigurator is a thin shell
+│                           #   composing UnitOptionsEditor, WizardConfigPanel,
+│                           #   MagicBannerSelector, CommandGroupPanel, FactionAbilityPanel,
+│                           #   CustomModifierList, MagicItemSelector, ModifierEditor —
+│                           #   all sharing the Configuration/ConfigurationChanged pattern
 ├── Layout/MainLayout.razor
 ├── Calculator/             # Combat simulation engine (pure C#, no UI deps)
 │   ├── CombatEngine.cs         # Monte Carlo orchestrator; entry point Simulate(...)
@@ -52,8 +56,9 @@ Warhammer/                  # Main Blazor WASM project (also contains Warhammer.
 │                           #   MultiRoundResult, GauntletMatchup, FactionRaces
 ├── Models/
 │   ├── Json/               # DTOs mirroring JSON exactly (records; no logic)
-│   ├── Domain/             # Business models: Unit, UnitConfiguration, ParsedSpecialRules,
-│   │                       #   ParsedWeaponRules, TroopTypeInfo, ArmyList, UnitModifier, ...
+│   ├── Domain/             # Business models: Unit, UnitConfiguration (+ ArmyLoadout for
+│   │                       #   builder-only state), ParsedSpecialRules, ParsedWeaponRules,
+│   │                       #   TroopTypeInfo, ArmyList, UnitModifier, ...
 │   └── Enums/              # Strongly-typed keys: FactionKey, CloseCombatWeaponKey,
 │                           #   ArmourKey, UnitCategory, ... each with *Extensions mappers
 ├── Services/               # Data loading + army builder services (see below)
@@ -108,6 +113,8 @@ The Calculator layer is **stateless and UI-free** — it takes configured units 
 - **Dirty data is expected.** Stat profiles contain `"*"`, `"-"`, and string numbers — handled by `NullableIntConverter`. Unit `options` can be `string[]` or `object[]` — handled by `OptionsListConverter`. Special rules and equipment are free text parsed by regex (`ParsedSpecialRules.Parse`, `ParsedWeaponRules.Parse`, `EquipmentParser`). When parsing fails, prefer "unparsed but displayed" over throwing.
 - **Faction JSON is generated, not hand-written.** Source of truth is WAP army book PDFs run through Python extractors that live *outside* this repo (on a local drive), then copied into `wwwroot/data/factions/`. Fix systematic data issues in the extractors if possible; hand-edits to the JSON can be overwritten by a re-extract.
 - **Portraits**: run `tools/PortraitFetcher` (console app; supports per-faction and `--dry-run` args) to fetch PNGs from the Total War fandom wiki and regenerate `portrait-manifest.json`. `PortraitService.Slugify` must stay in sync with the fetcher's filename slugging. Manual name mismatches go in `tools/PortraitFetcher/portrait-overrides.json`.
+- **Builder state vs simulation state.** `UnitConfiguration.Loadout` (an `ArmyLoadout`) holds army-builder-only state: custom name, wizard level/lore/spells, magic banner, General/BSB flags, faction upgrade picks. The combat engine never reads `Loadout`. Simulation-relevant choices (model count, weapon, command group, modifiers) live directly on `UnitConfiguration`.
+- **Faction abilities are modifiers.** Shadow Dances and Tree Aspects (Wood Elves) compile to `UnitModifier` instances via `UnitConfiguration.FactionAbilityModifiers`, flowing through `EffectiveSpecialRules`/`AggregateModifier` like magic items. The Calculator has no faction-specific enums — add new faction abilities the same way, not as engine special cases. (Tree Whack remains a rule-flag-gated attack mode in `AttackResolver`.)
 - **JS interop is minimal**: only `wwwroot/js/army-builder.js` (`window.armyBuilder`) for JSON file download and localStorage. Builder autosaves the single active list to localStorage.
 - **Styling**: Bootstrap 5 via CDN in `index.html`, dark-theme cards (`bg-dark text-light border-secondary`), custom rules in `wwwroot/css/app.css`. No CSS framework tooling.
 - **Testing style**: deterministic tests use fixed-seed `Random` or direct resolver calls; probabilistic tests assert Monte Carlo results within tolerance bands. Follow existing patterns in `TestHelpers.cs`.

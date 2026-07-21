@@ -123,9 +123,79 @@ public class UnitConfiguration
 
     // ─── Modifier system ─────────────────────────────────────────
 
-    /// <summary>All modifiers combined: magic item modifiers + standalone modifiers.</summary>
+    /// <summary>
+    /// Faction ability selections (Shadow Dances, Tree Aspects) expressed as ordinary
+    /// modifiers, so their effects flow through the same pipeline as magic items and
+    /// spells instead of being special-cased in the combat engine.
+    /// </summary>
+    private IEnumerable<UnitModifier> FactionAbilityModifiers
+    {
+        get
+        {
+            switch (SelectedShadowDance)
+            {
+                case ShadowDance.WhirlingDeath:
+                    yield return new UnitModifier
+                    {
+                        Label = "Whirling Death", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { KillingBlow = true, ArmourPiercing = 1 },
+                    };
+                    break;
+                case ShadowDance.StormOfBlades:
+                    yield return new UnitModifier
+                    {
+                        Label = "Storm of Blades", Source = "Faction Ability",
+                        AttacksBonus = 1,
+                    };
+                    break;
+                case ShadowDance.TheShadowsCoil:
+                    yield return new UnitModifier
+                    {
+                        Label = "The Shadows Coil", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { Minus1ToBeHit = true },
+                    };
+                    break;
+                case ShadowDance.WovenMist:
+                    yield return new UnitModifier
+                    {
+                        Label = "Woven Mist", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { AlwaysStrikesFirst = true },
+                    };
+                    break;
+            }
+
+            switch (SelectedTreeAspect)
+            {
+                case TreeAspect.Birch:
+                    yield return new UnitModifier
+                    {
+                        Label = "Birch", Source = "Faction Ability",
+                        AttacksBonus = 1,
+                    };
+                    break;
+                case TreeAspect.Oak:
+                    yield return new UnitModifier
+                    {
+                        Label = "Oak", Source = "Faction Ability",
+                        ToughnessBonus = 1,
+                    };
+                    break;
+                case TreeAspect.Willow:
+                    yield return new UnitModifier
+                    {
+                        Label = "Willow", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { Minus1ToBeHit = true },
+                    };
+                    break;
+            }
+        }
+    }
+
+    /// <summary>All modifiers combined: magic items + faction abilities + standalone modifiers.</summary>
     private IEnumerable<UnitModifier> AllModifiers =>
-        SelectedMagicItems.Select(mi => mi.Modifier).Concat(Modifiers);
+        SelectedMagicItems.Select(mi => mi.Modifier)
+            .Concat(FactionAbilityModifiers)
+            .Concat(Modifiers);
 
     /// <summary>Aggregate of all modifiers — stat bonuses summed, booleans ORed, saves take best.</summary>
     public UnitModifier AggregateModifier => UnitModifier.Aggregate(AllModifiers);
@@ -379,18 +449,8 @@ public class UnitConfiguration
     /// <summary>Best WS for combat (max of rider/mount for split profiles), including modifier bonuses.</summary>
     public int BestWS => SplitProfileMax(p => p.WS, 1) + (AggregateModifier.WeaponSkillBonus ?? 0);
 
-    /// <summary>Best T for combat (max of rider/mount for split profiles), including stance and modifier bonuses.</summary>
-    public int BestT
-    {
-        get
-        {
-            int t = SplitProfileMax(p => p.T, 3);
-            if (SelectedTreeAspect == TreeAspect.Oak)
-                t += 1;
-            t += AggregateModifier.ToughnessBonus ?? 0;
-            return t;
-        }
-    }
+    /// <summary>Best T for combat (max of rider/mount for split profiles), including modifier bonuses.</summary>
+    public int BestT => SplitProfileMax(p => p.T, 3) + (AggregateModifier.ToughnessBonus ?? 0);
 
     private int SplitProfileMax(Func<ProfileEntry, int?> stat, int fallback)
     {
@@ -433,14 +493,6 @@ public class UnitConfiguration
 
         // Devastating Charge: +1 Attack on charge
         if (isCharging && rules.DevastatingCharge)
-            attacks += 1;
-
-        // Shadow Dance: Storm of Blades (+1 Attack)
-        if (SelectedShadowDance == ShadowDance.StormOfBlades)
-            attacks += 1;
-
-        // Tree Aspect: Birch (+1 Attack)
-        if (SelectedTreeAspect == TreeAspect.Birch)
             attacks += 1;
 
         // Weapon extra attacks (e.g., Two Hand Weapons: +1 Attack)
