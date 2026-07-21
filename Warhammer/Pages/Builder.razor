@@ -189,21 +189,21 @@
                                             <div class="d-flex align-items-center p-2 gap-2">
                                                 <UnitPortrait Unit="entry.ResolvedUnit" Height="56" />
                                                 <div class="flex-grow-1">
-                                                    @if (!string.IsNullOrWhiteSpace(entry.CustomName))
+                                                    @if (!string.IsNullOrWhiteSpace(entry.Loadout.CustomName))
                                                     {
                                                         <div>
-                                                            <strong>@entry.CustomName</strong>
+                                                            <strong>@entry.Loadout.CustomName</strong>
                                                             <span class="text-body-secondary"> · @entry.ResolvedUnit.Name</span>
-                                                            @if (entry.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
-                                                            @if (entry.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
+                                                            @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
+                                                            @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
                                                         </div>
                                                     }
                                                     else
                                                     {
                                                         <div>
                                                             @entry.ResolvedUnit.Name
-                                                            @if (entry.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
-                                                            @if (entry.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
+                                                            @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
+                                                            @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
                                                         </div>
                                                     }
                                                     <small class="text-body-secondary">
@@ -213,13 +213,13 @@
                                                 </div>
                                                 @if (cat is UnitCategory.Lords or UnitCategory.Heroes)
                                                 {
-                                                    <button class="btn btn-sm me-1 @(entry.IsGeneral ? "btn-warning" : "btn-outline-warning")"
+                                                    <button class="btn btn-sm me-1 @(entry.Loadout.IsGeneral ? "btn-warning" : "btn-outline-warning")"
                                                             title="Designate General"
                                                             @onclick="() => ToggleGeneral(entry)">General</button>
                                                 }
                                                 @if (entry.IsBattleStandardEligible)
                                                 {
-                                                    <button class="btn btn-sm me-1 @(entry.IsBattleStandardBearer ? "btn-info" : "btn-outline-info")"
+                                                    <button class="btn btn-sm me-1 @(entry.Loadout.IsBattleStandardBearer ? "btn-info" : "btn-outline-info")"
                                                             title="Battle Standard Bearer"
                                                             @onclick="() => ToggleBsb(entry)">BSB</button>
                                                 }
@@ -415,18 +415,21 @@
             HasMusician = src.HasMusician,
             HasStandardBearer = src.HasStandardBearer,
             SelectedWeapon = src.SelectedWeapon,
-            WizardLevel = src.WizardLevel,
-            SelectedLore = src.SelectedLore,
-            SelectedBanner = src.SelectedBanner,
-            // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
-            // CustomName is also not copied — a named character should not share its identity with its clone.
+            Loadout =
+            {
+                WizardLevel = src.Loadout.WizardLevel,
+                SelectedLore = src.Loadout.SelectedLore,
+                SelectedBanner = src.Loadout.SelectedBanner,
+                // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
+                // CustomName is also not copied — a named character should not share its identity with its clone.
+            },
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
-        foreach (var (cat, picks) in src.SelectedFactionUpgrades)
-            clone.SelectedFactionUpgrades[cat] = new List<string>(picks);
+        foreach (var (cat, picks) in src.Loadout.SelectedFactionUpgrades)
+            clone.Loadout.SelectedFactionUpgrades[cat] = new List<string>(picks);
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
         clone.Modifiers.AddRange(src.Modifiers);
-        clone.SelectedSpells.AddRange(src.SelectedSpells);
+        clone.Loadout.SelectedSpells.AddRange(src.Loadout.SelectedSpells);
 
         var idx = _armyList.Units.IndexOf(src);
         _armyList.Units.Insert(idx + 1, clone);
@@ -440,28 +443,28 @@
 
     private void ToggleGeneral(UnitConfiguration entry)
     {
-        if (entry.IsGeneral)
+        if (entry.Loadout.IsGeneral)
         {
-            entry.IsGeneral = false;
+            entry.Loadout.IsGeneral = false;
         }
         else
         {
-            foreach (var u in _armyList.Units) u.IsGeneral = false;
-            entry.IsGeneral = true;
+            foreach (var u in _armyList.Units) u.Loadout.IsGeneral = false;
+            entry.Loadout.IsGeneral = true;
         }
         Revalidate();
     }
 
     private void ToggleBsb(UnitConfiguration entry)
     {
-        if (entry.IsBattleStandardBearer)
+        if (entry.Loadout.IsBattleStandardBearer)
         {
-            entry.IsBattleStandardBearer = false;
+            entry.Loadout.IsBattleStandardBearer = false;
         }
         else
         {
-            foreach (var u in _armyList.Units) u.IsBattleStandardBearer = false;
-            entry.IsBattleStandardBearer = true;
+            foreach (var u in _armyList.Units) u.Loadout.IsBattleStandardBearer = false;
+            entry.Loadout.IsBattleStandardBearer = true;
         }
         Revalidate();
     }

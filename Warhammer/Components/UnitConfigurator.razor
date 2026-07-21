@@ -9,7 +9,7 @@
             <label class="form-label small text-body-secondary">Custom name</label>
             <input type="text" class="form-control form-control-sm"
                    placeholder="@CustomNamePlaceholder"
-                   value="@Configuration.CustomName"
+                   value="@Configuration.Loadout.CustomName"
                    @onchange="OnCustomNameChanged" />
         </div>
     }
@@ -107,7 +107,7 @@
     {
         if (Configuration == null) return;
         var raw = e.Value?.ToString();
-        Configuration.CustomName = string.IsNullOrWhiteSpace(raw) ? null : raw.Trim();
+        Configuration.Loadout.CustomName = string.IsNullOrWhiteSpace(raw) ? null : raw.Trim();
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 

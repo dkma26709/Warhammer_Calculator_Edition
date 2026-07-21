@@ -61,7 +61,7 @@
     {
         if (Configuration == null) return;
         Configuration.HasStandardBearer = value;
-        if (!value) Configuration.SelectedBanner = null;
+        if (!value) Configuration.Loadout.SelectedBanner = null;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }

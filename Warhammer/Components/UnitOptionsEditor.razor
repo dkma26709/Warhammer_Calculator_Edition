@@ -178,9 +178,9 @@
         if (category is null) return;
         if (!FactionExtras.FactionUpgrades.TryGetValue(category, out var entries)) return;
 
-        var selected = Configuration.SelectedFactionUpgrades.TryGetValue(category, out var list)
+        var selected = Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list)
             ? list
-            : (Configuration.SelectedFactionUpgrades[category] = new List<string>());
+            : (Configuration.Loadout.SelectedFactionUpgrades[category] = new List<string>());
 
         var label = FormatUpgradeCategory(category);
         var perPick = option.Points ?? 0;
@@ -233,10 +233,10 @@
     private async Task OnFactionUpgradeToggled(string category, string name, bool isChecked)
     {
         if (Configuration is null) return;
-        if (!Configuration.SelectedFactionUpgrades.TryGetValue(category, out var list))
+        if (!Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list))
         {
             list = new List<string>();
-            Configuration.SelectedFactionUpgrades[category] = list;
+            Configuration.Loadout.SelectedFactionUpgrades[category] = list;
         }
 
         if (isChecked && !list.Contains(name)) list.Add(name);

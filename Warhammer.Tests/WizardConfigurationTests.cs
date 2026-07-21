@@ -30,35 +30,35 @@ public class WizardConfigurationTests
     public void WizardLevel_DefaultsToTwo()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.Equal(2, config.WizardLevel);
+        Assert.Equal(2, config.Loadout.WizardLevel);
     }
 
     [Fact]
     public void SelectedLore_DefaultsToNull()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.Null(config.SelectedLore);
+        Assert.Null(config.Loadout.SelectedLore);
     }
 
     [Fact]
     public void SelectedSpells_DefaultsToEmpty()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.Empty(config.SelectedSpells);
+        Assert.Empty(config.Loadout.SelectedSpells);
     }
 
     [Fact]
     public void SelectedLoreAndSpells_Mutable()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        config.SelectedLore = "Lore of the Wild";
-        config.SelectedSpells.Add("Bestial Surge");
-        config.SelectedSpells.Add("Wildform");
-        config.WizardLevel = 4;
+        config.Loadout.SelectedLore = "Lore of the Wild";
+        config.Loadout.SelectedSpells.Add("Bestial Surge");
+        config.Loadout.SelectedSpells.Add("Wildform");
+        config.Loadout.WizardLevel = 4;
 
-        Assert.Equal("Lore of the Wild", config.SelectedLore);
-        Assert.Equal(2, config.SelectedSpells.Count);
-        Assert.Contains("Bestial Surge", config.SelectedSpells);
-        Assert.Equal(4, config.WizardLevel);
+        Assert.Equal("Lore of the Wild", config.Loadout.SelectedLore);
+        Assert.Equal(2, config.Loadout.SelectedSpells.Count);
+        Assert.Contains("Bestial Surge", config.Loadout.SelectedSpells);
+        Assert.Equal(4, config.Loadout.WizardLevel);
     }
 }

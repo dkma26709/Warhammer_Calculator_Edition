@@ -8,7 +8,7 @@
         <div class="row g-2">
             <div class="col-4">
                 <label class="form-label small text-body-secondary mb-0">Level</label>
-                <select class="form-select form-select-sm" value="@Configuration.WizardLevel"
+                <select class="form-select form-select-sm" value="@Configuration.Loadout.WizardLevel"
                         @onchange="OnWizardLevelChanged">
                     @for (int lvl = 1; lvl <= 4; lvl++)
                     {
@@ -18,7 +18,7 @@
             </div>
             <div class="col-8">
                 <label class="form-label small text-body-secondary mb-0">Lore</label>
-                <select class="form-select form-select-sm" value="@(Configuration.SelectedLore ?? "")"
+                <select class="form-select form-select-sm" value="@(Configuration.Loadout.SelectedLore ?? "")"
                         @onchange="OnLoreChanged">
                     <option value="">— Select lore —</option>
                     @foreach (var lore in AvailableLores)
@@ -31,15 +31,15 @@
 
         @if (SelectedLoreEntry != null)
         {
-            var spellsPicked = Configuration.SelectedSpells.Count;
-            var atLimit = spellsPicked >= Configuration.WizardLevel;
+            var spellsPicked = Configuration.Loadout.SelectedSpells.Count;
+            var atLimit = spellsPicked >= Configuration.Loadout.WizardLevel;
             <div class="mt-2">
                 <label class="form-label small text-body-secondary mb-1">
-                    Spells (@spellsPicked / @Configuration.WizardLevel)
+                    Spells (@spellsPicked / @Configuration.Loadout.WizardLevel)
                 </label>
                 @foreach (var spell in SelectedLoreEntry.Spells)
                 {
-                    var checkedNow = Configuration.SelectedSpells.Contains(spell.Name);
+                    var checkedNow = Configuration.Loadout.SelectedSpells.Contains(spell.Name);
                     var disabled = !checkedNow && atLimit;
                     <div class="form-check small">
                         <input class="form-check-input" type="checkbox"
@@ -70,19 +70,19 @@
         FactionExtras?.LoresOfMagic ?? new List<LoreEntry>();
 
     private LoreEntry? SelectedLoreEntry =>
-        Configuration?.SelectedLore == null
+        Configuration?.Loadout.SelectedLore == null
             ? null
-            : AvailableLores.FirstOrDefault(l => l.Name == Configuration.SelectedLore);
+            : AvailableLores.FirstOrDefault(l => l.Name == Configuration.Loadout.SelectedLore);
 
     private async Task OnWizardLevelChanged(ChangeEventArgs e)
     {
         if (Configuration == null) return;
         if (int.TryParse(e.Value?.ToString(), out var lvl) && lvl is >= 1 and <= 4)
         {
-            Configuration.WizardLevel = lvl;
+            Configuration.Loadout.WizardLevel = lvl;
             // Drop any spells that now exceed the new lower cap.
-            while (Configuration.SelectedSpells.Count > lvl)
-                Configuration.SelectedSpells.RemoveAt(Configuration.SelectedSpells.Count - 1);
+            while (Configuration.Loadout.SelectedSpells.Count > lvl)
+                Configuration.Loadout.SelectedSpells.RemoveAt(Configuration.Loadout.SelectedSpells.Count - 1);
         }
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
@@ -91,8 +91,8 @@
     {
         if (Configuration == null) return;
         var name = e.Value?.ToString();
-        Configuration.SelectedLore = string.IsNullOrEmpty(name) ? null : name;
-        Configuration.SelectedSpells.Clear();
+        Configuration.Loadout.SelectedLore = string.IsNullOrEmpty(name) ? null : name;
+        Configuration.Loadout.SelectedSpells.Clear();
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
@@ -101,13 +101,13 @@
         if (Configuration == null) return;
         if (isChecked)
         {
-            if (Configuration.SelectedSpells.Count >= Configuration.WizardLevel) return;
-            if (!Configuration.SelectedSpells.Contains(spellName))
-                Configuration.SelectedSpells.Add(spellName);
+            if (Configuration.Loadout.SelectedSpells.Count >= Configuration.Loadout.WizardLevel) return;
+            if (!Configuration.Loadout.SelectedSpells.Contains(spellName))
+                Configuration.Loadout.SelectedSpells.Add(spellName);
         }
         else
         {
-            Configuration.SelectedSpells.Remove(spellName);
+            Configuration.Loadout.SelectedSpells.Remove(spellName);
         }
         await ConfigurationChanged.InvokeAsync(Configuration);
     }

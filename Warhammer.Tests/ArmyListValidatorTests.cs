@@ -42,7 +42,7 @@ public class ArmyListValidatorTests
     public void ValidList_ReturnsNoIssues()
     {
         var lord = MakeEntry("Lord", UnitCategory.Lords, 200, 1);
-        lord.IsGeneral = true;
+        lord.Loadout.IsGeneral = true;
         var list = MakeList(2000,
             lord,                                                    // 200 (10%)
             MakeEntry("Warriors", UnitCategory.Core, 10, 60),       // 600 (30%)
@@ -72,9 +72,9 @@ public class ArmyListValidatorTests
     public void MultipleGenerals_FlagsError()
     {
         var lord = MakeEntry("Lord", UnitCategory.Lords, 200, 1);
-        lord.IsGeneral = true;
+        lord.Loadout.IsGeneral = true;
         var thane = MakeEntry("Thane", UnitCategory.Heroes, 100, 1);
-        thane.IsGeneral = true;
+        thane.Loadout.IsGeneral = true;
         var list = MakeList(2000, lord, thane, MakeEntry("Warriors", UnitCategory.Core, 10, 60));
 
         var codes = V.Validate(list).Select(i => i.Code).ToList();
@@ -86,10 +86,10 @@ public class ArmyListValidatorTests
     public void MultipleBsb_FlagsError()
     {
         var lord = MakeEntry("Lord", UnitCategory.Lords, 200, 1);
-        lord.IsGeneral = true;
-        lord.IsBattleStandardBearer = true;
+        lord.Loadout.IsGeneral = true;
+        lord.Loadout.IsBattleStandardBearer = true;
         var thane = MakeEntry("Thane", UnitCategory.Heroes, 100, 1);
-        thane.IsBattleStandardBearer = true;
+        thane.Loadout.IsBattleStandardBearer = true;
         var list = MakeList(2000, lord, thane, MakeEntry("Warriors", UnitCategory.Core, 10, 60));
 
         var codes = V.Validate(list).Select(i => i.Code).ToList();

@@ -24,7 +24,7 @@ public class FactionUpgradeTests
     public void SelectedFactionUpgrades_DefaultsToEmpty()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.Empty(config.SelectedFactionUpgrades);
+        Assert.Empty(config.Loadout.SelectedFactionUpgrades);
     }
 
     [Fact]
@@ -36,7 +36,7 @@ public class FactionUpgradeTests
             new() { Type = "blessed_spawning", Points = 1, PerModel = true },
         });
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
+        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
         {
             "Blessed Spawning Of Chotec",
             "Blessed Spawning Of Sotek",
@@ -65,7 +65,7 @@ public class FactionUpgradeTests
             new() { Type = "blessed_spawning", Points = 1, PerModel = true },
         });
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
+        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
         {
             "Blessed Spawning Of Chotec",
         };

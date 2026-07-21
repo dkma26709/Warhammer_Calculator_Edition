@@ -46,7 +46,7 @@ public class ArmyListSerializer
     private static ArmyListUnitDto UnitToDto(UnitConfiguration u) => new()
     {
         UnitName = u.ResolvedUnit.Name,
-        CustomName = string.IsNullOrWhiteSpace(u.CustomName) ? null : u.CustomName.Trim(),
+        CustomName = string.IsNullOrWhiteSpace(u.Loadout.CustomName) ? null : u.Loadout.CustomName.Trim(),
         ModelCount = u.ModelCount,
         Frontage = u.Frontage,
         SelectedWeapon = u.SelectedWeaponKey,
@@ -61,23 +61,23 @@ public class ArmyListSerializer
             PointsCost = m.PointsCost,
             Modifier = m.Modifier,
         }).ToList(),
-        Banner = u.SelectedBanner == null ? null : new MagicItemDto
+        Banner = u.Loadout.SelectedBanner == null ? null : new MagicItemDto
         {
-            Name = u.SelectedBanner.Name,
-            Category = u.SelectedBanner.Category,
-            PointsCost = u.SelectedBanner.PointsCost,
-            Modifier = u.SelectedBanner.Modifier,
+            Name = u.Loadout.SelectedBanner.Name,
+            Category = u.Loadout.SelectedBanner.Category,
+            PointsCost = u.Loadout.SelectedBanner.PointsCost,
+            Modifier = u.Loadout.SelectedBanner.Modifier,
         },
-        WizardLevel = u.WizardLevel,
-        SelectedLore = u.SelectedLore,
-        SelectedSpells = u.SelectedSpells.ToList(),
+        WizardLevel = u.Loadout.WizardLevel,
+        SelectedLore = u.Loadout.SelectedLore,
+        SelectedSpells = u.Loadout.SelectedSpells.ToList(),
         Modifiers = u.Modifiers.ToList(),
         ShadowDance = u.SelectedShadowDance.ToString(),
         TreeAspect = u.SelectedTreeAspect.ToString(),
         UseTreeWhack = u.UseTreeWhack,
-        IsGeneral = u.IsGeneral,
-        IsBattleStandardBearer = u.IsBattleStandardBearer,
-        SelectedFactionUpgrades = u.SelectedFactionUpgrades
+        IsGeneral = u.Loadout.IsGeneral,
+        IsBattleStandardBearer = u.Loadout.IsBattleStandardBearer,
+        SelectedFactionUpgrades = u.Loadout.SelectedFactionUpgrades
             .ToDictionary(kv => kv.Key, kv => kv.Value.ToList()),
     };
 
@@ -136,17 +136,20 @@ public class ArmyListSerializer
     {
         var cfg = new UnitConfiguration(unit)
         {
-            CustomName = dto.CustomName,
             ModelCount = dto.ModelCount,
             Frontage = dto.Frontage,
             HasChampion = dto.HasChampion,
             HasMusician = dto.HasMusician,
             HasStandardBearer = dto.HasStandardBearer,
-            WizardLevel = dto.WizardLevel,
-            SelectedLore = dto.SelectedLore,
             UseTreeWhack = dto.UseTreeWhack,
-            IsGeneral = dto.IsGeneral,
-            IsBattleStandardBearer = dto.IsBattleStandardBearer,
+            Loadout =
+            {
+                CustomName = dto.CustomName,
+                WizardLevel = dto.WizardLevel,
+                SelectedLore = dto.SelectedLore,
+                IsGeneral = dto.IsGeneral,
+                IsBattleStandardBearer = dto.IsBattleStandardBearer,
+            },
         };
 
         if (!string.IsNullOrEmpty(dto.SelectedWeapon))
@@ -156,7 +159,7 @@ public class ArmyListSerializer
             cfg.SelectedUpgrades[k] = v;
 
         foreach (var (category, names) in dto.SelectedFactionUpgrades)
-            cfg.SelectedFactionUpgrades[category] = new List<string>(names);
+            cfg.Loadout.SelectedFactionUpgrades[category] = new List<string>(names);
 
         foreach (var mi in dto.MagicItems)
         {
@@ -171,7 +174,7 @@ public class ArmyListSerializer
 
         if (dto.Banner != null)
         {
-            cfg.SelectedBanner = new SelectedMagicItem
+            cfg.Loadout.SelectedBanner = new SelectedMagicItem
             {
                 Name = dto.Banner.Name,
                 Category = dto.Banner.Category,
@@ -180,7 +183,7 @@ public class ArmyListSerializer
             };
         }
 
-        cfg.SelectedSpells.AddRange(dto.SelectedSpells);
+        cfg.Loadout.SelectedSpells.AddRange(dto.SelectedSpells);
         cfg.Modifiers.AddRange(dto.Modifiers);
 
         if (Enum.TryParse<ShadowDance>(dto.ShadowDance, out var sd)) cfg.SelectedShadowDance = sd;

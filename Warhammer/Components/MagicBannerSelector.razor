@@ -6,13 +6,13 @@
 {
     <div class="mb-3 border border-secondary rounded p-2">
         <label class="form-label small text-body-secondary">
-            Magic Standard (@(Configuration.SelectedBanner?.PointsCost ?? 0) / @bannerCap pts)
+            Magic Standard (@(Configuration.Loadout.SelectedBanner?.PointsCost ?? 0) / @bannerCap pts)
         </label>
-        @if (Configuration.SelectedBanner != null)
+        @if (Configuration.Loadout.SelectedBanner != null)
         {
             <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="small"><strong>@Configuration.SelectedBanner.Name</strong>
-                    <span class="text-body-secondary">(@Configuration.SelectedBanner.PointsCost pts)</span>
+                <span class="small"><strong>@Configuration.Loadout.SelectedBanner.Name</strong>
+                    <span class="text-body-secondary">(@Configuration.Loadout.SelectedBanner.PointsCost pts)</span>
                 </span>
                 <button class="btn btn-outline-danger btn-sm py-0 px-1" style="font-size:0.7rem"
                         @onclick="RemoveBanner">✕</button>
@@ -60,7 +60,7 @@
         var cost = ParseBannerPoints(banner.Points);
         if (Configuration.BannerBudget is int cap && cost > cap) return;
 
-        Configuration.SelectedBanner = new SelectedMagicItem
+        Configuration.Loadout.SelectedBanner = new SelectedMagicItem
         {
             Name = banner.Name,
             Category = banner.Category,
@@ -72,7 +72,7 @@
     private async Task RemoveBanner()
     {
         if (Configuration == null) return;
-        Configuration.SelectedBanner = null;
+        Configuration.Loadout.SelectedBanner = null;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }

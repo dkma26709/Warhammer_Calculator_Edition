@@ -23,11 +23,8 @@ public class UnitConfiguration
     public int ModelCount { get; set; }
     public int Frontage { get; set; }
 
-    /// <summary>
-    /// Optional user-supplied name (e.g. "Aldric the Bold" on an Empire Captain).
-    /// Displayed alongside the unit's book name, not as a replacement.
-    /// </summary>
-    public string? CustomName { get; set; }
+    /// <summary>Army-builder state (custom name, wizard config, banner, General/BSB, faction upgrades).</summary>
+    public ArmyLoadout Loadout { get; } = new();
 
     /// <summary>Selected weapon as enum key.</summary>
     public CloseCombatWeaponKey SelectedWeapon { get; set; }
@@ -62,21 +59,11 @@ public class UnitConfiguration
     /// <summary>Generic modifiers applied to this unit (from magic items, spells, or manual entry).</summary>
     public List<UnitModifier> Modifiers { get; } = [];
 
-    /// <summary>Wizard level (1-4) for casting spells. Default 2; only meaningful for wizard-capable units.</summary>
-    public int WizardLevel { get; set; } = 2;
-
-    /// <summary>Selected lore name (matches LoreEntry.Name from faction extras). Null if not a wizard or unset.</summary>
-    public string? SelectedLore { get; set; }
-
-    /// <summary>Names of spells the wizard knows (picked from the selected lore at army creation time).</summary>
-    public List<string> SelectedSpells { get; } = [];
+    // ─── Capability queries (derived from the unit, not user state) ──
 
     /// <summary>True when this unit has any wizard_upgrade option, indicating it can cast spells.</summary>
     public bool IsWizardCapable =>
         ResolvedUnit.Options.Any(o => o.IsType(OptionType.WizardUpgrade));
-
-    /// <summary>Magic standard (banner) selected by the unit. Null when none chosen.</summary>
-    public SelectedMagicItem? SelectedBanner { get; set; }
 
     /// <summary>Points cap for this unit's magic standard. Null when the unit can't carry one.</summary>
     public int? BannerBudget =>
@@ -86,27 +73,15 @@ public class UnitConfiguration
             .FirstOrDefault(s => s.IsType(OptionType.MagicStandard))?
             .PointsLimit;
 
-    /// <summary>True when this character is designated as the army's General.</summary>
-    public bool IsGeneral { get; set; }
-
-    /// <summary>True when this character is the army's Battle Standard Bearer.</summary>
-    public bool IsBattleStandardBearer { get; set; }
-
     /// <summary>Extra points cost for carrying the Battle Standard, if eligible and enabled.</summary>
     public double BattleStandardCost =>
-        IsBattleStandardBearer
+        Loadout.IsBattleStandardBearer
             ? ResolvedUnit.Options.FirstOrDefault(o => o.IsType(OptionType.BattleStandard))?.Points ?? 0
             : 0;
 
     /// <summary>True when this unit is a character that can carry the Battle Standard.</summary>
     public bool IsBattleStandardEligible =>
         ResolvedUnit.Options.Any(o => o.IsType(OptionType.BattleStandard));
-
-    /// <summary>
-    /// Faction-specific upgrade selections keyed by category (e.g. "blessed_spawnings",
-    /// "marks_of_chaos"). Values are the chosen upgrade names for that category.
-    /// </summary>
-    public Dictionary<string, List<string>> SelectedFactionUpgrades { get; } = new();
 
     /// <summary>
     /// Aggregate cost for faction upgrade selections tied to a per-model option
@@ -121,7 +96,7 @@ public class UnitConfiguration
             {
                 var category = FactionUpgradeCategoryFor(option.GetOptionType());
                 if (category is null) continue;
-                if (!SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
+                if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
 
                 double perPick = option.Points ?? 0;
                 double multiplier = option.PerModel == true ? ModelCount : 1;
@@ -609,7 +584,7 @@ public class UnitConfiguration
                                + (HasMusician ? musCost : 0)
                                + (HasStandardBearer ? stdCost : 0);
             double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
-            double bannerCost = SelectedBanner?.PointsCost ?? 0;
+            double bannerCost = Loadout.SelectedBanner?.PointsCost ?? 0;
             return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost
                  + BattleStandardCost + FactionUpgradeCost;
         }
