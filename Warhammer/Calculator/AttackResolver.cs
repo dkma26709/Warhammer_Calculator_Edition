@@ -82,9 +82,7 @@ public class AttackResolver
 
         int toHitNeeded = _repo.GetToHitScore(profile.WS ?? 1, defenderEffWS);
 
-        if (defender.SelectedShadowDance == ShadowDance.TheShadowsCoil
-            || defender.SelectedTreeAspect == TreeAspect.Willow
-            || defenderRules.Minus1ToBeHit)
+        if (defenderRules.Minus1ToBeHit)
             toHitNeeded = Math.Min(toHitNeeded + 1, 6);
 
         int effectiveAttackerI = profile.I ?? 1;
@@ -94,12 +92,10 @@ public class AttackResolver
             ? cachedEffectiveDefenderI
             : ComputeEffectiveI(defender, context, !isAttackerSide);
 
-        bool wovenMistASF = isRider && attacker.SelectedShadowDance == ShadowDance.WovenMist;
-
         string? opponentFaction = context.GetOpponentFactionKey(isAttackerSide);
         bool hatredApplies = attackerRules.Hatred
             && FactionRaces.HatredApplies(attackerRules.HatredTarget, opponentFaction);
-        bool effectiveASF = attackerRules.AlwaysStrikesFirst || wovenMistASF;
+        bool effectiveASF = attackerRules.AlwaysStrikesFirst;
         bool rerollMisses = (hatredApplies && (isFirstRound || attackerRules.EternalHatred))
             || primalFuryHatred
             || (effectiveASF && !attackerRules.AlwaysStrikesLast
@@ -140,19 +136,17 @@ public class AttackResolver
             flamingReroll = true;
         bool murderousProwess = isRider && (attackerRules.MurderousProwess || attackerRules.MartialMemories);
 
-        bool whirlingDeath = isRider && attacker.SelectedShadowDance == ShadowDance.WhirlingDeath;
         bool defenderImmuneKB = defenderRules.ImmunityKillingBlow;
         bool rerollSuccessfulWounds = defenderRules.RerollSuccessfulWoundsAgainst;
 
         var (totalWoundsRolled, killingBlows, nonEligibleKBWounds, normalWounds) =
             RollToWound(hits, effectiveToWound, flamingReroll, murderousProwess,
-                isRider && (attackerRules.KillingBlow || whirlingDeath) && !defenderImmuneKB,
+                isRider && attackerRules.KillingBlow && !defenderImmuneKB,
                 isRider && attackerRules.HeroicKillingBlow && !defenderImmuneKB,
                 defender.TroopType, rerollSuccessfulWounds, rng);
 
         // ── Armour saves (normal wounds only) ──────────────────────
         int ap = (isRider ? attackerRules.ArmourPiercing : null) ?? 0;
-        if (whirlingDeath) ap = Math.Max(ap, 1);
         int strengthMod = _repo.GetArmourSaveModifier(effectiveStrength);
         bool ignoresArmour = isRider && attackerRules.IgnoresArmourSaves;
         bool lightningAttacks = isRider && attackerRules.LightningAttacks;

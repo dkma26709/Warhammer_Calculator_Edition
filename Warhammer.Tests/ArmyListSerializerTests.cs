@@ -61,11 +61,10 @@ public class ArmyListSerializerTests
             HasChampion = true,
             HasMusician = true,
             HasStandardBearer = false,
-            WizardLevel = 3,
-            SelectedLore = "Lore of Fire",
+            Loadout = { WizardLevel = 3, SelectedLore = "Lore of Fire" },
         };
-        original.SelectedSpells.Add("Fireball");
-        original.SelectedSpells.Add("Flame Storm");
+        original.Loadout.SelectedSpells.Add("Fireball");
+        original.Loadout.SelectedSpells.Add("Flame Storm");
 
         var list = new ArmyList
         {
@@ -92,9 +91,9 @@ public class ArmyListSerializerTests
         Assert.True(copy.HasChampion);
         Assert.True(copy.HasMusician);
         Assert.False(copy.HasStandardBearer);
-        Assert.Equal(3, copy.WizardLevel);
-        Assert.Equal("Lore of Fire", copy.SelectedLore);
-        Assert.Equal(new[] { "Fireball", "Flame Storm" }, copy.SelectedSpells);
+        Assert.Equal(3, copy.Loadout.WizardLevel);
+        Assert.Equal("Lore of Fire", copy.Loadout.SelectedLore);
+        Assert.Equal(new[] { "Fireball", "Flame Storm" }, copy.Loadout.SelectedSpells);
     }
 
     [Fact]
@@ -167,7 +166,7 @@ public class ArmyListSerializerTests
         var config = new UnitConfiguration(unit)
         {
             ModelCount = 1,
-            CustomName = "Aldric the Bold",
+            Loadout = { CustomName = "Aldric the Bold" },
         };
         var list = new ArmyList
         {
@@ -182,7 +181,7 @@ public class ArmyListSerializerTests
 
         var result = await serializer.DeserializeAsync(json);
         Assert.True(result.Success);
-        Assert.Equal("Aldric the Bold", result.List!.Units[0].CustomName);
+        Assert.Equal("Aldric the Bold", result.List!.Units[0].Loadout.CustomName);
     }
 
     [Fact]
@@ -193,7 +192,7 @@ public class ArmyListSerializerTests
         {
             Faction = FactionKey.Dwarfs,
             PointsTarget = 2000,
-            Units = { new UnitConfiguration(unit) { CustomName = "   " } },
+            Units = { new UnitConfiguration(unit) { Loadout = { CustomName = "   " } } },
         };
 
         var serializer = new ArmyListSerializer(new StubRepo(unit));
@@ -209,11 +208,14 @@ public class ArmyListSerializerTests
         var config = new UnitConfiguration(warriors)
         {
             ModelCount = 20,
-            SelectedBanner = new SelectedMagicItem
+            Loadout =
             {
-                Name = "Razor Standard",
-                Category = "magic_standard",
-                PointsCost = 45,
+                SelectedBanner = new SelectedMagicItem
+                {
+                    Name = "Razor Standard",
+                    Category = "magic_standard",
+                    PointsCost = 45,
+                },
             },
         };
         var list = new ArmyList

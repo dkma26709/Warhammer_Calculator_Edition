@@ -59,11 +59,14 @@ public class MagicBannerTests
         var config = new UnitConfiguration(unit)
         {
             ModelCount = 20,
-            SelectedBanner = new SelectedMagicItem
+            Loadout =
             {
-                Name = "Razor Standard",
-                Category = "magic_standard",
-                PointsCost = 45,
+                SelectedBanner = new SelectedMagicItem
+                {
+                    Name = "Razor Standard",
+                    Category = "magic_standard",
+                    PointsCost = 45,
+                },
             },
         };
 

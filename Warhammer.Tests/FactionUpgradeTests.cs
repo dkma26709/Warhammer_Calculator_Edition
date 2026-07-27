@@ -1,4 +1,5 @@
 using Warhammer.Models.Domain;
+using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
 
 namespace Warhammer.Tests;
@@ -9,20 +10,21 @@ public class FactionUpgradeTests
     public void FactionUpgradeCategoryFor_BlessedSpawning_MapsToPlural()
     {
         Assert.Equal("blessed_spawnings",
-            UnitConfiguration.FactionUpgradeCategoryFor("blessed_spawning"));
+            UnitConfiguration.FactionUpgradeCategoryFor(OptionType.BlessedSpawning));
     }
 
     [Fact]
     public void FactionUpgradeCategoryFor_Unknown_ReturnsNull()
     {
-        Assert.Null(UnitConfiguration.FactionUpgradeCategoryFor("something_else"));
+        Assert.Null(UnitConfiguration.FactionUpgradeCategoryFor(OptionType.Command));
+        Assert.Null(UnitConfiguration.FactionUpgradeCategoryFor(null));
     }
 
     [Fact]
     public void SelectedFactionUpgrades_DefaultsToEmpty()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.Empty(config.SelectedFactionUpgrades);
+        Assert.Empty(config.Loadout.SelectedFactionUpgrades);
     }
 
     [Fact]
@@ -34,7 +36,7 @@ public class FactionUpgradeTests
             new() { Type = "blessed_spawning", Points = 1, PerModel = true },
         });
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
+        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
         {
             "Blessed Spawning Of Chotec",
             "Blessed Spawning Of Sotek",
@@ -63,7 +65,7 @@ public class FactionUpgradeTests
             new() { Type = "blessed_spawning", Points = 1, PerModel = true },
         });
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
+        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] = new List<string>
         {
             "Blessed Spawning Of Chotec",
         };

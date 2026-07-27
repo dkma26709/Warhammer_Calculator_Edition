@@ -45,7 +45,7 @@ public class GeneralAndBsbTests
         {
             new() { Type = "battle_standard", Points = 25 },
         });
-        var config = new UnitConfiguration(unit) { IsBattleStandardBearer = true };
+        var config = new UnitConfiguration(unit) { Loadout = { IsBattleStandardBearer = true } };
 
         Assert.Equal(25, config.BattleStandardCost);
     }
@@ -57,7 +57,7 @@ public class GeneralAndBsbTests
         {
             new() { Type = "battle_standard", Points = 25 },
         });
-        var config = new UnitConfiguration(unit) { ModelCount = 1, IsBattleStandardBearer = true };
+        var config = new UnitConfiguration(unit) { ModelCount = 1, Loadout = { IsBattleStandardBearer = true } };
 
         Assert.Equal(100 + 25, config.TotalPointsCost);
     }
@@ -66,13 +66,13 @@ public class GeneralAndBsbTests
     public void IsGeneral_DefaultsToFalse()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.False(config.IsGeneral);
+        Assert.False(config.Loadout.IsGeneral);
     }
 
     [Fact]
     public void IsBattleStandardBearer_DefaultsToFalse()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.False(config.IsBattleStandardBearer);
+        Assert.False(config.Loadout.IsBattleStandardBearer);
     }
 }

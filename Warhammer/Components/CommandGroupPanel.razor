@@ -1,0 +1,67 @@
+@using Warhammer.Models.Domain
+
+@if (Configuration != null &&
+     (Configuration.CanHaveChampion || Configuration.CanHaveMusician || Configuration.CanHaveStandardBearer))
+{
+    <div class="mb-2">
+        <label class="form-label small text-body-secondary">Command Group</label>
+        <div class="d-flex gap-3">
+            @if (Configuration.CanHaveChampion)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@(_id + "-champ")"
+                           checked="@Configuration.HasChampion"
+                           @onchange="e => OnChampionChanged((bool)(e.Value ?? false))" />
+                    <label class="form-check-label small" for="@(_id + "-champ")">Champion</label>
+                </div>
+            }
+            @if (Configuration.CanHaveMusician)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@(_id + "-mus")"
+                           checked="@Configuration.HasMusician"
+                           @onchange="e => OnMusicianChanged((bool)(e.Value ?? false))" />
+                    <label class="form-check-label small" for="@(_id + "-mus")">Musician</label>
+                </div>
+            }
+            @if (Configuration.CanHaveStandardBearer)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="@(_id + "-std")"
+                           checked="@Configuration.HasStandardBearer"
+                           @onchange="e => OnStandardChanged((bool)(e.Value ?? false))" />
+                    <label class="form-check-label small" for="@(_id + "-std")">Standard</label>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+
+    private string _id = Guid.NewGuid().ToString("N")[..8];
+
+    private async Task OnChampionChanged(bool value)
+    {
+        if (Configuration == null) return;
+        Configuration.HasChampion = value;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnMusicianChanged(bool value)
+    {
+        if (Configuration == null) return;
+        Configuration.HasMusician = value;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnStandardChanged(bool value)
+    {
+        if (Configuration == null) return;
+        Configuration.HasStandardBearer = value;
+        if (!value) Configuration.Loadout.SelectedBanner = null;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+}

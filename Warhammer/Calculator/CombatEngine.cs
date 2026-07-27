@@ -18,11 +18,12 @@ public class CombatEngine
         UnitConfiguration attacker,
         UnitConfiguration defender,
         CombatContext context,
-        int iterations = 10_000)
+        int iterations = 10_000,
+        int? seed = null)
     {
         var sw = Stopwatch.StartNew();
         var resolver = new CombatResolver(_repo);
-        var rng = new Random();
+        var rng = seed is int s ? new Random(s) : new Random();
 
         // Pre-build attack groups once (weapon parsing, parry calc, sorting)
         var groups = resolver.PrepareAttackGroups(attacker, defender, context);
@@ -148,11 +149,12 @@ public class CombatEngine
         UnitConfiguration defender,
         CombatContext context,
         int maxRounds = 6,
-        int iterations = 10_000)
+        int iterations = 10_000,
+        int? seed = null)
     {
         var sw = Stopwatch.StartNew();
         var resolver = new CombatResolver(_repo);
-        var rng = new Random();
+        var rng = seed is int s ? new Random(s) : new Random();
 
         // Pre-build attack groups once — they reference attacker/defender objects,
         // and computed properties (TotalAttacks, Ranks, etc.) read ModelCount dynamically.

@@ -1,0 +1,50 @@
+@using Warhammer.Models.Domain
+
+@if (Configuration != null)
+{
+    <div class="mb-2">
+        @if (Configuration.Modifiers.Count > 0)
+        {
+            <label class="form-label small text-body-secondary">Custom Modifiers</label>
+            @for (int mi = 0; mi < Configuration.Modifiers.Count; mi++)
+            {
+                var capturedIndex = mi;
+                <div class="position-relative">
+                    <button class="btn btn-outline-danger btn-sm py-0 px-1 position-absolute top-0 end-0" style="font-size:0.7rem; z-index:1"
+                            @onclick="() => RemoveCustomModifier(capturedIndex)">✕</button>
+                    <ModifierEditor Value="@Configuration.Modifiers[capturedIndex]"
+                                    ValueChanged="m => OnCustomModifierChanged(capturedIndex, m)" />
+                </div>
+            }
+        }
+        <button class="btn btn-outline-secondary btn-sm" @onclick="AddCustomModifier">
+            + Custom modifier
+        </button>
+    </div>
+}
+
+@code {
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+
+    private async Task AddCustomModifier()
+    {
+        if (Configuration == null) return;
+        Configuration.Modifiers.Add(new UnitModifier { Label = "Custom", Source = "Manual" });
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task RemoveCustomModifier(int index)
+    {
+        if (Configuration == null || index < 0 || index >= Configuration.Modifiers.Count) return;
+        Configuration.Modifiers.RemoveAt(index);
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnCustomModifierChanged(int index, UnitModifier modifier)
+    {
+        if (Configuration == null || index < 0 || index >= Configuration.Modifiers.Count) return;
+        Configuration.Modifiers[index] = modifier;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+}

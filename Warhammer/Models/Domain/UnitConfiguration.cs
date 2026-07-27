@@ -23,11 +23,8 @@ public class UnitConfiguration
     public int ModelCount { get; set; }
     public int Frontage { get; set; }
 
-    /// <summary>
-    /// Optional user-supplied name (e.g. "Aldric the Bold" on an Empire Captain).
-    /// Displayed alongside the unit's book name, not as a replacement.
-    /// </summary>
-    public string? CustomName { get; set; }
+    /// <summary>Army-builder state (custom name, wizard config, banner, General/BSB, faction upgrades).</summary>
+    public ArmyLoadout Loadout { get; } = new();
 
     /// <summary>Selected weapon as enum key.</summary>
     public CloseCombatWeaponKey SelectedWeapon { get; set; }
@@ -62,51 +59,29 @@ public class UnitConfiguration
     /// <summary>Generic modifiers applied to this unit (from magic items, spells, or manual entry).</summary>
     public List<UnitModifier> Modifiers { get; } = [];
 
-    /// <summary>Wizard level (1-4) for casting spells. Default 2; only meaningful for wizard-capable units.</summary>
-    public int WizardLevel { get; set; } = 2;
-
-    /// <summary>Selected lore name (matches LoreEntry.Name from faction extras). Null if not a wizard or unset.</summary>
-    public string? SelectedLore { get; set; }
-
-    /// <summary>Names of spells the wizard knows (picked from the selected lore at army creation time).</summary>
-    public List<string> SelectedSpells { get; } = [];
+    // ─── Capability queries (derived from the unit, not user state) ──
 
     /// <summary>True when this unit has any wizard_upgrade option, indicating it can cast spells.</summary>
     public bool IsWizardCapable =>
-        ResolvedUnit.Options.Any(o => o.Type == "wizard_upgrade");
-
-    /// <summary>Magic standard (banner) selected by the unit. Null when none chosen.</summary>
-    public SelectedMagicItem? SelectedBanner { get; set; }
+        ResolvedUnit.Options.Any(o => o.IsType(OptionType.WizardUpgrade));
 
     /// <summary>Points cap for this unit's magic standard. Null when the unit can't carry one.</summary>
     public int? BannerBudget =>
         ResolvedUnit.Options
-            .FirstOrDefault(o => o.Role == "Standard Bearer" && o.SubOptions != null)?
+            .FirstOrDefault(o => o.IsRole(CommandRole.StandardBearer) && o.SubOptions != null)?
             .SubOptions!
-            .FirstOrDefault(s => s.Type == "magic_standard")?
+            .FirstOrDefault(s => s.IsType(OptionType.MagicStandard))?
             .PointsLimit;
-
-    /// <summary>True when this character is designated as the army's General.</summary>
-    public bool IsGeneral { get; set; }
-
-    /// <summary>True when this character is the army's Battle Standard Bearer.</summary>
-    public bool IsBattleStandardBearer { get; set; }
 
     /// <summary>Extra points cost for carrying the Battle Standard, if eligible and enabled.</summary>
     public double BattleStandardCost =>
-        IsBattleStandardBearer
-            ? ResolvedUnit.Options.FirstOrDefault(o => o.Type == "battle_standard")?.Points ?? 0
+        Loadout.IsBattleStandardBearer
+            ? ResolvedUnit.Options.FirstOrDefault(o => o.IsType(OptionType.BattleStandard))?.Points ?? 0
             : 0;
 
     /// <summary>True when this unit is a character that can carry the Battle Standard.</summary>
     public bool IsBattleStandardEligible =>
-        ResolvedUnit.Options.Any(o => o.Type == "battle_standard");
-
-    /// <summary>
-    /// Faction-specific upgrade selections keyed by category (e.g. "blessed_spawnings",
-    /// "marks_of_chaos"). Values are the chosen upgrade names for that category.
-    /// </summary>
-    public Dictionary<string, List<string>> SelectedFactionUpgrades { get; } = new();
+        ResolvedUnit.Options.Any(o => o.IsType(OptionType.BattleStandard));
 
     /// <summary>
     /// Aggregate cost for faction upgrade selections tied to a per-model option
@@ -119,10 +94,9 @@ public class UnitConfiguration
             double total = 0;
             foreach (var option in ResolvedUnit.Options)
             {
-                if (option.Type is null) continue;
-                var category = FactionUpgradeCategoryFor(option.Type);
+                var category = FactionUpgradeCategoryFor(option.GetOptionType());
                 if (category is null) continue;
-                if (!SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
+                if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
 
                 double perPick = option.Points ?? 0;
                 double multiplier = option.PerModel == true ? ModelCount : 1;
@@ -132,10 +106,10 @@ public class UnitConfiguration
         }
     }
 
-    /// <summary>Map an option Type to the factionUpgrades category name.</summary>
-    public static string? FactionUpgradeCategoryFor(string optionType) => optionType switch
+    /// <summary>Map an option type to the factionUpgrades category name.</summary>
+    public static string? FactionUpgradeCategoryFor(OptionType? optionType) => optionType switch
     {
-        "blessed_spawning" => "blessed_spawnings",
+        OptionType.BlessedSpawning => "blessed_spawnings",
         _ => null,
     };
 
@@ -149,9 +123,79 @@ public class UnitConfiguration
 
     // ─── Modifier system ─────────────────────────────────────────
 
-    /// <summary>All modifiers combined: magic item modifiers + standalone modifiers.</summary>
+    /// <summary>
+    /// Faction ability selections (Shadow Dances, Tree Aspects) expressed as ordinary
+    /// modifiers, so their effects flow through the same pipeline as magic items and
+    /// spells instead of being special-cased in the combat engine.
+    /// </summary>
+    private IEnumerable<UnitModifier> FactionAbilityModifiers
+    {
+        get
+        {
+            switch (SelectedShadowDance)
+            {
+                case ShadowDance.WhirlingDeath:
+                    yield return new UnitModifier
+                    {
+                        Label = "Whirling Death", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { KillingBlow = true, ArmourPiercing = 1 },
+                    };
+                    break;
+                case ShadowDance.StormOfBlades:
+                    yield return new UnitModifier
+                    {
+                        Label = "Storm of Blades", Source = "Faction Ability",
+                        AttacksBonus = 1,
+                    };
+                    break;
+                case ShadowDance.TheShadowsCoil:
+                    yield return new UnitModifier
+                    {
+                        Label = "The Shadows Coil", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { Minus1ToBeHit = true },
+                    };
+                    break;
+                case ShadowDance.WovenMist:
+                    yield return new UnitModifier
+                    {
+                        Label = "Woven Mist", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { AlwaysStrikesFirst = true },
+                    };
+                    break;
+            }
+
+            switch (SelectedTreeAspect)
+            {
+                case TreeAspect.Birch:
+                    yield return new UnitModifier
+                    {
+                        Label = "Birch", Source = "Faction Ability",
+                        AttacksBonus = 1,
+                    };
+                    break;
+                case TreeAspect.Oak:
+                    yield return new UnitModifier
+                    {
+                        Label = "Oak", Source = "Faction Ability",
+                        ToughnessBonus = 1,
+                    };
+                    break;
+                case TreeAspect.Willow:
+                    yield return new UnitModifier
+                    {
+                        Label = "Willow", Source = "Faction Ability",
+                        RuleOverrides = new ParsedSpecialRules { Minus1ToBeHit = true },
+                    };
+                    break;
+            }
+        }
+    }
+
+    /// <summary>All modifiers combined: magic items + faction abilities + standalone modifiers.</summary>
     private IEnumerable<UnitModifier> AllModifiers =>
-        SelectedMagicItems.Select(mi => mi.Modifier).Concat(Modifiers);
+        SelectedMagicItems.Select(mi => mi.Modifier)
+            .Concat(FactionAbilityModifiers)
+            .Concat(Modifiers);
 
     /// <summary>Aggregate of all modifiers — stat bonuses summed, booleans ORed, saves take best.</summary>
     public UnitModifier AggregateModifier => UnitModifier.Aggregate(AllModifiers);
@@ -405,18 +449,8 @@ public class UnitConfiguration
     /// <summary>Best WS for combat (max of rider/mount for split profiles), including modifier bonuses.</summary>
     public int BestWS => SplitProfileMax(p => p.WS, 1) + (AggregateModifier.WeaponSkillBonus ?? 0);
 
-    /// <summary>Best T for combat (max of rider/mount for split profiles), including stance and modifier bonuses.</summary>
-    public int BestT
-    {
-        get
-        {
-            int t = SplitProfileMax(p => p.T, 3);
-            if (SelectedTreeAspect == TreeAspect.Oak)
-                t += 1;
-            t += AggregateModifier.ToughnessBonus ?? 0;
-            return t;
-        }
-    }
+    /// <summary>Best T for combat (max of rider/mount for split profiles), including modifier bonuses.</summary>
+    public int BestT => SplitProfileMax(p => p.T, 3) + (AggregateModifier.ToughnessBonus ?? 0);
 
     private int SplitProfileMax(Func<ProfileEntry, int?> stat, int fallback)
     {
@@ -459,14 +493,6 @@ public class UnitConfiguration
 
         // Devastating Charge: +1 Attack on charge
         if (isCharging && rules.DevastatingCharge)
-            attacks += 1;
-
-        // Shadow Dance: Storm of Blades (+1 Attack)
-        if (SelectedShadowDance == ShadowDance.StormOfBlades)
-            attacks += 1;
-
-        // Tree Aspect: Birch (+1 Attack)
-        if (SelectedTreeAspect == TreeAspect.Birch)
             attacks += 1;
 
         // Weapon extra attacks (e.g., Two Hand Weapons: +1 Attack)
@@ -554,16 +580,16 @@ public class UnitConfiguration
                 var option = UnitEntry.Options[i];
                 if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
 
-                switch (option.Type)
+                switch (option.GetOptionType())
                 {
-                    case "equipment" or "mount":
+                    case OptionType.Equipment or OptionType.Mount:
                         if (option.Choices == null || choiceIdx >= option.Choices.Count) continue;
                         var choice = option.Choices[choiceIdx];
                         var choicePts = choice.Points ?? 0;
                         total += choice.PerModel ? choicePts * ModelCount : choicePts;
                         break;
 
-                    case "upgrade" when option.SubOptions != null:
+                    case OptionType.Upgrade when option.SubOptions != null:
                         if (choiceIdx >= option.SubOptions.Count) continue;
                         var subOption = option.SubOptions[choiceIdx];
                         var subChoice = subOption.Choices?.FirstOrDefault();
@@ -572,7 +598,7 @@ public class UnitConfiguration
                         total += subPerModel ? subPts * ModelCount : subPts;
                         break;
 
-                    case "upgrade" or "wizard_upgrade" or "blessed_spawning":
+                    case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
                         var flatPts = option.Points ?? 0;
                         var flatPerModel = option.PerModel ?? false;
                         total += flatPerModel ? flatPts * ModelCount : flatPts;
@@ -610,7 +636,7 @@ public class UnitConfiguration
                                + (HasMusician ? musCost : 0)
                                + (HasStandardBearer ? stdCost : 0);
             double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
-            double bannerCost = SelectedBanner?.PointsCost ?? 0;
+            double bannerCost = Loadout.SelectedBanner?.PointsCost ?? 0;
             return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost
                  + BattleStandardCost + FactionUpgradeCost;
         }

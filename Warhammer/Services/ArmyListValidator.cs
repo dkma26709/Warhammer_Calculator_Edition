@@ -62,7 +62,7 @@ public class ArmyListValidator
         }
         else
         {
-            var generals = characters.Where(c => c.IsGeneral).ToList();
+            var generals = characters.Where(c => c.Loadout.IsGeneral).ToList();
             if (generals.Count == 0)
             {
                 issues.Add(new(ValidationSeverity.Warning, "NO_GENERAL_DESIGNATED",
@@ -75,7 +75,7 @@ public class ArmyListValidator
             }
         }
 
-        var bsbs = list.Units.Where(u => u.IsBattleStandardBearer).ToList();
+        var bsbs = list.Units.Where(u => u.Loadout.IsBattleStandardBearer).ToList();
         if (bsbs.Count > 1)
         {
             issues.Add(new(ValidationSeverity.Error, "MULTIPLE_BSB",

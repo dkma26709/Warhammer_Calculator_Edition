@@ -278,7 +278,7 @@ public class CombatResolver
             IsMountAttack = false,
             IsAttackerSide = isAttackerSide,
             Initiative = effectiveI,
-            HasASF = unitRules.AlwaysStrikesFirst || unit.SelectedShadowDance == ShadowDance.WovenMist,
+            HasASF = unitRules.AlwaysStrikesFirst,
             HasASL = unitRules.AlwaysStrikesLast,
             CachedWeaponRules = weaponRules,
             CachedDefenderParry = defenderParry,

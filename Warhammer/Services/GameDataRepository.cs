@@ -192,7 +192,7 @@ public class GameDataRepository : IGameDataRepository
 
         var command = ResolveCommandAvailability(entry.Options);
         var magicItemAllowance = entry.Options?
-            .Where(o => o.Type == "magic_items")
+            .Where(o => o.IsType(OptionType.MagicItems))
             .Select(o => o.PointsLimit)
             .FirstOrDefault();
 

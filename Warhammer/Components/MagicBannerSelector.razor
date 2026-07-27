@@ -1,0 +1,78 @@
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Json
+
+@if (Configuration != null && Configuration.HasStandardBearer
+     && Configuration.BannerBudget is int bannerCap && AvailableBanners.Count > 0)
+{
+    <div class="mb-3 border border-secondary rounded p-2">
+        <label class="form-label small text-body-secondary">
+            Magic Standard (@(Configuration.Loadout.SelectedBanner?.PointsCost ?? 0) / @bannerCap pts)
+        </label>
+        @if (Configuration.Loadout.SelectedBanner != null)
+        {
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="small"><strong>@Configuration.Loadout.SelectedBanner.Name</strong>
+                    <span class="text-body-secondary">(@Configuration.Loadout.SelectedBanner.PointsCost pts)</span>
+                </span>
+                <button class="btn btn-outline-danger btn-sm py-0 px-1" style="font-size:0.7rem"
+                        @onclick="RemoveBanner">✕</button>
+            </div>
+        }
+        else
+        {
+            <select class="form-select form-select-sm" value="" @onchange="OnBannerSelected">
+                <option value="">— Add magic standard —</option>
+                @foreach (var banner in AvailableBanners)
+                {
+                    var cost = ParseBannerPoints(banner.Points);
+                    var disabled = cost > bannerCap;
+                    <option value="@banner.Name" disabled="@disabled">
+                        @banner.Name (@banner.Points pts)
+                    </option>
+                }
+            </select>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+
+    /// <summary>Full magic item pool (common + faction); banners are filtered from it.</summary>
+    [Parameter] public List<MagicItemEntry> MagicItems { get; set; } = [];
+
+    private List<MagicItemEntry> AvailableBanners =>
+        MagicItems.Where(m => m.Category == "magic_standard").ToList();
+
+    private static double ParseBannerPoints(string points) =>
+        double.TryParse(points, out var v) ? v : 0;
+
+    private async Task OnBannerSelected(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        var name = e.Value?.ToString();
+        if (string.IsNullOrEmpty(name)) return;
+
+        var banner = AvailableBanners.FirstOrDefault(b => b.Name == name);
+        if (banner == null) return;
+
+        var cost = ParseBannerPoints(banner.Points);
+        if (Configuration.BannerBudget is int cap && cost > cap) return;
+
+        Configuration.Loadout.SelectedBanner = new SelectedMagicItem
+        {
+            Name = banner.Name,
+            Category = banner.Category,
+            PointsCost = cost,
+        };
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task RemoveBanner()
+    {
+        if (Configuration == null) return;
+        Configuration.Loadout.SelectedBanner = null;
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+}
