@@ -2,7 +2,8 @@ bin/
 obj/
 .idea/
 .claude/
-*.DotSettings.user
+.vs/
+*.user
 wwwroot/lib/
 
 # PortraitFetcher generated output
