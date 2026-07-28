@@ -13,6 +13,20 @@
             <NavLink class="nav-link" href="builder">Builder</NavLink>
         </li>
     </ul>
+    <div class="ms-auto d-flex align-items-center">
+        <label class="text-secondary small me-2" for="system-select">System</label>
+        <select id="system-select" class="form-select form-select-sm bg-dark text-light border-secondary w-auto"
+                @bind="selectedSystem" title="Only WAP v2 is currently supported">
+            <option value="wap-v2">WAP v2</option>
+            <option value="wap-v3" disabled>WAP v3</option>
+            <option value="fantasy-8th" disabled>Fantasy 8th</option>
+            <option value="old-world" disabled>Old World</option>
+        </select>
+    </div>
 </nav>
+
+@code {
+    private string selectedSystem = "wap-v2";
+}
 
 @Body
