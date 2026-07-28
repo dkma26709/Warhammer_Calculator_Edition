@@ -223,6 +223,12 @@
                                                             title="Battle Standard Bearer"
                                                             @onclick="() => ToggleBsb(entry)">BSB</button>
                                                 }
+                                                @if (entry.CanHaveChampion && entry.CanHaveMusician && entry.CanHaveStandardBearer)
+                                                {
+                                                    <button class="btn btn-sm me-1 @(HasFullCommand(entry) ? "btn-success" : "btn-outline-success")"
+                                                            title="Full Command (Champion + Musician + Standard)"
+                                                            @onclick="() => ToggleFullCommand(entry)">FC</button>
+                                                }
                                                 <button class="btn btn-sm btn-outline-secondary me-1"
                                                         title="Edit"
                                                         @onclick="() => ToggleExpand(entry)">
@@ -466,6 +472,19 @@
             foreach (var u in _armyList.Units) u.Loadout.IsBattleStandardBearer = false;
             entry.Loadout.IsBattleStandardBearer = true;
         }
+        Revalidate();
+    }
+
+    private static bool HasFullCommand(UnitConfiguration entry) =>
+        entry.HasChampion && entry.HasMusician && entry.HasStandardBearer;
+
+    private void ToggleFullCommand(UnitConfiguration entry)
+    {
+        var enable = !HasFullCommand(entry);
+        entry.HasChampion = enable;
+        entry.HasMusician = enable;
+        entry.HasStandardBearer = enable;
+        if (!enable) entry.Loadout.SelectedBanner = null;
         Revalidate();
     }
 
