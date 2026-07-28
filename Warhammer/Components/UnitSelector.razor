@@ -1,12 +1,14 @@
 @using Warhammer.Models.Domain
 @using Warhammer.Models.Enums
+@using Warhammer.Services
+@inject IGameDataRepository Repo
 
 <div class="mb-3">
     <label class="form-label small text-body-secondary">Faction</label>
     <select class="form-select form-select-sm" value="@SelectedFactionKey"
             @onchange="OnFactionChanged">
         <option value="">-- Select Faction --</option>
-        @foreach (var faction in FactionKeyExtensions.All)
+        @foreach (var faction in Repo.AllFactions)
         {
             <option value="@faction.ToJsonKey()">@faction.ToDisplayName()</option>
         }

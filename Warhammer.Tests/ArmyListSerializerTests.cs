@@ -41,7 +41,7 @@ public class ArmyListSerializerTests
             Units = { new UnitConfiguration(unit) { ModelCount = 25 } },
         };
 
-        var serializer = new ArmyListSerializer(new StubRepo(unit));
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
         var json = serializer.Serialize(list);
 
         Assert.Contains("wap-army-list/v1", json);
@@ -74,7 +74,7 @@ public class ArmyListSerializerTests
             Units = { original },
         };
 
-        var serializer = new ArmyListSerializer(new StubRepo(unit));
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
         var json = serializer.Serialize(list);
         var result = await serializer.DeserializeAsync(json);
 
@@ -99,7 +99,7 @@ public class ArmyListSerializerTests
     [Fact]
     public async Task DeserializeAsync_InvalidJson_ReturnsError()
     {
-        var serializer = new ArmyListSerializer(new StubRepo());
+        var serializer = new ArmyListSerializer(new StubRepo(), new GameSystemService());
         var result = await serializer.DeserializeAsync("{ this is not json");
 
         Assert.False(result.Success);
@@ -109,7 +109,7 @@ public class ArmyListSerializerTests
     [Fact]
     public async Task DeserializeAsync_UnknownFaction_ReturnsError()
     {
-        var serializer = new ArmyListSerializer(new StubRepo());
+        var serializer = new ArmyListSerializer(new StubRepo(), new GameSystemService());
         var json = """{"schema":"wap-army-list/v1","faction":"not-a-faction","pointsTarget":2000,"name":"x","units":[]}""";
 
         var result = await serializer.DeserializeAsync(json);
@@ -122,7 +122,7 @@ public class ArmyListSerializerTests
     public async Task DeserializeAsync_UnknownUnit_WarnsAndSkips()
     {
         var warriors = TestHelpers.MakeUnit(name: "Warriors", points: 8);
-        var serializer = new ArmyListSerializer(new StubRepo(warriors));
+        var serializer = new ArmyListSerializer(new StubRepo(warriors), new GameSystemService());
         var json = """
         {
           "schema": "wap-army-list/v1",
@@ -148,7 +148,7 @@ public class ArmyListSerializerTests
     public async Task DeserializeAsync_SchemaMismatch_WarnsButContinues()
     {
         var warriors = TestHelpers.MakeUnit(name: "Warriors", points: 8);
-        var serializer = new ArmyListSerializer(new StubRepo(warriors));
+        var serializer = new ArmyListSerializer(new StubRepo(warriors), new GameSystemService());
         var json = """
         {"schema":"wap-army-list/v0","faction":"dwarfs","pointsTarget":1000,"name":"Old","units":[]}
         """;
@@ -157,6 +157,48 @@ public class ArmyListSerializerTests
 
         Assert.True(result.Success);
         Assert.Contains(result.Warnings, w => w.Contains("Schema"));
+    }
+
+    [Fact]
+    public void Serialize_IncludesCurrentSystem()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Dwarfs,
+            PointsTarget = 2000,
+            Units = { new UnitConfiguration(unit) },
+        };
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
+        var json = serializer.Serialize(list);
+
+        Assert.Contains("\"system\": \"wap-v2\"", json);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_MissingSystemField_TreatedAsWapV2()
+    {
+        // Exports from before multi-system support have no "system" property.
+        var serializer = new ArmyListSerializer(new StubRepo(), new GameSystemService());
+        var json = """{"schema":"wap-army-list/v1","faction":"dwarfs","pointsTarget":2000,"name":"Legacy","units":[]}""";
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        Assert.DoesNotContain(result.Warnings, w => w.Contains("system"));
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_DifferentSystem_WarnsButContinues()
+    {
+        var serializer = new ArmyListSerializer(new StubRepo(), new GameSystemService());
+        var json = """{"schema":"wap-army-list/v1","system":"old-world","faction":"dwarfs","pointsTarget":2000,"name":"X","units":[]}""";
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        Assert.Contains(result.Warnings, w => w.Contains("saved for system 'old-world'"));
     }
 
     [Fact]
@@ -175,7 +217,7 @@ public class ArmyListSerializerTests
             Units = { config },
         };
 
-        var serializer = new ArmyListSerializer(new StubRepo(unit));
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
         var json = serializer.Serialize(list);
         Assert.Contains("Aldric the Bold", json);
 
@@ -195,7 +237,7 @@ public class ArmyListSerializerTests
             Units = { new UnitConfiguration(unit) { Loadout = { CustomName = "   " } } },
         };
 
-        var serializer = new ArmyListSerializer(new StubRepo(unit));
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
         var json = serializer.Serialize(list);
 
         Assert.DoesNotContain("customName", json);
@@ -225,7 +267,7 @@ public class ArmyListSerializerTests
             Units = { config },
         };
 
-        var serializer = new ArmyListSerializer(new StubRepo(warriors));
+        var serializer = new ArmyListSerializer(new StubRepo(warriors), new GameSystemService());
         var json = serializer.Serialize(list);
 
         Assert.Contains("Razor Standard", json);

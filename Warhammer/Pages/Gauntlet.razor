@@ -402,7 +402,7 @@
 
         if (!Enum.TryParse<BaseTroopType>(preset, out var targetType)) return;
 
-        foreach (var fk in FactionKeyExtensions.All)
+        foreach (var fk in Repo.AllFactions)
         {
             var units = await Repo.GetUnitsAsync(fk);
             foreach (var unit in units)

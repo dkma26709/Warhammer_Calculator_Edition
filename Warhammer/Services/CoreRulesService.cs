@@ -7,6 +7,7 @@ namespace Warhammer.Services;
 public class CoreRulesService
 {
     private readonly HttpClient _http;
+    private readonly GameSystemService _system;
     private CoreRulesData? _data;
     private bool _loaded;
 
@@ -15,9 +16,10 @@ public class CoreRulesService
         PropertyNameCaseInsensitive = true
     };
 
-    public CoreRulesService(HttpClient http)
+    public CoreRulesService(HttpClient http, GameSystemService system)
     {
         _http = http;
+        _system = system;
     }
 
     public CoreRulesData Data => _data ?? throw new InvalidOperationException("Core rules not loaded. Call EnsureLoadedAsync first.");
@@ -25,7 +27,7 @@ public class CoreRulesService
     public async Task EnsureLoadedAsync()
     {
         if (_loaded) return;
-        _data = await _http.GetFromJsonAsync<CoreRulesData>("data/core-rules.json", JsonOptions)
+        _data = await _http.GetFromJsonAsync<CoreRulesData>(_system.DataPath("core-rules.json"), JsonOptions)
             ?? throw new InvalidOperationException("Failed to load core-rules.json");
         _loaded = true;
     }

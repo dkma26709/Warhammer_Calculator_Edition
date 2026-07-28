@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.JSInterop;
 using Warhammer;
 using Warhammer.Services;
 using Warhammer.Calculator;
@@ -11,6 +12,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+builder.Services.AddScoped<GameSystemService>();
 builder.Services.AddScoped<CoreRulesService>();
 builder.Services.AddScoped<FactionDataService>();
 builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
@@ -19,4 +21,19 @@ builder.Services.AddSingleton<ArmyListValidator>();
 builder.Services.AddScoped<ArmyListSerializer>();
 builder.Services.AddScoped<PortraitService>();
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+// Restore the persisted game system before any service loads data.
+// WASM exposes a synchronous JS runtime, so this runs before RunAsync.
+var systemService = host.Services.GetRequiredService<GameSystemService>();
+try
+{
+    var js = (IJSInProcessRuntime)host.Services.GetRequiredService<IJSRuntime>();
+    systemService.Initialize(js.Invoke<string?>("localStorage.getItem", GameSystemService.StorageKey));
+}
+catch
+{
+    // localStorage unavailable — keep the default system.
+}
+
+await host.RunAsync();

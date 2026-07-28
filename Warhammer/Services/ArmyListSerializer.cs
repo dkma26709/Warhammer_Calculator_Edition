@@ -16,6 +16,7 @@ public sealed record ImportResult(
 public class ArmyListSerializer
 {
     private readonly IGameDataRepository _repo;
+    private readonly GameSystemService _system;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -24,7 +25,11 @@ public class ArmyListSerializer
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
     };
 
-    public ArmyListSerializer(IGameDataRepository repo) => _repo = repo;
+    public ArmyListSerializer(IGameDataRepository repo, GameSystemService system)
+    {
+        _repo = repo;
+        _system = system;
+    }
 
     // ─── Export ──────────────────────────────────────────────────
 
@@ -37,6 +42,7 @@ public class ArmyListSerializer
     public ArmyListDto ToDto(ArmyList list) => new()
     {
         Schema = ArmyListDto.CurrentSchema,
+        System = _system.CurrentSystem,
         Faction = list.Faction.ToJsonKey(),
         PointsTarget = list.PointsTarget,
         Name = list.Name,
@@ -103,6 +109,9 @@ public class ArmyListSerializer
 
         if (dto.Schema != ArmyListDto.CurrentSchema)
             warnings.Add($"Schema '{dto.Schema}' does not match current '{ArmyListDto.CurrentSchema}' — attempting anyway.");
+
+        if (!string.Equals(dto.System, _system.CurrentSystem, StringComparison.OrdinalIgnoreCase))
+            warnings.Add($"List was saved for system '{dto.System}' but the current system is '{_system.CurrentSystem}' — attempting anyway.");
 
         if (!FactionKeyExtensions.TryFromJsonKey(dto.Faction, out var faction))
             return new ImportResult(null, warnings, [$"Unknown faction '{dto.Faction}'."]);
