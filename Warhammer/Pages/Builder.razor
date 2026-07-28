@@ -11,6 +11,7 @@
 @inject ArmyListValidator Validator
 @inject ArmyListSerializer Serializer
 @inject PortraitService Portraits
+@inject GameSystemService SystemService
 @inject IJSRuntime JS
 
 <div class="container-fluid py-3">
@@ -22,7 +23,7 @@
             <select class="form-select form-select-sm" value="@_factionKey"
                     @onchange="OnFactionChanged">
                 <option value="">-- Select Faction --</option>
-                @foreach (var f in FactionKeyExtensions.All)
+                @foreach (var f in Repo.AllFactions)
                 {
                     <option value="@f.ToJsonKey()">@f.ToDisplayName()</option>
                 }
@@ -309,7 +310,8 @@
 
     private string? _statusMessage;
     private bool _statusIsError;
-    private const string StorageKey = "warhammer.armylist.active";
+    private const string LegacyStorageKey = "warhammer.armylist.active";
+    private string StorageKey => $"warhammer.armylist.active.{SystemService.CurrentSystem}";
 
     protected override async Task OnInitializedAsync()
     {
@@ -322,7 +324,18 @@
     private async Task TryLoadFromStorage()
     {
         string? saved;
-        try { saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", StorageKey); }
+        bool fromLegacyKey = false;
+        try
+        {
+            saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", StorageKey);
+
+            // Autosaves from before multi-system support live under the unsuffixed key.
+            if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Default)
+            {
+                saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", LegacyStorageKey);
+                fromLegacyKey = !string.IsNullOrWhiteSpace(saved);
+            }
+        }
         catch { return; }
 
         if (string.IsNullOrWhiteSpace(saved)) return;
@@ -338,6 +351,16 @@
             _factionUnits = await Repo.GetUnitsAsync(result.List.Faction);
             _factionExtras = await Repo.GetFactionExtrasAsync(result.List.Faction);
             Revalidate();
+
+            if (fromLegacyKey)
+            {
+                try
+                {
+                    await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, saved);
+                    await JS.InvokeVoidAsync("armyBuilder.clearLocal", LegacyStorageKey);
+                }
+                catch { }
+            }
         }
     }
 

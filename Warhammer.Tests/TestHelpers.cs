@@ -1,3 +1,5 @@
+using System.Net;
+using System.Text;
 using System.Text.Json;
 using Warhammer.Calculator;
 using Warhammer.Calculator.Models;
@@ -18,7 +20,7 @@ public static class TestHelpers
 
     static TestHelpers()
     {
-        var dataDir = Path.Combine(FindProjectRoot(), "wwwroot", "data");
+        var dataDir = Path.Combine(FindProjectRoot(), "wwwroot", "data", "wap-v2");
         var json = File.ReadAllText(Path.Combine(dataDir, "core-rules.json"));
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         CoreData = JsonSerializer.Deserialize<CoreRulesData>(json, options)!;
@@ -45,7 +47,7 @@ public static class TestHelpers
 
     public static CoreRulesService CreateCoreRules()
     {
-        var service = new CoreRulesService(null!);
+        var service = new CoreRulesService(null!, new GameSystemService());
         var dataField = typeof(CoreRulesService).GetField("_data",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
         var loadedField = typeof(CoreRulesService).GetField("_loaded",
@@ -56,12 +58,19 @@ public static class TestHelpers
     }
 
     /// <summary>
-    /// Create a GameDataRepository with core rules pre-loaded (weapons + armour resolved).
+    /// Create a fully-loaded GameDataRepository backed by the on-disk wwwroot data
+    /// (default system: wap-v2). Weapons, armour and the system manifest are resolved.
     /// </summary>
     public static GameDataRepository CreateRepository()
     {
-        var coreRules = CreateCoreRules();
-        var repo = new GameDataRepository(coreRules, null!);
+        var wwwroot = Path.Combine(FindProjectRoot(), "wwwroot");
+        var handler = new FileBasedHttpHandler(wwwroot);
+        var http = new HttpClient(handler) { BaseAddress = new Uri("http://localhost/") };
+
+        var system = new GameSystemService();
+        var coreRules = new CoreRulesService(http, system);
+        var factionData = new FactionDataService(http, system);
+        var repo = new GameDataRepository(coreRules, factionData, system);
         repo.EnsureLoadedAsync().GetAwaiter().GetResult();
         return repo;
     }
@@ -304,4 +313,37 @@ public record AggregatedRoundResult(int Trials, long TotalAttackerWounds, long T
 {
     public double AvgAttackerWounds => (double)TotalAttackerWounds / Trials;
     public double AvgDefenderWounds => (double)TotalDefenderWounds / Trials;
+}
+
+/// <summary>
+/// HttpMessageHandler that reads files from a local directory, mapping URL paths to file paths.
+/// e.g. GET http://localhost/data/wap-v2/core-rules.json → {baseDir}/data/wap-v2/core-rules.json
+/// </summary>
+public class FileBasedHttpHandler : HttpMessageHandler
+{
+    private readonly string _baseDir;
+
+    public FileBasedHttpHandler(string baseDir) => _baseDir = baseDir;
+
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var path = request.RequestUri!.AbsolutePath.TrimStart('/');
+        var filePath = Path.Combine(_baseDir, path.Replace('/', Path.DirectorySeparatorChar));
+
+        if (!File.Exists(filePath))
+        {
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent($"File not found: {filePath}")
+            });
+        }
+
+        var content = File.ReadAllText(filePath, Encoding.UTF8);
+        var response = new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new StringContent(content, Encoding.UTF8, "application/json")
+        };
+        return Task.FromResult(response);
+    }
 }
