@@ -5,6 +5,7 @@ obj/
 .vs/
 *.user
 wwwroot/lib/
+__pycache__/
 
 # PortraitFetcher generated output
 tools/PortraitFetcher/portrait-report.json
