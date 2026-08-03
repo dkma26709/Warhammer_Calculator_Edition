@@ -215,7 +215,7 @@
                                                 {
                                                     <button class="btn btn-sm me-1 @(HasFullCommand(entry) ? "btn-success" : "btn-outline-success")"
                                                             title="Full Command (Champion + Musician + Standard)"
-                                                            @onclick="() => ToggleFullCommand(entry)">FC</button>
+                                                            @onclick="() => ToggleFullCommand(entry)">F/C</button>
                                                 }
                                                 <button class="btn btn-sm btn-outline-secondary me-1"
                                                         title="Edit"
@@ -410,12 +410,6 @@
     private void AddUnit(Unit unit)
     {
         var cfg = new UnitConfiguration(unit);
-        if (cfg.CanHaveChampion && cfg.CanHaveMusician && cfg.CanHaveStandardBearer)
-        {
-            cfg.HasChampion = true;
-            cfg.HasMusician = true;
-            cfg.HasStandardBearer = true;
-        }
         _armyList.Units.Add(cfg);
         Revalidate();
     }
