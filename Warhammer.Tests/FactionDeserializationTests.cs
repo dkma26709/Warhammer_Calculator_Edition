@@ -11,7 +11,7 @@ public class FactionDeserializationTests
     };
 
     private static readonly string DataDir = Path.Combine(
-        FindProjectRoot(), "wwwroot", "data");
+        FindProjectRoot(), "wwwroot", "data", "wap-v2");
 
     private static string FindProjectRoot()
     {

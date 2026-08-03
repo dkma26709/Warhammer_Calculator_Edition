@@ -708,51 +708,5 @@ public class SaurusGauntletTests
     /// <summary>
     /// Build a GameDataRepository that can load faction data from the wwwroot/data directory on disk.
     /// </summary>
-    private static GameDataRepository CreateFullRepository()
-    {
-        var dataDir = Path.Combine(TestHelpers.FindProjectRoot(), "wwwroot");
-        var handler = new FileBasedHttpHandler(dataDir);
-        var http = new HttpClient(handler) { BaseAddress = new Uri("http://localhost/") };
-
-        var coreRules = new CoreRulesService(http);
-        coreRules.EnsureLoadedAsync().GetAwaiter().GetResult();
-
-        var factionData = new FactionDataService(http);
-        var repo = new GameDataRepository(coreRules, factionData);
-        repo.EnsureLoadedAsync().GetAwaiter().GetResult();
-        return repo;
-    }
-
-    /// <summary>
-    /// HttpMessageHandler that reads files from a local directory, mapping URL paths to file paths.
-    /// e.g. GET http://localhost/data/core-rules.json → {baseDir}/data/core-rules.json
-    /// </summary>
-    private class FileBasedHttpHandler : HttpMessageHandler
-    {
-        private readonly string _baseDir;
-
-        public FileBasedHttpHandler(string baseDir) => _baseDir = baseDir;
-
-        protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var path = request.RequestUri!.AbsolutePath.TrimStart('/');
-            var filePath = Path.Combine(_baseDir, path.Replace('/', Path.DirectorySeparatorChar));
-
-            if (!File.Exists(filePath))
-            {
-                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound)
-                {
-                    Content = new StringContent($"File not found: {filePath}")
-                });
-            }
-
-            var content = File.ReadAllText(filePath, Encoding.UTF8);
-            var response = new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new StringContent(content, Encoding.UTF8, "application/json")
-            };
-            return Task.FromResult(response);
-        }
-    }
+    private static GameDataRepository CreateFullRepository() => TestHelpers.CreateRepository();
 }

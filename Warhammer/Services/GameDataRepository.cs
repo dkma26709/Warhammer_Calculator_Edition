@@ -13,16 +13,19 @@ public class GameDataRepository : IGameDataRepository
 {
     private readonly CoreRulesService _coreRules;
     private readonly FactionDataService _factionData;
+    private readonly GameSystemService _system;
 
     private Dictionary<CloseCombatWeaponKey, Weapon>? _weapons;
     private Dictionary<ArmourKey, Armour>? _armour;
+    private IReadOnlyList<FactionKey>? _factions;
     private readonly Dictionary<FactionKey, IReadOnlyList<Unit>> _unitCache = new();
     private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
 
-    public GameDataRepository(CoreRulesService coreRules, FactionDataService factionData)
+    public GameDataRepository(CoreRulesService coreRules, FactionDataService factionData, GameSystemService system)
     {
         _coreRules = coreRules;
         _factionData = factionData;
+        _system = system;
     }
 
     // ─── Initialisation ──────────────────────────────────────────
@@ -32,6 +35,24 @@ public class GameDataRepository : IGameDataRepository
         await _coreRules.EnsureLoadedAsync();
         ResolveWeapons();
         ResolveArmour();
+        await ResolveFactionsAsync();
+    }
+
+    private async Task ResolveFactionsAsync()
+    {
+        if (_factions != null) return;
+
+        var manifest = await _factionData.GetManifestAsync();
+        var factions = new List<FactionKey>(manifest.Factions.Count);
+        foreach (var jsonKey in manifest.Factions)
+        {
+            if (FactionKeyExtensions.TryFromJsonKey(jsonKey, out var key))
+                factions.Add(key);
+            else
+                Console.Error.WriteLine($"Manifest faction '{jsonKey}' has no FactionKey — skipped.");
+        }
+
+        _factions = factions;
     }
 
     private void ResolveWeapons()
@@ -82,7 +103,9 @@ public class GameDataRepository : IGameDataRepository
 
     // ─── Factions ────────────────────────────────────────────────
 
-    public IReadOnlyList<FactionKey> AllFactions => FactionKeyExtensions.All;
+    // Falls back to the full enum list until EnsureLoadedAsync resolves the
+    // active system's manifest (components may render before initialisation).
+    public IReadOnlyList<FactionKey> AllFactions => _factions ?? FactionKeyExtensions.All;
 
     public string GetFactionDisplayName(FactionKey faction) => faction.ToDisplayName();
 
@@ -121,7 +144,7 @@ public class GameDataRepository : IGameDataRepository
 
         var http = _factionData.GetHttpClient();
         var items = await http.GetFromJsonAsync<List<MagicItemEntry>>(
-            "data/common-magic-items.json",
+            _system.DataPath("common-magic-items.json"),
             new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         _commonMagicItems = items ?? [];
         return _commonMagicItems;

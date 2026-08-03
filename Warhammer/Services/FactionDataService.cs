@@ -7,59 +7,36 @@ namespace Warhammer.Services;
 public class FactionDataService
 {
     private readonly HttpClient _http;
+    private readonly GameSystemService _system;
     private readonly Dictionary<string, FactionData> _unitCache = new();
     private readonly Dictionary<string, FactionExtrasData> _extrasCache = new();
+    private SystemManifest? _manifest;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNameCaseInsensitive = true
     };
 
-    public static readonly IReadOnlyList<string> FactionNames =
-    [
-        "beastmen",
-        "bretonnia",
-        "daemons-of-chaos",
-        "dark-elves",
-        "dwarfs",
-        "high-elves",
-        "lizardmen",
-        "ogre-kingdoms",
-        "orcs-and-goblins",
-        "skaven",
-        "the-empire",
-        "tomb-kings",
-        "vampire-counts",
-        "warriors-of-chaos",
-        "wood-elves"
-    ];
-
-    public static readonly IReadOnlyDictionary<string, string> FactionDisplayNames = new Dictionary<string, string>
-    {
-        ["beastmen"] = "Beastmen",
-        ["bretonnia"] = "Bretonnia",
-        ["daemons-of-chaos"] = "Daemons of Chaos",
-        ["dark-elves"] = "Dark Elves",
-        ["dwarfs"] = "Dwarfs",
-        ["high-elves"] = "High Elves",
-        ["lizardmen"] = "Lizardmen",
-        ["ogre-kingdoms"] = "Ogre Kingdoms",
-        ["orcs-and-goblins"] = "Orcs & Goblins",
-        ["skaven"] = "Skaven",
-        ["the-empire"] = "The Empire",
-        ["tomb-kings"] = "Tomb Kings",
-        ["vampire-counts"] = "Vampire Counts",
-        ["warriors-of-chaos"] = "Warriors of Chaos",
-        ["wood-elves"] = "Wood Elves"
-    };
-
-    public FactionDataService(HttpClient http)
+    public FactionDataService(HttpClient http, GameSystemService system)
     {
         _http = http;
+        _system = system;
     }
 
     /// <summary>Expose the HTTP client for loading additional data files.</summary>
     public HttpClient GetHttpClient() => _http;
+
+    /// <summary>Load the active system's manifest (faction list). Cached after first call.</summary>
+    public async Task<SystemManifest> GetManifestAsync()
+    {
+        if (_manifest != null)
+            return _manifest;
+
+        _manifest = await _http.GetFromJsonAsync<SystemManifest>(
+            _system.DataPath("manifest.json"), JsonOptions)
+            ?? throw new InvalidOperationException("Failed to load manifest.json");
+        return _manifest;
+    }
 
     public async Task<FactionData> GetFactionUnitsAsync(string factionKey)
     {
@@ -67,7 +44,7 @@ public class FactionDataService
             return cached;
 
         var data = await _http.GetFromJsonAsync<FactionData>(
-            $"data/factions/{factionKey}.json", JsonOptions)
+            _system.DataPath($"factions/{factionKey}.json"), JsonOptions)
             ?? throw new InvalidOperationException($"Failed to load {factionKey}.json");
 
         NormalizeMountCategories(data);
@@ -100,15 +77,10 @@ public class FactionDataService
             return cached;
 
         var data = await _http.GetFromJsonAsync<FactionExtrasData>(
-            $"data/factions/{factionKey}-extras.json", JsonOptions)
+            _system.DataPath($"factions/{factionKey}-extras.json"), JsonOptions)
             ?? throw new InvalidOperationException($"Failed to load {factionKey}-extras.json");
 
         _extrasCache[factionKey] = data;
         return data;
-    }
-
-    public static string GetDisplayName(string factionKey)
-    {
-        return FactionDisplayNames.TryGetValue(factionKey, out var name) ? name : factionKey;
     }
 }

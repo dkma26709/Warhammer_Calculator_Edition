@@ -9,6 +9,8 @@ public sealed record ArmyListDto
     public const string CurrentSchema = "wap-army-list/v1";
 
     public string Schema { get; init; } = CurrentSchema;
+    // Additive field: lists saved before multi-system support default to wap-v2.
+    public string System { get; init; } = GameSystems.Default;
     public string Faction { get; init; } = "";
     public int PointsTarget { get; init; }
     public string Name { get; init; } = "Untitled List";
