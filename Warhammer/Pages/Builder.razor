@@ -30,24 +30,11 @@
         </div>
         <div class="col-md-3">
             <label class="form-label small text-body-secondary">Points</label>
-            <select class="form-select form-select-sm" value="@_pointsPreset"
-                    @onchange="OnPointsPresetChanged">
-                @foreach (var p in PointsPresets)
-                {
-                    <option value="@p">@p pts</option>
-                }
-                <option value="custom">Custom…</option>
-            </select>
+            <input type="text" class="form-control form-control-sm"
+                   inputmode="numeric" pattern="[0-9]*"
+                   value="@_pointsText"
+                   @oninput="OnPointsInput" />
         </div>
-        @if (_pointsPreset == "custom")
-        {
-            <div class="col-md-2">
-                <label class="form-label small text-body-secondary">Custom pts</label>
-                <input type="number" class="form-control form-control-sm" min="1" step="100"
-                       value="@_armyList.PointsTarget"
-                       @onchange="OnCustomPointsChanged" />
-            </div>
-        }
         <div class="col">
             <label class="form-label small text-body-secondary">Name</label>
             <input type="text" class="form-control form-control-sm"
@@ -288,12 +275,11 @@
 </div>
 
 @code {
-    private static readonly int[] PointsPresets = [1000, 1500, 2000, 2500, 3000];
     private static readonly UnitCategory[] BrowseCategories =
         [UnitCategory.Lords, UnitCategory.Heroes, UnitCategory.Core, UnitCategory.Special, UnitCategory.Rare];
 
     private string? _factionKey;
-    private string _pointsPreset = "2000";
+    private string _pointsText = "2000";
     private IReadOnlyList<Unit>? _factionUnits;
     private FactionExtrasData? _factionExtras;
     private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
@@ -332,9 +318,7 @@
         {
             _armyList = result.List;
             _factionKey = result.List.Faction.ToJsonKey();
-            _pointsPreset = PointsPresets.Contains(result.List.PointsTarget)
-                ? result.List.PointsTarget.ToString()
-                : "custom";
+            _pointsText = result.List.PointsTarget.ToString();
             _factionUnits = await Repo.GetUnitsAsync(result.List.Faction);
             _factionExtras = await Repo.GetFactionExtrasAsync(result.List.Faction);
             Revalidate();
@@ -361,19 +345,22 @@
         Revalidate();
     }
 
-    private void OnPointsPresetChanged(ChangeEventArgs e)
+    private async Task OnPointsInput(ChangeEventArgs e)
     {
-        _pointsPreset = e.Value?.ToString() ?? "2000";
-        if (_pointsPreset != "custom" && int.TryParse(_pointsPreset, out var n))
-        {
-            _armyList = _armyList with { PointsTarget = n };
-            Revalidate();
-        }
-    }
+        var raw = e.Value?.ToString() ?? "";
+        var digits = new string(raw.Where(char.IsDigit).ToArray());
 
-    private void OnCustomPointsChanged(ChangeEventArgs e)
-    {
-        if (int.TryParse(e.Value?.ToString(), out var n) && n > 0)
+        if (digits != raw)
+        {
+            // Sync Blazor's notion of the value with the DOM first, so the
+            // rewrite to the sanitized string always produces a DOM update.
+            _pointsText = raw;
+            StateHasChanged();
+            await Task.Yield();
+        }
+
+        _pointsText = digits;
+        if (int.TryParse(digits, out var n) && n > 0)
         {
             _armyList = _armyList with { PointsTarget = n };
             Revalidate();
@@ -525,9 +512,7 @@
 
             _armyList = result.List!;
             _factionKey = _armyList.Faction.ToJsonKey();
-            _pointsPreset = PointsPresets.Contains(_armyList.PointsTarget)
-                ? _armyList.PointsTarget.ToString()
-                : "custom";
+            _pointsText = _armyList.PointsTarget.ToString();
             _factionUnits = await Repo.GetUnitsAsync(_armyList.Faction);
             _factionExtras = await Repo.GetFactionExtrasAsync(_armyList.Faction);
             _expanded.Clear();
