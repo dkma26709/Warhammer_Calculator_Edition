@@ -1,0 +1,38 @@
+# Normalize line endings so the repo works identically on Windows and Linux/WSL.
+# All text files are stored with LF in the repository; Git converts on checkout
+# according to these rules, independent of each machine's core.autocrlf setting.
+* text=auto
+
+# Source and config files: LF in repo, native line endings in working tree
+*.cs        text
+*.razor     text
+*.csproj    text
+*.sln       text
+*.json      text
+*.yml       text
+*.yaml      text
+*.md        text
+*.css       text
+*.js        text
+*.html      text
+
+# Shell scripts must stay LF even on Windows
+*.sh        text eol=lf
+
+# Windows scripts must stay CRLF even on Linux
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+# Binary files: never touch
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.eot       binary
+*.dll       binary
+*.exe       binary
