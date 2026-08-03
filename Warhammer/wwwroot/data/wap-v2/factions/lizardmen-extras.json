@@ -1,5 +1,5 @@
 {
-  "factionName": "lizardmen",
+  "factionName": "Lizardmen",
   "armySpecialRules": [
     {
       "name": "Blood Frenzy",
@@ -508,11 +508,6 @@
   ],
   "factionUpgrades": {
     "blessed_spawnings": [
-      {
-        "name": "Blessed Spawnings",
-        "points": "Characters and units that can take Blessed Spawnings ar",
-        "description": "to characters. Lords may take up to 3 Blessed Spawnings\nSacred Spawnings. Core units that take more than one Bl\nunits counts as Rare units."
-      },
       {
         "name": "Blessed Mark Of The Old Ones",
         "points": "10",

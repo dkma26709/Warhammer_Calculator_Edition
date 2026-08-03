@@ -598,6 +598,7 @@ def extract_faction_upgrades(text):
         (r'DISCIPLINES?\s+OF', 'disciplines'),
         (r'KNIGHTLY\s+ORDERS?', 'knightly_orders'),
         (r'GIFTS?\s+OF\s+CHAOS', 'gifts_of_chaos'),
+        (r'GIFTS?\s+OF\s+KHAINE', 'gifts_of_khaine'),
         (r'DAEMONIC\s+GIFTS?', 'daemonic_gifts'),
         (r'VAMPIRIC\s+POWERS?', 'vampiric_powers'),
         (r'BIG\s+NAMES?', 'big_names'),
@@ -649,7 +650,10 @@ def parse_upgrade_items(text):
 
     # Knightly Orders pattern: "ORDER_NAME\nCharacters <N> points\nCavalry <N> points..."
     order_header_re = re.compile(r'^([A-Z][A-Z\s\'\-]+)$')
-    order_cost_re = re.compile(r'^(Characters?|Cavalry|Infantry|Monstrous\s+\w+)\s+(.+)$')
+    # The cost must be a real one ("free" or a number). Without that, a section header
+    # followed by its "Characters may take..." intro sentence parses as an order entry.
+    order_cost_re = re.compile(
+        r'^(Characters?|Cavalry|Infantry|Monstrous\s+\w+)\s+(free\b|\d+\b.*)$')
 
     for i, line in enumerate(lines):
         stripped = line.strip()

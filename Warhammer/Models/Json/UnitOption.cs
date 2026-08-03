@@ -10,9 +10,16 @@ public record UnitOption
 {
     /// <summary>
     /// Option category: equipment, command, mount, magic_items, wizard_upgrade,
-    /// upgrade, blessed_spawning, battle_standard, magic_standard.
+    /// upgrade, blessed_spawning, faction_upgrade, battle_standard, magic_standard.
     /// </summary>
     public string Type { get; init; } = "";
+
+    /// <summary>
+    /// factionUpgrades category this option offers (e.g. blessed_spawnings, gifts_of_khaine).
+    /// Set for faction_upgrade options; each pick costs the points listed against it in the
+    /// faction's extras rather than a cost on the option itself.
+    /// </summary>
+    public string? FactionUpgrade { get; init; }
 
     /// <summary>For equipment options: choose, add, or replace.</summary>
     public string? Action { get; init; }

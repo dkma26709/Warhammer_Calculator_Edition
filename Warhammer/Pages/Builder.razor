@@ -442,7 +442,7 @@
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
         foreach (var (cat, picks) in src.Loadout.SelectedFactionUpgrades)
-            clone.Loadout.SelectedFactionUpgrades[cat] = new List<string>(picks);
+            clone.Loadout.SelectedFactionUpgrades[cat] = new List<SelectedFactionUpgrade>(picks);
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
         clone.Modifiers.AddRange(src.Modifiers);
         clone.Loadout.SelectedSpells.AddRange(src.Loadout.SelectedSpells);

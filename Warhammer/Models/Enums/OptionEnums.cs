@@ -14,6 +14,7 @@ public enum OptionType
     WizardUpgrade,
     Upgrade,
     BlessedSpawning,
+    FactionUpgrade,
     BattleStandard,
     MagicStandard,
 }
@@ -49,6 +50,7 @@ public static class OptionTypeExtensions
         ["wizard_upgrade"] = OptionType.WizardUpgrade,
         ["upgrade"] = OptionType.Upgrade,
         ["blessed_spawning"] = OptionType.BlessedSpawning,
+        ["faction_upgrade"] = OptionType.FactionUpgrade,
         ["battle_standard"] = OptionType.BattleStandard,
         ["magic_standard"] = OptionType.MagicStandard,
     };

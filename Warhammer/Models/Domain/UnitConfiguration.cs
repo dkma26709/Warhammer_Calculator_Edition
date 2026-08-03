@@ -84,8 +84,10 @@ public class UnitConfiguration
         ResolvedUnit.Options.Any(o => o.IsType(OptionType.BattleStandard));
 
     /// <summary>
-    /// Aggregate cost for faction upgrade selections tied to a per-model option
-    /// (e.g. blessed_spawning at +1pt/model × selected spawnings × model count).
+    /// Aggregate cost for faction upgrade selections. Rank-and-file units pay the rate on
+    /// their own option (e.g. blessed_spawning at +2pts/model × spawnings × model count);
+    /// characters take theirs through a shared magic item allowance, so their option carries
+    /// no rate and each pick costs the points listed against it in the faction's extras.
     /// </summary>
     public double FactionUpgradeCost
     {
@@ -94,20 +96,34 @@ public class UnitConfiguration
             double total = 0;
             foreach (var option in ResolvedUnit.Options)
             {
-                var category = FactionUpgradeCategoryFor(option.GetOptionType());
+                var category = FactionUpgradeCategoryFor(option);
                 if (category is null) continue;
                 if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
 
-                double perPick = option.Points ?? 0;
+                if (option.Points is null)
+                {
+                    total += picks.Sum(p => p.PointsCost);
+                    continue;
+                }
+
                 double multiplier = option.PerModel == true ? ModelCount : 1;
-                total += perPick * multiplier * picks.Count;
+                total += option.Points.Value * multiplier * picks.Count;
             }
             return total;
         }
     }
 
+    /// <summary>
+    /// Resolve the factionUpgrades category an option offers. Options name their own category;
+    /// the blessed_spawning type predates that field and is mapped for compatibility.
+    /// </summary>
+    public static string? FactionUpgradeCategoryFor(UnitOption option) =>
+        !string.IsNullOrWhiteSpace(option.FactionUpgrade)
+            ? option.FactionUpgrade
+            : FactionUpgradeCategoryForType(option.GetOptionType());
+
     /// <summary>Map an option type to the factionUpgrades category name.</summary>
-    public static string? FactionUpgradeCategoryFor(OptionType? optionType) => optionType switch
+    public static string? FactionUpgradeCategoryForType(OptionType? optionType) => optionType switch
     {
         OptionType.BlessedSpawning => "blessed_spawnings",
         _ => null,

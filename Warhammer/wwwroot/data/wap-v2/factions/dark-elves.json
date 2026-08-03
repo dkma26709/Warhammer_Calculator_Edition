@@ -311,6 +311,11 @@
           "type": "magic_items",
           "pointsLimit": 100,
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
+          "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 100 points"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
@@ -782,6 +787,11 @@
           "type": "magic_items",
           "pointsLimit": 50,
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
+          "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
@@ -844,6 +854,11 @@
         {
           "type": "magic_items",
           "pointsLimit": 50,
+          "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
@@ -927,6 +942,11 @@
         {
           "type": "magic_items",
           "pointsLimit": 50,
+          "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
@@ -1033,6 +1053,11 @@
         {
           "type": "magic_items",
           "pointsLimit": 50,
+          "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],

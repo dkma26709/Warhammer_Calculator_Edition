@@ -256,6 +256,32 @@ def parse_limit(text):
     return int(m.group(1)) if m else None
 
 
+# Faction upgrade families that share a character's magic item allowance, e.g.
+# "May take Blessed Spawnings and/or Magic Items up to a total of 50 points".
+# Keys match the factionUpgrades categories emitted by extract_army_extras.py.
+UPGRADE_FAMILIES = [
+    (r'blessed\s+spawnings?', 'blessed_spawnings'),
+    (r'disciplines?\s+of\s+the\s+old\s+ones', 'disciplines'),
+    (r'gifts?\s+of\s+khaine', 'gifts_of_khaine'),
+    (r'gifts?\s+of\s+chaos', 'gifts_of_chaos'),
+    (r'daemonic\s+gifts?', 'daemonic_gifts'),
+    (r'vampiric\s+powers?', 'vampiric_powers'),
+    (r'big\s+names?', 'big_names'),
+    (r'knightly\s+orders?', 'knightly_orders'),
+    (r'mutations?\s+&\s+powers?', 'mutations_and_powers'),
+]
+
+
+def match_upgrade_family(text):
+    """Map an upgrade family named in option text to its factionUpgrades category."""
+    if not text:
+        return None
+    for pattern, category in UPGRADE_FAMILIES:
+        if re.search(pattern, text, re.IGNORECASE):
+            return category
+    return None
+
+
 def classify_option(text):
     """Classify and structure a single option line (primary bullet).
     Returns a structured dict."""
@@ -274,10 +300,18 @@ def classify_option(text):
         limit = parse_limit(m.group(1))
         return {"type": "magic_standard", "pointsLimit": limit, "raw": raw}
 
-    # --- Magic Items / Disciplines ---
-    m = re.match(r'May take (?:Blessed Spawnings and/or )?Magic Items.*?(\d+)\s*points', raw, re.IGNORECASE)
+    # --- Magic Items, optionally sharing the allowance with a faction upgrade family ---
+    m = re.match(
+        r'May take (?:(.+?) and/or )?Magic Items(?: and/or (.+?))?\s*up to.*?(\d+)\s*points',
+        raw, re.IGNORECASE)
     if m:
-        return {"type": "magic_items", "pointsLimit": int(m.group(1)), "raw": raw}
+        option = {"type": "magic_items", "pointsLimit": int(m.group(3)), "raw": raw}
+        # Characters get their upgrade family via the shared allowance wording; record it so
+        # parse_options can emit a companion option the army builder can render.
+        category = match_upgrade_family(m.group(1) or m.group(2))
+        if category:
+            option["factionUpgrade"] = category
+        return option
 
     # --- Blessed Spawning (standalone, per-model) ---
     m = re.match(r'May take a Blessed Spawning\s+(.*)', raw, re.IGNORECASE)
@@ -588,7 +622,27 @@ def parse_options(options_text):
     if current_primary:
         options.append(current_primary)
 
-    return options
+    return expand_shared_allowance_upgrades(options)
+
+
+def expand_shared_allowance_upgrades(options):
+    """Split a shared "upgrades and/or Magic Items" allowance into two options.
+
+    The allowance stays a magic_items option; the upgrade family becomes its own
+    faction_upgrade option so the builder can offer the picks. Each pick costs the
+    points listed against it in the faction's extras, so no points go on the option.
+    """
+    expanded = []
+    for option in options:
+        category = option.pop('factionUpgrade', None) if isinstance(option, dict) else None
+        expanded.append(option)
+        if category:
+            expanded.append({
+                "type": "faction_upgrade",
+                "factionUpgrade": category,
+                "raw": option.get('raw', ''),
+            })
+    return expanded
 
 
 def detect_section(full_text, unit_start_pos):
