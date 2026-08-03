@@ -387,6 +387,12 @@
     private void AddUnit(Unit unit)
     {
         var cfg = new UnitConfiguration(unit);
+        if (cfg.CanHaveChampion && cfg.CanHaveMusician && cfg.CanHaveStandardBearer)
+        {
+            cfg.HasChampion = true;
+            cfg.HasMusician = true;
+            cfg.HasStandardBearer = true;
+        }
         _armyList.Units.Add(cfg);
         Revalidate();
     }
