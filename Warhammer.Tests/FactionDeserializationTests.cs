@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Warhammer.Models.Domain;
 using Warhammer.Models.Json;
 
 namespace Warhammer.Tests;
@@ -10,8 +11,30 @@ public class FactionDeserializationTests
         PropertyNameCaseInsensitive = true
     };
 
-    private static readonly string DataDir = Path.Combine(
-        FindProjectRoot(), "wwwroot", "data", "wap-v2");
+    private static string SystemDataDir(string systemKey) => Path.Combine(
+        FindProjectRoot(), "wwwroot", "data", systemKey);
+
+    public static TheoryData<string> EnabledSystems()
+    {
+        var data = new TheoryData<string>();
+        foreach (var system in GameSystems.All.Where(s => s.Enabled))
+            data.Add(system.Key);
+        return data;
+    }
+
+    /// <summary>Every (enabled system, manifest faction) pair.</summary>
+    public static TheoryData<string, string> SystemFactions()
+    {
+        var data = new TheoryData<string, string>();
+        foreach (var system in GameSystems.All.Where(s => s.Enabled))
+        {
+            var manifest = JsonSerializer.Deserialize<SystemManifest>(
+                File.ReadAllText(Path.Combine(SystemDataDir(system.Key), "manifest.json")), JsonOptions)!;
+            foreach (var faction in manifest.Factions)
+                data.Add(system.Key, faction);
+        }
+        return data;
+    }
 
     private static string FindProjectRoot()
     {
@@ -29,10 +52,11 @@ public class FactionDeserializationTests
         throw new InvalidOperationException("Could not find Warhammer project root");
     }
 
-    [Fact]
-    public void CoreRules_Deserializes()
+    [Theory]
+    [MemberData(nameof(EnabledSystems))]
+    public void CoreRules_Deserializes(string systemKey)
     {
-        var json = File.ReadAllText(Path.Combine(DataDir, "core-rules.json"));
+        var json = File.ReadAllText(Path.Combine(SystemDataDir(systemKey), "core-rules.json"));
         var data = JsonSerializer.Deserialize<CoreRulesData>(json, JsonOptions);
         Assert.NotNull(data);
         Assert.NotEmpty(data.CloseCombatToHit.Table);
@@ -40,24 +64,10 @@ public class FactionDeserializationTests
     }
 
     [Theory]
-    [InlineData("beastmen")]
-    [InlineData("bretonnia")]
-    [InlineData("daemons-of-chaos")]
-    [InlineData("dark-elves")]
-    [InlineData("dwarfs")]
-    [InlineData("high-elves")]
-    [InlineData("lizardmen")]
-    [InlineData("ogre-kingdoms")]
-    [InlineData("orcs-and-goblins")]
-    [InlineData("skaven")]
-    [InlineData("the-empire")]
-    [InlineData("tomb-kings")]
-    [InlineData("vampire-counts")]
-    [InlineData("warriors-of-chaos")]
-    [InlineData("wood-elves")]
-    public void FactionUnits_Deserialize(string factionKey)
+    [MemberData(nameof(SystemFactions))]
+    public void FactionUnits_Deserialize(string systemKey, string factionKey)
     {
-        var path = Path.Combine(DataDir, "factions", $"{factionKey}.json");
+        var path = Path.Combine(SystemDataDir(systemKey), "factions", $"{factionKey}.json");
         var json = File.ReadAllText(path);
         var data = JsonSerializer.Deserialize<FactionData>(json, JsonOptions);
         Assert.NotNull(data);
@@ -72,24 +82,10 @@ public class FactionDeserializationTests
     }
 
     [Theory]
-    [InlineData("beastmen")]
-    [InlineData("bretonnia")]
-    [InlineData("daemons-of-chaos")]
-    [InlineData("dark-elves")]
-    [InlineData("dwarfs")]
-    [InlineData("high-elves")]
-    [InlineData("lizardmen")]
-    [InlineData("ogre-kingdoms")]
-    [InlineData("orcs-and-goblins")]
-    [InlineData("skaven")]
-    [InlineData("the-empire")]
-    [InlineData("tomb-kings")]
-    [InlineData("vampire-counts")]
-    [InlineData("warriors-of-chaos")]
-    [InlineData("wood-elves")]
-    public void FactionExtras_Deserialize(string factionKey)
+    [MemberData(nameof(SystemFactions))]
+    public void FactionExtras_Deserialize(string systemKey, string factionKey)
     {
-        var path = Path.Combine(DataDir, "factions", $"{factionKey}-extras.json");
+        var path = Path.Combine(SystemDataDir(systemKey), "factions", $"{factionKey}-extras.json");
         var json = File.ReadAllText(path);
         var data = JsonSerializer.Deserialize<FactionExtrasData>(json, JsonOptions);
         Assert.NotNull(data);

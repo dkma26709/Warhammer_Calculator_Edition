@@ -1,0 +1,3453 @@
+{
+  "factionName": "Lizardmen",
+  "units": [
+    {
+      "name": "Slann Mage-priest",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Slann Mage-Priest",
+          "M": 4,
+          "WS": 1,
+          "BS": 3,
+          "S": 3,
+          "T": 4,
+          "W": 5,
+          "I": 1,
+          "A": 0,
+          "Ld": 9,
+          "points": 360
+        },
+        {
+          "name": "Skink Attendant",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": null
+        }
+      ],
+      "troopType": "Monstrous Infantry (Character, Lizardman, Slann)",
+      "baseSize": "50x50, 60x60 or 75x75",
+      "equipment": "Hand weapon",
+      "magic": "A Slann Mage-Priest is a Level 4 Wizard who uses one of the following Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Geomancy\n• Light\n• Life\n• Metal\n• Shadow",
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Skink Attendant",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "Temple Guard Palanquin",
+              "replaces": "Mage-Priest Palanquin",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Slann Mage-Priest may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Magic Items and/or Disciplines of the Old Ones up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "disciplines",
+          "raw": "May take Magic Items and/or Disciplines of the Old Ones up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Cold-Blooded, Magical Ward (4+)",
+      "specialRuleDescriptions": [
+        "Arcane Might: The model gain a +1 casting and dispelling bonus.",
+        "Mage-Priest Palanquin: The Palanquin gives the Slann Mage-Priest the Inspiring Presence (6) and Strider special rules. Additionally, while they have the troop type Monstrous Infantry, they are never considered to be ‘models on foot' for the purposes of spells, magic items and special rules.",
+        "Telepathic Confabulation: At the start of each friendly Magic phase, before dice are rolled to determine the strength of the Winds of Magic, you may pick two friendly Wizards with this special rule anywhere on the battlefield and they may exchange a single spell with each other. In subsequent turns, a different pairing of Wizards with this special rule may be chosen."
+      ],
+      "upgrades": "• Skink Attendant: A Skink Attendant is placed on the same base as the Slann. They increase the Unit Strength\nof the model by 1.",
+      "notes": "• Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a Slann\ncarrying a magic standard can only take other magic items and/or Disciplines of the Old Ones up to a total of\n50 points. A Slann carrying the Battle Standard may still be the Army General.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 360
+    },
+    {
+      "name": "Oldblood",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Oldblood",
+          "M": 4,
+          "WS": 6,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 3,
+          "I": 3,
+          "A": 5,
+          "Ld": 8,
+          "points": 140
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Saurus)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +9 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Cold One",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Horned One",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Aggradon",
+              "points": 65,
+              "perModel": false
+            },
+            {
+              "name": "Carnosaur (Oldblood only)",
+              "points": 175,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Scar-Veteran may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Oldblood may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "An Oldblood may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 140
+    },
+    {
+      "name": "Scar-Veteran",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Scar-Veteran",
+          "M": 4,
+          "WS": 5,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 2,
+          "I": 3,
+          "A": 4,
+          "Ld": 8,
+          "points": 90
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Saurus)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +9 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Cold One",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Horned One",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Aggradon",
+              "points": 65,
+              "perModel": false
+            },
+            {
+              "name": "Carnosaur (Oldblood only)",
+              "points": 175,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Scar-Veteran may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Oldblood may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "An Oldblood may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 90
+    },
+    {
+      "name": "High Chief",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "High Chief",
+          "M": 6,
+          "WS": 5,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 7,
+          "A": 4,
+          "Ld": 7,
+          "points": 70
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "blowpipe",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "shortbow",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "sling",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "javelin",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Raptadon",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Horned One",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Terradon",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Ripperdactyl",
+              "points": 40,
+              "perModel": false
+            },
+            {
+              "name": "Stegadon (High Chief only, replacing one of the crew)",
+              "points": 190,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Chief may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "High Chief may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A High Chief may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• A Skink High Chief mounted on a Stegadon loses their Natural Armour special rule.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 70
+    },
+    {
+      "name": "Chief",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Chief",
+          "M": 6,
+          "WS": 4,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 6,
+          "A": 3,
+          "Ld": 6,
+          "points": 35
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "blowpipe",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "shortbow",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "sling",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "javelin",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Raptadon",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Horned One",
+              "points": 30,
+              "perModel": false
+            },
+            {
+              "name": "Terradon",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Ripperdactyl",
+              "points": 40,
+              "perModel": false
+            },
+            {
+              "name": "Stegadon (High Chief only, replacing one of the crew)",
+              "points": 190,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Chief may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "High Chief may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A High Chief may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• A Skink High Chief mounted on a Stegadon loses their Natural Armour special rule.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 35
+    },
+    {
+      "name": "High Priest",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "High Priest",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 3,
+          "I": 5,
+          "A": 2,
+          "Ld": 6,
+          "points": 165
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": "• Beasts\n• Heavens\n• Fire\n• Life\n• Light",
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Skink Priest may be upgraded to Level 2 Wizard",
+              "points": 35,
+              "perModel": false
+            }
+          ],
+          "raw": "A Skink Priest may be upgraded to Level 2 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Terradon",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Troglodon (High Priest only, replacing the Skink Oracle)",
+              "points": 150,
+              "perModel": false
+            },
+            {
+              "name": "Stegadon with an Engine of the Gods (High Priest, replacing one of the crew)",
+              "points": 240,
+              "perModel": false
+            },
+            {
+              "name": "Coatl (High Priest only)",
+              "points": 270,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Priest may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "High Priest may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A High Priest may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Arcane Vassal: A Slann Mage-Priest can choose to cast any magical missile or direct damage spell through a model with this special rule within 24\". If they do so, measure the spell's range from the Arcane Vassal and use that model's forward arc and line of sight for the purposes of casting the spell. If using an Arcane Vassal, a Slann Mage-Priest can cast magic missiles, even if their own unit is engaged in close combat (provided that the Arcane Vassal's is not). If a spell cast through an Arcane Vassal is miscast, the result of the miscast is applied to the Slann Mage-Priest, but the Arcane Vassal suffers a Strength 3 hit."
+      ],
+      "upgrades": null,
+      "notes": "• A Skink High Priest mounted on a Stegadon loses their Natural Armour special rule.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 165
+    },
+    {
+      "name": "Priest",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Priest",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 2,
+          "I": 4,
+          "A": 1,
+          "Ld": 5,
+          "points": 60
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": "• Beasts\n• Heavens\n• Fire\n• Life\n• Light",
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Skink Priest may be upgraded to Level 2 Wizard",
+              "points": 35,
+              "perModel": false
+            }
+          ],
+          "raw": "A Skink Priest may be upgraded to Level 2 Wizard +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Terradon",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Troglodon (High Priest only, replacing the Skink Oracle)",
+              "points": 150,
+              "perModel": false
+            },
+            {
+              "name": "Stegadon with an Engine of the Gods (High Priest, replacing one of the crew)",
+              "points": 240,
+              "perModel": false
+            },
+            {
+              "name": "Coatl (High Priest only)",
+              "points": 270,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Priest may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "High Priest may take Blessed Spawnings and/or Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A High Priest may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Arcane Vassal: A Slann Mage-Priest can choose to cast any magical missile or direct damage spell through a model with this special rule within 24\". If they do so, measure the spell's range from the Arcane Vassal and use that model's forward arc and line of sight for the purposes of casting the spell. If using an Arcane Vassal, a Slann Mage-Priest can cast magic missiles, even if their own unit is engaged in close combat (provided that the Arcane Vassal's is not). If a spell cast through an Arcane Vassal is miscast, the result of the miscast is applied to the Slann Mage-Priest, but the Arcane Vassal suffers a Strength 3 hit."
+      ],
+      "upgrades": null,
+      "notes": "• A Skink High Priest mounted on a Stegadon loses their Natural Armour special rule.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 60
+    },
+    {
+      "name": "Kroxigor Ancient",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Ancient",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
+          "S": 6,
+          "T": 5,
+          "W": 4,
+          "I": 2,
+          "A": 5,
+          "Ld": 8,
+          "points": 170
+        }
+      ],
+      "troopType": "Monstrous Infantry (Character, Lizardman, Kroxigor)",
+      "baseSize": "40x40 or 50x50",
+      "equipment": "Great weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "great weapon",
+          "choices": [
+            {
+              "name": "war gauntlets",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace great weapons with war gauntlets free"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 16,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +16 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Predatory Fighter, Natural Armour (3+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• A Kroxigor Ancient may never be the Army General.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 170
+    },
+    {
+      "name": "Chameleon Stalker",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Stalker",
+          "M": 6,
+          "WS": 4,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 6,
+          "A": 2,
+          "Ld": 6,
+          "points": 45
+        }
+      ],
+      "troopType": "Infantry (Character, Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, blowpipe",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "blowpipe",
+          "choices": [
+            {
+              "name": [
+                "sling",
+                "shield"
+              ],
+              "points": 1,
+              "perModel": false
+            },
+            {
+              "name": [
+                "javelin",
+                "shield"
+              ],
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace blowpipe with one of the following:"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+        }
+      ],
+      "specialRules": "Aquatic, Chameleon, Cold-blooded, Forest Strider, Natural Armour (6+), Scouts, Sniper",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• A Chameleon Stalker may never be the Army General.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 45
+    },
+    {
+      "name": "Temple Guard Palanquin",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Temple Guard",
+          "M": 4,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": null,
+          "W": null,
+          "I": 2,
+          "A": 8,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Monstrous Infantry (Lizardman, Saurus)",
+      "baseSize": "50x75 or 60x90",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Cold-blooded, Inspiring Presence (6), Natural Armour (5+), Predatory Fighter, Stubborn",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• A Temple Guard Palanquin adds +4 Unit Strength to the model.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Raptadon",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Raptadon",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 3
+        }
+      ],
+      "troopType": "War Beast (Saurian)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Cold-Blooded",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Cold One",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Cold One",
+          "M": 7,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "War Beast (Saurian)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Cold-Blooded, Fear, Natural Armour (6+), Stupidity",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Horned One",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Horned One",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 3,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "War Beast (Saurian)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Cold-Blooded, Fear, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Terradon",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Terradon",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 2,
+          "A": 1,
+          "Ld": 3
+        }
+      ],
+      "troopType": "War Beast (Saurian)",
+      "baseSize": "40x40",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Fear, Fly (9), Forest Strider",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Ripperdactyl",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Ripperdactyl",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 3,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "War Beast (Saurian)",
+      "baseSize": "40x40",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Armour Piercing (1), Fear, Fly (9), Frenzy, Killing Blow, Toad Rage (see Ripperdactyl",
+      "specialRuleDescriptions": [
+        "Riders)"
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Aggradon",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Aggradon",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 2,
+          "A": 3,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Monstrous Beast (Saurian)",
+      "baseSize": "50x75",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Blood Frenzy, Cold-Blooded, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Carnosaur",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Carnosaur",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 6,
+          "T": 5,
+          "W": 5,
+          "I": 2,
+          "A": 4,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monster (Saurian)",
+      "baseSize": "50x75 or 50x100",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Loping Stride",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Bloodroar",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose any of the following:"
+        }
+      ],
+      "specialRules": "Blood Frenzy, Cold-Blooded, Multiple Wounds (D3), Natural Armour (4+)",
+      "specialRuleDescriptions": null,
+      "upgrades": "• Bloodroar: Enemy units must roll an additional D6, discarding the lowest result, for Leadership tests to\nresolve Terror effects caused by this beast.\n• Loping Stride: A model with this upgrade has +1 Movement.",
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Saurus Warriors",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Saurus Warrior",
+          "M": 4,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 1,
+          "A": 2,
+          "Ld": 8,
+          "points": 13
+        }
+      ],
+      "troopType": "Infantry (Lizardman, Saurus)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": "Hand weapon, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "spear",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take spears +1 point/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 1,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Saurus Warrior to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Saurus Warrior to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Saurus Warrior to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 13
+    },
+    {
+      "name": "Skink Cohort",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5,
+          "points": 3
+        }
+      ],
+      "troopType": "Infantry (Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "spear",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "shortbow",
+              "replaces": "shield",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "javelin",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +2 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 1,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skink to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skink to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Skink to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+), Poisoned Attacks (",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "20-60",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 3
+    },
+    {
+      "name": "Skink Skirmishers",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5,
+          "points": 5
+        }
+      ],
+      "troopType": "Infantry (Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, blowpipe",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "blowpipe",
+          "choices": [
+            {
+              "name": [
+                "sling",
+                "shield"
+              ],
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": [
+                "javelin",
+                "shield"
+              ],
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace blowpipes with one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +2 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 1,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Skink to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Skink to a Musician +5 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+), Skirmishers",
+      "specialRuleDescriptions": [
+        "Skirmish Screen: Friendly units of Kroxigors can move through friendly units of Skink Skirmishers as if they were Open Terrain (note that they must end their Movement at least 1\" apart as normal). If the Kroxigors make a move that would result in it ending on top of a unit of Skink Skirmishers, simply move the Skink Skirmishers aside by the smallest amount possible to make room for the Kroxigors."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 5
+    },
+    {
+      "name": "Raptadon Riders",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5,
+          "points": 12
+        },
+        {
+          "name": "Raptadon",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Lizardman, Skink)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Hand weapon, light lance, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "light lance",
+          "choices": [
+            {
+              "name": "javelin",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace light lances with javelins +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +2 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 1,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Raptadon Rider to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Raptadon Rider to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Raptadon Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Fast Cavalry, Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Raptadon (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 12
+    },
+    {
+      "name": "Jungle Swarms",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Jungle Swarm",
+          "M": 5,
+          "WS": 3,
+          "BS": 0,
+          "S": 2,
+          "T": 2,
+          "W": 6,
+          "I": 1,
+          "A": 6,
+          "Ld": 3,
+          "points": 30
+        }
+      ],
+      "troopType": "Swarm (Reptile)",
+      "baseSize": "40x40",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Cold-blooded, Poisoned Attacks",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "3-9",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 30
+    },
+    {
+      "name": "Terrawings",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Terrawing",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 3,
+          "points": 10
+        }
+      ],
+      "troopType": "War Beast (Saurian)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Cold-blooded, Fly (10), Forest Strider",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 10
+    },
+    {
+      "name": "Temple Guard",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Temple Guard",
+          "M": 4,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 2,
+          "Ld": 8,
+          "points": 17
+        }
+      ],
+      "troopType": "Infantry (Lizardman, Saurus)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": "Polearm, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +1 point/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 1,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Temple Guard to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Temple Guard to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Temple Guard to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+), Stubborn",
+      "specialRuleDescriptions": [
+        "Guardians: When a Slann joins a unit whose front rank contains five or more models with the Guardians special rule, it must be placed in the second rank, rather than the first. If the unit's front rank is ever reduced to four or fewer models with the Guardians special rule, the Slann must immediately move to the front rank (displacing rank and file models if necessary). A Slann who is in base contact with a model with the Guardians special rule is considered to be the same Troop Type as them for the purpose of resolving missile attacks. When casting a direct damage or magical vortex spell that originates from the Slann's base, draw this spell from the base of the model in front of the Slann instead.",
+        "Sacred Duty: Whilst they are part of a combined unit that has been joined by a Slann, all Temple Guard models in the combined unit have the Immunity (Psychology) special rules."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 17
+    },
+    {
+      "name": "Cold One Riders",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Saurus",
+          "M": 4,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 2,
+          "Ld": 8,
+          "points": 24
+        },
+        {
+          "name": "Cold One",
+          "M": 7,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Lizardman, Saurus)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Hand weapon, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light lance",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light lances +2 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 2,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Cold One Rider to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Cold One Rider to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Cold One Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Cold-blooded, Fear, Predatory Fighter, Natural Armour (4+), Stupidity",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Cold One (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 24
+    },
+    {
+      "name": "Kroxigors",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Kroxigor",
+          "M": 6,
+          "WS": 3,
+          "BS": 0,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 1,
+          "A": 3,
+          "Ld": 7,
+          "points": 47
+        }
+      ],
+      "troopType": "Monstrous Infantry (Lizardman, Kroxigor)",
+      "baseSize": "40x40 or 50x50",
+      "equipment": "Great weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "great weapon",
+          "choices": [
+            {
+              "name": "war gauntlets",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace great weapons with war gauntlets free"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 3,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Kroxigor to a Leader +5 points"
+        }
+      ],
+      "specialRules": "Aquatic, Cold-blooded, Natural Armour (4+), Predatory Fighter",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "3-9",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 47
+    },
+    {
+      "name": "Chameleon Skinks",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Chameleon Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 4,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5,
+          "points": 8
+        }
+      ],
+      "troopType": "Infantry (Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, blowpipe",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "blowpipe",
+          "choices": [
+            {
+              "name": "slings & shields",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace blowpipes with slings & shields +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +2 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 1,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Chameleon Skink to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Chameleon Skink to a Musician +5 points"
+        }
+      ],
+      "specialRules": "Aquatic, Chameleon, Cold-blooded, Forest Strider, Natural Armour (6+), Scouts,",
+      "specialRuleDescriptions": [
+        "Skirmishers"
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 8
+    },
+    {
+      "name": "Horned One Riders",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Great Crested Skink",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 6,
+          "points": 21
+        },
+        {
+          "name": "Horned One",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 3,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Lizardman, Skink)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Light lance, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "blessed_spawning",
+          "points": 2,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Great Crested Skink to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Great Crested Skink to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Great Crested Skink to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Cold-blooded, Fast Cavalry, Fear, Natural Armour (5+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Horned One (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 21
+    },
+    {
+      "name": "Terradon Riders",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5,
+          "points": 22
+        },
+        {
+          "name": "Terradon",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 2,
+          "A": 1,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Lizardman, Skink)",
+      "baseSize": "40x40",
+      "equipment": "Hand weapon, light lance\n• Fireleech Bolas: Fireleech bolas have the following profile:\nRange: Strength: Special Rules:\n6/9\" 4 Flaming Attacks, Quick Shot",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "light lance",
+          "choices": [
+            {
+              "name": "shortbow",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "javelin",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "fireleech bolas",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace light lances with one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +2 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional Skink",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take an additional Skink +5 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 2,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Terradon Rider to a Leader +5 points"
+        }
+      ],
+      "specialRules": "Cold-blooded, Fast Cavalry, Fear, Fly (9), Forest Strider, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Drop Rocks: Once per game, during the Remaining Moves sub-phase, models with this special rule may drop rocks unless they are fleeing or have declared a charge that turn. All models in a unit must drop rocks at the same time. To drop rocks, select one unengaged enemy unit that the Terradons moved over in that turn. That target immediately suffers D3 Strength 4 hits for each Terradon in the unit, distributed as Hits from shooting."
+      ],
+      "upgrades": null,
+      "notes": "• Terradon Riders with 2 Skinks have a Unit Strength of 3.",
+      "unitSize": "3-9",
+      "crew": null,
+      "mount": "Terradon (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 22
+    },
+    {
+      "name": "Ripperdactyl Riders",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Skink Brave",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 6,
+          "points": 30
+        },
+        {
+          "name": "Ripperdactyl",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 3,
+          "A": 2,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Lizardman, Skink)",
+      "baseSize": "40x40",
+      "equipment": "Light lance, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "blessed_spawning",
+          "points": 2,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +2 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ripperdactyl Rider to a Leader +5 points"
+        }
+      ],
+      "specialRules": "Armour Piercing (1) (Ripperdactyl only), Cold-blooded, Fast Cavalry, Fear, Fly (9), Frenzy",
+      "specialRuleDescriptions": [
+        "(Ripperdactyl only), Killing Blow (Ripperdactyl only), Natural Armour (6+)",
+        "Toad Rage: Before the game starts, but after Scouts have been deployed, a Lustrian blot toad marker can be placed for each unit of Ripperdactyl Riders in your army. A single blot toad marker can be placed on any enemy unit on the tabletop, this marker remains throughout the battle. When fighting in close combat against a unit with a blot toad marker, Ripperdactyls gain another level of Frenzy and the Hatred special rule."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "3-9",
+      "crew": null,
+      "mount": "Ripperdactyl (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 30
+    },
+    {
+      "name": "Salamander",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Salamander",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 4,
+          "points": 70
+        },
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "War Beast (Saurian)\nHANDLER: 3 Skinks (Lizardman, Skink)",
+      "baseSize": "40x40 or 50x50 (Salamander), 20x20 or 25x25 (Skink)",
+      "equipment": "Spear (Skinks only)",
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Cold-blooded, Fear, Mixed Unit, Natural Armour (5+) (Salamander only), Natural",
+      "specialRuleDescriptions": [
+        "Armour (6+) (Skink Handler only), Skirmishers.",
+        "Spout Flames: Spout Flames shoots like a fire thrower with the following profile: Range: Strength: Special Rules: n/a 4 Flaming Attacks, Slow to Fire If the artillery dice result is a misfire, no shots are fired and D3 Skink handlers are removed as casualties. If all Skink handlers are removed, the Salamander is subject to Frenzy for the remainder of the game."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 70
+    },
+    {
+      "name": "Razordon",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Razordon",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 4,
+          "points": 50
+        },
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "War Beast (Saurian)\nHANDLER: 3 Skinks (Lizardman, Skink)",
+      "baseSize": "40x40 or 50x50 (Razordon), 20x20 or 25x25 (Skink)",
+      "equipment": "Spear (Skinks only)",
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Cold-blooded, Fear, Mixed Unit, Natural Armour (5+) (Razordon only), Natural",
+      "specialRuleDescriptions": [
+        "Armour (6+) (Skink Handler only), Skirmishers.",
+        "Instinctive Defence: If charged, a Razordon must Stand and Shoot if it is able to do so. However, when calculating the number of shots fired, the Razordon can re-roll the artillery dice. In addition, it gains the Quick to Fire special rule and does not suffer To Hit penalties for Stand and Shoot.",
+        "Shoot Barbs: Shoot Barbs shoots like an organ gun with the following profile: Range: Strength: Special Rules: 18\" 4 Armour Piercing (1), Rapid Fire If the artillery dice result is a misfire, no shots are fired and D3 Skink Handlers are removed as casualties. If all Skink handlers are removed, the Razordon is subject to Stupidity for the remainder of the game."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 50
+    },
+    {
+      "name": "Aggradon Riders",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Saurus",
+          "M": 4,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 2,
+          "Ld": 8,
+          "points": 60
+        },
+        {
+          "name": "Aggradon",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 2,
+          "A": 3,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Monstrous Cavalry (Lizardman, Saurus)",
+      "baseSize": "50x75",
+      "equipment": "Hand weapon, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light lance",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light lances +2 points/model"
+        },
+        {
+          "type": "blessed_spawning",
+          "points": 3,
+          "perModel": true,
+          "raw": "May take a Blessed Spawning +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Aggradon Rider to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Aggradon Rider to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Aggradon Rider to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Blood Frenzy (Aggradon only), Cold-blooded, Predatory Fighter, Natural Armour (3+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "3-6",
+      "crew": null,
+      "mount": "Aggradon (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 60
+    },
+    {
+      "name": "Ancient Salamander",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Ancient Salamander",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 4,
+          "A": 3,
+          "Ld": 4,
+          "points": 110
+        },
+        {
+          "name": "Skink",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 2,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monstrous Beast (Saurian)\nHANDLER: 3 Skinks (Lizardman, Skink)",
+      "baseSize": "50x75 (Ancient Salamander), 20x20 or 25x25 (Skink)",
+      "equipment": "Spear (Skinks only)",
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Armour Piercing (1) (Salamander only), Cold-blooded, Mixed Unit, Natural",
+      "specialRuleDescriptions": [
+        "Armour (5+) (Salamander only), Natural Armour (6+) (Skink Handler only), Skirmishers.",
+        "Stream of Fire: Stream of Fire is a fire thrower with the following profile: Range: Strength: Special Rules: 6\" 5 Flaming Attacks, Slow to Fire If the artillery dice result is a misfire, no shots are fired and D3 Skink Handlers are removed as casualties. If all Skink handlers are removed, the Ancient Salamander is subject to Frenzy for the remainder of the game."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 110
+    },
+    {
+      "name": "Bastiladon",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Bastiladon",
+          "M": 4,
+          "WS": 3,
+          "BS": 0,
+          "S": 5,
+          "T": 6,
+          "W": 5,
+          "I": 1,
+          "A": 3,
+          "Ld": 6,
+          "points": 175
+        },
+        {
+          "name": "Skink",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monster (Saurian)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Ark of Sotek (Bastiladon only), javelins (Skinks only)\n• Ark of Sotek: At the end of each friendly turn, nominate a Jungle Swarm unit within 6\" of each Bastiladon\nwith an Ark of Sotek and roll a D6. On a 4+, add one base to the Jungle Swarm unit. This can take the Jungle\nSwarm unit beyond its starting size. If the base cannot be placed (because there is not enough room, or you\ndon't have sufficient models), it is lost. In addition, the Ark of Sotek has a special shooting attack, with the\nprofile and rules below:\nRange: Strength: Special Rules:\nD6\" 2 -\nThe Ark of Sotek can be activated in any friendly Shooting phase, even if the Bastiladon has marched, charged\nor is engaged in close combat. When activated, all enemy units within D6\" immediately take 2D6 Strength 2\nhits, distributed as for shooting.\n• Revivification Crystal: All friendly units with the Cold-blooded special rule within 6\" of one or more\nBastiladons with a Revivification Crystal gains the Regeneration (6+) special rule.\n• Solar Engine: Arcane Item. All friendly units with the Cold-blooded special rule that are within 6\" of one or\nmore Bastiladons with a Solar Engine gain +1 Initiative. In addition, it contains a Bound Spell (Level 1, cast\non 6+). Beam of Chotec is a magic missile with a range of 24\". If successfully cast, roll a D6 and consult the\ntable below to determine the Strength and number of hits (as well as any other effects) caused by this spell. All\nhits caused by Beam of Chotec are Flaming Attacks.\nD6 Number of Hits:\n1 D3 Strength 3 hits.\n2-3 D6 Strength 4 hits.\n4-5 2D6 Strength 5 hits.\n6 2D6 Strength 6 hits. In addition, the target suffers a -1 penalty to their Weapon Skill and Ballistic\nSkill (to a minimum of 1) until the start of the Bastiladon's next Magic phase.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +6 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional Skink",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional Skink +3 points"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "Ark of Sotek",
+          "choices": [
+            {
+              "name": "Revivification Crystal",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Solar Engine",
+              "points": 40,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace the Ark of Sotek with one of the following:"
+        }
+      ],
+      "specialRules": "Cold-blooded, Natural Armour (2+), Stubborn",
+      "specialRuleDescriptions": [
+        "Impervious Defence: For the purposes of calculating combat result bonuses, a Bastiladon counts as having no flanks or rear.",
+        "Thunderous Bludgeon: Before rolling To Hit, nominate one of the Bastiladon's Attacks as the Thunderous Bludgeon (a different coloured dice works best). This Attack is resolved at Strength 10 and receives a +1 To Hit bonus against models in the creature's rear arc."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "3 Skinks (Lizardman, Skink)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 175
+    },
+    {
+      "name": "Stegadon",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Stegadon",
+          "M": 6,
+          "WS": 3,
+          "BS": 0,
+          "S": 5,
+          "T": 6,
+          "W": 5,
+          "I": 2,
+          "A": 4,
+          "Ld": 6,
+          "points": 195
+        },
+        {
+          "name": "Skink Crew",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monster (Saurian)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Giant bow, javelins (Skinks only)\n• Giant Bow: Instead of firing another missile weapon in the Shooting phase, one of the Skink Crew may fire\nthe giant bow. This is a bolt thrower with the following profile:\nRange: Strength: Special Rules:\n36\" 5 Cumbersome, Multiple Wounds (D3)\n• Giant Blowpipe: Instead of firing another missile weapon in the Shooting phase, up to two of the Skink Crew\nmay each fire a giant blowpipe. This is an artillery weapon with the following profile:\nRange: Strength: Special Rules:\n9/18\" 2 Cumbersome, Multiple Shots (2D6), Poisoned Attacks, Rapid Fire\n• Engine of the Gods: An Engine of the Gods confers the following special rules:\n- Arcane Configuration: If you have one or more Engines of the Gods on the battlefield at the start of your\nMagic phase, select one of the eight Lores of Battle Magic from the Warhammer rulebook. Until the start\nof your next Magic phase, the casting values for all spells from the selected lore are reduced by 1 (to a\nminimum of 3).\n- Burning Alignment: Bound spell (Level 2, cast on 8+). Burning Alignment is a direct damage aura spell\nwith a range of 12\". Each target suffers D6 Strength 4 hits with the Flaming Attacks special rule.\n- Portent of Warding: The model and all friendly units within 6\" have a Magical Ward (6+).",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 20,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +20 points"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "giant bow",
+          "choices": [
+            {
+              "name": "Giant blowpipes",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Engine of the Gods",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace giant bow with one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Unstoppable Stampede",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Sharpened Horns",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Ancient",
+              "points": 30,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose any of the following:"
+        }
+      ],
+      "specialRules": "Cold-blooded, Immunity (Psychology), Impact Hits (D6+1), Natural Armour (4+),",
+      "specialRuleDescriptions": [
+        "Stubborn"
+      ],
+      "upgrades": "• Ancient: The Stegadon gains +1 Strength and the Natural Armour (6+) special rule. However, they suffer -1\nInitiative and -1 Attacks.\n• Sharpened Horns: The Stegadon's its Impact Hits gains the Multiple Wounds (D3) special rule.\n• Unstoppable Stampede: The Stegadon gains the Devastating Charge special rule.",
+      "notes": null,
+      "unitSize": null,
+      "crew": "5 Skinks (Lizardman, Skink)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 195
+    },
+    {
+      "name": "Arcanadon",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Arcanadon",
+          "M": 6,
+          "WS": 2,
+          "BS": 0,
+          "S": 5,
+          "T": 6,
+          "W": 6,
+          "I": 1,
+          "A": 3,
+          "Ld": 6,
+          "points": 210
+        },
+        {
+          "name": "Skink",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monster (Saurian)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Power of the Ancients (Arcanadon only), javelins (Skinks only)\n• Power of the Ancients: Arcane Item. Bound Spell. This item contains the Fiery Blast spell from the Lore of\nFire.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Firefly Frog Venom",
+              "points": 6,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Firefly Frog Venom +6 points"
+        }
+      ],
+      "specialRules": "Cold-blooded, Immunity (Psychology), Impact Hits (D6+1), Jungle Poisons, Natural",
+      "specialRuleDescriptions": [
+        "Armour (4+), Stubborn"
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "3 Skinks (Lizardman, Skink)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 210
+    },
+    {
+      "name": "Troglodon",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Troglodon",
+          "M": 7,
+          "WS": 3,
+          "BS": 4,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": 2,
+          "A": 3,
+          "Ld": 5,
+          "points": 155
+        },
+        {
+          "name": "Oracle",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monster (Saurian)",
+      "baseSize": "50x100",
+      "equipment": "Divining Rod (Oracle only)\n• Divining Rod: Arcane Item. Staff. The model channels Power and Dispel dice as if they were a Level 1\nWizard.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Arcane Vassal (see Skink Priests), Cold-blooded, Jungle Poisons, Poisoned Attacks",
+      "specialRuleDescriptions": [
+        "(Troglodon only), Predatory Fighter (Troglodon only), Natural Armour (4+)",
+        "Primeval Roar: Once per battle, at the start of any friendly Close Combat phase, a Troglodon can unleash its Primeval Roar. This affects all friendly units within 12\". All models with the Predatory Fighter special rule gain an additional Attack on any successful To Hit roll of a 5+ until the end of the phase.",
+        "Spit Venom: A Troglodon can spit its venom as a shooting attack with the following profile: Range: Strength: Special Rules: 9/18\" 5 Multiple Wounds (D3), Poisoned Attacks, Quick Shot"
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "1 Oracle (Lizardman, Skink)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 155
+    },
+    {
+      "name": "Coatl",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Coatl",
+          "M": 5,
+          "WS": 4,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": 2,
+          "A": 4,
+          "Ld": 8,
+          "points": 270
+        }
+      ],
+      "troopType": "Monster (Ophidian)",
+      "baseSize": "50x100 or 100x100",
+      "equipment": null,
+      "magic": "A Coatl is a Level 2 Wizard that uses spells from the Lore of Heavens. In addition, they know the following\nspell:\n• Guardian of the Sacred Places: Level 1, cast on 5+. Guardian of the Sacred Places is a special type of spell\nthat targets a single forest within 12\" of the caster. The target immediately moves up to 2D3\" in a direction of\nyour choice. A forest cannot move to within 1\" of other terrain features.",
+      "options": [],
+      "specialRules": "Cold-blooded, Fly (8), Magic Resistance (3), Natural Armour (4+)",
+      "specialRuleDescriptions": [
+        "Magical Storm: All missile fire directed at a Coatl suffers a -1 penalty to hit."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 270
+    },
+    {
+      "name": "Dread Saurian",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Dread Saurian",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 8,
+          "T": 7,
+          "W": 10,
+          "I": 1,
+          "A": 6,
+          "Ld": 6,
+          "points": 365
+        }
+      ],
+      "troopType": "Monster (Saurian)",
+      "baseSize": "100x150",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Howdah",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Howdah +50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Shadow Rebus of Huanchi",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Quetzl's Flawless Heartstone",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Blazing Configuration of Chotec",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Golden Shroud of Tlazcotl",
+              "points": 35,
+              "perModel": false
+            },
+            {
+              "name": "Tepok's Crystalline Eye",
+              "points": 45,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        }
+      ],
+      "specialRules": "Cold-blooded, Immunity (Psychology), Multiple Wounds (D3), Natural Armour (3+)",
+      "specialRuleDescriptions": null,
+      "upgrades": "• Howdah: The Dread Saurian is ridden by 6 Skinks (Lizardmen) who are equipped with blowpipes and have\nand Natural Armour (6+) special rule.\n• The Blazing Configuration of Chotec: The Dread Saurian gains the Flaming Attacks special rule and causes\n2D6 Strength 4 Flaming Impact Hits.\n• The Golden Shroud of Tlazcotl: All attacks targeting the Dread Saurian suffer a -1 To Hit modifier.\n• Quetzl's Flawless Heartstone: The Dread Saurian gains the Stubborn special rule and reduces its Movement\nrate to 5, but increases its Toughness to 8.\n• The Shadow Rebus of Huanchi: The Dread Saurian gains the Ambushers deployment special rule.\n• Tepok's Crystalline Eye: The Dread Saurian gains the Magical Ward (5+) special rule.",
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 365
+    },
+    {
+      "name": "Lord Mazdamundi",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Lord Mazdamundi",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": 4,
+          "W": 5,
+          "I": 2,
+          "A": 1,
+          "Ld": 9,
+          "points": 730
+        },
+        {
+          "name": "Zlaaq (Stegadon)",
+          "M": 6,
+          "WS": 3,
+          "BS": 0,
+          "S": 6,
+          "T": 6,
+          "W": 5,
+          "I": 1,
+          "A": 3,
+          "Ld": 6
+        }
+      ],
+      "troopType": "Monster (Special Character, Lizardman, Slann)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": null,
+      "magic": "Lord Mazdamundi is a Level 4 Wizard who uses one of the following Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Geomancy\n• Light\n• Life\n• Metal\n• Shadow\nDISCIPLINES OF THE OLD ONES: Becalming Cogitation, Focus of Mystery, Harmonic Convergence,\nSoul of Stone, Transcendent Healing\nMAGIC ITEMS:\n• Cobra Mace of Mazdamundi: Magic Weapon. Attacks made with the Cobra Mace have the Always Strikes\nFirst and Poisoned Attacks special rules. At the start of every Close Combat phase, all enemy models in base\ncontact with Lord Mazdamundi must reveal their magic items. If the wielder scores one or more hits against a\nmodel that has any magic items, roll a D6; on a 6, all of that model's magic items are immediately destroyed\nand cannot be used further in this game.\n• The Itxi Grubs: Arcane Item. Charm. One use only. This item can be used at the start of your Magic phase.\nOnce used, the bearer gains +D3 Power dice that phase.\n• Sunburst Standard of Hexoatl: Magic Standard. The Sunburst Standard of Hexoatl is a Battle Standard – if\nyour army includes Lord Mazdamundi, he must be your army's Battle Standard Bearer. This does not prevent\nLord Mazdamundi from also being your Army General. In addition, once per game, at the beginning of any\nenemy Shooting phase, Lord Mazdamundi can release the power of the Sunburst Standard. If he does so,\nenemy models that target Mazdamundi, or any other friendly unit within 12\", with a shooting attack, suffer a -1\nTo Hit penalty. This effect lasts until the end of the turn.",
+      "options": [],
+      "specialRules": "Arcane Might (see Slann-Mage Priests), Cold-blooded, Impact Hits (D6+1) (Zlaaq only),",
+      "specialRuleDescriptions": [
+        "Immunity (Psychology), Natural Armour (3+), Stubborn, Telepathic Confabulation (see Slann-Mage Priests), Shield of the Old Ones (see Slann-Mage Priests)",
+        "Mage-Lord of Hexoatl: Lord Mazdamundi can use one more power dice than normal when casting spells."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Zlaaq (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 730
+    },
+    {
+      "name": "Lord Kroak",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Lord Kroak",
+          "M": 4,
+          "WS": 0,
+          "BS": 0,
+          "S": 3,
+          "T": 5,
+          "W": 6,
+          "I": 0,
+          "A": 0,
+          "Ld": 9,
+          "points": 510
+        },
+        {
+          "name": "Skink Attendant",
+          "M": null,
+          "WS": 2,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 4,
+          "A": 1,
+          "Ld": null
+        }
+      ],
+      "troopType": "Monstrous Infantry (Special Character, Lizardman, Slann)",
+      "baseSize": "50x50, 60x60 or 75x75",
+      "equipment": null,
+      "magic": "Lord Kroak is a Level 4 Wizard; however, he knows only one spell – The Deliverance of Itza. If this spell is\nlost, forgotten, swapped or stolen by any means, Lord Kroak will immediately remember it again and, if applicable, the\nWizard that swapped or stole it will immediately forget it.\nTHE DELIVERANCE OF ITZA\nLevel 4 Cast on 12+\nThe Deliverance of Itza is a direct damage spell that targets all enemy units within 12\" of the caster's front arc. Each\ntarget suffers 2D6 Strength 4 hits. If a target has the Daemonic, Undead or Vampiric special rules, it suffers 3D6 hits\ninstead. Lord Kroak can choose to extend the range of this spell to 18\"; if he does so, the casting value is increased to\n18+. Alternatively, Lord Kroak can choose to extend the range of this spell to 24\", in which case the casting value is\nincreased to 24+.\nMAGIC ITEMS:\n• Ceremonial Mace of Malachite: Magic Weapon. Magical Weapons count only as mundane weapons of their\ntype when targeting Lord Kroak in close combat.\n• Golden Death Mask: Talisman. All shooting or close combat attacks against Lord Kroak or any unit he joins\nsuffer a -1 To Hit penalty.\n• Amulet of Itza: Arcane Item. Relic. The Amulet gives Lord Kroak Magic Resistance (3). In addition, the\nAmulet of Itza adds one dice to the Lizardmen player's Dispel dice pool each turn.\n• Glyph of Potec: Enchanted Item. Against enemy models with the Daemonic, Undead or Vampiric special\nrules, all hits from the Standard of the Sacred Serpent are resolved at Strength 5.\n• Standard of the Sacred Serpent: Magic Standard. All enemy units in base contact with Lord Kroak or his\nunit takes D6 Strength 3 hits at the start of your Shooting phase. This is the army's Battle Standard.",
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Skink Attendant",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May have a Skink Attendant +3 points"
+        }
+      ],
+      "specialRules": "Arcane Might (see Slann-Mage Priests), Cold-blooded, Flammable, Mage-Priest Palanquin,",
+      "specialRuleDescriptions": [
+        "Magical Ward (3+), Unbreakable",
+        "Eternity Guardians: If Lord Kroak joins a unit of Temple Guard, all models in the combined unit gain the Unbreakable special rule.",
+        "First Generation Spawning: Lord Kroak can cast The Deliverance of Itza as many times per turn as he has sufficient power dice, and may use up to 6 Power Dice per casting attempt. If Lord Kroak miscasts, roll a D6; on a 2+ he does not roll on the Miscast table but instead suffers a Strength 6 hit. On a roll of 1, Lord Kroak rolls on the Miscast table as normal. In either case, if the spell was cast through an Arcane Vassal, the Arcane Vassal also suffers a Strength 6 hit.",
+        "The Spirit of Lord Kroak: Lord Kroak's Wizard level can never be reduced from Level 4."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 510
+    },
+    {
+      "name": "Kroq-gar",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Kroq-Gar",
+          "M": 4,
+          "WS": 6,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 3,
+          "I": 3,
+          "A": 5,
+          "Ld": 8,
+          "points": 465
+        },
+        {
+          "name": "Grymloq (Carnosaur)",
+          "M": 7,
+          "WS": 4,
+          "BS": 0,
+          "S": 6,
+          "T": 5,
+          "W": 5,
+          "I": 2,
+          "A": 5,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Monster (Special Character, Lizardman, Saurus)",
+      "baseSize": "50x50 or 50x100",
+      "equipment": "Light armour\nMAGIC ITEMS:\n• Revered Spear of Tlanxla: Magic Weapon. Light lance. Each unsaved Wound caused by the Revered Spear of\nTlanxla counts as 2 unsaved Wounds when calculating combat results.\n• Hand of the Gods: Enchanted Item. Bound spell. Hand of Gods contains the spell Shem's Burning Gaze from\nthe Lore of Light.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Blood Frenzy (Grymloq only), Cold-blooded, Multiple Wounds (D3) (Grymloq only),",
+      "specialRuleDescriptions": [
+        "Predatory Fighter, Natural Armour (2+)",
+        "Army of Kroq-Gar: Kroq-Gar must always be the Army General. An army led by Kroq-Gar may include a single unit of Saurus Cold One Riders as a Core choice.",
+        "Sacred Spawning of Xhotl: Kroq-Gar has a Magical Ward (5+). If Kroq-Gar is wounded in close combat and does not pass his Magical Ward save, then whoever struck the blow immediately suffers an automatic Strength 5 hit.",
+        "Attuned to the Beast: Grymloq does not suffer from Berserk Rage."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Grymloq (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 465
+    },
+    {
+      "name": "Tehenhauin",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Tehenhauin",
+          "M": 6,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 3,
+          "I": 6,
+          "A": 3,
+          "Ld": 8,
+          "points": 310
+        }
+      ],
+      "troopType": "Infantry (Special Character, Lizardman, Skink)",
+      "baseSize": "40x40 or 50x50",
+      "equipment": "Light armour",
+      "magic": "Tehenhauin is a Level 3 Wizard who uses spells from the Lore of Beasts.\nMAGIC ITEMS:\n• Blade of the Serpent's Tongue: Magic Weapon. The Blade of the Serpent's Tongue grants Tehenhauin the\nMighty Blow (1) special rule on any turn he charges. In addition, all attacks made by the Blade of the Serpent's\nTongue have the Poisoned Attacks special rule.\n• Plaque of Sotek: Talisman. The Plaque of Sotek grants Tehenhauin and any Jungle Swarms in his unit the\nRegeneration (6+) special rule.",
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Stegadon with an Engine of the Gods (replacing one of the crew)",
+              "points": 265
+            }
+          ],
+          "raw": "May be mounted on a Stegadon with an Engine of the Gods (replacing one of the crew) +265 points"
+        }
+      ],
+      "specialRules": "Aquatic, Arcane Vassal, Cold-blooded, Hatred (Skaven), Immunity (Poisoned Attacks),",
+      "specialRuleDescriptions": [
+        "Magical Ward (5+), Natural Armour (6+)",
+        "Master of Snakes: Tehenhauin can join Jungle Swarm units, even though characters are not normally permitted to join Swarms. Whilst Tehenhauin leads a Jungle Swarm, he gains the Unbreakable special rule and the unit's Unstable special rule is ignored.",
+        "Prophet of Sotek: If your army includes Tehenhauin, you may upgrade any units of Skink Cohorts, Skink Skirmishers, Raptadon Riders, Horned One Riders, Terradon Riders or Ripperdactyl Riders in your army to be Red Crested Skinks. Red Crested Skinks have +1 Weapon Skill, as well as the Devastating Charge, Hatred (Skaven) and Immunity (Poisoned Attacks) special rules for +2 points per model. They may not take any Sacred Spawning. In addition, Skink Cohorts with this upgrade may replace their shields with great weapons for +2 points per model.",
+        "Tide of Serpents: In close combat Tehenhauin can make an extra D6 Attacks at Initiative 1. These extra Attacks are always resolved at Weapon Skill 2 and Strength 2 and have the Poisoned Attacks special rule."
+      ],
+      "upgrades": null,
+      "notes": "• If Tehenhauin is mounted on a Stegadon, he does not add his default Natural Armour save to the model's\noverall save.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 310
+    },
+    {
+      "name": "Tetto'eko",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Tetto'eko",
+          "M": 6,
+          "WS": 2,
+          "BS": 3,
+          "S": 2,
+          "T": 2,
+          "W": 3,
+          "I": 4,
+          "A": 1,
+          "Ld": 6,
+          "points": 225
+        }
+      ],
+      "troopType": "Infantry (Special Character, Lizardman, Skink)",
+      "baseSize": "40x40 or 50x50",
+      "equipment": null,
+      "magic": "Tetto'eko is a Level 3 Wizard who uses the Lore of Heavens.\nMAGIC ITEMS:\n• The Eye of the Old Ones: Enchanted Item. After deployment, but before Vanguard moves are made, if\nTetto'eko is on the battlefield he can consult the Eye of the Old Ones. If he does so, D3 friendly units of your\nchoice gain the Vanguard special rule.\n• The Stellar Staff: Arcane Item. Staff. Tetto'eko knows the Comet of Casandora spell from the Lore of\nHeavens in addition to his other spells. If he successfully casts it, you may re-roll the dice at the start of each\nMagic phase to see if the comet arrives.",
+      "options": [],
+      "specialRules": "Arcane Vassal, Cold-blooded, Loremaster (Lore of Heavens), Magical Ward (5+), Natural",
+      "specialRuleDescriptions": [
+        "Armour (6+)",
+        "Herald of Cosmic Events: Roll a D6 at the start of each friendly Magic phase. On a roll of 2-6, Tetto'Eko's calculations are correct and the cosmic event occurs; all friendly Wizards within 12\" must re-roll power dice rolls of a 1 this phase. However, on a roll of 1, the Chaos Moon has corrupted Tetto'eko's calculations and all friendly Wizards within 12\" casting a spell must re-roll any of the power dice that roll a 6 this phase.",
+        "The Palanquin of Constellations: The Palanquin of Constellations gives Tetto'eko the Strider special rule. Additionally, while they have the troop type Infantry, he is never considered to be a ‘model on foot' for the purposes of spells, magic items and special rules. If Tetto'eko joins a unit Skink Cohorts whose front rank contains five or more models, he must be placed in the second rank, displacing other models if necessary. If the unit's front rank is ever reduced to four or fewer models, Tetto'eko must immediately move into the front rank (displacing models if necessary)."
+      ],
+      "upgrades": null,
+      "notes": "• Tetto'eko has a Line of Sight value of 2.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 225
+    },
+    {
+      "name": "Chakax",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Chakax",
+          "M": 4,
+          "WS": 5,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 2,
+          "I": 3,
+          "A": 4,
+          "Ld": 8,
+          "points": 210
+        }
+      ],
+      "troopType": "Infantry (Special Character, Lizardman, Saurus)",
+      "baseSize": "25x25 or 30x30",
+      "equipment": "Light armour\nMAGIC ITEMS:\n• The Star-stone Mace: Magic Weapon. Great weapon. At the start of every Close Combat phase, all enemy\nmodels in base contact with Chakax must reveal their magic items, and Magical weapons and armour count as\nmundane versions of the same type.\n• The Helm of the Prime Guardian: Magic Armour. This armour gives the wearer a 6+ armour save. Enemy\nunits with the Scouts special rule may not use their special deployment to set up within 20\" of Chakax. In\naddition, if an enemy unit within 20\" of Chakax contains 'hidden' models (such as Assassins, Night Goblin\nFanatics etc.), their presence must be announced as soon as they come within 20\" of Chakax.\n• The Key to the Eternity Chamber: Enchanted Item. When fighting in a challenge, Chakax has a Magical\nWard (5+) and his opponent gains the Always Strikes Last special rule.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Cold-blooded, Guardians, Predatory Fighter, Natural Armour (5+), Stubborn",
+      "specialRuleDescriptions": [
+        "Eternity Warden: Chakax must always issue a challenge, and can never refuse one. When fighting in a challenge, Chakax re-rolls all failed rolls To Hit.",
+        "Ultimate Bodyguard: Whilst Chakax is part of a unit that contains both a Slann and Temple Guard, all models in the unit gain the Unbreakable special rule."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 210
+    },
+    {
+      "name": "Gor-rok",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Gor-Rok",
+          "M": 4,
+          "WS": 5,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 2,
+          "I": 3,
+          "A": 4,
+          "Ld": 8,
+          "points": 220
+        }
+      ],
+      "troopType": "Infantry (Special Character, Lizardman, Saurus)",
+      "baseSize": "25x25 or 30x30\nMAGIC ITEMS:\n• The Mace of Ulumak: Magic Weapon. The Mace allows Gor-Rok to re-roll all failed To Hit rolls. In addition,\nwhen striking with the Mace of Ulumak, Gor-Rok gains an additional Attack from his Predatory Fighter\nspecial rule on any successful To Hit roll of a 5 or 6.\n• The Shield of Aeons: Magic Armour. Shield. This shield gives Gor-Rok an additional 6+ armour save. In\naddition, any enemy model that makes a successful charge against Gor-Rok and ends the Movement phase in\nbase contact with him must immediately take a Dangerous Terrain test with a -1 penalty.",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Blessed Mark of the Old Ones (see Blessed Spawnings), Cold-blooded, Immunity",
+      "specialRuleDescriptions": [
+        "(Psychology), Predatory Fighter, Natural Armour (5+), Stubborn",
+        "Resilient: Any successful rolls To Wound roll against Gor-Rok must be re-rolled. In addition, Gor-Rok has the Immunity (Killing Blow) special rule."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 220
+    },
+    {
+      "name": "Nakai the Wanderer",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Nakai",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
+          "S": 6,
+          "T": 5,
+          "W": 4,
+          "I": 3,
+          "A": 5,
+          "Ld": 8,
+          "points": 310
+        }
+      ],
+      "troopType": "Monstrous Infantry (Special Character, Lizardman, Kroxigor)",
+      "baseSize": "40x40 or 50x50\nMAGIC ITEMS:\n• The Sacred Blade of Quetzl: Magic Weapon. Great weapon. The Sacred Blade of Quetzl grants Nakai +1 to\nHit in close combat, and enemy close combat attacks against him suffer -1 To Hit.",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Aquatic, Blessed Mark of the Old Ones (see Sacred Spawnings), Cold-blooded, Loner,",
+      "specialRuleDescriptions": [
+        "Natural Armour (3+), Regeneration (4+), Predatory Fighter",
+        "Jungle Spirit: Nakai always appears using the Ambushers special rule, with the following exception; he will always appear from a forest, marshland or river terrain feature rather than the table edge if able to. Any unit that kills Nakai in close combat may not overrun. If Nakai flees from combat, then the victorious unit may not pursue."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 310
+    },
+    {
+      "name": "Tiktaq'to",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Tiktaq'to",
+          "M": 6,
+          "WS": 4,
+          "BS": 5,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 6,
+          "A": 3,
+          "Ld": 7,
+          "points": 145
+        },
+        {
+          "name": "Zwup (Terradon)",
+          "M": 2,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 2,
+          "A": 1,
+          "Ld": 3
+        }
+      ],
+      "troopType": "Cavalry (Special Character, Lizardman, Skink)",
+      "baseSize": "40x40\nMAGIC ITEMS:\n• The Blade of Ancient Skies: Magic Weapon. The Blade of Ancient Skies has the Ignores Armour saves\nspecial rule. In addition, when fighting against a model with the Fly special rule, attacks made with the Blade\nof Ancient Skies receive a +1 bonus To Hit.\n• Mask of Heavens: Enchanted Item. All Terradons in Tiktaq'to's unit use his Weapon Skill instead of their own.\nIn addition, enemy units suffer an additional -1 To Hit penalty when shooting Tiktaq'to and his unit.",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Ambushers, Cold-blooded, Drop Rocks (see Terradons), Fear, Fly (9), Forest Strider,",
+      "specialRuleDescriptions": [
+        "Natural Armour (6+)",
+        "Master of Skies: If your army contains Tiktaq'to, one unit of Terradon Riders may deploy using the Ambushers special rule."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Zwup (Saurian)",
+      "drawnBy": null,
+      "pointsCost": 145
+    },
+    {
+      "name": "Oxyotl",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Oxyotl",
+          "M": 6,
+          "WS": 4,
+          "BS": 6,
+          "S": 4,
+          "T": 3,
+          "W": 2,
+          "I": 6,
+          "A": 3,
+          "Ld": 7,
+          "points": 100
+        }
+      ],
+      "troopType": "Infantry (Special Character, Lizardman, Skink)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Golden Blowpipe of P'Toohee: Magic Weapon. This weapon has the following profile:\nRange: Strength: Special Rules:\n9/18\" 2 Firefly Frog Venom, March & Shoot, Multiple Shots (3), Multiple Wounds\n(D3), Poisoned Attacks, Quick Shot",
+      "magic": null,
+      "options": [
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"
+        }
+      ],
+      "specialRules": "Aquatic, Chameleon, Cold-blooded, Forest Strider, Hatred (Daemons of Chaos), Natural",
+      "specialRuleDescriptions": [
+        "Armour (6+), Scouts, Sniper",
+        "Master Predator: If Oxyotl remained stationary in his preceding Movement phase, enemies cannot draw Line of Sight to him unless they are within 6\", and all shots made from the Golden Blowpipe of P'Toohee may re- roll failed To Wound rolls. If an enemy unit would move through Oxyotl, simply move Oxyotl aside by the smallest amount possible to make room for the enemy unit."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 100
+    }
+  ]
+}

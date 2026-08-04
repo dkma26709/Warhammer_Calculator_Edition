@@ -1,0 +1,608 @@
+{
+  "factionName": "Wood Elves",
+  "armySpecialRules": [
+    {
+      "name": "Ambush From The Worldroots",
+      "description": "A Wood Elf army can always place an additional forest\nno more than 12\" in diameter on the battlefield. This is\ndone during deployment, before any units are\ndeployed, and must be placed wholly in your half of\nthe battlefield. Declare which type of forest it is when\nyou place it. If you cannot fit the forest on your half of\nthe table, move other terrain features by the shortest\ndistance necessary so that the forest can be placed. If\nyou still cannot place the forest, or if the scenario\nmeans that the Wood Elf army does not have a table\nhalf in which to deploy, this additional forest is not\nused in this battle."
+    },
+    {
+      "name": "Asrai Archery",
+      "description": "Models with this rule do not suffer the normal\n-1 To Hit penalty for moving and shooting."
+    },
+    {
+      "name": "Blessings Of The Ancients",
+      "description": "A Wizard that has this rule and is within 6\" of a forest\ngains a +1 casting and dispel bonus."
+    },
+    {
+      "name": "Elven Shortbow",
+      "description": "Elven shortbows have the following profile:\nRange: Strength: Special Rules:\n16/24\" 3 Armour Piercing (1),\nMarch & Shoot,\nMultiple Shots (2)*,\nVolley Fire\n*Only applies in turns the model has not marched.\nCannot be used as a charge reaction"
+    },
+    {
+      "name": "Elven Longbow",
+      "description": "Elven longbows have the following profile:\nRange: Strength: Special Rules:\n24/36\" 3 Armour Piercing (1),\nMultiple Shots (2)*,\nVolley Fire\n*Only applies in turns the model has not moved.\nCannot be used as a charge reaction."
+    },
+    {
+      "name": "Elven Grace",
+      "description": "Models with this rule have the Dodge (6+) special rule\nin close combat. However, this cannot be used against\nenemies that attack before the model with Elven Grace."
+    },
+    {
+      "name": "Enchanted Arrows",
+      "description": "Some models in the Wood Elf army have the option to\npurchase enchanted arrows. If a model has enchanted\narrows, they must use them when shooting with Elven\nshortbows or longbows. Note that a model can only\nhave one kind of Enchanted Arrows.\n• Arcane Bodkins: Shooting attacks made with\nArcane Bodkins have the Armour Piercing (1) special\nrule.\n• Hagbane Tips: Shooting attacks made with Hagbane\nTips have the Poisoned Attacks special rule.\n• Moonfire Shot: Shooting attacks made with\nMoonfire Shot have the Flaming Attacks and\nMagical Attacks special rules.\n• Starfire Shafts: Shooting attacks made with Starfire\nShafts have the Magical Attacks special rule and\nforce enemies to re-roll successful Panic tests caused\nby Heavy Casualties.\n• Swiftshiver Shards: Shooting attacks made with\nSwiftshiver Shards allow the model to fire Multiple\nShots even when moving (in case of longbows) or\nmarching (in case of shortbows) that turn.\n• Trueflight Arrows: Shooting attacks made with\nTrueflight Arrows ignore all shooting modifiers that\nare not caused by magic items or spells."
+    },
+    {
+      "name": "Forest Spirit",
+      "description": "A model with this rule has the Fear, Forest Strider,\nImmunity (Psychology), Magical Attacks and Magical\nWard (5+) special rules. However, units of Forest\nSpirits may only be joined by characters that are also\nForest Spirits and vice versa."
+    },
+    {
+      "name": "Forest Stalker",
+      "description": "While inside a wood, models with this special rule are\nat an additional -1 to be Hit with missile attacks. In\naddition, when using the Scouts special rule they may\ndeploy within 12\" of an enemy unit if they do so within\na wood."
+    },
+    {
+      "name": "Lethal Shot",
+      "description": "Models with this rule have the Killing Blow special\nrule with missile attacks from their Elven longbows or\nshortbows."
+    },
+    {
+      "name": "Martial Memories",
+      "description": "Models with this rule may re-roll 1's when rolling To\nHit and To Wound in close combat."
+    },
+    {
+      "name": "Saearath",
+      "description": "Spear. Unless used with a shield in combat or when\nusing the Mighty Blow (1) special rule from the\nweapon, a model armed with a saerath gains +1 Attack."
+    },
+    {
+      "name": "Shadow Dances Of Loec",
+      "description": "Models with this rule may choose one of the following\nShadow Dances at the start of each round of close\ncombat. This is done before Impact Hits are resolved.\nAll models in the same unit must choose the same\nShadow Dance. The effect of each Shadow Dance lasts\nuntil the end of that turn or until a new Shadow Dance\nis chosen. Models cannot choose the same Shadow\nDance in two consecutive rounds of combat.\n• Whirling Death: The model gains the Armour\nPiercing (1) and Killing Blow special rules.\n• Storm of Blades: The model gains +1 Attack.\n• The Shadows Coil: All close combat attacks against\nthe model suffer -1 To Hit.\n• Woven Mist: The model gains the Always Strikes\nFirst special rule."
+    },
+    {
+      "name": "Tree Aspects",
+      "description": "Models with this rule may choose one of the following\nTree Aspects at the start of each round of close combat.\nThis is done before Impact Hits are resolved. All\nmodels in the same unit must choose the same Tree\nAspect. The effect of each Tree Aspect lasts until the\nend of that turn or until a new Tree Aspect is chosen.\nModels cannot choose the same Tree Aspect in two\nconsecutive rounds of combat.\n• Birch Aspect: The model gains +1 Attack.\n• Oak Aspect: The model gains +1 Toughness.\n• Willow Aspect: All close combat attacks against the\nmodel suffer -1 To Hit."
+    },
+    {
+      "name": "Tree Whack",
+      "description": "A model with this rule can choose to make a single\nTree Whack in place of making their normal close\ncombat attacks. To resolve a Tree Whack, nominate an\nenemy model in base contact. That model must pass an\nInitiative test or suffer D6 Wounds which Ignores\nArmour Saves."
+    }
+  ],
+  "magicItems": [
+    {
+      "name": "The Spirit Sword",
+      "points": "50",
+      "category": "magic_weapon",
+      "description": "Armour saves cannot be taken against Wounds caused\nby the Spirit Sword. Furthermore, immediately when\nan enemy single model unit or Character suffers one or\nmore unsaved Wounds from the Spirit Sword, both they\nand the wielder must roll 2D6 and add their respective\nLeadership values. If the wounded model's total is\nhigher, or the totals are the same, nothing else happens.\nIf the wounded model's total is lower, it immediately\nsuffers a Wound which Ignores Armour Saves for each\npoint by which its total was exceeded."
+    },
+    {
+      "name": "Daith'S Reaper",
+      "points": "50",
+      "category": "magic_weapon",
+      "description": "All failed To Hit and To Wound rolls made with Daith's\nReaper must be re-rolled, as must all successful armour\nsaves taken against Wounds caused by this weapon."
+    },
+    {
+      "name": "Dawnspear",
+      "points": "35",
+      "category": "magic_weapon",
+      "description": "Light lance/spear. If the wielder of the Dawnspear\ncauses an unsaved wound on an enemy, then all enemy\nmodels in that unit that have not yet attacked suffer -1\nTo Hit in this round of close combat."
+    },
+    {
+      "name": "Callach'S Claw",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "Any unit suffering one or more unsaved wounds from\nthe Callach's Claw suffers a -2 penalty to their\nLeadership for the remainder of the Combat phase."
+    },
+    {
+      "name": "The Hunter'S Talon",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "Elven longbow. The Hunter's Talon gives the wielder\nthe Sniper special rule."
+    },
+    {
+      "name": "Spear Of Daith",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "Light lance/spear. The Spear of Daith gives the wielder\nthe Parry (5+) special rule."
+    },
+    {
+      "name": "The Bow Of Loren",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Elven longbow. All shots from the Bow of Loren are\nresolved at Strength 4 with Multiple Shots (A) special\nrule. Multiple Shots (A) means the bow fires a number\nof shots equal to the wielder's Attacks characteristic. It\ncannot fire enchanted arrows."
+    },
+    {
+      "name": "Blades Of Loec",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Shadowdancer only. Two hand weapons. The Blades of\nLoec allow the wielder to re-roll failed rolls To Wound.",
+      "restriction": "Shadowdancer only."
+    },
+    {
+      "name": "Greenwood Gladius",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "The wielder of this item gains +D3 Attacks, rolled at\nthe start of each round of close combat.\nc and powerful magical artefacts used by the Wood\nfound in the Warhammer rulebook."
+    },
+    {
+      "name": "Hunt Master'S Pride",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Wild Hunter only. Light lance. All attacks with this\nweapon have the Multiple Wounds (D3) special rule.",
+      "restriction": "Wild Hunter only."
+    },
+    {
+      "name": "Spear Of Twilight",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Light lance/spear. The Spear of Twilight gives the\nwielder the Killing Blow special rule."
+    },
+    {
+      "name": "Sword Of A Thousand Winters",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "The Sword of a Thousand Winters gives the bearer the\nIce Attacks special rule. In addition, Characters and\nMonsters must take a Toughness test for each unsaved\nwound suffered by the Sword of a Thousand Winters.\nFor every test failed, they suffer -1 Strength, Initiative\nand Attacks for the remainder of the game."
+    },
+    {
+      "name": "Vaul'S Wrath",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Elven longbow. This weapon has the following profile:\nRange: Strength: Special Rules:\n24/36\" 4 Armour Piercing (1),\nMultiple Shots (2),\nMultiple Wounds (2)\nVolley Fire"
+    },
+    {
+      "name": "Spear Of The Hunt",
+      "points": "15",
+      "category": "magic_weapon",
+      "description": "Wild Hunter only. Light lance. This item gives the\nwielder the Armour Piercing (1) special rule. In\naddition, they and any unit they are with may re-roll 1's\nfor their charge distance.",
+      "restriction": "Wild Hunter only."
+    },
+    {
+      "name": "Splinterbirch Blade",
+      "points": "15",
+      "category": "magic_weapon",
+      "description": "Whenever an enemy model makes a successful save\nagainst Wounds caused by this blade, they suffer an\nadditional D6 Strength 1 Hits."
+    },
+    {
+      "name": "Starcaster Longbow",
+      "points": "15",
+      "category": "magic_weapon",
+      "description": "Elven longbow. All shots from this bow have the\nMultiple Wounds (D3) special rule. On a To Wound roll\nof a natural 6, that shot has the Multiple Wounds (D6)\nspecial rule instead."
+    },
+    {
+      "name": "Asyendi'S Bane",
+      "points": "10",
+      "category": "magic_weapon",
+      "description": "Elven longbow. This weapon allows the wielder to re-\nroll all failed rolls To Hit. However, if the shot still\nmisses after this re-roll, then they suffer a Strength 3\nhit."
+    },
+    {
+      "name": "Rageth'S Wildfire Blades",
+      "points": "10",
+      "category": "magic_weapon",
+      "description": "Two hand weapons. Rageth's Wildfire Blades give the\nwielder the Flaming Attacks special rule."
+    },
+    {
+      "name": "Armour Of The Fey",
+      "points": "30",
+      "category": "magic_armour",
+      "description": "Light armour. The Armour of the Fey gives the bearer\nthe Magical Ward (4+) special rule against Magical\nAttacks."
+    },
+    {
+      "name": "The Oaken Armour",
+      "points": "30",
+      "category": "magic_armour",
+      "description": "Light armour. The Oaken Armour gives the wearer the\nRegeneration (4+) special rule."
+    },
+    {
+      "name": "Cloak Of Tumbling Leaves",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Model on foot only. Light armour. The bearer's gains\nthe Fly (10) special rule.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Briarsheath",
+      "points": "15",
+      "category": "magic_armour",
+      "description": "Model on foot only. Light armour. The Briarsheath\ncauses any missile attacks targeted at the wearer to\nsuffer -1 To Hit, or -2 To Hit if the wearer is in a forest.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "The Helm Of The Hunt",
+      "points": "15",
+      "category": "magic_armour",
+      "description": "Wild Hunter only. This item gives the wearer a 6+\narmour save. In addition, they may re-roll To Hit in\nturns that they successfully charge into combat.",
+      "restriction": "Wild Hunter only."
+    },
+    {
+      "name": "Railarian'S Mantle",
+      "points": "15",
+      "category": "magic_armour",
+      "description": "Light armour. Railarian's Mantle gives the wearer a\nMagical Ward (5+) if they are within 6\" of a forest."
+    },
+    {
+      "name": "Amber Armour",
+      "points": "10",
+      "category": "magic_armour",
+      "description": "Light armour. The bearer's armour save can never be\nreduced below a 6+."
+    },
+    {
+      "name": "Rhymer'S Harp",
+      "points": "60",
+      "category": "talisman",
+      "description": "The Rhymer's Harp gives the bearer and any unit they\njoin the Magical Ward (5+) and Strider special rules."
+    },
+    {
+      "name": "Glamourweave Brooch",
+      "points": "35",
+      "category": "talisman",
+      "description": "The Glamourweave Brooch gives the bearer the\nMagical Ward (4+) special rule against missile attacks.\nIn addition, any model attempting to strike the bearer\nin close combat must first pass a Leadership test or\nrequire 6's To Hit the bearer during that Combat phase."
+    },
+    {
+      "name": "Amaranthine Brooch",
+      "points": "30",
+      "category": "talisman",
+      "description": "The Amaranthine Brooch gives the wearer the Magical\nWard (4+) special rule against non-Magical Attacks."
+    },
+    {
+      "name": "Stone Of The Crystal Mere",
+      "points": "30",
+      "category": "talisman",
+      "description": "The Stone of the Crystal Mere gives the bearer the\nMagical Ward (3+) special rule. However, if this Ward\nSave is ever failed, the Magical Ward is lost for the rest\nof the game."
+    },
+    {
+      "name": "Amber Pendant",
+      "points": "25",
+      "category": "talisman",
+      "description": "The Amber Pendant causes all enemy units in base\ncontact with the wearer to be subject to the Always\nStrikes Last special rule."
+    },
+    {
+      "name": "Fimbulwinter Shard",
+      "points": "25",
+      "category": "talisman",
+      "description": "The Fimbulwinter Shard causes enemies attacking the\nbearer in close combat to suffer -1 To Hit. However, all\nmodels with the Forest Spirit special rule (including the\nbearer) suffer from Stupidity while the bearer is within\n6\"."
+    },
+    {
+      "name": "Talisman Of Qwarr",
+      "points": "20",
+      "category": "talisman",
+      "description": "Models targeting the bearer with missile attacks must\nre-roll successful rolls To Hit."
+    },
+    {
+      "name": "Stone Of Rebirth",
+      "points": "15",
+      "category": "talisman",
+      "description": "One use only. If the bearer of the Stone of Rebirth is\nkilled, roll a D6. On a 2+, the model is brought back to\nlife with one Wound remaining. This has no effect if\nthe wearer was killed as a result of being pursued\ndown.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Merciw'S Locus",
+      "points": "15",
+      "category": "talisman",
+      "description": "Merciw's Locus causes the bearer and any model\nattacking them to lose all Strength bonuses from any\nweapon they might carry."
+    },
+    {
+      "name": "Deepmire Cloak",
+      "points": "10",
+      "category": "talisman",
+      "description": "Model on foot only. If the wearer is in cover and is at\ntheir starting number of Wounds, enemy missile attacks\ntargeting them suffer -1 To Hit. If the wearer is in cover\nand has suffered one or more Wounds during the game,\nthey cannot be targeted by missile attacks at all.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Orb Of Midsummer",
+      "points": "40",
+      "category": "arcane_item",
+      "description": "Relic. The bearer of this item may re-roll failed casting\nattempts, unless a Miscast has been rolled."
+    },
+    {
+      "name": "Ranu'S Heartstione",
+      "points": "40",
+      "category": "arcane_item",
+      "description": "Relic. Once per Magic phase, the bearer of this item\nmay re-roll one of the dice when casting or dispelling a\nspell. This can be used to prevent a miscast or to cause\nUltimate Power."
+    },
+    {
+      "name": "Vesperal Gem",
+      "points": "40",
+      "category": "arcane_item",
+      "description": "Charm. One use only. This item can be used at the start\nof your Magic phase. Once used, the Wizard can\nautomatically cast any one of their spells from the Lore\nof Athel Loren without using any power dice this turn.\nThis spell cannot be dispelled. After resolving the\neffects of the spell, roll a D6. On a 1, the bearer suffers\n1 Wound with no saves allowed.",
+      "restriction": "Charm. One use only."
+    },
+    {
+      "name": "Oaken Stave",
+      "points": "35",
+      "category": "arcane_item",
+      "description": "Staff. The bearer of this item may roll an extra D6\nwhen dispelling and discard the lowest result."
+    },
+    {
+      "name": "Silverwood Circlet",
+      "points": "30",
+      "category": "arcane_item",
+      "description": "Relic. The bearer of this item adds +12\" to the range of\nall their spells (excluding auras)."
+    },
+    {
+      "name": "Viridescent Shawl",
+      "points": "30",
+      "category": "arcane_item",
+      "description": "Relic. This item gives the bearer a +1 casting bonus. In\naddition, all enemy missile attacks targeting the bearer\nsuffer -1 To Hit."
+    },
+    {
+      "name": "Divination Orb",
+      "points": "25",
+      "category": "arcane_item",
+      "description": "Relic. If an opponent uses more than three power dice\n(from any source) when casting any spell, the bearer of\nthe Divination Orb may add an extra free Dispel dice\ninto the attempt to dispel that spell."
+    },
+    {
+      "name": "Deepwood Sphere",
+      "points": "20",
+      "category": "arcane_item",
+      "description": "Relic. Any enemy unit that enters a forest within 18\" of\nthe bearer of the Deepwood Sphere suffers D6 Strength\n4 Hits as soon as they have finished their move. They\ncontinue to suffer D6 Strength 4 Hits at the start of any\nof their Movement phases for as long as they remain in\nthe forest and the bearer of the item remains within\nrange."
+    },
+    {
+      "name": "Elf Charm",
+      "points": "20",
+      "category": "arcane_item",
+      "description": "Relic. When casting spells from the Lore of Life, the\nwizard may add a +D3 casting bonus once per Magic\nphase."
+    },
+    {
+      "name": "Calaingor'S Stave",
+      "points": "15",
+      "category": "arcane_item",
+      "description": "Staff. When casting the Tree Singing spell from the\nLore of Athel Loren, the bearer may re-roll the distance\nthe forest moves."
+    },
+    {
+      "name": "Heartwood Pendant",
+      "points": "10",
+      "category": "arcane_item",
+      "description": "Relic. The bearer of this item may choose their spells\nfrom the Lore of Athel Loren in addition to one other\nspell lore."
+    },
+    {
+      "name": "Warsong Stave",
+      "points": "10",
+      "category": "arcane_item",
+      "description": "Staff. The bearer of this item knows the Tree Singing\nspell from the Lore of Athel Loren in addition to their\nother spells."
+    },
+    {
+      "name": "Wending Wand",
+      "points": "5",
+      "category": "arcane_item",
+      "description": "Staff. Any friendly unit that pursued off the table can\nenter the table from any point of any table edge of their\nchoice in their next turn, as long as it is within 24\" of\nthe bearer of this item.\nSIGIL OF THE MAGE QUEEN* 5 points\nCharm. One use only. This item may be used after\nmaking a casting roll. When used, it adds a +3 casting\nbonus.",
+      "restriction": "Staff. Any friendly unit that pursued off the table can\nenter the table from any point of any table edge of their\nchoice in their next turn, as long as it is within 24\" of\nthe bearer of this item.\nSIGIL OF THE MAGE QUEEN* 5 points\nCharm. One use only."
+    },
+    {
+      "name": "Crown Of Fell Bowers",
+      "points": "40",
+      "category": "enchanted_item",
+      "description": "The wearer and any unit they are with gain +1 To\nWound in close combat."
+    },
+    {
+      "name": "Wardroth Horn",
+      "points": "40",
+      "category": "enchanted_item",
+      "description": "One use only. This item may be used at the start of any\nclose combat phase. Once used, all friendly units\n(excluding mounts) within 12\" gain +1 Attack for the\nduration of this turn.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Moonstone Of The Hidden Ways",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "If the bearer's unit is wholly within a forest at the end\nof your Movement phase, and is not in close combat, it\ncan forestwalk. If it does so, remove it from the\nbattlefield and immediately replace it, wholly within\nany forest on the battlefield, just like a summoning\nspell. A unit that forestwalks counts as having marched\nin the Movement phase."
+    },
+    {
+      "name": "Hail Of Doom Arrow",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "One use only. Model with Elven longbow only. The\nHail of Doom arrow can be used instead of making a\nShooting attack with the bearer's Elven longbow,\nthough it cannot be used with the Sniper rule. Declare\nthat the Hail of Doom Arrow is being used before any\ndice are rolled.\nRange: Strength: Special Rules:\n24/36\" 4 Multiple Shots (3D6)",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Forget-Me-Knot",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "One use only. This item can be used against one enemy\nmodel in base contact at the start of any round of close\ncombat. For the duration of that round, the target may\nnot Attack or Stomp.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Horn Of The Asrai",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "One use only. The Horn of the Asrai can be used at the\nbeginning of any enemy Movement phase. When used,\nall enemies able to declare a charge against the bearer\nof this item must take a Psychology test. If they fail,\nthey must declare a charge against the bearer this turn.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Waystalker'S Cloak",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "The Waystalker's Cloak gives the wearer the Forest\nStalker and Scouts special rules."
+    },
+    {
+      "name": "Wraithstone",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "All enemy units within 6\" of the bearer of the\nWraithstone suffer a -1 penalty to their Leadership."
+    },
+    {
+      "name": "Elynett'S Brooch",
+      "points": "20",
+      "category": "enchanted_item",
+      "description": "Elynett's Brooch allows the wearer and any unit they\nare with to re-roll failed Psychology tests.\nWAILING ARROWS* 15 points\nEnchanted Arrows. Any unit that suffers an unsaved\nwound from these arrows must make a Panic test.\nARROWS OF POTENCY* 10 points\nEnchanted Arrows. Any shots made with the Arrows of\nPotency have the Multiple Wounds (2) special rule.\nBLIGHT-TIPPED ARROWS* 10 points\nEnchanted Arrows. Any Character, Monstrous Creature\nor Monster that suffers an unsaved Wound by Blight-\nTipped Arrows must pass a Toughness test at the start\nof each turn for the remainder of the game or suffer an\nadditional Wound which Ignores Armour Saves."
+    },
+    {
+      "name": "Crown Of Antlers",
+      "points": "10",
+      "category": "enchanted_item",
+      "description": "The bearer of this item gains the Impact Hits (D3)\nspecial rule. The Impact Hits are Armour Piercing (1).\nORION'S FAVOUR* 10 points\nOne use only. The bearer can re-roll any failed rolls To\nHit and/or To Wound made during either the Shooting\nor Close Combat phase.",
+      "restriction": "The bearer of this item gains the Impact Hits (D3)\nspecial rule. The Impact Hits are Armour Piercing (1).\nORION'S FAVOUR* 10 points\nOne use only."
+    },
+    {
+      "name": "Gwytherc'S Horn",
+      "points": "5",
+      "category": "enchanted_item",
+      "description": "All friendly units within 12\" of the bearer of\nGwytherc's Horn gain +1 to their Leadership when\nattempting to Rally.\nDRAGONTOOTH ARROWS* 5 points\nEnchanted Arrows. Any Character, Monstrous Creature\nor Monster that suffers an unsaved Wound by\nDragontooth Arrows gains the Stupidity special rule for\nthe remainder of the game."
+    },
+    {
+      "name": "Battle Standard Of Athel Loren",
+      "points": "75",
+      "category": "magic_standard",
+      "description": "Whenever an enemy spell is cast at a friendly unit\nwithin 12\" of this standard, roll a D6; on a 5+, the spell\nis automatically dispelled."
+    },
+    {
+      "name": "Banner Of The Wildwood",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "All enemy units with Line of Sight to this banner suffer\n-1 to their Leadership."
+    },
+    {
+      "name": "Banner Of The Eternal Queen",
+      "points": "35",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard has the Magic\nResistance (3) special rule. In addition, it gains +1\ncombat resolution bonus if it is within 6\" of a forest."
+    },
+    {
+      "name": "Banner Of The Hunter King",
+      "points": "30",
+      "category": "magic_standard",
+      "description": "Wild Riders only. The unit carrying this standard add\n+D6\" to their charge range.",
+      "restriction": "Wild Riders only."
+    },
+    {
+      "name": "Gaemrath, The Banner Of Midwinter",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "One use only. Gaemrath, the Banner of Midwinter may\nbe used at the start of any close combat phase. Until the\nstart of your next Movement phase, the unit carrying\nthe banner may not move and gains the Unbreakable\nspecial rule.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Faoghir, The Banner Of Dwindling",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "Enemies that attempt to charge or flee from the unit\ncarrying Faoghir, the Banner of Dwindling roll one\ndice fewer than normal to determine their charge/flee\ndistance."
+    },
+    {
+      "name": "Saemrath, The Banner Of Zenith",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "Enemy units within 12\" of the unit carrying Saemrath,\nthe Banner of the Zenith at the start of their Movement\nphase may not March."
+    },
+    {
+      "name": "Standard Of Morning'S Chill",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "All missile attacks targeting the unit carrying this\nstandard suffer -1 To Hit."
+    },
+    {
+      "name": "Tapestry Of Talsyn",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard gains the Hold Your\nGround (6) special rule."
+    },
+    {
+      "name": "Banner Of The Wild Hunt",
+      "points": "20",
+      "category": "magic_standard",
+      "description": "Wild Riders only. The unit carrying this standard gains\n+1 Combat Resolution and may re-roll failed pursuit\nrolls.",
+      "restriction": "Wild Riders only."
+    },
+    {
+      "name": "Aech, The Banner Of Springtide",
+      "points": "10",
+      "category": "magic_standard",
+      "description": "The unit carrying Aech, the Banner of Springtide gains\nthe Quick Shot special rule and may fire Multiple Shots\nwith their bows when choosing Stand & Shoot as a\ncharge reaction."
+    },
+    {
+      "name": "Banner Of Midsummer'S Eve",
+      "points": "10",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard ignores To Hit penalties\nfor shooting at enemies in cover.\nCHARA\nHIGHBORNS\nProfile M W\nGlade Lord 5 7\nGlade Captain 5 6\nTROOP TYPE: Infantry (Character, Wood Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nSPECIAL RULES: Asrai Archery, Elven Grace, Forest\nOPTIONS:\n• May choose one of the following:\n- Additional hand weapon\n- Spear\n- Light lance\n- Great weapon\n• May choose one of the following:\n- Elven shortbow\n- Elven longbow\n• May take light armour\n• May take a shield\n• May choose one of the following:\n- Arcane Bodkins\n- Moonfire Shot\n- Starfire Shafts\n- Hagbane Tips\n- Swiftshiver Shards\n- Trueflight Arrows\n• May be mounted on one of the following:\n- Elven Steed\n- Warhawk\n- Great Eagle\n- Great Stag\n- Meadow Chariot (replacing one of the crew)\n- Forest Dragon (Glade Lord only)\n• One Glade Captain may carry the Battle Standard\n• A Glade Captain may take one Spite and/or Magic I\n• A Glade Lord may take one Spite and/or Magic Item\nNOTES:\n• The Battle Standard Bearer can have a Magic Stand\nItems they might have.\nACTERS\nWS BS S T W I A Ld Points\n7 7 4 3 3 8 4 10 120\n6 6 4 3 2 7 3 9 55\nt Strider\n+5 points\n+5 points\n+5 points\n+15 points\n+6 points\n+8 points\n+3 points\n+5 points\n+1 point\n+1 point\n+1 point\n+2 points\n+2 points\n+2 points\n+15 points\n+25 points\n+40 points\n+50 points\n+70 points\n+325 points\n+25 points\nItems up to a total of 50 points\nms up to a total of 100 points\ndard with no points limit in addition to any other Magic\nCHARA\nSPELLSINGERS\nProfile M W\nSpellweaver 5 5\nSpellsinger 5 4\nTROOP TYPE: Infantry (Character, Wood Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nMAGIC: A Spellsinger is a Level 1 Wizard. A Spellweaver\nof Magic:\n• Athel Loren\n• Beasts\n• Heavens\n• Light\n• Life\n• Shadow\nSPECIAL RULES: Blessings of the Ancients, Elven Gra\nOPTIONS:\n• May take an additional Wizard Level\n• May be mounted on one of the following:\n- Elven Steed\n- Warhawk\n- Unicorn\n- Great Eagle\n• A Spellsinger may take one Spite and/or Magic Item\n• A Spellweaver take one Spite and/or Magic Items u\nACTERS\nWS BS S T W I A Ld Points\n5 4 3 3 3 6 2 9 195\n4 4 3 3 2 5 1 8 85\nr is a Level 3 Wizard. They use one of the following Lores\nace, Forest Strider\n+35 points\n+15 points\n+25 points\n+25 points\n+40 points\nms up to a total of 50 points\nup to a total of 100 points\nCHARA\nSHADOWDANCER\nProfile M W\nShadowdancer 5 8\nTROOP TYPE: Infantry (Character, Wood Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nMAGIC: A Shadowdancer who is a Wizard who chooses sp\nOPTIONS:\n• May be upgraded to a Level 1 Wizard\n• May choose one of the following:\n- Additional hand weapon\n- Saerath\n- Great weapon\n• May take one Spite and/or Magic Items up to a tota\nSPECIAL RULES: Blessings of the Ancients, Elven Gra\nResistance (1), Shadow Dances of Loec\nWILD HUNTER\nProfile M W\nWild Hunter 5 6\nElven Steed 9 3\nTROOP TYPE: Cavalry (Character, Wood Elf)\nBASE SIZE: 25x50 or 30x60\nMOUNT: Elven Steed (Equine)\nEQUIPMENT: Light lance\nSPECIAL RULES: Devastating Charge, Elven Grace, F\nOPTIONS:\n• May take a shield\n• May take light armour\n• May replace Elven Steed with one of the following:\n- Steed of Kurnous\n- Great Stag\n• May take one Spite and/or Magic Items up to a tota\nACTERS\nWS BS S T W I A Ld Points\n8 6 4 3 2 8 4 8 100\npells from the Lore of Shadow.\n+35 points\n+5 points\n+5 points\n+15 points\nal of 50 points\nace, Forest Strider, Magical Ward (6+), Magic\nWS BS S T W I A Ld Points\n6 6 4 3 2 7 3 9 110\n3 0 3 3 1 4 1 5\nForest Spirit, Frenzy\n+5 points\n+3 points\n:\n+5 points\n+25 points\nal of 50 points\nCHARA\nWAYSTALKER\nProfile M W\nWaystalker 5 6\nTROOP TYPE: Infantry (Character, Wood Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon, Elven shortbow\nSPECIAL RULES: Asrai Archery, Elven Grace, Forest\nOPTIONS:\n• May take an additional hand weapon\n• May replace Elven shortbow with Elven longbow\n• May choose one of the following:\n- Arcane Bodkins\n- Moonfire Shot\n- Hagbane Tips\n- Starfire Shafts\n- Swiftshiver Shards\n- Trueflight Arrows\n• May take one Spite and/or Magic Items up to a tota\nARCH-REVENANT\nProfile M W\nArch-Revenant 5 7\nTROOP TYPE: Infantry (Character, Forest Spirit)\nBASE SIZE: 25x25 or 30x30\nEQUIPMENT: Polearm, shield\nSPECIAL RULES: Fly (10), Forest Spirit, Natural Arm\n• Call to Battle: All friendly units with the Forest Sp\nto the Frenzy special rule as long as they remain wi\nOPTIONS:\n• May take one Spite and/or Magic Items up to a tota\nACTERS\nWS BS S T W I A Ld Points\n6 7 4 3 2 7 2 8 90\nt Strider, Forest Stalker, Lethal Shot, Scouts, Sniper\n+3 points\n+2 points\n+1 point\n+1 point\n+2 points\n+2 points\n+2 points\n+2 points\nal of 50 points\nWS BS S T W I A Ld Points\n7 7 4 3 3 8 4 10 160\nmour (6+)\npirit special rule within 6\" of the Arch-Revenant are subject\nithin range, and do not lose Frenzy even if losing combat.\nal of 100 points\nCHARA\nWARSONG REVENANT\nProfile M W\nWarsong Revenant 5 4\nTROOP TYPE: Infantry (Character, Forest Spirit)\nBASE SIZE: 50x75\nEQUIPMENT: Hand weapon\nMAGIC: A Warsong Revenant is a Level 3 Wizard who use\n• Athel Loren\n• Life\nSPECIAL RULES: Blessings of the Ancients, Fly (5), Fo\n• Song of Athel Loren: Friendly models within 12\" o\nLeadership. Enemy models within 12\" of one or mo\nOPTIONS:\n• May take one Spite and/or Magic Items up to a tota\nTREELORD ANCIENT\nProfile M W\nTreelord Ancient 5 4\nTROOP TYPE: Monster (Character, Forest Spirit)\nBASE SIZE: 75x50 or 100x100\nEQUIPMENT: Hand weapon\nMAGIC: A Treelord Ancient is a Level 1 Wizard who uses\n• Athel Loren\n• Life\nSPECIAL RULES: Blessings of the Ancients, Flammab\nWhack\nUPGRADES:\n• Strangleroots: Strangleroots have the following pr\nRange: Strength: Special Rules:\n6/12\" 5 Multiple Shots (D6+\nOPTIONS:\n• May be upgraded to a Level 2 Wizard\n• May take Strangleroots\n• May take Spites up to a total of\nACTERS\nWS BS S T W I A Ld Points\n4 4 3 3 3 5 1 9 250\nes one of the following Lores of Magic:\norest Spirit, Regeneration (5+), Natural Armour (6+)\nof one or more Warsong Revenants gain +1 to their\nore Warsong Revenants suffer -1 to their Leadership.\nal of 100 points\nWS BS S T W I A Ld Points\n4 4 6 6 6 2 3 10 250\none of the following Lores of Magic:\nble, Forest Spirit, Natural Armour (3+), Stubborn, Tree\nofile:\n+1), Quick Shot, Rapid Fire\n+35 points\n+10 points\n100 points\nCHARA\nGROVE GUARDIAN\nProfile M W\nGrove Guardian 5 6\nTROOP TYPE: Infantry (Character, Forest Spirit)\nBASE SIZE: 50x100 or 60x100\nEQUIPMENT: Great weapon\nSPECIAL RULES: Flammable, Forest Spirit, Hatred, N\n• Regenesis: All friendly units of Forest Spirits withi\nspecial rule.\n• Soulshriek: Each time a model with the Forest Spir\nwithin 12\" of a Grove Guardian, roll a D6. On a 5+,\nwhich Ignores Armour Saves.\nOPTIONS:\n• May take Spites up to a total of\nBRANCHWRAITH\nProfile M W\nBranchwraith 5 6\nTROOP TYPE: Infantry (Character, Forest Spirit)\nBASE SIZE: 25x25 or 30x30\nEQUIPMENT: Hand weapon\nMAGIC: A Branchwraith who is a Wizard chooses spells fr\n• Athel Loren\n• Life\nSPECIAL RULES: Blessings of the Ancients, Flammab\nAspects\nOPTIONS:\n• May be upgraded to a Level 1 Wizard\n• May take a great weapon\n• May take Spites up to a total of\nACTERS\nWS BS S T W I A Ld Points\n6 6 4 4 3 7 4 9 170\nNatural Armour (6+)\nin 6\" of a Grove Guardian gain the Regeneration (6+)\nrit special rule is removed as a casualty in close combat\n, the enemy model that struck the blow suffers one Wound\n100 points\nWS BS S T W I A Ld Points\n6 6 4 4 2 7 4 9 85\nrom one of the following Lores of Magic:\nble, Forest Spirit, Hatred, Natural Armour (6+), Tree\n+35 points\n+15 points\n50 points\nCHARACTER MOUNTS\nELVEN STEED\nProfile M W\nElven Steed 9 3\nTROOP TYPE: War Beast (Equine)\nBASE SIZE: 25x50 or 30x60\nSTEED OF KURNOUS\nProfile M W\nSteed of Kurnous 9 3\nTROOP TYPE: War Beast (Cervine)\nBASE SIZE: 25x50 or 30x60\nUNICORN\nProfile M W\nUnicorn 10 5\nTROOP TYPE: War Beast (Equine)\nBASE SIZE: 25x50 or 30x60\nSPECIAL RULES: Forest Strider, Magical Attacks, Ma\n• Impale: A Unicorn gains the Mighty Blow (1) spec\nWS BS S T W I A Ld Points\n3 0 3 3 1 4 1 5 -\nWS BS S T W I A Ld Points\n3 0 4 3 1 4 1 5 -\nWS BS S T W I A Ld Points\n5 0 4 4 2 5 2 8 -\nagic Resistance (2)\ncial rule in any turn that it charges.\nCHARACTER MOUNTS\nWARHAWK\nProfile M W\nWarhawk 2 4\nTROOP TYPE: War Beast (Avian)\nBASE SIZE: 40x40 or 50x50\nSPECIAL RULES: Fly (10)\nGREAT STAG\nProfile M W\nGreat Stag 9 5\nTROOP TYPE: Monstrous Beast (Cervine)\nBASE SIZE: 50x50\nSPECIAL RULES: Forest Strider, Impact Hits (D3)\nWS BS S T W I A Ld Points\n4 0 4 3 2 5 2 5 -\nWS BS S T W I A Ld Points\n5 0 5 4 3 4 2 7 -"
+    }
+  ],
+  "loresOfMagic": [
+    {
+      "name": "Athel Loren",
+      "attribute": "Whenever a spell from the Lore of Athel Loren is\nsuccessfully cast, all enemy units suffer a -3\" penalty to\ntheir spell and maximum weapon ranges in their next\nturn when targeting any friendly units within 6\" of the\nWizard. This is a cumulative effect.\nTREE SINGING",
+      "spells": [
+        {
+          "name": "Tree Singing",
+          "level": 0,
+          "castValue": 6,
+          "description": "Tree Singing is a special type of spell which targets a",
+          "type": "special"
+        },
+        {
+          "name": "Fury Of The Forest",
+          "level": 1,
+          "castValue": 5,
+          "description": "Fury of the Forest is a direct damage spell with a",
+          "type": "direct damage"
+        },
+        {
+          "name": "Durthu'S Wrath",
+          "level": 1,
+          "castValue": 6,
+          "description": "Durthu's Wrath is a direct damage spell that can be",
+          "type": "direct damage"
+        },
+        {
+          "name": "The Twilight Host",
+          "level": 1,
+          "castValue": 6,
+          "description": "The Twilight Host is an augment spell with a range of",
+          "type": "augment"
+        },
+        {
+          "name": "The Hidden Path",
+          "level": 2,
+          "castValue": 7,
+          "description": "The Hidden Path is an augment spell with a range of",
+          "type": "augment"
+        },
+        {
+          "name": "Spiteful Torrent",
+          "level": 2,
+          "castValue": 8,
+          "description": "Remains in play. Spiteful Torrent is a magical vortex"
+        },
+        {
+          "name": "Aspect Of Athel Loren",
+          "level": 2,
+          "castValue": 9,
+          "description": "Aspect of Athel Loren is an augment aura with a range"
+        },
+        {
+          "name": "Madrigal Of Greening",
+          "level": 3,
+          "castValue": 9,
+          "description": "Madrigal of Greening is a summoning spell with a",
+          "type": "summoning"
+        },
+        {
+          "name": "Cage Of Thorns",
+          "level": 3,
+          "castValue": 10,
+          "description": "Remains in play. Cage of Thorns is a hex spell with a",
+          "type": "hex"
+        },
+        {
+          "name": "Sapping Blight",
+          "level": 3,
+          "castValue": 10,
+          "description": "Remains in Play. Sapping Blight is a hex spell with a",
+          "type": "hex"
+        },
+        {
+          "name": "The Call Of The Hunt",
+          "level": 4,
+          "castValue": 11,
+          "description": "The Call of the Hunt is a conveyance spell with a range",
+          "type": "conveyance"
+        },
+        {
+          "name": "Verdurous Harmony",
+          "level": 4,
+          "castValue": 12,
+          "description": "Verdurous Harmony is an augment aura with a range"
+        },
+        {
+          "name": "Ariel'S Blessing",
+          "level": 4,
+          "castValue": 13,
+          "description": "Ariel's Blessing is an augment spell with a range of",
+          "type": "augment"
+        }
+      ]
+    }
+  ],
+  "factionUpgrades": {}
+}

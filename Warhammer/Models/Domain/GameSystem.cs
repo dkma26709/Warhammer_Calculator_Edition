@@ -13,7 +13,7 @@ public static class GameSystems
     public static readonly IReadOnlyList<GameSystem> All =
     [
         new("wap-v2", "WAP v2", Enabled: true),
-        new("wap-v3", "WAP v3", Enabled: false),
+        new("wap-v3", "WAP v3", Enabled: true),
         new("fantasy-8th", "Fantasy 8th", Enabled: false),
         new("old-world", "Old World", Enabled: false),
     ];

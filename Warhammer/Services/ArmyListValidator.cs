@@ -28,7 +28,8 @@ public class ArmyListValidator
 
         double charactersPoints =
             list.PointsInCategory(UnitCategory.Lords) +
-            list.PointsInCategory(UnitCategory.Heroes);
+            list.PointsInCategory(UnitCategory.Heroes) +
+            list.PointsInCategory(UnitCategory.Characters);
         double charactersCap = list.PointsTarget * ArmyCompositionRules.CharactersCombinedMaxPercent;
         if (charactersPoints > charactersCap)
         {
@@ -53,12 +54,12 @@ public class ArmyListValidator
             ArmyCompositionRules.RareMaxPercent, "RARE_OVER_CAP", "Rare");
 
         var characters = list.Units
-            .Where(u => u.ResolvedUnit.Category is UnitCategory.Lords or UnitCategory.Heroes)
+            .Where(u => u.ResolvedUnit.Category.IsCharacterCategory())
             .ToList();
         if (characters.Count == 0)
         {
             issues.Add(new(ValidationSeverity.Error, "NO_GENERAL",
-                "Army must include at least one Lord or Hero to act as General"));
+                "Army must include at least one character to act as General"));
         }
         else
         {

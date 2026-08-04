@@ -38,12 +38,14 @@ public class GameSystemTests
         Assert.Equal(GameSystems.Default, service.CurrentSystem);
     }
 
-    [Fact]
-    public void Initialize_EnabledKey_SetsCurrentSystem()
+    [Theory]
+    [InlineData("wap-v2")]
+    [InlineData("wap-v3")]
+    public void Initialize_EnabledKey_SetsCurrentSystem(string key)
     {
         var service = new GameSystemService();
-        service.Initialize("wap-v2");
-        Assert.Equal("wap-v2", service.CurrentSystem);
+        service.Initialize(key);
+        Assert.Equal(key, service.CurrentSystem);
     }
 
     [Fact]
@@ -54,17 +56,31 @@ public class GameSystemTests
         Assert.Equal("data/wap-v2/factions/dwarfs.json", service.DataPath("factions/dwarfs.json"));
     }
 
-    [Fact]
-    public void Manifest_ParsesAndEveryFactionResolvesWithDataFiles()
+    public static TheoryData<string> EnabledSystems()
+    {
+        var data = new TheoryData<string>();
+        foreach (var system in GameSystems.All.Where(s => s.Enabled))
+            data.Add(system.Key);
+        return data;
+    }
+
+    [Theory]
+    [MemberData(nameof(EnabledSystems))]
+    public void Manifest_ParsesAndEveryFactionResolvesWithDataFiles(string systemKey)
     {
         var systemDir = Path.Combine(
-            TestHelpers.FindProjectRoot(), "wwwroot", "data", GameSystems.Default);
+            TestHelpers.FindProjectRoot(), "wwwroot", "data", systemKey);
         var manifest = JsonSerializer.Deserialize<SystemManifest>(
             File.ReadAllText(Path.Combine(systemDir, "manifest.json")), JsonOptions);
 
         Assert.NotNull(manifest);
-        Assert.Equal(GameSystems.Default, manifest.System);
+        Assert.Equal(systemKey, manifest.System);
         Assert.NotEmpty(manifest.Factions);
+
+        Assert.True(File.Exists(Path.Combine(systemDir, "core-rules.json")),
+            $"Missing core-rules.json for '{systemKey}'");
+        Assert.True(File.Exists(Path.Combine(systemDir, "common-magic-items.json")),
+            $"Missing common-magic-items.json for '{systemKey}'");
 
         foreach (var key in manifest.Factions)
         {

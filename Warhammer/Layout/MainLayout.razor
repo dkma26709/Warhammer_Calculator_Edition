@@ -23,7 +23,7 @@
         <label class="text-secondary small me-2" for="system-select">System</label>
         <select id="system-select" class="form-select form-select-sm bg-dark text-light border-secondary w-auto"
                 value="@SystemService.CurrentSystem" @onchange="OnSystemChanged"
-                title="Only WAP v2 is currently supported">
+                title="Select game system">
             @foreach (var system in GameSystems.All)
             {
                 <option value="@system.Key" disabled="@(!system.Enabled)"
