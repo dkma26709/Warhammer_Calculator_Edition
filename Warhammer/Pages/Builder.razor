@@ -199,7 +199,7 @@
                                                         @entry.TotalPointsCost.ToString("F0") pts
                                                     </small>
                                                 </div>
-                                                @if (cat is UnitCategory.Lords or UnitCategory.Heroes)
+                                                @if (cat.IsCharacterCategory())
                                                 {
                                                     <button class="btn btn-sm me-1 @(entry.Loadout.IsGeneral ? "btn-warning" : "btn-outline-warning")"
                                                             title="Designate General"
@@ -283,7 +283,7 @@
 
 @code {
     private static readonly UnitCategory[] BrowseCategories =
-        [UnitCategory.Lords, UnitCategory.Heroes, UnitCategory.Core, UnitCategory.Special, UnitCategory.Rare];
+        [UnitCategory.Lords, UnitCategory.Heroes, UnitCategory.Characters, UnitCategory.Core, UnitCategory.Special, UnitCategory.Rare];
 
     private string? _factionKey;
     private string _pointsText = "2000";
@@ -600,12 +600,20 @@
         get
         {
             double target = _armyList.PointsTarget;
-            yield return ("Lords", _armyList.PointsInCategory(UnitCategory.Lords),
-                target * ArmyCompositionRules.LordsMaxPercent, false);
-            yield return ("Heroes", _armyList.PointsInCategory(UnitCategory.Heroes),
-                target * ArmyCompositionRules.HeroesMaxPercent, false);
-            yield return ("Characters (combined)",
-                _armyList.PointsInCategory(UnitCategory.Lords) + _armyList.PointsInCategory(UnitCategory.Heroes),
+            // v2 books split characters into Lords/Heroes with their own caps; v3 books
+            // have a single Characters section governed only by the combined cap.
+            bool splitCharacters = _factionUnits?.Any(u => u.Category is UnitCategory.Lords or UnitCategory.Heroes) ?? true;
+            if (splitCharacters)
+            {
+                yield return ("Lords", _armyList.PointsInCategory(UnitCategory.Lords),
+                    target * ArmyCompositionRules.LordsMaxPercent, false);
+                yield return ("Heroes", _armyList.PointsInCategory(UnitCategory.Heroes),
+                    target * ArmyCompositionRules.HeroesMaxPercent, false);
+            }
+            yield return (splitCharacters ? "Characters (combined)" : "Characters",
+                _armyList.PointsInCategory(UnitCategory.Lords)
+                    + _armyList.PointsInCategory(UnitCategory.Heroes)
+                    + _armyList.PointsInCategory(UnitCategory.Characters),
                 target * ArmyCompositionRules.CharactersCombinedMaxPercent, false);
             yield return ("Core", _armyList.PointsInCategory(UnitCategory.Core),
                 target * ArmyCompositionRules.CoreMinPercent, true);

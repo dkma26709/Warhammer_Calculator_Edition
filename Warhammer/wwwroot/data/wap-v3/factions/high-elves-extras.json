@@ -1,0 +1,622 @@
+{
+  "factionName": "High Elves",
+  "armySpecialRules": [
+    {
+      "name": "Elven Grace",
+      "description": "Models with this special rule have the Dodge (6+)\nspecial rule in close combat. However, this cannot be\nused against enemies that attack before the model with\nElven Grace."
+    },
+    {
+      "name": "Fiery Breath",
+      "description": "A model with this special rule has a Strength 4 Breath\nWeapon with the Flaming Attacks special rule."
+    },
+    {
+      "name": "Lileath'S Blessing",
+      "description": "A Wizard with this special rule gains a +1 dispel bonus."
+    },
+    {
+      "name": "Martial Prowess",
+      "description": "Models with this special rule may re-roll all To Hit\nrolls of 1 when making close combat attacks."
+    },
+    {
+      "name": "Swordmaster",
+      "description": "Models with this special rule ignore Initiative penalties\nfrom great weapons and gain the Dodge (6+) special\nrule against non-magical missile attacks with Strength\n3 or below (except templates)."
+    },
+    {
+      "name": "Valour Of Ages",
+      "description": "Models with this special rule re-roll all failed Panic\ntests caused by Dark Elves."
+    },
+    {
+      "name": "Bow Of Avelorn",
+      "description": "Range: Strength: Special Rules:\n24/36\" 4 Armour Piercing (1),\nFlaming Attacks,\nMagical Attacks,\nMultiple Shots (2)*,\nVolley Fire\n*Only applies in turns the model has not moved.\nCannot be used as a charge reaction."
+    },
+    {
+      "name": "Elven Shortbow",
+      "description": "Range: Strength: Special Rules:\n16/24\" 3 Armour Piercing (1),\nMarch & Shoot,\nMultiple Shots (2)*,\nVolley Fire\n*Only applies in turns the model has not marched.\nCannot be used as a charge reaction."
+    },
+    {
+      "name": "Elven Longbow",
+      "description": "Range: Strength: Special Rules:\n24/36\" 3 Armour Piercing (1),\nMultiple Shots (2)*,\nVolley Fire\n*Only applies in turns the model has not moved.\nCannot be used as a charge reaction."
+    },
+    {
+      "name": "Dragon Armour",
+      "description": "Heavy armour. Models with dragon armour gain a\nMagical Ward (6+) and the Immunity (Flaming\nAttacks) special rule."
+    },
+    {
+      "name": "Ithilmar Barding",
+      "description": "Combat: Missile: Special Rules:\n+1/6+ +1/6+ -"
+    },
+    {
+      "name": "Lion Cloak",
+      "description": "The bearer gains the Natural Armour (6+) special rule\nagainst missile attacks."
+    }
+  ],
+  "magicItems": [
+    {
+      "name": "Deathsinger",
+      "points": "65",
+      "category": "magic_weapon",
+      "description": "At the beginning of each round of close combat, roll a\nD3; the result is the number you may increase the\nwielder's Weapon Skill, Strength and Attacks by."
+    },
+    {
+      "name": "Sword Of Ages",
+      "points": "60",
+      "category": "magic_weapon",
+      "description": "The Sword of Ages gives the wielder +1 To Hit, +2\nStrength and +1 Attack."
+    },
+    {
+      "name": "Blade Of The Phoenix",
+      "points": "50",
+      "category": "magic_weapon",
+      "description": "The Blade of the Phoenix gives the wielder the Ignores\nArmour Saves special rule. Once per battle, at the start\nof any close combat phase the wielder can unleash the\nfull power of the sword. For the remainder of that close\ncombat phase, they get the Always Strikes First special\nrule and +D6 Attacks."
+    },
+    {
+      "name": "Bow Of The Seafarer",
+      "points": "45",
+      "category": "magic_weapon",
+      "description": "Lothern Sea Helm only. The Bow of the Seafarer is a\nBolt Thrower.",
+      "restriction": "Lothern Sea Helm only."
+    },
+    {
+      "name": "Cloudcleaver",
+      "points": "45",
+      "category": "magic_weapon",
+      "description": "Polearm. All attacks made with Cloudcleaver have the\nIgnores Armour Saves special rule. In addition, it gives\nthe wielder the Fear special rule and against War Beasts\nand Cavalry, they cause Terror."
+    },
+    {
+      "name": "Spear Of The Shores",
+      "points": "40",
+      "category": "magic_weapon",
+      "description": "Light lance/spear. This weapon gives the wielder +1\nStrength and +2 Attacks."
+    },
+    {
+      "name": "Sword Of Victory",
+      "points": "35",
+      "category": "magic_weapon",
+      "description": "The Sword of Victory gives the wielder the Always\nStrikes First and Armour Piercing (1) special rules. In\naddition, they will always Wound on a 3+ or better."
+    },
+    {
+      "name": "The Reaver Bow",
+      "points": "30",
+      "category": "magic_weapon",
+      "description": "Elven shortbow. The Reaver Bow has the following\nprofile:\nRange: Strength: Special Rules:\n20/30\" 5 Armour Piercing (1),\nMarch & Shoot,\nMultiple Shots (3)\nc and powerful magical artefacts used by the High\nfound in the Warhammer rulebook."
+    },
+    {
+      "name": "The Blade Of Leaping Gold",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "The Blade of Leaping Gold grants the wielder +3\nAttacks. In addition, any roll of 6 To Wound made with\nthe Blade of Leaping Gold Ignores Armour saves."
+    },
+    {
+      "name": "Blade Of Darting Steel",
+      "points": "25",
+      "category": "magic_weapon",
+      "description": "The Blade of Darting Steel gives the wielder +1 To Hit\nand the Always Strikes First special rule."
+    },
+    {
+      "name": "Sword Of Hoeth",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Great weapon. All hits with the Sword of Hoeth wound\nautomatically. Armour saves are modified by the\nStrength of the bearer."
+    },
+    {
+      "name": "Dragonblade Lance",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Heavy lance. During turns in which the wielder of the\nDragonblade Lance charges, it automatically hits all\nmodels in one file that is in base contact rather than\nfighting normally. Hits are resolved as that from a Bolt\nThrower, except the Strength does not decrease for\neach rank."
+    },
+    {
+      "name": "Jade Bow",
+      "points": "20",
+      "category": "magic_weapon",
+      "description": "Elven Longbow. All shots from the Jade Bow are\nresolved at Strength 4. In addition, if you successfully\nWound your target, you may fire an additional shot\nagainst the same target. You may continue to fire\nadditional shots until you fail to Hit, Wound or the\ntarget is dead."
+    },
+    {
+      "name": "Foe Bane",
+      "points": "15",
+      "category": "magic_weapon",
+      "description": "Against Monstrous Infantry, Monstrous Cavalry,\nMonstrous Beasts, Monstrous Creatures and Monsters,\nthis sword will always wound on a 2+."
+    },
+    {
+      "name": "Bow Of Tor Alessi",
+      "points": "10",
+      "category": "magic_weapon",
+      "description": "Elven Longbow. The Bow of Tor Alessi has the Quick\nShot special rule. In addition, it may re-roll any failed\nTo Hit rolls."
+    },
+    {
+      "name": "The Golden Shield",
+      "points": "30",
+      "category": "magic_armour",
+      "description": "Shield. Infantry or Cavalry only. Enemies must re-roll\nall successful To Hit rolls against the bearer of the\nGolden Shield.",
+      "restriction": "Shield. Infantry or Cavalry only."
+    },
+    {
+      "name": "Helm Of Fortune",
+      "points": "30",
+      "category": "magic_armour",
+      "description": "Infantry or Cavalry only. The Helm of Fortune gives\nthe wearer a 6+ armour save. The wearer may re-roll\nfailed armour saves.",
+      "restriction": "Infantry or Cavalry only."
+    },
+    {
+      "name": "Armour Of Heroes",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Heavy armour. In order to allocate close combat attacks\nagainst the wearer, each enemy model must first pass a\nLeadership test at the start of each close combat phase.\nIf the test is failed, the model may not attack at all this\nround."
+    },
+    {
+      "name": "Dragonscale Shield",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Shield. The Dragonscale Shield adds an additional +1\narmour save as well as the Magical Ward (6+) special\nrule."
+    },
+    {
+      "name": "Shield Of Ithinar",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Shield. All close combat attacks against the bearer\nsuffer -1 To Hit."
+    },
+    {
+      "name": "Temakador'S Gauntlets",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Temakador's Gauntlets gives the wearer a 6+ armour\nsave. In addition, they gain the Magical Ward (5+)\nspecial rule against attacks of Strength 4 or greater."
+    },
+    {
+      "name": "Wyrmscale Armour Of The Deep",
+      "points": "25",
+      "category": "magic_armour",
+      "description": "Heavy Armour. The Wyrmscale Armour of the Deep\ngives the wearer the Aquatic and Immunity (Flaming\nAttacks) special rules."
+    },
+    {
+      "name": "Shadow Armour",
+      "points": "20",
+      "category": "magic_armour",
+      "description": "Model on foot only. Light armour. The wearer gains the\nStrider special rule. In addition, no enemies can draw\nLine of Sight to them unless they are within 6\".",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Armour Of Stars",
+      "points": "10",
+      "category": "magic_armour",
+      "description": "Model on foot only. Light armour. If the wearer of the\nArmour of Stars suffers an unsaved wound (but is not\nslain) they can choose to instantly teleport 3D6\" in a\nrandom direction (placing it at least 1\" away from other\nunits or impassable terrain) with its front arc in a\ndirection of your choosing. If the model teleports off\nthe table, then treat this as it having pursued off the\ntable.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Shield Of The Merwyrm",
+      "points": "10",
+      "category": "magic_armour",
+      "description": "Shield. The bearer of the Shield of the Merwyrm gains\nthe Parry (6+) special rule."
+    },
+    {
+      "name": "Pinion Of The Phoenix",
+      "points": "55",
+      "category": "talisman",
+      "description": "Model on foot only. The Pinion of the Phoenix gives\nthe wearer the Magical Ward (5+) special rule. If the\nbearer is slain, the item is destroyed but restores the\nbearer to their starting Wound total and inflicts a\nStrength 5 Hit with the Flaming Attacks special rule on\nall models in base contact.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Vambraces Of Defence",
+      "points": "55",
+      "category": "talisman",
+      "description": "Infantry or Cavalry only. The bearer gains the Magical\nWard (4+) special rule. In addition, they may re-roll\nfailed armour saves.",
+      "restriction": "Infantry or Cavalry only."
+    },
+    {
+      "name": "Null Stone",
+      "points": "50",
+      "category": "talisman",
+      "description": "No model in base contact with the bearer of the Null\nStone may cast spells, and all Magic Items lose their\neffects; treat them as mundane versions of the same\ntype."
+    },
+    {
+      "name": "Folariath'S Robe",
+      "points": "40",
+      "category": "talisman",
+      "description": "Model on foot only. The wearer of Folariath's Robe\ngains the Ethereal special rule.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Guardian Phoenix",
+      "points": "30",
+      "category": "talisman",
+      "description": "The Guardian Phoenix gives the wearer the Immunity\n(Flaming Attacks) and Magical Ward (5+) special rules."
+    },
+    {
+      "name": "Loremaster'S Cloak",
+      "points": "25",
+      "category": "talisman",
+      "description": "The wearer of the Loremaster's Cloak gains the\nMagical Ward (3+) special rule against missile attacks."
+    },
+    {
+      "name": "The Signet Of Athinol",
+      "points": "30",
+      "category": "talisman",
+      "description": "Any attacks made against the bearer suffer a -1\nStrength penalty."
+    },
+    {
+      "name": "Sacred Incense",
+      "points": "25",
+      "category": "talisman",
+      "description": "All missile attacks targeted at the bearer of the Sacred\nIncense or the unit they are with suffer -1 To Hit."
+    },
+    {
+      "name": "Golden Crown Of Atrazar",
+      "points": "20",
+      "category": "talisman",
+      "description": "The Golden Crown of Atrazar gives the bearer the\nMagical Ward (4+) and Stupidity special rules. In\naddition, at the start of each of your turns, they suffer\n-1 to their Leadership. This penalty is cumulative."
+    },
+    {
+      "name": "Phoenix Stone",
+      "points": "20",
+      "category": "talisman",
+      "description": "Infantry or Cavalry only. Every time the bearer of this\nitem rolls a natural 6 on their armour save or\ninvulnerable save roll, they restore 1 Wound suffered\nearlier during game.",
+      "restriction": "Infantry or Cavalry only."
+    },
+    {
+      "name": "Talisman Of Blinding Light",
+      "points": "15",
+      "category": "talisman",
+      "description": "All enemy units in base contact with the bearer suffer\n-1 to their Weapon Skill in the first round of close\ncombat."
+    },
+    {
+      "name": "Talisman Of Saphery",
+      "points": "10",
+      "category": "talisman",
+      "description": "The Talisman of Saphery causes all Magic Weapons of\nenemy models in base contact to lose all their effects;\ntreat them as mundane weapons of their type."
+    },
+    {
+      "name": "Amulet Of Fire",
+      "points": "5",
+      "category": "talisman",
+      "description": "The Amulet of Fire gives the wearer the Immunity\n(Flaming Attacks) and Magic Resistance (1) special\nrules."
+    },
+    {
+      "name": "Book Of Hoeth",
+      "points": "60",
+      "category": "arcane_item",
+      "description": "Relic. The Book of Hoeth allows the bearer to re-roll a\nsingle dice from each of his casting or dispel attempts.\nResults of 6 cannot be re-rolled."
+    },
+    {
+      "name": "Annulian Crystal",
+      "points": "55",
+      "category": "arcane_item",
+      "description": "Relic. During the enemy's Magic phase, the Annulian\nCrystal allows you to remove one dice from the\nopponent's Power dice pool and add it to your own\nDispel dice pool."
+    },
+    {
+      "name": "Sigil Of Asuryan",
+      "points": "55",
+      "category": "arcane_item",
+      "description": "Charm. One use only. When an enemy cast a spell, the\nbearer may use this item instead of attempting to dispel\nthe spell by using dispel dice. This gives them 6 free\ndice to attempt to dispel the spell, which cannot be\ncombined with any other dispel dice. In addition, the\nspell is destroyed and the enemy caster loses access to\nthe spell for the rest of the game (note that this has no\neffect on Bound spells).",
+      "restriction": "Charm. One use only."
+    },
+    {
+      "name": "Seerstaff Of Saphery",
+      "points": "30",
+      "category": "arcane_item",
+      "description": "Staff. The Seerstaff of Saphery gives the bearer the\nLoremaster special rule."
+    },
+    {
+      "name": "Trickster'S Pendant",
+      "points": "30",
+      "category": "arcane_item",
+      "description": "Relic. If an enemy Wizard suffers a Miscast, the bearer\nof the Trickster's Pendant can choose to make the\nWizard re-roll the result on the Miscast table."
+    },
+    {
+      "name": "Starwood Staff",
+      "points": "25",
+      "category": "arcane_item",
+      "description": "Staff. The Starwood staff gives the bearer a +1 casting\nbonus. In addition, they may re-roll one failed\nchannelling roll per turn."
+    },
+    {
+      "name": "Staff Of Solidity",
+      "points": "25",
+      "category": "arcane_item",
+      "description": "Staff. One use only. The Staff of Solidity makes the\nWizard immune to the effects of their first Miscast.",
+      "restriction": "Staff. One use only."
+    },
+    {
+      "name": "Jewel Of The Dusk",
+      "points": "20",
+      "category": "arcane_item",
+      "description": "Relic. The Jewel of the Dusk gives the bearer +1 Power\ndice in each of your Magic phases. Only they may use\nthis extra dice."
+    },
+    {
+      "name": "Vortex Shard",
+      "points": "20",
+      "category": "arcane_item",
+      "description": "Charm. One use only. The bearer may use the Vortex\nShard at the start of any enemy Magic phase. Your\nopponent must remove D3 power dice from their\npower pool.",
+      "restriction": "Charm. One use only."
+    },
+    {
+      "name": "Silver Wand",
+      "points": "10",
+      "category": "arcane_item",
+      "description": "Staff. The bearer of the Silver Wand may pick a spell\none level higher than they are normally allowed."
+    },
+    {
+      "name": "Spell Crown Of Dusk",
+      "points": "10",
+      "category": "arcane_item",
+      "description": "Relic. The bearer of this item gains access to a\nrandomly generated Lvl 1 spell (which may be replaced\nby the Signature Spell) from the Lore of High Magic."
+    },
+    {
+      "name": "Radiant Gem Of Hoeth",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "The bearer of the Radiant Gem of Hoeth becomes a\nLevel 1 Wizard using the Lore of High Magic."
+    },
+    {
+      "name": "Khaine'S Ring Of Fury",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "Bound spell. Khaine's Ring of Fury contains the Fury\nof Khaine spell from the Lore of High Magic."
+    },
+    {
+      "name": "Moranion'S Wayshard",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "Model on foot only. The bearer of Moranion's\nWayshard and one friendly Infantry unit they must\ndeploy with has the Ambushers special rule. Instead of\narriving as Reinforcements, they may choose to deploy\nin any non-impassable terrain feature in the turn they\narrive.",
+      "restriction": "Model on foot only."
+    },
+    {
+      "name": "Pendant Of Vengeance",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "When fighting Dwarfs, the bearer may force a\nsuccessful Leadership test while using an Anvil of\nDoom or Rune Lore to be rerolled."
+    },
+    {
+      "name": "Ring Of Corin",
+      "points": "35",
+      "category": "enchanted_item",
+      "description": "Bound spell. The Ring of Corin contains the Vaul's\nUnmaking spell from the Lore of High Magic."
+    },
+    {
+      "name": "Sky Arrow Of Naloer",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "Model with non-magical Elven Longbow only. One use\nonly. This item cannot be used with the Sniper special\nrule. The Sky Arrow of Naloer has the following\nprofile:\nRange: Strength: Special Rules:\n24/36\" 6 Magical Attacks,\nMultiple Wounds (D6)",
+      "restriction": "Model with non-magical Elven Longbow only."
+    },
+    {
+      "name": "Skeinsliver",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "The Skeinsliver allows the controlling player to add +1\nto the roll to determine which player can decide\nwhether to take the first turn or not."
+    },
+    {
+      "name": "Blessed Tome",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "The model gains the Inspiring Presence (6) special rule."
+    },
+    {
+      "name": "Gem Of Sunfire",
+      "points": "25",
+      "category": "enchanted_item",
+      "description": "One use only. At the start of any of your turns, when\nthe Gem of Sunfire is used, all of the bearer's spells,\nshooting attacks and close combat attacks (and their\nmount's, if they have one) have a +1 bonus To Wound\n(rolls of 1 still fail) provided that they also have the\nFlaming Attacks special rule.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Horn Of Isha",
+      "points": "20",
+      "category": "enchanted_item",
+      "description": "Handmaiden of the Everqueen only. One use only. The\nHorn of Isha can be used at the start of one of your\nMovement phases. For the remainder of the turn, all\nmodels in the bearer's unit receive a +1 To Hit bonus\non all shooting and close combat attacks.",
+      "restriction": "Handmaiden of the Everqueen only."
+    },
+    {
+      "name": "Amulet Of The Purifying Flame",
+      "points": "15",
+      "category": "enchanted_item",
+      "description": "Enemy spells that target the character or the unit they\nare with suffer a -3 casting penalty."
+    },
+    {
+      "name": "Amulet Of The Tempest",
+      "points": "15",
+      "category": "enchanted_item",
+      "description": "Storm Weaver or Mist Weaver only. Enemy Wizards\nwithin 12\" of the bearer do not gain any casting bonus\nfrom their Wizard Level.",
+      "restriction": "Storm Weaver or Mist Weaver only."
+    },
+    {
+      "name": "Cloak Of Beards",
+      "points": "15",
+      "category": "enchanted_item",
+      "description": "The wearer of the Cloak of Beards causes Fear. Against\nDwarfs, the wearer causes Terror instead. However, all\nDwarfs gain the Hatred special rule while attacking the\nwearer. In addition, at the start of each Close Combat\nphase, roll a D6 for each magic item carried by each\nDwarf that is in base contact with the bearer. On a roll\nof 4+, that magic or runic item is destroyed and cannot\nbe used for the rest of the battle; it will count as a\nmundane version of whatever item it is instead. Note\nthat this has no effect on magic items that are mounts,\nwar machines, magic items that contain bound spells\nthat have already miscast during the game, and any\nmagic items labelled as 'one use only' that have already\nbeen used during the game - do not roll to see if these\nmagic items are destroyed."
+    },
+    {
+      "name": "Amulet Of Light",
+      "points": "10",
+      "category": "enchanted_item",
+      "description": "All close combat attacks made by the bearer of the\nAmulet of Light and any unit they are with gain the\nMagical Attacks special rule.\nGEM OF COURAGE* 10 points\nOne use only. The bearer of the Gem of Courage and\nany unit they are with may take any one Leadership\ntest using the Cold-blooded special rule.",
+      "restriction": "All close combat attacks made by the bearer of the\nAmulet of Light and any unit they are with gain the\nMagical Attacks special rule.\nGEM OF COURAGE* 10 points\nOne use only."
+    },
+    {
+      "name": "Talisman Of Loec",
+      "points": "10",
+      "category": "enchanted_item",
+      "description": "One use only. The Talisman of Loec may be used at the\nstart of any close combat phase. Until the end of the\nphase, the bearer may re-roll all failed rolls To Hit and\nwound, and any model wounded by their attacks must\nre-roll all successful armour saves and invulnerable\nsaves. However, at the end of the phase, the bearer\nloses half of their remaining Wounds (rounding down)\nwith no saves of any kind allowed.",
+      "restriction": "One use only."
+    },
+    {
+      "name": "Star Ruby",
+      "points": "10",
+      "category": "enchanted_item",
+      "description": "At the start of each of your turns, all enemy units\nwithin 12\" must reveal any Hidden models, upgrades\nand magic items they might have."
+    },
+    {
+      "name": "Battle Banner",
+      "points": "70",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard gains a +D6 Combat\nResolution bonus (roll each time it is used)."
+    },
+    {
+      "name": "Banner Of The World Dragon",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard has the Magic\nResistance (5) special rule. Furthermore, all Draconids\n(friend or foe) within 12\" of the Banner of the World\nDragon have the Stubborn special rule."
+    },
+    {
+      "name": "Banner Of Resilience",
+      "points": "40",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard gains +1 Toughness."
+    },
+    {
+      "name": "Standard Of Balance",
+      "points": "30",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard, and any enemy unit in\nbase contact with it, gain the Immunity (Psychology)\nspecial rule, and any Frenzy or Hatred special rule have\nno effect."
+    },
+    {
+      "name": "Banner Of Sorcery",
+      "points": "30",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard adds +1 Power dice to\nyour power pool in each of your own Magic phases."
+    },
+    {
+      "name": "Banner Of Ellyrion",
+      "points": "25",
+      "category": "magic_standard",
+      "description": "Ellyrian Reavers only. The unit carrying this standard\ngains +1 Movement and the Strider special rule.",
+      "restriction": "Ellyrian Reavers only."
+    },
+    {
+      "name": "Banner Of Avelorn",
+      "points": "10",
+      "category": "magic_standard",
+      "description": "Handmaiden of the Everqueen or Sisters of Avelorn\nonly. Spells from the Lore of Light and the Lore of\nLife cast by a friendly Wizard that target the unit\ncarrying this standard receive a +2 casting bonus. If\nAlarielle the Radiant is included in your army and is\nslain, this ability is immediately lost.",
+      "restriction": "Handmaiden of the Everqueen or Sisters of Avelorn\nonly."
+    },
+    {
+      "name": "Banner Of Lothern",
+      "points": "10",
+      "category": "magic_standard",
+      "description": "Lothern Sea Guard only. The unit carrying this\nstandard gains the Fight in Extra Ranks (1) special rule.",
+      "restriction": "Lothern Sea Guard only."
+    },
+    {
+      "name": "Lion Standard",
+      "points": "10",
+      "category": "magic_standard",
+      "description": "White Lions of Chrace only. The unit carrying this\nstandard gains the Immunity (Terror) special rule.",
+      "restriction": "White Lions of Chrace only."
+    },
+    {
+      "name": "Banner Of Confidence",
+      "points": "5",
+      "category": "magic_standard",
+      "description": "The unit carrying this standard does not suffer -1 To\nHit when using Stand & Shoot as a charge reaction.\nCHARA\nCOMMANDERS\nProfile M W\nPrince 5 7\nNoble 5 6\nTROOP TYPE: Infantry (Character, High Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nSPECIAL RULES: Elven Grace, Martial Prowess, Valo\nOPTIONS:\n• May choose one of the following:\n- Additional hand weapon\n- Spear\n- Light lance\n- Heavy lance\n- Polearm\n- Great weapon\n• May choose one of the following:\n- Elven shortbow\n- Elven longbow\n• May choose one of the following:\n- Light armour\n- Medium armour\n- Heavy armour\n• May take a shield\n• May be mounted on one of the following:\n- Elven Steed\n- Pegasus\n- Great Eagle\n- Tiranoc Chariot (replacing one of the crew)\n- Griffon (Prince only)\n- Moon Dragon (Prince only)\n• One Noble may carry the Battle Standard\n• A Noble may take one Elven Honour and Magic Ite\n• A Prince may take one Elven Honour and Magic Ite\nNOTES:\n• The Battle Standard Bearer can have a Magic Stand\nItems they might have.\nACTERS\nWS BS S T W I A Ld Points\n7 7 4 3 3 8 4 10 125\n6 6 4 3 2 7 3 9 55\nour of Ages\n+5 points\n+5 points\n+5 points\n+10 points\n+10 points\n+15 points\n+7 points\n+8 points\n+3 points\n+9 points\n+18 points\n+5 points\n+15 points\n+25 points\n+40 points\n+70 points\n+125 points\n+300 points\n+25 points\nems up to a total of 50 points\nems up to a total of 100 points\ndard with no points limit in addition to any other Magic\nCHARA\nMAGES\nProfile M W\nArch Mage 5 5\nMage 5 4\nTROOP TYPE: Infantry (Character, High Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nMAGIC: A Mage is a Level 1 Wizard. An Arch Mage is a L\nMagic:\n• Beasts\n• Death\n• Heavens\n• High\n• Fire\n• Light\n• Life\n• Metal\n• Shadow\nSPECIAL RULES: Elven Grace, Lileath's Blessing, Ma\nOPTIONS:\n• May take an additional Wizard Level\n• May take light armour\n• May be mounted on one of the following:\n- Elven Steed\n- Unicorn\n- Great Eagle\n- Tiranoc Chariot (replacing one of the crew)\n- Moon Dragon (Arch Mage only)\n• A Mage may take Magic Items up to a total of\n• An Arch Mage may take Magic Items up to a total o\nACTERS\nWS BS S T W I A Ld Points\n5 4 3 3 3 6 2 9 195\n4 4 3 3 2 5 1 8 85\nLevel 3 Wizard. They use one of the following Lores of\nartial Prowess, Valour of Ages\n+35 points\n+3 points\n+15 points\n+25 points\n+40 points\n+70 points\n+300 points\n50 points\nof 100 points\nCHARA\nLORDS OF AENARION\nProfile M W\nLord of Aenarion 5 8\nTROOP TYPE: Infantry (Character, High Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nSPECIAL RULES: Elven Grace, Frenzy, Hatred (Force\n• Battle Trance: If a Lord of Aenarion is in base con\nthe start of any round of combat a he is involved in.\ncontact instead of attacking normally. Roll to Hit as\n• Curse of Aenarion: As soon as a model with this s\ninvulnerable save for the rest of the battle. This has\nthey are reduced to 1 Wound, like a spell or attack w\nmultiple Wounds in a single phase, roll one save at\ninvulnerable save takes effect.\nOPTIONS:\n• May choose one of the following:\n- Additional hand weapon\n- Spear\n- Light lance\n- Heavy lance\n- Polearm\n- Great weapon\n• May choose one of the following:\n- Light armour\n- Medium armour\n- Heavy armour\n• May take a shield\n• May be mounted on an Elven Steed\n• May take Magic Items up to a total of\nACTERS\nWS BS S T W I A Ld Points\n8 7 4 3 3 9 5 10 175\nes of Destruction), Martial Prowess, Valour of Ages\nntact with a friendly unit, he must pass a Leadership test at\n. If failed, he will make one Attack on every model in base\ns normal.\nspecial rule is reduced to 1 Wound they gain a 3+\nno effect on attacks that would outright kill them before\nwith the Multiple Wounds special rule. If they were to suffer\na time (if they have any) for each Wound suffered until the\n+5 points\n+5 points\n+5 points\n+10 points\n+10 points\n+15 points\n+3 points\n+9 points\n+18 points\n+5 points\n+15 points\n100 points\nCHARA\nLOREMASTERS OF HOETH\nProfile M W\nLoremaster 5 6\nTROOP TYPE: Infantry (Character, High Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Great weapon\nMAGIC: A Loremaster of Hoeth is a Level 3 Wizard. Inste\nSignature Spells from the Winds of Magic.\nSPECIAL RULES: Elven Grace, Lileath's Blessing, Ma\nOPTIONS:\n• May choose one of the following:\n- Light armour\n- Medium armour\n- Heavy armour\n• May take Magic Items up to a total of\nACTERS\nWS BS S T W I A Ld Points\n6 4 4 3 3 7 3 9 220\nead of choosing spells normally, they always know the eight\nartial Prowess, Swordmaster, Valour of Ages\n+3 points\n+9 points\n+18 points\n100 points\nCHARA\nPRIESTS OF MATHLANN\nProfile M W\nStorm Weaver 5 5\nMist Weaver 5 4\nTROOP TYPE: Infantry (Character, High Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Hand weapon\nSPECIAL RULES: Elven Grace, Magic Resistance (1),\n• Eye of the Storm: The model may re-roll failed Le\nengaged in close combat.\n• Prayers of Mathlann: A model with this special ru\nthey may attempt to use one at the start of each of y\nunmodified Leadership. If passed, the prayer is answ\nbe under the effect of one Prayer at a time.\n- Armour of Mathlann: The model and any uni\nuntil the start of your next turn.\n- Mistress of the Deep: Until the start of your ne\nany unit they are with must pass a Leadership t\nautomatically fail.\n- The Writhing Mists: All missile attacks target\npenalty until the start of your next turn.\nOPTIONS:\n• A Mist Weaver may take Magic Items up to a total o\n• A Storm Weaver may take Magic Items up to a tota\nACTERS\nWS BS S T W I A Ld Points\n5 4 3 3 3 6 2 9 120\n4 4 3 3 2 5 1 8 75\nMartial Prowess, Valour of Ages\neadership tests for their Prayers as long as they are not\nule knows the three Prayers listed below. Unless fleeing,\nyour turns by taking a Leadership test on their own\nwered and takes immediate effect. A friendly unit can only\nit they are with gain the Magical Ward (6+) special rule\next turn, any enemy unit attempting to charge the model or\ntest with a -2 modifier, otherwise the charge will\nting the model or any unit they are with suffer a -1 To Hit\nof 50 points\nal of 100 points\nCHARA\nDRAGON MAGES OF CALEDOR\nProfile M W\nDragon Mage 5 5\nSun Dragon 6 5\nTROOP TYPE: Monster (Character, High Elf)\nMOUNT: Sun Dragon (Draconid)\nBASE SIZE: 50x100 or 60x100\nEQUIPMENT: Hand weapon\nMAGIC: A Dragon Mage is a Level 1 Wizard who uses spe\nMAGIC ITEMS:\n• Sunstaff: Arcane Item. Staff. Bound Spell (Level 1\ncast on the Wizard themselves. Until the start of the\nStrength, the Flaming Attacks special rule and alwa\nSPECIAL RULES: Elven Grace, Fiery Breath, Fly (7),\n(3+), Valour of Ages\n• Reckless: When a Dragon Mage casts a spell, a 'fre\ndice counts towards Ultimate Power and can cause\nmore dice than they are normally allowed to.\nOPTIONS:\n• May take an additional Wizard Level\n• May take light armour\n• May take Magic Items up to a total of\nACTERS\nWS BS S T W I A Ld Points\n5 4 3 3 2 6 2 8 300\n5 0 5 5 5 4 4 7\nells from the Lore of Fire.\n1, cast on 4+). This item contains an augment spell can be\neir next Magic phase, the Wizard gains +1 Attack, +3\nays Hits on the roll of a 2+ in close combat.\nLileath's Blessing, Martial Prowess, Natural Armour\nee' Power dice is added to the casting attempt. This extra\na Miscast as normal, and allows the Dragon Mage to roll\n+35 points\n+25 points\n50 points\nCHARA\nHANDMAIDENS OF THE EVERQU\nProfile M W\nHandmaiden 5 5\nTROOP TYPE: Infantry (Character, High Elf)\nBASE SIZE: 20x20 or 25x25\nEQUIPMENT: Spear, Bow of Avelorn\nSPECIAL RULES: Elven Grace, Martial Prowess, Valo\n• Quicksilver Shot: A Handmaiden and any unit of S\nrule, and can move and shoot without losing Multip\nOPTIONS:\n• May take light armour\n• One Handmaiden may carry the Battle Standard\n• May take Magic Items up to a total of\nNOTES:\n• The Battle Standard Bearer can have a Magic Stand\nItems they might have.\nACTERS\nUEEN\nWS BS S T W I A Ld Points\n5 6 4 3 2 6 2 9 45\nour of Ages\nSistern of Avelorn that they join gain the Quick Shot special\nple Shots.\n+3 points\n+25 points\n50 points\ndard with no points limit in addition to any other Magic\nCHARACTER MOUNTS\nELVEN STEED\nProfile M W\nElven Steed 9 3\nTROOP TYPE: War Beast (Equine)\nBASE SIZE: 25x50 or 30x60\nOPTIONS:\n• May take Ithilmar barding\nPEGASUS\nProfile M W\nPegasus 8 3\nTROOP TYPE: War Beast (Equine)\nBASE SIZE: 25x50 or 30x60\nSPECIAL RULES: Fly (9)\nUNICORN\nProfile M W\nUnicorn 10 5\nTROOP TYPE: War Beast (Equine)\nBASE SIZE: 25x50 or 30x60\nSPECIAL RULES: Forest Strider, Magical Attacks, Ma\n• Impale: A Unicorn gains the Mighty Blow (1) spec\nWS BS S T W I A Ld Points\n3 0 3 3 1 4 1 5 -\n+10 points\nWS BS S T W I A Ld Points\n3 0 4 4 2 4 2 6 -\nWS BS S T W I A Ld Points\n5 0 4 4 2 5 2 8 -\nagic Resistance (2)\ncial rule in any turn that it charges.\nCHARACTER MOUNTS\nGREAT EAGLE\nProfile M W\nGreat Eagle 2 5\nTROOP TYPE: Monstrous Beast (Avian)\nBASE SIZE: 40x40 or 50x50\nSPECIAL RULES: Fly (9)\nUPGRADES:\n• Swiftsense: The model gains the Always Strikes Fi\n• Shredding Talons: The model gains the Armour P\nOPTIONS:\n• May take Shredding Talons\n• May take Swiftsense\nGRIFFON\nProfile M W\nGriffon 6 5\nTROOP TYPE: Monstrous Creature (Chimeric)\nBASE SIZE: 50x50, 50x100 or 60x100\nSPECIAL RULES: Fly (8)\nUPGRADES:\n• Shredding Talons: The model gains the Armour Pi\n• Swooping Strike: The model gains the Devastating\nOPTIONS:\n• May take Shredding Talons\n• May take Swooping Strike\nWS BS S T W I A Ld Points\n5 0 4 4 3 4 3 8 -\nirst special rule in any turn that they charge.\nPiercing (1) special rule.\n+5 points\n+5 points\nWS BS S T W I A Ld Points\n5 0 5 5 4 4 4 7 -\niercing (1) special rule.\ng Charge special rule.\n+5 points\n+5 points\nCHARACTER MOUNTS\nSUN DRAGON\nProfile M W\nSun Dragon 6 5\nTROOP TYPE: Monster (Draconid)\nBASE SIZE: 50x50, 50x100 or 60x100\nSPECIAL RULES: Fiery Breath, Fly (7), Natural Armo\nMOON DRAGON\nProfile M W\nMoon Dragon 6 6\nTROOP TYPE: Monster (Draconid)\nBASE SIZE: 50x50, 50x100 or 60x100\nSPECIAL RULES: Fiery Breath, Fly (7), Natural Armo\nSTAR DRAGON\nProfile M W\nStar Dragon 6 7\nTROOP TYPE: Monster (Draconid)\nBASE SIZE: 50x50, 50x100 or 60x100\nSPECIAL RULES: Fiery Breath, Fly (7), Natural Armo\nWS BS S T W I A Ld Points\n5 0 5 5 5 4 4 7 -\nour (3+)\nWS BS S T W I A Ld Points\n6 0 6 6 6 3 5 8 -\nour (3+)\nWS BS S T W I A Ld Points\n7 0 7 7 7 2 6 9 -\nour (2+)"
+    }
+  ],
+  "loresOfMagic": [
+    {
+      "name": "High Magic",
+      "attribute": "Each time a spell from the Lore of High Magic is\nsuccessfully cast, the caster and their unit immediately\ngain a Magical Ward (6+) until the beginning of the\ncaster's next Magic phase. This bonus is cumulative.\nDRAIN MAGIC",
+      "spells": [
+        {
+          "name": "Drain Magic",
+          "level": 0,
+          "castValue": 6,
+          "description": "Drain Magic can be cast on any unit (friend or foe) and"
+        },
+        {
+          "name": "Apotheosis",
+          "level": 1,
+          "castValue": 5,
+          "description": "Apotheosis is an augment spell that targets a single",
+          "type": "augment"
+        },
+        {
+          "name": "Hand Of Glory",
+          "level": 1,
+          "castValue": 5,
+          "description": "Hand of Glory is an augment spell with a range of 18\".",
+          "type": "augment"
+        },
+        {
+          "name": "Fortune Is Fickle",
+          "level": 1,
+          "castValue": 6,
+          "description": "Fortune is Fickle is a hex spell with a range of 24\" that",
+          "type": "hex"
+        },
+        {
+          "name": "Curse Of Arrow Attraction",
+          "level": 2,
+          "castValue": 7,
+          "description": "Curse of Arrow Attraction is a hex spell with a range of",
+          "type": "hex"
+        },
+        {
+          "name": "Fury Of Khaine",
+          "level": 2,
+          "castValue": 7,
+          "description": "Fury of Khaine is a magic missile with a range of 18\""
+        },
+        {
+          "name": "Courage Of Aenarion",
+          "level": 2,
+          "castValue": 8,
+          "description": "Courage of Aenarion is an augment aura with a range"
+        },
+        {
+          "name": "Glamour Of Teclis",
+          "level": 3,
+          "castValue": 8,
+          "description": "Remains in Play. Glamour of Teclis is a hex spell with",
+          "type": "hex"
+        },
+        {
+          "name": "Coruscation Of Finreir",
+          "level": 3,
+          "castValue": 8,
+          "description": "Remains in play. Coruscation of Finreir is an augment"
+        },
+        {
+          "name": "Walk Between Worlds",
+          "level": 3,
+          "castValue": 8,
+          "description": "Walk Between Worlds is a conveyance spell with a",
+          "type": "conveyance"
+        },
+        {
+          "name": "Tempest",
+          "level": 4,
+          "castValue": 12,
+          "description": "Tempest is a direct damage area spell with a range of"
+        },
+        {
+          "name": "Vaul'S Unmaking",
+          "level": 4,
+          "castValue": 13,
+          "description": "Vaul's Unmaking is a direct damage spell with a range",
+          "type": "direct damage"
+        },
+        {
+          "name": "Flames Of The Phoenix",
+          "level": 4,
+          "castValue": 15,
+          "description": "Remains in play. Flames of the Phoenix is a direct"
+        }
+      ]
+    }
+  ],
+  "factionUpgrades": {}
+}
