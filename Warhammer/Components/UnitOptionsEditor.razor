@@ -100,6 +100,7 @@
             case OptionType.Upgrade:
             case OptionType.WizardUpgrade:
             case OptionType.BlessedSpawning:
+            case OptionType.FactionUpgrade:
                 return OptionSection.Other;
 
             default:
@@ -153,8 +154,12 @@
             case OptionType.Upgrade when option.SubOptions != null:
                 RenderSubOptionsDropdown(builder, idx, option);
                 break;
-            case OptionType.BlessedSpawning when HasFactionUpgradeCategory(option):
+            case OptionType.BlessedSpawning or OptionType.FactionUpgrade
+                when HasFactionUpgradeCategory(option):
                 RenderFactionUpgradeMultiSelect(builder, option);
+                break;
+            case OptionType.FactionUpgrade:
+                // No data for the category — nothing meaningful to offer.
                 break;
             case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
                 RenderFlatCheckbox(builder, idx, option);
@@ -164,29 +169,35 @@
 
     private bool HasFactionUpgradeCategory(UnitOption option)
     {
-        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.GetOptionType());
+        var category = UnitConfiguration.FactionUpgradeCategoryFor(option);
         if (category is null || FactionExtras?.FactionUpgrades is null) return false;
         return FactionExtras.FactionUpgrades.TryGetValue(category, out var entries) && entries.Count > 0;
     }
+
+    /// <summary>Points listed against an upgrade entry; non-numeric text means no cost of its own.</summary>
+    private static double EntryPoints(UpgradeEntry entry) =>
+        double.TryParse(entry.Points, out var points) ? points : 0;
 
     private void RenderFactionUpgradeMultiSelect(
         Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
         UnitOption option)
     {
         if (Configuration is null || FactionExtras?.FactionUpgrades is null) return;
-        var category = UnitConfiguration.FactionUpgradeCategoryFor(option.GetOptionType());
+        var category = UnitConfiguration.FactionUpgradeCategoryFor(option);
         if (category is null) return;
         if (!FactionExtras.FactionUpgrades.TryGetValue(category, out var entries)) return;
 
         var selected = Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list)
             ? list
-            : (Configuration.Loadout.SelectedFactionUpgrades[category] = new List<string>());
+            : (Configuration.Loadout.SelectedFactionUpgrades[category] = new List<SelectedFactionUpgrade>());
 
         var label = FormatUpgradeCategory(category);
-        var perPick = option.Points ?? 0;
-        var costSuffix = option.PerModel == true
-            ? $"+{perPick:F0} pt/model each"
-            : $"+{perPick:F0} pts each";
+        // No rate on the option means each upgrade is priced individually (characters).
+        var costSuffix = option.Points is null
+            ? "points as listed"
+            : option.PerModel == true
+                ? $"+{option.Points:F0} pt/model each"
+                : $"+{option.Points:F0} pts each";
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
@@ -199,8 +210,9 @@
         int seq = 10;
         foreach (var entry in entries)
         {
-            var checkedNow = selected.Contains(entry.Name);
+            var checkedNow = selected.Any(p => p.Name == entry.Name);
             var inputId = _id + "-fup-" + entry.Name.GetHashCode();
+            var entryPoints = EntryPoints(entry);
 
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "form-check small");
@@ -212,7 +224,8 @@
             builder.AddAttribute(seq++, "checked", checkedNow);
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
-                    this, async e => await OnFactionUpgradeToggled(category, entry.Name, (bool)(e.Value ?? false))));
+                    this, async e => await OnFactionUpgradeToggled(
+                        category, entry.Name, entryPoints, (bool)(e.Value ?? false))));
             builder.CloseElement();
 
             builder.OpenElement(seq++, "label");
@@ -230,17 +243,17 @@
         builder.CloseElement();
     }
 
-    private async Task OnFactionUpgradeToggled(string category, string name, bool isChecked)
+    private async Task OnFactionUpgradeToggled(string category, string name, double points, bool isChecked)
     {
         if (Configuration is null) return;
         if (!Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list))
         {
-            list = new List<string>();
+            list = new List<SelectedFactionUpgrade>();
             Configuration.Loadout.SelectedFactionUpgrades[category] = list;
         }
 
-        if (isChecked && !list.Contains(name)) list.Add(name);
-        else if (!isChecked) list.Remove(name);
+        if (isChecked && list.All(p => p.Name != name)) list.Add(new SelectedFactionUpgrade(name, points));
+        else if (!isChecked) list.RemoveAll(p => p.Name == name);
 
         await ConfigurationChanged.InvokeAsync(Configuration);
     }

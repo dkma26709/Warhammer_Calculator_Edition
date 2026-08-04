@@ -1,5 +1,5 @@
 {
-  "factionName": "daemons-of-chaos",
+  "factionName": "Daemons of Chaos",
   "armySpecialRules": [
     {
       "name": "Daemonic",
@@ -803,11 +803,6 @@
   ],
   "factionUpgrades": {
     "daemonic_gifts": [
-      {
-        "name": "Daemonic Gifts",
-        "points": "Characters may select one or more Gifts from the list",
-        "description": "below as described in the army list. Each Gift may only\nbe taken once per character, but more than one\ncharacter may take the same Gift."
-      },
       {
         "name": "Bringer Of The Swarm",
         "points": "70",

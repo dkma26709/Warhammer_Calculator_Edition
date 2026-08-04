@@ -34,7 +34,7 @@ public sealed class ArmyLoadout
 
     /// <summary>
     /// Faction-specific upgrade selections keyed by category (e.g. "blessed_spawnings",
-    /// "marks_of_chaos"). Values are the chosen upgrade names for that category.
+    /// "gifts_of_khaine"). Values are the chosen upgrades for that category.
     /// </summary>
-    public Dictionary<string, List<string>> SelectedFactionUpgrades { get; } = new();
+    public Dictionary<string, List<SelectedFactionUpgrade>> SelectedFactionUpgrades { get; } = new();
 }

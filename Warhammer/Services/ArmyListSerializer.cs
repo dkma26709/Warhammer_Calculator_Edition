@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
+using Warhammer.Models.Json;
 
 namespace Warhammer.Services;
 
@@ -84,7 +85,7 @@ public class ArmyListSerializer
         IsGeneral = u.Loadout.IsGeneral,
         IsBattleStandardBearer = u.Loadout.IsBattleStandardBearer,
         SelectedFactionUpgrades = u.Loadout.SelectedFactionUpgrades
-            .ToDictionary(kv => kv.Key, kv => kv.Value.ToList()),
+            .ToDictionary(kv => kv.Key, kv => kv.Value.Select(p => p.Name).ToList()),
     };
 
     // ─── Import ──────────────────────────────────────────────────
@@ -118,6 +119,7 @@ public class ArmyListSerializer
 
         var factionUnits = await _repo.GetUnitsAsync(faction);
         var unitsByName = factionUnits.ToDictionary(u => u.Name, StringComparer.OrdinalIgnoreCase);
+        var upgradeCosts = await LoadFactionUpgradeCostsAsync(faction);
 
         var list = new ArmyList
         {
@@ -134,14 +136,45 @@ public class ArmyListSerializer
                 continue;
             }
 
-            var cfg = ApplyUnitDto(unit, entry);
+            var cfg = ApplyUnitDto(unit, entry, upgradeCosts);
             list.Units.Add(cfg);
         }
 
         return new ImportResult(list, warnings, errors);
     }
 
-    private static UnitConfiguration ApplyUnitDto(Unit unit, ArmyListUnitDto dto)
+    /// <summary>
+    /// Upgrade costs per category, keyed by upgrade name. Saved lists store only the names,
+    /// so costs are re-resolved from faction data on import.
+    /// </summary>
+    private async Task<Dictionary<string, Dictionary<string, double>>> LoadFactionUpgradeCostsAsync(FactionKey faction)
+    {
+        var costs = new Dictionary<string, Dictionary<string, double>>();
+        FactionExtrasData extras;
+        try
+        {
+            extras = await _repo.GetFactionExtrasAsync(faction);
+        }
+        catch (Exception)
+        {
+            return costs;
+        }
+
+        foreach (var (category, entries) in extras.FactionUpgrades)
+        {
+            var byName = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);
+            foreach (var entry in entries)
+                byName[entry.Name] = double.TryParse(entry.Points, out var points) ? points : 0;
+            costs[category] = byName;
+        }
+
+        return costs;
+    }
+
+    private static UnitConfiguration ApplyUnitDto(
+        Unit unit,
+        ArmyListUnitDto dto,
+        Dictionary<string, Dictionary<string, double>> upgradeCosts)
     {
         var cfg = new UnitConfiguration(unit)
         {
@@ -168,7 +201,13 @@ public class ArmyListSerializer
             cfg.SelectedUpgrades[k] = v;
 
         foreach (var (category, names) in dto.SelectedFactionUpgrades)
-            cfg.Loadout.SelectedFactionUpgrades[category] = new List<string>(names);
+        {
+            upgradeCosts.TryGetValue(category, out var byName);
+            cfg.Loadout.SelectedFactionUpgrades[category] = names
+                .Select(name => new SelectedFactionUpgrade(
+                    name, byName is not null && byName.TryGetValue(name, out var points) ? points : 0))
+                .ToList();
+        }
 
         foreach (var mi in dto.MagicItems)
         {

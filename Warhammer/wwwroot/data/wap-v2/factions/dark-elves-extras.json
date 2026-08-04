@@ -1,5 +1,5 @@
 {
-  "factionName": "dark-elves",
+  "factionName": "Dark Elves",
   "armySpecialRules": [
     {
       "name": "Elven Grace",
@@ -601,5 +601,76 @@
       ]
     }
   ],
-  "factionUpgrades": {}
+  "factionUpgrades": {
+    "gifts_of_khaine": [
+      {
+        "name": "Dance Of Doom",
+        "points": "30",
+        "description": "Model on foot only. Enemies targeting the model must\nre-roll all successful To Hit rolls with missile weapons\nand in close combat.",
+        "restriction": "Model on foot only."
+      },
+      {
+        "name": "Cry Of War",
+        "points": "25",
+        "description": "All enemy units in base contact with the wearer suffer\n-1 To Hit in the first round of close combat. This has no\neffect on models with Immunity (Psychology)."
+      },
+      {
+        "name": "Rending Stars",
+        "points": "25",
+        "description": "Khainite Assassin only. Rending Stars are missile\nweapons with the following profile.\nRange: Strength: Special Rules:\n12\" As user +1 Multiple Shots (3),\nQuick to Fire",
+        "restriction": "Khainite Assassin only."
+      },
+      {
+        "name": "Touch Of Death",
+        "points": "20",
+        "description": "The model gains the Killing Blow special rule."
+      },
+      {
+        "name": "Witchbrew",
+        "points": "25",
+        "description": "Death Hag and Hag Queens only. This model, and all\nmodels in the same unit, gain the Frenzy special rule\nand can never lose their Frenzy.",
+        "restriction": "Death Hag and Hag Queens only."
+      },
+      {
+        "name": "Hand Of Khaine",
+        "points": "20",
+        "description": "All enemy units in base contact suffer a -1 penalty to\ntheir Weapon Skill and Initiative.\ne army list. A model may not have multiples of the same\nmodel in the army."
+      },
+      {
+        "name": "Rune Of Khaine",
+        "points": "20",
+        "description": "The model gains the Random Attacks (D3) special rule\nin addition to its normal attacks."
+      },
+      {
+        "name": "Black Lotus",
+        "points": "25",
+        "description": "Khainite Assassin only. Each unsaved Wound caused in\nClose Combat counts as two for the purpose of combat\nresolution. This has no effect against models with\nImmunity (Poisoned Attacks).",
+        "restriction": "Khainite Assassin only."
+      },
+      {
+        "name": "Blood Sigil",
+        "points": "15",
+        "description": "Disciple of Khaine only. The model may re-roll failed\nLeadership tests when using Blood Rites. However, if\nthey roll double 6's on the second roll, they will suffer a\nWound which Ignores Armour Saves.",
+        "restriction": "Disciple of Khaine only."
+      },
+      {
+        "name": "Dark Venom",
+        "points": "15",
+        "description": "Khainite Assassin only. A model with Dark Venom\ngains the Multiple Wounds (D3) special rule (including\nmissile attacks). This has no effect against models with\nImmunity (Poisoned Attacks).",
+        "restriction": "Khainite Assassin only."
+      },
+      {
+        "name": "Manbane",
+        "points": "15",
+        "description": "Khainite Assassin only. A model with Manbane will\nautomatically Wound on the roll of a 2+ (including\nmissile attacks). This has no effect against models with\nImmunity (Poisoned Attacks).",
+        "restriction": "Khainite Assassin only."
+      },
+      {
+        "name": "Khainite Pendant",
+        "points": "10",
+        "description": "Disciple of Khaine only. One use only. The model may\nattempt to use two Blood Rites this turn.\nMAGIC ITEMS\nThis section contains the rules for some of the most iconic\nElves. These may be used in addition to the magic items f",
+        "restriction": "Disciple of Khaine only."
+      }
+    ]
+  }
 }

@@ -13,12 +13,15 @@ public class ArmyListSerializerTests
         private readonly IReadOnlyList<Unit> _units;
         public StubRepo(params Unit[] units) => _units = units;
 
+        /// <summary>Faction upgrade entries the serializer resolves pick costs from.</summary>
+        public FactionExtrasData Extras { get; init; } = new();
+
         public Task EnsureLoadedAsync() => Task.CompletedTask;
         public IReadOnlyList<FactionKey> AllFactions => [];
         public string GetFactionDisplayName(FactionKey faction) => faction.ToString();
         public Task<IReadOnlyList<Unit>> GetUnitsAsync(FactionKey faction) => Task.FromResult(_units);
         public Task<FactionExtrasData> GetFactionExtrasAsync(FactionKey faction) =>
-            Task.FromResult(new FactionExtrasData());
+            Task.FromResult(Extras);
         public Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync() =>
             Task.FromResult<IReadOnlyList<MagicItemEntry>>([]);
         public Weapon? GetWeapon(CloseCombatWeaponKey key) => null;
@@ -199,6 +202,100 @@ public class ArmyListSerializerTests
 
         Assert.True(result.Success);
         Assert.Contains(result.Warnings, w => w.Contains("saved for system 'old-world'"));
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_FactionUpgrades_ResolvesCostsFromExtras()
+    {
+        // Saved lists store upgrade names only; costs are re-resolved from faction data.
+        var warriors = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var repo = new StubRepo(warriors)
+        {
+            Extras = new FactionExtrasData
+            {
+                FactionUpgrades = new Dictionary<string, List<UpgradeEntry>>
+                {
+                    ["blessed_spawnings"] =
+                    [
+                        new UpgradeEntry { Name = "Blessed Spawning Of Chotec", Points = "10" },
+                        new UpgradeEntry { Name = "Blessed Spawning Of Itzl", Points = "5" },
+                    ],
+                },
+            },
+        };
+        var serializer = new ArmyListSerializer(repo, new GameSystemService());
+        var json = """
+        {
+          "schema": "wap-army-list/v1",
+          "faction": "dwarfs",
+          "pointsTarget": 2000,
+          "name": "Legacy",
+          "units": [
+            {
+              "unitName": "Warriors",
+              "modelCount": 10,
+              "selectedFactionUpgrades": { "blessed_spawnings": ["Blessed Spawning Of Itzl"] }
+            }
+          ]
+        }
+        """;
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        var picks = result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"];
+        Assert.Equal("Blessed Spawning Of Itzl", Assert.Single(picks).Name);
+        Assert.Equal(5, picks[0].PointsCost);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_FactionUpgrades_UnknownName_ImportsAtZeroCost()
+    {
+        var warriors = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var serializer = new ArmyListSerializer(new StubRepo(warriors), new GameSystemService());
+        var json = """
+        {
+          "schema": "wap-army-list/v1",
+          "faction": "dwarfs",
+          "pointsTarget": 2000,
+          "name": "Legacy",
+          "units": [
+            {
+              "unitName": "Warriors",
+              "modelCount": 10,
+              "selectedFactionUpgrades": { "blessed_spawnings": ["Retired Spawning"] }
+            }
+          ]
+        }
+        """;
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        var picks = result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"];
+        Assert.Equal(0, Assert.Single(picks).PointsCost);
+    }
+
+    [Fact]
+    public void Serialize_FactionUpgrades_WritesNamesOnly()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var config = new UnitConfiguration(unit) { ModelCount = 10 };
+        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] =
+        [
+            new SelectedFactionUpgrade("Blessed Spawning Of Chotec", 10),
+        ];
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Dwarfs,
+            PointsTarget = 2000,
+            Units = { config },
+        };
+
+        var json = new ArmyListSerializer(new StubRepo(unit), new GameSystemService()).Serialize(list);
+
+        Assert.Contains("\"Blessed Spawning Of Chotec\"", json);
+        Assert.DoesNotContain("pointsCost", json);
     }
 
     [Fact]
