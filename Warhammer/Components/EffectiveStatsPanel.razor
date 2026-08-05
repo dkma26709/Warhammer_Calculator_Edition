@@ -81,10 +81,10 @@
         }
 
         // Effective strength
-        int effectiveS = unit.EffectiveStrength(weapon, isCharging, 1, weaponMB);
+        int effectiveS = unit.EffectiveStrength(weapon, isCharging, context.CombatRound, weaponMB);
 
         // Total attacks
-        int totalAttacks = unit.TotalAttacks(isCharging, 1,
+        int totalAttacks = unit.TotalAttacks(isCharging, context.CombatRound,
             weapon.Rules.ExtraAttacks, weapon.Rules.FightInExtraRanks ?? 0);
         int mountAttacks = unit.MountAttacks();
 
@@ -102,16 +102,13 @@
         int opponentWeaponMB = 0;
         if (opponentWeapon.Rules.MightyBlow != null)
         {
-            bool applyOppMB = opponentWeapon.Rules.MightyBlowCondition switch
-            {
-                WeaponCondition.WhenCharging => opponentIsCharging,
-                WeaponCondition.WhenBeingCharged => opponentIsBeingCharged,
-                _ => true
-            };
+            bool applyOppMB = ParsedWeaponRules.Holds(opponentWeapon.Rules.MightyBlowCondition,
+                opponentIsCharging, opponentIsBeingCharged, context.CombatRound);
             if (applyOppMB)
                 opponentWeaponMB = opponentWeapon.Rules.MightyBlow.Value;
         }
-        int opponentS = opponent.EffectiveStrength(opponentWeapon, opponentIsCharging, 1, opponentWeaponMB);
+        int opponentS = opponent.EffectiveStrength(
+            opponentWeapon, opponentIsCharging, context.CombatRound, opponentWeaponMB);
         var opponentRules = opponent.EffectiveSpecialRules;
         int opponentAP = opponentRules.ArmourPiercing ?? 0;
         int strengthMod = Repo.GetArmourSaveModifier(opponentS);
@@ -124,14 +121,17 @@
         int parryValue = unitRules.Parry ?? 7;
         int bestWard = Math.Min(Math.Min(wardValue, regenValue), parryValue);
 
-        // Impact hits
+        // Impact hits — must agree with AttackResolver.GetImpactHitCount, which is what the
+        // simulation actually rolls. The troop-type contribution is per-system: wap-v2 gives
+        // Cavalry and Monstrous Cavalry one each, wap-v3 gives them none.
         int impactHits = 0;
         if (isCharging)
         {
-            if (unitRules.ImpactHits.HasValue)
-                impactHits = unitRules.ImpactHits.Value * unit.ModelsInFrontRank;
-            else if (unit.TroopType.BaseType is BaseTroopType.Cavalry or BaseTroopType.MonstrousCavalry)
-                impactHits = unit.ModelsInFrontRank;
+            int fromRules = unitRules.ImpactHits.HasValue
+                ? unitRules.ImpactHits.Value * unit.ModelsInFrontRank
+                : 0;
+            int fromType = unit.TroopType.InherentImpactHits * unit.ModelsInFrontRank;
+            impactHits = Math.Max(fromRules, fromType);
         }
 
         // Base contact
