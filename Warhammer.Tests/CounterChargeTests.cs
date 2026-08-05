@@ -6,10 +6,10 @@ using Warhammer.Models.Enums;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// <see cref="ChargeState.BothCharged"/> models a counter-charge, which the wap-v2 Empire
-/// State Troops action resolves "as if it had just declared a charge" — so both units count as
-/// charging and both collect the charge bonus, impact hits and any charge-conditional weapon
-/// modifier. Neither counts as having held, which is what spear and pike bonuses require.
+/// <see cref="ChargeState.BothCharged"/> models a counter-charge — one of wap-v3's four charge
+/// reactions, where "both units are considered to have charged during this turn" (3.11 p17). So
+/// both collect the charge bonus, impact hits and any charge-conditional weapon modifier, and
+/// neither counts as having held, which is what the spear and pike bonuses require.
 /// </summary>
 public class CounterChargeTests
 {
@@ -32,8 +32,8 @@ public class CounterChargeTests
     [InlineData(ChargeState.Neither, false, false)]
     [InlineData(ChargeState.AttackerCharged, false, true)]
     [InlineData(ChargeState.DefenderCharged, true, false)]
-    // A counter-charging unit moved, so neither side held — the spear and pike bonuses that
-    // require a Hold or Stand & Shoot reaction are off for both.
+    // Counter-charge is its own reaction, not Hold or Stand & Shoot, so the spear and pike
+    // bonuses that require one of those are off for both sides.
     [InlineData(ChargeState.BothCharged, false, false)]
     public void NeitherSideHoldsOnACounterCharge(ChargeState charge, bool attacker, bool defender)
     {
@@ -127,8 +127,8 @@ public class CounterChargeTests
     [Fact]
     public async Task ASpearLosesItsHeldBonusWhenItCounterCharges()
     {
-        // wap-v3's spear gates Mighty Blow on holding against the charge. A unit that
-        // counter-charges did not hold, so it does not get it.
+        // wap-v3's spear requires a Hold or Stand & Shoot reaction. Counter-charge is neither,
+        // so a counter-charging spear unit does not get its Mighty Blow.
         var repo = TestHelpers.RepoFor(GameSystems.WapV3);
         var spearmen = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
             .First(u => u.Name == "Spearmen")) { ModelCount = 20, Frontage = 5 };

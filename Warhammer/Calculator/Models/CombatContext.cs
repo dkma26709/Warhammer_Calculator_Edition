@@ -1,9 +1,11 @@
 namespace Warhammer.Calculator.Models;
 
 /// <summary>
-/// Who charged into this combat. <see cref="BothCharged"/> covers a counter-charge — the
-/// wap-v2 Empire State Troops action resolves "as if it had just declared a charge", so both
-/// units count as charging.
+/// Who charged into this combat. <see cref="BothCharged"/> is a counter-charge: one of wap-v3's
+/// four charge reactions, alongside Hold, Stand &amp; Shoot and Flee. The charged unit rushes
+/// forward to meet the attacker head-on and "both units are considered to have charged during
+/// this turn" (3.11 p17). wap-v2's core rules have no counter-charge; there it exists only as
+/// the Empire State Troops action, which instead strikes an unengaged arc.
 /// </summary>
 public enum ChargeState { Neither, AttackerCharged, DefenderCharged, BothCharged }
 
@@ -28,8 +30,8 @@ public record CombatContext
     /// <summary>
     /// Did this side receive a charge while standing still? Spear and pike bonuses need the
     /// model to have held — wap-v3 spells it out: "chose either Hold or Stand &amp; Shoot as a
-    /// charge reaction" — so a unit that counter-charged does not qualify for them even though
-    /// it was itself charged.
+    /// charge reaction". Counter-charge is a different reaction, so a counter-charging unit
+    /// does not qualify for them even though it was itself charged.
     /// </summary>
     public bool IsHoldingAgainstCharge(bool isAttackerSide) =>
         IsCharging(!isAttackerSide) && !IsCharging(isAttackerSide);
