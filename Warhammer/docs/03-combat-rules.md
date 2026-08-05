@@ -222,56 +222,60 @@ All descriptions sourced from `core-rules-new.json commonSpecialRules` unless no
 
 ## Troop Type Rules (Combat-Relevant)
 
-From `core-rules-new.json troopTypes`.
+**These figures are data, and they differ per system.** They live in the hand-maintained
+`wwwroot/data/{system}/troop-types.json`, resolved through `GameDataRepository` into
+`TroopTypeRules` and thence `TroopTypeInfo`. `core-rules.json`'s own `troopTypes` section is
+prose only — the Troop Types chapter is not a ruled table, so `extract_core_rules.py` cannot
+lift the numbers. A missing row throws on load rather than falling back to another edition.
 
-### Complete Rank Width (minimum models for rank bonus)
-| Troop Type | Min Width |
-|------------|-----------|
-| Infantry | 5 |
-| Large Infantry | 4 |
-| Monstrous Infantry | 3 |
-| Cavalry | 5 |
-| Monstrous Cavalry | 3 |
-| Swarms | 3 |
-| War Beasts | 5 |
-| Monstrous Beasts | 3 |
-| Chariots, Monsters, Shrines, War Machines | No rank bonus |
+The tables below record what the two shipped files say (both books' Troop Types chapter,
+p71–76); the JSON is the source of truth, not this document.
 
-### Supporting Attacks (max per supporting model)
-| Troop Type | Max Supporting Attacks |
-|------------|-----------------------|
-| Infantry | 1 |
-| Large Infantry | 2 |
-| Monstrous Infantry | 2 |
-| Cavalry (split profile) | 1 rider + 1 mount |
-| Cavalry (no split profile) | 2 |
-| Monstrous Cavalry (split profile) | 1 rider + 2 mount |
-| Monstrous Cavalry (no split profile) | 3 |
-| Swarms | 5 |
-| War Beasts | 1 |
-| Monstrous Beasts | 2 |
+### Rank width, Unit Strength and supporting attacks
 
-### Unit Strength
-| Troop Type | US |
-|------------|-----|
-| Infantry | 1 |
-| Large Infantry | 1 |
-| Monstrous Infantry | 2 |
-| Cavalry | 2 |
-| Monstrous Cavalry | 3 |
-| Swarms | 3 |
-| War Beasts | 1 |
-| Monstrous Beasts | 2 |
+`rider` is the figure for a split-profile model's rider, `mount` for its mount, and `no split`
+for a model of that type with no separate mount line — the books state that separately rather
+than as rider plus mount.
 
-### Inherent Special Rules by Troop Type
-| Troop Type | Inherent Rules |
-|------------|----------------|
-| Cavalry | Impact Hits (1) at mount's Strength, Swiftstride |
-| Monstrous Cavalry | Fear, Impact Hits (1), Swiftstride |
-| Monstrous Infantry | Fear, Swiftstride |
-| Monstrous Beasts | Fear, Swiftstride |
-| Swarms | Expendable, Unstable |
-| War Beasts | Expendable, Swiftstride |
+| Troop Type | Min width | US | rider | mount | no split |
+|------------|----------:|---:|------:|------:|---------:|
+| Infantry | 5 | 1 | 1 | – | 1 |
+| Large Infantry † | 4 | 1 | 2 | – | 2 |
+| Monstrous Infantry | 3 | 2 | **v2 2 / v3 3** | – | **v2 2 / v3 3** |
+| Cavalry | 5 | 2 | 1 | **v2 1 / v3 0** | **v2 2 / v3 1** |
+| Monstrous Cavalry | 3 | 3 | 1 | **v2 2 / v3 0** | 3 |
+| Swarms | 3 | 3 | 5 | – | 5 |
+| War Beasts | 5 | 1 | 1 | – | 1 |
+| Monstrous Beasts | 3 | 2 | **v2 2 / v3 3** | – | **v2 2 / v3 3** |
+| Chariots, Monsters, Shrines, War Machines | 1 (no rank bonus) | 3 | 0 | – | 0 |
+
+† wap-v3 drops Large Infantry as a troop type. One v3 entry still names it (Zoggrok
+Anvilsmasha), so the row is kept with the wap-v2 figures rather than letting a lookup throw.
+
+wap-v3 bars mounts from supporting attacks outright: *"Mounts are not allowed to make
+supporting attacks."*
+
+### Inherent rules by troop type
+
+Only the two the engine acts on are modelled — inherent Impact Hits (`InherentImpactHits`, per
+front-rank model, resolved at the mount's Strength) and Swiftstride (`HasInherentSwiftstride`,
+which feeds flee and pursue). The rest are listed for reference and come from the unit's own
+`specialRules` where they matter.
+
+| Troop Type | wap-v2 | wap-v3 |
+|------------|--------|--------|
+| Cavalry | **Impact Hits (1)**, **Swiftstride** | — |
+| Monstrous Cavalry | Fear, **Impact Hits (1)**, **Swiftstride** | Fear |
+| Monstrous Infantry | Fear, **Swiftstride** | Fear |
+| Monstrous Beasts | Fear, **Swiftstride** | Fear, Independent |
+| Monsters / Monstrous Creatures | Stomp, Terror, **Swiftstride** | Stomp, Terror, Independent |
+| Chariots | Impact Hits (D6), **Swiftstride** | Impact Hits (D6) |
+| Swarms | Expendable, Unstable, Skirmishers | Expendable, Unstable, Independent, Vanguard |
+| War Beasts | Expendable, Vanguard, **Swiftstride** | Expendable, Vanguard, Independent |
+
+wap-v3 removed inherent Swiftstride from every troop type and put Independent in its place,
+which is a unit-joining rule with no combat effect here. Chariots keep their Impact Hits in
+both editions, carried on the unit entry rather than the troop type.
 
 ### Split Profile (Cavalry/Monstrous Cavalry)
 - Rider and mount attack independently (own WS, S, I, A)

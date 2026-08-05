@@ -89,6 +89,9 @@ wwwroot/data/
     // ... 50+ rules. "parameterized" indicates whether the rule takes a numeric value in brackets.
   },
 
+  // Prose only — the descriptive text from the Troop Types chapter, keyed by heading.
+  // The engine reads NONE of this. The figures it needs live in troop-types.json (below),
+  // because the chapter is prose rather than a ruled table and cannot be extracted.
   "troopTypes": {
     "ranks": { "name": "RANKS", "description": "A unit of Infantry is required to be five or more models wide..." },
     "supportingAttacks": { "name": "SUPPORTING ATTACKS", "description": "An Infantry model may make up to one supporting attack..." },
@@ -97,6 +100,35 @@ wwwroot/data/
   }
 }
 ```
+
+### `troop-types.json` (hand-maintained, per system)
+
+The combat-relevant troop type figures, which differ between editions. Not generated — see
+`AGENTS.md` and `docs/03-combat-rules.md` for the values and the divergences.
+
+```jsonc
+{
+  "source": "... 9th Edition v3.11, Troop Types chapter (p71-76)",
+  "notes": ["why this file is hand-maintained, and what diverges from the other edition"],
+  "types": {
+    "monstrous-cavalry": {
+      "minRankWidth": 3,
+      "supportingAttacks": 1,          // the rider's figure
+      "mountSupportingAttacks": 0,     // zero throughout wap-v3
+      "nonSplitSupportingAttacks": 3,  // stated separately, not rider + mount
+      "impactHits": 0,                 // per front-rank model, from the troop type alone
+      "unitStrength": 3,
+      "splitProfile": true,
+      "swiftstride": false             // no wap-v3 troop type grants it
+    }
+    // ... one row per BaseTroopType, keyed by BaseTroopTypeExtensions.ToJsonKey()
+  }
+}
+```
+
+Deserialized to `TroopTypesData`; `GameDataRepository.ResolveTroopTypesAsync` requires a row for
+every `BaseTroopType` and throws naming the system and the missing key, so a new system that
+skips the file fails on load rather than silently inheriting another edition's numbers.
 
 ### {faction}.json (Unit Data)
 
@@ -255,7 +287,7 @@ The extractors are separate from the .NET project. The copy step populates the a
 | `weapons` | `Weapons` | |
 | `armour` | `Armour` | `Dictionary<string, ArmourEntry>` |
 | `commonSpecialRules` | `CommonSpecialRules` | `Dictionary<string, SpecialRuleEntry>` |
-| `troopTypes` | `TroopTypes` | `Dictionary<string, TroopTypeEntry>` |
+| `troopTypes` | `TroopTypes` | `Dictionary<string, TroopTypeEntry>` — prose only, unread by the engine |
 
 Use `JsonSerializerOptions { PropertyNameCaseInsensitive = true }` globally — this handles standard camelCase→PascalCase without per-property attributes. Only add explicit `[JsonPropertyName]` where the JSON key doesn't follow the convention.
 

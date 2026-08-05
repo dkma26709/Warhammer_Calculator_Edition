@@ -46,20 +46,14 @@ When a unit is selected, a `UnitConfiguration` is built from its `UnitEntry` JSO
 
 ### Troop Type Properties
 
-From `TroopTypeInfo.GetTypeProperties()`:
+**Data, per system** — `wwwroot/data/{system}/troop-types.json`, resolved by
+`GameDataRepository.ResolveTroopTypesAsync()` into `TroopTypeRules` and handed to
+`TroopTypeInfo.Parse(troopType, rules)`. `TroopTypeInfo` holds no defaults of its own, so a
+missing row throws on load instead of quietly serving another edition's figures.
 
-| Troop Type | MinRankWidth | MaxSupportAttacks | UnitStrength | SplitProfile |
-|---|---|---|---|---|
-| Infantry | 5 | 1 | 1 | No |
-| Large Infantry | 4 | 2 | 1 | No |
-| Monstrous Infantry | 3 | 2 | 2 | No |
-| Cavalry | 5 | 1 | 2 | Yes |
-| Monstrous Cavalry | 3 | 2 | 3 | Yes |
-| War Beasts | 5 | 1 | 1 | No |
-| Monstrous Beasts | 3 | 2 | 2 | No |
-| Swarms | 3 | 5 | 3 | No |
-| Monster | 1 | 0 | 3 | No |
-| Chariot | 1 | 0 | 3 | No |
+wap-v2 and wap-v3 disagree on supporting attacks for the monstrous types, on mount supporting
+attacks (wap-v3 allows none), on Cavalry/Monstrous Cavalry Impact Hits (wap-v3 grants none) and
+on Swiftstride (no wap-v3 troop type grants it). See `docs/03-combat-rules.md` for the tables.
 
 ---
 
