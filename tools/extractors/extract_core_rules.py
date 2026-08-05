@@ -32,13 +32,24 @@ def find_tables_on_page(page):
 
 
 def extract_tables_from_pdf(pdf_path):
-    """Extract the combat tables (to-hit, to-wound, armour save mods) using table detection."""
+    """Extract the combat tables (to-hit, to-wound, armour save mods) using table detection.
+
+    The to-hit and to-wound charts are both 10x10 grids with an identical ['', '1'..'10']
+    header, so they are told apart by the page's column-axis caption — "TARGET'S WEAPON
+    SKILL" against "TARGET'S TOUGHNESS" — rather than by which one the page scan reaches
+    first. Order alone silently mislabels them if a book lays the chapter out differently.
+    """
     to_hit = None
     to_wound = None
     armour_mods = None
+    unlabelled = []
 
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
+            page_text = (page.extract_text() or '').upper()
+            names_ws = 'WEAPON SKILL' in page_text
+            names_t = 'TOUGHNESS' in page_text
+
             tables = find_tables_on_page(page)
             for table in tables:
                 if not table or len(table) < 2:
@@ -47,15 +58,15 @@ def extract_tables_from_pdf(pdf_path):
                 header = table[0]
                 # To-Hit / To-Wound: header row is ['', '1', '2', ..., '10']
                 if (header and len(header) == 11 and header[0] in ('', None)
-                        and header[1] == '1' and header[-1] == '10'):
-                    # Check if values look like N+ format
-                    if len(table) >= 11 and table[1][1] and '+' in str(table[1][1]):
-                        parsed = parse_combat_table(table)
-                        if parsed:
-                            if to_hit is None:
-                                to_hit = parsed
-                            elif to_wound is None:
-                                to_wound = parsed
+                        and str(header[1]) == '1' and str(header[-1]) == '10'):
+                    parsed = parse_combat_table(table)
+                    if parsed:
+                        if names_ws and not names_t:
+                            to_hit = to_hit or parsed
+                        elif names_t and not names_ws:
+                            to_wound = to_wound or parsed
+                        else:
+                            unlabelled.append(parsed)
 
                 # Armour save modifiers: header ['Strength:', 'Save modifier:']
                 if header and len(header) == 2:
@@ -63,6 +74,15 @@ def extract_tables_from_pdf(pdf_path):
                     h1 = str(header[1] or '').strip().lower()
                     if 'strength' in h0 and 'modifier' in h1:
                         armour_mods = parse_armour_mod_table(table)
+
+    # Fall back to document order only for charts whose page gave no usable caption.
+    for parsed in unlabelled:
+        if to_hit is None:
+            to_hit = parsed
+            print('  WARNING: a 10x10 chart had no axis caption; assuming To-Hit by position')
+        elif to_wound is None:
+            to_wound = parsed
+            print('  WARNING: a 10x10 chart had no axis caption; assuming To-Wound by position')
 
     return to_hit, to_wound, armour_mods
 
@@ -86,6 +106,11 @@ def parse_combat_table(table):
     return rows if len(rows) == 10 else None
 
 
+# Hyphen-minus, en dash, em dash, figure dash and the Unicode minus sign all show up as
+# "no modifier" or as the sign on a negative one, depending on the book's typesetting.
+DASHES = '-‐‑‒–—−'
+
+
 def parse_armour_mod_table(table):
     """Parse armour save modifier table."""
     modifiers = {}
@@ -94,11 +119,14 @@ def parse_armour_mod_table(table):
             continue
         s_val = str(row[0] or '').strip()
         mod_str = str(row[1] or '').strip()
-        if s_val.isdigit():
-            if mod_str == '-':
-                modifiers[f"S{s_val}"] = 0
-            elif re.match(r'-\d+', mod_str):
-                modifiers[f"S{s_val}"] = int(mod_str)
+        if not s_val.isdigit():
+            continue
+        if mod_str in DASHES:
+            modifiers[f"S{s_val}"] = 0
+        else:
+            m = re.match(rf'[{DASHES}]\s*(\d+)', mod_str)
+            if m:
+                modifiers[f"S{s_val}"] = -int(m.group(1))
     return modifiers
 
 
@@ -612,7 +640,9 @@ def extract_core_rules(pdf_path):
         },
         "armourSaves": {
             "description": "Armour saves are modified by the Strength of the attack. Strength 4+ inflicts penalties.",
-            "strengthModifiers": armour_mods or {},
+            # Deliberately not `armour_mods or {}` — an empty map reads as "no strength ever
+            # modifies a save", which the app applies without complaint. validate() rejects it.
+            "strengthModifiers": armour_mods,
         },
         "weapons": weapons,
         "armour": armour,
@@ -625,15 +655,73 @@ def extract_core_rules(pdf_path):
     return result
 
 
+def validate(result):
+    """Return a list of reasons this extraction must not be shipped.
+
+    Every check here corresponds to something the app dereferences on a hot path. wap-v3
+    shipped with a null toWound.table and an empty strengthModifiers map: both produced
+    structurally valid JSON, so nothing objected until the app crashed mid-render (the table)
+    or silently stopped applying armour penalties (the map).
+    """
+    problems = []
+
+    def check_square(table, label):
+        if not table:
+            problems.append(f'{label} is missing')
+            return
+        if len(table) != 10 or any(not row or len(row) != 10 for row in table):
+            problems.append(f'{label} is not a full 10x10 grid (got {len(table)} rows)')
+            return
+        bad = [v for row in table for v in row if not 2 <= v <= 6]
+        if bad:
+            problems.append(f'{label} holds scores outside 2-6: {sorted(set(bad))}')
+
+    check_square(result['closeCombatToHit']['table'], 'closeCombatToHit.table')
+    check_square(result['toWound']['table'], 'toWound.table')
+
+    mods = result['armourSaves']['strengthModifiers']
+    if not mods:
+        problems.append('armourSaves.strengthModifiers is empty — no attack would modify a save')
+    else:
+        missing = [f'S{s}' for s in range(1, 11) if f'S{s}' not in mods]
+        if missing:
+            problems.append(f'armourSaves.strengthModifiers is missing {", ".join(missing)}')
+
+    for section, label in (('closeCombat', 'weapons.closeCombat'), ('missile', 'weapons.missile')):
+        if not result['weapons'].get(section):
+            problems.append(f'{label} is empty')
+
+    if not result['armour']:
+        problems.append('armour is empty')
+    if not result['commonSpecialRules']:
+        problems.append('commonSpecialRules is empty')
+
+    return problems
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Extract WAP core rules from PDF')
     parser.add_argument('pdf', help='Path to the core rules PDF')
     parser.add_argument('--output', default=None, help='Output JSON file path')
     parser.add_argument('--pretty', action='store_true', help='Pretty-print JSON')
+    parser.add_argument('--force', action='store_true',
+                        help='Write the output even if validation fails (for diagnosis only)')
     args = parser.parse_args()
 
     result = extract_core_rules(args.pdf)
+
+    problems = validate(result)
+    if problems:
+        print('\nEXTRACTION INCOMPLETE — refusing to write:', file=sys.stderr)
+        for problem in problems:
+            print(f'  - {problem}', file=sys.stderr)
+        print('\nThe app reads every one of these directly. Fix the extractor against this '
+              'book\'s layout, or re-run with --force to inspect the partial output.',
+              file=sys.stderr)
+        if not args.force:
+            return 1
+        print('  (--force given: writing anyway)', file=sys.stderr)
 
     json_str = json.dumps(result, indent=2 if args.pretty else None, ensure_ascii=False)
 
@@ -648,7 +736,7 @@ def main():
     print(f"  To-Hit table: {'OK' if th else 'MISSING'} ({len(th or [])} rows)")
     print(f"  To-Wound table: {'OK' if tw else 'MISSING'} ({len(tw or [])} rows)")
     print(f"  Shooting To-Hit: {len(result['shootingToHit']['table'])} entries")
-    print(f"  Armour modifiers: {len(result['armourSaves']['strengthModifiers'])} entries")
+    print(f"  Armour modifiers: {len(result['armourSaves']['strengthModifiers'] or {})} entries")
     print(f"  Close combat weapons: {len(result['weapons']['closeCombat'])}")
     print(f"  Missile weapons: {len(result['weapons']['missile'])}")
     print(f"  Armour types: {len(result['armour'])}")
@@ -669,6 +757,8 @@ def main():
     if not args.output:
         print(json_str)
 
+    return 0
+
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main() or 0)

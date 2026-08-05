@@ -95,6 +95,12 @@ def find_unit_title_before(full_text, pos):
     return None, pos
 
 
+# Placeholder for a block whose title line could not be located above the Profile header.
+# Some entries (e.g. Beastmen's Moonclaw) title themselves in a way the scan misses; the
+# model's own name is in the first stat profile, so parse_unit_block resolves it from there.
+UNTITLED = "UNKNOWN"
+
+
 def find_unit_boundaries(full_text):
     """Find start/end positions of each unit block using Profile headers."""
     profile_header = re.compile(
@@ -109,7 +115,8 @@ def find_unit_boundaries(full_text):
         unit_title, title_pos = find_unit_title_before(full_text, m.start())
 
         if not unit_title:
-            unit_title = "UNKNOWN"
+            # parse_unit_block substitutes the first profile's name, which is not known yet.
+            unit_title = UNTITLED
             title_pos = m.start()
 
         start = title_pos
@@ -763,9 +770,14 @@ def parse_unit_block(unit_title, block_text, category):
     raw_special_rules = fields.get("SPECIAL RULES")
     rule_names, rule_details = split_special_rules(raw_special_rules)
 
+    # A block whose title line was not found falls back to its first profile's name.
+    name = unit_title
+    if name.strip().upper() == UNTITLED and profiles:
+        name = profiles[0][0].get("name") or name
+
     # Build unit dict
     unit = {
-        "name": unit_title,
+        "name": name,
         "category": category,
         "profiles": [p for p, _ in profiles],
         "troopType": fields.get("TROOP TYPE"),
@@ -837,6 +849,56 @@ def extract_army(pdf_path, faction_name, unit_filter=None):
     }
 
 
+# Categories the app can resolve. Anything else is dropped by ResolveUnit, which is correct
+# for "Named Characters" but silent, so an unexpected value is worth reporting.
+KNOWN_CATEGORIES = {
+    'Lords', 'Heroes', 'Characters', 'Core', 'Special', 'Rare',
+    'Named Characters', 'Character Mounts', 'CHARACTER MOUNTS',
+}
+SELECTABLE_CATEGORIES = {'Lords', 'Heroes', 'Characters', 'Core', 'Special', 'Rare'}
+
+
+def validate(result):
+    """Split findings into blockers and warnings.
+
+    Blockers are things that are unambiguously broken output. Warnings cover shapes that are
+    legitimate in some books — a points-less entry may be an upgrade-only unit, and an
+    unrecognised category may be a section the app deliberately ignores.
+    """
+    problems, warnings = [], []
+
+    units = result.get('units') or []
+    if not units:
+        problems.append('no units extracted — section detection probably failed')
+
+    faction = (result.get('factionName') or '').strip()
+    if not faction or faction.lower() == 'unknown':
+        problems.append("factionName is missing or 'Unknown' — was --faction passed?")
+
+    for unit in units:
+        name = (unit.get('name') or '').strip()
+        label = name or '<unnamed>'
+
+        if not name or name.lower() == 'unknown':
+            problems.append(f'a unit parsed with no usable name ({label!r})')
+        if not (unit.get('profiles') or []):
+            problems.append(f'{label}: no stat profiles')
+
+        category = unit.get('category')
+        if category not in KNOWN_CATEGORIES:
+            warnings.append(f'{label}: unrecognised category {category!r} — the app will drop it')
+            continue
+
+        if category in SELECTABLE_CATEGORIES:
+            profiles = unit.get('profiles') or []
+            has_points = unit.get('pointsCost') is not None or any(
+                p.get('points') is not None for p in profiles)
+            if not has_points:
+                warnings.append(f'{label} [{category}]: no points anywhere, so it would cost 0')
+
+    return problems, warnings
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Extract WAP army book data from PDF')
@@ -845,9 +907,25 @@ def main():
     parser.add_argument('--unit', default=None, help='Filter to a specific unit name (partial match)')
     parser.add_argument('--output', default=None, help='Output JSON file path')
     parser.add_argument('--pretty', action='store_true', help='Pretty-print JSON output')
+    parser.add_argument('--force', action='store_true',
+                        help='Write the output even if validation fails (for diagnosis only)')
     args = parser.parse_args()
 
     result = extract_army(args.pdf, args.faction, args.unit)
+
+    problems, warnings = validate(result)
+
+    for warning in warnings:
+        print(f'  WARNING: {warning}', file=sys.stderr)
+
+    if problems:
+        print('\nEXTRACTION INCOMPLETE — refusing to write:', file=sys.stderr)
+        for problem in problems:
+            print(f'  - {problem}', file=sys.stderr)
+        print('\nRe-run with --force to inspect the partial output.', file=sys.stderr)
+        if not args.force:
+            return 1
+        print('  (--force given: writing anyway)', file=sys.stderr)
 
     json_str = json.dumps(result, indent=2 if args.pretty else None, ensure_ascii=False)
 
@@ -858,6 +936,8 @@ def main():
     else:
         print(json_str)
 
+    return 0
+
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main() or 0)
