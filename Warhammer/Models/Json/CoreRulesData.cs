@@ -18,7 +18,15 @@ public record CoreRulesData
 public record CombatTable
 {
     public string Description { get; init; } = "";
-    public int[][] Table { get; init; } = [];
+
+    /// <summary>
+    /// Chart cells verbatim from the book — "4+", "6+/3+", "n/a". Strings rather than ints
+    /// because wap-v3's to-wound chart carries compound results and immunity; see
+    /// <see cref="Warhammer.Models.Domain.RollRequirement"/>. Resolved once at load.
+    /// </summary>
+    [JsonConverter(typeof(ChartCellRowsConverter))]
+    public string[][] Table { get; init; } = [];
+
     public TableAxes TableAxes { get; init; } = new();
 }
 

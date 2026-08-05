@@ -58,8 +58,10 @@ public class FactionDeserializationTests
         var json = File.ReadAllText(Path.Combine(SystemDataDir(systemKey), "core-rules.json"));
         var data = JsonSerializer.Deserialize<CoreRulesData>(json, JsonOptions)!;
 
-        AssertSquareTable(data.CloseCombatToHit.Table, $"{systemKey} closeCombatToHit.table");
-        AssertSquareTable(data.ToWound.Table, $"{systemKey} toWound.table");
+        AssertSquareTable(data.CloseCombatToHit.Table, $"{systemKey} closeCombatToHit.table",
+            allowCompound: false);
+        AssertSquareTable(data.ToWound.Table, $"{systemKey} toWound.table",
+            allowCompound: true);
 
         Assert.NotNull(data.ArmourSaves.StrengthModifiers);
         for (int strength = 1; strength <= 10; strength++)
@@ -72,7 +74,7 @@ public class FactionDeserializationTests
         Assert.NotEmpty(data.Armour);
     }
 
-    private static void AssertSquareTable(int[][] table, string what)
+    private static void AssertSquareTable(string[][] table, string what, bool allowCompound)
     {
         Assert.NotNull(table);
         Assert.Equal(10, table.Length);
@@ -81,7 +83,14 @@ public class FactionDeserializationTests
             Assert.NotNull(row);
             Assert.Equal(10, row.Length);
         }
-        Assert.All(table.SelectMany(r => r), score => Assert.InRange(score, 2, 6));
+
+        foreach (var cell in table.SelectMany(r => r))
+        {
+            Assert.True(RollRequirement.TryParse(cell, out var requirement),
+                $"{what} holds '{cell}', which is not a chart score");
+            Assert.True(allowCompound || !requirement.NeedsSecondRoll,
+                $"{what} holds compound score '{cell}', which only the to-wound chart supports");
+        }
     }
 
     [Theory]

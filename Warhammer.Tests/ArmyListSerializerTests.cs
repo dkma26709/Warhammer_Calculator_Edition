@@ -29,8 +29,8 @@ public class ArmyListSerializerTests
         public Weapon? GetWeapon(CloseCombatWeaponKey key) => null;
         public Weapon GetHandWeapon() => throw new NotImplementedException();
         public Armour? GetArmour(ArmourKey key) => null;
-        public int GetToHitScore(int attackerWS, int defenderWS) => 4;
-        public int GetToWoundScore(int strength, int toughness) => 4;
+        public RollRequirement GetToHitRequirement(int attackerWS, int defenderWS) => RollRequirement.Plain(4);
+        public RollRequirement GetToWoundRequirement(int strength, int toughness) => RollRequirement.Plain(4);
         public int GetArmourSaveModifier(int strength) => 0;
     }
 

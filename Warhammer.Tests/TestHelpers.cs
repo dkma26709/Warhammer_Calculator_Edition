@@ -48,12 +48,7 @@ public static class TestHelpers
     public static CoreRulesService CreateCoreRules()
     {
         var service = new CoreRulesService(null!, new GameSystemService());
-        var dataField = typeof(CoreRulesService).GetField("_data",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
-        var loadedField = typeof(CoreRulesService).GetField("_loaded",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!;
-        dataField.SetValue(service, CoreData);
-        loadedField.SetValue(service, true);
+        service.Initialize(CoreData);
         return service;
     }
 

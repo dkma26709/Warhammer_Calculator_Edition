@@ -171,8 +171,11 @@ public class GameDataRepository : IGameDataRepository
 
     // ─── Combat Tables ───────────────────────────────────────────
 
-    public int GetToHitScore(int attackerWS, int defenderWS) => _coreRules.GetToHitScore(attackerWS, defenderWS);
-    public int GetToWoundScore(int strength, int toughness) => _coreRules.GetToWoundScore(strength, toughness);
+    public RollRequirement GetToHitRequirement(int attackerWS, int defenderWS) =>
+        _coreRules.GetToHitRequirement(attackerWS, defenderWS);
+
+    public RollRequirement GetToWoundRequirement(int strength, int toughness) =>
+        _coreRules.GetToWoundRequirement(strength, toughness);
     public int GetArmourSaveModifier(int strength) => _coreRules.GetArmourSaveModifier(strength);
 
     // ─── Composition ─────────────────────────────────────────────

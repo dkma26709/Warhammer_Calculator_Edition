@@ -75,6 +75,9 @@ def extract_tables_from_pdf(pdf_path):
                     if 'strength' in h0 and 'modifier' in h1:
                         armour_mods = parse_armour_mod_table(table)
 
+    if not armour_mods:
+        armour_mods = scrape_armour_mods_from_text(pdf_path)
+
     # Fall back to document order only for charts whose page gave no usable caption.
     for parsed in unlabelled:
         if to_hit is None:
@@ -87,20 +90,50 @@ def extract_tables_from_pdf(pdf_path):
     return to_hit, to_wound, armour_mods
 
 
+# A chart cell is a plain score ("4+"), a compound score needing a confirming second D6
+# ("6+/2+", wap-v3 to-wound only), or immunity ("n/a"). Anything else is not a chart cell.
+CELL_PLAIN = re.compile(r'^([1-6])\+$')
+CELL_COMPOUND = re.compile(r'^([1-6])\+\s*/\s*([1-6])\+$')
+
+
+def normalise_cell(raw):
+    """Return the book's notation for one chart cell, or None if it isn't one."""
+    text = str(raw or '').strip()
+    if not text:
+        return None
+
+    if text.lower() in ('n/a', 'na'):
+        return 'n/a'
+
+    m = CELL_COMPOUND.match(text)
+    if m:
+        return f'{m.group(1)}+/{m.group(2)}+'
+
+    m = CELL_PLAIN.match(text)
+    if m:
+        return f'{m.group(1)}+'
+
+    return None
+
+
 def parse_combat_table(table):
-    """Parse a 10x10 combat table from pdfplumber table data."""
+    """Parse a 10x10 combat table from pdfplumber table data, keeping the book's notation.
+
+    Cells stay as strings because wap-v3's to-wound chart carries results a bare int cannot
+    express — "6+/2+" (roll a 6, then a confirming D6) and "n/a" (cannot wound). Flattening
+    those to 6 makes weak attacks against tough targets more effective than the rules allow,
+    which is exactly the defect this replaced.
+    """
     rows = []
     for row in table[1:]:  # Skip header
         if not row or len(row) < 11:
             continue
         values = []
         for cell in row[1:]:  # Skip row label
-            cell_str = str(cell or '').strip()
-            m = re.match(r'(\d)\+', cell_str)
-            if m:
-                values.append(int(m.group(1)))
-            else:
+            normalised = normalise_cell(cell)
+            if normalised is None:
                 break
+            values.append(normalised)
         if len(values) == 10:
             rows.append(values)
     return rows if len(rows) == 10 else None
@@ -109,6 +142,44 @@ def parse_combat_table(table):
 # Hyphen-minus, en dash, em dash, figure dash and the Unicode minus sign all show up as
 # "no modifier" or as the sign on a negative one, depending on the book's typesetting.
 DASHES = '-‐‑‒–—−'
+
+
+def scrape_armour_mods_from_text(pdf_path):
+    """Read the Strength/Save-modifier pairs out of body text.
+
+    wap-v3 typesets this list without ruling lines, so extract_tables() sees nothing and the
+    pairs arrive interleaved with the surrounding prose, one per line:
+    "Strength: Save modifier:" then "1 -", "2 -", ... "4 -1", "5 -2". Losing it is not a
+    visible failure — GetArmourSaveModifier just returns 0 for every Strength, so no attack
+    modifies a save at all.
+    """
+    # The pair sits at the end of a line, and the first rows are appended to prose from the
+    # neighbouring column ("...may be cancelled if the 1 -"), so anchor right, not left.
+    pair = re.compile(rf'(?:^|\s)(10|[1-9])\s+([{DASHES}])\s*(\d+)?\s*$')
+    modifiers = {}
+
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text() or ''
+            if 'save modifier' not in text.lower():
+                continue
+
+            found = {}
+            for line in text.split('\n'):
+                m = pair.search(line.rstrip())
+                if not m:
+                    continue
+                strength, magnitude = m.group(1), m.group(3)
+                found[f'S{strength}'] = -int(magnitude) if magnitude else 0
+
+            # Only trust a page that yielded the whole ladder — a couple of stray "7 -" lines
+            # elsewhere in the book would otherwise look like a partial table.
+            if all(f'S{s}' in found for s in range(1, 11)):
+                return found
+            if len(found) > len(modifiers):
+                modifiers = found
+
+    return modifiers
 
 
 def parse_armour_mod_table(table):
@@ -149,12 +220,20 @@ def find_page_ranges(pdf_path):
         'weapons_start': None, 'weapons_end': None,
         'special_rules_start': None, 'special_rules_end': None,
         'shooting_start': None,
+        'weapons_last_profile': None,
     }
+    profile_header = re.compile(r'^Range:\s+Strength:\s+Special Rules?:', re.MULTILINE)
 
     with pdfplumber.open(pdf_path) as pdf:
         for pn, page in enumerate(pdf.pages):
             lt, rt = extract_column_text(page)
             combined = (lt + '\n' + rt)
+
+            # Where profiles actually stop, which beats trusting a chapter heading: wap-v3's
+            # ARTILLERY heading arrives three pages before the last weapon profile, which
+            # silently dropped every missile weapon.
+            if profile_header.search(combined):
+                ranges['weapons_last_profile'] = pn + 1
 
             # Weapons & Armour chapter
             if 'WEAPONS &' in lt or 'CLOSE COMBAT' in combined:
@@ -584,10 +663,11 @@ def extract_core_rules(pdf_path):
     to_hit, to_wound, armour_mods = extract_tables_from_pdf(pdf_path)
 
     print("Extracting weapons and armour...")
+    weapons_end = max(ranges['weapons_end'] or 0, ranges['weapons_last_profile'] or 0) or 82
     weapons, armour = extract_weapons_and_armour(
         pdf_path,
         ranges['weapons_start'] or 79,
-        ranges['weapons_end'] or 82,
+        weapons_end,
     )
 
     print("Extracting common special rules...")
@@ -665,19 +745,25 @@ def validate(result):
     """
     problems = []
 
-    def check_square(table, label):
+    def check_square(table, label, allow_compound):
         if not table:
             problems.append(f'{label} is missing')
             return
         if len(table) != 10 or any(not row or len(row) != 10 for row in table):
             problems.append(f'{label} is not a full 10x10 grid (got {len(table)} rows)')
             return
-        bad = [v for row in table for v in row if not 2 <= v <= 6]
+        bad = [v for row in table for v in row if normalise_cell(v) != v]
         if bad:
-            problems.append(f'{label} holds scores outside 2-6: {sorted(set(bad))}')
+            problems.append(f'{label} holds cells that are not chart scores: {sorted(set(bad))}')
+        if not allow_compound:
+            compound = [v for row in table for v in row if '/' in str(v)]
+            if compound:
+                problems.append(
+                    f'{label} holds compound scores {sorted(set(compound))}, but only the '
+                    'to-wound chart supports a confirming second roll')
 
-    check_square(result['closeCombatToHit']['table'], 'closeCombatToHit.table')
-    check_square(result['toWound']['table'], 'toWound.table')
+    check_square(result['closeCombatToHit']['table'], 'closeCombatToHit.table', allow_compound=False)
+    check_square(result['toWound']['table'], 'toWound.table', allow_compound=True)
 
     mods = result['armourSaves']['strengthModifiers']
     if not mods:

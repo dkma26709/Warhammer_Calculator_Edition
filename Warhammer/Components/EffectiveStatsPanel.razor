@@ -44,7 +44,7 @@
         public int EffectiveStrength { get; init; }
         public int EffectiveInitiative { get; init; }
         public int ToHitNeeded { get; init; }
-        public int ToWoundNeeded { get; init; }
+        public RollRequirement ToWoundNeeded { get; init; }
         public bool HasPoison { get; init; }
         public int ArmourSave { get; init; }
         public int WardSave { get; init; }
@@ -93,10 +93,10 @@
 
         // To-hit
         int attackerWS = unit.PrimaryProfile.WS ?? 1;
-        int toHitNeeded = Repo.GetToHitScore(attackerWS, opponent.BestWS);
+        int toHitNeeded = Repo.GetToHitRequirement(attackerWS, opponent.BestWS).FirstRoll ?? 6;
 
         // To-wound
-        int toWoundNeeded = Repo.GetToWoundScore(effectiveS, opponent.BestT);
+        var toWoundNeeded = Repo.GetToWoundRequirement(effectiveS, opponent.BestT);
 
         // Armour save (this unit's save vs opponent's attacks)
         var opponentWeapon = ResolveWeapon(opponent);
@@ -191,7 +191,7 @@
                 <tr>
                     <td class="text-body-secondary">To Wound</td>
                     <td class="text-end fw-bold">
-                        @(stats.ToWoundNeeded)+
+                        @stats.ToWoundNeeded
                         @if (stats.HasPoison)
                         {
                             <span class="text-warning fw-normal"> (poison)</span>

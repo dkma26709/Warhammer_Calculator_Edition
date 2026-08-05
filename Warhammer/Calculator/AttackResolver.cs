@@ -80,7 +80,9 @@ public class AttackResolver
         if (defenderRules.Minus1WSToAttackers)
             defenderEffWS = Math.Max(1, defenderEffWS + 1);
 
-        int toHitNeeded = _repo.GetToHitScore(profile.WS ?? 1, defenderEffWS);
+        // To-hit charts are plain scores in every system, enforced when the chart is loaded,
+        // so the existing clamp-at-6 arithmetic stays correct here.
+        int toHitNeeded = _repo.GetToHitRequirement(profile.WS ?? 1, defenderEffWS).FirstRoll ?? 6;
 
         if (defenderRules.Minus1ToBeHit)
             toHitNeeded = Math.Min(toHitNeeded + 1, 6);
@@ -118,18 +120,20 @@ public class AttackResolver
         if (hits == 0) return new AttackResult { TotalHits = 0 };
 
         // ── Roll to wound ──────────────────────────────────────────
-        int toWoundNeeded = _repo.GetToWoundScore(effectiveStrength, defender.BestT);
+        var toWound = _repo.GetToWoundRequirement(effectiveStrength, defender.BestT);
         int poisonMod = (isRider && attackerRules.PoisonedAttacks && !defenderRules.ImmunityPoisonedAttacks) ? 1 : 0;
         int vampiricPenalty = defenderRules.Vampiric
             && !(isRider && attackerRules.MagicalAttacks)
             && !(isRider && attackerRules.FlamingAttacks) ? 1 : 0;
-        int effectiveToWound = Math.Max(2, toWoundNeeded - poisonMod + vampiricPenalty);
+        var effectiveToWound = toWound.Step(vampiricPenalty - poisonMod);
 
         // ── Tier 3 roll modifiers (to-wound) ─────────────────────────
+        // A fixed requirement is a plain score by definition; a modifier is a step along the
+        // chart's ladder, which spends a compound result's second roll first.
         if (aggMod?.FixedToWound is { } fixedWound)
-            effectiveToWound = fixedWound;
+            effectiveToWound = RollRequirement.Plain(fixedWound);
         else if (aggMod?.ToWoundModifier is { } woundMod)
-            effectiveToWound = Math.Clamp(effectiveToWound + woundMod, 2, 6);
+            effectiveToWound = effectiveToWound.Step(woundMod);
 
         bool flamingReroll = isRider && attackerRules.FlamingAttacks && defenderRules.Flammable && !defenderRules.ImmunityFlamingAttacks;
         if (aggMod is { RerollFailedToWound: true })
@@ -239,8 +243,10 @@ public class AttackResolver
         if (chargerRules.Impale)
             strength += 1;
 
-        int toWoundNeeded = _repo.GetToWoundScore(strength, target.BestT);
+        var toWoundNeeded = _repo.GetToWoundRequirement(strength, target.BestT);
         int strengthMod = _repo.GetArmourSaveModifier(strength);
+
+        if (!toWoundNeeded.CanSucceed) return 0;
 
         bool flamingImpact = chargerRules.FlamingAttacks;
         int baseWard = targetRules.WardSave ?? 7;
@@ -256,7 +262,7 @@ public class AttackResolver
         int wounds = 0;
         for (int i = 0; i < impactHits; i++)
         {
-            if (rng.Next(1, 7) < toWoundNeeded) continue;
+            if (!toWoundNeeded.Roll(rng).Success) continue;
 
             int armourSave = target.EffectiveArmourSaveFast(targetBaseArmour, 0, strengthMod);
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
@@ -443,34 +449,33 @@ public class AttackResolver
     }
 
     private static (int TotalWounds, int KillingBlows, int NonEligibleKB, int NormalWounds) RollToWound(
-        int hits, int toWoundNeeded, bool flamingReroll, bool rerollOnes,
+        int hits, RollRequirement toWoundNeeded, bool flamingReroll, bool rerollOnes,
         bool hasKB, bool hasHKB, TroopTypeInfo defenderType,
         bool rerollSuccessfulWounds, Random rng)
     {
         int totalWounds = 0, killingBlows = 0, nonEligKB = 0, normalWounds = 0;
 
+        if (!toWoundNeeded.CanSucceed)
+            return (0, 0, 0, 0);
+
         for (int i = 0; i < hits; i++)
         {
-            int roll = rng.Next(1, 7);
-            bool wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
+            var (wounded, roll) = toWoundNeeded.Roll(rng);
 
             if (!wounded && roll == 1 && rerollOnes)
             {
-                roll = rng.Next(1, 7);
-                wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
+                (wounded, roll) = toWoundNeeded.Roll(rng);
             }
             else if (!wounded && flamingReroll)
             {
-                roll = rng.Next(1, 7);
-                wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
+                (wounded, roll) = toWoundNeeded.Roll(rng);
             }
 
             if (!wounded) continue;
 
             if (rerollSuccessfulWounds)
             {
-                roll = rng.Next(1, 7);
-                wounded = roll == 6 || (roll != 1 && roll >= toWoundNeeded);
+                (wounded, roll) = toWoundNeeded.Roll(rng);
                 if (!wounded) continue;
             }
 

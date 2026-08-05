@@ -48,11 +48,11 @@ public interface IGameDataRepository
 
     // ─── Combat Tables ───────────────────────────────────────────
 
-    /// <summary>D6 score needed to hit in close combat.</summary>
-    int GetToHitScore(int attackerWS, int defenderWS);
+    /// <summary>What a close combat attack must roll to hit.</summary>
+    RollRequirement GetToHitRequirement(int attackerWS, int defenderWS);
 
-    /// <summary>D6 score needed to wound.</summary>
-    int GetToWoundScore(int strength, int toughness);
+    /// <summary>What a hit must roll to wound — may need a confirming second D6 under wap-v3.</summary>
+    RollRequirement GetToWoundRequirement(int strength, int toughness);
 
     /// <summary>Armour save modifier for a given strength (negative value).</summary>
     int GetArmourSaveModifier(int strength);

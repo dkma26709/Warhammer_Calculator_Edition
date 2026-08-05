@@ -9,10 +9,13 @@ public class CoreRulesServiceTests
     [InlineData(3, 4, 4)] // Lower WS
     [InlineData(4, 3, 3)] // Higher WS
     [InlineData(1, 10, 6)] // Minimum vs Maximum (per table)
-    public void GetToHitScore_ReturnsExpected(int attackerWS, int defenderWS, int expected)
+    public void GetToHitRequirement_ReturnsExpected(int attackerWS, int defenderWS, int expected)
     {
         var service = TestHelpers.CreateCoreRules();
-        Assert.Equal(expected, service.GetToHitScore(attackerWS, defenderWS));
+        var requirement = service.GetToHitRequirement(attackerWS, defenderWS);
+
+        Assert.Equal(expected, requirement.FirstRoll);
+        Assert.False(requirement.NeedsSecondRoll, "to-hit charts never carry a confirming roll");
     }
 
     [Theory]
@@ -21,10 +24,14 @@ public class CoreRulesServiceTests
     [InlineData(3, 4, 5)] // S < T
     [InlineData(3, 5, 6)] // S << T
     [InlineData(6, 3, 2)] // S >> T
-    public void GetToWoundScore_ReturnsExpected(int strength, int toughness, int expected)
+    public void GetToWoundRequirement_ReturnsExpected(int strength, int toughness, int expected)
     {
         var service = TestHelpers.CreateCoreRules();
-        Assert.Equal(expected, service.GetToWoundScore(strength, toughness));
+        var requirement = service.GetToWoundRequirement(strength, toughness);
+
+        // TestHelpers loads wap-v2, whose to-wound chart is entirely plain scores.
+        Assert.Equal(expected, requirement.FirstRoll);
+        Assert.False(requirement.NeedsSecondRoll);
     }
 
     [Theory]

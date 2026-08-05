@@ -338,12 +338,14 @@ public class CombatResolver
         int targetWS = target.BestWS;
         if (targetRules.Minus1WSToAttackers)
             targetWS = Math.Max(1, targetWS + 1);
-        int toHitNeeded = _repo.GetToHitScore(deathblower.PrimaryProfile.WS ?? 1, targetWS);
+        int toHitNeeded = _repo.GetToHitRequirement(deathblower.PrimaryProfile.WS ?? 1, targetWS).FirstRoll ?? 6;
         if (targetRules.Minus1ToBeHit)
             toHitNeeded = Math.Min(toHitNeeded + 1, 6);
         int strength = deathblower.PrimaryProfile.S ?? 3;
-        int toWoundNeeded = _repo.GetToWoundScore(strength, target.BestT);
+        var toWoundNeeded = _repo.GetToWoundRequirement(strength, target.BestT);
         int strengthMod = _repo.GetArmourSaveModifier(strength);
+
+        if (!toWoundNeeded.CanSucceed) return 0;
         int defBaseArmour = _attackResolver.ComputeBaseArmour(target);
 
         int wardVal = targetRules.WardSave ?? 7;
@@ -357,8 +359,7 @@ public class CombatResolver
             int hitRoll = rng.Next(1, 7);
             if (hitRoll != 6 && (hitRoll == 1 || hitRoll < toHitNeeded)) continue;
 
-            int woundRoll = rng.Next(1, 7);
-            if (woundRoll != 6 && (woundRoll == 1 || woundRoll < toWoundNeeded)) continue;
+            if (!toWoundNeeded.Roll(rng).Success) continue;
 
             int armourSave = target.EffectiveArmourSaveFast(defBaseArmour, 0, strengthMod);
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
@@ -402,8 +403,10 @@ public class CombatResolver
         if (context.CombatRound == 1 && stomperRules.MightyBlow.HasValue)
             strength += stomperRules.MightyBlow.Value;
 
-        int toWoundNeeded = _repo.GetToWoundScore(strength, target.BestT);
+        var toWoundNeeded = _repo.GetToWoundRequirement(strength, target.BestT);
         int strengthMod = _repo.GetArmourSaveModifier(strength);
+
+        if (!toWoundNeeded.CanSucceed) return 0;
 
         bool flamingStomp = stomperRules.FlamingAttacks;
         int wardVal = targetRules.WardSave ?? 7;
@@ -421,7 +424,7 @@ public class CombatResolver
         int wounds = 0;
         for (int i = 0; i < stompHits; i++)
         {
-            if (rng.Next(1, 7) < toWoundNeeded) continue;
+            if (!toWoundNeeded.Roll(rng).Success) continue;
 
             int armourSave = target.EffectiveArmourSaveFast(baseArmour, 0, strengthMod);
             if (armourSave <= 6 && rng.Next(1, 7) >= armourSave) continue;
