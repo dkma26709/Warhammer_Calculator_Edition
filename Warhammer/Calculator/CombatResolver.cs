@@ -26,6 +26,28 @@ public class CombatResolver
     }
 
     /// <summary>
+    /// Attack groups for a multi-round combat, one set per distinct round context.
+    /// </summary>
+    /// <remarks>
+    /// A group caches values that depend on the round and on who charged — strike order, the
+    /// defender's effective Initiative, and the parry — so a set built for the charge round
+    /// cannot be reused once the charge has lapsed or a first-round-only modifier has expired.
+    /// Two sets cover any combat: every round after the first is resolved with the same
+    /// context (nobody charging, round greater than one) and no weapon condition tells round
+    /// two apart from round five.
+    /// </remarks>
+    public RoundGroupSets PrepareRoundGroups(
+        UnitConfiguration attacker, UnitConfiguration defender, CombatContext context, int maxRounds)
+    {
+        var opening = BuildAttackGroups(attacker, defender, context);
+        if (maxRounds <= 1)
+            return new RoundGroupSets(opening, opening);
+
+        var laterContext = context with { CombatRound = 2, Charge = ChargeState.Neither };
+        return new RoundGroupSets(opening, BuildAttackGroups(attacker, defender, laterContext));
+    }
+
+    /// <summary>
     /// Resolve a single combat round. Creates internal casualty state and restores
     /// ModelCount after the round (safe for repeated single-round iterations).
     /// </summary>
@@ -70,25 +92,34 @@ public class CombatResolver
         int attackerWoundsDealt = 0;
         int defenderWoundsDealt = 0;
 
-        // Phase 1: Impact Hits (charge turn only)
-        // Casualties from impact hits reduce the target's model count before melee.
-        if (context.Charge == ChargeState.AttackerCharged)
+        // Phase 1: Impact Hits, from whichever side charged. On a counter-charge both sides
+        // deliver them, and they land together — one side's casualties must not thin the
+        // other's impact hits, so both are rolled before either is applied.
+        bool attackerCharging = context.IsCharging(isAttackerSide: true);
+        bool defenderCharging = context.IsCharging(isAttackerSide: false);
+
+        if (attackerCharging || defenderCharging)
         {
-            int targetBaseArmour = _attackResolver.ComputeBaseArmour(defender);
-            int impactWounds = _attackResolver.ResolveImpactHits(attacker, defender, context, rng, targetBaseArmour);
-            int capped = Math.Min(impactWounds, defenderState.TotalRemainingHP);
-            defenderState.ApplyCasualties(capped);
-            attackerWoundsDealt += capped;
-            defender.ModelCount = defenderState.CurrentModelCount;
-        }
-        else if (context.Charge == ChargeState.DefenderCharged)
-        {
-            int targetBaseArmour = _attackResolver.ComputeBaseArmour(attacker);
-            int impactWounds = _attackResolver.ResolveImpactHits(defender, attacker, context, rng, targetBaseArmour);
-            int capped = Math.Min(impactWounds, attackerState.TotalRemainingHP);
-            attackerState.ApplyCasualties(capped);
-            defenderWoundsDealt += capped;
+            int fromAttacker = attackerCharging
+                ? _attackResolver.ResolveImpactHits(attacker, defender, context, rng,
+                    _attackResolver.ComputeBaseArmour(defender))
+                : 0;
+            int fromDefender = defenderCharging
+                ? _attackResolver.ResolveImpactHits(defender, attacker, context, rng,
+                    _attackResolver.ComputeBaseArmour(attacker))
+                : 0;
+
+            int cappedFromAttacker = Math.Min(fromAttacker, defenderState.TotalRemainingHP);
+            int cappedFromDefender = Math.Min(fromDefender, attackerState.TotalRemainingHP);
+
+            defenderState.ApplyCasualties(cappedFromAttacker);
+            attackerState.ApplyCasualties(cappedFromDefender);
+
+            attackerWoundsDealt += cappedFromAttacker;
+            defenderWoundsDealt += cappedFromDefender;
+
             attacker.ModelCount = attackerState.CurrentModelCount;
+            defender.ModelCount = defenderState.CurrentModelCount;
         }
 
         // Phase 2-3: Melee attacks in strike order (groups are pre-sorted by Priority desc).
@@ -251,12 +282,12 @@ public class CombatResolver
         var weaponRules = weapon.Rules;
 
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
         int baseI = unit.PrimaryProfile.I ?? 1;
         var unitRules = unit.EffectiveSpecialRules;
         int effectiveI = unitRules.Swordmaster
             ? baseI
-            : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged);
+            : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged, context.CombatRound);
 
         int defenderParry = _attackResolver.ComputeDefenderParry(opponent, unit, weapon, weaponRules, context, isAttackerSide);
         int defenderBaseArmour = _attackResolver.ComputeBaseArmour(opponent);
@@ -267,7 +298,8 @@ public class CombatResolver
         if (!opponent.EffectiveSpecialRules.Swordmaster)
         {
             defenderEffI = defWeapon.Rules.ApplyToInitiative(defenderEffI,
-                context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide));
+                context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide),
+                context.CombatRound);
         }
 
         groups.Add(new AttackGroup
@@ -460,8 +492,11 @@ public class CombatResolver
 
         if (causesFear)
         {
-            bool opponentImmune = opponentRules.Fear || opponentRules.Terror;
-            if (!opponentImmune)
+            // "If the majority of the models in a unit cause Fear, they also gain the
+            // Immunity (Fear) special rule, and thus the Combat Resolution bonus of their
+            // Fear-causing enemies is ignored for that unit." ImmunityFear already covers
+            // both routes to that: the rule stated on the entry, and causing Fear itself.
+            if (!opponentRules.ImmunityFear)
             {
                 int unitUS = unit.ModelCount * unit.TroopType.UnitStrength;
                 int oppUS = opponent.ModelCount * opponent.TroopType.UnitStrength;
@@ -480,6 +515,15 @@ public class CombatResolver
     }
 
     // ─── Types ─────────────────────────────────────────────────────
+
+    /// <summary>
+    /// The attack groups for the charge round and for every round after it.
+    /// </summary>
+    public sealed record RoundGroupSets(List<AttackGroup> Opening, List<AttackGroup> Later)
+    {
+        /// <summary>The groups to resolve <paramref name="round"/> with.</summary>
+        public List<AttackGroup> For(int round) => round <= 1 ? Opening : Later;
+    }
 
     public class AttackGroup
     {

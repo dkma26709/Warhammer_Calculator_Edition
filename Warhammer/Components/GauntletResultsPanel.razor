@@ -9,6 +9,10 @@
                 (@Results.Count matchups, @FormatElapsed(TotalElapsedMs))
             </span>
         </h5>
+        <div class="small text-body-secondary mt-1">
+            Win / draw / loss is <strong>combat resolution</strong> in the first round, so it does
+            not move with the round cap. Click a row for the round-by-round detail.
+        </div>
     </div>
     <div class="card-body">
 
@@ -16,7 +20,7 @@
         <div class="row mb-4 g-3">
             <div class="col-md-2">
                 <div class="text-center">
-                    <div class="small text-body-secondary">Overall Win Rate</div>
+                    <div class="small text-body-secondary">Overall CR Win Rate</div>
                     <div class="display-6 fw-bold @WinColour(AvgWinPct)">@($"{AvgWinPct:F1}")%</div>
                 </div>
             </div>
@@ -49,12 +53,12 @@
                         <div>
                             <span class="text-body-secondary">Best:</span>
                             <span class="text-success">@BestMatchup.Opponent.Name</span>
-                            <span class="text-body-secondary">(@($"{BestMatchup.WinPct:F0}")%)</span>
+                            <span class="text-body-secondary">(CR @($"{BestMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
                         </div>
                         <div>
                             <span class="text-body-secondary">Worst:</span>
                             <span class="text-danger">@WorstMatchup.Opponent.Name</span>
-                            <span class="text-body-secondary">(@($"{WorstMatchup.WinPct:F0}")%)</span>
+                            <span class="text-body-secondary">(CR @($"{WorstMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
                         </div>
                     </div>
                 }
@@ -93,9 +97,12 @@
                     <th @onclick='() => SortBy("name")' role="button">Opponent @SortIndicator("name")</th>
                     <th @onclick='() => SortBy("faction")' role="button">Faction @SortIndicator("faction")</th>
                     <th class="text-end" @onclick='() => SortBy("pts")' role="button">Pts @SortIndicator("pts")</th>
-                    <th class="text-end" @onclick='() => SortBy("win")' role="button">Win% @SortIndicator("win")</th>
+                    <th class="text-end" @onclick='() => SortBy("win")' role="button"
+                        title="Share of iterations the subject won combat resolution">Win% @SortIndicator("win")</th>
                     <th class="text-end" @onclick='() => SortBy("draw")' role="button">Draw% @SortIndicator("draw")</th>
                     <th class="text-end" @onclick='() => SortBy("loss")' role="button">Loss% @SortIndicator("loss")</th>
+                    <th class="text-end" @onclick='() => SortBy("cr")' role="button"
+                        title="Average combat resolution, subject vs opponent">CR @SortIndicator("cr")</th>
                     <th class="text-end" @onclick='() => SortBy("dealt")' role="button">Dealt @SortIndicator("dealt")</th>
                     <th class="text-end" @onclick='() => SortBy("taken")' role="button">Taken @SortIndicator("taken")</th>
                     <th class="text-end" @onclick='() => SortBy("ptseff")' role="button">Pts Eff @SortIndicator("ptseff")</th>
@@ -114,6 +121,11 @@
                         <td class="text-end @WinColour(m.WinPct)">@($"{m.WinPct:F1}")</td>
                         <td class="text-end text-body-secondary">@($"{m.DrawPct:F1}")</td>
                         <td class="text-end text-danger">@($"{m.LossPct:F1}")</td>
+                        <td class="text-end">
+                            <span class="text-success">@($"{m.AvgCombatRes:F1}")</span>
+                            <span class="text-body-secondary mx-1">v</span>
+                            <span class="text-danger">@($"{m.AvgOpponentCombatRes:F1}")</span>
+                        </td>
                         <td class="text-end text-success">@($"{m.AvgWoundsDealt:F1}")</td>
                         <td class="text-end text-danger">@($"{m.AvgWoundsTaken:F1}")</td>
                         <td class="text-end @PtsEffColour(ptsEff)">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
@@ -121,7 +133,7 @@
                     @if (m == _expandedMatchup)
                     {
                         <tr>
-                            <td colspan="9" class="p-0">
+                            <td colspan="10" class="p-0">
                                 @if (m.SingleRound != null)
                                 {
                                     <ResultsPanel Result="m.SingleRound"
@@ -161,8 +173,10 @@
     private double AvgDrawPct => Results.Count > 0 ? Results.Average(r => r.DrawPct) : 0;
     private double AvgWoundsDealt => Results.Count > 0 ? Results.Average(r => r.AvgWoundsDealt) : 0;
     private double AvgWoundsTaken => Results.Count > 0 ? Results.Average(r => r.AvgWoundsTaken) : 0;
-    private GauntletMatchup? BestMatchup => Results.Count > 0 ? Results.MaxBy(r => r.WinPct) : null;
-    private GauntletMatchup? WorstMatchup => Results.Count > 0 ? Results.MinBy(r => r.WinPct) : null;
+    // Ranked on the CR margin, not on Win% — a matchup can have a low win rate because it is
+    // finely balanced or because it is a slaughter, and the margin tells those apart.
+    private GauntletMatchup? BestMatchup => Results.Count > 0 ? Results.MaxBy(r => r.CombatResMargin) : null;
+    private GauntletMatchup? WorstMatchup => Results.Count > 0 ? Results.MinBy(r => r.CombatResMargin) : null;
     private long TotalElapsedMs => Results.Sum(r => r.SingleRound?.ElapsedMs ?? r.MultiRound?.ElapsedMs ?? 0);
 
     // ── Sorting ──
@@ -179,6 +193,7 @@
                 "win" => Results.OrderBy(r => r.WinPct),
                 "draw" => Results.OrderBy(r => r.DrawPct),
                 "loss" => Results.OrderBy(r => r.LossPct),
+                "cr" => Results.OrderBy(r => r.CombatResMargin),
                 "dealt" => Results.OrderBy(r => r.AvgWoundsDealt),
                 "taken" => Results.OrderBy(r => r.AvgWoundsTaken),
                 "ptseff" => Results.OrderBy(r => ComputePtsEfficiency(r)),

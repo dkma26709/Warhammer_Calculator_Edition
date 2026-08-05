@@ -9,6 +9,7 @@ tables and page.crop() for column-aware text extraction.
 
 import re
 import json
+import os
 import sys
 import pdfplumber
 
@@ -335,6 +336,28 @@ def extract_weapons_and_armour(pdf_path, start_page, end_page):
     return {"closeCombat": close_combat, "missile": missile}, armour
 
 
+# A signed number straight after "As user" is the Strength column's bonus — unless the word
+# after it names one of the stats listed below, in which case the whole thing is a special
+# rule ("+1 Initiative", "+1 Attack").
+# DASHES must come FIRST in the character class: a hyphen between two other members is read
+# as a range, and "+" to U+2010 spans most of ASCII, which would match "X5" and steal the
+# letter into the Strength field.
+STRENGTH_COLUMN_BONUS = re.compile(
+    rf'([{DASHES}+]\d+)(?!\s*(?:Initiative|Attacks?|Strength|Movement|To\s+Hit|To\s+Wound)\b)'
+)
+
+
+def source_book_name(pdf_path):
+    """Name the book this file was extracted from, taken from the PDF's filename.
+
+    "Warhammer - The Game of Fantasy Battles - 9th Edition 3.11.pdf" becomes
+    "Warhammer: The Game of Fantasy Battles - 9th Edition v3.11".
+    """
+    stem = os.path.splitext(os.path.basename(pdf_path))[0].strip()
+    stem = re.sub(r'^Warhammer\s*[-–—]\s*', 'Warhammer: ', stem)
+    return re.sub(r'(\d+\.\d+)$', r'v\1', stem)
+
+
 def parse_weapon_profile(name, body):
     """Parse a weapon profile body text into a structured dict."""
     lines = body.split('\n')
@@ -404,8 +427,17 @@ def parse_weapon_profile(name, body):
 
     # Strength
     if rest.lower().startswith('as user'):
-        weapon['strength'] = 'As user'
         rest = rest[7:].strip()
+        # The Strength column may read "As user +1" (v3's great weapon and polearm, v2's
+        # throwing axes) where v2's close-combat entries wrote a bare "+1". Without this the
+        # bonus leaks into specialRules, where nothing reads it — the weapon silently loses a
+        # point of Strength. "+1 Initiative"/"+1 Attack" are special rules, not column values.
+        bonus = STRENGTH_COLUMN_BONUS.match(rest)
+        if bonus:
+            weapon['strength'] = bonus.group(1)
+            rest = rest[bonus.end():].strip()
+        else:
+            weapon['strength'] = 'As user'
     else:
         s_match = re.match(r'([+\-]?\d+)\s*', rest)
         if s_match:
@@ -702,7 +734,10 @@ def extract_core_rules(pdf_path):
     shooting_modifiers = extract_shooting_modifiers(pdf_path, ranges)
 
     result = {
-        "name": "Warhammer: The Game of Fantasy Battles - 9th Edition v2.32",
+        # Derived from the source filename, not hardcoded — this is the only record of which
+        # book produced the file, and every system claiming to come from v2.32 makes a stale
+        # or mis-sourced extraction impossible to spot from the data alone.
+        "name": source_book_name(pdf_path),
         "closeCombatToHit": {
             "description": "Roll a D6 for each attack. Compare WS of attacker and defender. Natural 1 always misses, natural 6 always hits.",
             "table": to_hit,

@@ -1,5 +1,5 @@
 {
-  "name": "Warhammer: The Game of Fantasy Battles - 9th Edition v2.32",
+  "name": "Warhammer: The Game of Fantasy Battles - 9th Edition v3.11",
   "closeCombatToHit": {
     "description": "Roll a D6 for each attack. Compare WS of attacker and defender. Natural 1 always misses, natural 6 always hits.",
     "table": [
@@ -308,15 +308,15 @@
       "polearm": {
         "name": "POLEARM",
         "range": "Combat",
-        "strength": "As user",
-        "specialRules": "+1 Requires Two Hands",
+        "strength": "+1",
+        "specialRules": "Requires Two Hands",
         "notes": "A model with a polearm gains +1 Initiative in the first\nround of close combat."
       },
       "greatWeapon": {
         "name": "GREAT WEAPON",
         "range": "Combat",
-        "strength": "As user",
-        "specialRules": "+1 Mighty Blow (1), Requires Two Hands",
+        "strength": "+1",
+        "specialRules": "Mighty Blow (1), Requires Two Hands",
         "notes": "A model with a great weapon suffers -2 Initiative."
       },
       "flail": {

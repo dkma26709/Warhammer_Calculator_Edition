@@ -8,14 +8,19 @@ public sealed record GameSystem(string Key, string DisplayName, bool Enabled);
 
 public static class GameSystems
 {
-    public const string Default = "wap-v2";
+    public const string WapV2 = "wap-v2";
+    public const string WapV3 = "wap-v3";
+    public const string Fantasy8th = "fantasy-8th";
+    public const string OldWorld = "old-world";
+
+    public const string Default = WapV2;
 
     public static readonly IReadOnlyList<GameSystem> All =
     [
-        new("wap-v2", "WAP v2", Enabled: true),
-        new("wap-v3", "WAP v3", Enabled: true),
-        new("fantasy-8th", "Fantasy 8th", Enabled: false),
-        new("old-world", "Old World", Enabled: false),
+        new(WapV2, "WAP v2", Enabled: true),
+        new(WapV3, "WAP v3", Enabled: true),
+        new(Fantasy8th, "Fantasy 8th", Enabled: false),
+        new(OldWorld, "Old World", Enabled: false),
     ];
 
     public static bool IsEnabled(string? key) =>

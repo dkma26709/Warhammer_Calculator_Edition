@@ -2,10 +2,11 @@ using System.Text.RegularExpressions;
 
 namespace Warhammer.Models.Domain;
 
-public enum WeaponCondition { Always, WhenCharging, WhenBeingCharged }
+public enum WeaponCondition { Always, WhenCharging, WhenBeingCharged, FirstRound }
 
 /// <summary>
-/// Parsed weapon special rules from the weapon's SpecialRules string field.
+/// Parsed weapon special rules from the weapon's SpecialRules string field, plus the
+/// modifiers and conditions the books state only in the profile's footnote prose.
 /// </summary>
 public record ParsedWeaponRules
 {
@@ -17,13 +18,13 @@ public record ParsedWeaponRules
     public bool RequiresTwoHands { get; init; }
 
     /// <summary>
-    /// Additional Initiative bonus when charged to the front (Spear/Pike: +1 extra).
+    /// Additional Initiative bonus when charged to the front (wap-v2 Spear/Pike: +1 extra).
     /// </summary>
     public int ChargedToFrontInitiativeBonus { get; init; }
 
     /// <summary>
-    /// When the Initiative modifier applies.
-    /// Lances: WhenCharging. Spear/Pike base mod: Always. Default: Always.
+    /// When the Initiative modifier applies. Lances: WhenCharging. wap-v3 Spear/Pike/Polearm:
+    /// FirstRound. Great weapon and wap-v2 Spear/Pike base mod: Always.
     /// </summary>
     public WeaponCondition InitiativeModCondition { get; init; }
 
@@ -40,25 +41,43 @@ public record ParsedWeaponRules
 
     /// <summary>
     /// Apply this weapon's Initiative modifier to a base Initiative value.
-    /// Handles conditional mods (lance: when charging, spear: when being charged)
-    /// and the spear/pike charged-to-front bonus.
+    /// Handles conditional mods (lance: when charging, spear: when being charged or in the
+    /// first round) and the wap-v2 spear/pike charged-to-front bonus.
     /// </summary>
-    public int ApplyToInitiative(int baseI, bool isCharging, bool isBeingCharged)
+    public int ApplyToInitiative(int baseI, bool isCharging, bool isBeingCharged, int combatRound)
     {
         int effective = baseI;
-        if (InitiativeModCondition == WeaponCondition.Always
-            || (InitiativeModCondition == WeaponCondition.WhenCharging && isCharging)
-            || (InitiativeModCondition == WeaponCondition.WhenBeingCharged && isBeingCharged))
+        if (Holds(InitiativeModCondition, isCharging, isBeingCharged, combatRound))
             effective += InitiativeMod;
         if (isBeingCharged)
             effective += ChargedToFrontInitiativeBonus;
         return Math.Max(1, effective);
     }
 
+    /// <summary>Does a condition hold for this attack?</summary>
+    public static bool Holds(WeaponCondition condition, bool isCharging, bool isBeingCharged, int combatRound) =>
+        condition switch
+        {
+            WeaponCondition.WhenCharging => isCharging,
+            WeaponCondition.WhenBeingCharged => isBeingCharged,
+            WeaponCondition.FirstRound => combatRound == 1,
+            _ => true,
+        };
+
+    // The books wrap footnote prose at the column edge, so a phrase this parser looks for can
+    // arrive split by a newline ("in turns that the\nmodel charges"). Every search below runs
+    // against whitespace-normalised text: a literal search fails silently, and the failure
+    // mode is a conditional modifier quietly becoming unconditional.
+    private static readonly Regex Whitespace = new(@"\s+", RegexOptions.Compiled);
+
+    // "gains +2 Initiative", "suffers -2 Initiative", "+1 to its Initiative".
+    private static readonly Regex NotesInitiative = new(
+        @"([+\-−]\d+)(?:\s+to\s+its)?\s+Initiative",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
     public static ParsedWeaponRules Parse(string? specialRules, string? notes = null)
     {
-        if (string.IsNullOrWhiteSpace(specialRules))
-            return new ParsedWeaponRules();
+        string flat = notes == null ? "" : Whitespace.Replace(notes, " ");
 
         int initMod = 0;
         int extraAttacks = 0;
@@ -68,10 +87,9 @@ public record ParsedWeaponRules
         bool requiresTwoHands = false;
         bool initHasAsterisk = false;
         bool mbHasAsterisk = false;
+        bool initFromRules = false;
 
-        var parts = specialRules.Split(',').Select(p => p.Trim()).ToList();
-
-        foreach (var part in parts)
+        foreach (var part in (specialRules ?? "").Split(',').Select(p => p.Trim()))
         {
             var cleaned = part.TrimEnd('*');
             bool asterisk = part.TrimEnd().EndsWith('*');
@@ -82,6 +100,7 @@ public record ParsedWeaponRules
             {
                 initMod = int.Parse(initMatch.Groups[1].Value);
                 initHasAsterisk = asterisk;
+                initFromRules = true;
                 continue;
             }
 
@@ -119,33 +138,40 @@ public record ParsedWeaponRules
             }
 
             if (cleaned.Contains("Requires Two Hands", StringComparison.OrdinalIgnoreCase))
-            {
                 requiresTwoHands = true;
+        }
+
+        // wap-v3 moved every weapon Initiative modifier out of the Special Rules column and
+        // into the footnote ("A model with a great weapon suffers -2 Initiative"). Read it
+        // from there when the rules column didn't carry one, and take its condition from the
+        // same sentence — v3's spear is FirstRound for Initiative but WhenBeingCharged for
+        // Mighty Blow, so one condition for the whole weapon would get one of them wrong.
+        var initCondition = WeaponCondition.Always;
+        if (initFromRules)
+        {
+            initCondition = initHasAsterisk ? ConditionIn(flat) : WeaponCondition.Always;
+        }
+        else
+        {
+            var fromNotes = NotesInitiative.Match(flat);
+            if (fromNotes.Success)
+            {
+                initMod = int.Parse(fromNotes.Groups[1].Value.Replace('−', '-'));
+                initCondition = ConditionIn(SentenceAround(flat, fromNotes.Index));
             }
         }
 
-        // Determine condition type from notes
-        // Lances: "the model charges" → WhenCharging
-        // Spear/Pike: "charged to its front" → WhenBeingCharged
-        var condition = WeaponCondition.Always;
         int chargedBonus = 0;
         bool mbExcludesLight = false;
-
-        if (notes != null)
+        if (flat.Length > 0)
         {
-            if (notes.Contains("the model charges", StringComparison.OrdinalIgnoreCase))
-                condition = WeaponCondition.WhenCharging;
-            else if (notes.Contains("charged to its front", StringComparison.OrdinalIgnoreCase))
-                condition = WeaponCondition.WhenBeingCharged;
-
-            // Spear/Pike: additional +1 Initiative when charged to front
-            if (notes.Contains("additional +1", StringComparison.OrdinalIgnoreCase)
-                && notes.Contains("charged to its front", StringComparison.OrdinalIgnoreCase))
+            // wap-v2 spear/pike: a second, separate +1 on top of the base mod when charged.
+            if (flat.Contains("additional +1", StringComparison.OrdinalIgnoreCase)
+                && flat.Contains("charged to its front", StringComparison.OrdinalIgnoreCase))
                 chargedBonus = 1;
 
-            // Spear/Pike: MB doesn't apply vs Infantry, Large Infantry, Swarms, Shrines
-            if (notes.Contains("Mighty Blow does not apply towards", StringComparison.OrdinalIgnoreCase))
-                mbExcludesLight = true;
+            mbExcludesLight = flat.Contains("Mighty Blow does not apply towards",
+                StringComparison.OrdinalIgnoreCase);
         }
 
         return new ParsedWeaponRules
@@ -157,9 +183,43 @@ public record ParsedWeaponRules
             Parry = parry,
             RequiresTwoHands = requiresTwoHands,
             ChargedToFrontInitiativeBonus = chargedBonus,
-            InitiativeModCondition = initHasAsterisk ? condition : WeaponCondition.Always,
-            MightyBlowCondition = mbHasAsterisk ? condition : WeaponCondition.Always,
-            MightyBlowExcludesLightTargets = mbExcludesLight
+            InitiativeModCondition = initCondition,
+            MightyBlowCondition = mbHasAsterisk ? MightyBlowConditionIn(flat) : WeaponCondition.Always,
+            MightyBlowExcludesLightTargets = mbExcludesLight,
         };
+    }
+
+    /// <summary>
+    /// The condition governing an asterisked Mighty Blow. The asterisk marks a footnote, so
+    /// read that footnote's own sentences rather than the whole blob — a spear states its
+    /// Initiative timing in one sentence and its Mighty Blow condition in another, and
+    /// scanning everything would let either one answer for the other.
+    /// </summary>
+    private static WeaponCondition MightyBlowConditionIn(string flat)
+    {
+        int footnote = flat.IndexOf('*');
+        return ConditionIn(footnote >= 0 ? flat[footnote..] : flat);
+    }
+
+    /// <summary>Read a condition out of already-whitespace-normalised footnote prose.</summary>
+    private static WeaponCondition ConditionIn(string flat)
+    {
+        if (flat.Contains("model charges", StringComparison.OrdinalIgnoreCase))
+            return WeaponCondition.WhenCharging;
+        if (flat.Contains("charged to its front", StringComparison.OrdinalIgnoreCase))
+            return WeaponCondition.WhenBeingCharged;
+        if (flat.Contains("first round of close combat", StringComparison.OrdinalIgnoreCase))
+            return WeaponCondition.FirstRound;
+        return WeaponCondition.Always;
+    }
+
+    /// <summary>The sentence containing <paramref name="index"/>, so a weapon whose footnote
+    /// states two differently-conditioned modifiers doesn't cross-contaminate them.</summary>
+    private static string SentenceAround(string flat, int index)
+    {
+        int start = flat.LastIndexOf('.', Math.Min(index, flat.Length - 1)) + 1;
+        int end = flat.IndexOf('.', index);
+        if (end < 0) end = flat.Length;
+        return flat[start..end];
     }
 }

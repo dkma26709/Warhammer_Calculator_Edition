@@ -156,9 +156,11 @@ public class CombatEngine
         var resolver = new CombatResolver(_repo);
         var rng = seed is int s ? new Random(s) : new Random();
 
-        // Pre-build attack groups once — they reference attacker/defender objects,
-        // and computed properties (TotalAttacks, Ranks, etc.) read ModelCount dynamically.
-        var groups = resolver.PrepareAttackGroups(attacker, defender, context);
+        // Groups are pre-built rather than rebuilt per iteration — they reference the
+        // attacker/defender objects, and computed properties (TotalAttacks, Ranks, etc.) read
+        // ModelCount dynamically. They do cache round- and charge-dependent values, so there
+        // is one set for the charge round and one for the rounds after it.
+        var groupSets = resolver.PrepareRoundGroups(attacker, defender, context, maxRounds);
 
         int origAttModels = attacker.ModelCount;
         int origDefModels = defender.ModelCount;
@@ -230,9 +232,8 @@ public class CombatEngine
                     var roundContext = round == 1
                         ? context
                         : context with { CombatRound = round, Charge = ChargeState.Neither };
-
-                    var result = resolver.ResolveRound(attacker, defender, roundContext, groups, rng,
-                        ref attackerState, ref defenderState);
+                    var result = resolver.ResolveRound(attacker, defender, roundContext,
+                        groupSets.For(round), rng, ref attackerState, ref defenderState);
 
                     roundOngoing[ri]++;
 

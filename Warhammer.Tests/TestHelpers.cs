@@ -24,11 +24,38 @@ public static class TestHelpers
         var json = File.ReadAllText(Path.Combine(dataDir, "core-rules.json"));
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         CoreData = JsonSerializer.Deserialize<CoreRulesData>(json, options)!;
-        LazyRepo = new Lazy<GameDataRepository>(CreateRepository);
+        LazyRepo = new Lazy<GameDataRepository>(() => CreateRepository());
     }
 
-    /// <summary>Shared repository instance for test unit resolution.</summary>
+    /// <summary>Shared repository instance for test unit resolution (wap-v2).</summary>
     public static GameDataRepository Repo => LazyRepo.Value;
+
+    private static readonly Dictionary<string, GameDataRepository> RepoCache = new();
+
+    /// <summary>
+    /// A fully-loaded repository for a specific game system, cached across tests. Use this in
+    /// preference to hand-rolling the service stack — the wiring order matters, and a
+    /// <see cref="GameSystemService"/> left uninitialised silently serves wap-v2 data.
+    /// </summary>
+    public static GameDataRepository RepoFor(string systemKey)
+    {
+        lock (RepoCache)
+        {
+            if (RepoCache.TryGetValue(systemKey, out var cached))
+                return cached;
+
+            var repo = CreateRepository(systemKey);
+            RepoCache[systemKey] = repo;
+            return repo;
+        }
+    }
+
+    /// <summary>
+    /// The active system's Troop Types figures, for tests that want the numbers without
+    /// resolving a unit.
+    /// </summary>
+    public static Func<BaseTroopType, TroopTypeRules> TroopTypeRulesFor(string systemKey)
+        => RepoFor(systemKey).GetTroopTypeRules;
 
     public static string FindProjectRoot()
     {
@@ -53,16 +80,17 @@ public static class TestHelpers
     }
 
     /// <summary>
-    /// Create a fully-loaded GameDataRepository backed by the on-disk wwwroot data
-    /// (default system: wap-v2). Weapons, armour and the system manifest are resolved.
+    /// Create a fully-loaded GameDataRepository backed by the on-disk wwwroot data.
+    /// Weapons, armour, troop type figures and the system manifest are all resolved.
     /// </summary>
-    public static GameDataRepository CreateRepository()
+    public static GameDataRepository CreateRepository(string systemKey = GameSystems.Default)
     {
         var wwwroot = Path.Combine(FindProjectRoot(), "wwwroot");
         var handler = new FileBasedHttpHandler(wwwroot);
         var http = new HttpClient(handler) { BaseAddress = new Uri("http://localhost/") };
 
         var system = new GameSystemService();
+        system.Initialize(systemKey);
         var coreRules = new CoreRulesService(http, system);
         var factionData = new FactionDataService(http, system);
         var repo = new GameDataRepository(coreRules, factionData, system);
@@ -84,15 +112,18 @@ public static class TestHelpers
         string? unitSize = "10+",
         string? baseSize = "25x25",
         ProfileEntry? mountProfile = null,
-        List<UnitOption>? options = null)
+        List<UnitOption>? options = null,
+        string systemKey = GameSystems.Default)
     {
-        var repo = Repo;
+        // Everything — weapons, armour and the troop type figures — comes from the one system,
+        // so a unit can't end up with one edition's troop type wearing another's weapon rules.
+        var repo = RepoFor(systemKey);
         var primaryProfile = new ProfileEntry
         {
             Name = name, M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points
         };
 
-        var parsedTroopType = TroopTypeInfo.Parse(troopType);
+        var parsedTroopType = TroopTypeInfo.Parse(troopType, repo.GetTroopTypeRules);
         var parsedRules = ParsedSpecialRules.Parse(specialRules);
 
         // Resolve equipment

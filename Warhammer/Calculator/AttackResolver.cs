@@ -37,7 +37,7 @@ public class AttackResolver
         bool isRider = !isMountAttack;
         var aggMod = isRider ? attacker.AggregateModifier : null;
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
         bool isFirstRound = context.CombatRound == 1;
 
         var weaponRules = isRider ? cachedWeaponRules : null;
@@ -89,7 +89,8 @@ public class AttackResolver
 
         int effectiveAttackerI = profile.I ?? 1;
         if (isRider && weaponRules != null)
-            effectiveAttackerI = weaponRules.ApplyToInitiative(effectiveAttackerI, isCharging, isBeingCharged);
+            effectiveAttackerI = weaponRules.ApplyToInitiative(
+                effectiveAttackerI, isCharging, isBeingCharged, context.CombatRound);
         int effectiveDefenderI = cachedEffectiveDefenderI >= 0
             ? cachedEffectiveDefenderI
             : ComputeEffectiveI(defender, context, !isAttackerSide);
@@ -287,7 +288,7 @@ public class AttackResolver
         bool isAttackerSide)
     {
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
         var profile = attacker.PrimaryProfile;
         int effectiveStrength = ComputeEffectiveStrength(
             attacker, defender, attackerWeapon, attackerWeaponRules, profile,
@@ -314,7 +315,8 @@ public class AttackResolver
         {
             return resolvedWeapon.Rules.ApplyToInitiative(baseI,
                 context.IsCharging(isAttackerSide),
-                context.IsCharging(!isAttackerSide));
+                context.IsCharging(!isAttackerSide),
+                context.CombatRound);
         }
 
         // Legacy path: lookup by string key
@@ -323,7 +325,8 @@ public class AttackResolver
         {
             return weapon.Rules.ApplyToInitiative(baseI,
                 context.IsCharging(isAttackerSide),
-                context.IsCharging(!isAttackerSide));
+                context.IsCharging(!isAttackerSide),
+                context.CombatRound);
         }
 
         return baseI;
@@ -359,12 +362,8 @@ public class AttackResolver
         int weaponMB = 0;
         if (weaponRules?.MightyBlow != null)
         {
-            bool applyWeaponMB = weaponRules.MightyBlowCondition switch
-            {
-                WeaponCondition.WhenCharging => isCharging,
-                WeaponCondition.WhenBeingCharged => isBeingCharged,
-                _ => true
-            };
+            bool applyWeaponMB = ParsedWeaponRules.Holds(
+                weaponRules.MightyBlowCondition, isCharging, isBeingCharged, combatRound);
 
             if (applyWeaponMB && weaponRules.MightyBlowExcludesLightTargets)
             {
@@ -639,12 +638,9 @@ public class AttackResolver
         if (rules.OgreCharge)
             fromRules = Math.Max(fromRules, unit.ModelsInFrontRank);
 
-        int fromType = unit.TroopType.BaseType switch
-        {
-            BaseTroopType.Cavalry => unit.ModelsInFrontRank,
-            BaseTroopType.MonstrousCavalry => unit.ModelsInFrontRank,
-            _ => 0
-        };
+        // wap-v2 gives Cavalry and Monstrous Cavalry Impact Hits (1) from the troop type;
+        // wap-v3 removed it, so a v3 cavalry unit only has impact hits if its own entry says so.
+        int fromType = unit.TroopType.InherentImpactHits * unit.ModelsInFrontRank;
 
         return Math.Max(fromRules, fromType);
     }

@@ -21,6 +21,7 @@ public class GameDataRepository : IGameDataRepository
     private readonly Dictionary<FactionKey, IReadOnlyList<Unit>> _unitCache = new();
     private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
     private CompositionRules? _composition;
+    private Dictionary<BaseTroopType, TroopTypeRules>? _troopTypes;
 
     public GameDataRepository(CoreRulesService coreRules, FactionDataService factionData, GameSystemService system)
     {
@@ -36,8 +37,46 @@ public class GameDataRepository : IGameDataRepository
         await _coreRules.EnsureLoadedAsync();
         ResolveWeapons();
         ResolveArmour();
+        await ResolveTroopTypesAsync();
         await ResolveFactionsAsync();
     }
+
+    /// <summary>
+    /// Load the active system's Troop Types figures. Must run before any unit is resolved —
+    /// <see cref="TroopTypeInfo"/> carries no defaults of its own, deliberately, so that a
+    /// missing file or row fails here rather than silently handing out another system's rules.
+    /// </summary>
+    private async Task ResolveTroopTypesAsync()
+    {
+        if (_troopTypes != null) return;
+
+        var data = await _factionData.GetTroopTypesAsync();
+        var resolved = new Dictionary<BaseTroopType, TroopTypeRules>();
+
+        foreach (var type in Enum.GetValues<BaseTroopType>())
+        {
+            if (!data.Types.TryGetValue(type.ToJsonKey(), out var entry))
+                throw new InvalidOperationException(
+                    $"troop-types.json for '{_system.CurrentSystem}' is missing '{type.ToJsonKey()}'.");
+
+            resolved[type] = new TroopTypeRules(
+                entry.MinRankWidth,
+                entry.SupportingAttacks,
+                entry.MountSupportingAttacks,
+                entry.NonSplitSupportingAttacks,
+                entry.ImpactHits,
+                entry.UnitStrength,
+                entry.SplitProfile,
+                entry.Swiftstride);
+        }
+
+        _troopTypes = resolved;
+    }
+
+    /// <summary>The active system's figures for a troop type.</summary>
+    public TroopTypeRules GetTroopTypeRules(BaseTroopType type) =>
+        (_troopTypes ?? throw new InvalidOperationException(
+            "Troop type figures not loaded — call EnsureLoadedAsync first."))[type];
 
     private async Task ResolveFactionsAsync()
     {
@@ -219,7 +258,7 @@ public class GameDataRepository : IGameDataRepository
             return null;
 
         var (primaryProfile, mountProfile) = UnitConfiguration.ResolveProfiles(entry);
-        var troopType = TroopTypeInfo.Parse(entry.TroopType);
+        var troopType = TroopTypeInfo.Parse(entry.TroopType, GetTroopTypeRules);
         var specialRules = ParsedSpecialRules.Parse(entry.SpecialRules);
 
         var (weaponKeys, armourKeys) = ResolveEquipmentKeys(entry.Equipment);
