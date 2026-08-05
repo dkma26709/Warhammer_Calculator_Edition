@@ -68,9 +68,9 @@ public record ParsedSpecialRules
     public bool ImmunityFlamingAttacks { get; init; }
 
     /// <summary>
-    /// Immunity (Fear), (Terror) or (Psychology) — the unit ignores a Fear-causing enemy's
-    /// Combat Resolution bonus. Fear-causers get this for free; 115 units in the shipped data
-    /// carry it explicitly.
+    /// The unit ignores a Fear-causing enemy's Combat Resolution bonus, whether from
+    /// Immunity (Fear), (Terror) or (Psychology), or from causing Fear or Terror itself —
+    /// the books grant fear-causers the immunity for free.
     /// </summary>
     public bool ImmunityFear { get; init; }
     public bool Minus1ToBeHit { get; init; }
@@ -300,7 +300,7 @@ public record ParsedSpecialRules
             };
         }
 
-        return result with { AllRuleNames = allNames };
+        return ApplyImplicitImmunities(result) with { AllRuleNames = allNames };
     }
 
     private static string Preprocess(string text)
@@ -403,4 +403,13 @@ public record ParsedSpecialRules
 
         return result;
     }
+
+    /// <summary>
+    /// Fold in the immunities the books grant implicitly, so a reader of
+    /// <see cref="ImmunityFear"/> gets the right answer without having to know the rule.
+    /// </summary>
+    private static ParsedSpecialRules ApplyImplicitImmunities(ParsedSpecialRules rules) =>
+        (rules.Fear || rules.Terror) && !rules.ImmunityFear
+            ? rules with { ImmunityFear = true }
+            : rules;
 }

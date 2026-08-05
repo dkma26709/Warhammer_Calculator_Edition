@@ -3,8 +3,8 @@ using Warhammer.Models.Domain;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// Immunity (Psychology) / (Fear) cancels a Fear-causing enemy's Combat Resolution bonus.
-/// It parsed to nothing before, so every unit carrying it conceded the bonus anyway.
+/// Immunity (Psychology), (Fear) and (Terror) all cancel a Fear-causing enemy's Combat
+/// Resolution bonus, and so does causing Fear or Terror yourself.
 /// </summary>
 public class FearImmunityTests
 {

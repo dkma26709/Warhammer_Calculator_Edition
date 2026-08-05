@@ -64,10 +64,10 @@ public record ParsedWeaponRules
             _ => true,
         };
 
-    // The books wrap footnote prose at the column edge, so a phrase the parser looks for
-    // arrives split by a newline ("in turns that the\nmodel charges"). Match on normalised
-    // whitespace — a literal search silently fails and the modifier becomes unconditional,
-    // which is how lances came to grant Mighty Blow on rounds nobody charged.
+    // The books wrap footnote prose at the column edge, so a phrase this parser looks for can
+    // arrive split by a newline ("in turns that the\nmodel charges"). Every search below runs
+    // against whitespace-normalised text: a literal search fails silently, and the failure
+    // mode is a conditional modifier quietly becoming unconditional.
     private static readonly Regex Whitespace = new(@"\s+", RegexOptions.Compiled);
 
     // "gains +2 Initiative", "suffers -2 Initiative", "+1 to its Initiative".
@@ -184,9 +184,21 @@ public record ParsedWeaponRules
             RequiresTwoHands = requiresTwoHands,
             ChargedToFrontInitiativeBonus = chargedBonus,
             InitiativeModCondition = initCondition,
-            MightyBlowCondition = mbHasAsterisk ? ConditionIn(flat) : WeaponCondition.Always,
+            MightyBlowCondition = mbHasAsterisk ? MightyBlowConditionIn(flat) : WeaponCondition.Always,
             MightyBlowExcludesLightTargets = mbExcludesLight,
         };
+    }
+
+    /// <summary>
+    /// The condition governing an asterisked Mighty Blow. The asterisk marks a footnote, so
+    /// read that footnote's own sentences rather than the whole blob — a spear states its
+    /// Initiative timing in one sentence and its Mighty Blow condition in another, and
+    /// scanning everything would let either one answer for the other.
+    /// </summary>
+    private static WeaponCondition MightyBlowConditionIn(string flat)
+    {
+        int footnote = flat.IndexOf('*');
+        return ConditionIn(footnote >= 0 ? flat[footnote..] : flat);
     }
 
     /// <summary>Read a condition out of already-whitespace-normalised footnote prose.</summary>

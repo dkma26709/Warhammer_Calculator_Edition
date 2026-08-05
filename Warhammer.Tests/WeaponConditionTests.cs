@@ -5,33 +5,22 @@ using Warhammer.Services;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// Weapon modifiers that the books gate on a condition, and the shipped weapon tables that
-/// carry them. The conditions live in footnote prose the PDFs wrap mid-phrase, so these
-/// assert against the real data rather than hand-written note strings.
+/// Weapon modifiers that the books gate on a condition. The conditions live in footnote prose
+/// the PDFs wrap mid-phrase, which is what defeated the original parser. The first group feeds
+/// <see cref="ParsedWeaponRules.Parse"/> note strings copied verbatim from the books, so a
+/// wrapping quirk is reproduced exactly; the later theories assert against the shipped tables.
 /// </summary>
 public class WeaponConditionTests
 {
-    private static GameDataRepository RepoFor(string systemKey)
-    {
-        var wwwroot = Path.Combine(TestHelpers.FindProjectRoot(), "wwwroot");
-        var http = new HttpClient(new FileBasedHttpHandler(wwwroot)) { BaseAddress = new Uri("http://localhost/") };
-        var system = new GameSystemService();
-        system.Initialize(systemKey);
-        var coreRules = new CoreRulesService(http, system);
-        var factionData = new FactionDataService(http, system);
-        var repo = new GameDataRepository(coreRules, factionData, system);
-        repo.EnsureLoadedAsync().GetAwaiter().GetResult();
-        return repo;
-    }
 
     // ─── Wrapped footnote prose ────────────────────────────────────
 
     [Fact]
     public void ChargeConditionSurvivesALineBreakMidPhrase()
     {
-        // Verbatim from wap-v2's heavy lance: the phrase the parser looks for is split by the
-        // column wrap. A literal substring search misses it and the modifier silently becomes
-        // unconditional — which is how lances came to hit at charge Strength every round.
+        // Verbatim from wap-v2's heavy lance, wrap included: the phrase the parser looks for is
+        // split across the column break, so a literal substring search misses it and the
+        // modifier falls back to unconditional.
         var rules = ParsedWeaponRules.Parse("+2 Initiative*, Mighty Blow (2)*",
             "*Mounted model only. Only applies in turns that the\nmodel charges, and only against the unit they charged.");
 
@@ -113,11 +102,11 @@ public class WeaponConditionTests
     // ─── The shipped weapon tables ─────────────────────────────────
 
     [Theory]
-    [InlineData("wap-v2")]
-    [InlineData("wap-v3")]
+    [InlineData(GameSystems.WapV2)]
+    [InlineData(GameSystems.WapV3)]
     public void LancesOnlyBiteOnTheChargeInEverySystem(string systemKey)
     {
-        var repo = RepoFor(systemKey);
+        var repo = TestHelpers.RepoFor(systemKey);
 
         foreach (var key in new[] { CloseCombatWeaponKey.LightLance, CloseCombatWeaponKey.HeavyLance })
         {
@@ -131,14 +120,14 @@ public class WeaponConditionTests
     }
 
     [Theory]
-    [InlineData("wap-v2")]
-    [InlineData("wap-v3")]
+    [InlineData(GameSystems.WapV2)]
+    [InlineData(GameSystems.WapV3)]
     public void GreatWeaponsAndPolearmsCarryTheirStrengthBonus(string systemKey)
     {
         // The Strength column reads "As user +1" in v3 and a bare "+1" in v2. Reading only the
         // "As user" leaves the bonus stranded in specialRules where nothing consumes it, and
         // the weapon quietly loses a point of Strength.
-        var repo = RepoFor(systemKey);
+        var repo = TestHelpers.RepoFor(systemKey);
 
         foreach (var key in new[] { CloseCombatWeaponKey.GreatWeapon, CloseCombatWeaponKey.Polearm })
         {
@@ -149,11 +138,11 @@ public class WeaponConditionTests
     }
 
     [Theory]
-    [InlineData("wap-v2")]
-    [InlineData("wap-v3")]
+    [InlineData(GameSystems.WapV2)]
+    [InlineData(GameSystems.WapV3)]
     public void GreatWeaponsStrikeLast(string systemKey)
     {
-        var greatWeapon = RepoFor(systemKey).GetWeapon(CloseCombatWeaponKey.GreatWeapon);
+        var greatWeapon = TestHelpers.RepoFor(systemKey).GetWeapon(CloseCombatWeaponKey.GreatWeapon);
 
         Assert.NotNull(greatWeapon);
         Assert.Equal(-2, greatWeapon.Rules.InitiativeMod);
@@ -161,13 +150,13 @@ public class WeaponConditionTests
     }
 
     [Theory]
-    [InlineData("wap-v2")]
-    [InlineData("wap-v3")]
+    [InlineData(GameSystems.WapV2)]
+    [InlineData(GameSystems.WapV3)]
     public void NoWeaponLeavesAStrayModifierInItsSpecialRules(string systemKey)
     {
         // A signed number at the head of specialRules means a column split went wrong: either
         // it belongs in Strength, or it is a stat modifier the parser should have consumed.
-        var repo = RepoFor(systemKey);
+        var repo = TestHelpers.RepoFor(systemKey);
 
         foreach (var key in Enum.GetValues<CloseCombatWeaponKey>())
         {

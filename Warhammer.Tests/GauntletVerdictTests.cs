@@ -40,8 +40,8 @@ public class GauntletVerdictTests
         var engine = new CombatEngine(TestHelpers.Repo);
 
         // A deeper run draws more dice per iteration, so the shared RNG lands elsewhere and the
-        // figures differ by sampling noise — but only by that. The old outcome-bucket verdict
-        // moved by more than sixty points across this same pair of caps.
+        // figures differ by sampling noise — but only by that. The guard at the end of this
+        // test shows how far the cap-bound reading moves across the same pair of caps.
         var shortRun = new GauntletMatchup(skeletons.ResolvedUnit, skeletons, "vampire-counts", null,
             engine.SimulateMultiRound(saurus, skeletons, Context, maxRounds: 3, iterations: 8000, seed: 5));
         var longRun = new GauntletMatchup(skeletons.ResolvedUnit, skeletons, "vampire-counts", null,
@@ -51,10 +51,18 @@ public class GauntletVerdictTests
         Assert.Equal(shortRun.AvgCombatRes, longRun.AvgCombatRes, 0.2);
         Assert.Equal(shortRun.AvgOpponentCombatRes, longRun.AvgOpponentCombatRes, 0.2);
 
-        double oldShort = shortRun.DecisiveWinPct ?? 0;
-        double oldLong = longRun.DecisiveWinPct ?? 0;
-        Assert.True(oldLong - oldShort > 60,
-            $"the cap-bound reading should still swing wildly ({oldShort:F1}% -> {oldLong:F1}%), "
+        // Non-vacuousness guard: the same matchup, read the old cap-bound way, must still swing
+        // wildly. Otherwise the assertions above would hold for an uninteresting reason.
+        static double DecisiveWin(MultiRoundSimulationResult r) => r.OutcomePcts
+            .Where(kv => kv.Key is CombatOutcome.DefenderWipedOut
+                or CombatOutcome.DefenderBrokeCaught
+                or CombatOutcome.DefenderBrokeEscaped)
+            .Sum(kv => kv.Value);
+
+        double capBoundShort = DecisiveWin(shortRun.MultiRound!);
+        double capBoundLong = DecisiveWin(longRun.MultiRound!);
+        Assert.True(capBoundLong - capBoundShort > 60,
+            $"the cap-bound reading should still swing wildly ({capBoundShort:F1}% -> {capBoundLong:F1}%), "
             + "otherwise this test isn't measuring what it claims");
     }
 
@@ -62,7 +70,7 @@ public class GauntletVerdictTests
     public async Task AGrindThatOutrunsTheCapStillReadsAsAWin()
     {
         // 25 Saurus against 40 Unstable skeletons: ahead on combat resolution in every round,
-        // but too many bodies to clear in three. The outcome buckets call that a draw.
+        // but too many bodies to clear inside three, so the cap expires mid-grind.
         var (saurus, skeletons) = await Matchup();
         var engine = new CombatEngine(TestHelpers.Repo);
 
@@ -74,7 +82,7 @@ public class GauntletVerdictTests
         Assert.True(matchup.WinPct > 90, $"CR win rate was {matchup.WinPct:F1}%");
         Assert.True(matchup.LossPct < 5, $"CR loss rate was {matchup.LossPct:F1}%");
 
-        // The cap-bound outcome the old columns reported, kept but no longer the headline.
+        // Confirms the premise: the matchup really is unresolved when the cap lands.
         Assert.True(result.OutcomePcts.GetValueOrDefault(CombatOutcome.MaxRoundsReached) > 50,
             "the matchup should still be unresolved at the cap — otherwise this test proves nothing");
     }

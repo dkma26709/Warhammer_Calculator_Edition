@@ -7,13 +7,13 @@ namespace Warhammer.Calculator.Models;
 /// Wraps the opponent info and either a single-round or multi-round simulation result.
 /// </summary>
 /// <remarks>
-/// Win/draw/loss here is <b>combat resolution</b>, read from the first round of combat, and
-/// is deliberately independent of the round cap. The multi-round outcome buckets are not
-/// usable for this: a unit that can neither be broken nor wiped out inside the cap — anything
-/// Unstable or Stubborn — lands in <see cref="CombatOutcome.MaxRoundsReached"/> however far
-/// ahead the subject was, so the same matchup swung fifty points of "win rate" on the cap
-/// alone. Round one always runs the full iteration count with both units at full strength
-/// (see the per-round iteration rule), so it needs no active-only denominator.
+/// Win/draw/loss here is <b>combat resolution</b>, read from the first round of combat, and is
+/// deliberately independent of the round cap. The multi-round outcome buckets are not usable
+/// for this: a unit that outlasts the cap lands in
+/// <see cref="CombatOutcome.MaxRoundsReached"/> however far ahead the subject was on the
+/// exchange, which makes the reported win rate a function of the cap rather than the units —
+/// <c>GauntletVerdictTests</c> measures the swing. Round one always runs the full iteration
+/// count with both units at full strength, so this needs no active-only denominator.
 /// The full outcome distribution is still available in the expanded detail panel.
 /// </remarks>
 public record GauntletMatchup(
@@ -46,23 +46,4 @@ public record GauntletMatchup(
     public double AvgWoundsDealt => SingleRound?.AvgAttackerWounds ?? FirstRound?.AvgAttackerWounds ?? 0;
 
     public double AvgWoundsTaken => SingleRound?.AvgDefenderWounds ?? FirstRound?.AvgDefenderWounds ?? 0;
-
-    /// <summary>
-    /// Share of iterations the subject finished the whole engagement — the opponent wiped out
-    /// or run down. Only meaningful for multi-round runs, and cap-dependent by nature, so it
-    /// is reported alongside the CR verdict rather than in place of it.
-    /// </summary>
-    public double? DecisiveWinPct => MultiRound?.OutcomePcts
-        .Where(kv => kv.Key is CombatOutcome.DefenderWipedOut
-            or CombatOutcome.DefenderBrokeCaught
-            or CombatOutcome.DefenderBrokeEscaped)
-        .Sum(kv => kv.Value);
-
-    /// <summary>Share of iterations the subject was wiped out or run down.</summary>
-    public double? DecisiveLossPct => MultiRound?.OutcomePcts
-        .Where(kv => kv.Key is CombatOutcome.AttackerWipedOut
-            or CombatOutcome.AttackerBrokeCaught
-            or CombatOutcome.AttackerBrokeEscaped
-            or CombatOutcome.BothWipedOut)
-        .Sum(kv => kv.Value);
 }
