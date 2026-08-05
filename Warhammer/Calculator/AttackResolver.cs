@@ -89,7 +89,8 @@ public class AttackResolver
 
         int effectiveAttackerI = profile.I ?? 1;
         if (isRider && weaponRules != null)
-            effectiveAttackerI = weaponRules.ApplyToInitiative(effectiveAttackerI, isCharging, isBeingCharged);
+            effectiveAttackerI = weaponRules.ApplyToInitiative(
+                effectiveAttackerI, isCharging, isBeingCharged, context.CombatRound);
         int effectiveDefenderI = cachedEffectiveDefenderI >= 0
             ? cachedEffectiveDefenderI
             : ComputeEffectiveI(defender, context, !isAttackerSide);
@@ -314,7 +315,8 @@ public class AttackResolver
         {
             return resolvedWeapon.Rules.ApplyToInitiative(baseI,
                 context.IsCharging(isAttackerSide),
-                context.IsCharging(!isAttackerSide));
+                context.IsCharging(!isAttackerSide),
+                context.CombatRound);
         }
 
         // Legacy path: lookup by string key
@@ -323,7 +325,8 @@ public class AttackResolver
         {
             return weapon.Rules.ApplyToInitiative(baseI,
                 context.IsCharging(isAttackerSide),
-                context.IsCharging(!isAttackerSide));
+                context.IsCharging(!isAttackerSide),
+                context.CombatRound);
         }
 
         return baseI;
@@ -359,12 +362,8 @@ public class AttackResolver
         int weaponMB = 0;
         if (weaponRules?.MightyBlow != null)
         {
-            bool applyWeaponMB = weaponRules.MightyBlowCondition switch
-            {
-                WeaponCondition.WhenCharging => isCharging,
-                WeaponCondition.WhenBeingCharged => isBeingCharged,
-                _ => true
-            };
+            bool applyWeaponMB = ParsedWeaponRules.Holds(
+                weaponRules.MightyBlowCondition, isCharging, isBeingCharged, combatRound);
 
             if (applyWeaponMB && weaponRules.MightyBlowExcludesLightTargets)
             {

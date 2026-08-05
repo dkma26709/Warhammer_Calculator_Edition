@@ -67,18 +67,15 @@
         var weapon = ResolveWeapon(unit);
 
         // Effective initiative
-        int effectiveI = weapon.Rules.ApplyToInitiative(unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged);
+        int effectiveI = weapon.Rules.ApplyToInitiative(
+            unit.PrimaryProfile.I ?? 1, isCharging, isBeingCharged, context.CombatRound);
 
         // Weapon Mighty Blow
         int weaponMB = 0;
         if (weapon.Rules.MightyBlow != null)
         {
-            bool applyWeaponMB = weapon.Rules.MightyBlowCondition switch
-            {
-                WeaponCondition.WhenCharging => isCharging,
-                WeaponCondition.WhenBeingCharged => isBeingCharged,
-                _ => true
-            };
+            bool applyWeaponMB = ParsedWeaponRules.Holds(
+                weapon.Rules.MightyBlowCondition, isCharging, isBeingCharged, context.CombatRound);
             if (applyWeaponMB)
                 weaponMB = weapon.Rules.MightyBlow.Value;
         }

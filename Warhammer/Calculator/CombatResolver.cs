@@ -256,7 +256,7 @@ public class CombatResolver
         var unitRules = unit.EffectiveSpecialRules;
         int effectiveI = unitRules.Swordmaster
             ? baseI
-            : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged);
+            : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged, context.CombatRound);
 
         int defenderParry = _attackResolver.ComputeDefenderParry(opponent, unit, weapon, weaponRules, context, isAttackerSide);
         int defenderBaseArmour = _attackResolver.ComputeBaseArmour(opponent);
@@ -267,7 +267,8 @@ public class CombatResolver
         if (!opponent.EffectiveSpecialRules.Swordmaster)
         {
             defenderEffI = defWeapon.Rules.ApplyToInitiative(defenderEffI,
-                context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide));
+                context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide),
+                context.CombatRound);
         }
 
         groups.Add(new AttackGroup
@@ -460,7 +461,11 @@ public class CombatResolver
 
         if (causesFear)
         {
-            bool opponentImmune = opponentRules.Fear || opponentRules.Terror;
+            // "If the majority of the models in a unit cause Fear, they also gain the
+            // Immunity (Fear) special rule, and thus the Combat Resolution bonus of their
+            // Fear-causing enemies is ignored for that unit." Immunity (Psychology) grants
+            // the same — it was parsed to nothing before, so 115 units conceded the bonus.
+            bool opponentImmune = opponentRules.Fear || opponentRules.Terror || opponentRules.ImmunityFear;
             if (!opponentImmune)
             {
                 int unitUS = unit.ModelCount * unit.TroopType.UnitStrength;
