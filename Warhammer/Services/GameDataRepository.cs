@@ -219,7 +219,7 @@ public class GameDataRepository : IGameDataRepository
             return null;
 
         var (primaryProfile, mountProfile) = UnitConfiguration.ResolveProfiles(entry);
-        var troopType = TroopTypeInfo.Parse(entry.TroopType);
+        var troopType = TroopTypeInfo.Parse(entry.TroopType, _system.CurrentSystem);
         var specialRules = ParsedSpecialRules.Parse(entry.SpecialRules);
 
         var (weaponKeys, armourKeys) = ResolveEquipmentKeys(entry.Equipment);

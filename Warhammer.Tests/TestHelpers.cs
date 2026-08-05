@@ -84,7 +84,8 @@ public static class TestHelpers
         string? unitSize = "10+",
         string? baseSize = "25x25",
         ProfileEntry? mountProfile = null,
-        List<UnitOption>? options = null)
+        List<UnitOption>? options = null,
+        string? systemKey = null)
     {
         var repo = Repo;
         var primaryProfile = new ProfileEntry
@@ -92,7 +93,7 @@ public static class TestHelpers
             Name = name, M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points
         };
 
-        var parsedTroopType = TroopTypeInfo.Parse(troopType);
+        var parsedTroopType = TroopTypeInfo.Parse(troopType, systemKey);
         var parsedRules = ParsedSpecialRules.Parse(specialRules);
 
         // Resolve equipment

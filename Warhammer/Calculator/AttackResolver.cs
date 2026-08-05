@@ -638,12 +638,9 @@ public class AttackResolver
         if (rules.OgreCharge)
             fromRules = Math.Max(fromRules, unit.ModelsInFrontRank);
 
-        int fromType = unit.TroopType.BaseType switch
-        {
-            BaseTroopType.Cavalry => unit.ModelsInFrontRank,
-            BaseTroopType.MonstrousCavalry => unit.ModelsInFrontRank,
-            _ => 0
-        };
+        // wap-v2 gives Cavalry and Monstrous Cavalry Impact Hits (1) from the troop type;
+        // wap-v3 removed it, so a v3 cavalry unit only has impact hits if its own entry says so.
+        int fromType = unit.TroopType.InherentImpactHits * unit.ModelsInFrontRank;
 
         return Math.Max(fromRules, fromType);
     }

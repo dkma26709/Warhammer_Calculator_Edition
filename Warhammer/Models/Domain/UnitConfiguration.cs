@@ -563,7 +563,13 @@ public class UnitConfiguration
         int maxSupportRanks = 1 + extraRanks;
         int actualSupportRanks = Math.Min(supportingRanks, maxSupportRanks);
 
-        int maxSupportAttacks = lanceCharging ? 3 : TroopType.MaxSupportingAttacks;
+        // A model with no mount profile is the book's "without a split profile" case, which
+        // carries its own figure rather than rider-plus-mount.
+        bool splitProfile = MountProfile != null && TroopType.HasSplitProfile;
+        int typeSupportAttacks = splitProfile
+            ? TroopType.MaxSupportingAttacks
+            : TroopType.NonSplitSupportingAttacks;
+        int maxSupportAttacks = lanceCharging ? 3 : typeSupportAttacks;
         int supportAttacksPerModel = Math.Min(attacks, maxSupportAttacks);
         int supportingModels = actualSupportRanks * Frontage;
         int supportAttacks = supportingModels * supportAttacksPerModel;
@@ -584,12 +590,8 @@ public class UnitConfiguration
         int supportingRanks = Math.Max(0, Ranks - 1);
         int actualSupportRanks = Math.Min(supportingRanks, 1);
 
-        int mountSupportPerModel = TroopType.BaseType switch
-        {
-            BaseTroopType.Cavalry => 1,
-            BaseTroopType.MonstrousCavalry => 2,
-            _ => 0
-        };
+        // Zero in wap-v3, which bars mounts from supporting attacks entirely.
+        int mountSupportPerModel = Math.Min(mountA, TroopType.MountSupportingAttacks);
         int supportModels = actualSupportRanks * Frontage;
         int supportAttacks = supportModels * mountSupportPerModel;
 

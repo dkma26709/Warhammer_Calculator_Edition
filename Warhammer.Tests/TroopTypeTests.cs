@@ -55,7 +55,11 @@ public class TroopTypeTests
         Assert.Equal(BaseTroopType.MonstrousCavalry, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
-        Assert.Equal(2, info.MaxSupportingAttacks);
+        // "one supporting attack from the rider, and two from the mount" — both books.
+        // This asserted 2 for the rider, which with the mount's 2 gave four attacks, not three.
+        Assert.Equal(1, info.MaxSupportingAttacks);
+        Assert.Equal(2, info.MountSupportingAttacks);
+        Assert.Equal(3, info.NonSplitSupportingAttacks);
         Assert.True(info.HasSplitProfile);
     }
 

@@ -9,6 +9,8 @@ public sealed record GameSystem(string Key, string DisplayName, bool Enabled);
 public static class GameSystems
 {
     public const string Default = "wap-v2";
+    public const string WapV2 = "wap-v2";
+    public const string WapV3 = "wap-v3";
 
     public static readonly IReadOnlyList<GameSystem> All =
     [
