@@ -66,6 +66,13 @@ public record ParsedSpecialRules
     public bool ImmunityKillingBlow { get; init; }
     public bool ImmunityPoisonedAttacks { get; init; }
     public bool ImmunityFlamingAttacks { get; init; }
+
+    /// <summary>
+    /// Immunity (Fear), (Terror) or (Psychology) — the unit ignores a Fear-causing enemy's
+    /// Combat Resolution bonus. Fear-causers get this for free; 115 units in the shipped data
+    /// carry it explicitly.
+    /// </summary>
+    public bool ImmunityFear { get; init; }
     public bool Minus1ToBeHit { get; init; }
     public bool Minus1WSToAttackers { get; init; }
     public bool RerollSuccessfulWoundsAgainst { get; init; }
@@ -129,6 +136,7 @@ public record ParsedSpecialRules
             ImmunityKillingBlow = ImmunityKillingBlow || other.ImmunityKillingBlow,
             ImmunityPoisonedAttacks = ImmunityPoisonedAttacks || other.ImmunityPoisonedAttacks,
             ImmunityFlamingAttacks = ImmunityFlamingAttacks || other.ImmunityFlamingAttacks,
+            ImmunityFear = ImmunityFear || other.ImmunityFear,
             Minus1ToBeHit = Minus1ToBeHit || other.Minus1ToBeHit,
             Minus1WSToAttackers = Minus1WSToAttackers || other.Minus1WSToAttackers,
             RerollSuccessfulWoundsAgainst = RerollSuccessfulWoundsAgainst || other.RerollSuccessfulWoundsAgainst,
@@ -376,7 +384,9 @@ public record ParsedSpecialRules
     {
         if (string.IsNullOrWhiteSpace(param)) return result;
 
-        var targets = param.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        // "Immunity (Fear/Terror)" uses a slash where the rest of the book uses commas.
+        var targets = param.Split([',', '/'],
+            StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         foreach (var target in targets)
         {
             result = target.ToLowerInvariant() switch
@@ -384,7 +394,9 @@ public record ParsedSpecialRules
                 "killing blow" => result with { ImmunityKillingBlow = true },
                 "poisoned attacks" => result with { ImmunityPoisonedAttacks = true },
                 "flaming attacks" => result with { ImmunityFlamingAttacks = true },
-                // Psychology immunities — no combat effect, skip
+                // Immunity (Psychology) covers Panic, Fear and Terror. Only the Fear/Terror
+                // half is combat-relevant: it cancels a Fear-causing enemy's CR bonus.
+                "fear" or "terror" or "psychology" => result with { ImmunityFear = true },
                 _ => result
             };
         }
