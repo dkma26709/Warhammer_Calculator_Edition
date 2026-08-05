@@ -89,10 +89,16 @@ public readonly record struct RollRequirement
     /// requirement always succeeds; a compound requirement needs its 6 and then a confirming D6.
     /// </summary>
     /// <returns>
-    /// Whether it succeeded, and the standing value of the <em>first</em> die — which is what
-    /// natural-6 effects such as Killing Blow key on. Callers re-roll by calling again, so those
-    /// effects see the roll that stands rather than the one originally thrown.
+    /// Whether it succeeded, and the value of the die that decided it. Any effect depending on
+    /// a roll reads the result after re-rolls, never the die originally thrown; callers re-roll
+    /// by calling this again and using the value it returns.
     /// </returns>
+    /// <remarks>
+    /// For a compound requirement the reported die is the first one, since that is the roll the
+    /// chart names. Whether an effect keyed on a natural 6 should fire when the first die is a 6
+    /// but the confirming die fails is not stated in the rulebook — the engine only evaluates
+    /// such effects on a successful wound, so no Killing Blow lands without a wound.
+    /// </remarks>
     public (bool Success, int Roll) Roll(Random rng)
     {
         if (FirstRoll is not { } needed) return (false, 0);

@@ -416,6 +416,8 @@ public class AttackResolver
             if (hit)
             {
                 hits++;
+                // wasNatural6 is refreshed in every re-roll branch above: the effect depends
+                // on the roll that stands, not the one originally thrown.
                 if (predatoryFighter && wasNatural6)
                     bonusAttacks++;
             }
@@ -481,6 +483,8 @@ public class AttackResolver
 
             totalWounds++;
 
+            // Any effect that depends on a roll reads the result after re-rolls, never the
+            // die originally thrown — so `roll` must stay the reassigned value above.
             bool isKB = hasKB && roll == 6;
             bool isHKB = hasHKB && roll == 6;
 
