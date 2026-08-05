@@ -131,7 +131,128 @@
   },
   "toWound": {
     "description": "Roll a D6 for each hit. Compare Strength of attacker with Toughness of defender. Natural 1 always fails, natural 6 always succeeds.",
-    "table": null,
+    "table": [
+      [
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4
+      ]
+    ],
     "tableAxes": {
       "rows": "Attacker's Strength (1-10)",
       "columns": "Target's Toughness (1-10)"
@@ -155,7 +276,18 @@
   },
   "armourSaves": {
     "description": "Armour saves are modified by the Strength of the attack. Strength 4+ inflicts penalties.",
-    "strengthModifiers": {}
+    "strengthModifiers": {
+      "S1": 0,
+      "S2": 0,
+      "S3": 0,
+      "S4": -1,
+      "S5": -2,
+      "S6": -3,
+      "S7": -4,
+      "S8": -5,
+      "S9": -6,
+      "S10": -7
+    }
   },
   "weapons": {
     "closeCombat": {

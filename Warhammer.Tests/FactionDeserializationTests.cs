@@ -46,6 +46,44 @@ public class FactionDeserializationTests
         Assert.NotEmpty(data.Weapons.CloseCombat);
     }
 
+    /// <summary>
+    /// Every lookup the combat engine reads on a hot path, asserted per system. wap-v3 shipped
+    /// with a null toWound table and an empty strengthModifiers map, which deserialized fine
+    /// and only surfaced as a NullReferenceException mid-render.
+    /// </summary>
+    [Theory]
+    [MemberData(nameof(EnabledSystems))]
+    public void CoreRules_CarryEveryLookupTheEngineNeeds(string systemKey)
+    {
+        var json = File.ReadAllText(Path.Combine(SystemDataDir(systemKey), "core-rules.json"));
+        var data = JsonSerializer.Deserialize<CoreRulesData>(json, JsonOptions)!;
+
+        AssertSquareTable(data.CloseCombatToHit.Table, $"{systemKey} closeCombatToHit.table");
+        AssertSquareTable(data.ToWound.Table, $"{systemKey} toWound.table");
+
+        Assert.NotNull(data.ArmourSaves.StrengthModifiers);
+        for (int strength = 1; strength <= 10; strength++)
+        {
+            Assert.True(data.ArmourSaves.StrengthModifiers.ContainsKey($"S{strength}"),
+                $"{systemKey} armourSaves.strengthModifiers has no S{strength} — " +
+                "high-strength attacks would silently ignore armour penalties");
+        }
+
+        Assert.NotEmpty(data.Armour);
+    }
+
+    private static void AssertSquareTable(int[][] table, string what)
+    {
+        Assert.NotNull(table);
+        Assert.Equal(10, table.Length);
+        foreach (var row in table)
+        {
+            Assert.NotNull(row);
+            Assert.Equal(10, row.Length);
+        }
+        Assert.All(table.SelectMany(r => r), score => Assert.InRange(score, 2, 6));
+    }
+
     [Theory]
     [MemberData(nameof(SystemFactions))]
     public void FactionUnits_Deserialize(string systemKey, string factionKey)
