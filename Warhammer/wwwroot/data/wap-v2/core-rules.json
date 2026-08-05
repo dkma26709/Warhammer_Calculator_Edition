@@ -428,8 +428,8 @@
       "throwingAxes": {
         "name": "THROWING AXES",
         "range": "6\"",
-        "strength": "As user",
-        "specialRules": "+1 Quick to Fire"
+        "strength": "+1",
+        "specialRules": "Quick to Fire"
       },
       "sling": {
         "name": "SLING",

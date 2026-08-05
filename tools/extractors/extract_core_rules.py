@@ -335,6 +335,13 @@ def extract_weapons_and_armour(pdf_path, start_page, end_page):
     return {"closeCombat": close_combat, "missile": missile}, armour
 
 
+# A signed number straight after "As user" is the Strength column's bonus — unless the word
+# after it names a stat, in which case the whole thing is a special rule ("+1 Initiative").
+STRENGTH_COLUMN_BONUS = re.compile(
+    rf'([+{DASHES}]\d+)(?!\s*(?:Initiative|Attacks?|Strength|Movement|To\s+Hit|To\s+Wound)\b)'
+)
+
+
 def parse_weapon_profile(name, body):
     """Parse a weapon profile body text into a structured dict."""
     lines = body.split('\n')
@@ -404,8 +411,17 @@ def parse_weapon_profile(name, body):
 
     # Strength
     if rest.lower().startswith('as user'):
-        weapon['strength'] = 'As user'
         rest = rest[7:].strip()
+        # The Strength column may read "As user +1" (v3's great weapon and polearm, v2's
+        # throwing axes) where v2's close-combat entries wrote a bare "+1". Without this the
+        # bonus leaks into specialRules, where nothing reads it — the weapon silently loses a
+        # point of Strength. "+1 Initiative"/"+1 Attack" are special rules, not column values.
+        bonus = STRENGTH_COLUMN_BONUS.match(rest)
+        if bonus:
+            weapon['strength'] = bonus.group(1)
+            rest = rest[bonus.end():].strip()
+        else:
+            weapon['strength'] = 'As user'
     else:
         s_match = re.match(r'([+\-]?\d+)\s*', rest)
         if s_match:
