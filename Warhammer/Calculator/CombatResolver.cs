@@ -26,6 +26,28 @@ public class CombatResolver
     }
 
     /// <summary>
+    /// Attack groups for a multi-round combat, one set per distinct round context.
+    /// </summary>
+    /// <remarks>
+    /// A group caches values that depend on the round and on who charged — strike order, the
+    /// defender's effective Initiative, and the parry — so a set built for the charge round
+    /// cannot be reused once the charge has lapsed or a first-round-only modifier has expired.
+    /// Two sets cover any combat: every round after the first is resolved with the same
+    /// context (nobody charging, round greater than one) and no weapon condition tells round
+    /// two apart from round five.
+    /// </remarks>
+    public RoundGroupSets PrepareRoundGroups(
+        UnitConfiguration attacker, UnitConfiguration defender, CombatContext context, int maxRounds)
+    {
+        var opening = BuildAttackGroups(attacker, defender, context);
+        if (maxRounds <= 1)
+            return new RoundGroupSets(opening, opening);
+
+        var laterContext = context with { CombatRound = 2, Charge = ChargeState.Neither };
+        return new RoundGroupSets(opening, BuildAttackGroups(attacker, defender, laterContext));
+    }
+
+    /// <summary>
     /// Resolve a single combat round. Creates internal casualty state and restores
     /// ModelCount after the round (safe for repeated single-round iterations).
     /// </summary>
@@ -463,10 +485,9 @@ public class CombatResolver
         {
             // "If the majority of the models in a unit cause Fear, they also gain the
             // Immunity (Fear) special rule, and thus the Combat Resolution bonus of their
-            // Fear-causing enemies is ignored for that unit." Immunity (Psychology) grants
-            // the same — it was parsed to nothing before, so 115 units conceded the bonus.
-            bool opponentImmune = opponentRules.Fear || opponentRules.Terror || opponentRules.ImmunityFear;
-            if (!opponentImmune)
+            // Fear-causing enemies is ignored for that unit." ImmunityFear already covers
+            // both routes to that: the rule stated on the entry, and causing Fear itself.
+            if (!opponentRules.ImmunityFear)
             {
                 int unitUS = unit.ModelCount * unit.TroopType.UnitStrength;
                 int oppUS = opponent.ModelCount * opponent.TroopType.UnitStrength;
@@ -485,6 +506,15 @@ public class CombatResolver
     }
 
     // ─── Types ─────────────────────────────────────────────────────
+
+    /// <summary>
+    /// The attack groups for the charge round and for every round after it.
+    /// </summary>
+    public sealed record RoundGroupSets(List<AttackGroup> Opening, List<AttackGroup> Later)
+    {
+        /// <summary>The groups to resolve <paramref name="round"/> with.</summary>
+        public List<AttackGroup> For(int round) => round <= 1 ? Opening : Later;
+    }
 
     public class AttackGroup
     {
