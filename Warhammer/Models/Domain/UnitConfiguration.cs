@@ -289,8 +289,7 @@ public class UnitConfiguration
         if (TroopType.IntrinsicArmourSave.HasValue)
             totalModifier += 7 - TroopType.IntrinsicArmourSave.Value;
 
-        bool hasConventionalArmour = effectiveArmour
-            .Any(k => k is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour);
+        bool hasConventionalArmour = effectiveArmour.Any(IsBodyArmour);
 
         if (rules.ChaosArmour && hasConventionalArmour)
             totalModifier += 1;
@@ -327,9 +326,41 @@ public class UnitConfiguration
         {
             var armour = new List<ArmourKey>(BaseArmourKeys);
             ApplyArmourUpgrades(armour);
+            KeepBestBodyArmour(armour);
             return armour;
         }
     }
+
+    /// <summary>True for the mutually exclusive body armour suits.</summary>
+    public static bool IsBodyArmour(ArmourKey key) =>
+        key is ArmourKey.LightArmour or ArmourKey.MediumArmour or ArmourKey.HeavyArmour;
+
+    /// <summary>
+    /// A model wears one suit of body armour: light, medium and heavy are alternatives, so
+    /// taking heavy armour over a medium-armoured base replaces it rather than adding to it.
+    /// Shields, bucklers and barding are separate pieces and keep stacking.
+    /// </summary>
+    /// <remarks>
+    /// Applied here rather than in the upgrade path so it also covers extracted equipment
+    /// strings that list two suits at once. An explicit "replace" option removes the replaced
+    /// suit before this runs, so a deliberate downgrade still works.
+    /// </remarks>
+    private static void KeepBestBodyArmour(List<ArmourKey> keys)
+    {
+        var worn = keys.Where(IsBodyArmour).ToList();
+        if (worn.Count <= 1) return;
+
+        var best = worn.OrderByDescending(BodyArmourRank).First();
+        keys.RemoveAll(k => IsBodyArmour(k) && k != best);
+    }
+
+    private static int BodyArmourRank(ArmourKey key) => key switch
+    {
+        ArmourKey.HeavyArmour => 3,
+        ArmourKey.MediumArmour => 2,
+        ArmourKey.LightArmour => 1,
+        _ => 0,
+    };
 
     private void ApplyWeaponUpgrades(List<CloseCombatWeaponKey> keys)
     {
