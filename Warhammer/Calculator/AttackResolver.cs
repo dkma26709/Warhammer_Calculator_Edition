@@ -37,7 +37,7 @@ public class AttackResolver
         bool isRider = !isMountAttack;
         var aggMod = isRider ? attacker.AggregateModifier : null;
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
         bool isFirstRound = context.CombatRound == 1;
 
         var weaponRules = isRider ? cachedWeaponRules : null;
@@ -288,7 +288,7 @@ public class AttackResolver
         bool isAttackerSide)
     {
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
         var profile = attacker.PrimaryProfile;
         int effectiveStrength = ComputeEffectiveStrength(
             attacker, defender, attackerWeapon, attackerWeaponRules, profile,

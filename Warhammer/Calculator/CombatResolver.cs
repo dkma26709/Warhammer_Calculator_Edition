@@ -92,25 +92,34 @@ public class CombatResolver
         int attackerWoundsDealt = 0;
         int defenderWoundsDealt = 0;
 
-        // Phase 1: Impact Hits (charge turn only)
-        // Casualties from impact hits reduce the target's model count before melee.
-        if (context.Charge == ChargeState.AttackerCharged)
+        // Phase 1: Impact Hits, from whichever side charged. On a counter-charge both sides
+        // deliver them, and they land together — one side's casualties must not thin the
+        // other's impact hits, so both are rolled before either is applied.
+        bool attackerCharging = context.IsCharging(isAttackerSide: true);
+        bool defenderCharging = context.IsCharging(isAttackerSide: false);
+
+        if (attackerCharging || defenderCharging)
         {
-            int targetBaseArmour = _attackResolver.ComputeBaseArmour(defender);
-            int impactWounds = _attackResolver.ResolveImpactHits(attacker, defender, context, rng, targetBaseArmour);
-            int capped = Math.Min(impactWounds, defenderState.TotalRemainingHP);
-            defenderState.ApplyCasualties(capped);
-            attackerWoundsDealt += capped;
-            defender.ModelCount = defenderState.CurrentModelCount;
-        }
-        else if (context.Charge == ChargeState.DefenderCharged)
-        {
-            int targetBaseArmour = _attackResolver.ComputeBaseArmour(attacker);
-            int impactWounds = _attackResolver.ResolveImpactHits(defender, attacker, context, rng, targetBaseArmour);
-            int capped = Math.Min(impactWounds, attackerState.TotalRemainingHP);
-            attackerState.ApplyCasualties(capped);
-            defenderWoundsDealt += capped;
+            int fromAttacker = attackerCharging
+                ? _attackResolver.ResolveImpactHits(attacker, defender, context, rng,
+                    _attackResolver.ComputeBaseArmour(defender))
+                : 0;
+            int fromDefender = defenderCharging
+                ? _attackResolver.ResolveImpactHits(defender, attacker, context, rng,
+                    _attackResolver.ComputeBaseArmour(attacker))
+                : 0;
+
+            int cappedFromAttacker = Math.Min(fromAttacker, defenderState.TotalRemainingHP);
+            int cappedFromDefender = Math.Min(fromDefender, attackerState.TotalRemainingHP);
+
+            defenderState.ApplyCasualties(cappedFromAttacker);
+            attackerState.ApplyCasualties(cappedFromDefender);
+
+            attackerWoundsDealt += cappedFromAttacker;
+            defenderWoundsDealt += cappedFromDefender;
+
             attacker.ModelCount = attackerState.CurrentModelCount;
+            defender.ModelCount = defenderState.CurrentModelCount;
         }
 
         // Phase 2-3: Melee attacks in strike order (groups are pre-sorted by Priority desc).
@@ -273,7 +282,7 @@ public class CombatResolver
         var weaponRules = weapon.Rules;
 
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
         int baseI = unit.PrimaryProfile.I ?? 1;
         var unitRules = unit.EffectiveSpecialRules;
         int effectiveI = unitRules.Swordmaster

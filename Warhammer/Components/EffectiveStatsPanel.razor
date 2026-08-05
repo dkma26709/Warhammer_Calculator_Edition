@@ -61,7 +61,7 @@
     {
         var context = new CombatContext { Charge = ChargeState, CombatRound = 1 };
         bool isCharging = context.IsCharging(isAttackerSide);
-        bool isBeingCharged = context.IsCharging(!isAttackerSide);
+        bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
 
         // Weapon and weapon rules
         var weapon = ResolveWeapon(unit);
@@ -97,8 +97,10 @@
 
         // Armour save (this unit's save vs opponent's attacks)
         var opponentWeapon = ResolveWeapon(opponent);
-        bool opponentIsCharging = isBeingCharged;
-        bool opponentIsBeingCharged = isCharging;
+        // Derive the opponent's flags from the context rather than mirroring this unit's — with
+        // both sides charging neither is the negation of the other.
+        bool opponentIsCharging = context.IsCharging(!isAttackerSide);
+        bool opponentIsBeingCharged = context.IsHoldingAgainstCharge(!isAttackerSide);
         int opponentWeaponMB = 0;
         if (opponentWeapon.Rules.MightyBlow != null)
         {
