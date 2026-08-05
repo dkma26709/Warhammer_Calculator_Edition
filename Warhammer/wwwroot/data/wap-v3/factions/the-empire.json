@@ -1,0 +1,5735 @@
+{
+  "factionName": "The Empire",
+  "units": [
+    {
+      "name": "General",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "General",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 95
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Heavy lance",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "pistol",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "longbow",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "crossbow",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "repeater pistol",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "repeater handgun",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "heavy armour",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Pegasus",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Griffon (General only)",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Imperial Griffon (General only)",
+              "points": 175,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Captain may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Captain may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Captain may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "General may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A General may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the",
+      "specialRuleDescriptions": [
+        "Cold-blooded special rule when taking Break tests."
+      ],
+      "upgrades": null,
+      "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 95
+    },
+    {
+      "name": "Captain",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Captain",
+          "M": 4,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 5,
+          "A": 3,
+          "Ld": 8,
+          "points": 55
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "spear",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "light lance",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Heavy lance",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "pistol",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "longbow",
+              "points": 6,
+              "perModel": false
+            },
+            {
+              "name": "crossbow",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "repeater pistol",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "repeater handgun",
+              "points": 9,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "heavy armour",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Pegasus",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Griffon (General only)",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Imperial Griffon (General only)",
+              "points": 175,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Captain may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Captain may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Captain may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "General may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A General may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the",
+      "specialRuleDescriptions": [
+        "Cold-blooded special rule when taking Break tests."
+      ],
+      "upgrades": null,
+      "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 55
+    },
+    {
+      "name": "Battle Wizard Lord",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Battle Wizard Lord",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 160
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": "A Battle Wizard is a Level 1 Wizard. A Battle Wizard Lord is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional Wizard Level",
+              "points": 35,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional Wizard Level +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Pegasus",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Luminark of Hysh (Light Battle Wizard Lord only, replacing one of the crew)",
+              "points": 120,
+              "perModel": false
+            },
+            {
+              "name": "Celestial Hurricanum (Heavens Battle Wizard Lord only, replacing one of the crew)",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Griffon (Beast Battle Wizard Lord only)",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Imperial Griffon (Beast Battle Wizard Lord only)",
+              "points": 175,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Battle Wizard may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Battle Wizard may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Battle Wizard Lord may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A Battle Wizard Lord may take Magic Items up to a total of 100 points CHARACTERS"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 160
+    },
+    {
+      "name": "Battle Wizard",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Battle Wizard",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 2,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 65
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": "A Battle Wizard is a Level 1 Wizard. A Battle Wizard Lord is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional Wizard Level",
+              "points": 35,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional Wizard Level +35 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Pegasus",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Luminark of Hysh (Light Battle Wizard Lord only, replacing one of the crew)",
+              "points": 120,
+              "perModel": false
+            },
+            {
+              "name": "Celestial Hurricanum (Heavens Battle Wizard Lord only, replacing one of the crew)",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Griffon (Beast Battle Wizard Lord only)",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Imperial Griffon (Beast Battle Wizard Lord only)",
+              "points": 175,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Battle Wizard may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Battle Wizard may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Battle Wizard Lord may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A Battle Wizard Lord may take Magic Items up to a total of 100 points CHARACTERS"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 65
+    },
+    {
+      "name": "Grand Master",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Grand Master",
+          "M": 4,
+          "WS": 6,
+          "BS": 6,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 110
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Cavalry hammer",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Heavy lance",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May take heavy armour +18 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Demigryph",
+              "points": 40,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Knightly Order",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to a Knightly Order no points limit"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Chapter Master may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Chapter Master may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Chapter Master may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Grand Master may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A Grand Master may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Immunity (Psychology)",
+      "specialRuleDescriptions": [
+        "Master of Battle: You must include at least one unit of Knights with the same Troop Type if your army includes a character with this special rule. The character must join one of these units and may never leave it. If a character with this special rule joins a unit of Knights, Foot Knights or Demigryph Knights, the unit gains the Immunity (Psychology) special rule. In addition, for every character with this special rule that is included in your army, you may take one unit of Knights or Foot Knights as a Core Unit instead of a Special Unit."
+      ],
+      "upgrades": null,
+      "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 110
+    },
+    {
+      "name": "Chapter Master",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Chapter Master",
+          "M": 4,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 5,
+          "A": 3,
+          "Ld": 8,
+          "points": 70
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "Cavalry hammer",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "flail",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Heavy lance",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "polearm",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "heavy armour",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May take heavy armour +18 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Demigryph",
+              "points": 40,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Knightly Order",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to a Knightly Order no points limit"
+        },
+        {
+          "type": "battle_standard",
+          "points": 25,
+          "raw": "One Chapter Master may carry the Battle Standard +25 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Chapter Master may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Chapter Master may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Grand Master may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A Grand Master may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Immunity (Psychology)",
+      "specialRuleDescriptions": [
+        "Master of Battle: You must include at least one unit of Knights with the same Troop Type if your army includes a character with this special rule. The character must join one of these units and may never leave it. If a character with this special rule joins a unit of Knights, Foot Knights or Demigryph Knights, the unit gains the Immunity (Psychology) special rule. In addition, for every character with this special rule that is included in your army, you may take one unit of Knights or Foot Knights as a Core Unit instead of a Special Unit."
+      ],
+      "upgrades": null,
+      "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 70
+    },
+    {
+      "name": "Arch Lector",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Arch Lector",
+          "M": 4,
+          "WS": 5,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 5,
+          "A": 3,
+          "Ld": 9,
+          "points": 130
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "heavy armour",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "War Altar of Sigmar (Arch Lector only)",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Warrior Priest may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Warrior Priest may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Arch Lector may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "An Arch Lector may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Magical Attacks, Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Battle Prayers of Sigmar: A model with this special rule knows the three Battle Prayers listed below. Unless fleeing, they may attempt to use one at the start of each of your turns by taking a Leadership test on their own unmodified Leadership. If passed, the prayer is answered and takes immediate effect. A friendly unit can only be under the effect of one Battle Prayer at a time. - Hammer of Sigmar: The model and any unit they are with re-roll failed To Wound rolls in close combat until the start of your next turn. - Shield of Faith: The model and any unit they are with gain the Magical Ward (5+) special rule in close combat until the start of your next turn. - Soulfire: The model and any unit they are with gain the Flaming and Magical Attacks special rules until the start of your next turn. In addition, when cast, all enemy models in base contact with the Warrior Priest suffer a Strength 4 Hit with the Magical Attacks special rule. This is increased to Strength 5 for Daemons, Undead and Vampires.",
+        "Righteous Fury: The model and any unit they are currently in have the Hatred special rule."
+      ],
+      "upgrades": null,
+      "notes": "• You may not have more than 2 Arch Lectors in your army.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 130
+    },
+    {
+      "name": "Warrior Priest",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Warrior Priest",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 90
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            },
+            {
+              "name": "medium armour",
+              "points": 9,
+              "perModel": false
+            },
+            {
+              "name": "heavy armour",
+              "points": 18,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "War Altar of Sigmar (Arch Lector only)",
+              "points": 150,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Warrior Priest may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Warrior Priest may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Arch Lector may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "An Arch Lector may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Magical Attacks, Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Battle Prayers of Sigmar: A model with this special rule knows the three Battle Prayers listed below. Unless fleeing, they may attempt to use one at the start of each of your turns by taking a Leadership test on their own unmodified Leadership. If passed, the prayer is answered and takes immediate effect. A friendly unit can only be under the effect of one Battle Prayer at a time. - Hammer of Sigmar: The model and any unit they are with re-roll failed To Wound rolls in close combat until the start of your next turn. - Shield of Faith: The model and any unit they are with gain the Magical Ward (5+) special rule in close combat until the start of your next turn. - Soulfire: The model and any unit they are with gain the Flaming and Magical Attacks special rules until the start of your next turn. In addition, when cast, all enemy models in base contact with the Warrior Priest suffer a Strength 4 Hit with the Magical Attacks special rule. This is increased to Strength 5 for Daemons, Undead and Vampires.",
+        "Righteous Fury: The model and any unit they are currently in have the Hatred special rule."
+      ],
+      "upgrades": null,
+      "notes": "• You may not have more than 2 Arch Lectors in your army.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 90
+    },
+    {
+      "name": "Witch Hunter General",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Witch Hunter General",
+          "M": 4,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 5,
+          "A": 3,
+          "Ld": 9,
+          "points": 80
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, pistol",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "brace of pistols",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a brace of pistols +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "crossbow",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 7,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15
+            }
+          ],
+          "raw": "May be mounted on a Warhorse +15 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Witch Hunter Captain may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Witch Hunter Captain may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Witch Hunter General may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A Witch Hunter General may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Hatred (Chaos, Undead, Wizards), Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Accusation: After deployment, but before the first turn begins, select a single model in your opponent's army. The Witch Hunter may re-roll all failed To Hit rolls against this model. Every hit they inflict on that model with close combat or shooting attacks also has the Killing Blow special rule. Finally, a Witch Hunter may also choose to shoot at the primary quarry as if they had the Sniper special rule.",
+        "Grim Resolve: Witch Hunters, and any unit they are in, have the Immunity (Fear) special rule.",
+        "Tools of Judgement: When attacking Daemons, Undead, Vampires or Wizards in close combat, a Witch Hunter has the Magical Attacks special rule and re-rolls failed rolls To Wound.",
+        "Witch Hunter Retinue: For every Witch Hunter General in your army, you may upgrade one unit of Free Company Militia to a Witch Hunter Retinue for +1 point per model. The unit gains +1 Leadership, as well as the Hatred (Chaos, Undead, Wizards) and Tools of Judgement special rules."
+      ],
+      "upgrades": null,
+      "notes": "• You may not have more than 3 Witch Hunter Generals in your army.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 80
+    },
+    {
+      "name": "Witch Hunter Captain",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Witch Hunter Captain",
+          "M": 4,
+          "WS": 4,
+          "BS": 4,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 35
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, pistol",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "great weapon",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "brace of pistols",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a brace of pistols +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "crossbow",
+              "points": 7,
+              "perModel": false
+            },
+            {
+              "name": "handgun",
+              "points": 7,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15
+            }
+          ],
+          "raw": "May be mounted on a Warhorse +15 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Witch Hunter Captain may take Magic Items up to a total of",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "A Witch Hunter Captain may take Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Witch Hunter General may take Magic Items up to a total of",
+              "points": 100,
+              "perModel": false
+            }
+          ],
+          "raw": "A Witch Hunter General may take Magic Items up to a total of 100 points"
+        }
+      ],
+      "specialRules": "Hatred (Chaos, Undead, Wizards), Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Accusation: After deployment, but before the first turn begins, select a single model in your opponent's army. The Witch Hunter may re-roll all failed To Hit rolls against this model. Every hit they inflict on that model with close combat or shooting attacks also has the Killing Blow special rule. Finally, a Witch Hunter may also choose to shoot at the primary quarry as if they had the Sniper special rule.",
+        "Grim Resolve: Witch Hunters, and any unit they are in, have the Immunity (Fear) special rule.",
+        "Tools of Judgement: When attacking Daemons, Undead, Vampires or Wizards in close combat, a Witch Hunter has the Magical Attacks special rule and re-rolls failed rolls To Wound.",
+        "Witch Hunter Retinue: For every Witch Hunter General in your army, you may upgrade one unit of Free Company Militia to a Witch Hunter Retinue for +1 point per model. The unit gains +1 Leadership, as well as the Hatred (Chaos, Undead, Wizards) and Tools of Judgement special rules."
+      ],
+      "upgrades": null,
+      "notes": "• You may not have more than 3 Witch Hunter Generals in your army.\nCHARACTERS",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 35
+    },
+    {
+      "name": "Master Engineer",
+      "category": "Characters",
+      "profiles": [
+        {
+          "name": "Master Engineer",
+          "M": 4,
+          "WS": 3,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 2,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 45
+        }
+      ],
+      "troopType": "Infantry (Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon\n• Pigeon Bombs: Pigeon bombs have the following profile:\nRange: Strength: Special Rules:\n24\" 4 Armour Piercing (1), Slow to Fire\nThis item can be used in addition to any other missile weapon the Master Engineer might have. When a Master\nEngineer declares they will be using Pigeon Bombs, nominate any enemy model within Line of Sight, roll a\nD6 and consult the following chart:\nD6 Result\n1 Oops! Centre the small round template over the Master Engineer and resolve the explosion.\n2-4 Boom! The Pigeon Bomb has no effect this turn.\n5-6 Huzzah! Centre the small round template over the target model and resolve the explosion.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "repeater pistol",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "repeater handgun",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "grenade launching blunderbuss",
+              "points": 8,
+              "perModel": false
+            },
+            {
+              "name": "hochland long rifle",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "pigeon bombs",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May take pigeon bombs +15 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +3 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Mechanical Steed",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on a Mechanical Steed +20 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
+      ],
+      "specialRules": "• Master of Ballistics: One war machine that is within 3\" of a Master Engineer can use his Ballistic Skill or re-",
+      "specialRuleDescriptions": [
+        "roll one artillery dice or scatter dice during each Shooting phase. This cannot be the artillery dice that determines the distance a cannonball bounces. You must nominate which weapon, if any, will be using this special rule at the start of each Shooting phase, before any such weapons within 3\" of the Master Engineer are fired.",
+        "'Stand Back, Sir!': A Master Engineer that is within 3\" of a war machine is allowed to take a 'Look Out, Sir!' roll just as if he was within 3\" of a unit of five or more models of the same troop type as himself. If the roll is successful, the hit is instead resolved against the nearest friendly war machine."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 45
+    },
+    {
+      "name": "Warhorse",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "War Beast (Equine)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take barding +5 points"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Pegasus",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Pegasus",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 6
+        }
+      ],
+      "troopType": "War Beast (Equine)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Iron-hard Hooves",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Iron-hard Hooves +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Swift as the Wind",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Swift as the Wind +5 points"
+        }
+      ],
+      "specialRules": "Fly (9)",
+      "specialRuleDescriptions": null,
+      "upgrades": "• Iron-hard Hooves: A Pegasus with this upgrade re-roils failed To Wound rolls.\n• Swift as the Wind: A Pegasus with this upgrade re-rolls any dice results of a 1 when determining its charge\nrange.",
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Mechanical Steed",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Mechanical Steed",
+          "M": 7,
+          "WS": 1,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 1,
+          "I": 1,
+          "A": 1,
+          "Ld": null
+        }
+      ],
+      "troopType": "War Beast (Animated Construct)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": null,
+      "magic": null,
+      "options": [],
+      "specialRules": "Impact Hits (D3), Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Demigryph",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Demigryph",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 4,
+          "A": 3,
+          "Ld": 7
+        }
+      ],
+      "troopType": "Monstrous Beast (Chimeric)",
+      "baseSize": "40x60, 50x75",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take barding +5 points"
+        }
+      ],
+      "specialRules": "Mighty Blow (1)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Griffon",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Griffon",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 4,
+          "I": 4,
+          "A": 4,
+          "Ld": 7
+        }
+      ],
+      "troopType": "Monstrous Creature (Chimeric)",
+      "baseSize": "50x50",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Shredding Talons",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Shredding Talons +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Swooping Strike",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Swooping Strike +5 points"
+        }
+      ],
+      "specialRules": "Fly (8), Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": "• Shredding Talons: The model gains the Armour Piercing (1) special rule.\n• Swooping Strike: The model gains the Devastating Charge special rule.",
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "Imperial Griffon",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "Imperial Griffon",
+          "M": 6,
+          "WS": 5,
+          "BS": 0,
+          "S": 6,
+          "T": 5,
+          "W": 5,
+          "I": 4,
+          "A": 4,
+          "Ld": 7
+        }
+      ],
+      "troopType": "Monster (Chimeric)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take barding +10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Razorbeak",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Razorbeak +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Shrike Talons",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Shrike Talons +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Bloodroar",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Bloodroar +10 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Two Heads",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Two Heads +15 points"
+        }
+      ],
+      "specialRules": "Fly (8), Natural Armour (6+)",
+      "specialRuleDescriptions": null,
+      "upgrades": "• Bloodroar: Enemy units must roll an additional D6, discarding the lowest result, for Leadership tests caused\nby this beast's Terror special rule.\n• Razorbeak: The model gains the Armour Piercing (1) special rule.\n• Shrike Talons: The model gains the Mighty Blow (1) special rule in turns it charges.\n• Two Heads: The model gains +1 Attack.",
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": null
+    },
+    {
+      "name": "War Altar of Sigmar",
+      "category": "CHARACTER MOUNTS",
+      "profiles": [
+        {
+          "name": "War Altar of Sigmar",
+          "M": 7,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": null,
+          "A": null,
+          "Ld": null
+        },
+        {
+          "name": "Warhorse",
+          "M": null,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Chariot (Armour save 5+)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Barding\nMAGIC ITEMS:\n• The Golden Griffon: Enchanted Item. Bound spell. The Golden Griffon contains the spell Banishment from\nthe Lore of Light.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Horn of Sigismund",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May take the Horn of Sigismund +25 points"
+        }
+      ],
+      "specialRules": "Magical Ward (4+), Stubborn",
+      "specialRuleDescriptions": [
+        "Holy Fervour: All friendly Human units benefit from the rider's Righteous Fury special rule whilst within 6\" of the War Altar of Sigmar.",
+        "The Power of Sigmar: Any Battle Prayers of Sigmar cast by a model who is mounted on the War Altar of Sigmar also target all friendly units within 6\"."
+      ],
+      "upgrades": "• The Horn of Sigismund: Enchanted Item. The War Altar of Sigmar gains the Terror special rule.",
+      "notes": "• The War Altar of Sigmar has a Line of Sight value of 4.\n• You may not field more than 1 War Altar of Sigmar in your army.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": "2 Warhorses (Equine)",
+      "pointsCost": null
+    },
+    {
+      "name": "Halberdiers",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Halberdier",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 5
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Polearm",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "medium armour",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Halberdier to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Halberdier to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Halberdier to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "15-45",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 5
+    },
+    {
+      "name": "Spearmen",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Spearman",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 3.5
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Spear",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "pike",
+              "replaces": "spear",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Spearman to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Spearman to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Spearman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "20-60",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 3.5
+    },
+    {
+      "name": "Swordsmen",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Swordsman",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 7,
+          "points": 5
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Swordsman to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Swordsman to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Swordsman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "15-45",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 5
+    },
+    {
+      "name": "Handgunners",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Handgunner",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 8
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, handgun",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Handgunner to a Leader +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "handgun",
+          "choices": [
+            {
+              "name": "brace of pistols",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "repeater handgun",
+              "points": 5,
+              "perModel": false
+            },
+            {
+              "name": "hochland long rifle",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace handgun with one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Handgunner to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Handgunner to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 8
+    },
+    {
+      "name": "Crossbowmen",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Crossbowman",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 8
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, crossbow",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Crossbowman to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Crossbowman to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Crossbowman to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 8
+    },
+    {
+      "name": "Archers",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Archer",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 7
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, longbow",
+      "magic": null,
+      "options": [
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Archer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Archer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Archer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 7
+    },
+    {
+      "name": "Free Company Militia",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Militia Fighter",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 6,
+          "points": 2.5
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "upgrade",
+          "upgrade": "Ambushers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Ambushers +1 point/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "buckler",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "additional hand weapon",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "pistol",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "longbow",
+              "points": 4,
+              "perModel": true
+            },
+            {
+              "name": "crossbow",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +0.5 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Militia Fighter to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Militia Fighter to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Militia Fighter to a Standard Bearer +10 points"
+        }
+      ],
+      "specialRules": "• Militia: Models with this special rule can use the Support Fire and Support Charge actions from the State",
+      "specialRuleDescriptions": [
+        "Troops special rule."
+      ],
+      "upgrades": null,
+      "notes": "• You may not have more units of Free Company Militia than you have units with the State Troops special rule.",
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 2.5
+    },
+    {
+      "name": "Pistoliers",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Pistolier",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 17
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Brace of pistols, medium armour",
+      "magic": null,
+      "options": [
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Pistolier to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "replace",
+              "replaces": "one pistol",
+              "choices": [
+                {
+                  "name": "repeater pistol",
+                  "points": 5,
+                  "perModel": false
+                }
+              ],
+              "raw": "May replace one pistol with a repeater pistol +5 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Pistolier to a Musician +5 points"
+        }
+      ],
+      "specialRules": "Fast Cavalry",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 17
+    },
+    {
+      "name": "Demilancers",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Demilancer",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 13
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Light lance, light armour, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "pistol",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take pistols +3 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May take medium armour +1.5 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Demilancer to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Demilancer to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Demilancer to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Fast Cavalry",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 13
+    },
+    {
+      "name": "Hunting Hounds",
+      "category": "Core",
+      "profiles": [
+        {
+          "name": "Hunting Hound",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5,
+          "points": 5
+        },
+        {
+          "name": "Hunt Master",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 25
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "War Beast (Canine)\nHANDLER: 1 Hunt Master (Human)",
+      "baseSize": "25x25 or 25x50 (Hunting Hound), 25x50 (Hunt Master)",
+      "equipment": "Light lance, light armour (Hunt Master only)",
+      "magic": null,
+      "options": [],
+      "specialRules": "Mixed Unit",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• One Hunt Master must be included for every 10 Hunting Hounds in the unit.",
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": "1 Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 5
+    },
+    {
+      "name": "Greatswords",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Greatsword",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 8,
+          "points": 10
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Great weapon, light armour",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "heavy armour",
+              "points": 2.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Greatsword to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Greatsword to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Greatsword to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "State Troops, Stubborn",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 10
+    },
+    {
+      "name": "Knights",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Knight",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 8,
+          "points": 18
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Heavy lance, heavy armour, barding",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "heavy lances",
+          "choices": [
+            {
+              "name": "great weapon",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Cavalry hammers",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace heavy lances with one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shields (if armed with heavy lances)",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields (if armed with heavy lances) +3 points/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Inner Circle Knights",
+          "points": 2,
+          "perModel": true,
+          "raw": "May be upgraded to Inner Circle Knights +2 points/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Knightly Order",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to a Knightly Order no points limit"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Knight to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Knight to a Musician +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "M ay upgrade one Knight to a Standard Bearer",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "May take a Magic Standard worth up to 50 points",
+              "points": 50,
+              "perModel": false
+            }
+          ],
+          "raw": "M ay upgrade one Knight to a Standard Bearer +10 points"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": "• Inner Circle Knights: For each character with the Master of Battle special rule in your army, you may\nupgrade one unit of Knights or Foot Knights to Inner Circle Knights. Inner Circle Knights gain +1 Strength\nand +1 Initiative. Inner Circle Knights cannot be taken as Core Units.",
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 18
+    },
+    {
+      "name": "Foot Knights",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Knight",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 8,
+          "points": 10
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, heavy armour, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "shield",
+          "choices": [
+            {
+              "name": "polearm",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "Cavalry hammers",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace shields with one of the following:"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Inner Circle Knights (see notes)",
+          "points": 2,
+          "perModel": true,
+          "raw": "May be upgraded to Inner Circle Knights (see notes) +2 points/model"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "Knightly Order",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to a Knightly Order no points limit"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Knight to a Leader +5 points",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "pistol",
+                  "points": 3,
+                  "perModel": false
+                }
+              ],
+              "raw": "May take a pistol +3 points"
+            }
+          ]
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Knight to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": "• Inner Circle Knights: For each character with the Master of Battle special rule in your army, you may\nupgrade one unit of Knights or Foot Knights to Inner Circle Knights. Inner Circle Knights gain +1 Strength\nand +1 Initiative. Inner Circle Knights cannot be taken as Core Units.",
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 10
+    },
+    {
+      "name": "Outriders",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Outrider",
+          "M": 4,
+          "WS": 3,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 22
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Repeater handgun, medium armour",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May take barding free"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Outrider to a Leader +5 points"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "repeater handgun",
+          "choices": [
+            {
+              "name": "Brace of pistols including one repeater pistol",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "grenade launching blunderbuss",
+              "points": 0,
+              "perModel": false
+            },
+            {
+              "name": "hochland long rifle",
+              "points": 0,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace repeater handgun with one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Outrider to a Musician +5 points"
+        }
+      ],
+      "specialRules": "Fast Cavalry",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 22
+    },
+    {
+      "name": "Roadwardens",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Roadwarden",
+          "M": 4,
+          "WS": 3,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 8,
+          "points": 16
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Hand weapon, crossbow, light armour",
+      "magic": null,
+      "options": [
+        {
+          "type": "upgrade",
+          "upgrade": "Ambushers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Ambushers +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "medium armour",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take medium armour +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Roadwarden to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Roadwarden to a Musician +5 points"
+        }
+      ],
+      "specialRules": "Fast Cavalry, Independent",
+      "specialRuleDescriptions": [
+        "Expert Rider: Models with this special rule may re-roll failed Dangerous Terrain tests. In addition, they ignore the Ponderous special rule."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 16
+    },
+    {
+      "name": "Huntsmen",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Huntsman",
+          "M": 4,
+          "WS": 3,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 10
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, longbow",
+      "magic": null,
+      "options": [
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Huntsman to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Huntsman to a Musician +5 points"
+        }
+      ],
+      "specialRules": "Forest Strider, Scouts, Skirmishers",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "5-15",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 10
+    },
+    {
+      "name": "Sisters of Sigmar",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Sister of Sigmar",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7,
+          "points": 5
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "upgrade",
+          "upgrade": "Skirmishers",
+          "points": 1,
+          "perModel": true,
+          "raw": "May be upgraded to Skirmishers +1 point/model"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "buckler",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "additional hand weapon",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "shield",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "medium armour",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "unit_addition",
+          "upgrade": "Augur",
+          "points": 15,
+          "raw": "May upgrade one Sister of Sigmar to an Augur +15 points"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Sister of Sigmar to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Sister of Sigmar to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Sister of Sigmar to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Hatred, Immunity (Fear), Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Absolute Faith: If a model with the Battle Prayers of Sigmar special rule joins this unit, that model gains +1 to their Leadership when attempting to use their Battle Prayers for every 5 Sisters of Sigmar in the unit."
+      ],
+      "upgrades": "• Augur: An Augur counts as being part of the unit's Command Group. A unit with an Augur may re-roll 1's To\nHit and To Wound in close combat.",
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 5
+    },
+    {
+      "name": "Flagellants",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Flagellant",
+          "M": 4,
+          "WS": 2,
+          "BS": 2,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5,
+          "points": 6
+        }
+      ],
+      "troopType": "Infantry (Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "additional hand weapon",
+              "points": 1,
+              "perModel": true
+            },
+            {
+              "name": "flail",
+              "points": 2,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Flagellant to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Flagellant to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Flagellant to a Standard Bearer +10 points"
+        }
+      ],
+      "specialRules": "Frenzy, Unbreakable",
+      "specialRuleDescriptions": [
+        "The End is Nigh! If a unit of Flagellants is in base contact with an enemy unit at the start of any Close Combat phase, the Flagellants may immediately sacrifice D3 Wounds worth of models. Casualties inflicted in this way do not count towards combat resolution. The remaining Flagellants in the unit immediately gain one of the special rules listed below for the duration of the close combat phase, depending on the number of models removed. Models removed Result 1 Fanatical Fury: The Flagellants re-rolls all failed rolls To Hit. 2 Strength of the Penitent: The Flagellants re-rolls all failed rolls To Hit and To Wound. 3 Insensible to Pain: The Flagellants gains +1 Toughness, and re-rolls all failed rolls To Hit and To Wound.",
+        "Fanatical Zeal: Arch Lectors and Warrior Priests of Sigmar may join units of Flagellants despite being them being Unbreakable. If they do so, they also become Unbreakable as long as there are any Flagellants remaining.",
+        "Prophecy of Doom: Friendly units within 6\" of Flagellants suffer -1 to their Leadership, except other Flagellants, Arch Lectors, Warrior Priests, Witch Hunters and Sisters of Sigmar."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 6
+    },
+    {
+      "name": "Dwarfs",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Dwarf",
+          "M": 3,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 4,
+          "W": 1,
+          "I": 2,
+          "A": 1,
+          "Ld": 9,
+          "points": 5
+        }
+      ],
+      "troopType": "Infantry (Dwarf)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "spear",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "polearm",
+              "points": 2,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "crossbow",
+              "points": 5,
+              "perModel": true
+            },
+            {
+              "name": "handgun",
+              "points": 5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "medium armour",
+              "points": 1.5,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shields (if armed with hand weapons, spears or polearms)",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields (if armed with hand weapons, spears or polearms) +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Dwarf to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Dwarf to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Dwarf to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Hatred (Orcs, Goblins, Skaven), Independent, Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Relentless: Units entirely composed of models with this special rule do not need to pass a Leadership test in order to march, regardless of the proximity of enemy units.",
+        "Resolute: When taking Break tests, models with this special rule count as having lost the combat with 1 point fewer than they actually have."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "10-30",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 5
+    },
+    {
+      "name": "Halflings",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Halfling",
+          "M": 4,
+          "WS": 2,
+          "BS": 4,
+          "S": 2,
+          "T": 2,
+          "W": 1,
+          "I": 5,
+          "A": 1,
+          "Ld": 8,
+          "points": 3
+        }
+      ],
+      "troopType": "Infantry (Halfling)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "spear",
+              "points": 0.5,
+              "perModel": true
+            },
+            {
+              "name": "shortbow",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shields (unless armed with shortbows)",
+              "points": 1,
+              "perModel": true
+            }
+          ],
+          "raw": "May take shields (unless armed with shortbows) +1 point/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Halfling to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Halfling to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Halfling to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Independent",
+      "specialRuleDescriptions": [
+        "Duck & Weave: Enemies attacking models with this special rule suffer -1 To Hit in close combat."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "20-60",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 3
+    },
+    {
+      "name": "Ogres",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Ogre",
+          "M": 6,
+          "WS": 3,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 2,
+          "A": 3,
+          "Ld": 7,
+          "points": 25
+        }
+      ],
+      "troopType": "Monstrous Infantry (Ogre)",
+      "baseSize": "40x40",
+      "equipment": "Hand weapons\n• Ogre Pistol: Ogre pistols use the following profile:\nRange: Strength: Special Rules:\n12/24\" 5 Quick Shot\nIn close combat, an Ogre pistol counts as an additional hand weapon that does not give the model the Parry\nspecial rule.\n• Ogre Handgun: Ogre handguns use the following profile:\nRange: Strength: Special Rules:\n18/36\" 6 Ponderous",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "buckler",
+              "points": 3,
+              "perModel": true
+            },
+            {
+              "name": "polearm",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "Ogre handguns",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "Ogre pistols",
+              "points": 6,
+              "perModel": true
+            },
+            {
+              "name": "great weapon",
+              "points": 9,
+              "perModel": true
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 3,
+              "perModel": true
+            }
+          ],
+          "raw": "May take light armour +3 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Ogre to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Ogre to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 25,
+              "raw": "May take a Magic Standard worth up to 25 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Independent, Natural Armour (6+)",
+      "specialRuleDescriptions": [
+        "Ogre Charge: Each model with this special rule that successfully charges an enemy has the Impact Hits (1) special rule. Models with this special rule that are part of a unit with ranks add their current Rank Bonus to the Strength of the Impact Hits they inflict. In addition, they count as having one more rank than their actual number for the purpose of determining Steadfast in any turn that they charge."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "3-9",
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 25
+    },
+    {
+      "name": "Great Cannon",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Great Cannon",
+          "M": null,
+          "WS": null,
+          "BS": null,
+          "S": null,
+          "T": 7,
+          "W": null,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 100
+        },
+        {
+          "name": "Crew",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        }
+      ],
+      "troopType": "War Machine",
+      "baseSize": "50x75 (Great Cannon), 20x20 or 25x25 (Crew)",
+      "equipment": "Hand weapon, great cannon\n• Great Cannon: A Great Cannon is a cannon that uses the following profile:\nRange: Strength: Special Rules:\n12/72\" 10 Cumbersome, Multiple Wounds (D6)",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional crew",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional crew +5 points"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "3 Crew (Human)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 100
+    },
+    {
+      "name": "Mortar",
+      "category": "Special",
+      "profiles": [
+        {
+          "name": "Mortar",
+          "M": null,
+          "WS": null,
+          "BS": null,
+          "S": null,
+          "T": 7,
+          "W": null,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 100
+        },
+        {
+          "name": "Crew",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        }
+      ],
+      "troopType": "War Machine",
+      "baseSize": "50x75 (Mortar), 20x20 or 25x25 (Crew)",
+      "equipment": "Hand weapon, mortar",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional crew",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional crew +5 points"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "3 Crew (Human)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 100
+    },
+    {
+      "name": "Demigryph Knights",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Inner Circle Knight",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 4,
+          "T": 3,
+          "W": 1,
+          "I": 4,
+          "A": 1,
+          "Ld": 8,
+          "points": 50
+        },
+        {
+          "name": "Demigryph",
+          "M": 8,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 4,
+          "A": 3,
+          "Ld": 7
+        }
+      ],
+      "troopType": "Monstrous Cavalry (Human)",
+      "baseSize": "40x60 or 50x75",
+      "equipment": "Polearm, heavy armour, shield",
+      "magic": null,
+      "options": [
+        {
+          "type": "upgrade",
+          "upgrade": "Knightly Order",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to a Knightly Order no points limit"
+        },
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "polearm",
+          "choices": [
+            {
+              "name": "heavy lances",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "May replace polearms with heavy lances +6 points/model"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "barding",
+              "points": 6,
+              "perModel": true
+            }
+          ],
+          "raw": "May take barding +6 points/model"
+        },
+        {
+          "type": "command",
+          "role": "Leader",
+          "points": 5,
+          "raw": "May upgrade one Inner Circle Knight to a Leader +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Musician",
+          "points": 5,
+          "raw": "May upgrade one Inner Circle Knight to a Musician +5 points"
+        },
+        {
+          "type": "command",
+          "role": "Standard Bearer",
+          "points": 10,
+          "raw": "May upgrade one Inner Circle Knight to a Standard Bearer +10 points",
+          "subOptions": [
+            {
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "May take a Magic Standard worth up to 50 points"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Mighty Blow (1) (Demigryph only)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": "3-6",
+      "crew": null,
+      "mount": "Demigryph (Chimeric)",
+      "drawnBy": null,
+      "pointsCost": 50
+    },
+    {
+      "name": "Helblaster Volley Gun",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Helblaster Volley Gun",
+          "M": null,
+          "WS": null,
+          "BS": null,
+          "S": null,
+          "T": 7,
+          "W": null,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 100
+        },
+        {
+          "name": "Crew",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        }
+      ],
+      "troopType": "War Machine",
+      "baseSize": "50x75 (Helblaster Volley Gun), 20x20 or 25x25 (Crew)",
+      "equipment": "Hand weapon, Helblaster volley gun\n• Helblaster Volley Gun: A Helblaster volley gun is an organ gun that uses the following profile:\nRange: Strength: Special Rules:\n12/24\" 5 Cumbersome, Multiple Shots (Artillery Dice+D6), Rapid Fire\nThe Helblaster may fire up to three times in each of your Shooting phases. Roll one dice at a time.\nIf a Misfire is rolled, roll immediately on the Black Powder War Machine Misfire chart before rolling the next\nArtillery dice.\nIf a May not Shoot result is rolled, this only applies to the current Artillery dice rolled.\nIf a Malfunction result is rolled, this only applies to the current and the next Artillery dice rolled (if this is the\nthird Artillery dice rolled this turn, the first Artillery dice the next turn is wasted).\nIf a Destroyed! result is rolled, all previous Artillery dice shots this turn are still resolved before the war\nmachine is removed. After all Artillery dice are rolled, resolve the number of shots as normal.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional crew",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional crew +5 points"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "3 Crew (Human)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 100
+    },
+    {
+      "name": "Helstorm Rocket Battery",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Helstorm Rocket Battery",
+          "M": null,
+          "WS": null,
+          "BS": null,
+          "S": null,
+          "T": 7,
+          "W": null,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 100
+        },
+        {
+          "name": "Crew",
+          "M": 4,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        }
+      ],
+      "troopType": "War Machine",
+      "baseSize": "50x75 (Helstorm Rocket Battery), 20x20 or 25x25 (Crew)",
+      "equipment": "Hand weapon, helstorm rocket battery\n• Helstorm Rocket Battery: A Helstorm Rocket Battery is a rocket launcher that scatter 3 templates from its\ntarget position rather than 1. When scattering any templates after the first, only the scatter dice is rolled; the\nresult from the artillery dice first rolled applies to all shots fired that turn. In addition, all shots made with a\nHelstorm counts as being fired indirectly.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "additional crew",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take an additional crew +5 points"
+        }
+      ],
+      "specialRules": null,
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": "3 Crew (Human)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 100
+    },
+    {
+      "name": "War Wagon",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "War Wagon",
+          "M": 7,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 100
+        },
+        {
+          "name": "Crew",
+          "M": null,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        },
+        {
+          "name": "Warhorse",
+          "M": null,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Chariot (Armour save 4+)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Ball & chain, blunderbuss, Hochland long rifle, hook halberd, man catcher, repeater handgun,\nbarding\n• Ball & Chain: Flail. Each successful Hit with a ball & chain is multiplied into D3 Hits.\n• Hook Halberd: Polearm. Against Cavalry and Monstrous Cavalry, attacks made with a hook halberd gains +1\nTo Hit.\n• Man Catcher: A model armed with a man catcher has the Killing Blow special rule.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "handgun",
+              "replaces": "all weapons",
+              "points": 10,
+              "perModel": false
+            },
+            {
+              "name": "Mortar",
+              "replaces": "3 crew and all weapons",
+              "points": 40,
+              "perModel": false
+            }
+          ],
+          "raw": "May choose one of the following:"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "light armour",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May take light armour +15 points"
+        },
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "two additional crew (if armed with handguns)",
+              "points": 12,
+              "perModel": false
+            }
+          ],
+          "raw": "May take two additional crew (if armed with handguns) +12 points"
+        }
+      ],
+      "specialRules": "• Mixed Weaponry: Unless they are armed with handguns or a mortar, the crew of a War Wagon are each",
+      "specialRuleDescriptions": [
+        "equipped with one of the following experimental weapons: ball & chain, blunderbuss, Hochland long rifle, hook halberd, man catcher, repeater handgun. You may not take multiples of the same weapon. Unlike other units, each crew model may choose to allocate their missile attack at a different target if they wish.",
+        "Stable Platform: The crew ignore the Ponderous special rule of any weapon they carry."
+      ],
+      "upgrades": null,
+      "notes": "• A War Wagon has a Unit Strength of 8 and Line of Sight value of 4.\n• You may take 1-2 War Wagons a single Rare choice.",
+      "unitSize": null,
+      "crew": "6 (Human)",
+      "mount": null,
+      "drawnBy": "2 Warhorses (Equine)",
+      "pointsCost": 100
+    },
+    {
+      "name": "Luminark of Hysh",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Luminark of Hysh",
+          "M": 7,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 120
+        },
+        {
+          "name": "Acolyte",
+          "M": null,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        },
+        {
+          "name": "Warhorse",
+          "M": null,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Chariot (Armour save 5+)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Hand weapon, barding",
+      "magic": null,
+      "options": [],
+      "specialRules": "• Aura of Protection: The Luminark of Hysh and all friendly units within 6\" gain the Magical Ward (6+)",
+      "specialRuleDescriptions": [
+        "special rule.",
+        "Locus of Hysh: For each friendly Luminark of Hysh on the battlefield at the start of the enemy magic phase, add 1 dice to your dispel pool.",
+        "Solheim's Bolt of Illumination: Arcane Item. Bound Spell (Level 4, cast on 11+). Solheim's Bolt of Illumination is a magic missile with a range of 36\". It causes a Strength 8 hit that has the Multiple Wounds (D3) and Flaming Attacks special rules, and penetrates ranks in the same manner as a shot from a bolt thrower. Armour saves are not permitted against Wounds caused by Solheim's Bolt of Illumination. If the target is a Daemon, Undead or Vampire, all failed To Wound rolls caused by this spell are re-rolled."
+      ],
+      "upgrades": null,
+      "notes": "• A Luminark of Hysh has a Line of Sight value of 4.",
+      "unitSize": null,
+      "crew": "2 Acolytes (Human)",
+      "mount": null,
+      "drawnBy": "2 Warhorses (Equine)",
+      "pointsCost": 120
+    },
+    {
+      "name": "Celestial Hurricanum",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Celestial Hurricanum",
+          "M": 7,
+          "WS": null,
+          "BS": null,
+          "S": 5,
+          "T": 5,
+          "W": 5,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 125
+        },
+        {
+          "name": "Acolyte",
+          "M": null,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        },
+        {
+          "name": "Warhorse",
+          "M": null,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Chariot (Armour save 5+)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Hand weapon, barding",
+      "magic": null,
+      "options": [],
+      "specialRules": "• Locus of Azyr: For each friendly Celestial Hurricanum on the battlefield at the start of your magic phase, add",
+      "specialRuleDescriptions": [
+        "1 dice to your power pool.",
+        "Portents of Battle: The Hurricanum and all friendly units within 6\" re-roll 1's when rolling to Hit.",
+        "Storm of Shemtek: Arcane Item. Bound Spell (Level 4, cast on 10+). Storm of Shemtek is a direct damage area spell with a range of 24\" that uses the small round template. After resolving its placement, roll a D6 and consult the table below to see what effect it has. If the template hits a unit with the Fly special rule, it suffers D6 Strength 4 hits, in addition to any other effects (even if a Sudden Downpour is summoned). D6 Result 1 Sudden Downpour: No effect. 2 Iceshard Tempest: All models hit by the template suffer a Strength 2 hit with the Ice Attacks special rule. In addition, they suffer a -1 modifier to all To Hit rolls (both shooting and close combat) until the start of the caster's next Magic phase. Shooting attacks that do not use Ballistic Skill are unaffected. 3 Raging Tornado: If a target unit lies beneath the template's central hole and is not engaged in close combat, roll a scatter dice and rotate the unit so that it is facing that direction (if a hit is rolled, the casting player chooses the direction). If, by rotating the unit, it would come within of another unit or impassable terrain, simply stop rotating the unit as soon as it moves to within 1\". 4-5 Lightning Strike: The model under the template's central hole suffers a Strength 6 hit. Other models hit by the template suffer a Strength 3 hit. This is a Lightning Attack. 6 Meteor Strike: The model under the template's central hole suffers a Strength 6 hit with the Multiple Wounds (D6) Special rule. All other models hit by the template suffer a Strength 4 hit."
+      ],
+      "upgrades": null,
+      "notes": "• A Celestial Hurricanum has a Line of Sight value of 4.",
+      "unitSize": null,
+      "crew": "2 Acolytes (Human)",
+      "mount": null,
+      "drawnBy": "2 Warhorses (Equine)",
+      "pointsCost": 125
+    },
+    {
+      "name": "Steam Tank",
+      "category": "Rare",
+      "profiles": [
+        {
+          "name": "Steam Tank",
+          "M": "*",
+          "WS": null,
+          "BS": null,
+          "S": 6,
+          "T": 7,
+          "W": 10,
+          "I": null,
+          "A": null,
+          "Ld": null,
+          "points": 250
+        },
+        {
+          "name": "Engineer Commander",
+          "M": null,
+          "WS": 3,
+          "BS": 3,
+          "S": 3,
+          "T": null,
+          "W": null,
+          "I": 3,
+          "A": 1,
+          "Ld": 7
+        }
+      ],
+      "troopType": "Chariot (Armour save 2+)",
+      "baseSize": "50x100 or 60x100",
+      "equipment": "Hand weapon, repeater pistol, steam cannon, steam gun\n• Steam Cannon: A steam cannon is a cannon. The steam cannon's maximum range is dependent on how many\nSteam Points (see Steam Engine below) that are expended. If you choose not to expend any Steam Points in\nthe steam cannon, or if the Steam Tank is in base contact with an enemy unit, you cannot fire it that turn.\nIf you expend a single Steam Point, the steam cannon can fire with a maximum range of 12\". For each\nadditional Steam Point you expend, the maximum range of the steam cannon is increased by 12\" (to a\nmaximum of 36\").\nIf the first artillery dice rolls a misfire, the steam cannon does not fire and the Steam Tank immediately loses\nD3 Wounds which Ignores Armour Saves. The steam cannon cannot fire grapeshot.\n• Steam Gun: The steam gun is a Breath Weapon attack that can be fired every turn. The steam gun's Strength is\ndependent on how many Steam Points (see Steam Engine below) that are expended. If you choose not to\nexpend any Steam Points in the Steam Gun, you cannot fire it that turn.\nIf you expend a single Steam Point, the Steam Gun has Strength 2 Breath Weapon with the Armour Piercing\n(1) special rule, which uses the Engineer Commander's Initiative. The Strength of the Breath Weapon is\nincreased by 1 (to a maximum of 4) for each additional Steam Point expended in the Steam Gun.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Hochland long rifle (unless upgraded)",
+              "points": 10,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a Hochland long rifle (unless upgraded) +10 points"
+        },
+        {
+          "type": "upgrade",
+          "upgrade": "one of the following:",
+          "points": null,
+          "perModel": false,
+          "raw": "May be upgraded to one of the following:",
+          "subOptions": [
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Implacable",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Implacable free"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Old Reliable",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Old Reliable free"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Sigmar's Hammer",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Sigmar's Hammer free"
+            },
+            {
+              "type": "equipment",
+              "action": "add",
+              "choices": [
+                {
+                  "name": "Von Zeppel",
+                  "points": 0,
+                  "perModel": false
+                }
+              ],
+              "raw": "Von Zeppel free"
+            }
+          ]
+        }
+      ],
+      "specialRules": "Immunity (Poisoned Attacks), Obstacle Strider, Terror, Unbreakable",
+      "specialRuleDescriptions": [
+        "Steam Engine: At the start of each turn, declare how many Steam Points your Steam Tank is generating – this can be any number between 0 and 6. After you have generated your Steam Points (if any), roll an artillery dice. If the result is greater than the Steam Tank's current number of Wounds, or if you roll a misfire, roll a D6 and then, for each Steam Point the Steam Tank currently has, add 1 to the result and consult the Steam Boiler Mishap chart below. You can expend Steam Points in two ways: through the Steam Engine, or Steam Weapons. Any Steam Points left unused at the end of each turn are lost. The more Steam Points you expend in the Steam Engine, the further the Steam Tank moves in the Movement phase. Declare how many Steam Points you will expend in the Steam Engine before you attempt to move it. If you choose not to expend any Steam Points in the Steam Engine, the Steam Tank's Movement will be 0 that turn and it cannot move at all in the Movement phase. For each Steam Point you chose to expend (to a maximum of 3), the Steam Tank's Movement increases by 4\". It gains +D6 Movement when charging rather than 2D6. If the charge fails, it moves D3\" for every Steam Point used. If the Steam Tank is in close combat with an enemy unit to its front, it can expend Steam Points in the Steam Engine to inflict D3 Stomps like a Monster on that unit for each Steam Point expended in this way (to a maximum of 3D3). If the Steam Tank chooses to overrun or pursue a fleeing enemy, it moves D3\" for every Steam Point expended in the close combat phase this round. It otherwise automatically restrains. STEAM BOILER MISHAP CHART Steam Points Result 1-4 Minor Leak: The Steam Tank immediately loses 1 Steam Point. 5-6 Valve Locked: The Steam Tank cannot expend Steam Points in the Steam Engine this turn. 7-8 Emergency Vent: The Steam Tank immediately loses D3 Steam Points. Any unit in base contact immediately suffers 2D6 Strength 2 hits, distributed as from shooting (roll for each unit). 9-10 Dangerous Overpressure: Roll a D3. The Steam Tank immediately gains a number of Steam Points and loses a number of Wounds equal to the result. 11-12 Kaboom: All units within 6\" of the Steam Tank (friend or foe) immediately suffer 2D6 Strength 4 hits, distributed as from shooting (roll for each unit). After resolving any damage, the Steam Tank is removed as a casualty."
+      ],
+      "upgrades": "• Implacable: The Implacable replaces the steam cannon and steam gun with a mortar. The mortar's maximum\nrange is dependent on how many Steam Points that are expended. If you choose not to expend any Steam\nPoints in the mortar, or if the Steam Tank is in base contact with an enemy unit, you cannot fire it that turn.\nIf you expend a single Steam Point, the mortar can fire with a maximum range of 12\". For each additional\nSteam Point you expend, the maximum range of the mortar is increased by 12\" (to a maximum of 36\").\nIf you roll a misfire, the mortar does not fire and the Steam Tank immediately loses D3 Wounds which Ignores\nArmour Saves.\nIn addition, the Steam Tank also gains two swivel guns with the following profile:\nRange: Strength: Special Rules:\n18/36\" 6 -\n• Old Reliable: Old Reliable replaces the steam cannon with an organ gun. The organ gun's number of shots is\ndependent on how many Steam Points that are expended. If you choose not to expend any Steam Points in the\norgan gun, or if the Steam Tank is in base contact with an enemy unit, you cannot fire it that turn.\nIf you expend a single Steam Point, the organ gun can fire an artillery dice + D6 shots. For each additional\nSteam Point you expend, the amount of shots of the organ gun is increased by 6 (to a maximum of 3D6).\nIf you roll a misfire, the organ gun does not fire and the Steam Tank immediately loses D3 Wounds which\nIgnores Armour Saves.\n• Sigmar's Hammer: Sigmar's Hammer does not have a steam cannon or steam gun. Sigmar's Hammer has the\nImpact Hits (2D6) special rule and may use up to 4 Steam Points in each Movement and Close Combat phase.\nIn addition, it may re-roll 1's when taking armour saves.\n• Von Zeppel: The von Zeppel replaces the steam gun and Engineer Commander with a Fighting Platform. This\nincludes 6 Crew armed with Mixed Weaponry as described in the War Wagon's entry.",
+      "notes": "• A Steam Tank has a Line of Sight value of 4.\n• You may not have more than 8 Steam Tanks in your army.",
+      "unitSize": null,
+      "crew": "1 Engineer Commander (Human)",
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 250
+    },
+    {
+      "name": "Karl Franz",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Karl Franz",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 10,
+          "points": 300
+        },
+        {
+          "name": "Deathclaw (Imperial Griffon)",
+          "M": 6,
+          "WS": 6,
+          "BS": 0,
+          "S": 6,
+          "T": 5,
+          "W": 5,
+          "I": 4,
+          "A": 5,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25\nMAGIC ITEMS:\n• Ghal Maraz: Magic Weapon. Hits from Ghal Maraz Wound automatically with the Ignores Armour Saves and\nMultiple Wounds (D3) special rules.\n• Dragon Tooth, the Reikland Runefang: Magic Weapon. All hits from this weapon Wound automatically with\nthe Ignores Armour Saves special rule.\n• The Emperor's Armour: Magic Armour. Heavy armour. This armour allows Karl Franz to re-roll failed\narmour saves.\n• The Silver Seal: Talisman. The Silver Seal grants Karl Franz the Magic Resistance (2) and Magical Ward (4+)\nspecial rules.",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "Dragon Tooth",
+          "choices": [
+            {
+              "name": "Ghal Maraz",
+              "points": 15,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace Dragon Tooth with Ghal Maraz +15 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Pegasus",
+              "points": 25,
+              "perModel": false
+            },
+            {
+              "name": "Griffon",
+              "points": 125,
+              "perModel": false
+            },
+            {
+              "name": "Deathclaw (Imperial Griffon)",
+              "points": 210,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        }
+      ],
+      "specialRules": "Hold the Line (see Commanders), Immunity (Psychology)",
+      "specialRuleDescriptions": [
+        "Leader of Men: The Emperor must be your Army General. He has Inspiring Presence (18) special rule in total, and any models using his Leadership may re-roll failed Panic tests. In addition, his Hold the Line special rule also affects units of Reiksguard Knights.",
+        "Altdorf Company of Honor: If Karl Franz is included in your army, you may upgrade one unit of Halberdiers to the Altdorf Company of Honor for +1 point per model. This unit has +1 Weapon Skill and +1 Initiative.",
+        "The Carroburg Greatswords: If Karl Franz is included in your army, you may upgrade one unit of Greatswords to Carroburg Greatswords for +0.5 point per model. This unit may re-roll failed Break tests."
+      ],
+      "upgrades": null,
+      "notes": "• Deathclaw has the Bloodroar upgrade.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 300
+    },
+    {
+      "name": "Kurt Helborg",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Kurt Helborg",
+          "M": 4,
+          "WS": 7,
+          "BS": 6,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 290
+        },
+        {
+          "name": "Krieglust (Warhorse)",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Special Character, Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Barding\nMAGIC ITEMS:\n• Grudge Settler, the Solland Runefang: Magic Weapon. All hits from this weapon Wound automatically with\nthe Ignores Armour Saves special rule.\n• Dawn Armour: Magic Armour. Heavy armour. This armour ignores Strength penalties from attacks and\nArmour Piercing.\n• Laurels of Victory: Enchanted Item. Each unsaved Wound caused by Kurt Helborg is multiplied by 2 when\ncalculating the combat result.\n• Rod of Command: Enchanted Item. One use only. The first time the character and his unit has to take a Break\ntest, they automatically pass it.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders), Reiksguard",
+      "specialRuleDescriptions": [
+        "Knight",
+        "The Emperor's Chosen: If Kurt Helborg is included in your army, you must upgrade one unit of Reiksguard Knights to Inner Circle Knights. Kurt Helborg must join this unit, and may never leave it. The unit may re-roll failed Break tests for as long as he remains in it."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Krieglust (Equine)",
+      "drawnBy": null,
+      "pointsCost": 290
+    },
+    {
+      "name": "Ludwig Schwarzhelm",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Ludwig Schwarzhelm",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 5,
+          "A": 3,
+          "Ld": 8,
+          "points": 160
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• Sword of Justice: Magic Weapon. The Sword of Justice gives the wielder +1 Attack. In addition, nominate\none enemy character or monster at the beginning of the game. Attacks with the Sword of Justice gain +1 To Hit\nand can re-roll failed To Wound rolls in close combat when attacking the nominated model.\n• The Emperor's Standard: Magic Standard. The Emperor's Standard gives Ludwig Schwarzhelm the Hold\nYour Ground (18) special rule in total.",
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse (with barding)",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on a Warhorse (with barding) +20 points"
+        }
+      ],
+      "specialRules": "Killing Blow",
+      "specialRuleDescriptions": [
+        "The Emperor's Bodyguard: If Karl Franz suffers a Hit and Ludwig Schwarzhelm is in the same unit, roll a D6. On a 1, the Hit is resolved as normal, but on a 2+ the Hit is intercepted and reallocated to Ludwig Schwarzhelm. If Karl Franz suffers more than one Hit simultaneously, randomise between them to determine which Ludwig attempts to intercept first. No more than one Hit can be re-allocated to Ludwig Schwarzhelm in this way in each phase. Hits suffered by Karl Franz in a challenge cannot be re-allocated.",
+        "The Emperor's Herald: If you take Ludwig Schwarzhelm, he must be your army's Battle Standard Bearer. Ludwig Schwarzhelm can never be your Army General."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 160
+    },
+    {
+      "name": "Boris Todbringer",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Boris Todbringer",
+          "M": 4,
+          "WS": 6,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 260
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour, shield\nMAGIC ITEMS:\n• Legbiter, the Middenland Runefang: Magic Weapon. All hits from this weapon Wound automatically with\nthe Ignores Armour Saves special rule.\n• The Talisman of Ulric: Talisman. At the start of every player turn, unless he has been removed as a casualty,\nBoris Todbringer instantly recovers any lost wounds, up to his starting total of 3. In addition, the Talisman is\ninfused with the power and courage of Ulric, granting Boris Todbringer Magic Resistance (1) and gives him\nthe Immunity (Psychology) special rule.",
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse (with barding)",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on a Warhorse (with barding) +20 points"
+        }
+      ],
+      "specialRules": "Crush the Weak, Hatred (Beastmen), Hold the Line (see Commanders)",
+      "specialRuleDescriptions": [
+        "The Swords of Ulric: If Boris Todbringer is included in your army, you may upgrade one unit of Swordsmen to the Swords of Ulric for +1 point per model. This unit gains the Frenzy special rule in the first round of close combat as well as the Crush the Weak and Hatred (Beastmen) special rules."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 260
+    },
+    {
+      "name": "Aldebrand Ludenhof",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Aldebrand Ludenhof",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 190
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• Goblin Bane, the Hochland Runefang: Magic Weapon. All hits from this weapon Wound automatically with\nthe Ignores Armour Saves special rule.",
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse (with barding)",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on a Warhorse (with barding) +20 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
+      ],
+      "specialRules": "Hold the Line (see Commanders)",
+      "specialRuleDescriptions": [
+        "Aldebrand's Hawk: Aldebrand's hawk uses the following profile: Range: Strength: Special Rules: 24\" 3 Sniper Rather than rolling to Hit using Ballistic Skill, the target must pass a Weapon Skill test to avoid being Hit.",
+        "Hergig Jaegerkorps: If Aldebrand Ludenhof is included in your army, you may upgrade one unit of Huntsmen to Hergig Jaegerkorps for +3 pts per model. This unit is armed with Hochland Long Rifles (without the Sniper special rule) instead of longbows.",
+        "Shrewd Tactician: After finishing deployment, D3 of your units within 12\" of Aldebrand Ludenhof may choose to redeploy to a new position up to 6\" away from their original position."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 190
+    },
+    {
+      "name": "Valmir Von Raukov",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Valmir von Raukov",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 190
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• Brain Wounder, the Ostland Runefang: Magic Weapon. All hits from this weapon Wound automatically with\nthe Ignores Armour Saves special rule.\n• The Dragon Bow: Magic Weapon. The Dragon Bow has the following profile:\nRange: Strength: Special Rules:\n24/36\" 5 Multiple Shots (3), Volley Fire",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "shield",
+              "points": 5,
+              "perModel": false
+            }
+          ],
+          "raw": "May take a shield +5 points"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse (with barding)",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on a Warhorse (with barding) +20 points"
+        }
+      ],
+      "specialRules": "Hold the Line (see Commanders)",
+      "specialRuleDescriptions": [
+        "Hammer of the East: Valmir von Raukov and any unit he joins has the Stubborn special rule in the first round of Close Combat.",
+        "Fireloques of Ferlangen: If Valmir von Raukov is included in your army, you may upgrade one unit of Handgunners to Fireloques of Ferlangen for +1 pt per model. This unit has the Stubborn special rule and ignore To Hit penalties for Stand & Shoot."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 190
+    },
+    {
+      "name": "Marius Leitdorf",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Marius Leitdorf",
+          "M": 4,
+          "WS": 7,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 185
+        },
+        {
+          "name": "Daisy (Warhorse)",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• Mother's Ruin, the Averland Runefang: Magic Weapon. Two hand weapons. All hits from this weapon\nWound automatically with the Ignores Armour Saves special rule.",
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Daisy (with barding)",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on Daisy (with barding) +20 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
+      ],
+      "specialRules": "Hold the Line (see Commanders)",
+      "specialRuleDescriptions": [
+        "The Mad Count: At the start of every friendly turn, Marius Leitdorf must take a Leadership test on 3D6, discarding the lowest result. If passed, he acts normally this turn, otherwise roll a D6 and consult the table below: D6 Result 1 Lunatic Ravings: Marius must immediately roll on the Stupidity special rule. 2 Berserk Rage: Marius has the Frenzy special rule, and cannot lose it, until he rolls on this table again. 3 Paranoid Delusions: Marius immediately makes one close combat attack against a randomly chosen friendly model in base contact (if there are none, treat this result as Lunatic Ravings instead). 4 Tactical Brilliance: Every friendly unit within 12\" of Marius may immediately make a Reform manoeuvre. These units can still move, charge, march and shoot as normal during this turn. 5 Outrageous Insult: The closest enemy character to Marius has the Hatred (Marius Leitdorf) special rule for the rest of the game. This has no effect on units that have Immunity (Psychology). 6 Insane Bravado: Marius is treated as having rolled failed a Berserk Rage test (see Frenzy). In addition, he has the Stubborn special rule and must accept any challenge until he rolls on this table again.",
+        "Knights of the Black Lynx: If Marius Leitdorf is included in your army, you may upgrade one unit of Foot Knights to Knights of the Black Lynx for +1 point per model. This unit must take polearms and has the Ambushers special rule."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 185
+    },
+    {
+      "name": "Markus Wulfhart",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Markus Wulfhart",
+          "M": 4,
+          "WS": 5,
+          "BS": 6,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 6,
+          "A": 3,
+          "Ld": 8,
+          "points": 100
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Amber Bow: Magic Weapon. Longbow. All shots fired by the Amber Bow are resolved at Strength 4.\nAgainst Monstrous Creatures or Monsters, the Amber Bow always wounds on 4+ (unless it would normally\nneed a lower result) and has the Ignores Armour Saves and Multiple Wounds (D3) special rules.",
+      "magic": null,
+      "options": [
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
+      ],
+      "specialRules": "Hatred (Monstrous Creatures, Monsters), Immunity (Psychology), Scouts",
+      "specialRuleDescriptions": [
+        "Monster Hunter: Models with this special rule re-roll all failed To Wound rolls against Monstrous Creatures and Monsters.",
+        "Wulfhart's Hunters: If your army includes Markus Wulfhart, one unit of Huntsmen may be upgraded to be Wulfhart's Hunters for +2 points/model. This unit gains the Monster Hunter and Immunity (Psychology) special rules."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 100
+    },
+    {
+      "name": "Theodore Bruckner",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Theodore Bruckner",
+          "M": 4,
+          "WS": 6,
+          "BS": 4,
+          "S": 5,
+          "T": 4,
+          "W": 3,
+          "I": 5,
+          "A": 4,
+          "Ld": 8,
+          "points": 180
+        },
+        {
+          "name": "Reaper (Demigryph)",
+          "M": 8,
+          "WS": 5,
+          "BS": 0,
+          "S": 5,
+          "T": 5,
+          "W": 4,
+          "I": 5,
+          "A": 4,
+          "Ld": 6
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "25x25 or 30x30 (Theodore Bruckner), 50x100 or 60x100 (Reaper)",
+      "equipment": "Pistol, heavy armour\nMAGIC ITEMS:\n• Liarsbane: Magic Weapon. Liarsbane gives Bruckner +1 To Hit and To Wound in close combat.\n• Stormlance: Magic Weapon. Heavy lance. When using this weapon on the charge, Bruckner has the Killing\nBlow special rule. At all other times, he will use Liarsbane instead.\n• Baleflame Amulet: Talisman. The amulet provides Bruckner with a Magical Ward (5+). In addition, if\nBruckner is slain by a model in base contact, that model then immediately suffers D3 Wounds with the Ignores\nArmour Saves special rule.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "add",
+          "choices": [
+            {
+              "name": "Stormlance and be mounted on Reaper",
+              "points": 110,
+              "perModel": false
+            }
+          ],
+          "raw": "May take Stormlance and be mounted on Reaper +110 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
+      ],
+      "specialRules": "• The Hand of Judgement: Bruckner cannot be the Army General. In addition, while fighting in a Challenge,",
+      "specialRuleDescriptions": [
+        "Bruckner has the Unbreakable special rule."
+      ],
+      "upgrades": null,
+      "notes": "• Reaper is a Monstrous Creature rather than a Monstrous Beast.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 180
+    },
+    {
+      "name": "Balthasar Gelt",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Balthasar Gelt",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 310
+        },
+        {
+          "name": "Quicksilver (Pegasus)",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 6
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, Al-kahest\n• Al-kahest: Al-kahest is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n6/9\" n/a Flaming Attacks, Ignores Armour Saves, Magical Attacks, Quick Shot\nAl-kahest Wounds any target on a 4+.",
+      "magic": "Balthasar Gelt is a Level 4 Wizard who uses the Lore of Metal.\nMAGIC ITEMS:\n• Staff of Volans: Arcane Item. Staff. The Staff of Volans grants Balthasar Gelt a +2 casting bonus.\n• Amulet of Sea Gold: Talisman. The Amulet of Sea Gold grants Balthasar Gelt the Magic Resistance (1)\nspecial rule, and adds +1 to the Magic Resistance for each enemy wizard currently on the battlefield, up to a\nmaximum of 3.\n• Cloak of Molten Metal: Talisman. The Cloak of Molten Metal grants Balthasar Gelt a Magical Ward (3+)\nagainst missile attacks.",
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Quicksilver (Pegasus)",
+              "points": 30
+            }
+          ],
+          "raw": "May be mounted on Quicksilver (Pegasus) +30 points"
+        }
+      ],
+      "specialRules": "Loremaster (Lore of Metal)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": "• Quicksilver has the Swift as the Wind upgrade.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 310
+    },
+    {
+      "name": "Thyrus Gormann",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Thyrus Gormann",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 325
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Special Character, Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Light armour",
+      "magic": "Thyrus Gormann is a Level 4 Wizard who uses the Lore of Fire.\nMAGIC ITEMS:\n• The Bright Sword: Magic Weapon. This magic sword gives Thyrus +1 when rolling To Wound as well as\nFlaming Attacks.\n• Firebrand Staff: Arcane Item. Staff. Thyrus may add 12\" to the range of his spells.\n• The Fire Stone of Agni: Arcane Item. Relic. Once per turn, Thyrus may add +2 Power Dice to casting one of\nhis spells.\n• The Blazing Ruby: Talisman. The Blazing Ruby confers the Immunity (Flaming Attacks) and Magical Ward\n(5+) special rules.",
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 18
+            }
+          ],
+          "raw": "May be mounted on a Warhorse +18 points"
+        }
+      ],
+      "specialRules": "Loremaster (Lore of Fire)",
+      "specialRuleDescriptions": null,
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 325
+    },
+    {
+      "name": "Elspeth Von Draken",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Elspeth von Draken",
+          "M": 4,
+          "WS": 4,
+          "BS": 3,
+          "S": 3,
+          "T": 3,
+          "W": 3,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 255
+        },
+        {
+          "name": "Carmine Dragon",
+          "M": 6,
+          "WS": 6,
+          "BS": 0,
+          "S": 6,
+          "T": 6,
+          "W": 6,
+          "I": 3,
+          "A": 5,
+          "Ld": 8
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25 (Elspeth von Draken), 75x75 (Carmine Dragon)",
+      "equipment": null,
+      "magic": "Elspeth von Draken is a Level 4 Wizard who uses the Lore of Death.\nMAGIC ITEMS:\n• The Pale Scythe: Magic Weapon. This weapon has the Killing Blow special rule and gives Elspeth von\nDraken a +1 dispel bonus.\n• Death's Timekeeper: Enchanted Item. Once per player turn, Elspeth von Draken can re-roll a single dice of\nyour choice concerning her or the Carmine Dragon (this can include attacks, saving throws, magic dice and the\nArtillery dice used to determine the Carmine Dragon's Coruscating blast if desired). If this re-roll is not used,\nat the end of her player's turn Elspeth von Draken may recover a wound previously lost in the game.",
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse",
+              "points": 15,
+              "perModel": false
+            },
+            {
+              "name": "Carmine Dragon",
+              "points": 320,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following:"
+        }
+      ],
+      "specialRules": "Fly (7) (Carmine Dragon only), Loremaster (Lore of Death), Natural Armour (3+) (Carmine",
+      "specialRuleDescriptions": [
+        "Dragon only)",
+        "Darkwalker: Elspeth has Immunity (Psychology) and all To Wound rolls made against her suffer a -1 penalty. However, she also suffers any extra effect that is listed as specifically damaging Undead.",
+        "Coruscating Blast (Carmine Dragon only): This is a missile attack that uses the line template with the following profile: Range: Strength: Special Rules: 12\" * Cumbersome, Ignores Armour Saves, Magical Attacks, Multiple Wounds (D3) This weapon has a Strength equivalent to 10 minus the target's Toughness."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 255
+    },
+    {
+      "name": "Volkmar the Grim",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Volkmar the Grim",
+          "M": 4,
+          "WS": 5,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 5,
+          "A": 3,
+          "Ld": 9,
+          "points": 190
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Medium armour\nMAGIC ITEMS:\n• Staff of Command: Magic Weapon. As long as Volkmar the Grim is mounted upon the War Altar of Sigmar,\nall close combat attacks made with the Staff of Command are resolved at +2 Strength, at other times it gives +1\nStrength.\n• Jade Griffon: Talisman. The Jade Griffon makes the bearer regain 1 Wound suffered earlier in the game at the\nstart of each turn, up to their starting value.",
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "War Altar of Sigmar",
+              "points": 150
+            }
+          ],
+          "raw": "May be mounted on the War Altar of Sigmar +150 points"
+        }
+      ],
+      "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magic Resistance (1), Righteous",
+      "specialRuleDescriptions": [
+        "Fury (see Warrior Priests of Sigmar)",
+        "Grand Theogonist: Volkmar the Grim may re-roll failed Leadership tests when using Battle Prayers. In addition, if Volkmar is your Army General, Flagellants count as Core Units rather than Special Units."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 190
+    },
+    {
+      "name": "Luthor Huss",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Luthor Huss",
+          "M": 4,
+          "WS": 5,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 200
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Special Character, Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Heavy armour, barding\nMAGIC ITEMS:\n• Hammer of Ensorcelled Iron: Magic Weapon. Great weapon. This weapon allows the wielder to re-roll failed\nrolls To Wound.",
+      "magic": null,
+      "options": [],
+      "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magical Ward (4+), Magic",
+      "specialRuleDescriptions": [
+        "Resistance (1), Righteous Fury (see Warrior Priests of Sigmar)",
+        "Chosen of Sigmar: Once per game, at the start of any Close Combat phase you may roll a D3; Luthor adds this number to his Weapon Skill, Strength, Toughness, and Attacks characteristics until the end of the turn.",
+        "Fiery Demagogue: In addition to his other Battle Prayers, Luthor Huss also knows the following: - Unbending Righteousness: Luthor Huss and his unit gain the Stubborn special rule until the start of your next turn."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 200
+    },
+    {
+      "name": "Magnus the Pious",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Magnus the Pious",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 10,
+          "points": 160
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, heavy armour",
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse (with barding)",
+              "points": 20
+            }
+          ],
+          "raw": "May be mounted on a Warhorse (with barding) +20 points"
+        },
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
+      ],
+      "specialRules": "Hold the Line (see Commanders), Immunity (Psychology), Inspiring Presence (6), Magical",
+      "specialRuleDescriptions": [
+        "Ward (5+), Magic Resistance (2), Righteous Fury (see Warrior Priests of Sigmar)",
+        "The Power of Sigmar: In close combat Magnus may make a special Attack at Strength 10 with the Magical Attacks and Multiple Wounds (D3) special rules instead of his normal attacks."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 160
+    },
+    {
+      "name": "Emil Valgeir",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Emil Valgeir",
+          "M": 4,
+          "WS": 5,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 5,
+          "A": 3,
+          "Ld": 9,
+          "points": 260
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25\nMAGIC ITEMS:\n• Blitzbeil, the Hammer-axe of Skoll: Magic Weapon. The gains +1 Strength, Ice Attacks and Ignores Armour\nsaves special rules.\n• Wolfplate Armour: Magic Armour. Heavy armour. The wearer gains the Immunity (Flaming Attacks),\nMagical Ward (5+) and Magic Resistance (1) special rules.",
+      "equipment": null,
+      "magic": null,
+      "options": [
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "War Altar of Ulric",
+              "points": 150
+            }
+          ],
+          "raw": "May be mounted on the War Altar of Ulric +150 points"
+        }
+      ],
+      "specialRules": "Battle Prayers of Ulric, Crush the Weak, Fury of Ulric, Magic Resistance (1)",
+      "specialRuleDescriptions": [
+        "Strength in Faith, Faith in Strength: Emil Valgeir may re-roll failed Leadership tests when attempting to use Battle Prayers of Ulric.",
+        "The Teutogen Guard: If Emil Valgeir is included in your army, you may upgrade one unit of Foot Knights with the Knights of the White Wolf upgrade to the Teutogen Guard for +1 point per model. This unit gains the Immunity (Flaming Attacks) and Stubborn special rules."
+      ],
+      "upgrades": null,
+      "notes": "• If Emil Valgeir is included in your army, your army must be a Cult of Ulric.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 260
+    },
+    {
+      "name": "Hans Von Lowenhacke",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Hans von Löwenhacke",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 4,
+          "A": 4,
+          "Ld": 9,
+          "points": 255
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• Judgement: Magic Weapon. Great weapon. All hits from this weapon have the Multiple Wounds (2) special\nrule.\n• The Griffon Helm: Magic Armour. This item gives the wearer a 6+ armour save as well as the Immunity\n(Killing Blow) and Magical Ward (5+) special rules.",
+      "magic": null,
+      "options": [
+        {
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Magic Items up to a total of 50 points"
+        }
+      ],
+      "specialRules": "Hold the Line (see Commanders), Stubborn",
+      "specialRuleDescriptions": [
+        "Mercenary Commander: If Hans von Löwenhacke is included in your army, the limitation on the amount of Free Company Militia units you may take is ignored.",
+        "Strategic Mastery: If Hans von Löwenhacke is included in your army, you gain +1 to the dice roll when determining who chooses to take the first turn."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 255
+    },
+    {
+      "name": "Harald Gemunsen",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Harald Gemunsen",
+          "M": 4,
+          "WS": 7,
+          "BS": 6,
+          "S": 4,
+          "T": 4,
+          "W": 3,
+          "I": 6,
+          "A": 4,
+          "Ld": 9,
+          "points": 175
+        },
+        {
+          "name": "Warhorse",
+          "M": 8,
+          "WS": 3,
+          "BS": 0,
+          "S": 3,
+          "T": 3,
+          "W": 1,
+          "I": 3,
+          "A": 1,
+          "Ld": 5
+        }
+      ],
+      "troopType": "Cavalry (Special Character, Human)",
+      "baseSize": "25x50 or 30x60",
+      "equipment": "Heavy armour, barding\nMAGIC ITEMS:\n• Beast Reaver: Magic Weapon. This weapon gives the wielder +1 Strength and the Killing Blow special rule.\nIn addition, they may re-roll all failed To Wound rolls against Beastmen.",
+      "magic": null,
+      "options": [
+        {
+          "type": "magic_items",
+          "pointsLimit": 75,
+          "raw": "May take Magic Items up to a total of 75 points"
+        }
+      ],
+      "specialRules": "Hatred (Beastmen, Daemons of Chaos, Warriors of Chaos), Immunity (Psychology), Master",
+      "specialRuleDescriptions": [
+        "of Battle (see Masters of the Knightly Orders)",
+        "Grand Master of the Knights Panther: Harald Gemunsen has the Knight's Panther special rule. You may not take another Grand Master with this special rule if he is included in your army.",
+        "Skilled Duellist: Harald Gemunsen may re-roll failed To Hit rolls in challenges."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": "Warhorse (Equine)",
+      "drawnBy": null,
+      "pointsCost": 175
+    },
+    {
+      "name": "Valten",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Valten",
+          "M": 4,
+          "WS": 6,
+          "BS": 5,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 5,
+          "A": 4,
+          "Ld": 9,
+          "points": 260
+        },
+        {
+          "name": "Althandin (Elven Steed)",
+          "M": 9,
+          "WS": 4,
+          "BS": 0,
+          "S": 4,
+          "T": 3,
+          "W": 1,
+          "I": 5,
+          "A": 2,
+          "Ld": 7
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25 (Valten), 50x50 (Althandin)",
+      "equipment": "Two hand weapons\nMAGIC ITEMS:\n• Ghal Maraz: Magic Weapon. Hits from Ghal Maraz Wound automatically with the Ignores Armour Saves and\nMultiple Wounds (D3) special rules.\n• Armour of the Heldenhammer: Magic Armour. Heavy armour. The Armour of the Heldenhammer provides\n+1 armour save and the Magic Resistance (2) special rule. No model in base contact may cast any spells.",
+      "magic": null,
+      "options": [
+        {
+          "type": "equipment",
+          "action": "replace",
+          "replaces": "additional hand weapon",
+          "choices": [
+            {
+              "name": [
+                "Ghal Maraz",
+                "heavy armour"
+              ],
+              "points": 70,
+              "perModel": false
+            },
+            {
+              "name": [
+                "Ghal Maraz",
+                "Armour of the Heldenhammer"
+              ],
+              "points": 85,
+              "perModel": false
+            }
+          ],
+          "raw": "May replace two hand weapons with one of the following:"
+        },
+        {
+          "type": "mount",
+          "action": "choose",
+          "choices": [
+            {
+              "name": "Warhorse (with barding)",
+              "points": 20,
+              "perModel": false
+            },
+            {
+              "name": "Althandin (with barding)",
+              "points": 25,
+              "perModel": false
+            }
+          ],
+          "raw": "May be mounted on one of the following (if armed with Ghal Maraz):"
+        }
+      ],
+      "specialRules": "• Against The Odds: Valten or any unit he is with. Valten and any unit he is with gains the Immunity",
+      "specialRuleDescriptions": [
+        "(Psychology) Stubborn special rules. In addition, enemy units can never gain the combat resolution bonus points for attacking in the flank or rear against them.",
+        "Awesome Presence: Wounds inflicted by Valten in close combat are counted towards the Empire combat resolution score of any combat within 12\" of him, not just the one he is taking part in. However, Valten may never be the Army General.",
+        "Iron Resolve: Valten has a 5+ invulnerable save. If Valten is killed, take a Leadership test for him. If he passes, he remains alive with 1 Wound, and the Wounds that killed him are discounted. This rule does not apply if he is killed while fleeing or slain by a Killing Blow."
+      ],
+      "upgrades": null,
+      "notes": "• Valten may not carry Ghal Maraz if Karl Franz is already using it, and vice versa.",
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 260
+    },
+    {
+      "name": "Bertha Bestraufrung",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Bertha Bestraufrung",
+          "M": 4,
+          "WS": 5,
+          "BS": 3,
+          "S": 4,
+          "T": 4,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 140
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Heavy armour\nMAGIC ITEMS:\n• Sigmarite Hammers: Magic Weapon. Two hand weapons. These weapons give Bertha the Armour Piercing\n(1) special rule. In addition, she gains +1 To Wound against Daemons, Undead or Vampires.\n• Blessed Water: Magic Weapon. This weapon has the following profile:\nRange: Strength: Special Rules:\n6/9\" n/a Ignores Armour Saves, Magical Attacks, March & Shoot, Quick Shot\nIf the weapon hits, it inflicts one automatic Wound against Daemons, Undead or Vampires. Against other\ntargets, it has no effect.\n• Holy Relic: Talisman. One use only. The Holy Relic allows Bertha and any unit she joins to automatically pass\nthe first Leadership test they are required to make during the game.",
+      "magic": null,
+      "options": [
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points"
+        }
+      ],
+      "specialRules": "Battle Prayers of Sigmar (see Warrior Priest of Sigmar), Immunity (Fear), Magic Resistance",
+      "specialRuleDescriptions": [
+        "(2), Righteous Fury (see Warrior Priest of Sigmar)",
+        "High Matriarch: If Bertha Bestraufrung is included in your army, you must also include at least one unit of Sisters of Sigmar. Bertha Bestraufrung must join such a unit, and may not leave it. In addition, the unit becomes Stubborn while she remains with it.",
+        "Sigmar's Handmaiden: Bertha may re-roll failed Leadership tests when using Battle Prayers of Sigmar."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 140
+    },
+    {
+      "name": "Jubal Falk",
+      "category": "Named Characters",
+      "profiles": [
+        {
+          "name": "Jubal Falk",
+          "M": 4,
+          "WS": 3,
+          "BS": 4,
+          "S": 3,
+          "T": 3,
+          "W": 2,
+          "I": 4,
+          "A": 2,
+          "Ld": 8,
+          "points": 60
+        }
+      ],
+      "troopType": "Infantry (Special Character, Human)",
+      "baseSize": "20x20 or 25x25",
+      "equipment": "Hand weapon, pistol, Hochland Long Rifle, medium armour\nMAGIC ITEMS:\n• Mercurial Shot: Enchanted Item. One use only. This is missile attack with the following profile:\nRange: Strength: Special Rules:\n18/36\" 6 Armour piercing (1), Multiple Wounds (2), Ponderous, Sniper",
+      "magic": null,
+      "options": [
+        {
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Magic Items up to a total of 25 points CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"
+        }
+      ],
+      "specialRules": "• Black Powder Discipline: Models with this special rule may re-roll 1's To Hit with missile attacks.",
+      "specialRuleDescriptions": [
+        "The Nuln Ironsides: Jubal Falk must be accompanied by a unit of Handgunners chosen from the army list at a cost of 10 points per model. This unit has medium armour and the Black Powder Discipline special rule. The unit must be given a Standard Bearer and Musician. Jubal Falk is the unit's Leader and may never choose to leave this unit."
+      ],
+      "upgrades": null,
+      "notes": null,
+      "unitSize": null,
+      "crew": null,
+      "mount": null,
+      "drawnBy": null,
+      "pointsCost": 60
+    }
+  ]
+}

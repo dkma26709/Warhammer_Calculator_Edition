@@ -1,0 +1,676 @@
+{
+  "name": "Warhammer: The Game of Fantasy Battles - 9th Edition v2.32",
+  "closeCombatToHit": {
+    "description": "Roll a D6 for each attack. Compare WS of attacker and defender. Natural 1 always misses, natural 6 always hits.",
+    "table": [
+      [
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+      ],
+      [
+        2,
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      [
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4
+      ]
+    ],
+    "tableAxes": {
+      "rows": "Attacker's WS (1-10)",
+      "columns": "Target's WS (1-10)"
+    }
+  },
+  "toWound": {
+    "description": "Roll a D6 for each hit. Compare Strength of attacker with Toughness of defender. Natural 1 always fails, natural 6 always succeeds.",
+    "table": null,
+    "tableAxes": {
+      "rows": "Attacker's Strength (1-10)",
+      "columns": "Target's Toughness (1-10)"
+    }
+  },
+  "shootingToHit": {
+    "description": "Roll a D6 for each shot. Score needed depends on BS.",
+    "table": {
+      "BS1": 6,
+      "BS2": 5,
+      "BS3": 4,
+      "BS4": 3,
+      "BS5": 2,
+      "BS6": 1,
+      "BS7": 1,
+      "BS8": 1,
+      "BS9": 1,
+      "BS10": 1
+    },
+    "modifiers": {}
+  },
+  "armourSaves": {
+    "description": "Armour saves are modified by the Strength of the attack. Strength 4+ inflicts penalties.",
+    "strengthModifiers": {}
+  },
+  "weapons": {
+    "closeCombat": {
+      "handWeapon": {
+        "name": "HAND WEAPON",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": null,
+        "notes": "If a model is armed with another close combat weapon\nbesides their hand weapon, they must use this at all\ntimes (unless specified)."
+      },
+      "two_additionalHandWeapons": {
+        "name": "TWO/ADDITIONAL HAND WEAPONS",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "Parry (6+), Requires Two Hands",
+        "notes": "A model with two hand weapons gains +1 Attack."
+      },
+      "polearm": {
+        "name": "POLEARM",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "+1 Requires Two Hands",
+        "notes": "A model with a polearm gains +1 Initiative in the first\nround of close combat."
+      },
+      "greatWeapon": {
+        "name": "GREAT WEAPON",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "+1 Mighty Blow (1), Requires Two Hands",
+        "notes": "A model with a great weapon suffers -2 Initiative."
+      },
+      "flail": {
+        "name": "FLAIL",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "Mighty Blow (2), Requires Two Hands"
+      },
+      "spear": {
+        "name": "SPEAR",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "Fight in Extra Ranks (1), Mighty Blow (1)*, Requires Two Hands*",
+        "notes": "Model on foot only. A model with a spear gains +1\nInitiative in the first round of close combat.\n*Only applies in turns the model is charged to its front,\nchose either Hold or Stand & Shoot as a charge\nreaction and the model chooses to use Requires Two\nHands. Mighty Blow does not apply towards Infantry,\nSwarms and Shrines."
+      },
+      "pike": {
+        "name": "PIKE",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "Fight in Extra Ranks (3), Mighty Blow (1)*, Requires Two Hands",
+        "notes": "Model on foot only. A model with a pike gains +2\nInitiative in the first round of close combat.\n*Only applies in turns the model is charged to its front\nand chose either Hold or Stand & Shoot as a charge\nreaction. Mighty Blow does not apply towards Infantry,\nSwarms and Shrines."
+      },
+      "lightLance": {
+        "name": "LIGHT LANCE",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "Mighty Blow (1)*",
+        "notes": "*Mounted model only. A model with a light lance gains\n+1 Initiative and Mighty Blow in turns that the model\ncharges, and only against the unit they charged."
+      },
+      "heavyLance": {
+        "name": "HEAVY LANCE",
+        "range": "Combat",
+        "strength": "As user",
+        "specialRules": "Mighty Blow (2)*",
+        "notes": "*Mounted model only. A model with a heavy lance\ngains +2 Initiative and Mighty Blow in turns that the\nmodel charges, and only against the unit they charged.\nMISSILE WEAPONS"
+      }
+    },
+    "missile": {}
+  },
+  "armour": {
+    "lightArmour": {
+      "name": "LIGHT ARMOUR",
+      "combatSave": "+1/6+",
+      "missileSave": "+1/6+",
+      "specialRules": null
+    },
+    "mediumArmour": {
+      "name": "MEDIUM ARMOUR",
+      "combatSave": "+2/5+",
+      "missileSave": "+2/5+",
+      "specialRules": null
+    },
+    "heavyArmour": {
+      "name": "HEAVY ARMOUR",
+      "combatSave": "+3/4+",
+      "missileSave": "+3/4+",
+      "specialRules": null
+    },
+    "shields": {
+      "name": "SHIELDS",
+      "combatSave": "+1/6+",
+      "missileSave": "+1/6+",
+      "specialRules": "Parry (6+)",
+      "notes": "*Models on foot armed with shields get an additional\n+1 to their armour save against missile attacks to their\nfront. Shields do not add any armour against missile\nattacks to the rear.\n**Only applies if used with a hand weapon."
+    },
+    "buckler": {
+      "name": "BUCKLER",
+      "combatSave": "+1/6+",
+      "missileSave": "+1/6+",
+      "specialRules": "Parry (6+)",
+      "notes": "*Only applies to models on foot against missile attacks\nto the front.\n**Only applies if used with a hand weapon."
+    },
+    "barding": {
+      "name": "BARDING",
+      "combatSave": "+1/6+",
+      "missileSave": "+1/6+",
+      "specialRules": null,
+      "notes": "Mounts with barding suffer -1 to their Movement\ncharacteristic."
+    }
+  },
+  "commonSpecialRules": {
+    "alwaysStrikesFirst": {
+      "name": "ALWAYS STRIKES FIRST",
+      "parameterized": false,
+      "description": "Models with this special rule always strike first in close\ncombat, regardless of Initiative. If a model with this\nrule is fighting an enemy with the same ability, the\nmodel with the higher Initiative will strike first.\nIn addition, if the model's Initiative is higher than their\nenemy's when it is their turn to attack, they can re-roll\nfailed To Hit rolls when striking in close combat."
+    },
+    "alwaysStrikesLast": {
+      "name": "ALWAYS STRIKES LAST",
+      "parameterized": false,
+      "description": "A model with this special rule always strikes last in\nclose combat, regardless of Initiative. If a model with\nthis rule is fighting an enemy with the same ability, the\nmodel with the higher Initiative will strike first. If a\nmodel has both this rule and Always Strikes First, the\ntwo cancel out and neither applies so use the model's\nInitiative.\nIn addition, if the model's Initiative is lower than their\nenemy's when it is their turn to attack, they must re-roll\nsuccessful To Hit rolls when striking in close combat."
+    },
+    "animatedConstruct": {
+      "name": "ANIMATED CONSTRUCT",
+      "parameterized": false,
+      "description": "Animated Constructs have the Unbreakable special rule\n(explained later in this chapter). However, they may\nnot march."
+    },
+    "armourPiercing": {
+      "name": "ARMOUR PIERCING",
+      "parameterized": false,
+      "description": "Wounds caused by a model with this special rule (or\nwho is attacking with a weapon that has this special\nrule) inflict a further negative armour save modifier as\nindicated by the number in the brackets, in addition to\nthose for Strength. Unless specified, Armour Piercing\nonly applies to close combat attacks. This rule is\ncumulative with other sources of Armour Piercing.\nIf a model has a weapon with the Armour Piercing\nspecial rule, only attacks made or shots fired with the\nweapon are Armour Piercing."
+    },
+    "aquatic": {
+      "name": "AQUATIC",
+      "parameterized": false,
+      "description": "Models with the Aquatic special rule can move within\nany area of water on the battlefield, including rivers\nand even deep water that players may have deemed\nimpassable to other models, as if it were open ground.\nHowever, they are still subject to any special effects\nthat specific terrain may have (e.g. they are not exempt\nfrom the dangers of marshes).\nIn addition, models with this special rule can march,\nclaim rank bonus and be steadfast when in water.\nFurthermore, if every model in a unit has the Aquatic\nspecial rule, and the majority of the unit is within water\nterrain, enemies shooting at that unit suffer an\nadditional -1 To Hit penalty."
+    },
+    "breathWeapons": {
+      "name": "BREATH WEAPONS",
+      "parameterized": false,
+      "description": "A model with a Breath Weapon can use it to make a\nspecial attack once per shooting or close combat phase.\nA model with two or more different Breath Weapons\nmust choose which one they want to use. The form that\nthis special attack takes depends on whether or not the\ncreature is in close combat. In the event that a model\nhas more than one Breath Weapon attack, it is\npermitted to attempt to use only one in a single turn.\nHowever, after each Breath Weapon has been used the\nfirst time, roll a D6 before attempting to use it again in\nlater rounds. On 4+, it may be used as normal. On a 1-\n3, the model is literally out of breath, and cannot use its\nBreath Weapon this round. It may choose to attack\nnormally in close combat instead. This does not apply\nto temporary Breath Weapons from magic items or\nspells.\nNote that Breath Weapons are not physical attacks, and\ncertain models may be Immune to the effects of some\nBreath Weapons.\nBreath Weapon Shooting Attack\nProvided the model is not in close combat, it can use its\nBreath Weapon during its Shooting phase. A Breath\nWeapon shooting attack can be made even if the model\nmarched or reformed during the same turn, but it\ncannot be used as a Stand and Shoot charge reaction.\nTo perform the attack, place the flame template so that\nit lies entirely within the model's forward arc, with the\nnarrow end touching the model's base, and so that it is\nnot touching any friendly units or enemy units that are\nin close combat. All models that are even partially\nunder the template are automatically hit, following the\nnormal rules for the flame template. The Strength and\nany special effects of the creature's Breath Weapon will\nbe covered in its rules.\nThe teardrop-shaped template is placed with the thin\nend at the model's base and the wide end over the target\nunit. In this example 9 models are under the template\nand so are hit automatically."
+    },
+    "cold-blooded": {
+      "name": "COLD-BLOODED",
+      "parameterized": false,
+      "description": "Whenever a unit where the majority of the models have\nthis special rule takes a Psychology or Break test, it\nrolls an additional dice and discards the highest result."
+    },
+    "cumbersome": {
+      "name": "CUMBERSOME",
+      "parameterized": false,
+      "description": "Models or weapons with the Cumbersome special rule\ncannot be used to Stand and Shoot."
+    },
+    "devastatingCharge": {
+      "name": "DEVASTATING CHARGE",
+      "parameterized": false,
+      "description": "Models with this special rule have +1 Attack during a\nturn in which they charge into combat."
+    },
+    "dodge": {
+      "name": "DODGE",
+      "parameterized": false,
+      "description": "Models with this rule gain an invulnerable save against\nattacks in their front arc (including templates, Stomps\nand Impact Hits) as indicated in the brackets. This is\ncumulative with other sources of Dodge. This cannot\nbe used against Magical Attacks that Hit automatically\n(such as spells or certain special rules), or that have the\nAlways Strikes First special rule, nor can it be used if\nthe model is subject to the Always Strikes Last special\nrule."
+    },
+    "disciplined": {
+      "name": "DISCIPLINED",
+      "parameterized": false,
+      "description": "Whenever a unit where the majority of the models have\nthis special rule takes a Leadership test that is not a\nPsychology or Break test, it rolls an additional dice and\ndiscards the highest result."
+    },
+    "ethereal": {
+      "name": "ETHEREAL",
+      "parameterized": false,
+      "description": "Ethereal creatures treat all terrain as Open Terrain for\nthe purposes of movement. They may not finish their\nmovement inside Impassable Terrain. They are also\nnever slowed by any special rule, spell or item that\nwould otherwise reduce their movement or stop them\nfrom moving completely.\nModels with this rule have the Magical Attacks,\nMagical Ward (3+) and Unstable special rules\n(described later in this chapter).\nCharacters that are not themselves Ethereal are not\npermitted to join units that are (even if they become\ntemporarily Ethereal for some reason)."
+    },
+    "expendable": {
+      "name": "EXPENDABLE",
+      "parameterized": false,
+      "description": "Models with this special rule do not cause Panic to\nfriendly units that are not Expendable themselves.\nCharacters may not join a unit with this rule, unless\nspecified. Likewise, an Expendable character may not\njoin a unit that is not Expendable.\nFor every Core unit with the Expendable special rule in\nyour army, you are required to include at least one\nother Core Unit without the Expendable rule. For more\ninformation on this, see the Choosing Your Army\nchapter."
+    },
+    "fear": {
+      "name": "FEAR",
+      "parameterized": false,
+      "description": "A unit containing one or more Fear-causing models\ngains +1 to its Combat Resolution score. If the Unit\nStrength of all Fear-causing models is double or more\nthat of the total Unit Strength of all enemy units in base\ncontact, the Combat Resolution score is increased by\n+2. Note that the bonus from Fear is otherwise not\ncumulative for having multiple units with the Fear\nspecial rule involved in the same combat.\nIf a model has the Fear special rule from two or more\ndifferent sources (such as a combination of different\nspecial rules, spells or magic items), it instead gains the\nTerror special rule (described later).\nIf the majority of the models in a unit cause Fear, they\nalso gain the Immunity (Fear) special rule (described\nlater), and thus the Combat Resolution bonus of their\nFear-causing enemies is ignored for that unit."
+    },
+    "fightInExtraRanks": {
+      "name": "FIGHT IN EXTRA RANKS",
+      "parameterized": false,
+      "description": "If a unit has this special rule then supporting attacks\ncan be made by one more rank than normal for each\nnumber indicated in the bracket. This rule is\ncumulative with other sources of Fight in Extra Ranks."
+    },
+    "flamingAttacks": {
+      "name": "FLAMING ATTACKS",
+      "parameterized": false,
+      "description": "Models with Flaming Attacks cause Fear in War\nBeasts, Cavalry, Chariots and Flammable creatures.\nAny Panic test taken by any of these troop types from a\nFlaming Attack suffer -1 to their Leadership when\ntaking the test.\nUnless otherwise stated, a model with this special rule\nhas both Flaming shooting and close combat attacks\n(though any spells cast by the model or special attacks\nare unaffected)."
+    },
+    "flammable": {
+      "name": "FLAMMABLE",
+      "parameterized": false,
+      "description": "If a model with the Flammable rule is attacked with a\nFlaming Attack, all failed To Wound rolls made by the\nattackers may be re-rolled."
+    },
+    "frenzy": {
+      "name": "FRENZY",
+      "parameterized": false,
+      "description": "Frenzied troops gain +1 Attack and the Immunity\n(Psychology) special rule (explained later).\nIf a model has the Frenzy special rule from two or\nmore different sources (such as a combination of\ndifferent special rules, spells or magic items), it gains\nan additional +1 Attack. However, they must always\npursue, with no chance to restrain.\nBerserk Rage\nA unit that includes one or more Frenzied models can\nnever choose Flee as a Charge Reaction, and must pass\na Leadership test if it wishes to choose a charge\nreaction other than Counter-charge. If this test is failed,\nthe unit must declare a Counter-charge instead as per\nthe normal rules for it.\nIf, during the Charge sub-phase, a unit that includes\none or more Frenzied models does not declare a\ncharge, then it must do so unless a Leadership test is\npassed. If the Leadership test is failed, the Frenzied\nunit must declare a charge against the nearest viable\nenemy.\nA unit that includes one or more Frenzied models that\nattempts to restrain pursuit if it beats a foe in close\ncombat suffer a Leadership modifier equal to the result\nthey won the combat against that unit by. For example,\nif the Frenzied unit won the combat by 3 and the\nenemy unit flees, the Frenzied unit suffers -3 to its\nLeadership if it attempts to restrain from pursuing.\nNote that in case the enemy unit was completely wiped\nout, the Frenzied unit can choose whether to overrun or\nnot as normal.\nLosing Frenzy\nUnlike other special rules, Frenzy can be lost as the\ngame goes on. Models retain their Frenzy for the entire\ngame unless beaten in combat, at which point the\nFrenzy (together with all associated rules) is lost."
+    },
+    "hatred": {
+      "name": "HATRED",
+      "parameterized": false,
+      "description": "A model striking a hated foe in close combat re-rolls all\nfailed To Hit rolls during the first round of combat.\nSometimes a model will only Hate a specific foe.\nWhere this is the case, the type of foe will be expressed\nin the special rule. In the case an enemy hates a certain\nfaction, they have the Hatred rule against all models\nfrom that army book.\nIn addition, model must also re-roll successful rolls to\nrestrain from pursuit against enemies they have Hatred\nagainst. If a unit would gain Hatred in a round of close\ncombat after the first for any reason, treat this as the\nfirst round of combat for that purpose.\nIf a model has the Hatred special rule from two or\nmore different sources (such as a combination of\ndifferent special rules, spells or magic items), it may\nre-roll failed To Hit rolls in every turn against that foe,\nnot just the first. However, they must always pursue,\nwith no chance to restrain."
+    },
+    "hidden": {
+      "name": "HIDDEN",
+      "parameterized": false,
+      "description": "Hidden models can choose to deploy 'hidden' within\nanother friendly ranked unit, either the unit it belongs\nto (determined in each army list) or in other separate\nunits (the army book in question will state which units)\n- make a note of which unit is concealing the hidden\nmodel(s).\nA hidden model is not placed on the table during\ndeployment, but is revealed later during the game. If\nthe concealing unit is wiped out or flees from the\nbattlefield before the hidden model is revealed, the\nhidden model counts as a casualty. There is no other\nway a hidden model can be harmed before they are\nrevealed.\nHidden models may be revealed at the beginning of\nany of your Movement phases, or at the start of any\nClose Combat phase. Declare that the unit contains a\nhidden model and place the model in the front rank of\nthat unit, displacing models as you normally would if a\ncharacter had joined the unit (see Characters and Units\nin the characters chapter).\nA model with this special rule cannot be your Army\nGeneral. Furthermore, other units can never use their\nLeadership value."
+    },
+    "holdYourGround": {
+      "name": "HOLD YOUR GROUND",
+      "parameterized": false,
+      "description": "A model with Hold Your Ground allows all friendly\nunits within a distance equal to the number in the\nbrackets to re-roll failed Panic and Break tests. This\nability cannot be used if the model with Hold Your\nGround is also fleeing.\nThis rule is cumulative with other sources of Hold Your\nGround. If the model has a Line of Sight value of 4 or\nmore, then the range of their Hold Your Ground rule is\nincreased by 6."
+    },
+    "iceAttacks": {
+      "name": "ICE ATTACKS",
+      "parameterized": false,
+      "description": "Models with the Ice Attacks special rule cause all\nenemy models in base contact with them to be subject\nto the Always Strikes Last special rule. Spells or\nmissile attacks that are Ice Attacks cause the enemy\nunit to be subject to the Always Strikes Last special\nrule until the start of your next turn if they are\nsuccessfully cast or Hit. Models with Ice Attacks have\nImmunity (Ice Attacks) (see Immunity special rule).\nUnless otherwise stated, a model with this special rule\nhas Ice Attacks for both shooting and close combat,\n(though any spells cast by the model or special attacks\nare unaffected)."
+    },
+    "ignoresArmourSaves": {
+      "name": "IGNORES ARMOUR SAVES",
+      "parameterized": false,
+      "description": "Wounds caused by a model with this special rule (or\nwho is attacking with a weapon that has this special\nrule) ignore all armour saves regardless of value.\nUnless specified, Ignores Armour Saves only applies to\nclose combat attacks."
+    },
+    "immunity": {
+      "name": "IMMUNITY",
+      "parameterized": false,
+      "description": "Models with the Immunity rule ignore the effects of the\nrule(s) in the brackets. Examples include Killing Blow,\nPoisoned Attacks, Flaming Attacks, Ice Attacks,\nLightning Attacks and so on. Note that the model only\nignores the effects of the rule itself unless the attack is\nalso listed as being non-physical. The physical attack\nstill causes damage as normal.\nImmunity can also include Panic, Fear and Terror. If\nthe majority of the models in a unit have the Immunity\n(Panic, Fear or Terror) rule, the unit ignores the effects\nof Panic, Fear or Terror and any such tests it would\notherwise had to take.\nModels that are Immune to all three above effects have\nthe Immunity (Psychology) rule. This also includes\nautomatically passing any Psychology tests they might\nneed to take (such as many spell effects or special rules\nthat would otherwise force a unit to take a Psychology\ntest)."
+    },
+    "impactHits": {
+      "name": "IMPACT HITS",
+      "parameterized": false,
+      "description": "The number of Impact Hits caused is shown in brackets\nafter the special rule. If a unit contains more than one\nmodel that inflicts a random amount of Impact Hits\n(such as D6), always roll separately for each model.\nImpact Hits are only made on the turn the model makes\na successful charge into close combat, and only against\nthe unit the model has charged. Impact Hits are\nresolved at the very beginning of the close combat,\nbefore challenges are issued and attacks of any other\nkind are made. They hit a unit in base contact and are\nrandomised as Automatic Hits. If the model is in base\ncontact with more than one unit, distribute the Impact\nHits between them as evenly as possible. If the model\nwith Impact Hits is not in base contact with the enemy,\nno Impact Hits are inflicted.\nImpact Hits roll to wound using the Strength of the\nmodel making the Impact Hits. Any armour saves\ntaken are done using the close combat value of the\narmour.\nUnless specified, any special rules or bonuses that\napply to the model's normal attacks do not apply to its\nImpact Hits."
+    },
+    "independent": {
+      "name": "INDEPENDENT",
+      "parameterized": false,
+      "description": "A character with this special rule cannot join a unit\nwithout this special rule. A unit with this special rule\ncannot be joined by a character without this special\nrule.\nIn addition, they may never use the Inspiring Presence\nor Hold Your Ground special rules. Note that\nCharacters, ridden models and Mixed Units that still\nhave their Handlers ignore this special rule, unless\nspecified."
+    },
+    "inspiringPresence": {
+      "name": "INSPIRING PRESENCE",
+      "parameterized": false,
+      "description": "A model with Inspiring Presence allows all friendly\nunits within a distance equal to the number in the\nbrackets to use their Leadership instead of their own,\nunless specified (such as having to use their own\nunmodified Leadership). This rule cannot be used if the\nmodel with Inspiring Presence is also fleeing.\nThis rule is cumulative with other sources of Inspiring\nPresence. If the model has a Line of Sight value of 4 or\nmore, then the range of their Inspiring Presence rule is\nincreased by 6.\nIf a unit taking a Leadership test has a modifier to its\nLeadership, this modifier still applies if the unit uses\nthe Inspiring Presence.\nIf a unit is Steadfast, it may use the Leadership of the\nmodel for Break tests if it is higher than their own\nLeadership after applying all negative modifiers from\ncombat resolution. Otherwise, they will use their own\nLeadership.\nExample: a Steadfast unit with Leadership 7 has lost\nthe combat by 1 but is within the Inspiring Presence\nrange of the Army General who has Leadership 9. In\nthis case, the unit can use the Army General's\nLeadership value and will test on Leadership 8.\nHowever, if they instead had lost the combat by 3, the\nunit will test on their own Leadership of 7, as this\nwould be higher than using the Army General's\nLeadership value of 6 after combat resolution\nmodifiers."
+    },
+    "killingBlow": {
+      "name": "KILLING BLOW",
+      "parameterized": false,
+      "description": "If a model with the Killing Blow special rule rolls a 6\nTo Wound, they automatically slay their opponent -\nregardless of Toughness or the number of Wounds on\nthe victim's profile. Armour saves and Regeneration\n(explained later) saves cannot be taken against a\nKilling Blow. Other invulnerable saves may be taken as\nnormal.\nKilling Blow is only effective against Infantry, Cavalry\nand War Beasts. Against other troop types, a successful\nKilling Blow only inflicts one Wound which Ignores\nArmour Saves and Regeneration.\nNote that if a Killing Blow attack wounds\nautomatically, then the Killing Blow special rule does\nnot come into play. Unless otherwise specified, Killing\nBlow only applies to close combat attacks.\nFor the purposes of combat resolution, successful\nKilling Blows score the same amount of Wounds as the\nslain model had remaining until the point of the Killing\nBlow was inflicted.\nIf a model has the Killing Blow special rule from two\nor more different sources (such as a combination of\ndifferent special rules, spells or magic items), its effect\nwill take place on the To Wound roll of a 5+ rather than\na 6.\nHeroic Killing Blow\nHeroic Killing Blow functions exactly like a normal\nKilling Blow, except it works on any troop type except\nfor Swarms. Models with Immunity (Killing Blow)\ntreat Heroic Killing Blow as normal Killing Blow."
+    },
+    "lightningAttacks": {
+      "name": "LIGHTNING ATTACKS",
+      "parameterized": false,
+      "description": "Lightning Attacks have the Ignores Armour Saves\nspecial rule against all armour types except Natural\nArmour (explained later).\nUnless otherwise stated, a model with this special rule\nhas both Lightning shooting and close combat attacks\n(though any spells cast by the model or special attacks\nare unaffected)."
+    },
+    "loremaster": {
+      "name": "LOREMASTER",
+      "parameterized": false,
+      "description": "A Wizard with the Loremaster special rule knows all\nthe available spells from their chosen Lore (limited by\ntheir Wizard level as normal). The lore in question is\nnormally given in brackets as part of the Loremaster\nspecial rule. If a model knows spells from multiple\nLores, then Loremaster only applies to one of the Lores\nnormally available to them (player's choice)."
+    },
+    "magicalAttacks": {
+      "name": "MAGICAL ATTACKS",
+      "parameterized": false,
+      "description": "Models with this special rule inflict a -1 penalty to\nMagical Wards. Unless otherwise stated, a model with\nthis special rule has both Magical shooting and close\ncombat attacks (though any special attacks are\nunaffected).\nAll attacks made by spells and magic items are\nMagical Attacks. Shots fired from magical items are\nalso considered to be Magical Attacks, unless their\ndescription specifically states otherwise. Hits inflicted\nby rolls on the Miscast table are treated as Magical\nAttacks. Note that spells are never considered to be\nphysical attacks."
+    },
+    "magicalWard": {
+      "name": "MAGICAL WARD",
+      "parameterized": false,
+      "description": "Models with this rule gain an invulnerable save as\nindicated in the brackets."
+    },
+    "magicResistance": {
+      "name": "MAGIC RESISTANCE",
+      "parameterized": false,
+      "description": "Enemy spells that target a unit containing one or more\nmodels with Magic Resistance suffer a casting penalty\nequal to the number as indicated in the brackets. So,\nMagic Resistance (1) would give a -1 casting penalty,\nMagic Resistance (2) would give a -2 casting penalty,\nand Magic Resistance (3) would give a -3 casting\npenalty, and so on.\nThis casting penalty also applies to aura and area\nspells, if the model would be within the aura's range or\nunder the area's effect when initially cast.\nIn addition, models with Magic resistance gain an\ninvulnerable save against all spells based on the\nnumber in the brackets. So, Magic Resistance (1)\nwould give a 6+ invulnerable save, Magic Resistance\n(2) would give a 5+ invulnerable save, and Magic\nResistance (3) would give a 4+ invulnerable save, and\nso on. Note that Magic resistance does not offer\nprotection against Miscasts.\nNote that this special rule is not cumulative. If two or\nmore models in a unit have this special rule, use the\nhighest modifier.\nMARCH & SHOOT\nModels or weapons with this special rule can shoot\neven if they marched this turn."
+    },
+    "mightyBlow": {
+      "name": "MIGHTY BLOW",
+      "parameterized": false,
+      "description": "Models with this rule gain a Strength bonus to all their\nclose combat attacks (including Impact Hits and\nStomps) equal to the number in the brackets in the first\nround of close combat they are involved in. Note that\nany attack made with a weapon that gives Mighty\nBlow only applies to attacks made with the weapon\nitself. This rule is cumulative with other sources of\nMighty Blow.\nIf a unit would gain Mighty Blow in a round of close\ncombat after the first for any reason, treat this as the\nfirst round of combat for that purpose."
+    },
+    "mixedUnit": {
+      "name": "MIXED UNIT",
+      "parameterized": false,
+      "description": "A Mixed Unit often consist of two different troop\ntypes, with one or more handlers that drive the rest of\nthe unit forward. The handler(s) must be deployed in\nthe rear rank(s) of the unit, as centrally as possible.\nMixed Units cannot be joined by characters, unless\nspecified. If a character is allowed to join a Mixed\nUnit, they may choose if they want to be placed in the\nfront or rear rank.\nIf a Mixed unit is required to take a characteristic test,\nthis is done using the characteristics of the unit itself,\nnot the handlers. The only exception is Leadership\ntests, which are taken using the unit's highest\nLeadership value. When the models in a unit with the\nMixed Unit special rule have different Movement\nallowances, the handlers' Movement value is ignored,\nunless they are the only models remaining. Any special\nrules or upgrades that the unit might have do not apply\nto the Handlers unless specified. Note that if the unit\nhas the Expendable, Swiftstride or Vanguard special\nrules, this also applies to the Handlers.\nAs long as the unit (but not the handlers) have a Unit\nStrength of 5 or more, any missile hits are resolved\nagainst the unit itself. At less than Unit Strength 5,\nthere is a chance that any handlers in the unit could be\nhit - the controlling player decides who is hit, but must\nallocate one hit on each model before they can add a\nsecond hit on a model; they must allocate two hits on\neach model before they can allocate a third, and so on.\nHits from templates are resolved against the handlers\nas normal. In close combat, the handlers can only be\nattacked by models who are in base contact with them."
+    },
+    "moveOrFire": {
+      "name": "MOVE OR FIRE",
+      "parameterized": false,
+      "description": "A model or weapon with the Move or Fire special rule\ncannot fire a weapon or be fired (respectively) in the\nShooting phase if the model moved earlier in the turn,\nincluding rallying, reforming and pivoting on the spot.\nThis even applies if the model in question was forced\nto move as the result of a spell or other such\ncompulsory action."
+    },
+    "multipleShots": {
+      "name": "MULTIPLE SHOTS",
+      "parameterized": false,
+      "description": "A weapon with this special rule enables its wielder to\nfire several shots at a time, rather than a single shot.\nThe number of shots the weapon can fire is normally\ngiven as part of its description in the brackets. Such\nweapons can either fire once without penalty, or as\nmany times as indicated in their rules with a -1 To Hit\npenalty (in addition to any other modifiers To Hit).\nAll models in the unit (excluding characters) must fire\neither single or Multiple Shots - the player cannot\nchoose to fire single shots with some and Multiple\nShots with others."
+    },
+    "multipleWounds": {
+      "name": "MULTIPLE WOUNDS",
+      "parameterized": false,
+      "description": "Each wound inflicted by an attack with the Multiple\nWounds special rule (after saves) is multiplied into\nmore than one wound (remember that a model cannot\nsuffer more wounds than it has on its profile). The\nexact number of wounds caused will vary from model\nto model and weapon to weapon, but will normally be\nshown in brackets as part of the special rule. For\nexample, Multiple Wounds (2) would mean that each\nunsaved wound would multiply to 2 wounds, whilst\nMultiple Wounds (D6) would mean that each unsaved\nwound would multiply to D6 wounds. If a model is\ngranted two sets of Multiple Wounds (like D3 and D6),\nuse only the highest possible set before rolling.\nWhere the number of Multiple Wounds is generated by\na dice roll, roll a dice separately for each unsaved\nwound and use the total of all the dice rolled for the\nfinal number of wounds inflicted.\nUnless otherwise specified, Multiple Wounds only\napply to close combat attacks."
+    },
+    "naturalArmour": {
+      "name": "NATURAL ARMOUR",
+      "parameterized": false,
+      "description": "Models with this rule have an armour save value equal\nto the number in the brackets. Natural Armour can be\ncombined with other armour as normal, including other\nsources of Natural Armour."
+    },
+    "parry": {
+      "name": "PARRY",
+      "parameterized": false,
+      "description": "Models with this rule gain an invulnerable save in\nclose combat as indicated in the brackets. This is\ncumulative with other sources of Parry. It cannot be\nused against attacks made against the model's flank or\nrear, nor can it be used against attacks that Hit\nautomatically, attacks that are made at +3 Strength over\nthe model's own Strength value."
+    },
+    "poisonedAttacks": {
+      "name": "POISONED ATTACKS",
+      "parameterized": false,
+      "description": "A model with the Poisoned Attacks special rule gets a\n+1 modifier to its To Wound rolls. Armour saves are\nmodified by the Strength of the attack as normal.\nUnless otherwise stated, a model with this special rule\nhas both Poisoned shooting and close combat attacks\n(though any spells cast by the model or special attacks\nare unaffected).\nIf a model has the Poisoned Attacks special rule from\ntwo or more different sources (such as a combination\nof different special rules, spells or magic items), it may\nalso re-roll failed To Wound rolls."
+    },
+    "ponderous": {
+      "name": "PONDEROUS",
+      "parameterized": false,
+      "description": "Weapons with this rule suffer an additional -1 To Hit\npenalty if they move and shoot in the same turn, and\nwhen choosing Stand & Shoot as a charge reaction."
+    },
+    "quickShot": {
+      "name": "QUICK SHOT",
+      "parameterized": false,
+      "description": "Models or weapons with this special rule ignore\npenalties for Moving & Shooting (unless they also\nMarch). In addition, they can always Stand & Shoot or\nFire & Flee (see Formation Special rules), even if that\nenemy would normally be too close for such a charge\nreaction to be declared.\nFurthermore, Quick Shot may be used once per turn\nwhen declaring a charge, immediately after rolling for\nyour charge distance. If the charging unit has enough\nMovement to enter the maximum range of its missile\nweapons, resolve the shooting attacks for each weapon\nas if the charging unit had just entered that weapon's\nrange. If the enemy unit chose to Stand & Shoot or Fire\n& Flee, both units will fire at the same time. Any shots\nfired in this manner suffer a -1 To Hit penalty, but\nignore penalties to long range. This may cause a Panic\ntest following the rules for Heavy Casualties as normal."
+    },
+    "randomAttacks": {
+      "name": "RANDOM ATTACKS",
+      "parameterized": false,
+      "description": "Models with the Random Attacks special rule do not\nhave a normal number for their Attacks characteristic,\nbut rather a dice roll, such as D3, D6 or D6+1. Each\ntime a model with this special rule comes to strike\nblows, roll the indicated dice, adding any modifiers\nshown, to determine the number of attacks that the\nmodel will make, then roll to hit as normal. If a unit\ncontains more than one model with this special rule,\nalways roll separately for each model."
+    },
+    "randomMovement": {
+      "name": "RANDOM MOVEMENT",
+      "parameterized": false,
+      "description": "Models with the Random Movement special rule do\nnot have a normal Movement characteristic, but rather\na dice roll, such as D6, 2D6 or 3D6 (as indicated in the\nbrackets). This is the distance they use for all their\nmovement (regardless of other special rules). Note that\ncertain Random Movement rolls can result in the\nmodel having a Movement value higher than 10 - this\nis an exception to the usual maximum.\nModels with Random Movement cannot declare\ncharges, can only choose Hold as a charge reaction,\nand must always move in the Compulsory Moves sub-\nphase. When the model moves, first pivot it about its\ncentre to face the direction in which you wish it to\ntravel. Then, roll the dice shown in the Random\nMovement brackets. Finally, move the model directly\nforwards a number of inches equal to the total rolled by\nthe dice. No other pivots can be made.\nThere's a chance that the model's peculiar movement\nwill cause it to come into contact with an enemy, so\nmeasure the distance in a straight line before the model\nis moved. If the move is found to take the unit's front\narc into contact with an enemy, then it counts as\ncharging, and this is resolved using the normal rules for\ncharges and using the distance rolled as its charge\nrange. Charge reactions cannot be declared against\nenemies with the Random Movement special rule.\nIf the random move brings the unit to within 1\" of a\nfriendly unit or Impassable Terrain, it stops\nimmediately and cannot move further during that\nMovement phase.\nA Random Move counts as a 'normal' move for\ntriggering a Dangerous Terrain test, unless the model is\nmaking a charge, pursuit or flee move, in which case it\ncounts as a move of the appropriate type.\nA character with this special rule cannot join a unit\nwithout this special rule. A unit with this special rule\ncannot be joined by a character without this special\nrule. If a character in the unit has a different Random\nMovement value, use the slowest for the entire unit."
+    },
+    "rapidFire": {
+      "name": "RAPID FIRE",
+      "parameterized": false,
+      "description": "Models or weapons with this special rule do not suffer\nthe usual -1 To Hit penalty for firing Multiple Shots."
+    },
+    "regeneration": {
+      "name": "REGENERATION",
+      "parameterized": false,
+      "description": "A model with the Regeneration special rule gains an\ninvulnerable save (indicated by the number in the\nbrackets). This is cumulative with other sources of\nRegeneration. Regeneration may not be used against\nFlaming Attacks, successful Killing Blows (including\nHeroic Killing Blow) or wounds caused due the unit\nbeing Unstable."
+    },
+    "requiresTwoHands": {
+      "name": "REQUIRES TWO HANDS",
+      "parameterized": false,
+      "description": "If a weapon has this rule, it is not possible for a model\nto use a shield or buckler alongside it in close combat\n(although a shield can still be used against wounds\ncaused by shooting or magic). In addition, missile\nweapons with this special rule cannot use Quick Shot\nwhen charging."
+    },
+    "sniper": {
+      "name": "SNIPER",
+      "parameterized": false,
+      "description": "A model with the Sniper special rule can make a\nspecial Sniper shot instead of shooting normally\n(though it can be used in combination with the\nMultiple Shots rule as normal). A Sniper shot suffers an\nadditional -1 To Hit penalty, in addition to any other\nmodifiers, but can be aimed with great precision.\nUnless making a Stand and Shoot Charge Reaction, a\nmodel making a Sniper shot can shoot at a different\ntarget from the one chosen by their unit. A hit from a\nSniper shot is not distributed in the same manner as\nother shooting attacks. The Sniper can shoot at any\nmodel they can see, including characters within a unit.\n\"Look Out, Sir!\" cannot be used. Sniper cannot be used\nwhen firing weapons that use a template."
+    },
+    "stomp": {
+      "name": "STOMP",
+      "parameterized": false,
+      "description": "A model with this special rule can make a Stomp in\naddition to its other close combat attacks (including\nBreath Weapons). A Stomp has the Always Strikes Last\nspecial rule and inflicts a number of automatic hits as\nindicated in the brackets. These are resolved at the\nmodel's Strength against a single enemy unit that\nconsists of models with a Line of Sight value of 1 or\nless. If the model is a Monster, it may also Stomp\nmodels with a Line of Sight value of 3 or less.\nUnless specified, any special rules or bonuses that\napply to the model's normal attacks do not apply to its\nStomp."
+    },
+    "strider": {
+      "name": "STRIDER",
+      "parameterized": false,
+      "description": "Models with the Strider special rule are rare -\nnormally, they will have a subset of Strider, such as\nHill, Forest, Marshland or River Strider and the rule\nonly applies in terrain of the specified type. Models\nwith the Strider rule treat that piece of terrain as Open\nGround, meaning they ignore any combat and\nmovement penalties or Dangerous Terrain tests\notherwise caused by it."
+    },
+    "stubborn": {
+      "name": "STUBBORN",
+      "parameterized": false,
+      "description": "A unit is considered Stubborn if the majority of the\nmodels in a unit have this special rule. A Stubborn unit\nis always Steadfast, whether or not they have more\nranks than their enemy or are disrupted.\nIf a model has the Stubborn special rule from two or\nmore different sources (such as a combination of\ndifferent special rules, spells or magic items), it may\nalso re-roll failed Break tests."
+    },
+    "stupidity": {
+      "name": "STUPIDITY",
+      "parameterized": false,
+      "description": "Provided that they are not engaged in close combat, a\nunit that contains one or more models with the\nStupidity special rule must roll a D6 at the start of its\nCompulsory Movement sub-phase and consult the table\nbelow to see what effect it has until the start of your\nnext turn:\nD6 Result\n1 Me Head Hurts: The model and any unit\nthey are with must move directly forwards\nusing the Random Movement (D6) special\nrule, can only choose Hold as a charge\nreaction and cannot use combat reform. In\naddition, the model gains the Immunity\n(Psychology) special rule, may not cast spells\nor channel dice, shoot or use any other\noptional special rules. Note that in case only\na mount has Stupidity, the rider is not\naffected by the penalties to shooting, casting\nor channelling.\n2-3 Unfocused: The model suffers a -1 penalty to\nits Weapon Skill, Ballistic Skill, Leadership,\ncasting and dispelling, and only channel dice\non the roll of a 6. This does not affect any\nriders if only the mount has Stupidity.\n4-6 Clear-headed: The model acts as normal."
+    },
+    "swiftstride": {
+      "name": "SWIFTSTRIDE",
+      "parameterized": false,
+      "description": "When charging, fleeing and pursuing, units entirely\nmade of models with the Swiftstride special rule may\nre-roll 1's when determining the result of the distance\nthey move."
+    },
+    "terror": {
+      "name": "TERROR",
+      "parameterized": false,
+      "description": "Models that cause Terror also cause Fear. In addition,\nthe following rules apply. Fear-causing models or\nmodels with Immunity (Fear) treat Terror-causing\nmonsters as causing Fear, rather than Terror - this is an\nexception to the rule that makes Fear-causing creatures\nimmune to Fear. Terror-causing models have the\nImmunity (Fear/Terror) special rule.\nRun for Your Lives!\nIf a Terror-causing creature declares a charge, the target\nunit must immediately take a Psychology test. If the\ntest is passed, all is well and the unit can declare charge\nreactions normally. If the test is failed, the unit must\nmake a Flee! charge reaction. Note that, if the target\nunit is not allowed to take any charge reaction (if, for\nexample, the Terror-causing unit charged as a result of\na pursuit or a random move), then the target does not\ntake this test.\nIf a unit wishes to declare a charge against an enemy\nthat causes Terror, it must pass a Psychology test first.\nIf the test is failed, it may not declare the charge\nagainst the Terror-causing unit, but may choose to\ndeclare a charge against another unit following the\nrules for Redirecting a Charge, or choose to not declare\na charge at all."
+    },
+    "unbreakable": {
+      "name": "UNBREAKABLE",
+      "parameterized": false,
+      "description": "Models with this special rule have the Immunity\n(Psychology) special rule and pass Break tests\nautomatically. However, they may never choose Flee as\na Charge Reaction.\nCharacters that are Unbreakable may only join units\nthat are also Unbreakable, and characters that are not\nUnbreakable are not permitted to join units that are\nUnbreakable (even if a character is Unstable -\nexplained below - or was to become temporarily\nUnbreakable for some reason)."
+    },
+    "unstable": {
+      "name": "UNSTABLE",
+      "parameterized": false,
+      "description": "Unstable units are Unbreakable, and suffer one extra\nWound for every point they have lost the round of\ncombat by, with no saves of any kind permitted against\nthese wounds. If an Unstable unit would normally be\neligible to be Steadfast, they instead suffer 1 less\nWound than they would normally do.\nIf an Unstable unit also contains Unstable characters,\nthe controlling player first allocates wounds to the unit,\nthen divides any remaining wounds (if any) as equally\nas possible amongst the characters."
+    },
+    "volleyFire": {
+      "name": "VOLLEY FIRE",
+      "parameterized": false,
+      "description": "Weapons with this rule allow a unit to fire with all\nranks that are within range in the Shooting Phase,\nrather than only the first two ranks.\nA unit cannot use Volley Fire if the target is within the\nweapon's effective range, if the unit moved earlier in\nthe turn, or when making a Stand and Shoot charge\nreaction."
+    },
+    "weaponTeam": {
+      "name": "WEAPON TEAM",
+      "parameterized": false,
+      "description": "If a model with this special rule is hit by a missile\nattack and is within 3\" of a friendly unit consisting of\nfive or more rank and file models of the same troop\ntype within 3\", roll a D6. On a roll of 4+, the hit is\ntransferred to a model in the friendly unit (if there is\nmore than one eligible unit within 3\", the controlling\nplayer can decide which). Otherwise, the hit is resolved\nagainst the Weapon Team as normal."
+    }
+  },
+  "deploymentSpecialRules": {
+    "ambushers": {
+      "name": "AMBUSHERS",
+      "parameterized": false,
+      "description": "Before starting deployment, a unit with the Ambushers\nspecial rule can choose to not deploy at the start of the\nbattle. Instead, at the start of the Remaining Moves\nsub-phase of Turn 2 the controlling player rolls a D6\nfor each of their units of Ambushers. On a 3+, the unit\narrives. If the unit does not arrive on Turn 2, roll\nanother D6 at the start of the Remaining Moves sub-\nphase of Turn 3. On a 2+, the unit arrives. If the unit\ndoes not arrive on Turn 3, it will automatically arrive at\nthe start of the Remaining Moves sub-phase of turn 4.\nArriving Ambushers enter the battlefield from any\npoint on any battlefield edge, and move on using the\nrules for reinforcements.\nNote that a Character may only join a unit deploying\nwith the Ambushers special rule if they also have this\nspecial rule.\nIn addition, for every Core unit that deploys as\nAmbushers in your army, you are required to include at\nleast one other Core Unit that is not Expendable and\nthat does not deploy using the Ambushers rule (for\nmore information, see the Choosing Your Army\nchapter)."
+    },
+    "scouts": {
+      "name": "SCOUTS",
+      "parameterized": false,
+      "description": "Before starting deployment, a unit with the Scouts\nspecial rule can choose to not deploy at the start of the\nbattle. Scouts are set up after all other units from both\narmies have been deployed, and do not count toward\ndetermining who finished deploying their army first.\nThey can be set up either in their controlling player's\ndeployment zone as normal, or anywhere on the\nbattlefield. However, this cannot be used to deploy a\nunit within 12\" of the enemy. Units that deploy this\nway cannot declare a charge in the first turn if their\narmy goes first.\nNote that a character may only join a unit deploying\nwith the Scouts special rule if they also have the same\nrule.\nIf both players' armies contain Scouts, players should\nroll off. The players then alternate deploying their\nscouting units one at a time, starting with the player\nwho won the roll-off."
+    },
+    "vanguard": {
+      "name": "VANGUARD",
+      "parameterized": false,
+      "description": "When starting deployment, all units that choose to\nVanguard must be deployed first. The players take it in\nturns to place their vanguards until they are finished.\nAfter this, all other units may be deployed as normal.\nModels with this special rule may deploy up to a\ndistance equal to their Movement characteristic (or\n2D6\" in case they have Random Movement) beyond\ntheir deployment zone. However, this cannot be used to\ndeploy a unit within 12\" of the enemy. Units that\ndeploy this way cannot declare a charge in the first turn\nif their army goes first.\nNote that a character may only join a unit deploying\nwith the Vanguard special rule if they also have the\nsame rule."
+    }
+  },
+  "formationSpecialRules": {
+    "fastCavalry": {
+      "name": "FAST CAVALRY",
+      "parameterized": false,
+      "description": "Fast Cavalry have the following rules:\nVanguard\nFast Cavalry automatically have the Vanguard\ndeployment special rule.\nSwift Manoeuvre\nFast Cavalry may turn without losing any movement,\nredress the ranks for a quarter of their movement and\nreform for half their movement. In addition, they may\nperform two manoeuvres during their move (even\nwhile marching), and still shoot after reforming.\nFire & Flee\nA unit of Fast Cavalry armed with missile weapons that\nchooses Flee as a Charge Reaction can choose to fire\ntheir weapons first (unless they are within the enemy's\nminimum charge range or Ponderous). If it chooses to\ndo so, the unit will first fire upon the target. After this,\nthe unit makes a flee move.\nAny shots fired in this manner suffer a -1 To Hit\npenalty. This may cause a Panic test following the rules\nfor Heavy Casualties as normal.\nFeigned Flight\nA unit of Fast Cavalry that chooses Flee or Fire & Flee\nas a charge reaction does not cause Panic from fleeing\nthrough friendly units and may re-roll failed Rally tests\nin its next Compulsory Movement Phase (unless it is\nforced to Flee again from another source). In addition,\nit is then also free to move during the remaining moves\npart of the Movement phase. The unit is also free to\nshoot as normal (but always counts as having moved).\nCharacters\nA Character that joins a unit of Fast Cavalry gains the\nFast Cavalry special rule as long as they stay with the\nunit. Characters may only join Fast Cavalry with the\nsame troop type (explained in the troop types chapter)\nas them.\nArmour Saves\nUnits containing one or more models with an\nunmodified close combat armour save better than 5+\ncannot use Fire & Flee or Feigned Flight. If the armour\nsave is better than 4+, the unit cannot use the Fast\nCavalry rule at all."
+    },
+    "skirmishers": {
+      "name": "SKIRMISHERS",
+      "parameterized": false,
+      "description": "Skirmishers have the following rules:\nLoose Formation\nSkirmishers are deployed in a 'loose' formation, where\nthe models are not placed in base contact, but are\npositioned roughly 1/2\" apart. The models in the unit\nmust still face the same direction and the unit will still\nhave a front, two flanks and a rear.\nAll shots aimed at a unit of two or more Skirmisher\nmodels with an individual Unit Strength of 2 or less\nsuffer an additional -1 To Hit penalty.\nSkirmishers & Combat\nIf skirmishers declare a charge (or a charge reaction\nthat does not involve fleeing) they tighten their loose\nformation into a 'normal' formation after the charge\ndistance is rolled and the chargers are moved. This\nhappens 'for free' at the moment both units move into\nbase contact. The unit immediately forms up in base\ncontact around the centremost model in the front rank\n(the Skirmishers' controlling player can choose which\nif the front rank has an even number of models) that is\nalso in base contact with the enemy.\nThe number of ranks, files and the formation's facing\ndo not alter as the Skirmishers tighten up - all that\nhappens is that models that were previously spaced out\nare now in base contact with one another. This has the\neffect of rendering the Skirmishers' loose formation\ninto a regular shape so that other units can fight them\nin the normal way.\nIf the Skirmishers are not in base contact with an\nenemy in the Remaining Moves sub-phase, the\ncontrolling player must move them apart so that they\nreadopt their loose formation.\nSkirmishers gain no bonus from their ranks (such as\nrank bonus or Steadfast) in the first round of close\ncombat."
+    }
+  },
+  "troopTypes": {
+    "troop": {
+      "name": "TROOP",
+      "parameterized": false,
+      "description": "In most cases it will be fairly obvious which troop type\ncategory a model falls into, but as troop type is\nessentially an extension of the characteristic profile,\nyou'll find that information in the relevant Warhammer\nArmies book. Most units in Warhammer conform to\none of the following types."
+    },
+    "characters": {
+      "name": "CHARACTERS",
+      "parameterized": false,
+      "description": "In addition to their troop type, some models might also\nbe noted as being characters. We're not going to worry\nabout characters here, however - characters are such a\npowerful and important part of Warhammer that they\nhave a chapter all to themselves later in the book."
+    },
+    "completeRanks": {
+      "name": "COMPLETE RANKS",
+      "parameterized": false,
+      "description": "There are multiple instances where the rules will\nmention a \"complete rank of models\". What constitutes\nas a complete rank of models varies for each troop\ntype, and is specified for each of them in this chapter.\nNote that if the unit has an incomplete rear rank, but\nthat rear rank still has the minimum number of required\nmodels according to its troop type, that rank still counts\nas being complete.\nUNIT STRENGTH & LINE OF SIGHT\nThe values listed in this chapter are the default for each\ntroop type. However, there may be some exceptions to\nthis in the various Warhammer Armies book."
+    },
+    "modelsAndBaseSizes": {
+      "name": "MODELS AND BASE SIZES",
+      "parameterized": false,
+      "description": "Each model should be mounted on a base to determine\nthe width and depth of the unit. Each troop type has\ndifferent generally approved base sizes, which are\nlisted in each army book. War machines however, may\nchoose to either be mounted on a base, or be placed on\nthe board as is.\nIn some cases, you might be using a model that\nrequires a larger base than described. This is\ncompletely fine, as long as you try to keep it as close as\npossible to the normal approved base sizes. However,\nyou may never have a base size that is smaller than the\napproved base sizes listed."
+    },
+    "infantry": {
+      "name": "INFANTRY",
+      "parameterized": false,
+      "description": "The following rules apply to Infantry:\nThe following rules apply to Monstrous Infantry:"
+    },
+    "ranks": {
+      "name": "RANKS",
+      "parameterized": false,
+      "description": "A unit of Infantry is required to be five or more models\nwide in order to have a complete rank.\nA unit of Monstrous Infantry is required to be three or\nmore models wide in order to have a complete rank. In\naddition, their fighting rank is three models rather than\nfive.\nA unit of Cavalry is required to be five or more models\nwide in order to have a complete rank.\nA unit of Monstrous Cavalry is required to be three or\nmore models wide in order to have a complete rank. In\naddition, their fighting rank is three models rather than\nfive.\nA unit of Swarms is required to be three or more\nmodels wide in order to have a complete rank.\nIn addition, their fighting rank is three models rather\nthan five.\nA unit of War Beasts is required to be five or more\nmodels wide in order to have a complete rank.\nA unit of Monstrous Beasts is required to be three or\nmore models wide in order to have a complete rank. In\naddition, their fighting rank is three models rather than\nfive."
+    },
+    "supportingAttacks": {
+      "name": "SUPPORTING ATTACKS",
+      "parameterized": false,
+      "description": "An Infantry model may make up to one supporting\nattack.\nA Monstrous Infantry model may make up to three\nsupporting attacks.\nSPECIAL RULES\nMonstrous Infantry are subject to the following special\nrules:\n• Fear\nA Cavalry model can make one supporting attack from\nthe rider. Mounts are not allowed to make supporting\nattacks. Cavalry without a split profile can make up to\none supporting attack.\nSPECIAL RULES\nCavalry are subject to the following special rules:\nAny special rules listed for Cavalry units only apply to\nthe rider, unless they specifically mention the mount.\nThere are, however, a few exceptions. If either the rider\nor the mount has one of the following special rules,\nthen the whole model has it:\n• Always Strikes Last\n• Ambushers\n• Berserk Rage (see Frenzy)\n• Ethereal\n• Fast Cavalry\n• Fear\n• Fly (*)\n• Immunity (*)\n• Regeneration (*)\n• Scouts\n• Stupidity\n• Stubborn\n• Terror\n• Vanguard\nA Monstrous Cavalry model can make one supporting\nattack from the rider. Mounts are not allowed to make\nsupporting attacks. Monstrous Cavalry without a split\nprofile can make up to three supporting attacks.\nSPECIAL RULES\nMonstrous Cavalry are subject to the following special\nrules:\n• Fear\nA Swarm model may make up to five supporting\nattacks.\nSPECIAL RULES\nSwarms are subject to the following special rules:\n• Expendable\n• Independent\n• Unstable\n• Vanguard\nAny Swarm base that is hit by a template attack suffers\nMultiple Wounds (D6) rather than 1.\nA War Beast model may make up to one supporting\nattack.\nSPECIAL RULES\nWar Beasts are subject to the following special rules:\n• Expendable\n• Independent\n• Vanguard\nA Monstrous Beast model may make up to three\nsupporting attacks.\nSPECIAL RULES\nMonstrous Beasts are subject to the following special\nrules:\n• Fear\n• Independent"
+    },
+    "unitStrength": {
+      "name": "UNIT STRENGTH",
+      "parameterized": false,
+      "description": "Infantry have a Unit Strength of 1.\nMonstrous Infantry have a Unit Strength of 2.\nCavalry have a Unit Strength of 2.\nMonstrous Cavalry have a Unit Strength of 3.\nSwarms have a Unit Strength of 3.\nWar Beasts have a Unit Strength of 1.\nMonstrous Beasts have a Unit Strength of 2."
+    },
+    "lineOfSight": {
+      "name": "LINE OF SIGHT",
+      "parameterized": false,
+      "description": "Infantry have a Line of Sight value of 1.\nMonstrous Infantry have a Line of Sight value of 2.\nCavalry have a Line of Sight value of 2.\nMonstrous Cavalry have a Line of Sight value of 3.\nSwarms have a Line of Sight value of 0.\nWar Beasts have a Line of Sight value of 1.\nMonstrous Beasts have a Line of Sight value of 2."
+    },
+    "cavalry": {
+      "name": "CAVALRY",
+      "parameterized": false,
+      "description": "The following rules apply to Cavalry:\nAll the Cavalry rules apply to Monstrous Cavalry. In\naddition, the following rules apply:"
+    },
+    "splitProfile": {
+      "name": "SPLIT PROFILE",
+      "parameterized": false,
+      "description": "Although a cavalry model has two sets of\ncharacteristics, one for the rider and one for the mount,\nit is treated in all respects as a single model - the rider\ncannot dismount. When moving, the cavalry model\nalways uses the Movement characteristic of the mount,\nand never that of the rider.\nThe rider and mount use their own Weapon Skill,\nStrength, Initiative and Attacks characteristics when\nthey attack. Each can attack any opponent that the\ncavalry model is in base contact with.\nThe mount's Leadership is never used, unless a spell or\nspecial rule states otherwise.\nIf the rider has a missile weapon, they always use their\nown Ballistic Skill, rather than that of their mount.\nWhen attacking a Cavalry model, always use the\nhighest Weapon Skill, Toughness and Wounds value\nfrom either the rider or the mount.\nIf the rider and the mount both have armour saves or\ninvulnerable saves these may be combined as normal.\nAny equipment or magic items the model might\notherwise have only apply to the rider, not the mount\n(unless specified).\nUnless specified, any effect that would modify the\nmodel's characteristics or their dice rolls affect both the\nrider and mount.\nIn some cases, you may find Cavalry models that do\nnot have a split profile. The model counts as mounted\nfor the purpose of using certain weapons, as described\nin the Weapons and Armour chapter."
+    },
+    "terrain": {
+      "name": "TERRAIN",
+      "parameterized": false,
+      "description": "Cavalry have to take Dangerous Terrain tests if they\nmarch, charge, flee or pursue over anything other than\nopen ground or hills - see Battlefield Terrain for more\ndetails."
+    },
+    "swarms": {
+      "name": "SWARMS",
+      "parameterized": false,
+      "description": "The following rules apply to Swarms:"
+    },
+    "warBeasts": {
+      "name": "WAR BEASTS",
+      "parameterized": false,
+      "description": "The following rules apply to War Beasts:"
+    },
+    "characterMount": {
+      "name": "CHARACTER MOUNT",
+      "parameterized": false,
+      "description": "Some characters can ride War Beasts, in which case the\nmodel uses the rules for Cavalry.\nSome characters can ride Monstrous Beasts, in which\ncase the model uses the rules for Monstrous Cavalry."
+    },
+    "monstrousBeasts": {
+      "name": "MONSTROUS BEASTS",
+      "parameterized": false,
+      "description": "The following rules apply to Monstrous Beasts:"
+    }
+  }
+}

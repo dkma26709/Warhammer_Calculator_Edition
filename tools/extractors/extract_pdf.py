@@ -30,7 +30,7 @@ def normalize_bullets(text):
 
 
 SECTION_HEADERS = {
-    'LORDS', 'HEROES', 'CORE UNITS', 'SPECIAL UNITS', 'RARE UNITS',
+    'LORDS', 'HEROES', 'CHARACTERS', 'CORE UNITS', 'SPECIAL UNITS', 'RARE UNITS',
     'NAMED CHARACTERS', 'SPECIAL CHARACTERS',
     'SPECIAL CHARACTERS (LORDS)', 'SPECIAL CHARACTERS (HEROES)',
     'CHARACTER MOUNTS',
@@ -76,6 +76,17 @@ def find_unit_title_before(full_text, pos):
         if is_all_caps_title(candidate) and candidate not in SECTION_HEADERS:
             title_pos = pre_text.rfind(candidate)
             return candidate, title_pos
+        # v3 books use LORDS/HEROES as entry titles inside the CHARACTERS
+        # section (e.g. Dwarfs' "LORDS" entry holding King + Thane).
+        if candidate in ('LORDS', 'HEROES'):
+            for k in range(j - 1, max(j - 4, -1), -1):
+                above = lines_before[k].strip()
+                if not above:
+                    continue
+                if above == 'CHARACTERS':
+                    title_pos = pre_text.rfind(candidate)
+                    return candidate, title_pos
+                break
         # Skip non-caps lines (subtitles like "Lord of the Solar-City...")
         # and section headers (which we want to skip past)
         if candidate in SECTION_HEADERS:
@@ -648,7 +659,7 @@ def expand_shared_allowance_upgrades(options):
 def detect_section(full_text, unit_start_pos):
     """Determine which army list section a unit belongs to based on position."""
     section_pattern = re.compile(
-        r'^(LORDS|HEROES|CORE UNITS?|SPECIAL UNITS?|RARE UNITS?|'
+        r'^(LORDS|HEROES|CHARACTERS|CORE UNITS?|SPECIAL UNITS?|RARE UNITS?|'
         r'NAMED CHARACTERS|SPECIAL CHARACTERS\s*(?:\(LORDS\)|\(HEROES\))?|'
         r'CHARACTER MOUNTS)\s*$',
         re.MULTILINE
@@ -670,6 +681,7 @@ def normalize_category(cat):
     mapping = {
         "LORDS": "Lords",
         "HEROES": "Heroes",
+        "CHARACTERS": "Characters",
         "CORE UNITS": "Core",
         "CORE": "Core",
         "SPECIAL UNITS": "Special",
@@ -781,6 +793,26 @@ def parse_unit_block(unit_title, block_text, category):
     return unit
 
 
+def split_character_entry(unit):
+    """Split a v3 CHARACTERS entry holding several alternative characters
+    (one costed profile each, e.g. "Saurus Leaders" = Oldblood + Scar-Veteran)
+    into one unit per costed profile. Entries with a single costed profile
+    (extra profiles are retinue/mount lines) are left intact."""
+    costed = [p for p in unit["profiles"] if p.get("points") is not None]
+    if unit["category"] != "Characters" or len(costed) < 2:
+        return [unit]
+
+    uncosted = [p for p in unit["profiles"] if p.get("points") is None]
+    split_units = []
+    for profile in costed:
+        clone = dict(unit)
+        clone["name"] = profile["name"]
+        clone["profiles"] = [profile] + uncosted
+        clone["pointsCost"] = profile["points"]
+        split_units.append(clone)
+    return split_units
+
+
 def extract_army(pdf_path, faction_name, unit_filter=None):
     """Extract all units (or a filtered subset) from a WAP army book PDF."""
     pages = extract_text_from_pdf(pdf_path)
@@ -797,7 +829,7 @@ def extract_army(pdf_path, faction_name, unit_filter=None):
 
         category = detect_section(full_text, full_text.index(block_text))
         unit = parse_unit_block(unit_title, block_text, category)
-        units.append(unit)
+        units.extend(split_character_entry(unit))
 
     return {
         "factionName": faction_name,
