@@ -170,6 +170,6 @@ Import: file upload → validate schema → replace active list.
 ## Open Questions / Risks
 
 - **WAP percentages** documented above need user verification against the WAP rulebook PDF.
-- **Composition-rules-in-code vs JSON**: starting in code for speed. If rules move or become faction-specific, promote to `wwwroot/data/composition-rules.json`.
+- ~~**Composition-rules-in-code vs JSON**: starting in code for speed. If rules move or become faction-specific, promote to `wwwroot/data/composition-rules.json`.~~ **Done** — wap-v3 differs from wap-v2 (merged `Characters` section, no Lords/Heroes sub-caps), so the percentages now live in `wwwroot/data/{system}/composition.json` and a list may override each limit with either a percentage or a flat points figure.
 - **0-1 per army detection**: requires scanning unit `notes` text for phrases like "0-1 per army". May need a structured field added during re-extraction.
 - **Character mount points**: mount entries have their own profiles; need to ensure character total points correctly include mount cost.

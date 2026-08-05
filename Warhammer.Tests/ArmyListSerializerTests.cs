@@ -24,6 +24,8 @@ public class ArmyListSerializerTests
             Task.FromResult(Extras);
         public Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync() =>
             Task.FromResult<IReadOnlyList<MagicItemEntry>>([]);
+        public Task<CompositionRules> GetCompositionRulesAsync() =>
+            Task.FromResult(TestCompositionRules.WapV2);
         public Weapon? GetWeapon(CloseCombatWeaponKey key) => null;
         public Weapon GetHandWeapon() => throw new NotImplementedException();
         public Armour? GetArmour(ArmourKey key) => null;
@@ -51,6 +53,83 @@ public class ArmyListSerializerTests
         Assert.Contains("dwarfs", json);
         Assert.Contains("\"pointsTarget\": 2000", json);
         Assert.Contains("Warriors", json);
+    }
+
+    // ─── Composition overrides ──────────────────────────────────────
+
+    [Fact]
+    public void Serialize_OmitsComposition_WhenNothingIsOverridden()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var list = new ArmyList { Faction = FactionKey.Dwarfs, PointsTarget = 2000 };
+
+        var json = new ArmyListSerializer(new StubRepo(unit), new GameSystemService()).Serialize(list);
+
+        Assert.DoesNotContain("composition", json);
+    }
+
+    [Fact]
+    public async Task Composition_RoundTripsThroughExportAndImport()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Dwarfs,
+            PointsTarget = 2000,
+            Units = { new UnitConfiguration(unit) { ModelCount = 10 } },
+            Overrides = new CompositionOverrides
+            {
+                RareMax = new() { Value = 15, Unit = LimitUnit.Percent },
+                CoreMin = new() { Value = 600, Unit = LimitUnit.Points },
+                SingleCharacterMax = new() { Value = 400, Unit = LimitUnit.Points },
+                SpecialDuplicateLimit = 1,
+            },
+        };
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
+        var json = serializer.Serialize(list);
+
+        // The unit must survive as a name, not an enum ordinal.
+        Assert.Contains("\"Percent\"", json);
+        Assert.Contains("\"Points\"", json);
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        var restored = result.List!.Overrides;
+        Assert.Equal(15, restored.RareMax!.Value);
+        Assert.Equal(LimitUnit.Percent, restored.RareMax.Unit);
+        Assert.Equal(600, restored.CoreMin!.Value);
+        Assert.Equal(LimitUnit.Points, restored.CoreMin.Unit);
+        Assert.Equal(400, restored.SingleCharacterMax!.Value);
+        Assert.Equal(LimitUnit.Points, restored.SingleCharacterMax.Unit);
+        Assert.Equal(1, restored.SpecialDuplicateLimit);
+        Assert.Null(restored.LordsMax);
+        Assert.Null(restored.RareDuplicateLimit);
+    }
+
+    [Fact]
+    public async Task ListSavedWithoutComposition_ImportsWithNoOverrides()
+    {
+        // A wap-army-list/v1 file written before overrides existed.
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var json = """
+        {
+          "schema": "wap-army-list/v1",
+          "system": "wap-v2",
+          "faction": "dwarfs",
+          "pointsTarget": 2000,
+          "name": "Legacy List",
+          "units": [ { "unitName": "Warriors", "modelCount": 10, "frontage": 5 } ]
+        }
+        """;
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        Assert.Empty(result.Warnings);
+        Assert.True(result.List!.Overrides.IsEmpty);
     }
 
     [Fact]

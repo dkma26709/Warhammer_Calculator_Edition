@@ -15,6 +15,10 @@ public sealed record ArmyListDto
     public int PointsTarget { get; init; }
     public string Name { get; init; } = "Untitled List";
     public List<ArmyListUnitDto> Units { get; init; } = new();
+
+    // Additive field: lists saved without house-rule overrides get the system's percentages.
+    // Omitted from the written JSON when nothing is overridden.
+    public CompositionOverrides? Composition { get; init; }
 }
 
 public sealed record ArmyListUnitDto

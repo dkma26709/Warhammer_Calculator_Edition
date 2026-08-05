@@ -109,6 +109,72 @@
                         </div>
                     }
                 </div>
+
+                @* ─── Composition limits (house rules) ───────────────── *@
+                <div class="mt-2 pt-2 border-top border-secondary">
+                    <button type="button" class="btn btn-sm btn-link p-0 text-decoration-none text-info"
+                            @onclick="() => _showOverrides = !_showOverrides">
+                        @(_showOverrides ? "▾" : "▸") Composition limits
+                    </button>
+                    @if (!_armyList.Overrides.IsEmpty)
+                    {
+                        <span class="badge bg-warning text-dark ms-2">House rules</span>
+                    }
+                    <span class="text-body-secondary ms-2" style="font-size: 0.75rem;">
+                        @SystemService.CurrentSystem defaults unless changed
+                    </span>
+
+                    @if (_showOverrides)
+                    {
+                        <div class="row g-2 mt-2">
+                            @foreach (var field in OverrideFields)
+                            {
+                                <div class="col-6 col-md-4 col-xl-3">
+                                    <label class="form-label mb-0" style="font-size: 0.75rem;">
+                                        @field.Label
+                                        @if (field.IsOverridden)
+                                        {
+                                            <span class="text-warning">*</span>
+                                        }
+                                    </label>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control form-control-sm"
+                                               inputmode="numeric"
+                                               placeholder="@field.Placeholder"
+                                               value="@field.Value"
+                                               @onchange="field.OnValueChange" />
+                                        @if (!field.HasUnitChoice)
+                                        {
+                                            <span class="input-group-text">#</span>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-select form-select-sm flex-grow-0 w-auto"
+                                                    value="@field.Unit" @onchange="field.OnUnitChange">
+                                                <option value="@nameof(LimitUnit.Percent)">%</option>
+                                                <option value="@nameof(LimitUnit.Points)">pts</option>
+                                            </select>
+                                        }
+                                    </div>
+                                    @if (field.Effective is not null)
+                                    {
+                                        <div class="text-body-secondary" style="font-size: 0.7rem;">
+                                            = @field.Effective
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    disabled="@_armyList.Overrides.IsEmpty"
+                                    @onclick="ResetOverrides">Reset to @SystemService.CurrentSystem</button>
+                            <span class="text-body-secondary" style="font-size: 0.75rem;">
+                                Blank uses the system value. Saved and exported with this list.
+                            </span>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
 
@@ -299,6 +365,14 @@
 
     private List<ValidationIssue> _issues = [];
     private readonly HashSet<UnitConfiguration> _expanded = new();
+    private CompositionRules? _composition;
+    private bool _showOverrides;
+
+    /// <summary>
+    /// Which unit each limit field is being edited in, keyed by label. Held here rather than on
+    /// the override so clearing a field's value does not also discard the unit choice.
+    /// </summary>
+    private readonly Dictionary<string, LimitUnit> _limitUnitChoice = new();
 
     private string? _statusMessage;
     private bool _statusIsError;
@@ -310,6 +384,7 @@
         await Repo.EnsureLoadedAsync();
         await Portraits.EnsureLoadedAsync();
         _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
+        _composition = await Repo.GetCompositionRulesAsync();
         await TryLoadFromStorage();
     }
 
@@ -508,7 +583,8 @@
 
     private void Revalidate()
     {
-        _issues = Validator.Validate(_armyList);
+        if (_composition != null)
+            _issues = Validator.Validate(_armyList, _composition);
         _ = AutosaveAsync();
     }
 
@@ -589,32 +665,211 @@
         _statusIsError = isError;
     }
 
+    // ─── Composition overrides ────────────────────────────────────
+
+    /// <summary>
+    /// One editable composition limit. A blank value falls back to the system's percentage.
+    /// The duplicate counts are a plain number, so they carry no unit choice.
+    /// </summary>
+    private sealed record OverrideField(
+        string Label,
+        string Unit,
+        string Placeholder,
+        string Value,
+        string? Effective,
+        bool IsOverridden,
+        bool HasUnitChoice,
+        EventCallback<ChangeEventArgs> OnValueChange,
+        EventCallback<ChangeEventArgs> OnUnitChange);
+
+    private IEnumerable<OverrideField> OverrideFields
+    {
+        get
+        {
+            if (_composition == null) yield break;
+
+            var o = _armyList.Overrides;
+            var limits = _composition.Resolve(o, _armyList.PointsTarget);
+
+            yield return Limit("Lords max", _composition.LordsMaxPercent, o.LordsMax, limits.LordsMax,
+                v => _armyList.Overrides = _armyList.Overrides with { LordsMax = v });
+
+            yield return Limit("Heroes max", _composition.HeroesMaxPercent, o.HeroesMax, limits.HeroesMax,
+                v => _armyList.Overrides = _armyList.Overrides with { HeroesMax = v });
+
+            yield return Limit("Characters max", _composition.CharactersCombinedMaxPercent,
+                o.CharactersCombinedMax, limits.CharactersCombinedMax,
+                v => _armyList.Overrides = _armyList.Overrides with { CharactersCombinedMax = v });
+
+            yield return Limit("One character max", _composition.SingleCharacterMaxPercent,
+                o.SingleCharacterMax, limits.SingleCharacterMax,
+                v => _armyList.Overrides = _armyList.Overrides with { SingleCharacterMax = v });
+
+            yield return Limit("Core min", _composition.CoreMinPercent, o.CoreMin, limits.CoreMin,
+                v => _armyList.Overrides = _armyList.Overrides with { CoreMin = v });
+
+            yield return Limit("Special max", _composition.SpecialMaxPercent, o.SpecialMax, limits.SpecialMax,
+                v => _armyList.Overrides = _armyList.Overrides with { SpecialMax = v });
+
+            yield return Limit("Rare max", _composition.RareMaxPercent, o.RareMax, limits.RareMax,
+                v => _armyList.Overrides = _armyList.Overrides with { RareMax = v });
+
+            var (bracketSpecial, bracketRare) = ArmyCompositionRules.DuplicateLimits(_armyList.PointsTarget);
+
+            yield return Count("Special dupes", bracketSpecial, o.SpecialDuplicateLimit,
+                v => _armyList.Overrides = _armyList.Overrides with { SpecialDuplicateLimit = v });
+
+            yield return Count("Rare dupes", bracketRare, o.RareDuplicateLimit,
+                v => _armyList.Overrides = _armyList.Overrides with { RareDuplicateLimit = v });
+        }
+    }
+
+    private OverrideField Limit(
+        string label,
+        double? systemPercent,
+        LimitOverride? overridden,
+        EffectiveLimit? effective,
+        Action<LimitOverride?> set)
+    {
+        var unit = UnitFor(label, overridden);
+
+        return new OverrideField(
+            Label: label,
+            Unit: unit.ToString(),
+            Placeholder: unit == LimitUnit.Points
+                ? PointsPlaceholder(systemPercent)
+                : systemPercent is { } percent ? (percent * 100).ToString("F0") : "none",
+            Value: overridden is { } ov ? ov.Value.ToString("F0") : "",
+            Effective: effective is null ? null
+                : $"{effective.Points:F0} pts",
+            IsOverridden: overridden is not null,
+            HasUnitChoice: true,
+            OnValueChange: EventCallback.Factory.Create<ChangeEventArgs>(
+                this, e => OnLimitValueChanged(e, unit, set)),
+            OnUnitChange: EventCallback.Factory.Create<ChangeEventArgs>(
+                this, e => OnLimitUnitChanged(e, label, overridden, systemPercent, set)));
+    }
+
+    /// <summary>
+    /// The unit a field is showing. An override states its own unit; otherwise the user's last
+    /// explicit choice for that field stands, so clearing the box to retype a number does not
+    /// silently drop the field back to a percentage.
+    /// </summary>
+    private LimitUnit UnitFor(string label, LimitOverride? overridden) =>
+        overridden?.Unit
+        ?? (_limitUnitChoice.TryGetValue(label, out var chosen) ? chosen : LimitUnit.Percent);
+
+    private string PointsPlaceholder(double? systemPercent) =>
+        systemPercent is { } percent
+            ? (percent * _armyList.PointsTarget).ToString("F0")
+            : "none";
+
+    private OverrideField Count(string label, int systemValue, int? overridden, Action<int?> set) =>
+        new(Label: label,
+            Unit: "#",
+            Placeholder: systemValue.ToString(),
+            Value: overridden?.ToString() ?? "",
+            Effective: null,
+            IsOverridden: overridden is not null,
+            HasUnitChoice: false,
+            OnValueChange: EventCallback.Factory.Create<ChangeEventArgs>(this, e => OnCountOverride(e, set)),
+            OnUnitChange: default);
+
+    private void OnLimitValueChanged(ChangeEventArgs e, LimitUnit unit, Action<LimitOverride?> set)
+    {
+        var text = e.Value?.ToString();
+
+        // Deliberately unclamped: a points cap can be any size, and a house ruleset is
+        // entitled to a percentage over 100 if that is what it says.
+        if (string.IsNullOrWhiteSpace(text) || !double.TryParse(text, out var value) || value < 0)
+            set(null);
+        else
+            set(new LimitOverride { Value = value, Unit = unit });
+
+        Revalidate();
+    }
+
+    /// <summary>
+    /// Switching unit converts the figure so the box keeps meaning the same limit. On a field
+    /// with no value set, the choice is remembered so the box can be typed into as points.
+    /// </summary>
+    private void OnLimitUnitChanged(
+        ChangeEventArgs e,
+        string label,
+        LimitOverride? current,
+        double? systemPercent,
+        Action<LimitOverride?> set)
+    {
+        if (!Enum.TryParse<LimitUnit>(e.Value?.ToString(), out var unit))
+            return;
+
+        _limitUnitChoice[label] = unit;
+
+        if (current is not null && _armyList.PointsTarget > 0 && current.Unit != unit)
+        {
+            double converted = unit == LimitUnit.Points
+                ? current.Value * _armyList.PointsTarget / 100.0
+                : current.Value / _armyList.PointsTarget * 100.0;
+            set(new LimitOverride { Value = Math.Round(converted), Unit = unit });
+        }
+        else if (current is not null)
+        {
+            set(current with { Unit = unit });
+        }
+
+        Revalidate();
+    }
+
+    private void OnCountOverride(ChangeEventArgs e, Action<int?> set)
+    {
+        var text = e.Value?.ToString();
+        if (string.IsNullOrWhiteSpace(text) || !int.TryParse(text, out var count) || count < 0)
+            set(null);
+        else
+            set(count);
+
+        Revalidate();
+    }
+
+    private void ResetOverrides()
+    {
+        _armyList.Overrides = new CompositionOverrides();
+        _limitUnitChoice.Clear();
+        Revalidate();
+    }
+
     private IEnumerable<(string Label, double Used, double Cap, bool IsMin)> CategoryBars
     {
         get
         {
-            double target = _armyList.PointsTarget;
-            // v2 books split characters into Lords/Heroes with their own caps; v3 books
-            // have a single Characters section governed only by the combined cap.
-            bool splitCharacters = _factionUnits?.Any(u => u.Category is UnitCategory.Lords or UnitCategory.Heroes) ?? true;
-            if (splitCharacters)
-            {
+            if (_composition == null) yield break;
+
+            var limits = _composition.Resolve(_armyList.Overrides, _armyList.PointsTarget);
+
+            // Whether characters split into Lords and Heroes is a property of the system's
+            // rules, not of a faction's data — v3 merges them into one Characters section
+            // and so declares no per-section caps.
+            bool split = limits.LordsMax is not null || limits.HeroesMax is not null;
+
+            if (limits.LordsMax is { } lordsMax)
                 yield return ("Lords", _armyList.PointsInCategory(UnitCategory.Lords),
-                    target * ArmyCompositionRules.LordsMaxPercent, false);
+                    lordsMax.Points, false);
+
+            if (limits.HeroesMax is { } heroesMax)
                 yield return ("Heroes", _armyList.PointsInCategory(UnitCategory.Heroes),
-                    target * ArmyCompositionRules.HeroesMaxPercent, false);
-            }
-            yield return (splitCharacters ? "Characters (combined)" : "Characters",
+                    heroesMax.Points, false);
+
+            yield return (split ? "Characters (combined)" : "Characters",
                 _armyList.PointsInCategory(UnitCategory.Lords)
                     + _armyList.PointsInCategory(UnitCategory.Heroes)
                     + _armyList.PointsInCategory(UnitCategory.Characters),
-                target * ArmyCompositionRules.CharactersCombinedMaxPercent, false);
+                limits.CharactersCombinedMax.Points, false);
             yield return ("Core", _armyList.PointsInCategory(UnitCategory.Core),
-                target * ArmyCompositionRules.CoreMinPercent, true);
+                limits.CoreMin.Points, true);
             yield return ("Special", _armyList.PointsInCategory(UnitCategory.Special),
-                target * ArmyCompositionRules.SpecialMaxPercent, false);
+                limits.SpecialMax.Points, false);
             yield return ("Rare", _armyList.PointsInCategory(UnitCategory.Rare),
-                target * ArmyCompositionRules.RareMaxPercent, false);
+                limits.RareMax.Points, false);
         }
     }
 }

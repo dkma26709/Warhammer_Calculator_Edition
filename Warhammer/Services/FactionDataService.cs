@@ -11,6 +11,7 @@ public class FactionDataService
     private readonly Dictionary<string, FactionData> _unitCache = new();
     private readonly Dictionary<string, FactionExtrasData> _extrasCache = new();
     private SystemManifest? _manifest;
+    private CompositionData? _composition;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -69,6 +70,18 @@ public class FactionDataService
                 unit.Category = "Character Mounts";
             }
         }
+    }
+
+    /// <summary>Load the active system's composition percentages. Cached after first call.</summary>
+    public async Task<CompositionData> GetCompositionAsync()
+    {
+        if (_composition != null)
+            return _composition;
+
+        _composition = await _http.GetFromJsonAsync<CompositionData>(
+            _system.DataPath("composition.json"), JsonOptions)
+            ?? throw new InvalidOperationException("Failed to load composition.json");
+        return _composition;
     }
 
     public async Task<FactionExtrasData> GetFactionExtrasAsync(string factionKey)

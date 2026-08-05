@@ -9,7 +9,12 @@ public class ArmyListValidator
     private static readonly Regex PerArmyPattern =
         new(@"\b0-(\d+)\s+per\s+army\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-    public List<ValidationIssue> Validate(ArmyList list)
+    /// <param name="rules">
+    /// The active system's percentages. Passed per call rather than held as state because this
+    /// is a singleton and the selected system can change at runtime. Any
+    /// <see cref="ArmyList.Overrides"/> on the list win over these.
+    /// </param>
+    public List<ValidationIssue> Validate(ArmyList list, CompositionRules rules)
     {
         var issues = new List<ValidationIssue>();
 
@@ -20,42 +25,54 @@ public class ArmyListValidator
             return issues;
         }
 
-        CheckMaxPercent(issues, list, UnitCategory.Lords,
-            ArmyCompositionRules.LordsMaxPercent, "LORDS_OVER_CAP", "Lords");
+        var limits = rules.Resolve(list.Overrides, list.PointsTarget);
 
-        CheckMaxPercent(issues, list, UnitCategory.Heroes,
-            ArmyCompositionRules.HeroesMaxPercent, "HEROES_OVER_CAP", "Heroes");
+        // Null limit = neither the system nor the list imposes one
+        // (wap-v3 has no Lords/Heroes sections).
+        if (limits.LordsMax is { } lordsMax)
+            CheckMax(issues, list, UnitCategory.Lords, lordsMax, "LORDS_OVER_CAP", "Lords");
+
+        if (limits.HeroesMax is { } heroesMax)
+            CheckMax(issues, list, UnitCategory.Heroes, heroesMax, "HEROES_OVER_CAP", "Heroes");
 
         double charactersPoints =
             list.PointsInCategory(UnitCategory.Lords) +
             list.PointsInCategory(UnitCategory.Heroes) +
             list.PointsInCategory(UnitCategory.Characters);
-        double charactersCap = list.PointsTarget * ArmyCompositionRules.CharactersCombinedMaxPercent;
-        if (charactersPoints > charactersCap)
+        if (charactersPoints > limits.CharactersCombinedMax.Points)
         {
             issues.Add(new(ValidationSeverity.Error, "CHARACTERS_OVER_CAP",
-                $"Characters total {charactersPoints:F0} exceeds combined cap {charactersCap:F0} " +
-                $"({ArmyCompositionRules.CharactersCombinedMaxPercent:P0} of {list.PointsTarget})"));
+                $"Characters total {charactersPoints:F0} exceeds combined cap " +
+                $"{limits.CharactersCombinedMax.Points:F0} ({limits.CharactersCombinedMax.Description})"));
         }
 
         double corePoints = list.PointsInCategory(UnitCategory.Core);
-        double coreMin = list.PointsTarget * ArmyCompositionRules.CoreMinPercent;
-        if (corePoints < coreMin)
+        if (corePoints < limits.CoreMin.Points)
         {
             issues.Add(new(ValidationSeverity.Error, "CORE_BELOW_MIN",
-                $"Core total {corePoints:F0} is below minimum {coreMin:F0} " +
-                $"({ArmyCompositionRules.CoreMinPercent:P0} of {list.PointsTarget})"));
+                $"Core total {corePoints:F0} is below minimum {limits.CoreMin.Points:F0} " +
+                $"({limits.CoreMin.Description})"));
         }
 
-        CheckMaxPercent(issues, list, UnitCategory.Special,
-            ArmyCompositionRules.SpecialMaxPercent, "SPECIAL_OVER_CAP", "Special");
-
-        CheckMaxPercent(issues, list, UnitCategory.Rare,
-            ArmyCompositionRules.RareMaxPercent, "RARE_OVER_CAP", "Rare");
+        CheckMax(issues, list, UnitCategory.Special, limits.SpecialMax, "SPECIAL_OVER_CAP", "Special");
+        CheckMax(issues, list, UnitCategory.Rare, limits.RareMax, "RARE_OVER_CAP", "Rare");
 
         var characters = list.Units
             .Where(u => u.ResolvedUnit.Category.IsCharacterCategory())
             .ToList();
+
+        if (limits.SingleCharacterMax is { } singleMax)
+        {
+            foreach (var character in characters.Where(c => c.TotalPointsCost > singleMax.Points))
+            {
+                issues.Add(new(ValidationSeverity.Error, "SINGLE_CHARACTER_OVER_CAP",
+                    $"{character.ResolvedUnit.Name} costs {character.TotalPointsCost:F0}, " +
+                    $"over the {singleMax.Points:F0} limit for one character " +
+                    $"({singleMax.Description})",
+                    character));
+            }
+        }
+
         if (characters.Count == 0)
         {
             issues.Add(new(ValidationSeverity.Error, "NO_GENERAL",
@@ -111,7 +128,8 @@ public class ArmyListValidator
             }
         }
 
-        var (specialCap, rareCap) = ArmyCompositionRules.DuplicateLimits(list.PointsTarget);
+        int specialCap = limits.SpecialDuplicateLimit;
+        int rareCap = limits.RareDuplicateLimit;
         foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Name))
         {
             var representative = group.First();
@@ -135,20 +153,19 @@ public class ArmyListValidator
         return issues;
     }
 
-    private static void CheckMaxPercent(
+    private static void CheckMax(
         List<ValidationIssue> issues,
         ArmyList list,
         UnitCategory category,
-        double maxPercent,
+        EffectiveLimit limit,
         string code,
         string label)
     {
         double points = list.PointsInCategory(category);
-        double cap = list.PointsTarget * maxPercent;
-        if (points > cap)
+        if (points > limit.Points)
         {
             issues.Add(new(ValidationSeverity.Error, code,
-                $"{label} total {points:F0} exceeds {cap:F0} ({maxPercent:P0} of {list.PointsTarget})"));
+                $"{label} total {points:F0} exceeds {limit.Points:F0} ({limit.Description})"));
         }
     }
 }

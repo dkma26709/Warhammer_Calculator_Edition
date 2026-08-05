@@ -11,8 +11,7 @@ public class FactionDeserializationTests
         PropertyNameCaseInsensitive = true
     };
 
-    private static string SystemDataDir(string systemKey) => Path.Combine(
-        FindProjectRoot(), "wwwroot", "data", systemKey);
+    private static string SystemDataDir(string systemKey) => TestPaths.SystemDataDir(systemKey);
 
     public static TheoryData<string> EnabledSystems()
     {
@@ -34,22 +33,6 @@ public class FactionDeserializationTests
                 data.Add(system.Key, faction);
         }
         return data;
-    }
-
-    private static string FindProjectRoot()
-    {
-        var dir = Directory.GetCurrentDirectory();
-        while (dir != null)
-        {
-            if (File.Exists(Path.Combine(dir, "Warhammer.csproj")))
-                return dir;
-            // Also check sibling directory
-            var sibling = Path.Combine(Path.GetDirectoryName(dir)!, "Warhammer");
-            if (Directory.Exists(sibling) && File.Exists(Path.Combine(sibling, "Warhammer.csproj")))
-                return sibling;
-            dir = Path.GetDirectoryName(dir);
-        }
-        throw new InvalidOperationException("Could not find Warhammer project root");
     }
 
     [Theory]

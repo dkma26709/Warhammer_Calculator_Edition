@@ -9,6 +9,9 @@ public sealed record ArmyList
     public string Name { get; init; } = "Untitled List";
     public List<UnitConfiguration> Units { get; init; } = new();
 
+    /// <summary>House-ruleset adjustments to the system's composition percentages.</summary>
+    public CompositionOverrides Overrides { get; set; } = new();
+
     public double TotalPoints => Units.Sum(u => u.TotalPointsCost);
 
     public double PointsInCategory(UnitCategory category) =>

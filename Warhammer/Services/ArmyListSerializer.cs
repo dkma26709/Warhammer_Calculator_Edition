@@ -48,6 +48,7 @@ public class ArmyListSerializer
         PointsTarget = list.PointsTarget,
         Name = list.Name,
         Units = list.Units.Select(UnitToDto).ToList(),
+        Composition = list.Overrides.IsEmpty ? null : list.Overrides,
     };
 
     private static ArmyListUnitDto UnitToDto(UnitConfiguration u) => new()
@@ -126,6 +127,7 @@ public class ArmyListSerializer
             Faction = faction,
             PointsTarget = dto.PointsTarget,
             Name = dto.Name,
+            Overrides = dto.Composition ?? new CompositionOverrides(),
         };
 
         foreach (var entry in dto.Units)

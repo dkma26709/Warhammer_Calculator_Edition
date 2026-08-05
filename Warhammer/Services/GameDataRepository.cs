@@ -20,6 +20,7 @@ public class GameDataRepository : IGameDataRepository
     private IReadOnlyList<FactionKey>? _factions;
     private readonly Dictionary<FactionKey, IReadOnlyList<Unit>> _unitCache = new();
     private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
+    private CompositionRules? _composition;
 
     public GameDataRepository(CoreRulesService coreRules, FactionDataService factionData, GameSystemService system)
     {
@@ -173,6 +174,39 @@ public class GameDataRepository : IGameDataRepository
     public int GetToHitScore(int attackerWS, int defenderWS) => _coreRules.GetToHitScore(attackerWS, defenderWS);
     public int GetToWoundScore(int strength, int toughness) => _coreRules.GetToWoundScore(strength, toughness);
     public int GetArmourSaveModifier(int strength) => _coreRules.GetArmourSaveModifier(strength);
+
+    // ─── Composition ─────────────────────────────────────────────
+
+    public async Task<CompositionRules> GetCompositionRulesAsync()
+    {
+        if (_composition != null) return _composition;
+
+        var data = await _factionData.GetCompositionAsync();
+
+        // A category absent from the file has no limit of that kind. Core/Special/Rare are
+        // required because every system so far constrains them; Lords/Heroes are not, since
+        // wap-v3 merges them into one Characters section.
+        double? Max(string category) =>
+            data.Categories.TryGetValue(category, out var entry) ? entry.MaxPercent : null;
+        double? Min(string category) =>
+            data.Categories.TryGetValue(category, out var entry) ? entry.MinPercent : null;
+
+        double Require(double? value, string what) => value
+            ?? throw new InvalidOperationException(
+                $"composition.json for '{_system.CurrentSystem}' is missing {what}.");
+
+        _composition = new CompositionRules
+        {
+            LordsMaxPercent = Max("lords"),
+            HeroesMaxPercent = Max("heroes"),
+            CharactersCombinedMaxPercent = data.CharactersCombinedMaxPercent,
+            SingleCharacterMaxPercent = data.SingleCharacterMaxPercent,
+            CoreMinPercent = Require(Min("core"), "categories.core.minPercent"),
+            SpecialMaxPercent = Require(Max("special"), "categories.special.maxPercent"),
+            RareMaxPercent = Require(Max("rare"), "categories.rare.maxPercent"),
+        };
+        return _composition;
+    }
 
     // ─── Unit Resolution ─────────────────────────────────────────
 

@@ -313,8 +313,36 @@ public class ArmyListValidatorTests
     private class ArmyListValidatorInvoker
     {
         private readonly Warhammer.Services.ArmyListValidator _inner = new();
-        public List<ValidationIssue> Validate(ArmyList l) => _inner.Validate(l);
+
+        public List<ValidationIssue> Validate(ArmyList l) => _inner.Validate(l, TestCompositionRules.WapV2);
+        public List<ValidationIssue> Validate(ArmyList l, CompositionRules rules) => _inner.Validate(l, rules);
     }
+}
+
+/// <summary>
+/// Percentages mirroring the shipped composition.json files, so validator tests don't need
+/// an HTTP round trip. Kept in step with <c>wwwroot/data/{system}/composition.json</c> by
+/// <see cref="CompositionDataTests"/>.
+/// </summary>
+internal static class TestCompositionRules
+{
+    public static readonly CompositionRules WapV2 = new()
+    {
+        LordsMaxPercent = 0.25,
+        HeroesMaxPercent = 0.25,
+        CharactersCombinedMaxPercent = 0.35,
+        SingleCharacterMaxPercent = 0.25,
+        CoreMinPercent = 0.25,
+        SpecialMaxPercent = 0.50,
+        RareMaxPercent = 0.25,
+    };
+
+    /// <summary>v3 merges Lords and Heroes, so it declares no per-section character caps.</summary>
+    public static readonly CompositionRules WapV3 = WapV2 with
+    {
+        LordsMaxPercent = null,
+        HeroesMaxPercent = null,
+    };
 }
 
 public class ArmyCompositionRulesTests

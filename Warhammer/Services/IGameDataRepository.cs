@@ -32,6 +32,9 @@ public interface IGameDataRepository
     /// <summary>Load common magic items available to all factions.</summary>
     Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync();
 
+    /// <summary>The active system's army composition percentages.</summary>
+    Task<CompositionRules> GetCompositionRulesAsync();
+
     // ─── Weapons & Armour ────────────────────────────────────────
 
     /// <summary>Get a resolved close combat weapon by key.</summary>

@@ -1,0 +1,12 @@
+{
+  "system": "wap-v2",
+  "charactersCombinedMaxPercent": 0.35,
+  "singleCharacterMaxPercent": 0.25,
+  "categories": {
+    "lords": { "maxPercent": 0.25 },
+    "heroes": { "maxPercent": 0.25 },
+    "core": { "minPercent": 0.25 },
+    "special": { "maxPercent": 0.5 },
+    "rare": { "maxPercent": 0.25 }
+  }
+}
