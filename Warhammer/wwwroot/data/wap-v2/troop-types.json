@@ -1,0 +1,133 @@
+{
+  "source": "Warhammer: The Game of Fantasy Battles - 9th Edition v2.32, Troop Types chapter (p71-76)",
+  "notes": [
+    "Hand-maintained. The Troop Types chapter is prose, not a ruled table, so extract_core_rules.py cannot lift these figures — core-rules.json carries only the descriptive text.",
+    "supportingAttacks is the rider's figure for split-profile types and the whole model's for the rest.",
+    "mountSupportingAttacks applies only to split-profile types.",
+    "nonSplitSupportingAttacks is the book's separate figure for a model of this type without a split profile.",
+    "impactHits is per front-rank model, conferred by the troop type alone and before any unit special rule.",
+    "swiftstride records whether the troop type itself grants Swiftstride."
+  ],
+  "types": {
+    "infantry": {
+      "minRankWidth": 5,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 1,
+      "impactHits": 0,
+      "unitStrength": 1,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "large-infantry": {
+      "minRankWidth": 4,
+      "supportingAttacks": 2,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 2,
+      "impactHits": 0,
+      "unitStrength": 1,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "monstrous-infantry": {
+      "minRankWidth": 3,
+      "supportingAttacks": 2,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 2,
+      "impactHits": 0,
+      "unitStrength": 2,
+      "splitProfile": false,
+      "swiftstride": true
+    },
+    "cavalry": {
+      "minRankWidth": 5,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 1,
+      "nonSplitSupportingAttacks": 2,
+      "impactHits": 1,
+      "unitStrength": 2,
+      "splitProfile": true,
+      "swiftstride": true
+    },
+    "monstrous-cavalry": {
+      "minRankWidth": 3,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 2,
+      "nonSplitSupportingAttacks": 3,
+      "impactHits": 1,
+      "unitStrength": 3,
+      "splitProfile": true,
+      "swiftstride": true
+    },
+    "war-beasts": {
+      "minRankWidth": 5,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 1,
+      "impactHits": 0,
+      "unitStrength": 1,
+      "splitProfile": false,
+      "swiftstride": true
+    },
+    "monstrous-beasts": {
+      "minRankWidth": 3,
+      "supportingAttacks": 2,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 2,
+      "impactHits": 0,
+      "unitStrength": 2,
+      "splitProfile": false,
+      "swiftstride": true
+    },
+    "swarms": {
+      "minRankWidth": 3,
+      "supportingAttacks": 5,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 5,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "monster": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": true
+    },
+    "chariot": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": true
+    },
+    "war-machine": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "shrine": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    }
+  }
+}

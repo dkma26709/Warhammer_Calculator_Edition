@@ -12,6 +12,7 @@ public class FactionDataService
     private readonly Dictionary<string, FactionExtrasData> _extrasCache = new();
     private SystemManifest? _manifest;
     private CompositionData? _composition;
+    private TroopTypesData? _troopTypes;
 
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -82,6 +83,18 @@ public class FactionDataService
             _system.DataPath("composition.json"), JsonOptions)
             ?? throw new InvalidOperationException("Failed to load composition.json");
         return _composition;
+    }
+
+    /// <summary>Load the active system's troop type figures. Cached after first call.</summary>
+    public async Task<TroopTypesData> GetTroopTypesAsync()
+    {
+        if (_troopTypes != null)
+            return _troopTypes;
+
+        _troopTypes = await _http.GetFromJsonAsync<TroopTypesData>(
+            _system.DataPath("troop-types.json"), JsonOptions)
+            ?? throw new InvalidOperationException("Failed to load troop-types.json");
+        return _troopTypes;
     }
 
     public async Task<FactionExtrasData> GetFactionExtrasAsync(string factionKey)

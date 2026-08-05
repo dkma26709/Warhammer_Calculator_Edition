@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Warhammer.Calculator;
 using Warhammer.Calculator.Models;
 using Warhammer.Models.Domain;
@@ -14,17 +15,58 @@ namespace Warhammer.Tests;
 /// </summary>
 public class TroopTypeBySystemTests
 {
-    private static GameDataRepository RepoFor(string systemKey)
+
+    // ─── The figures are data, and a gap is loud ───────────────────
+
+    /// <summary>
+    /// Adding a system is a data exercise (AGENTS.md), so the figures live in a per-system
+    /// troop-types.json. A system whose file is missing, or missing a row, must fail on load
+    /// rather than quietly inherit another edition's numbers.
+    /// </summary>
+    [Fact]
+    public void AMissingTroopTypeRowFailsOnLoad()
     {
         var wwwroot = Path.Combine(TestHelpers.FindProjectRoot(), "wwwroot");
-        var http = new HttpClient(new FileBasedHttpHandler(wwwroot)) { BaseAddress = new Uri("http://localhost/") };
+        var http = new HttpClient(new TroopTypeRowRemovingHandler(wwwroot, "monstrous-cavalry"))
+        {
+            BaseAddress = new Uri("http://localhost/"),
+        };
         var system = new GameSystemService();
-        system.Initialize(systemKey);
-        var coreRules = new CoreRulesService(http, system);
-        var factionData = new FactionDataService(http, system);
-        var repo = new GameDataRepository(coreRules, factionData, system);
-        repo.EnsureLoadedAsync().GetAwaiter().GetResult();
-        return repo;
+        system.Initialize(GameSystems.WapV3);
+        var repo = new GameDataRepository(
+            new CoreRulesService(http, system), new FactionDataService(http, system), system);
+
+        var error = Assert.Throws<InvalidOperationException>(
+            () => repo.EnsureLoadedAsync().GetAwaiter().GetResult());
+
+        Assert.Contains("troop-types.json", error.Message);
+        Assert.Contains("monstrous-cavalry", error.Message);
+        Assert.Contains(GameSystems.WapV3, error.Message);
+    }
+
+    /// <summary>Serves the real data, minus one troop type row.</summary>
+    private sealed class TroopTypeRowRemovingHandler(string baseDir, string rowToRemove)
+        : FileBasedHttpHandler(baseDir)
+    {
+        protected override async Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            var response = await base.SendAsync(request, cancellationToken);
+            if (!request.RequestUri!.AbsolutePath.EndsWith("troop-types.json"))
+                return response;
+
+            var json = await response.Content.ReadAsStringAsync(cancellationToken);
+            using var doc = JsonDocument.Parse(json);
+            var types = doc.RootElement.GetProperty("types").EnumerateObject()
+                .Where(p => p.Name != rowToRemove)
+                .ToDictionary(p => p.Name, p => p.Value.Clone());
+
+            var trimmed = JsonSerializer.Serialize(new { types });
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+            {
+                Content = new StringContent(trimmed, System.Text.Encoding.UTF8, "application/json"),
+            };
+        }
     }
 
     // ─── Supporting attacks ────────────────────────────────────────
@@ -42,7 +84,7 @@ public class TroopTypeBySystemTests
     [InlineData("War Beasts", GameSystems.WapV3, 1)]
     public void SupportingAttacksMatchTheBook(string troopType, string systemKey, int expected)
     {
-        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, systemKey).MaxSupportingAttacks);
+        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(systemKey)).MaxSupportingAttacks);
     }
 
     [Theory]
@@ -53,7 +95,7 @@ public class TroopTypeBySystemTests
     public void MountedSupportingAttacksMatchTheBook(
         string troopType, string systemKey, int rider, int mount, int nonSplit)
     {
-        var info = TroopTypeInfo.Parse(troopType, systemKey);
+        var info = TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(systemKey));
 
         Assert.Equal(rider, info.MaxSupportingAttacks);
         Assert.Equal(mount, info.MountSupportingAttacks);
@@ -90,7 +132,7 @@ public class TroopTypeBySystemTests
     [InlineData("Chariot", GameSystems.WapV3, 0)]
     public void InherentImpactHitsMatchTheBook(string troopType, string systemKey, int expected)
     {
-        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, systemKey).InherentImpactHits);
+        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(systemKey)).InherentImpactHits);
     }
 
     [Fact]
@@ -98,8 +140,8 @@ public class TroopTypeBySystemTests
     {
         // Knights of the Realm have no Impact Hits on their entry, so in wap-v3 a charge
         // produces none at all. In wap-v2 the troop type supplies one per front-rank model.
-        var resolverV2 = new AttackResolver(RepoFor(GameSystems.WapV2));
-        var resolverV3 = new AttackResolver(RepoFor(GameSystems.WapV3));
+        var resolverV2 = new AttackResolver(TestHelpers.RepoFor(GameSystems.WapV2));
+        var resolverV3 = new AttackResolver(TestHelpers.RepoFor(GameSystems.WapV3));
 
         async Task<int> Wounds(GameDataRepository repo, AttackResolver resolver)
         {
@@ -117,8 +159,8 @@ public class TroopTypeBySystemTests
             return total;
         }
 
-        int v2 = await Wounds(RepoFor(GameSystems.WapV2), resolverV2);
-        int v3 = await Wounds(RepoFor(GameSystems.WapV3), resolverV3);
+        int v2 = await Wounds(TestHelpers.RepoFor(GameSystems.WapV2), resolverV2);
+        int v3 = await Wounds(TestHelpers.RepoFor(GameSystems.WapV3), resolverV3);
 
         Assert.True(v2 > 0, "wap-v2 cavalry should land impact hits on the charge");
         Assert.Equal(0, v3);
@@ -138,8 +180,8 @@ public class TroopTypeBySystemTests
     {
         // wap-v2 lists Swiftstride against each of these types; wap-v3 lists Independent
         // in its place, which has no combat effect here.
-        Assert.True(TroopTypeInfo.Parse(troopType, GameSystems.WapV2).HasInherentSwiftstride, troopType);
-        Assert.False(TroopTypeInfo.Parse(troopType, GameSystems.WapV3).HasInherentSwiftstride, troopType);
+        Assert.True(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV2)).HasInherentSwiftstride, troopType);
+        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV3)).HasInherentSwiftstride, troopType);
     }
 
     [Theory]
@@ -148,8 +190,8 @@ public class TroopTypeBySystemTests
     [InlineData("War Machine")]
     public void FootTroopsNeverGetInherentSwiftstride(string troopType)
     {
-        Assert.False(TroopTypeInfo.Parse(troopType, GameSystems.WapV2).HasInherentSwiftstride);
-        Assert.False(TroopTypeInfo.Parse(troopType, GameSystems.WapV3).HasInherentSwiftstride);
+        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV2)).HasInherentSwiftstride);
+        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV3)).HasInherentSwiftstride);
     }
 
     // ─── Through the engine ────────────────────────────────────────
@@ -163,8 +205,8 @@ public class TroopTypeBySystemTests
             new UnitConfiguration(units.First(u => u.Name == "Kroxigors")) { ModelCount = 6, Frontage = 3 }
                 .TotalAttacks(isCharging: false, combatRound: 1);
 
-        var v2Repo = RepoFor(GameSystems.WapV2);
-        var v3Repo = RepoFor(GameSystems.WapV3);
+        var v2Repo = TestHelpers.RepoFor(GameSystems.WapV2);
+        var v3Repo = TestHelpers.RepoFor(GameSystems.WapV3);
 
         int v2 = Attacks(v2Repo, await v2Repo.GetUnitsAsync(FactionKey.Lizardmen));
         int v3 = Attacks(v3Repo, await v3Repo.GetUnitsAsync(FactionKey.Lizardmen));

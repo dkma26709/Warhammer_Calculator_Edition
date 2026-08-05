@@ -507,6 +507,12 @@ public class UnitConfiguration
         return primary;
     }
 
+    /// <summary>
+    /// Whether this model fights as rider plus mount. The books call it a split profile, and
+    /// distinguish it from a model of a mounted troop type that has no separate mount line.
+    /// </summary>
+    public bool HasMount => MountProfile != null && TroopType.HasSplitProfile;
+
     /// <summary>Number of complete ranks (models / frontage, rounded down).</summary>
     public int Ranks => Frontage > 0 ? ModelCount / Frontage : 1;
 
@@ -563,10 +569,8 @@ public class UnitConfiguration
         int maxSupportRanks = 1 + extraRanks;
         int actualSupportRanks = Math.Min(supportingRanks, maxSupportRanks);
 
-        // A model with no mount profile is the book's "without a split profile" case, which
-        // carries its own figure rather than rider-plus-mount.
-        bool splitProfile = MountProfile != null && TroopType.HasSplitProfile;
-        int typeSupportAttacks = splitProfile
+        // Without a split profile the books state their own figure rather than rider-plus-mount.
+        int typeSupportAttacks = HasMount
             ? TroopType.MaxSupportingAttacks
             : TroopType.NonSplitSupportingAttacks;
         int maxSupportAttacks = lanceCharging ? 3 : typeSupportAttacks;
@@ -582,8 +586,8 @@ public class UnitConfiguration
     /// </summary>
     public int MountAttacks()
     {
-        if (MountProfile == null || !TroopType.HasSplitProfile) return 0;
-        int mountA = MountProfile.A ?? 1;
+        if (!HasMount) return 0;
+        int mountA = MountProfile!.A ?? 1;
 
         int frontAttacks = ModelsInFrontRank * mountA;
 

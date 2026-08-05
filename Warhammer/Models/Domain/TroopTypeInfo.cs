@@ -18,6 +18,41 @@ public enum BaseTroopType
     Shrine
 }
 
+public static class BaseTroopTypeExtensions
+{
+    private static readonly Dictionary<BaseTroopType, string> ToJson = new()
+    {
+        [BaseTroopType.Infantry] = "infantry",
+        [BaseTroopType.LargeInfantry] = "large-infantry",
+        [BaseTroopType.MonstrousInfantry] = "monstrous-infantry",
+        [BaseTroopType.Cavalry] = "cavalry",
+        [BaseTroopType.MonstrousCavalry] = "monstrous-cavalry",
+        [BaseTroopType.WarBeasts] = "war-beasts",
+        [BaseTroopType.MonstrousBeasts] = "monstrous-beasts",
+        [BaseTroopType.Swarms] = "swarms",
+        [BaseTroopType.Monster] = "monster",
+        [BaseTroopType.Chariot] = "chariot",
+        [BaseTroopType.WarMachine] = "war-machine",
+        [BaseTroopType.Shrine] = "shrine",
+    };
+
+    public static string ToJsonKey(this BaseTroopType type) => ToJson[type];
+}
+
+/// <summary>
+/// The figures the Troop Types chapter states for one troop type, resolved from the active
+/// system's <c>troop-types.json</c>.
+/// </summary>
+public readonly record struct TroopTypeRules(
+    int MinRankWidth,
+    int SupportingAttacks,
+    int MountSupportingAttacks,
+    int NonSplitSupportingAttacks,
+    int ImpactHits,
+    int UnitStrength,
+    bool SplitProfile,
+    bool Swiftstride);
+
 public record TroopTypeInfo
 {
     public BaseTroopType BaseType { get; init; }
@@ -25,26 +60,29 @@ public record TroopTypeInfo
     public int? IntrinsicArmourSave { get; init; }
     public int MinRankWidth { get; init; }
 
-    /// <summary>Supporting attacks a rider (or a single-profile model) may make.</summary>
+    /// <summary>
+    /// Supporting attacks the rider may make. For a model with no mount profile the engine
+    /// uses <see cref="NonSplitSupportingAttacks"/> instead, which can be a different figure.
+    /// </summary>
     public int MaxSupportingAttacks { get; init; }
 
     /// <summary>
-    /// Supporting attacks the mount may make. Zero in wap-v3, which took them away from
-    /// Cavalry and Monstrous Cavalry outright ("Mounts are not allowed to make supporting
-    /// attacks", 3.11 p72–73).
+    /// Supporting attacks the mount may make. Split-profile types only, and zero throughout
+    /// wap-v3, which bars mounts from supporting attacks.
     /// </summary>
     public int MountSupportingAttacks { get; init; }
 
     /// <summary>
-    /// Supporting attacks for a model of this type that has no split profile — the books
-    /// state a separate figure, and it is not simply rider plus mount.
+    /// The figure the books state for a model of this type without a split profile. It is not
+    /// derived from the rider and mount figures — wap-v3 Monstrous Cavalry is 1 + 0 for a
+    /// split profile but 3 without one.
     /// </summary>
     public int NonSplitSupportingAttacks { get; init; }
 
     /// <summary>
     /// Impact Hits per front-rank model conferred by the troop type alone, before any unit
-    /// special rule. wap-v2 gives Cavalry and Monstrous Cavalry Impact Hits (1); wap-v3
-    /// removed it from both, leaving Chariots to carry theirs on the unit entry.
+    /// special rule. wap-v2 gives Cavalry and Monstrous Cavalry one each; wap-v3 gives none
+    /// to any type, leaving Chariots to carry theirs on the unit entry.
     /// </summary>
     public int InherentImpactHits { get; init; }
 
@@ -52,15 +90,25 @@ public record TroopTypeInfo
     public bool HasSplitProfile { get; init; }
 
     /// <summary>
-    /// Swiftstride from the troop type alone. wap-v2 grants it to most mounted and monstrous
-    /// types; wap-v3 dropped it from every troop type and put Independent in its place.
+    /// Swiftstride from the troop type alone. wap-v2 grants it to Cavalry, Monstrous Cavalry,
+    /// Monstrous Infantry, Monstrous Beasts, War Beasts, Monsters and Chariots; no wap-v3
+    /// troop type grants it.
     /// </summary>
     public bool HasInherentSwiftstride { get; init; }
 
-    public static TroopTypeInfo Parse(string? troopTypeString, string? systemKey = null)
+    /// <summary>
+    /// Parse a <c>troopType</c> string, taking the per-system figures from a resolver.
+    /// </summary>
+    /// <param name="troopTypeString">The raw field, e.g. "Chariot (Armour Save 4+)".</param>
+    /// <param name="rules">
+    /// Supplies the active system's figures for a base type. <see cref="GameDataRepository"/>
+    /// resolves these from <c>troop-types.json</c>; pass null only where the figures are
+    /// irrelevant, which leaves them all zero.
+    /// </param>
+    public static TroopTypeInfo Parse(string? troopTypeString, Func<BaseTroopType, TroopTypeRules>? rules)
     {
         if (string.IsNullOrWhiteSpace(troopTypeString))
-            return DefaultInfantry();
+            return Resolve(BaseTroopType.Infantry, isCharacter: false, intrinsicArmour: null, rules);
 
         var cleaned = troopTypeString.TrimEnd('.', ' ');
         var match = Regex.Match(cleaned, @"^(.+?)(?:\s*\((.+)\))?$");
@@ -93,21 +141,28 @@ public record TroopTypeInfo
                 intrinsicArmour = int.Parse(saveMatch.Groups[1].Value);
         }
 
-        var props = GetTypeProperties(baseType, systemKey == GameSystems.WapV3);
+        return Resolve(baseType, isCharacter, intrinsicArmour, rules);
+    }
+
+    private static TroopTypeInfo Resolve(
+        BaseTroopType baseType, bool isCharacter, int? intrinsicArmour,
+        Func<BaseTroopType, TroopTypeRules>? rules)
+    {
+        var figures = rules?.Invoke(baseType) ?? default;
 
         return new TroopTypeInfo
         {
             BaseType = baseType,
             IsCharacter = isCharacter,
             IntrinsicArmourSave = intrinsicArmour,
-            MinRankWidth = props.MinWidth,
-            MaxSupportingAttacks = props.MaxSupport,
-            MountSupportingAttacks = props.MountSupport,
-            NonSplitSupportingAttacks = props.NonSplitSupport,
-            InherentImpactHits = props.ImpactHits,
-            UnitStrength = props.UnitStr,
-            HasSplitProfile = props.SplitProfile,
-            HasInherentSwiftstride = props.Swiftstride,
+            MinRankWidth = figures.MinRankWidth,
+            MaxSupportingAttacks = figures.SupportingAttacks,
+            MountSupportingAttacks = figures.MountSupportingAttacks,
+            NonSplitSupportingAttacks = figures.NonSplitSupportingAttacks,
+            InherentImpactHits = figures.ImpactHits,
+            UnitStrength = figures.UnitStrength,
+            HasSplitProfile = figures.SplitProfile,
+            HasInherentSwiftstride = figures.Swiftstride,
         };
     }
 
@@ -128,52 +183,4 @@ public record TroopTypeInfo
         _ => BaseTroopType.Infantry
     };
 
-    private readonly record struct TypeProperties(
-        int MinWidth, int MaxSupport, int MountSupport, int NonSplitSupport,
-        int ImpactHits, int UnitStr, bool SplitProfile, bool Swiftstride);
-
-    /// <summary>
-    /// The Troop Types chapter, p71–76 in both books. The two editions diverge in three
-    /// places: supporting attacks for the monstrous types, mount supporting attacks, and the
-    /// inherent special rules — wap-v3 removed Impact Hits from Cavalry and Monstrous Cavalry
-    /// and Swiftstride from every type, replacing it with Independent, which is a
-    /// unit-joining rule and has no combat effect here.
-    /// wap-v3 also drops Large Infantry as a type; the wap-v2 row is kept for any entry that
-    /// still names it.
-    /// </summary>
-    private static TypeProperties GetTypeProperties(BaseTroopType type, bool v3) => type switch
-    {
-        //                                     width  rider  mount  nonSplit  impact  US  split  swift
-        BaseTroopType.Infantry          => new(    5,     1,     0,        1,      0,  1, false, false),
-        BaseTroopType.LargeInfantry     => new(    4,     2,     0,        2,      0,  1, false, false),
-        BaseTroopType.MonstrousInfantry => v3
-                                         ? new(    3,     3,     0,        3,      0,  2, false, false)
-                                         : new(    3,     2,     0,        2,      0,  2, false, true),
-        BaseTroopType.Cavalry           => v3
-                                         ? new(    5,     1,     0,        1,      0,  2, true,  false)
-                                         : new(    5,     1,     1,        2,      1,  2, true,  true),
-        BaseTroopType.MonstrousCavalry  => v3
-                                         ? new(    3,     1,     0,        3,      0,  3, true,  false)
-                                         : new(    3,     1,     2,        3,      1,  3, true,  true),
-        BaseTroopType.WarBeasts         => new(    5,     1,     0,        1,      0,  1, false, !v3),
-        BaseTroopType.MonstrousBeasts   => v3
-                                         ? new(    3,     3,     0,        3,      0,  2, false, false)
-                                         : new(    3,     2,     0,        2,      0,  2, false, true),
-        BaseTroopType.Swarms            => new(    3,     5,     0,        5,      0,  3, false, false),
-        BaseTroopType.Monster           => new(    1,     0,     0,        0,      0,  3, false, !v3),
-        BaseTroopType.Chariot           => new(    1,     0,     0,        0,      0,  3, false, !v3),
-        BaseTroopType.WarMachine        => new(    1,     0,     0,        0,      0,  3, false, false),
-        BaseTroopType.Shrine            => new(    1,     0,     0,        0,      0,  3, false, false),
-        _                               => new(    5,     1,     0,        1,      0,  1, false, false),
-    };
-
-    private static TroopTypeInfo DefaultInfantry() => new()
-    {
-        BaseType = BaseTroopType.Infantry,
-        MinRankWidth = 5,
-        MaxSupportingAttacks = 1,
-        NonSplitSupportingAttacks = 1,
-        UnitStrength = 1,
-        HasSplitProfile = false
-    };
 }

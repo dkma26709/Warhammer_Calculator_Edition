@@ -7,7 +7,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Infantry_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Infantry");
+        var info = TroopTypeInfo.Parse("Infantry", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Infantry, info.BaseType);
         Assert.Equal(1, info.UnitStrength);
         Assert.Equal(5, info.MinRankWidth);
@@ -19,7 +19,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_LargeInfantry_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Large Infantry");
+        var info = TroopTypeInfo.Parse("Large Infantry", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.LargeInfantry, info.BaseType);
         Assert.Equal(1, info.UnitStrength);
         Assert.Equal(4, info.MinRankWidth);
@@ -30,7 +30,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_MonstrousInfantry_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Monstrous Infantry");
+        var info = TroopTypeInfo.Parse("Monstrous Infantry", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.MonstrousInfantry, info.BaseType);
         Assert.Equal(2, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
@@ -41,7 +41,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Cavalry_ReturnsSplitProfile()
     {
-        var info = TroopTypeInfo.Parse("Cavalry");
+        var info = TroopTypeInfo.Parse("Cavalry", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Cavalry, info.BaseType);
         Assert.Equal(2, info.UnitStrength);
         Assert.Equal(5, info.MinRankWidth);
@@ -51,12 +51,12 @@ public class TroopTypeTests
     [Fact]
     public void Parse_MonstrousCavalry_ReturnsSplitProfile()
     {
-        var info = TroopTypeInfo.Parse("Monstrous Cavalry");
+        var info = TroopTypeInfo.Parse("Monstrous Cavalry", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.MonstrousCavalry, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
-        // "one supporting attack from the rider, and two from the mount" — both books.
-        // This asserted 2 for the rider, which with the mount's 2 gave four attacks, not three.
+        // wap-v2: "one supporting attack from the rider, and two from the mount". wap-v3 keeps
+        // the rider's one and takes the mount's away — see TroopTypeBySystemTests.
         Assert.Equal(1, info.MaxSupportingAttacks);
         Assert.Equal(2, info.MountSupportingAttacks);
         Assert.Equal(3, info.NonSplitSupportingAttacks);
@@ -66,7 +66,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_WarBeasts_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("War Beasts");
+        var info = TroopTypeInfo.Parse("War Beasts", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.WarBeasts, info.BaseType);
         Assert.Equal(1, info.UnitStrength);
         Assert.Equal(5, info.MinRankWidth);
@@ -75,7 +75,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_MonstrousBeast_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Monstrous Beast");
+        var info = TroopTypeInfo.Parse("Monstrous Beast", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.MonstrousBeasts, info.BaseType);
         Assert.Equal(2, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
@@ -84,7 +84,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Swarms_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Swarms");
+        var info = TroopTypeInfo.Parse("Swarms", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Swarms, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
@@ -94,7 +94,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Monster_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Monster");
+        var info = TroopTypeInfo.Parse("Monster", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Monster, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(1, info.MinRankWidth);
@@ -104,7 +104,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Chariot_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Chariot");
+        var info = TroopTypeInfo.Parse("Chariot", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Chariot, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
     }
@@ -112,7 +112,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Shrine_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("Shrine");
+        var info = TroopTypeInfo.Parse("Shrine", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Shrine, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
     }
@@ -120,14 +120,14 @@ public class TroopTypeTests
     [Fact]
     public void Parse_Typo_MosntrousBeast_IsCorrected()
     {
-        var info = TroopTypeInfo.Parse("Mosntrous Beast");
+        var info = TroopTypeInfo.Parse("Mosntrous Beast", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.MonstrousBeasts, info.BaseType);
     }
 
     [Fact]
     public void Parse_CharacterFlag_SetsIsCharacter()
     {
-        var info = TroopTypeInfo.Parse("Infantry (Character, Human)");
+        var info = TroopTypeInfo.Parse("Infantry (Character, Human)", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Infantry, info.BaseType);
         Assert.True(info.IsCharacter);
     }
@@ -135,7 +135,7 @@ public class TroopTypeTests
     [Fact]
     public void Parse_ArmourSaveFlag_SetsIntrinsicArmour()
     {
-        var info = TroopTypeInfo.Parse("Chariot (Armour Save 4+)");
+        var info = TroopTypeInfo.Parse("Chariot (Armour Save 4+)", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Chariot, info.BaseType);
         Assert.Equal(4, info.IntrinsicArmourSave);
     }
@@ -143,20 +143,20 @@ public class TroopTypeTests
     [Fact]
     public void Parse_NullOrEmpty_ReturnsDefaultInfantry()
     {
-        var info1 = TroopTypeInfo.Parse(null);
+        var info1 = TroopTypeInfo.Parse(null, TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Infantry, info1.BaseType);
 
-        var info2 = TroopTypeInfo.Parse("");
+        var info2 = TroopTypeInfo.Parse("", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Infantry, info2.BaseType);
 
-        var info3 = TroopTypeInfo.Parse("  ");
+        var info3 = TroopTypeInfo.Parse("  ", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.Infantry, info3.BaseType);
     }
 
     [Fact]
     public void Parse_WarMachine_ReturnsCorrectProperties()
     {
-        var info = TroopTypeInfo.Parse("War Machine");
+        var info = TroopTypeInfo.Parse("War Machine", TestHelpers.TroopTypeRulesFor(GameSystems.Default));
         Assert.Equal(BaseTroopType.WarMachine, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(1, info.MinRankWidth);
