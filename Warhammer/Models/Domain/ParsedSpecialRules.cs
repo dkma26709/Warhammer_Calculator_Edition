@@ -158,8 +158,12 @@ public record ParsedSpecialRules
             Impale = Impale || other.Impale,
             BlessingOfTheLady = BlessingOfTheLady || other.BlessingOfTheLady,
 
+            // Ward saves are the one save type that combines rather than taking the best —
+            // see CombineWard. Regeneration deliberately does not: it is a ward, but the
+            // house reading is best-of rather than combined.
+            WardSave = CombineWard(WardSave, other.WardSave),
+
             // Save-type: take best (lower is better)
-            WardSave = MinNullable(WardSave, other.WardSave),
             Regeneration = MinNullable(Regeneration, other.Regeneration),
             Parry = MinNullable(Parry, other.Parry),
             Dodge = MinNullable(Dodge, other.Dodge),
@@ -498,10 +502,39 @@ public record ParsedSpecialRules
     }
 
     /// <summary>
-    /// Return the better (lower) ward save value, treating null as "no ward".
+    /// Combine two ward saves, treating null as "no ward".
     /// </summary>
-    private static int MinWard(int? existing, int proposed) =>
-        existing.HasValue ? Math.Min(existing.Value, proposed) : proposed;
+    /// <remarks>
+    /// Wards "may be combined with other Ward saves as normal" — that is, like armour saves, each
+    /// contributing 7 minus its value — but "no model may have a Ward save better than 4+ by
+    /// combining multiple Ward saves regardless of source" (2.32 p38; 3.11 p38 says the same of
+    /// invulnerable saves). The books' own example: two 6+ wards and a 5+ give 4+.
+    /// <para>
+    /// A single ward keeps its listed value however good it is — "this does not stop single Ward
+    /// saves from being used, such as a model having a listed 2+ or 3+" — and the player "may
+    /// choose which Ward saves are used in any given situation", so the answer is the better of
+    /// the best single ward and the capped combination. Without that, adding a 6+ to a listed 2+
+    /// would make the model worse.
+    /// </para>
+    /// <para>
+    /// Folding pairwise loses track of how many sources contributed, but only once the result has
+    /// already reached the 4+ floor, where no further combining can improve it — so the fold gives
+    /// the same answer as combining every source at once.
+    /// </para>
+    /// </remarks>
+    private static int? CombineWard(int? a, int? b)
+    {
+        if (a is null) return b;
+        if (b is null) return a;
+
+        int combined = Math.Max(CombinedWardFloor, 7 - ((7 - a.Value) + (7 - b.Value)));
+        return Math.Min(Math.Min(a.Value, b.Value), combined);
+    }
+
+    /// <summary>Combining wards can never produce a save better than this.</summary>
+    private const int CombinedWardFloor = 4;
+
+    private static int MinWard(int? existing, int proposed) => CombineWard(existing, proposed) ?? proposed;
 
     /// <summary>
     /// Parse Immunity(target) into the appropriate boolean flags.
