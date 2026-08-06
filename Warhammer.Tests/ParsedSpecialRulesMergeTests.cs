@@ -53,13 +53,18 @@ public class ParsedSpecialRulesMergeTests
         Assert.Equal(4, a.Merge(b).Regeneration);
     }
 
+    /// <summary>
+    /// "This rule is cumulative with other sources of Armour Piercing" (2.32 p58, 3.11 p58). The
+    /// Dwarf Rune of Cleaving is the clearest case: one rune gives Armour Piercing (1), two give
+    /// Armour Piercing (2). This test asserted the max until that was corrected.
+    /// </summary>
     [Fact]
-    public void MergeArmourPiercing_TakesHighest()
+    public void MergeArmourPiercing_IsCumulative()
     {
         var a = new ParsedSpecialRules { ArmourPiercing = 1 };
         var b = new ParsedSpecialRules { ArmourPiercing = 3 };
 
-        Assert.Equal(3, a.Merge(b).ArmourPiercing);
+        Assert.Equal(4, a.Merge(b).ArmourPiercing);
     }
 
     [Fact]
@@ -71,13 +76,18 @@ public class ParsedSpecialRulesMergeTests
         Assert.Equal(2, a.Merge(b).ArmourPiercing);
     }
 
+    /// <summary>
+    /// Mighty Blow is the one bonus-type field that adds rather than taking the best: "This rule
+    /// is cumulative with other sources of Mighty Blow" (2.32 p63, 3.11 p64). This test asserted
+    /// the max until that was corrected.
+    /// </summary>
     [Fact]
-    public void MergeMightyBlow_TakesHighest()
+    public void MergeMightyBlow_IsCumulative()
     {
         var a = new ParsedSpecialRules { MightyBlow = 1 };
         var b = new ParsedSpecialRules { MightyBlow = 2 };
 
-        Assert.Equal(2, a.Merge(b).MightyBlow);
+        Assert.Equal(3, a.Merge(b).MightyBlow);
     }
 
     [Fact]
@@ -163,8 +173,10 @@ public class ParsedSpecialRulesMergeTests
         // Saves take best (lower)
         Assert.Equal(4, merged.WardSave);
 
-        // Bonuses take best (higher)
-        Assert.Equal(2, merged.ArmourPiercing);
+        // Armour Piercing and Mighty Blow are cumulative across sources, unlike the other
+        // bonus-type fields, which take the best. Only the unit has Mighty Blow here, so it
+        // stays at 1.
+        Assert.Equal(3, merged.ArmourPiercing);
         Assert.Equal(1, merged.MightyBlow);
 
         // Names concatenated

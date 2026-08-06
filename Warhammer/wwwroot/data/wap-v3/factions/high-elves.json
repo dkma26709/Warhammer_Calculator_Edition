@@ -977,9 +977,8 @@
           "raw": "May take Magic Items up to a total of 50 points CHARACTERS"
         }
       ],
-      "specialRules": "Elven Grace, Fiery Breath, Fly (7), Lileath's Blessing, Martial Prowess, Natural Armour",
+      "specialRules": "Elven Grace, Fiery Breath, Fly (7), Lileath's Blessing, Martial Prowess, Natural Armour (3+), Valour of Ages",
       "specialRuleDescriptions": [
-        "(3+), Valour of Ages",
         "Reckless: When a Dragon Mage casts a spell, a 'free' Power dice is added to the casting attempt. This extra dice counts towards Ultimate Power and can cause a Miscast as normal, and allows the Dragon Mage to roll more dice than they are normally allowed to."
       ],
       "upgrades": null,
@@ -2028,10 +2027,8 @@
           ]
         }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Martial Prowess, Multiple Wounds (2), Stubborn, Valour of",
-      "specialRuleDescriptions": [
-        "Ages"
-      ],
+      "specialRules": "Elven Grace, Forest Strider, Martial Prowess, Multiple Wounds (2), Stubborn, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "10-30",
@@ -2095,10 +2092,8 @@
           "raw": "May upgrade one Shadow Warrior to a Leader +5 points"
         }
       ],
-      "specialRules": "Elven Grace, Hatred (Dark Elves), Independent, Martial Prowess, Scouts, Skirmishers,",
-      "specialRuleDescriptions": [
-        "Valour of Ages"
-      ],
+      "specialRules": "Elven Grace, Hatred (Dark Elves), Independent, Martial Prowess, Scouts, Skirmishers, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5-15",
@@ -2303,10 +2298,8 @@
           "raw": "May be upgraded to a standard bearer +10 points"
         }
       ],
-      "specialRules": "Elven Grace, Fear, Martial Prowess, Mighty Blow (1) (War Lion only), Multiple Wounds (2),",
-      "specialRuleDescriptions": [
-        "Stubborn, Valour of Ages"
-      ],
+      "specialRules": "Elven Grace, Fear, Martial Prowess, Mighty Blow (1) (War Lion only), Multiple Wounds (2), Stubborn, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2716,10 +2709,8 @@
       "equipment": "Heavy lance, dragon armour, shield",
       "magic": null,
       "options": [],
-      "specialRules": "Devastating Charge, Elven Grace, Fiery Breath, Fly (8), Martial Prowess, Natural Armour",
-      "specialRuleDescriptions": [
-        "(4+), Valour of Ages"
-      ],
+      "specialRules": "Devastating Charge, Elven Grace, Fiery Breath, Fly (8), Martial Prowess, Natural Armour (4+), Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2940,10 +2931,8 @@
       "equipment": "Light armour",
       "magic": "Teclis is a Level 4 Wizard. He can either choose all of the spells in the Lore of High Magic, or one spell from\neach of the eight Winds of Magic.\nMAGIC ITEMS:\n• Sword of Teclis: Magic Weapon. All hits from the Sword of Teclis wound on a 2+, and Wounds caused by it\nIgnores Armour saves.\n• Potion of Inner Strength: Enchanted Item. One use only. This item can be used at the start of any turn. When\nTeclis does so, he will increase his Weapon Skill and Initiative to 6, and Strength, Toughness and Attacks to 3\nfor the remainder of the turn.\n• Moon Staff of Lileath: Arcane Item. Staff. The staff gives Teclis 1 extra Power and Dispel dice in each Magic\nphase. Once per game, The Moon Staff of Lileath can unleash its full power. It can either be used at the start of\nany of Teclis' Magic phases, in which case a bonus power dice is added to every casting attempt Teclis makes\nthat phase (at least one normal Power dice must be used), or if Teclis suffers a miscast he can choose to ignore\nit (before any roll on the Miscast table is made). In either case, his staff will cease to provide any additional\ndice for the rest of the battle.\n• Scroll of Hoeth: Arcane Item. Charm. One use only. When an enemy cast a spell, the bearer may use this item\ninstead of attempting to dispel the spell by using dispel dice. This gives them 6 free dice to attempt to dispel\nthe spell, which cannot be combined with any other dispel dice. In addition, immediately after the dispel has\nbeen resolved, both Teclis and the caster must roll a D6; if Teclis scores higher, the caster immediately forgets\nthe spell; otherwise, nothing else happens.\n• War Crown of Saphery: Arcane Item. Relic. The War Crown of Saphery allows Teclis to re-roll the result of\nany randomised spell effects (such as the number of hits inflicted by a magic missile).",
       "options": [],
-      "specialRules": "Curse of Aenarion (see Lord of Aenarion), Elven Grace, Lileath's Blessing, Martial Prowess,",
-      "specialRuleDescriptions": [
-        "Valour of Ages"
-      ],
+      "specialRules": "Curse of Aenarion (see Lord of Aenarion), Elven Grace, Lileath's Blessing, Martial Prowess, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3060,9 +3049,8 @@
       "equipment": "Light lance/spear, Elven shortbow, heavy armour\nMAGIC ITEMS:\n• Fangsword of Athel Tamarha: Magic Weapon. Attacks made with the Fangsword are resolved at +2 Strength\nand Ignores Armour saves.\n• Helm of Yvresse: Magic Armour. 6+ armour save. The Helm of Yvresse grants Eltharion the Magical Ward\n(5+) special rule. In addition, Eltharion may re-roll any failed Leadership test.\n• Talisman of Hoeth: Talisman. This item grants Eltharion the Magic Resistance (1) special rule. The Talisman\nof Hoeth also makes Eltharion a Level 2 Wizard, who uses spells from one of the eight Winds of Magic.",
       "magic": null,
       "options": [],
-      "specialRules": "Guardian of Yvresse (see Elven Honours), Hatred (Orcs & Goblins), Martial Prowess,",
+      "specialRules": "Guardian of Yvresse (see Elven Honours), Hatred (Orcs & Goblins), Martial Prowess, Valour of Ages",
       "specialRuleDescriptions": [
-        "Valour of Ages",
         "Silverin Guard: If Eltharion the Grim is your Army General, you may upgrade one unit of Sentinels to Silverin Guard for a cost of +2 points per model. This unit has heavy armour and the Magic Resistance (1) special rule. MAGIC ITEMS:",
         "May be mounted on Stormwing +115 points"
       ],
@@ -3097,9 +3085,8 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• The White Sword: Magic Weapon. Great weapon. This weapon gives Eltharion the Killing Blow special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Bladelord (see Elven Honours), Hatred (Dark Elves, Orcs & Goblins), Immunity",
+      "specialRules": "Bladelord (see Elven Honours), Hatred (Dark Elves, Orcs & Goblins), Immunity (Psychology), Martial Prowess, Valour of Ages",
       "specialRuleDescriptions": [
-        "(Psychology), Martial Prowess, Valour of Ages",
         "The Dark Within: Eltharion and any unit he joins is subject to the Berserk Rage part of the Frenzy special rule.",
         "Great Leap: At the start of any round of combat, before attacks are allocated or challenges issued, Eltharion may be moved to a different position in any unit he is in. He may not use this to position himself out of combat or if he is already involved in a challenge.",
         "Impenetrable Defence: Eltharion has the Dodge (5+) and Immunity (Killing Blow) special rules.",
@@ -3137,9 +3124,8 @@
       "equipment": "Hand weapon, light armour\nMAGIC ITEMS:\n• The Moonbow: Magic Weapon. The Moonbow is a bolt thrower with the following profile:\nRange: Strength: Special Rules:\n24/36\" 7 Armour Piercing (1), Multiple Wounds (D3)\nAny unit of Dark Elves that suffers one or more casualties from the Moonbow must take a Panic test.\n• Stone of Midnight: Talisman. The Stone of Midnight grants Alith Anar the Magical Ward (4+) special rule. In\naddition, enemies suffer -1 To Hit when shooting at Alith Anar or any unit he has joined.\n• The Shadow Crown: Enchanted Item. Alith Anar and any unit he joins have the Swiftstride special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Hatred (Dark Elves), Martial Prowess, Shadow Stalker (see Elven Honours),",
+      "specialRules": "Elven Grace, Hatred (Dark Elves), Martial Prowess, Shadow Stalker (see Elven Honours), Valour of Ages",
       "specialRuleDescriptions": [
-        "Valour of Ages",
         "The Grey: If Alith Anar is included in your army, you may upgrade one unit of Shadow Warriors to The Grey for a cost of +1 point per model. If this unit is wholly within a terrain feature, enemies cannot draw Line of Sight to them unless they are within 12\"."
       ],
       "upgrades": null,
@@ -3185,9 +3171,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Blood of Caledor (see Elven Honours), Fiery Breath, Fly (7), Martial Prowess, Natural",
+      "specialRules": "Blood of Caledor (see Elven Honours), Fiery Breath, Fly (7), Martial Prowess, Natural Armour (2+), Valour of Ages",
       "specialRuleDescriptions": [
-        "Armour (2+), Valour of Ages",
         "Dragon Kin: No Draconids will fight Imrik. If they are in base contact with other models (and not in a challenge) then they fight them instead, otherwise they may do nothing. Their riders (if they have any) still fight as normal.",
         "The Fireborn: If Imrik is your Army General, you may upgrade one unit of Dragon Princes of Caledor to The Fireborn for a cost of +2 points per model. This unit has the Flaming Attacks and Multiple Wounds (2) special rules.",
         "Loyal Bond: Whenever Imrik suffers an unsaved Wound, Minaithnir will become subject to Hatred against the model or unit that inflicted the Wound for the remainder of the turn."
@@ -3400,9 +3385,8 @@
           "raw": "May be mounted on a Lion Chariot of Chrace (replacing one of the crew) +95 points"
         }
       ],
-      "specialRules": "Chracian Hunter (see Elven Honours), Elven Grace, Forest Strider, Martial Prowess,",
+      "specialRules": "Chracian Hunter (see Elven Honours), Elven Grace, Forest Strider, Martial Prowess, Mighty Blow (1), Valour of Ages",
       "specialRuleDescriptions": [
-        "Mighty Blow (1), Valour of Ages",
         "Hunter Captain: Korhil may use one the following abilities in close combat in the situations described below: - Lion Rampant: Lion Rampant can be used in a turn when choosing Hold as a charge reaction. Korhil gains the Parry (6+) special rule for the duration of the close combat phase. - Lion Leaping: Lion Leaping can be used in a turn when Korhil is charging. Enemy models in base contact are subject to the Always Strikes Last special rule for the duration of the close combat phase. - Lion Claw: Lion Claw can be used fighting against Monstrous Infantry, Monstrous Beasts and Monstrous Cavalry. Against these Troop Types, Korhil has the Heroic Killing Blow special rule in the first turn of close combat.",
         "The Puremane Company: Unless Korhil is mounted on a Lion Chariot of Chrace, he must be accompanied by a unit of White Lions of Chrace chosen from the army list as normal. This unit has the Immunity (Fear) special rule. Korhil may never choose to leave this unit."
       ],
@@ -3461,9 +3445,8 @@
           "raw": "May be mounted on Ashtari +260 points"
         }
       ],
-      "specialRules": "Anointed of Asuryan (see Elven Honours), Elven Grace, Immunity (Psychology), Magic",
+      "specialRules": "Anointed of Asuryan (see Elven Honours), Elven Grace, Immunity (Psychology), Magic Resistance (1), Martial Prowess, Valour of Ages,",
       "specialRuleDescriptions": [
-        "Resistance (1), Martial Prowess, Valour of Ages,",
         "Mark of Asuryan: If Caradryan is slain in close combat, the unit that killed him immediately suffers D3 Wounds which Ignores Armour Saves. If Caradryan is killed in a challenge, then only his opponent takes these Wounds – any excess Wounds caused by the Mark of Asuryan count towards overkill.",
         "Keepers of the Flame: Unless Caradryan is mounted on Ashtari, he must be accompanied by a unit of Phoenix Guard chosen from the army list as normal. This unit has the Magical Attacks special rule. Caradryan may never choose to leave this unit."
       ],
@@ -3498,9 +3481,8 @@
       "equipment": "Elven shortbow, medium armour, shield\nMAGIC ITEMS:\n• Mathlann's Ire: Magic Weapon. Spear. This weapon gives Ishaya Vess +1 Strength and the Armour Piercing\n(1) special rule. In addition, enemies must re-roll successful To Hit rolls against her in close combat.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Inspiring Presence (6), Lothern Sea Helm (see Elven Honours), Martial",
+      "specialRules": "Elven Grace, Inspiring Presence (6), Lothern Sea Helm (see Elven Honours), Martial Prowess, Valour of Ages",
       "specialRuleDescriptions": [
-        "Prowess, Valour of Ages",
         "Precision Strikes: Any Lothern Sea Guard unit joined by Ishaya Vess gains the Armour Piercing (1) special rule."
       ],
       "upgrades": null,
@@ -3534,9 +3516,8 @@
       "equipment": "Shield\nMAGIC ITEMS:\n• Sword of Retaliation: Magic Weapon. All enemy models from the Forces of Destruction suffer -1 To Hit\nPhytrion in close combat.\n• Moonshade Armour: Magic Armour. Heavy armour. The Moonshade Armour gives Phytrion the Magical\nWard (5+) special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Guardian of Yvresse (see Elven Honours), Hatred (Warriors of Chaos),",
+      "specialRules": "Elven Grace, Guardian of Yvresse (see Elven Honours), Hatred (Warriors of Chaos), Martial Prowess, Valour of Ages",
       "specialRuleDescriptions": [
-        "Martial Prowess, Valour of Ages",
         "Favour of Destiny: Roll a D3 at the start of the game; this is the number of dice that Phytrion may re-roll of either To Hit, To Wound, armour saves or invulnerable saves during the course of the game."
       ],
       "upgrades": null,
@@ -3595,9 +3576,8 @@
       "equipment": "Hand weapon, Elven longbow, light armour, shield\nMAGIC ITEMS:\n• Blade of Galeth: Magic Weapon. All attacks made by Gilead with the Blade of Galeth have the Armour\nPiercing (1) special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Independent, Martial Prowess, Multiple Shots (3) (Fithvael only), Skirmishers,",
+      "specialRules": "Elven Grace, Independent, Martial Prowess, Multiple Shots (3) (Fithvael only), Skirmishers, Valour of Ages",
       "specialRuleDescriptions": [
-        "Valour of Ages",
         "Doom-saga: At the beginning of the battle, after deployment, nominate one enemy character on the battlefield. Against this particular target, Gilead re-rolls all failed rolls To Hit and To Wound.",
         "Melancholic Distractions: At the start of each of his turns, Gilead must take a Leadership test, unless he is engaged in combat. If this test is failed, roll a D6. On a 1-3 Gilead cannot move that turn. On a 4-6 Gilead must move his full movement for that turn towards the closest table edge. If he leaves the table, he is treated as a casualty and will not return. If Gilead is engaged in combat, he will fight as normal.",
         "Shadowfast: Once per game, at the start of any of the High Elf player's movement phase, Gilead may enter Shadowfast. Until the start of his next turn, Gilead's stat line will change to his Shadowfast characteristics. In addition, while Shadowfast, Gilead also gains the Always Strikes First and Dodge (4+) special rules. CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"

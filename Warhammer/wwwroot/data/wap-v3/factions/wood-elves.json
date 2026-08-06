@@ -662,10 +662,8 @@
           "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magical Ward (6+), Magic",
-      "specialRuleDescriptions": [
-        "Resistance (1), Shadow Dances of Loec"
-      ],
+      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magical Ward (6+), Magic Resistance (1), Shadow Dances of Loec",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1004,10 +1002,8 @@
           "raw": "May take Spites up to a total of 100 points CHARACTERS"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree",
-      "specialRuleDescriptions": [
-        "Whack"
-      ],
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree Whack",
+      "specialRuleDescriptions": null,
       "upgrades": "• Strangleroots: Strangleroots have the following profile:\nRange: Strength: Special Rules:\n6/12\" 5 Multiple Shots (D6+1), Quick Shot, Rapid Fire",
       "notes": null,
       "unitSize": null,
@@ -1119,10 +1115,8 @@
           "raw": "May take Spites up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree",
-      "specialRuleDescriptions": [
-        "Aspects"
-      ],
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree Aspects",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1998,10 +1992,8 @@
           ]
         }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Magical Ward (6+), Magic Resistance (1), Shadow Dances of",
-      "specialRuleDescriptions": [
-        "Loec, Skirmishers"
-      ],
+      "specialRules": "Elven Grace, Forest Strider, Magical Ward (6+), Magic Resistance (1), Shadow Dances of Loec, Skirmishers",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5-15",
@@ -2683,10 +2675,8 @@
           "raw": "May upgrade one Waywatcher to a Leader +5 points"
         }
       ],
-      "specialRules": "Asrai Archery, Elven Grace, Forest Strider, Forest Stalker, Lethal Shot, Scouts,",
-      "specialRuleDescriptions": [
-        "Skirmishers"
-      ],
+      "specialRules": "Asrai Archery, Elven Grace, Forest Strider, Forest Stalker, Lethal Shot, Scouts, Skirmishers",
+      "specialRuleDescriptions": null,
       "upgrades": "• Traps: A Waywatcher unit that is within a forest is automatically assumed to set traps around its positions. Any\nenemy charging the unit through the forest will activate the traps as soon as the enemy unit touches the forest.\nIf the chargers are already inside the forest when the charge is declared the traps are activated as soon as the\ncharge is declared. Roll a D6 to determine the type and effect of the trap.\nD6 Result\n1-2 Spikes: The enemy unit suffers D6 Strength 3 hits.\n3 Snares: The enemy unit deducts D3\" from the charge distance.\n4 Nets: D3 models in the enemy unit suffer -1 Attacks.\n5 Camouflaged Pit: The enemy unit counts as moving through Dangerous Terrain. If the unit would\nalready treat the forest as Dangerous Terrain, they instead fail the test on a 1-2.\n6 Impaler: Treat the unit as being hit by a bolt thrower in the front rank. The file it hits is determined\nby the Wood Elf player.",
       "notes": null,
       "unitSize": "5-15",
@@ -2756,9 +2746,8 @@
           ]
         }
       ],
-      "specialRules": "Asrai Archery, Blessings of the Ancients, Elven Grace, Fast Cavalry, Forest Strider,",
+      "specialRules": "Asrai Archery, Blessings of the Ancients, Elven Grace, Fast Cavalry, Forest Strider, Magical Ward (4+), Poisoned Attacks",
       "specialRuleDescriptions": [
-        "Magical Ward (4+), Poisoned Attacks",
         "Deepwood Coven: The unit receives an additional +1 casting bonus for every 5 five models in the unit with this special rule. Each time the unit casts a spell (or is targeted by a special rule that affects a Wizard), you must nominate one Sister of the Thorn as the caster (or target) for the purposes of line of sight, range, etc. In the event of a Sisters of the Thorn unit rolling a miscast, do not roll on the Miscast table. Instead, the unit suffers D3 Wounds with no saves of any kind allowed."
       ],
       "upgrades": null,
@@ -3038,10 +3027,8 @@
           ]
         }
       ],
-      "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural",
-      "specialRuleDescriptions": [
-        "Armour (5+), Regeneration (5+)"
-      ],
+      "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural Armour (5+), Regeneration (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3-6",
@@ -3257,9 +3244,8 @@
       "equipment": null,
       "magic": "Ariel is a level 4 Wizard who uses spells from the Lore of Athel Loren.\nMAGIC ITEMS:\n• The Dart of Doom: Magic Weapon. One use only. The Dart of Doom has a range of 12\". If the dart hits a\nmodel it causes 1 automatic Wound which Ignores Armour saves. If the wound is not saved the dart sucks\nenergy out of the victim, draining their Strength characteristic by D3 to a minimum of 1.\n• The Heartstone of Athel Loren: Talisman. If Ariel successfully dispels a spell targeted at her, the casting\nWizard must immediately take a Leadership test. If he fails, he immediately loses a Wizard level and may\nnot cast that spell for the remainder of the game.\n• The Wand of Wych Elm: Arcane Item. This staff allows any failed Dispel attempt to be re-rolled.\n• The Berry Wine: Enchanted Item. One use only. The wine can be drunk at the start of any phase. Ariel\nwill immediately regain up to D3 Wounds previously lost during the battle.\n• The Acorn of Ages: Enchanted Item. One use only. At the start of the game, after the battlefield has been\nset up, but before deployment begins, place a forest, no more than 12\" in diameter, on the battlefield. This\nforest can be placed anywhere at least 1\" away from another terrain feature and the edge of the battle\nfield. Once the forest have been placed, it scatters 2D6\". If this scatter causes a forest to end up within 1\"\n(or on top of) other terrain, or within 1\" of the battle field edge, reduce or increase the scatter by the\nsmallest amount necessary to avoid the obstruction. When this has been done, declare which type of\nforest you want it to be from those available in the Main Rulebook.",
       "options": [],
-      "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic",
+      "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic Resistance (3)",
       "specialRuleDescriptions": [
-        "Resistance (3)",
         "Aura of the Fey Queen: All friendly units within 6\" of Ariel have the Immunity (Panic) special rule.",
         "Earthbind: Any units declaring a charge on Ariel count as moving through Dangerous Terrain for the duration of the turn. In addition, if Ariel flees from combat, any enemies attempting to pursue her roll an extra D6 when determining their pursuit distance and discard the highest result.",
         "Screech: Ariel may use Screech when it would normally be her time to attack in close combat. This is a special attack that automatically Hits all enemy models in base contact at Strength 4 with the Ignores Armour special rule."
@@ -3542,9 +3528,8 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Drum of Orcskin: Enchanted Item. The Drum of Orcskin gives Wychwethyl and any unit he joins the\nSwiftstride special rule when they roll their charge distance.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Forest Strider, Magical Ward (6+), Magic Resistance (1), Shadow Dances of",
+      "specialRules": "Elven Grace, Forest Strider, Magical Ward (6+), Magic Resistance (1), Shadow Dances of Loec",
       "specialRuleDescriptions": [
-        "Loec",
         "Choose Opponent: In close combat, Wychwethyl can choose to attack any enemy model in the enemy unit (excluding Challenges), not just the models in base contact with him.",
         "Dance of Doom: Wychwethyl can use the Dance of Doom instead of his normal Shadow Dances. If he does so, he gains +1 Attack for every enemy model in base contact with him."
       ],
@@ -3638,9 +3623,8 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Binding Bolas: Magic Weapon. The Binding Bolas is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n18\" 1 Armour Piercing (1), Multiple Shots (2), Sniper\nIf a target has Unit Strength 3 or less and is Hit, but not slain, then it is temporarily entangled and cannot move\nin their next Movement phase. Entangled enemies may be left behind, counting as casualties, or in the case of a\nCharacter, as if they had left the unit.",
       "magic": null,
       "options": [],
-      "specialRules": "Animal Form (Gruarth only, see Alters), Elven Grace (Gruarth only), Forest Strider, Mixed",
+      "specialRules": "Animal Form (Gruarth only, see Alters), Elven Grace (Gruarth only), Forest Strider, Mixed Unit, Natural Armour (6+), Skirmishers",
       "specialRuleDescriptions": [
-        "Unit, Natural Armour (6+), Skirmishers",
         "Beastmaster: Fang and Claw are War Beasts (Canine) and Gruarth is their Handler. If Gruath is slain, Fang and Claw become subject to Frenzy. If both Fang and Claw are slain, Gruarth becomes subject to Hatred."
       ],
       "upgrades": null,
@@ -3680,9 +3664,8 @@
           "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Frenzy, Hatred, Natural Armour (3+),",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Frenzy, Hatred, Natural Armour (3+), Strangleroots (see Treeman Ancient), Stubborn, Tree Whack",
       "specialRuleDescriptions": [
-        "Strangleroots (see Treeman Ancient), Stubborn, Tree Whack",
         "Unburden of Thieflings: An Unburden of Thieflings is a close combat attack that can be used in addition to Durthu's other attacks. It has the following profile: Range: Strength: Special Rules: Combat 2 Magical Attacks, Poisoned Attacks, Random Attacks (D6) Any enemy units that suffer Wounds from any of these attacks suffer -1 To Hit and To Wound as well as -1 to their armour saves until the start of your next turn."
       ],
       "upgrades": null,
@@ -3809,9 +3792,8 @@
           "raw": "May take Spites up to a total of 50 points CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk (see",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk (see Tree-Revenants), Tree Aspects",
       "specialRuleDescriptions": [
-        "Tree-Revenants), Tree Aspects",
         "Eternal Rage: Drycha has the Hatred special rule which applies in every round of close combat, not just the first.",
         "Fanatical Resolve: If Drycha is reduced to 1 Wound, she gains the Frenzy special rule. She automatically loses Frenzy if she is healed back to her starting number of Wounds.",
         "Roused to Wrath: You may choose up to D3 units with the Forest Spirit special rule to deploy as Ambushers. When these unit would normally enter the battlefield, instead place them so that all models in the unit are wholly within a forest, and at least 1\" away from other units and impassable terrain. Units that cannot be deployed this way enter the board as normal Ambushers instead. This rule cannot be used if there are no forests on the battlefield when it is time to deploy your army."

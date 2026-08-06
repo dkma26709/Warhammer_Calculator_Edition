@@ -349,7 +349,11 @@
 
 @code {
     private static readonly UnitCategory[] BrowseCategories =
-        [UnitCategory.Lords, UnitCategory.Heroes, UnitCategory.Characters, UnitCategory.Core, UnitCategory.Special, UnitCategory.Rare];
+    [
+        UnitCategory.Lords, UnitCategory.Heroes, UnitCategory.Characters,
+        UnitCategory.NamedCharacters,
+        UnitCategory.Core, UnitCategory.Special, UnitCategory.Rare,
+    ];
 
     private string? _factionKey;
     private string _pointsText = "2000";
@@ -860,9 +864,7 @@
                     heroesMax.Points, false);
 
             yield return (split ? "Characters (combined)" : "Characters",
-                _armyList.PointsInCategory(UnitCategory.Lords)
-                    + _armyList.PointsInCategory(UnitCategory.Heroes)
-                    + _armyList.PointsInCategory(UnitCategory.Characters),
+                UnitCategoryExtensions.CharacterCategories.Sum(_armyList.PointsInCategory),
                 limits.CharactersCombinedMax.Points, false);
             yield return ("Core", _armyList.PointsInCategory(UnitCategory.Core),
                 limits.CoreMin.Points, true);

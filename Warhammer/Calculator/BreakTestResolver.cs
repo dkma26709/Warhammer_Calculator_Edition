@@ -44,7 +44,18 @@ public static class BreakTestResolver
         if (rules.Unstable)
         {
             bool steadfast = rules.Stubborn || unitRanks > opponentRanks;
-            int wounds = steadfast ? Math.Max(0, crDifference - 1) : crDifference;
+            int wounds = crDifference;
+
+            // Unstable: "If an Unstable unit would normally be eligible to be Steadfast, they
+            // instead suffer 1 less Wound than they would normally do."
+            if (steadfast)
+                wounds -= 1;
+
+            // Indomitable stacks on top of that: it reduces the wounds the unit "normally would"
+            // suffer, and the steadfast reduction is part of what it normally would suffer.
+            if (rules.Indomitable)
+                wounds -= 1;
+
             return new BreakTestResult
             {
                 Outcome = BreakTestOutcome.UnstableWounds,

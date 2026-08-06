@@ -1896,10 +1896,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Mighty Blow (1), Mighty Blow (2) (War Boars only), Natural Armour (6+), Size",
-      "specialRuleDescriptions": [
-        "Matters"
-      ],
+      "specialRules": "Animosity, Mighty Blow (1), Mighty Blow (2) (War Boars only), Natural Armour (6+), Size Matters",
+      "specialRuleDescriptions": null,
       "upgrades": "• Savage Orc: The model gains the Frenzy and Warpaint special rules. This changes their Troop Type to Cavalry\n(Savage Orc).",
       "notes": null,
       "unitSize": "5+",
@@ -2340,9 +2338,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Fast Cavalry, Fear Elves, Poisoned Attacks (including Giant Spiders), Wall-",
+      "specialRules": "Animosity, Fast Cavalry, Fear Elves, Poisoned Attacks (including Giant Spiders), Wall- crawler",
       "specialRuleDescriptions": [
-        "crawler",
         "Creeping Assault: Unlike other mounts, Giant Spiders are allowed to attack when assaulting buildings."
       ],
       "upgrades": null,
@@ -2686,10 +2683,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Mighty Blow (1), Mighty Blow (2) (War Boars only), Natural Armour (6+), Size",
-      "specialRuleDescriptions": [
-        "Matters"
-      ],
+      "specialRules": "Animosity, Mighty Blow (1), Mighty Blow (2) (War Boars only), Natural Armour (6+), Size Matters",
+      "specialRuleDescriptions": null,
       "upgrades": "• Savage Orc: The model gains the Frenzy and Warpaint special rules. This changes their Troop Type to Cavalry\n(Savage Orc).",
       "notes": "• You may take 1 unit of Big 'Uns or Boar Boy Big 'Uns for each Orc Warboss in your army.",
       "unitSize": "5+",
@@ -2789,10 +2784,8 @@
           "raw": "May be upgraded to a standard bearer +10 points"
         }
       ],
-      "specialRules": "Mighty Blow (1) (Orc only), Mighty Blow (2) (War Boars only), Natural Armour (6+), Size",
-      "specialRuleDescriptions": [
-        "Matters"
-      ],
+      "specialRules": "Mighty Blow (1) (Orc only), Mighty Blow (2) (War Boars only), Natural Armour (6+), Size Matters",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3416,9 +3409,8 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Random Movement (3D6), Hatred (Dwarfs) (Herder only), Immunity (Psychology), Loner,",
+      "specialRules": "Random Movement (3D6), Hatred (Dwarfs) (Herder only), Immunity (Psychology), Loner, Mixed Unit",
       "specialRuleDescriptions": [
-        "Mixed Unit",
         "Squigs Go Wild: If the unit would flee, or if at any time there are only Squigs left alive in the unit with no Herders, all units within 2D6\" (friend and foe) immediately take D6 Strength 5 hits. For every 5 Cave Squigs remaining when the Squigs Go Wild, add +1 to the number of hits caused. After damage is resolved, the Squig Herd is removed in its entirety."
       ],
       "upgrades": null,
@@ -3495,10 +3487,8 @@
           "raw": "May upgrade one Squig Hopper to a Leader +5 points"
         }
       ],
-      "specialRules": "Random Movement (3D6), Hatred (Dwarfs), Immunity (Psychology), Loner, Skirmishers,",
-      "specialRuleDescriptions": [
-        "Vanguard"
-      ],
+      "specialRules": "Random Movement (3D6), Hatred (Dwarfs), Immunity (Psychology), Loner, Skirmishers, Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5+",
@@ -3590,10 +3580,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Fear Elves, Natural Armour (6+), Poisoned Attacks (including Gigantic Spiders),",
-      "specialRuleDescriptions": [
-        "Wall-crawler"
-      ],
+      "specialRules": "Animosity, Fear Elves, Natural Armour (6+), Poisoned Attacks (including Gigantic Spiders), Wall-crawler",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3+",
@@ -3913,10 +3901,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Mighty Blow (1), Mighty Blow (2) (Gruntas only), Natural Armour (6+), Size",
-      "specialRuleDescriptions": [
-        "Matters"
-      ],
+      "specialRules": "Animosity, Mighty Blow (1), Mighty Blow (2) (Gruntas only), Natural Armour (6+), Size Matters",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3+",
@@ -3960,10 +3946,8 @@
       "equipment": "Two hand weapons (Brute only), medium armour, barding",
       "magic": null,
       "options": [],
-      "specialRules": "Mighty Blow (1) (Orc brute only), Impact Hits (D6), Mighty Blow (2), Natural Armour (5+),",
-      "specialRuleDescriptions": [
-        "Size Matters"
-      ],
+      "specialRules": "Mighty Blow (1) (Orc brute only), Impact Hits (D6), Mighty Blow (2), Natural Armour (5+), Size Matters",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -4206,9 +4190,8 @@
           "raw": "May choose one of the following:"
         }
       ],
-      "specialRules": "Immunity (Psychology), Natural Armour (4+), Poisoned Attacks (including the crew),",
+      "specialRules": "Immunity (Psychology), Natural Armour (4+), Poisoned Attacks (including the crew), Stubborn, Wall-crawler",
       "specialRuleDescriptions": [
-        "Stubborn, Wall-crawler",
         "Venom Surge: When fighting Monstrous Infantry, Monstrous Beasts, Monstrous Cavalry, Monstrous Creature or Monsters; before rolling to hit, nominate one of the Arachnarok's attacks to be made with the Venom Surge, and roll it separately. This is a Poisoned Attack with the Multiple Wounds (D6) special rule."
       ],
       "upgrades": "• Catchweb Spidershrine: A Forest Goblin Oddnob mounted on an Arachnarok Spider with a Catchweb\nSpidershrine has the Loremaster (Spells of da Spider God) special rule and adds +1 to his channelling attempts.\n• Flinger: The Flinger is a stone thrower with the following profile:\nRange: Strength: Special Rules:\n12-48\" 1(3) Multiple Wounds (D3)\nAny unit hit by a Flinger suffer -1 to its Movement, Weapon Skill, Ballistic Skill, Strength and Initiative until\nthe end of its next turn. If a Misfire is rolled, Flinger does not use the Stone Thrower Misfire table – a misfire\nresult simply means that the Flinger may not shoot this turn.",
@@ -4584,9 +4567,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size",
+      "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size Matters, Waaagh!",
       "specialRuleDescriptions": [
-        "Matters, Waaagh!",
         "Get on Wiv it! Azhag must be the Army General. Any unit within range of Azhag's Inspiring Presence that fails an Animosity test must immediately re-roll the dice."
       ],
       "upgrades": null,
@@ -4724,10 +4706,8 @@
           "raw": "May take Magic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty",
-      "specialRuleDescriptions": [
-        "Blow (1) (Grumlok only), Size Matters, Waaagh!"
-      ],
+      "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty Blow (1) (Grumlok only), Size Matters, Waaagh!",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,

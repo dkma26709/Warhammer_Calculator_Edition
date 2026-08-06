@@ -2794,9 +2794,8 @@
       "equipment": "Heavy lance, heavy armour, barding\nMAGIC ITEMS:\n• The Beast Mace of Bastonne: Magic Weapon. The Beast Mace adds +2 to Bohemond’s Strength and has the\nMultiple Wounds (2) special rule.\n• Bohemond's Shield: Magic Armour. Shield. Should an enemy strike Bohemond with a Magic Weapon, roll a\nD6 for each hit. On a roll of 6, the enemy weapon is destroyed. Resolve enemy hits that are not destroyed by\nthe shield in the normal way but once the weapon is broken all further hits from that weapon are ignored.",
       "magic": null,
       "options": [],
-      "specialRules": "Blessing of the Lady, The Grail Vow, Hatred (Beastmen, Goblins, Orcs, Skaven), Lance",
+      "specialRules": "Blessing of the Lady, The Grail Vow, Hatred (Beastmen, Goblins, Orcs, Skaven), Lance Formation, Purebred Warhorse, Virtue of Heroism",
       "specialRuleDescriptions": [
-        "Formation, Purebred Warhorse, Virtue of Heroism",
         "The Beastslayers of Bastonne: If Bohemond the Beastslayer is included in your army, you may upgrade one unit of Foot Knights to the Beastslayers of Bastonne for a cost of +1 point per model. This unit gains the Multiple Wounds (2) special rule. The unit must be equipped with polearms."
       ],
       "upgrades": null,
@@ -2842,9 +2841,8 @@
       "equipment": "Heavy lance, heavy armour, barding\nMAGIC ITEMS:\n• The Blade of Banishment: Magic Weapon. This Sword automatically Wounds models with the Undead\nspecial rule, with the Ignores Armour Saves special rule. In addition, the bearer and any unit he is leading have\nImmunity (Terror) caused by Undead.\n• The Grail Shield: Magic Armour. Shield. Models from the Forces of Destruction in base contact with Tancred\nsuffer a -1 To Hit penalty in close combat.\n• Blessed Draught: Enchanted Item. One use only. Tancred may drink the potion at the beginning of any\nplayer's turn. For the duration of that turn, the potion increases Tancred's Strength by D6.",
       "magic": null,
       "options": [],
-      "specialRules": "Blessing of the Lady, The Grail Vow, Lance Formation, Purebred Warhorse, Virtue of",
+      "specialRules": "Blessing of the Lady, The Grail Vow, Lance Formation, Purebred Warhorse, Virtue of Purity",
       "specialRuleDescriptions": [
-        "Purity",
         "The Companions of Quenelles: If Tancred II is included in your army, you may upgrade one unit of Knights of the Realm to the Companions of Quenelles for a cost of +1 point per model. This unit gains the Immunity (Psychology) special rule and a Magical Ward (6+) against Flaming Attacks."
       ],
       "upgrades": null,
@@ -2913,9 +2911,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation, Purebred Warhorse, Virtue of",
+      "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation, Purebred Warhorse, Virtue of Discipline",
       "specialRuleDescriptions": [
-        "Discipline",
         "Spirit of the Tempest: Alberic, and any models in the same unit, may re-roll 1's to Hit in close combat."
       ],
       "upgrades": null,
@@ -3020,10 +3017,8 @@
           "raw": "May be mounted on a Warhorse +12 points"
         }
       ],
-      "specialRules": "Blessing of the Lady, Lance Formation, Magic Resistance (3), The Knight’s Vow, Purebred",
-      "specialRuleDescriptions": [
-        "Warhorse, Terror"
-      ],
+      "specialRules": "Blessing of the Lady, Lance Formation, Magic Resistance (3), The Knight’s Vow, Purebred Warhorse, Terror",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3086,9 +3081,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "Blessing of the Lady, Lance Formation, The Questing Vow, Purebred Warhorse, Virtue of",
+      "specialRules": "Blessing of the Lady, Lance Formation, The Questing Vow, Purebred Warhorse, Virtue of Noble Disdain",
       "specialRuleDescriptions": [
-        "Noble Disdain",
         "Jules the Jester: Jules is an Infantry model armed with a hand weapon. Jules must deploy within 6\" of Tristan at the start of the game but may move freely after this. He has the Dodge (2+) and The Peasant’s Duty special rule. In addition, all enemy units within 6\" of Jules suffer a -1 penalty to Hit rolls in close combat.",
         "Valorous Ballads: Tristan knows the three songs listed below. He may choose to use one of them at the start of each round of close combat. - The Anthem of the Uniter: Tristan and any unit he has joined have the Stubborn special rule this turn. - The Battle-hymn of Quenelles: Tristan gains +D3 Combat Resolution bonus this turn. - The Grail Chorale: The Magical Ward save from the Blessing of the Lady is increased by +1 for Tristan and any unit he has joined this turn."
       ],
@@ -3154,9 +3148,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "Blessing of the Lady, Lance Formation, The Crusader's Vow, Purebred Warhorse, Virtue of",
+      "specialRules": "Blessing of the Lady, Lance Formation, The Crusader's Vow, Purebred Warhorse, Virtue of Confidence",
       "specialRuleDescriptions": [
-        "Confidence",
         "Warrior of the Sands: Odo of Outremer is included in your army then Suliman the Saracen may also be included. Suliman is a Cavalry model and is armed with a great weapon, light armour and shield. Suliman causes Fear in any turn in which he charges. Odo and Suliman always move and fight together as a unit and may join a unit if you wish. Suliman may never be the Army General."
       ],
       "upgrades": null,
@@ -3296,9 +3289,8 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Staff of the Elements: Arcane Item. Staff. This item allows Élise Duchard to use the Signature Spell from\neither the Lore of Life or Heavens in addition to her other chosen spells.\n• Chalice Of Brionne: Enchanted Item. All enemy units within 12\" suffer a -2 Leadership penalty when\nattempting to use Inspiring Presence, Hold Your Ground, Rally, March, Redirecting a Charge, Reforming from\nDefeat, Restraining from Pursuit or Swift Reform.",
       "magic": "Élise Duchard is a Level 3 Wizard who uses one of the following Lores of Magic:\n• Heavens\n• Life",
       "options": [],
-      "specialRules": "Aura of the Lady, Impale (Ariandir only, see Unicorns), Magical Attacks (Ariandir only),",
+      "specialRules": "Aura of the Lady, Impale (Ariandir only, see Unicorns), Magical Attacks (Ariandir only), Magic Resistance (1)",
       "specialRuleDescriptions": [
-        "Magic Resistance (1)",
         "Arcane Backlash: Élise Duchard has a +1 dispel bonus. In addition, if she rolls any natural double when dispelling, treat this has having rolled Ultimate Power. If a spell is dispelled by her rolling two or more natural 6's, the casting Wizard also suffer a Wound which Ignores Armour saves."
       ],
       "upgrades": null,

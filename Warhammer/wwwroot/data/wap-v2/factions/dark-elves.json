@@ -950,10 +950,8 @@
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
-      "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous",
-      "specialRuleDescriptions": [
-        "Prowess, Poisoned Attacks, Scouts"
-      ],
+      "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous Prowess, Poisoned Attacks, Scouts",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1061,9 +1059,8 @@
           "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
-      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Magic Resistance (1), Murderous Prowess,",
+      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Magic Resistance (1), Murderous Prowess, Natural Armour (6+), Swiftstride, Vanguard",
       "specialRuleDescriptions": [
-        "Natural Armour (6+), Swiftstride, Vanguard",
         "Gory Offering: If any enemy models are slain by a Melusai Ironscale in close combat, any Melusai in the same unit as her gain the Frenzy special rule for the remainder of the close combat phase.",
         "Wrath of the Melusai: Any unit of Melusai joined by a Melusai Ironscale can re-roll failed charge and pursue distances."
       ],
@@ -1727,10 +1724,8 @@
       "equipment": "Hand weapons",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace (Slave Master only), Expendable, Hatred (High Elves) (Slave Master only),",
-      "specialRuleDescriptions": [
-        "Mixed Unit, Murderous Prowess (Slave Master only), Vanguard"
-      ],
+      "specialRules": "Elven Grace (Slave Master only), Expendable, Hatred (High Elves) (Slave Master only), Mixed Unit, Murderous Prowess (Slave Master only), Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• You must include one Slave Master for every 20 Slaves in the unit.",
       "unitSize": "20+",
@@ -2103,10 +2098,8 @@
           ]
         }
       ],
-      "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+),",
-      "specialRuleDescriptions": [
-        "Stupidity"
-      ],
+      "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+), Stupidity",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5+",
@@ -2162,10 +2155,8 @@
       "equipment": "Light lance, Deathrain crossbow, heavy armour, scythes",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+),",
-      "specialRuleDescriptions": [
-        "Stupidity"
-      ],
+      "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+), Stupidity",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2332,10 +2323,8 @@
           "raw": "May upgrade one Melusai to a Leader +5 points"
         }
       ],
-      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Murderous Prowess, Natural Armour (6+),",
-      "specialRuleDescriptions": [
-        "Swiftstride, Vanguard"
-      ],
+      "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Murderous Prowess, Natural Armour (6+), Swiftstride, Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5+",
@@ -2536,9 +2525,8 @@
           "raw": "May upgrade one Shadowstalker to a Leader +5 points"
         }
       ],
-      "specialRules": "Elven Grace, Hatred (High Elves), Loner, Murderous Prowess, Poisoned Attacks, Scouts,",
+      "specialRules": "Elven Grace, Hatred (High Elves), Loner, Murderous Prowess, Poisoned Attacks, Scouts, Skirmishers",
       "specialRuleDescriptions": [
-        "Skirmishers",
         "Harness Shadow: Missile attacks targeting a unit containing one or more models with this special rule suffer -1 To Hit.",
         "Shadowleap: Instead of moving normally in the Remaining Moves sub-phase, this unit may make a Fly (6) move."
       ],
@@ -2604,9 +2592,8 @@
           "raw": "May upgrade one Doomfire Warlock to a Leader +5 points"
         }
       ],
-      "specialRules": "Fast Cavalry, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess, Poisoned",
+      "specialRules": "Fast Cavalry, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess, Poisoned Attacks, Ward Save (4+)",
       "specialRuleDescriptions": [
-        "Attacks, Ward Save (4+)",
         "Cursed Coven: The unit receives an additional +1 to cast for each rank of 5 or more models it has, after the first, to a maximum of +3. Each time the unit casts a spell (or is targeted by a special rule that affects a Wizard), you must nominate one Doomfire Warlock as the caster (or target) for the purposes of line of sight, range, etc. In the event of a Doomfire Warlock unit rolling a miscast, do not roll on the Miscast table. Instead, the unit suffers D3 Wounds with no saves of any kind allowed."
       ],
       "upgrades": null,
@@ -2664,9 +2651,8 @@
       "equipment": "Two hand weapons",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Large Target (5), Murderous Prowess,",
+      "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Large Target (5), Murderous Prowess, Poisoned Attacks, Terror",
       "specialRuleDescriptions": [
-        "Poisoned Attacks, Terror",
         "Bloodshield of Khaine: The Cauldron of Blood has a 4+ Ward save, and models in the same unit have a 6+ Ward save.",
         "Fury of Khaine: Innate Bound Spell, power level 5. Fury of Khaine is an augment spell with a range of 12\". The target gains the Frenzy special rule until the start of the Cauldron of Blood's next Magic phase.",
         "Strength of Khaine: Friendly units with the Murderous Prowess special rule within 6\" of the Cauldron of Blood re-roll failed To Wound rolls in close combat."
@@ -2830,9 +2816,8 @@
           "raw": "May choose one of the following:"
         }
       ],
-      "specialRules": "Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice",
+      "specialRules": "Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Natural Armour (4+), Regeneration (4+)",
       "specialRuleDescriptions": [
-        "only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Natural Armour (4+), Regeneration (4+)",
         "Loss of Heads: For each unsaved Wound the War Hydra has lost during the battle, it loses one Attack."
       ],
       "upgrades": "• Acid Breath: The model gains a Strength 2 Breath Weapon with the Ignores Armour Saves special rule.\n• Battle Lover: The model gains the Vanguard special rule.\n• Bloodthirsty: The model gains the Devastating Charge special rule.\n• Chameleon Skin: All enemy missile attacks targeting the model suffer -1 To Hit.\n• Daerlythe's Aura: The model gains the Magic Resistance (2) special rule.\n• Fiery Breath: The model gains a Breath Weapon with the Flaming Attacks special rule. The Strength of this\nattack is equal to the War Hydra's remaining Wounds.\n• Armour Plates: The model gains the Natural Armour (6+) special rule.\n• Spit Fire: The model gains a shooting attack with the following profile:\nRange: Strength: Special Rules:\n12\" * Flaming Attacks, Quick to Fire, Multiple Shots (*), Rapid Fire\n*The Strength and Multiple Shots value of this attack is equal to the War Hydra's remaining number of\nWounds.",
@@ -2878,9 +2863,8 @@
       "equipment": "Two hand weapons (Beastmaster Apprentices only)",
       "magic": null,
       "options": [],
-      "specialRules": "Aquatic, Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster",
+      "specialRules": "Aquatic, Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Multiple Wounds (D3), Natural Armour (4+), Poisoned Attacks",
       "specialRuleDescriptions": [
-        "Apprentice only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Multiple Wounds (D3), Natural Armour (4+), Poisoned Attacks",
         "Abyssal Howl: Enemy units that are in base contact with a Kharibdyss must re-roll successful Leadership tests. This has no effect on models that have Immunity (Fear/Terror/Psychology).",
         "Feast of Bones: Roll a D6 for each unsaved Wound caused by this model. On the roll of a 6+, the Kharibdyss regains 1 Wound lost previously during the game."
       ],
@@ -2986,9 +2970,8 @@
           "raw": "May be mounted on one of the following:"
         }
       ],
-      "specialRules": "Elven Grace, Fear, Eternal Hatred, Hekarti's Blessing, Immunity (Psychology), Murderous",
+      "specialRules": "Elven Grace, Fear, Eternal Hatred, Hekarti's Blessing, Immunity (Psychology), Murderous Prowess",
       "specialRuleDescriptions": [
-        "Prowess",
         "Absolute Power: If you take Malekith, he must be your Army General. Malekith has the Inspiring Presence (18) special rule.",
         "Black Guard: If your army includes Malekith, units of Black Guard are taken as Special Units instead of Rare units."
       ],
@@ -3047,9 +3030,8 @@
           "raw": "May be mounted on Sulephet (Dark Pegasus) +40 points"
         }
       ],
-      "specialRules": "Hatred (High Elves), Hekarti's Blessing, Khainite, Magic Resistance (2), Murderous",
+      "specialRules": "Hatred (High Elves), Hekarti's Blessing, Khainite, Magic Resistance (2), Murderous Prowess, Ward Save (4+)",
       "specialRuleDescriptions": [
-        "Prowess, Ward Save (4+)",
         "Beloved of Khaine: All Khainite models always treat Morathi as the Army's General for all purposes, regardless of what character is the Army General.",
         "Enchanting Beauty: All models suffer -1 To Hit against Morathi in close combat. This has no effect on models with the Immunity (Psychology) special rule.",
         "The First Sorceress: Morathi has a +2 casting bonus."
@@ -3210,9 +3192,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Beastslaver (see Beastmaster), Hatred (High Elves), Fly (7), Murderous Prowess, Natural",
+      "specialRules": "Beastslaver (see Beastmaster), Hatred (High Elves), Fly (7), Murderous Prowess, Natural Armour (3+), Noxious Breath (see Black Dragon).",
       "specialRuleDescriptions": [
-        "Armour (3+), Noxious Breath (see Black Dragon).",
         "Beastlord: Any friendly Monster within 12\" of Rakarth treat him as having the Hold Your Ground! special rule."
       ],
       "upgrades": null,
@@ -3282,9 +3263,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Hatred, Hatred (High Elves), Immunity (Psychology), Murderous Prowess,",
+      "specialRules": "Elven Grace, Hatred, Hatred (High Elves), Immunity (Psychology), Murderous Prowess, Stubborn",
       "specialRuleDescriptions": [
-        "Stubborn",
         "The Right Hand of Darkness: If Kouran Darkhand is in a unit of Black Guard, he and all models in that unit have the Unbreakable special rule."
       ],
       "upgrades": null,
@@ -3359,9 +3339,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess, Poisoned Attacks, Scouts,",
+      "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess, Poisoned Attacks, Scouts, Skirmishers",
       "specialRuleDescriptions": [
-        "Skirmishers",
         "The Manflayers: Mengil Manhide must be accompanied by a unit of Shades chosen from the army list at a cost of 22 points per model. This unit is armed with Deathrain crossbows, great weapons and medium armour and have the Poisoned Attacks special rule. The unit must be given a full command at a cost of +20 points. The Standard Bearer carries the Banner of Kalad above. Mengil Manhide is the unit's Leader and may never choose to leave this unit. The regiment may never pursue enemies that they break in close combat. For each enemy unit that they break or wipe out in close combat they gain +100 Victory Points."
       ],
       "upgrades": null,
@@ -3395,9 +3374,8 @@
       "equipment": "Medium armour, Sea Dragon Cloak\nMAGIC ITEMS:\n• The Red Blades: Magic Weapon. Two hand weapons. Any hits made by the Red Blades re-roll any failed To\nWound roll.\n• Helm of the Kraken: Magic Armour. The Helm of the Kraken grants Lokhir Fellheart a 6+ armour save, +1\nToughness, as well as the Regeneration (6+) and Terror special rules.",
       "magic": null,
       "options": [],
-      "specialRules": "Ambushers, At them, you Curs! (see Black Ark Fleetmaster), Elven Grace, Hatred (High",
+      "specialRules": "Ambushers, At them, you Curs! (see Black Ark Fleetmaster), Elven Grace, Hatred (High Elves), Murderous Prowess, Show no Weakness (see Black Ark Fleetmaster)",
       "specialRuleDescriptions": [
-        "Elves), Murderous Prowess, Show no Weakness (see Black Ark Fleetmaster)",
         "Murderous Swashbuckler: If Lokhir makes a successful Parry save, he may immediately make an additional Attack back against the model that struck the blow.",
         "Merciless Slaver: If an enemy unit breaks from a close combat that includes Lokhir Fellheart, all units taking Panic tests as a result of that unit breaking suffer a -1 penalty to their Leadership value for that test."
       ],
@@ -3432,9 +3410,8 @@
       "equipment": "Two hand weapons, throwing weapons\nMAGIC ITEMS:\n• Heart of Woe: Enchanted Item. If Shadowblade is ever slain, centre the small round template over him before\nremoving the model as a casualty. Every model touched by the template immediately suffers a Strength 3 hit.\nAfter any damage has been resolved, remove Shadowblade as a casualty as normal.\n• Potion of Diabolic Strength: Enchanted Item. One use only. The Potion of Diabolic Strength can be drunk at\nthe start of any player's Close Combat phase, after any Assassins have revealed that they are hiding in a unit.\nShadowblade gains +3 Strength until the end of the turn.\nGIFTS OF KHAINE: Black Lotus, Dance of Doom, Dark Venom, Hand of Khaine, Manbane, Touch of Death",
       "magic": null,
       "options": [],
-      "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous",
+      "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous Prowess, Poisoned Attacks, Scouts",
       "specialRuleDescriptions": [
-        "Prowess, Poisoned Attacks, Scouts",
         "Master of Disguise: Shadowblade can deploy using the Hidden special rule like an Assassin. If he does so, he can change which unit he is hiding in at the start of any Movement or Close Combat phase – keep a note of where Shadowblade is each time you change your mind. (Clearly Shadowblade is not 'moving' between units, his disguise was simply so good that he was hiding just where he needed to be all along, waiting for the perfect time to strike!). If an opponent has an ability that forces you to state that there are 'hidden' models within a unit, you only need to say that Shadowblade is hiding within a unit, but not which unit he is currently in."
       ],
       "upgrades": null,

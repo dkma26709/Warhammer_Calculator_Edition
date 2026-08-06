@@ -814,9 +814,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Elven Grace, Fiery Breath, Fly (7), Lileath's Blessing, Martial Prowess, Natural Armour",
+      "specialRules": "Elven Grace, Fiery Breath, Fly (7), Lileath's Blessing, Martial Prowess, Natural Armour (3+), Valour of Ages",
       "specialRuleDescriptions": [
-        "(3+), Valour of Ages",
         "Reckless: When a Dragon Mage casts a spell, a 'free' Power dice is added to the casting attempt. This extra dice counts towards Ultimate Power and can cause a Miscast as normal, and allows the Dragon Mage to roll more dice than he is normally allowed to."
       ],
       "upgrades": null,
@@ -1824,10 +1823,8 @@
           ]
         }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Martial Prowess, Multiple Wounds (2), Stubborn, Valour of",
-      "specialRuleDescriptions": [
-        "Ages"
-      ],
+      "specialRules": "Elven Grace, Forest Strider, Martial Prowess, Multiple Wounds (2), Stubborn, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "10+",
@@ -1890,10 +1887,8 @@
           "raw": "May upgrade one Shadow Warrior to a Leader +5 points"
         }
       ],
-      "specialRules": "Elven Grace, Hatred (Dark Elves), Loner, Martial Prowess, Scouts, Skirmishers, Valour of",
-      "specialRuleDescriptions": [
-        "Ages"
-      ],
+      "specialRules": "Elven Grace, Hatred (Dark Elves), Loner, Martial Prowess, Scouts, Skirmishers, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5+",
@@ -2726,10 +2721,8 @@
       "equipment": null,
       "magic": "Teclis is a Level 4 Wizard. He can either choose all of the spells in the Lore of High Magic, or one spell from\neach of the eight Winds of Magic.\nMAGIC ITEMS:\n• Sword of Teclis: Magic Weapon. All hits from the Sword of Teclis wound on a 2+, and Wounds caused by it\nIgnores Armour saves.\n• Potion of Inner Strength: Enchanted Item. One use only. This item can be used at the start of any turn. When\nTeclis does so, he will increase his Weapon Skill and Initiative to 6, and Strength, Toughness and Attacks to 3\nfor the remainder of the turn.\n• Moon Staff of Lileath: Arcane Item. The staff gives Teclis 1 extra Power and Dispel dice in each Magic\nphase. Once per game, The Moon Staff of Lileath can unleash its full power. It can either be used at the start of\nany of Teclis' Magic phases, in which case a bonus power dice is added to every casting attempt Teclis makes\nthat phase (at least one normal Power dice must be used), or if Teclis suffers a miscast he can choose to ignore\nit (before any roll on the Miscast table is made). In either case, his staff will cease to provide any additional\ndice for the rest of the battle.\n• Scroll of Hoeth: Arcane Item. One use only. The Scroll of Hoeth follows the rules of Dispel Scrolls. In\naddition, immediately after the dispel has been resolved, both Teclis and the caster must roll a D6; if Teclis\nscores higher, the caster immediately forgets the spell; otherwise, nothing else happens.\n• War Crown of Saphery: Arcane Item. The War Crown of Saphery allows Teclis to re-roll the result of any\nrandomised spell effects (such as the number of hits inflicted by a magic missile).",
       "options": [],
-      "specialRules": "Curse of Aenarion (see Lord of Aenarion), Elven Grace, Lileath's Blessing, Martial Prowess,",
-      "specialRuleDescriptions": [
-        "Valour of Ages"
-      ],
+      "specialRules": "Curse of Aenarion (see Lord of Aenarion), Elven Grace, Lileath's Blessing, Martial Prowess, Valour of Ages",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2881,9 +2874,8 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• The White Sword: Magic Weapon. This weapon gives Eltharion the Killing Blow special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Hatred (Dark Elves, Orcs & Goblins), Immunity (Psychology), Martial Prowess,",
+      "specialRules": "Hatred (Dark Elves, Orcs & Goblins), Immunity (Psychology), Martial Prowess, Swordmaster, Valour of Ages",
       "specialRuleDescriptions": [
-        "Swordmaster, Valour of Ages",
         "The Dark Within: Eltharion and any unit he joins is subject to the Berserk Rage part of the Frenzy special rule.",
         "Great Leap: At the start of any round of combat, before attacks are allocated or challenges issued, Eltharion may be moved to anywhere in the same combat (even leaving one unit and joining another, or becoming an independent character). He may not use this to position himself out of combat, or if he is already involved in a challenge.",
         "Impenetrable defence: Eltharion has the Dodge (5+) and Immunity (Killing Blow) special rules.",
@@ -3138,9 +3130,8 @@
           "raw": "May take Magic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "Elven Grace, Martial Prowess, Naval Discipline (see Lothern Sea Helm), Valour of Ages,",
+      "specialRules": "Elven Grace, Martial Prowess, Naval Discipline (see Lothern Sea Helm), Valour of Ages, Windrider (see Lothern Sea Helm)",
       "specialRuleDescriptions": [
-        "Windrider (see Lothern Sea Helm)",
         "Master of the Mists: Immediately after both armies have been fully deployed (including scouts), each unit of Lothern Sea Guards and Eagle Claw Bolt Throwers in Aislinn's army gets to fire as if it was the Shooting phase, adding +D6\" to their range (roll for each unit).",
         "The Storm Riders: If Sea Lord Aislinn is your Army General, you may upgrade one unit of Lothern Sea Guard to Storm Riders for a cost of +1 point per model. This unit has the Hatred special rule, and causes Fear in all Dark Elves."
       ],
@@ -3187,9 +3178,8 @@
           "raw": "May be mounted on a Lion Chariot of Chrace (replacing one of the crew) +95 points"
         }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Martial Prowess, Multiple Wounds (2), Stubborn, Valour of",
+      "specialRules": "Elven Grace, Forest Strider, Martial Prowess, Multiple Wounds (2), Stubborn, Valour of Ages",
       "specialRuleDescriptions": [
-        "Ages",
         "Hunter Captain: Korhil may make use of one the following abilities in close combat in the situations described below: - Lion Rampant: Lion Rampant can be used in a turn when choosing \"Hold\" as a charge reaction. Korhil gains the Parry (6+) special rule for the duration of the close combat phase. - Lion Leaping: Lion Leaping can be used in a turn when Korhil is charging. Enemy models in base contact are subject to the Always Strikes Last special rule for the duration of the close combat phase. - Lion Claw: Lion Claw can be used fighting against Monstrous Infantry, Monstrous Beasts and Monstrous Cavalry. Against these Troop Types, Korhil has the Heroic Killing Blow special rule in the first turn of close combat.",
         "The Puremane Company: Unless Korhil is mounted on a Lion Chariot of Chrace, he must be accompanied by a unit of White Lions of Chrace chosen from the army list as normal. This unit has the Immunity (Fear) special rule. Korhil may never choose to leave this unit."
       ],
@@ -3248,9 +3238,8 @@
           "raw": "May be mounted on Ashtari +260 points"
         }
       ],
-      "specialRules": "Blessings of Asuryan (see Anointed of Asuryan), Elven Grace, Fear, Magic Resistance (1),",
+      "specialRules": "Blessings of Asuryan (see Anointed of Asuryan), Elven Grace, Fear, Magic Resistance (1), Martial Prowess, Valour of Ages, Witness to Destiny (see Anointed of Asuryan)",
       "specialRuleDescriptions": [
-        "Martial Prowess, Valour of Ages, Witness to Destiny (see Anointed of Asuryan)",
         "Mark of Asuryan: If Caradryan is slain in close combat, the unit that killed him immediately suffers D3 Wounds which Ignores Armour Saves. If Caradryan is killed in a challenge, then only his opponent takes these Wounds – any excess Wounds caused by the Mark of Asuryan count towards overkill.",
         "Keepers of the Flame: Unless Caradryan is mounted on Ashtari, he must be accompanied by a unit of Phoenix Guard chosen from the army list as normal. This unit has the Magical Attacks special rule. Caradryan may never choose to leave this unit."
       ],
@@ -3285,9 +3274,8 @@
       "equipment": "Shield\nMAGIC ITEMS:\n• Sword of Retaliation: Magic Weapon. All enemy models from the Forces of Destruction suffer -1 To Hit\nPhytrion in close combat.\n• Moonshade Armour: Magic Armour. Heavy armour. The Moonshade Armour gives Phytrion a 5+ Ward Save.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Guardian of Yvresse, Hatred (Warriors of Chaos), Martial Prowess, Valour of",
+      "specialRules": "Elven Grace, Guardian of Yvresse, Hatred (Warriors of Chaos), Martial Prowess, Valour of Ages",
       "specialRuleDescriptions": [
-        "Ages",
         "Favour of Destiny: Roll a D3 at the start of the game; this is the number of dice that Phytrion may re-roll of either To Hit, To Wound, Armour Saves or Ward Saves."
       ],
       "upgrades": null,
@@ -3346,9 +3334,8 @@
       "equipment": "Hand weapon, Elven longbow, light armour, shield\nMAGIC ITEMS:\n• Blade of Galeth: Magic Weapon. All attacks made by Gilead with the Blade of Galeth have the Armour\nPiercing (1) special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Elven Grace, Martial Prowess, Multiple Shots (3) (Fithvael only), Skirmishers, Valour of",
+      "specialRules": "Elven Grace, Martial Prowess, Multiple Shots (3) (Fithvael only), Skirmishers, Valour of Ages",
       "specialRuleDescriptions": [
-        "Ages",
         "Doom-saga: At the beginning of the battle, after deployment, nominate one enemy character. Against this particular target, Gilead re-rolls all failed rolls To Hit and To Wound.",
         "Melancholic Distractions: At the start of each of his turns, Gilead must take a Leadership test, unless he is engaged in combat. If this test is failed, roll a dice. On a 1-3 Gilead cannot move that turn. On a 4-6 Gilead must move his full movement for that turn towards the closest table edge. If he leaves the table, he is treated as a casualty and will not return. If Gilead is engaged in combat, he will fight as normal.",
         "Shadowfast: Once per game, at the start of any of the High Elf player's movement phase, Gilead may enter Shadowfast. Until the start of his next turn, Gilead's stat line will change to his Shadowfast characteristics. In addition, while Shadowfast, Gilead also gains the Always Strikes First and Dodge (4+) special rules due to his inhuman speed."

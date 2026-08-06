@@ -898,10 +898,8 @@
           "raw": "May take Blessed Spawnings and/or Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Aquatic, Chameleon, Cold-blooded, Jungle Poisons, Loner, Natural Armour (6+), Scouts,",
-      "specialRuleDescriptions": [
-        "Sniper"
-      ],
+      "specialRules": "Aquatic, Chameleon, Cold-blooded, Jungle Poisons, Loner, Natural Armour (6+), Scouts, Sniper",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1092,10 +1090,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Armour Piercing (1), Fear, Fly (9), Frenzy, Killing Blow, Toad Rage (see Ripperdactyl",
-      "specialRuleDescriptions": [
-        "Riders)"
-      ],
+      "specialRules": "Armour Piercing (1), Fear, Fly (9), Frenzy, Killing Blow, Toad Rage (see Ripperdactyl Riders)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2038,9 +2034,8 @@
           "raw": "May upgrade one Terradon Rider to a Leader +5 points"
         }
       ],
-      "specialRules": "Cold-blooded, Fast Cavalry, Fear, Fly (9), Forest Strider, Jungle Poisons, Natural Armour",
+      "specialRules": "Cold-blooded, Fast Cavalry, Fear, Fly (9), Forest Strider, Jungle Poisons, Natural Armour (6+)",
       "specialRuleDescriptions": [
-        "(6+)",
         "Drop Rocks: Once per game, during the Remaining Moves sub-phase, models with this special rule may drop rocks unless they are fleeing or have declared a charge that turn. All models in a unit must drop rocks at the same time. To drop rocks, select one unengaged enemy unit that the Terradons moved over in that turn. That target immediately suffers D3 Strength 4 hits for each Terradon in the unit, distributed as Hits from shooting."
       ],
       "upgrades": null,
@@ -2099,9 +2094,8 @@
           "raw": "May upgrade one Ripperdactyl Rider to a Leader +5 points"
         }
       ],
-      "specialRules": "Armour Piercing (1) (Ripperdactyl only), Cold-blooded, Fast Cavalry, Fear, Fly (9), Frenzy",
+      "specialRules": "Armour Piercing (1) (Ripperdactyl only), Cold-blooded, Fast Cavalry, Fear, Fly (9), Frenzy (Ripperdactyl only), Killing Blow (Ripperdactyl only), Natural Armour (6+)",
       "specialRuleDescriptions": [
-        "(Ripperdactyl only), Killing Blow (Ripperdactyl only), Natural Armour (6+)",
         "Toad Rage: Before the game starts, but after Scouts have been deployed, a Lustrian blot toad marker can be placed for each unit of Ripperdactyl Riders in your army. A single blot toad marker can be placed on any enemy unit on the tabletop, this marker remains throughout the battle. When fighting in close combat against a unit with a blot toad marker, Ripperdactyls gain another level of Frenzy and the Hatred special rule."
       ],
       "upgrades": null,
@@ -2147,9 +2141,8 @@
       "equipment": "Spear (Skinks only)",
       "magic": null,
       "options": [],
-      "specialRules": "Aquatic, Cold-blooded, Fear, Mixed Unit, Natural Armour (5+) (Salamander only), Natural",
+      "specialRules": "Aquatic, Cold-blooded, Fear, Mixed Unit, Natural Armour (5+) (Salamander only), Natural Armour (6+) (Skink Handler only), Skirmishers.",
       "specialRuleDescriptions": [
-        "Armour (6+) (Skink Handler only), Skirmishers.",
         "Spout Flames: Spout Flames shoots like a fire thrower with the following profile: Range: Strength: Special Rules: n/a 4 Flaming Attacks, Slow to Fire If the artillery dice result is a misfire, no shots are fired and D3 Skink handlers are removed as casualties. If all Skink handlers are removed, the Salamander is subject to Frenzy for the remainder of the game."
       ],
       "upgrades": null,
@@ -2195,9 +2188,8 @@
       "equipment": "Spear (Skinks only)",
       "magic": null,
       "options": [],
-      "specialRules": "Aquatic, Cold-blooded, Fear, Mixed Unit, Natural Armour (5+) (Razordon only), Natural",
+      "specialRules": "Aquatic, Cold-blooded, Fear, Mixed Unit, Natural Armour (5+) (Razordon only), Natural Armour (6+) (Skink Handler only), Skirmishers.",
       "specialRuleDescriptions": [
-        "Armour (6+) (Skink Handler only), Skirmishers.",
         "Instinctive Defence: If charged, a Razordon must Stand and Shoot if it is able to do so. However, when calculating the number of shots fired, the Razordon can re-roll the artillery dice. In addition, it gains the Quick to Fire special rule and do not suffer To Hit penalties for Stand and Shoot.",
         "Shoot Barbs: Shoot Barbs shoots like an organ gun with the following profile: Range: Strength: Special Rules: 18\" 4 Armour Piercing (1), Rapid Fire If the artillery dice result is a misfire, no shots are fired and D3 Skink Handlers are removed as casualties. If all Skink handlers are removed, the Razordon is subject to Stupidity for the remainder of the game."
       ],
@@ -2333,9 +2325,8 @@
       "equipment": "Spear (Skinks only)",
       "magic": null,
       "options": [],
-      "specialRules": "Aquatic, Armour Piercing (1) (Salamander only), Cold-blooded, Mixed Unit, Natural",
+      "specialRules": "Aquatic, Armour Piercing (1) (Salamander only), Cold-blooded, Mixed Unit, Natural Armour (5+) (Salamander only), Natural Armour (6+) (Skink Handler only), Skirmishers.",
       "specialRuleDescriptions": [
-        "Armour (5+) (Salamander only), Natural Armour (6+) (Skink Handler only), Skirmishers.",
         "Stream of Fire: Stream of Fire is a fire thrower with the following profile: Range: Strength: Special Rules: 6\" 5 Flaming Attacks, Slow to Fire If the artillery dice result is a misfire, no shots are fired and D3 Skink Handlers are removed as casualties. If all Skink handlers are removed, the Ancient Salamander is subject to Frenzy for the remainder of the game."
       ],
       "upgrades": null,
@@ -2501,10 +2492,8 @@
           "raw": "May choose any of the following:"
         }
       ],
-      "specialRules": "Cold-blooded, Immunity (Psychology), Impact Hits (D6+1), Jungle Poisons, Natural",
-      "specialRuleDescriptions": [
-        "Armour (4+), Stubborn"
-      ],
+      "specialRules": "Cold-blooded, Immunity (Psychology), Impact Hits (D6+1), Jungle Poisons, Natural Armour (4+), Stubborn",
+      "specialRuleDescriptions": null,
       "upgrades": "• Ancient: The Stegadon gains +1 Strength and the Natural Armour (6+) special rule. However, they suffer -1\nInitiative and -1 Attacks.\n• Sharpened Horns: The Stegadon's its Impact Hits gains the Multiple Wounds (D3) special rule.\n• Unstoppable Stampede: The Stegadon gains the Devastating Charge special rule.",
       "notes": null,
       "unitSize": null,
@@ -2548,10 +2537,8 @@
       "equipment": "Power of the Ancients (Arcanadon only), javelins (Skinks only)\n• Power of the Ancients: Arcane Item. This item contains a Bound Spell (power level 5). This is a direct\ndamage spell with a range of 24\". Place the small round template anywhere within 24\" of the Arcanadon – it\nthen scatters D3\". All models under the template suffer a Strength 4 hit with the Flaming Attacks special rule.",
       "magic": null,
       "options": [],
-      "specialRules": "Cold-blooded, Immunity (Psychology), Impact Hits (D6+1), Jungle Poisons, Natural",
-      "specialRuleDescriptions": [
-        "Armour (4+), Stubborn"
-      ],
+      "specialRules": "Cold-blooded, Immunity (Psychology), Impact Hits (D6+1), Jungle Poisons, Natural Armour (4+), Stubborn",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2608,9 +2595,8 @@
           "raw": "May take a Divining Rod +5 points"
         }
       ],
-      "specialRules": "Aquatic, Arcane Vassal (see Skink Priests), Cold-blooded, Jungle Poisons, Poisoned Attacks",
+      "specialRules": "Aquatic, Arcane Vassal (see Skink Priests), Cold-blooded, Jungle Poisons, Poisoned Attacks (Troglodon only), Predatory Fighter (Troglodon only), Natural Armour (4+)",
       "specialRuleDescriptions": [
-        "(Troglodon only), Predatory Fighter (Troglodon only), Natural Armour (4+)",
         "Primeval Roar: Once per battle, at the start of any friendly Close Combat phase, a Troglodon can unleash its Primeval Roar. This affects the Troglodon, and all friendly units within 12\". All models in these units that have the Predatory Fighter special rule gain an additional Attack on any successful To Hit roll of a 5+ until the end of the phase.",
         "Spit Venom: A Troglodon can spit its venom as a shooting attack with the following profile: Range: Strength: Special Rules: 18\" 5 Multiple Wounds (D3), Poisoned Attacks, Quick to Fire"
       ],
@@ -2771,9 +2757,8 @@
       "equipment": null,
       "magic": "A Slann Mage-Priest is a Level 4 Wizard who chooses spells from one of the following Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Geomancy\n• Light\n• Life\n• Metal\n• Shadow\nDISCIPLINES OF THE OLD ONES: Becalming Cogitation, Focus of Mystery, Harmonic Convergence,\nSoul of Stone, Transcendent Healing\nMAGIC ITEMS:\n• Cobra Mace of Mazdamundi: Magic Weapon. Attacks made with the Cobra Mace have the Always Strikes\nFirst and Poisoned Attacks special rules. At the start of every Close Combat phase, all enemy models in base\ncontact with Lord Mazdamundi must reveal their magic items. If the wielder scores one or more hits against a\nmodel that has any magic items, roll a D6; on a 6, all of that model's magic items are immediately destroyed\nand cannot be used further in this game.\n• The Itxi Grubs: Arcane Item. One use only. This item can be used at the start of your Magic phase. Once\nused, the bearer gains +D3 Power dice that phase.\n• Sunburst Standard of Hexoatl: Magic Standard. The Sunburst Standard of Hexoatl is a Battle Standard – if\nyour army includes Lord Mazdamundi, he must be your army's Battle Standard Bearer. This does not prevent\nLord Mazdamundi from also being your Army General. In addition, once per game, at the beginning of any\nenemy Shooting phase, Lord Mazdamundi can release the power of the Sunburst Standard. If he does so,\nenemy models that target Mazdamundi, or any other friendly unit within 12\", with a shooting attack, suffer a -1\nTo Hit penalty. This effect lasts until the end of the turn.",
       "options": [],
-      "specialRules": "Arcane Might (see Slann-Mage Priests), Cold-blooded, Impact Hits (D6+1) (Zlaaq only),",
+      "specialRules": "Arcane Might (see Slann-Mage Priests), Cold-blooded, Impact Hits (D6+1) (Zlaaq only), Immunity (Psychology), Natural Armour (3+), Stubborn, Telepathic Confabulation (see Slann-Mage Priests), Shield of the Old Ones (see Slann-Mage Priests)",
       "specialRuleDescriptions": [
-        "Immunity (Psychology), Natural Armour (3+), Stubborn, Telepathic Confabulation (see Slann-Mage Priests), Shield of the Old Ones (see Slann-Mage Priests)",
         "Mage-Lord of Hexoatl: Lord Mazdamundi can use one more power dice than normal when casting spells."
       ],
       "upgrades": null,
@@ -2832,9 +2817,8 @@
           "raw": "May have a Skink Attendant +3 points"
         }
       ],
-      "specialRules": "Arcane Might (see Slann-Mage Priests), Cold-blooded, Flammable, Mage-Priest Palanquin,",
+      "specialRules": "Arcane Might (see Slann-Mage Priests), Cold-blooded, Flammable, Mage-Priest Palanquin, Unbreakable",
       "specialRuleDescriptions": [
-        "Unbreakable",
         "Eternity Guardians: If Lord Kroak joins a unit of Temple Guard, all models in the combined unit gain the Unbreakable special rule.",
         "First Generation Spawning: Lord Kroak can cast The Deliverance of Itza as many times per turn as he has sufficient power dice, and may use up to 6 Power Dice per casting attempt. If Lord Kroak miscasts, roll a D6; on 2+ he does not roll on the Miscast table but instead suffers a Strength 6 hit. On a roll of 1, Lord Kroak rolls on the Miscast table as normal. In either case, if the spell was cast through an Arcane Vassal, the Arcane Vassal also suffers a Strength 6 hit.",
         "The Spirit of Lord Kroak: Lord Kroak's Wizard level can never be reduced from Level 4.",
@@ -2883,9 +2867,8 @@
       "equipment": "Light armour\nMAGIC ITEMS:\n• Revered Spear of Tlanxla: Magic Weapon. Light lance. Each unsaved Wound caused by the Revered Spear of\nTlanxla counts as 2 unsaved Wounds when calculating combat results.\n• Hand of Gods: Enchanted Item. Bound spell (power level 4). Hand of Gods contains the spell Shem's Burning\nGaze from the Lore of Light.",
       "magic": null,
       "options": [],
-      "specialRules": "Blood Frenzy (Grymloq only), Cold-blooded, Multiple Wounds (D3) (Grymloq only),",
+      "specialRules": "Blood Frenzy (Grymloq only), Cold-blooded, Multiple Wounds (D3) (Grymloq only), Predatory Fighter, Natural Armour (2+)",
       "specialRuleDescriptions": [
-        "Predatory Fighter, Natural Armour (2+)",
         "Army of Kroq-Gar: Kroq-Gar must always be the Army General. An army led by Kroq-Gar may include a single unit of Saurus Cold One Riders as a Core choice.",
         "Sacred Spawning of Xhotl: Kroq-Gar has a 5+ Ward save. If Kroq-Gar is wounded in close combat and does not pass his Ward save, then whoever struck the blow immediately suffers an automatic Strength 5 hit.",
         "Attuned to the Beast: Grymloq does not suffer from Berserk Rage."
@@ -2933,9 +2916,8 @@
           "raw": "May be mounted on a Stegadon with an Engine of the Gods (replacing one of the crew) +265 points"
         }
       ],
-      "specialRules": "Aquatic, Arcane Vassal, Cold-blooded, Hatred (Skaven), Immunity (Poisoned Attacks),",
+      "specialRules": "Aquatic, Arcane Vassal, Cold-blooded, Hatred (Skaven), Immunity (Poisoned Attacks), Natural Armour (6+)",
       "specialRuleDescriptions": [
-        "Natural Armour (6+)",
         "Master of Snakes: Tehenhauin can join Jungle Swarm units, even though characters are not normally permitted to join Swarms. Whilst Tehenhauin leads a Jungle Swarm, he gains the Unbreakable special rule and the unit's Unstable special rule is ignored.",
         "Prophet of Sotek: If your army includes Tehenhauin, you may upgrade any units of Skink Cohorts, Skink Skirmishers, Raptadon Riders, Horned One Riders, Terradon Riders or Ripperdactyl Riders in your army to be Red Crested Skinks. Red Crested Skinks have +1 Weapon Skill, as well as the Devastating Charge, Hatred (Skaven) and Immunity (Poisoned Attacks) special rules for +2 points per model. They may not take any Sacred Spawning. In addition, Skink Cohorts with this upgrade may replace their shields with great weapons for +2 points per model.",
         "Shield of Sotek: Tehenhauin has a 5+ Ward save.",
@@ -3045,9 +3027,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Blessed Mark of the Old Ones (see Blessed Spawnings), Cold-blooded, Immunity",
+      "specialRules": "Blessed Mark of the Old Ones (see Blessed Spawnings), Cold-blooded, Immunity (Psychology), Predatory Fighter, Natural Armour (4+), Stubborn",
       "specialRuleDescriptions": [
-        "(Psychology), Predatory Fighter, Natural Armour (4+), Stubborn",
         "Resilient: Any successful rolls To Wound roll against Gor-Rok must be re-rolled. In addition, Gor-Rok has the Immunity (Killing Blow) special rule."
       ],
       "upgrades": null,
@@ -3081,9 +3062,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Aquatic, Blessed Mark of the Old Ones (see Sacred Spawnings), Cold-blooded, Loner,",
+      "specialRules": "Aquatic, Blessed Mark of the Old Ones (see Sacred Spawnings), Cold-blooded, Loner, Natural Armour (3+), Regeneration (4+), Predatory Fighter",
       "specialRuleDescriptions": [
-        "Natural Armour (3+), Regeneration (4+), Predatory Fighter",
         "Jungle Spirit: Nakai always appears using the Ambushers special rule, with the following exception; he will always appear from a forest, marshland or river terrain feature rather than the table edge if able to. Any unit that kills Nakai in close combat may not overrun. If Nakai flees from combat, then the victorious unit may not pursue."
       ],
       "upgrades": null,
@@ -3129,9 +3109,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ambushers, Cold-blooded, Drop Rocks (see Terradons), Fear, Fly (9), Forest Strider,",
+      "specialRules": "Ambushers, Cold-blooded, Drop Rocks (see Terradons), Fear, Fly (9), Forest Strider, Natural Armour (6+)",
       "specialRuleDescriptions": [
-        "Natural Armour (6+)",
         "Master of Skies: If your army contains Tiktaq'to, one unit of Terradon Riders may deploy using the Ambushers special rule."
       ],
       "upgrades": null,
@@ -3225,9 +3204,8 @@
           "raw": "May take Magic Items up to a total of 25 points SPECIAL CHARACTERS (HEROES) CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"
         }
       ],
-      "specialRules": "Aquatic, Chameleon, Cold-blooded, Hatred (Daemons of Chaos), Loner, Natural Armour",
+      "specialRules": "Aquatic, Chameleon, Cold-blooded, Hatred (Daemons of Chaos), Loner, Natural Armour (6+), Scouts, Sniper",
       "specialRuleDescriptions": [
-        "(6+), Scouts, Sniper",
         "Master Predator: If Oxyotl remained stationary in his preceding Movement phase, enemies cannot draw Line of Sight to him unless they are within 6\", and all shots made from the Golden Blowpipe of P'Toohee may re- roll failed To Wound rolls. If an enemy unit would move through Oxyotl, simply move Oxyotl aside by the smallest amount possible to make room for the enemy unit."
       ],
       "upgrades": null,
