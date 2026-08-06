@@ -134,6 +134,13 @@ public class UnitConfiguration
     public TroopTypeInfo TroopType { get; }
     public int BaseWidthMm { get; }
     public ParsedSpecialRules SpecialRules { get; }
+
+    /// <summary>
+    /// Only the rules the army book scopes to the mount by name — the "Mighty Blow (2)" of
+    /// "Mighty Blow (2) (War Boars only)". Empty for almost every unit, because a unit's special
+    /// rules belong to its riders: a Dark Elf's Murderous Prowess is not its Cold One's.
+    /// </summary>
+    public ParsedSpecialRules MountSpecialRules { get; } = new();
     public List<CloseCombatWeaponKey> BaseWeaponKeys { get; }
     public List<ArmourKey> BaseArmourKeys { get; }
 
@@ -246,6 +253,7 @@ public class UnitConfiguration
         TroopType = unit.BaseModel.TroopType;
         BaseWidthMm = unit.BaseWidthMm;
         SpecialRules = unit.BaseModel.SpecialRules;
+        MountSpecialRules = unit.Mount?.SpecialRules ?? new ParsedSpecialRules();
         BaseWeaponKeys = unit.BaseModel.Weapons.Select(w => w.Key).ToList();
         BaseArmourKeys = unit.BaseModel.Armour.Select(a => a.Key).ToList();
 
@@ -456,23 +464,27 @@ public class UnitConfiguration
 
     private int ApplyMightyBlow(int strength, bool isCharging, int combatRound, int weaponMightyBlow)
     {
-        int unitMB = EffectiveSpecialRules.MightyBlow ?? 0;
+        var rules = EffectiveSpecialRules;
 
-        // Thunderous Charge "has the Mighty Blow (2) special rule in turns when it charges", so
-        // it is another source of Mighty Blow and adds rather than masking the unit's own.
-        if (isCharging && EffectiveSpecialRules.ThunderousCharge)
-            unitMB += 2;
+        // "This rule is cumulative with other sources of Mighty Blow" — 2.32 p63 and 3.11 p64 use
+        // the same sentence, so this is not a v3 divergence. Six close-combat weapons grant Mighty
+        // Blow in each system, so taking the max understated first-round Strength on every unit
+        // that had a bonus of its own as well: Orc Boar Boyz carry Mighty Blow (1) and may take a
+        // light lance, itself Mighty Blow (1), and so strike at +2 rather than +1.
+        int bonus = combatRound == 1 ? (rules.MightyBlow ?? 0) + weaponMightyBlow : 0;
 
-        // "This rule is cumulative with other sources of Mighty Blow" — 2.32 p63 and 3.11 p64
-        // use the same sentence, so this is not a v3 divergence. Six close-combat weapons grant
-        // Mighty Blow in each system, so taking the max here understated first-round Strength on
-        // every unit that had its own bonus as well: Orc Boar Boyz carry Mighty Blow (1) and may
-        // take a light lance, itself Mighty Blow (1), and so strike at +2 rather than +1.
-        int effectiveMB = unitMB + weaponMightyBlow;
-        if (combatRound == 1 && effectiveMB > 0)
-            strength += effectiveMB;
+        // Thunderous Charge grants "the Mighty Blow (2) special rule in turns when it charges", and
+        // v3's Tusker Charge the same with (1). Those are keyed on the charge rather than the
+        // round, and Mighty Blow covers the difference itself: "If a unit would gain Mighty Blow in
+        // a round of close combat after the first for any reason, treat this as the first round of
+        // combat for that purpose." In practice the engine only charges in round one, so this
+        // matters to the rule's meaning rather than to any current simulation.
+        if (isCharging && rules.ThunderousCharge)
+            bonus += 2;
+        if (isCharging && rules.TuskerCharge)
+            bonus += 1;
 
-        return strength;
+        return strength + bonus;
     }
 
     /// <summary>Calculate effective armour save value (lower is better, 7+ = no save).</summary>

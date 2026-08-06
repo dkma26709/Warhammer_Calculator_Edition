@@ -58,7 +58,15 @@ public record ParsedSpecialRules
     public bool Deathblow { get; init; }
     public bool Swordmaster { get; init; }
     public bool OgreCharge { get; init; }
+
+    /// <summary>Mighty Blow (2) in any turn the model charges.</summary>
     public bool ThunderousCharge { get; init; }
+
+    /// <summary>
+    /// Mighty Blow (1) in any turn the model charges. wap-v3's Tusker Charge, which replaced the
+    /// boar's "Mighty Blow (2) (War Boars only)" on Boar Boyz and Razorgor.
+    /// </summary>
+    public bool TuskerCharge { get; init; }
     public bool GromrilArmour { get; init; }
     public bool ForestSpirit { get; init; }
     public bool Vampiric { get; init; }
@@ -130,6 +138,7 @@ public record ParsedSpecialRules
             Swordmaster = Swordmaster || other.Swordmaster,
             OgreCharge = OgreCharge || other.OgreCharge,
             ThunderousCharge = ThunderousCharge || other.ThunderousCharge,
+            TuskerCharge = TuskerCharge || other.TuskerCharge,
             GromrilArmour = GromrilArmour || other.GromrilArmour,
             ForestSpirit = ForestSpirit || other.ForestSpirit,
             Vampiric = Vampiric || other.Vampiric,
@@ -194,14 +203,41 @@ public record ParsedSpecialRules
         a.HasValue && b.HasValue ? a.Value + b.Value :
         a ?? b;
 
+    /// <summary>
+    /// Rules the army book scopes to one named model in a unit, keyed by the name it gives —
+    /// the "War Boars" of "Mighty Blow (2) (War Boars only)". Which model that is depends on the
+    /// unit's profiles, which the parser cannot see, so resolving the name is left to
+    /// <c>GameDataRepository</c>.
+    /// </summary>
+    public readonly record struct ScopedRules(string Scope, ParsedSpecialRules Rules);
+
+    /// <summary>
+    /// A rule list split into the rules that apply to the whole unit and those the book scopes to
+    /// one model. <see cref="AllRuleNames"/> on <paramref name="UnitWide"/> still lists every rule
+    /// including the scoped ones, so nothing disappears from a rules display.
+    /// </summary>
+    public sealed record ScopedRuleSets(ParsedSpecialRules UnitWide, IReadOnlyList<ScopedRules> Scoped);
+
+    /// <summary>
+    /// Parse a rule list, keeping only the rules that apply to the whole unit. Rules the book
+    /// scopes to one model are excluded — applying them unit-wide arms every model with a mount's
+    /// or a champion's rule. Use <see cref="ParseScoped"/> to get those back.
+    /// </summary>
     public static ParsedSpecialRules Parse(string? specialRulesText)
+        => ParseScoped(specialRulesText).UnitWide;
+
+    /// <summary>
+    /// Parse a rule list into unit-wide rules plus the per-model scoped ones.
+    /// </summary>
+    public static ScopedRuleSets ParseScoped(string? specialRulesText)
     {
         if (string.IsNullOrWhiteSpace(specialRulesText))
-            return new ParsedSpecialRules();
+            return new ScopedRuleSets(new ParsedSpecialRules(), []);
 
         var text = Preprocess(specialRulesText);
         var result = new ParsedSpecialRules();
         var allNames = new List<string>();
+        var scoped = new List<ScopedRules>();
 
         // Split by comma, handling parenthetical values
         var parts = SplitRules(text);
@@ -213,6 +249,17 @@ public record ParsedSpecialRules
 
             var displayName = param != null ? $"{name} ({param})" : name;
             allNames.Add(displayName);
+
+            // "<Rule> (<Model> only)" and "<Rule> (<value>) (<Model> only)" both scope the rule to
+            // one model. Peel the scope off and parse what is left on its own, so the rule reaches
+            // its arm — the two-parenthetical form used to reach no arm at all, while the
+            // one-parenthetical form was applied to the whole unit.
+            if (ScopeOf(name, param) is { } scope)
+            {
+                var inner = scope.Rule.Length > 0 ? Parse(scope.Rule) : new ParsedSpecialRules();
+                scoped.Add(new ScopedRules(scope.Model, inner));
+                continue;
+            }
 
             result = name.ToLowerInvariant() switch
             {
@@ -281,6 +328,9 @@ public record ParsedSpecialRules
                 "swordmaster" => result with { Swordmaster = true },
                 "ogre charge" => result with { OgreCharge = true },
                 "thunderous charge" => result with { ThunderousCharge = true },
+                // "Models with this special rule have the Mighty Blow (1) special rule in any
+                // turn that they charge" — wap-v3 Orcs & Goblins and Beastmen.
+                "tusker charge" => result with { TuskerCharge = true },
                 "gromril armour" => result with { GromrilArmour = true },
                 "forest spirit" => result with { ForestSpirit = true, Fear = true, MagicalAttacks = true },
                 "vampiric" => result with { Vampiric = true, Fear = true },
@@ -331,7 +381,45 @@ public record ParsedSpecialRules
             };
         }
 
-        return ApplyImplicitImmunities(result) with { AllRuleNames = allNames };
+        return new ScopedRuleSets(
+            ApplyImplicitImmunities(result) with { AllRuleNames = allNames },
+            scoped);
+    }
+
+    /// <summary>
+    /// Split a "(… only)" scope off a rule, if it has one. Returns the model the book names and
+    /// the rule text without it, or null when the rule applies to the whole unit.
+    /// </summary>
+    private static (string Model, string Rule)? ScopeOf(string name, string? param)
+    {
+        // "Mighty Blow (2) (War Boars only)" arrives as name="Mighty Blow (2)", param="War Boars
+        // only", because ExtractNameAndParam takes the last parenthetical as the parameter.
+        if (param == null || !IsScopeQualifier(param))
+            return null;
+
+        return (ScopeName(param), name.Trim());
+    }
+
+    /// <summary>
+    /// True for a parameter that names a model rather than carrying the rule's value — "War Boars
+    /// only", "Slave Master only", "Johann van Hal only, see Witch Hunter Captain". The word can
+    /// sit mid-parameter when a cross-reference follows it, and no value — "4+", "D3", "2",
+    /// "Psychology" — ever contains it.
+    /// </summary>
+    private static bool IsScopeQualifier(string param) => OnlyQualifier.IsMatch(param);
+
+    private static readonly Regex OnlyQualifier =
+        new(@"\bonly\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>The model name inside a scope qualifier, with "only" and any aside removed.</summary>
+    private static string ScopeName(string param)
+    {
+        var name = Regex.Replace(param, @"\bonly\b", "", RegexOptions.IgnoreCase);
+        // "Johann van Hal only, see Witch Hunter Captain" — the cross-reference is not the model.
+        int comma = name.IndexOf(',');
+        if (comma >= 0)
+            name = name[..comma];
+        return name.Trim().Trim(',', '.', ' ');
     }
 
     private static string Preprocess(string text)

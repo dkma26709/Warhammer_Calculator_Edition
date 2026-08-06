@@ -35,6 +35,13 @@ public class AttackResolver
         var attackerRules = attacker.EffectiveSpecialRules;
         var defenderRules = defender.EffectiveSpecialRules;
         bool isRider = !isMountAttack;
+
+        // The rules arming THIS attack. A unit's special rules belong to its riders — a Dark Elf's
+        // Murderous Prowess is not its Cold One's — so a mount fights with only what the book
+        // scopes to it by name, as in "Poisoned Attacks (Steed of Slaanesh only)". Every use below
+        // that used to read `isRider && attackerRules.X` reads `ownRules.X` instead, which is the
+        // same answer whenever the mount has no scoped rules of its own.
+        var ownRules = isMountAttack ? attacker.MountSpecialRules : attackerRules;
         var aggMod = isRider ? attacker.AggregateModifier : null;
         bool isCharging = context.IsCharging(isAttackerSide);
         bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
@@ -44,13 +51,13 @@ public class AttackResolver
         var profile = isMountAttack ? attacker.MountProfile! : attacker.PrimaryProfile;
 
         // ── Tree Whack (replaces normal attacks) ──────────────────
-        if (isRider && attacker.UseTreeWhack && attackerRules.TreeWhack)
+        if (attacker.UseTreeWhack && ownRules.TreeWhack)
             return ResolveTreeWhacks(attacker, defender, defenderRules, rng);
 
         // ── Primal Fury (Beastmen) ────────────────────────────────
         bool primalFuryHatred = false;
         bool primalFuryFrenzy = false;
-        if (isRider && attackerRules.PrimalFury && isFirstRound)
+        if (ownRules.PrimalFury && isFirstRound)
         {
             int d1 = rng.Next(1, 7);
             int d2 = rng.Next(1, 7);
@@ -115,17 +122,17 @@ public class AttackResolver
         if (aggMod is { RerollFailedToHit: true })
             rerollMisses = true;
 
-        bool predatoryFighter = isRider && attackerRules.PredatoryFighter;
-        bool rerollOnesToHit = isRider && (attackerRules.MartialProwess || attackerRules.MartialMemories);
+        bool predatoryFighter = ownRules.PredatoryFighter;
+        bool rerollOnesToHit = ownRules.MartialProwess || ownRules.MartialMemories;
         int hits = RollToHit(totalAttacks, toHitNeeded, rerollMisses, rerollHits, predatoryFighter, rerollOnesToHit, rng);
         if (hits == 0) return new AttackResult { TotalHits = 0 };
 
         // ── Roll to wound ──────────────────────────────────────────
         var toWound = _repo.GetToWoundRequirement(effectiveStrength, defender.BestT);
-        int poisonMod = (isRider && attackerRules.PoisonedAttacks && !defenderRules.ImmunityPoisonedAttacks) ? 1 : 0;
+        int poisonMod = (ownRules.PoisonedAttacks && !defenderRules.ImmunityPoisonedAttacks) ? 1 : 0;
         int vampiricPenalty = defenderRules.Vampiric
-            && !(isRider && attackerRules.MagicalAttacks)
-            && !(isRider && attackerRules.FlamingAttacks) ? 1 : 0;
+            && !ownRules.MagicalAttacks
+            && !ownRules.FlamingAttacks ? 1 : 0;
         var effectiveToWound = toWound.Step(vampiricPenalty - poisonMod);
 
         // ── Tier 3 roll modifiers (to-wound) ─────────────────────────
@@ -136,25 +143,25 @@ public class AttackResolver
         else if (aggMod?.ToWoundModifier is { } woundMod)
             effectiveToWound = effectiveToWound.Step(woundMod);
 
-        bool flamingReroll = isRider && attackerRules.FlamingAttacks && defenderRules.Flammable && !defenderRules.ImmunityFlamingAttacks;
+        bool flamingReroll = ownRules.FlamingAttacks && defenderRules.Flammable && !defenderRules.ImmunityFlamingAttacks;
         if (aggMod is { RerollFailedToWound: true })
             flamingReroll = true;
-        bool murderousProwess = isRider && (attackerRules.MurderousProwess || attackerRules.MartialMemories);
+        bool murderousProwess = ownRules.MurderousProwess || ownRules.MartialMemories;
 
         bool defenderImmuneKB = defenderRules.ImmunityKillingBlow;
         bool rerollSuccessfulWounds = defenderRules.RerollSuccessfulWoundsAgainst;
 
         var (totalWoundsRolled, killingBlows, nonEligibleKBWounds, normalWounds) =
             RollToWound(hits, effectiveToWound, flamingReroll, murderousProwess,
-                isRider && attackerRules.KillingBlow && !defenderImmuneKB,
-                isRider && attackerRules.HeroicKillingBlow && !defenderImmuneKB,
+                ownRules.KillingBlow && !defenderImmuneKB,
+                ownRules.HeroicKillingBlow && !defenderImmuneKB,
                 defender.TroopType, rerollSuccessfulWounds, rng);
 
         // ── Armour saves (normal wounds only) ──────────────────────
-        int ap = (isRider ? attackerRules.ArmourPiercing : null) ?? 0;
+        int ap = ownRules.ArmourPiercing ?? 0;
         int strengthMod = _repo.GetArmourSaveModifier(effectiveStrength);
-        bool ignoresArmour = isRider && attackerRules.IgnoresArmourSaves;
-        bool lightningAttacks = isRider && attackerRules.LightningAttacks;
+        bool ignoresArmour = ownRules.IgnoresArmourSaves;
+        bool lightningAttacks = ownRules.LightningAttacks;
 
         int defBaseArmour = cachedDefenderBaseArmour >= 0
             ? cachedDefenderBaseArmour
@@ -166,7 +173,7 @@ public class AttackResolver
         int wardValue = defenderRules.WardSave ?? 7;
         int regenValue = defenderRules.Regeneration ?? 7;
         int parryValue = cachedDefenderParry;
-        bool flamingNegatesRegen = isRider && attackerRules.FlamingAttacks && !defenderRules.ImmunityFlamingAttacks;
+        bool flamingNegatesRegen = ownRules.FlamingAttacks && !defenderRules.ImmunityFlamingAttacks;
 
         int dodgeValue = defenderRules.Dodge ?? 7;
 
@@ -180,16 +187,16 @@ public class AttackResolver
 
         if (defenderRules.ForestSpirit)
         {
-            int spiritWard = (isRider && attackerRules.MagicalAttacks) ? 6 : 5;
+            int spiritWard = ownRules.MagicalAttacks ? 6 : 5;
             wardValue = Math.Min(wardValue, spiritWard);
         }
 
-        if (defenderRules.BlessingOfTheLady && !(isRider && attackerRules.MagicalAttacks))
+        if (defenderRules.BlessingOfTheLady && !ownRules.MagicalAttacks)
             wardValue = Math.Min(wardValue, 5);
 
         if (defenderRules.Ethereal)
         {
-            int etherealWard = (isRider && attackerRules.MagicalAttacks) ? 7 : 2;
+            int etherealWard = ownRules.MagicalAttacks ? 7 : 2;
             wardValue = Math.Min(wardValue, etherealWard);
         }
 
@@ -202,8 +209,8 @@ public class AttackResolver
         int normalUnsaved = RollWardSaves(unsavedNormal, effectiveWard, rng);
 
         // ── Wound allocation ───────────────────────────────────────
-        int mwValue = (isRider ? attackerRules.MultipleWounds : null) ?? 1;
-        string? mwRoll = isRider ? attackerRules.MultipleWoundsRoll : null;
+        int mwValue = ownRules.MultipleWounds ?? 1;
+        string? mwRoll = ownRules.MultipleWoundsRoll;
 
         int finalWounds = AllocateWoundsToModels(
             kbUnsaved, nonEligKBUnsaved, normalUnsaved,
@@ -357,7 +364,21 @@ public class AttackResolver
         ProfileEntry profile, bool isMountAttack,
         bool isCharging, bool isBeingCharged, int combatRound)
     {
-        if (isMountAttack) return profile.S ?? 3;
+        if (isMountAttack)
+        {
+            // A mount's Mighty Blow comes from the rules the book scopes to it — "Mighty Blow (2)
+            // (War Boars only)" is the boar's, not the Orc's — and applies in the first round like
+            // any other, per 2.32 p63 and 3.11 p64.
+            var mountRules = attacker.MountSpecialRules;
+            int mountBonus = combatRound == 1 ? mountRules.MightyBlow ?? 0 : 0;
+
+            // Thunderous and Tusker Charge grant Mighty Blow in ANY turn the model charges, not
+            // just the first round, so they are gated on the charge rather than the round.
+            if (isCharging && mountRules.ThunderousCharge) mountBonus += 2;
+            if (isCharging && mountRules.TuskerCharge) mountBonus += 1;
+
+            return (profile.S ?? 3) + mountBonus;
+        }
 
         int weaponMB = 0;
         if (weaponRules?.MightyBlow != null)

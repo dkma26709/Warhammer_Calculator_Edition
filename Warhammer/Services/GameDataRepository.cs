@@ -259,7 +259,36 @@ public class GameDataRepository : IGameDataRepository
 
         var (primaryProfile, mountProfile) = UnitConfiguration.ResolveProfiles(entry);
         var troopType = TroopTypeInfo.Parse(entry.TroopType, GetTroopTypeRules);
-        var specialRules = ParsedSpecialRules.Parse(entry.SpecialRules);
+        var parsed = ParsedSpecialRules.ParseScoped(entry.SpecialRules);
+
+        // A rule the book scopes to one model — "Mighty Blow (2) (War Boars only)" — belongs to
+        // whichever profile that name picks out. Only two profiles are modelled as fighters, the
+        // rider and its mount, so a scope naming a handler, a chariot's beasts or a third crew
+        // profile lands nowhere and is deliberately not applied: the engine fields no model for it
+        // to arm. Applying such a rule unit-wide is what used to happen, and it armed every model
+        // in the unit with a single champion's or mount's rule.
+        bool mountFights = mountProfile != null && troopType.HasSplitProfile;
+
+        // Match against EVERY profile, not just the two that fight. A unit of Slaves lists
+        // "Murderous Prowess (Slave Master only)" and has profiles Slave and Slave Master; offered
+        // only the Slave, the scope half-matches it on the shared word and arms all twenty slaves
+        // with their champion's rule. Offered both, it picks the Slave Master — a profile the
+        // engine fields no fighter for, so the rule correctly goes nowhere.
+        var profileNames = entry.Profiles?.Select(p => p.Name).ToList() ?? [];
+        var specialRules = parsed.UnitWide;
+        var mountRules = new ParsedSpecialRules();
+        foreach (var scoped in parsed.Scoped)
+        {
+            var index = ModelScope.BestMatch(scoped.Scope, profileNames);
+            if (index is null)
+                continue;
+
+            var named = profileNames[index.Value];
+            if (named == primaryProfile.Name)
+                specialRules = specialRules.Merge(scoped.Rules);
+            else if (mountFights && named == mountProfile!.Name)
+                mountRules = mountRules.Merge(scoped.Rules);
+        }
 
         var (weaponKeys, armourKeys) = ResolveEquipmentKeys(entry.Equipment);
         var weapons = ResolveWeaponList(weaponKeys);
@@ -276,14 +305,14 @@ public class GameDataRepository : IGameDataRepository
         };
 
         Model? mount = null;
-        if (mountProfile != null && troopType.HasSplitProfile)
+        if (mountFights)
         {
             mount = new Model
             {
-                Name = mountProfile.Name,
+                Name = mountProfile!.Name,
                 Stats = mountProfile,
                 TroopType = troopType,
-                SpecialRules = specialRules,
+                SpecialRules = mountRules,
                 Weapons = [],
                 Armour = [],
             };
