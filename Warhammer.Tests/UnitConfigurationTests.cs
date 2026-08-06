@@ -238,7 +238,7 @@ public class UnitConfigurationTests
     }
 
     [Fact]
-    public void EffectiveStrength_WeaponMightyBlow_UsesHighest()
+    public void EffectiveStrength_WeaponMightyBlow_IsCumulativeWithTheUnits()
     {
         var unit = MakeUnit(s: 3, specialRules: "Mighty Blow (1)");
         var config = new UnitConfiguration(unit);
@@ -247,8 +247,9 @@ public class UnitConfigurationTests
             Key = CloseCombatWeaponKey.Flail, Name = "Flail",
             Strength = WeaponStrength.Parse("As user"), Rules = new ParsedWeaponRules(),
         };
-        // Unit MB=1, Weapon MB=2 → use highest = 2
-        Assert.Equal(5, config.EffectiveStrength(weapon, false, 1, weaponMightyBlow: 2));
+        // Unit MB=1 plus the flail's 2 — "cumulative with other sources of Mighty Blow"
+        // (2.32 p63, 3.11 p64). This asserted 5 while the engine took the highest instead.
+        Assert.Equal(6, config.EffectiveStrength(weapon, false, 1, weaponMightyBlow: 2));
     }
 
     [Fact]

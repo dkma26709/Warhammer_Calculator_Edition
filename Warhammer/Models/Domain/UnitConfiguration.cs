@@ -443,8 +443,8 @@ public class UnitConfiguration
     // ─── Combat Stats ────────────────────────────────────────────
 
     /// <summary>
-    /// Calculate effective strength for a given weapon.
-    /// Weapon Mighty Blow and unit Mighty Blow use the highest value (don't stack).
+    /// Calculate effective strength for a given weapon. Weapon Mighty Blow and unit Mighty Blow
+    /// are cumulative — see <see cref="ApplyMightyBlow"/>.
     /// </summary>
     public int EffectiveStrength(Weapon? weapon, bool isCharging, int combatRound,
         int weaponMightyBlow = 0)
@@ -458,11 +458,17 @@ public class UnitConfiguration
     {
         int unitMB = EffectiveSpecialRules.MightyBlow ?? 0;
 
-        // Thunderous Charge: Mighty Blow (2) on charge turns only
+        // Thunderous Charge "has the Mighty Blow (2) special rule in turns when it charges", so
+        // it is another source of Mighty Blow and adds rather than masking the unit's own.
         if (isCharging && EffectiveSpecialRules.ThunderousCharge)
-            unitMB = Math.Max(unitMB, 2);
+            unitMB += 2;
 
-        int effectiveMB = Math.Max(unitMB, weaponMightyBlow);
+        // "This rule is cumulative with other sources of Mighty Blow" — 2.32 p63 and 3.11 p64
+        // use the same sentence, so this is not a v3 divergence. Six close-combat weapons grant
+        // Mighty Blow in each system, so taking the max here understated first-round Strength on
+        // every unit that had its own bonus as well: Orc Boar Boyz carry Mighty Blow (1) and may
+        // take a light lance, itself Mighty Blow (1), and so strike at +2 rather than +1.
+        int effectiveMB = unitMB + weaponMightyBlow;
         if (combatRound == 1 && effectiveMB > 0)
             strength += effectiveMB;
 

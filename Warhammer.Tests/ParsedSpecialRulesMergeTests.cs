@@ -71,13 +71,18 @@ public class ParsedSpecialRulesMergeTests
         Assert.Equal(2, a.Merge(b).ArmourPiercing);
     }
 
+    /// <summary>
+    /// Mighty Blow is the one bonus-type field that adds rather than taking the best: "This rule
+    /// is cumulative with other sources of Mighty Blow" (2.32 p63, 3.11 p64). This test asserted
+    /// the max until that was corrected.
+    /// </summary>
     [Fact]
-    public void MergeMightyBlow_TakesHighest()
+    public void MergeMightyBlow_IsCumulative()
     {
         var a = new ParsedSpecialRules { MightyBlow = 1 };
         var b = new ParsedSpecialRules { MightyBlow = 2 };
 
-        Assert.Equal(2, a.Merge(b).MightyBlow);
+        Assert.Equal(3, a.Merge(b).MightyBlow);
     }
 
     [Fact]
