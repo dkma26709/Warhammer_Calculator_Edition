@@ -1774,10 +1774,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Entombed Beneath the Sands, Indomitable, Killing Blow, Magic Resistance (1), Natural",
-      "specialRuleDescriptions": [
-        "Armour (5+), Poisoned Attacks, Undead"
-      ],
+      "specialRules": "Entombed Beneath the Sands, Indomitable, Killing Blow, Magic Resistance (1), Natural Armour (5+), Poisoned Attacks, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2048,10 +2046,8 @@
           ]
         }
       ],
-      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only),",
-      "specialRuleDescriptions": [
-        "Undead"
-      ],
+      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only), Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3-6",
@@ -2230,10 +2226,8 @@
           "raw": "May take Fiery Roar +30 points"
         }
       ],
-      "specialRules": "Indomitable, Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew",
-      "specialRuleDescriptions": [
-        "only), Undead"
-      ],
+      "specialRules": "Indomitable, Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew only), Undead",
+      "specialRuleDescriptions": null,
       "upgrades": "• Envenomed Sting: All normal Attacks made by a Khemrian Warsphinx with this upgrade have the Poisoned\nAttacks special rule.\n• Fiery Roar: A Khemrian Warsphinx with this upgrade has a Strength 4 Breath Weapon with the Flaming\nAttacks special rule.",
       "notes": null,
       "unitSize": null,
@@ -2520,9 +2514,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts),",
+      "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts), Indomitable, My Will be Done, Poisoned Attacks, Regeneration (4+), Undead",
       "specialRuleDescriptions": [
-        "Indomitable, My Will be Done, Poisoned Attacks, Regeneration (4+), Undead",
         "Blessing of Asaph: If Khalida is included in your army, any unit of Skeleton Archers, Skeleton Horsemen or Chariots may be upgraded to gain the Poisoned Attacks special rule for all shooting attacks for +2 points per model."
       ],
       "upgrades": null,
@@ -2573,9 +2566,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Arrows of Asaph, Curse of the Necropolis, Flammable, Indomitable, My Will Be Done,",
+      "specialRules": "Arrows of Asaph, Curse of the Necropolis, Flammable, Indomitable, My Will Be Done, Undead",
       "specialRuleDescriptions": [
-        "Undead",
         "Scythan Warriors: If your army contains Tutankhanut you may upgrade units of Skeleton Horsemen to Scythan Warriors for +2 points/model. Scythan Warriors do not have the Arrows of Asaph and Undead special rules, but instead gain +1 Weapon Skill, +1 Ballistic Skull, +1 Initiative, +2 Leadership and the Immunity (Fear) special rule. Their mounts have +1 Movement, +1 Weapon Skill and +1 Initiative. Scythan Warriors always treat Tutankhanut as the Army General for all purposes."
       ],
       "upgrades": null,
@@ -2609,9 +2601,8 @@
       "equipment": "Hand weapon, light armour",
       "magic": null,
       "options": [],
-      "specialRules": "Entombed Beneath the Sands, Fly (10), Independent, Indomitable, Regeneration (4+),",
+      "specialRules": "Entombed Beneath the Sands, Fly (10), Independent, Indomitable, Regeneration (4+), Strider, Terror, Undead",
       "specialRuleDescriptions": [
-        "Strider, Terror, Undead",
         "Desert Revenant: When rolling to enter the table using the Entombed Beneath the Sands special, you may re- roll the Artillery dice.",
         "Scarab Prince: Apophas may join units of Tomb Swarms and will benefit from \"Look Out, Sir\" while in such a unit. In addition, if Apophas is ever destroyed (by any means), then before removing the model all enemy units within 2D6\" of him immediately take 2D6 Strength 1 hits with the Poisoned Attacks special rule.",
         "Soul Reaper: As soon as Prince Apophas is placed on the table, nominate one enemy character on the battlefield. Apophas re-rolls any failed To Hit and To Wound rolls against the chosen character.",
@@ -2786,9 +2777,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "Flammable, Indomitable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb",
+      "specialRules": "Flammable, Indomitable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb Herald), Undead",
       "specialRuleDescriptions": [
-        "Herald), Undead",
         "Herald of Despair: Enemy units in base contact with Nekaph roll one additional dice when taking a Leadership test, discarding the lowest result. This has no effect on units with Immunity (Psychology).",
         "Settra's Champion: If able to, Nekaph must always issue and accept challenges. When fighting in a challenge, Nekaph gains a 5+ invulnerable save and the Killing Blow special rule."
       ],
@@ -2865,9 +2855,8 @@
           "raw": "May take Magic Items up to a total of 50 points CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Additional Material: Stefan Wolf Special thanks to all the people that have contributed with feedback and ideas"
         }
       ],
-      "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator",
+      "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator (see Necrotect)",
       "specialRuleDescriptions": [
-        "(see Necrotect)",
         "Frantic Fervour: Ramhotep confers the Frenzy special rule onto the unit he accompanies. While he remains in the unit, the unit can never lose its Frenzy.",
         "Master Artisan: At the start of the game, select a single friendly unit of Monstrous Infantry, Monstrous Cavalry, Monstrous Beast or Monster. The models in this unit gain the Natural Armour (6+) special rule for the rest of the battle."
       ],

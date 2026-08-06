@@ -641,10 +641,8 @@
           "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic",
-      "specialRuleDescriptions": [
-        "Resistance (1), Relentless, Unbreakable"
-      ],
+      "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
+      "specialRuleDescriptions": null,
       "upgrades": "• Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution\n(excluding Wounds from Overkill in a challenge).\n• Killing Blow: The model gains the Killing Blow special rule.\n• Skaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact\nwith him.\n• Vampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
       "notes": "• For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.\nCHARACTERS",
       "unitSize": null,
@@ -757,10 +755,8 @@
           "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic",
-      "specialRuleDescriptions": [
-        "Resistance (1), Relentless, Unbreakable"
-      ],
+      "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
+      "specialRuleDescriptions": null,
       "upgrades": "• Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution\n(excluding Wounds from Overkill in a challenge).\n• Killing Blow: The model gains the Killing Blow special rule.\n• Skaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact\nwith him.\n• Vampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
       "notes": "• For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.\nCHARACTERS",
       "unitSize": null,
@@ -1705,10 +1701,8 @@
           ]
         }
       ],
-      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Magic Resistance (1), Relentless, Unbreakable,",
-      "specialRuleDescriptions": [
-        "Vanguard"
-      ],
+      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Magic Resistance (1), Relentless, Unbreakable, Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "10-30",
@@ -2262,9 +2256,8 @@
           ]
         }
       ],
-      "specialRules": "Ancestral Grudge, Armour Piercing (1), Magic Resistance (1), Relentless, Resolute,",
+      "specialRules": "Ancestral Grudge, Armour Piercing (1), Magic Resistance (1), Relentless, Resolute, Stubborn",
       "specialRuleDescriptions": [
-        "Stubborn",
         "King's Guard: If the unit is joined by the Army General, it gains the Immunity (Fear/Terror) special rule."
       ],
       "upgrades": null,
@@ -2356,10 +2349,8 @@
           ]
         }
       ],
-      "specialRules": "Ancestral Grudge, Immunity (Flaming Attacks), Gromril Armour, Magic Resistance (1),",
-      "specialRuleDescriptions": [
-        "Relentless, Resolute"
-      ],
+      "specialRules": "Ancestral Grudge, Immunity (Flaming Attacks), Gromril Armour, Magic Resistance (1), Relentless, Resolute",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "10-30",
@@ -2441,10 +2432,8 @@
           ]
         }
       ],
-      "specialRules": "Ancestral Grudge, Deathblow, Giant Slayer, Magic Resistance (1), Relentless, Unbreakable,",
-      "specialRuleDescriptions": [
-        "Vanguard"
-      ],
+      "specialRules": "Ancestral Grudge, Deathblow, Giant Slayer, Magic Resistance (1), Relentless, Unbreakable, Vanguard",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "10-30",
@@ -2476,10 +2465,8 @@
       "equipment": "Doomseeker axes\n• Doomseeker axes: Doomseeker axes have the following profile:\nRange: Strength: Special Rules:\nCombat As user Impact Hits (D6)\nDoomseeker axes inflicts Impact Hits (D6) at the start of each round of close combat, not just when charging.\nIn addition, any close combat attacks directed against a Doomseeker suffer -1 To Hit.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Magic Resistance (1), Slayer, Relentless, Skirmishers,",
-      "specialRuleDescriptions": [
-        "Unbreakable, Wards of Grimnir"
-      ],
+      "specialRules": "Ancestral Grudge, Deathblow, Magic Resistance (1), Slayer, Relentless, Skirmishers, Unbreakable, Wards of Grimnir",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3-6",
@@ -2813,9 +2800,8 @@
       "equipment": "Hand weapon, Dwarfen handgun",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Bombing Run (see Gyrobombers), Fly (6), Magic Resistance (1),",
+      "specialRules": "Ancestral Grudge, Bombing Run (see Gyrobombers), Fly (6), Magic Resistance (1), Unbreakable",
       "specialRuleDescriptions": [
-        "Unbreakable",
         "Disaster! If the Thunderbarge is destroyed it scatters 3D6\" in a random direction and then crashes to the ground. Place the large template with the hole under its final position. Any model touched by the template suffers a Strength 6 hit.",
         "Thunderbarge Cannon: The Thunderbarge is armed with a cannon, which cannot fire grapeshot. The cannon can be fired even if the Thunderbarge marches. If the cannon misfires and rolls a \"Destroyed!\" result, then the Thunderbarge suffers D3 Wounds with no saves allowed, and the weapon may no longer be used for the remainder of the game. Other misfires are resolved as normal."
       ],
@@ -2897,9 +2883,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute, Royal",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute, Royal Clansmen (see Kings)",
       "specialRuleDescriptions": [
-        "Clansmen (see Kings)",
         "High King: Thorgrim must be the Army General. If he is slain, all friendly Dwarf models immediately gain the Frenzy special rule. In addition, one unit of Hammerers may be taken as a Special Unit instead of a Rare Unit.",
         "The Throne of Power: The Throne of Power adds +4 to Thorgrim's Wounds (included in his profile), gives him Unit Strength 5 and Line of Sight 2. In addition, the Throne gives Thorgrim the Inspiring Presence (6) special rule. However, if Thorgrim joins a unit, he does not benefit from the \"Look Out Sir!\" rule."
       ],
@@ -2946,9 +2931,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Inspiring Presence (6), Magic Resistance (1), Resolute,",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Inspiring Presence (6), Magic Resistance (1), Resolute, Relentless, Royal Clansmen (see Kings)",
       "specialRuleDescriptions": [
-        "Relentless, Royal Clansmen (see Kings)",
         "Lord of the Hold: If Alrik is included in your army, he must be your Army General.",
         "Traditional army: If Alrik is in your army, then Thunderers counts as Special Units, Firethrowers and Gyrocopters counts as Rare Units, and Irondrakes, Flame Cannons, Organ Guns, Thunderbarges and Grudgebreakers counts as 2 units for the purpose of duplicate choices that are allowed."
       ],
@@ -2983,10 +2967,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Resolute, Relentless, Royal",
-      "specialRuleDescriptions": [
-        "Clansmen (see Kings)"
-      ],
+      "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Resolute, Relentless, Royal Clansmen (see Kings)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3018,9 +3000,8 @@
       "equipment": "Heavy armour\nMAGIC ITEMS:\n• The Hammer of Angrund: Magic Weapon. The Hammer of Angrund is inscribed with the Master Rune of\nSwiftness, and Attacks made with it receive a +1 bonus To Wound.\n• Shield of Defiance: Magic Armour. Shield. The Shield of Defiance is inscribed with three Runes of Warding\nand a Rune of Preservation.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Royal Clansmen (see",
+      "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Royal Clansmen (see Kings), Stubborn",
       "specialRuleDescriptions": [
-        "Kings), Stubborn",
         "Revenge Incarnate: Once per game, at the start of any Close Combat phase, Belegar can double his Attacks characteristic for the remainder of the turn."
       ],
       "upgrades": null,
@@ -3090,9 +3071,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Anvil of Doom (see Anvil of Doom), Forgefire (see Runelords), Locus of",
+      "specialRules": "Ancestral Grudge, Anvil of Doom (see Anvil of Doom), Forgefire (see Runelords), Locus of Power (see Anvil of Doom), Magic Resistance (2), Rune Lore (see Runelords), Strike the Runes (see Anvil of Doom)",
       "specialRuleDescriptions": [
-        "Power (see Anvil of Doom), Magic Resistance (2), Rune Lore (see Runelords), Strike the Runes (see Anvil of Doom)",
         "Kraggi, Assistant at the Forge: Kraggi's forge is represented on the tabletop by a separate miniature that always remains as close as possible to Thorek’s Anvil of Doom. The forge itself plays no part in the game; if it gets in the way, simply move it to one side. Thorek can re-roll a single dice on a failed attempt to Strike the Runes. If this re-rolled dice rolls a 1, Kraggi has done something wrong and Thorek takes a Strength 10 hit. Kraggi is then removed from play and the Kraggi, Assistant at the Forge special rule cannot be used again for the rest of the game.",
         "Master of Ancient Lore: Thorek may roll an additional dice for his Leadership tests when attempting to Strike the Runes and discard the highest result. In addition, he knows the following Rune: - Rune of Doom: Until the start of the next friendly Magic phase, all friendly Dwarf units within 18\" gain the Fear special rule."
       ],
@@ -3163,9 +3143,8 @@
       "equipment": "Medium armour\nMAGIC ITEMS:\n• Axe of Dargo: Magic Weapon. Great weapon. The Axe of Dargo is inscribed with the Master Rune of Smiting.\n• The Slayer Crown: Magic Armour. The Slayer Crown is inscribed with a Rune of Fortitude and a Rune of\nStone.\n• Dragon Cloak of Fyrskar: Talisman. The Dragon Cloak of Fyrskar is inscribed with three Runes of Warding\nand a Rune of the Furnace.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Daemon Slayer, Deathblow, Gromril Armour, Magic Resistance (1),",
+      "specialRules": "Ancestral Grudge, Daemon Slayer, Deathblow, Gromril Armour, Magic Resistance (1), Relentless, Unbreakable",
       "specialRuleDescriptions": [
-        "Relentless, Unbreakable",
         "Slayer King: If Ungrim is the Army General, Troll Slayers are taken as Core units rather than Special units, and Giant Slayers are taken as Special units rather than Rare units.",
         "Brotherhood of Grimnir: If Ungrim is included in your army, one unit of Troll Slayers or Giant Slayers may be upgraded to the Brotherhood of Grimnir for +1 point per model. These Slayers have the Wards of Grimnir special rule."
       ],
@@ -3200,9 +3179,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Magic Resistance (1), Relentless,",
+      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
       "specialRuleDescriptions": [
-        "Unbreakable",
         "The War-mourner: Each Wound inflicted by Garagrim counts double towards that round's Combat Resolution. Against enemies with Toughness 5 or higher, Garagrim has the Multiple Wounds (D6) special rule. However, Garagrim may never be the Army General."
       ],
       "upgrades": null,
@@ -3317,10 +3295,8 @@
           ]
         }
       ],
-      "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master",
-      "specialRuleDescriptions": [
-        "Engineers), Magic Resistance (1), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)"
-      ],
+      "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master Engineers), Magic Resistance (1), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
+      "specialRuleDescriptions": null,
       "upgrades": "• Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm: Burlok's artificial arm gives him +1\nAttack with Strength 6 in close combat.\n• Range Finding Optics: Burlok gains the Sniper special rule.\n• Rivet Gun: The rivet gun has the following profile:\nRange: Strength: Special Rules:\n9/12\" 5 Dwarf-crafted, Quick Shot, Multiple Shots (3), Rapid Fire",
       "notes": null,
       "unitSize": null,
@@ -3352,9 +3328,8 @@
       "equipment": "• Grudge-raker: The Grudge-raker has the following profile:\nRange: Strength: Special Rules:\n15/30\" 5 Armour Piercing (1), Dwarf-crafted, Multiple Shots (2D3)\n• Cog Axe: Hand weapon. This weapon has the Armour Piercing (1) special rule. If Grimm scores one or more\nhits in close combat against a model using a magic weapon, roll a D6; on a 5+, that weapon is immediately\ndestroyed and cannot be used further in this game.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Magic Resistance (1), Relentless,",
+      "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Magic Resistance (1), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
       "specialRuleDescriptions": [
-        "Resolute, \"Stand Back Sir!\" (see Master Engineers)",
         "Master of Accuracy: At the start of each friendly Shooting phase, Grimm can bestow one of the following rules on a single friendly unit within 3\" for the duration of that Shooting phase, though he does not gain any bonuses for it himself. - Artillery Adjustment: A war machine can use Grimm’s Ballistic Skill or re-roll one artillery dice. This can be the dice that determines the distance a cannonball bounces or a Flame Cannon’s burst of flame moves. - Increased Range: The unit’s crossbows and handguns increase their maximum range by 6\". - Superior Volley: Models in the unit get +1 to Hit. CREDITS Written & Edited by: Mathias Eliasson Based on Warhammer Fantasy by Games-Workshop Special thanks to all the people that have contributed with feedback and ideas"
       ],
       "upgrades": null,

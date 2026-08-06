@@ -2691,9 +2691,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Fast Cavalry, Fear Elves, Natural Armour (6+), Poisoned Attacks (Giant Spiders",
+      "specialRules": "Animosity, Fast Cavalry, Fear Elves, Natural Armour (6+), Poisoned Attacks (Giant Spiders only), Wall-crawler",
       "specialRuleDescriptions": [
-        "only), Wall-crawler",
         "Creeping Assault: Unlike other mounts, Giant Spiders are allowed to attack when assaulting buildings."
       ],
       "upgrades": null,
@@ -2936,10 +2935,8 @@
           "raw": "May be upgraded to a standard bearer +10 points"
         }
       ],
-      "specialRules": "Mighty Blow (1) (Orc only), Natural Armour (6+), Size Matters, Tusker Charge (War Boar",
-      "specialRuleDescriptions": [
-        "only)"
-      ],
+      "specialRules": "Mighty Blow (1) (Orc only), Natural Armour (6+), Size Matters, Tusker Charge (War Boar only)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3639,9 +3636,8 @@
       "equipment": "Hand weapon",
       "magic": null,
       "options": [],
-      "specialRules": "Hatred (Dwarfs) (Herder only), Immunity (Psychology), Mixed Unit, Random Movement",
+      "specialRules": "Hatred (Dwarfs) (Herder only), Immunity (Psychology), Mixed Unit, Random Movement (3D6)",
       "specialRuleDescriptions": [
-        "(3D6)",
         "Squigs Go Wild: If the unit would flee, or if at any time there are only Squigs left alive in the unit with no Herders, all units within 2D6\" (friend and foe) immediately take D6 Strength 5 hits. For every 5 Cave Squigs remaining when the Squigs Go Wild, add +1 to the number of hits caused. After damage is resolved, the Squig Herd is removed in its entirety."
       ],
       "upgrades": null,
@@ -3811,10 +3807,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Fear Elves, Natural Armour (5+), Poisoned Attacks (Gigantic Spiders only),",
-      "specialRuleDescriptions": [
-        "Wall-crawler"
-      ],
+      "specialRules": "Animosity, Fear Elves, Natural Armour (5+), Poisoned Attacks (Gigantic Spiders only), Wall-crawler",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3-9",
@@ -4136,10 +4130,8 @@
           ]
         }
       ],
-      "specialRules": "Animosity, Mighty Blow (1), Natural Armour (6+), Size Matters, Tusker Charge (Grunta",
-      "specialRuleDescriptions": [
-        "only)"
-      ],
+      "specialRules": "Animosity, Mighty Blow (1), Natural Armour (6+), Size Matters, Tusker Charge (Grunta only)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3-6",
@@ -4183,10 +4175,8 @@
       "equipment": "Two hand weapons (Brute only), medium armour, barding",
       "magic": null,
       "options": [],
-      "specialRules": "Mighty Blow (1) (Orc brute only), Impact Hits (D6), Natural Armour (5+), Size Matters,",
-      "specialRuleDescriptions": [
-        "Tusker Charge (Maw-grunta only)"
-      ],
+      "specialRules": "Mighty Blow (1) (Orc brute only), Impact Hits (D6), Natural Armour (5+), Size Matters, Tusker Charge (Maw-grunta only)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -4833,9 +4823,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size",
+      "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size Matters, Waaagh!",
       "specialRuleDescriptions": [
-        "Matters, Waaagh!",
         "Get on Wiv it! Azhag must be the Army General. Any unit within range of Azhag's Inspiring Presence that fails an Animosity test must immediately re-roll the dice."
       ],
       "upgrades": null,
@@ -4887,10 +4876,8 @@
           "raw": "May take Magic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty",
-      "specialRuleDescriptions": [
-        "Blow (1) (Grumlok only), Size Matters, Waaagh!"
-      ],
+      "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty Blow (1) (Grumlok only), Size Matters, Waaagh!",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -5494,9 +5481,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "Ambushers, Fear Elves, Hatred (The Empire), Poisoned Attacks (Giant Spider only), Wall-",
+      "specialRules": "Ambushers, Fear Elves, Hatred (The Empire), Poisoned Attacks (Giant Spider only), Wall- crawler",
       "specialRuleDescriptions": [
-        "crawler",
         "The Deff Creepers: Snagla Grobspit must be accompanied by a unit of Forest Goblin Spider Riders chosen from the army list at a cost of +2 points per model. This unit has the Ambushers, Devastating Charge and Hatred (Empire) special rules. In addition, they cause Fear on any turn that they charge. Snagla Grobspit may never choose to leave this unit."
       ],
       "upgrades": null,

@@ -2184,10 +2184,8 @@
       "equipment": "Doomseeker axes\n• Doomseeker axes: Doomseeker axes have the following profile:\nRange: Strength: Special Rules:\nCombat As user Impact Hits (D6)\nDoomseeker axes inflicts Impact Hits (D6) at the start of each round of close combat, not just when charging.\nIn addition, any close combat attacks directed against a Doomseeker suffer -1 To Hit.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Relentless, Skirmishers, Unbreakable, Wards of",
-      "specialRuleDescriptions": [
-        "Grimnir"
-      ],
+      "specialRules": "Ancestral Grudge, Deathblow, Slayer, Relentless, Skirmishers, Unbreakable, Wards of Grimnir",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "2-5",
@@ -2917,9 +2915,8 @@
       "equipment": "Light armour (Felix only)\nMAGIC ITEMS:\n• Gotrek's Axe: Magic Weapon. Gotrek only. For each of Gotrek's initial Attacks that Hit, he gains one extra\nAttack. In addition, Gotrek's axe also has the Ignore Armour saves special rule, and against enemies with\nToughness 5 or more he may re-roll failed rolls To Wound.\n• Wyrmslayer Blade: Magic Weapon. Felix only. The Wyrmslayer Blade gives +2 Attacks. In addition, Felix\nmust always declare a charge against a Dragon or Drake if it is possible to do so. Against Dragons and Drakes,\nthe Wyrmslayer blade allows Felix to re-roll failed rolls To Hit and To Wound.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge (Gotrek only), Deathblow (Gotrek only), Daemon Slayer (Gotrek only),",
+      "specialRules": "Ancestral Grudge (Gotrek only), Deathblow (Gotrek only), Daemon Slayer (Gotrek only), Loner, Relentless.",
       "specialRuleDescriptions": [
-        "Loner, Relentless.",
         "Gotr ek's Doom: As long as Gotrek is alive, he and Felix have a Ward Save (4+), Magic Resistance (2) and the Unbreakable special rules."
       ],
       "upgrades": null,
@@ -2989,9 +2986,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Anvil of Doom, Forgefire, Locus of Power (see Anvil of Doom), Rune",
+      "specialRules": "Ancestral Grudge, Anvil of Doom, Forgefire, Locus of Power (see Anvil of Doom), Rune Lore, Strike the Runes (see Anvil of Doom)",
       "specialRuleDescriptions": [
-        "Lore, Strike the Runes (see Anvil of Doom)",
         "Kraggi, Assistant at the Forge: Kraggi's forge is represented on the tabletop by a separate miniature that always remains as close as possible to Thorek’s Anvil of Doom. The forge itself plays no part in the game; if it gets in the way, simply move it to one side. Thorek can re-roll a single dice on a failed attempt to Strike the Runes. If this re-rolled dice rolls a 1, Kraggi has done something wrong and Thorek takes a Strength 10 hit. Kraggi is then removed from play and the Kraggi, Assistant at the Forge special rule cannot be used again for the rest of the game.",
         "Master of Ancient Lore: Thorek may roll an additional dice for his Leadership tests when attempting to Strike to Runes and discard the highest result. In addition, he knows the following Rune: - Rune of Doom: Until the start of the next friendly Magic phase, all friendly Dwarf units within 18\" gains the Fear special rule."
       ],
@@ -3326,9 +3322,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Hatred (Elves), Loner, Relentless,",
+      "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Hatred (Elves), Loner, Relentless, Unbreakable",
       "specialRuleDescriptions": [
-        "Unbreakable",
         "Crazed: Khargrim always counts as charging in the first round of close combat."
       ],
       "upgrades": null,
@@ -3399,9 +3394,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master",
+      "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master Engineers), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
       "specialRuleDescriptions": [
-        "Engineers), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
         "Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm: Burlok's artificial arm gives him +1 Attack with Strength 6 in close combat."
       ],
       "upgrades": null,
@@ -3435,9 +3429,8 @@
       "equipment": "• Grudge-raker: The Grudge-raker has the following profile:\nRange: Strength: Special Rules:\n30\" 5 Armour Piercing (1), Dwarf-crafted, Multiple Shots (2D3)\n• Cog Axe: Hand weapon. This weapon has the Armour Piercing (1) special rule. If Grimm scores one or more\nhits in close combat against a model using a magic weapon, roll a D6; on a 5+, that weapon is immediately\ndestroyed and cannot be used further in this game.",
       "magic": null,
       "options": [],
-      "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Relentless, Resolute, \"Stand Back",
+      "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
       "specialRuleDescriptions": [
-        "Sir!\" (see Master Engineers)",
         "Master of Accuracy: At the start of each friendly Shooting phase, Grimm can bestow one of the following rules on a single friendly unit within 3\" for the duration of that Shooting phase, though he does not gain any bonuses for it himself. - Artillery Adjustment: A war machine can use Grimm’s Ballistic Skill or re-roll one artillery dice. This can be the dice that determines the distance a cannonball bounces or a Flame Cannon’s burst of flame moves. - Increased Range: The unit’s crossbows and handguns increase their maximum range by 6\". - Superior Volley: Models in the unit get +1 to Hit."
       ],
       "upgrades": null,

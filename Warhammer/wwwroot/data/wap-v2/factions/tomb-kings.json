@@ -1648,10 +1648,8 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Entombed Beneath the Sands, Killing Blow, Magic Resistance (1), Natural Armour (5+),",
-      "specialRuleDescriptions": [
-        "Poisoned Attacks, Undead"
-      ],
+      "specialRules": "Entombed Beneath the Sands, Killing Blow, Magic Resistance (1), Natural Armour (5+), Poisoned Attacks, Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1978,10 +1976,8 @@
           ]
         }
       ],
-      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only),",
-      "specialRuleDescriptions": [
-        "Undead"
-      ],
+      "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only), Undead",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3+",
@@ -2037,9 +2033,8 @@
       "equipment": "Hand weapon, great weapon (Casket Guard only), light armour",
       "magic": null,
       "options": [],
-      "specialRules": "Killing Blow (Casket Guard only), Magical Attacks (Casket Guard only), Undead, Ward Save",
+      "specialRules": "Killing Blow (Casket Guard only), Magical Attacks (Casket Guard only), Undead, Ward Save (4+)",
       "specialRuleDescriptions": [
-        "(4+)",
         "Covenant of Power: You may add 1 Power dice to your pool for each Casket of Souls in your army.",
         "Vortex of Souls: The Casket of Souls can use one of the following abilities at the start of your Shooting phase as long as the Keeper of the Casket model is alive, and the Casket of Souls has not moved this turn. - Light of Death: Light of Death has a range of 36\". One enemy unit within Line of Sight of the Casket must take a Leadership test on an additional D6, discarding the lowest result. For each point the test is failed by, it suffers an automatic Wound which Ignores Armour Saves. Once the Leadership test has been resolved, roll a D6: on a 3+, choose another enemy unit within Line of Sight of the Casket that is within 6\" of the initial target, which also suffers the effects of the Light of Death. Keep rolling for further victims (each within Line of Sight of the Casket and within 6\" of the last target struck), until the roll is failed or there are no more viable targets. A unit can only be the target of Light of Death once per Shooting phase. - Light of Protection: Until the start of your next Shooting phase, all friendly units within 12\" gain a 6+ Ward save, and enemy units suffer -1 To Hit against them.",
         "Unleashed Souls: If a Casket of Souls is destroyed, roll a D6 for every unit (friend or foe) within 12\" of the Casket before it is removed from play. On a roll of 4+, that unit immediately suffers D6 Strength 6 hits, with the Ignores Armour Saves and Magical Attacks special rule. After resolving the effects of Unleashed Souls, remove the Casket of Souls as normal."
@@ -2402,9 +2397,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts), My",
+      "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts), My Will be Done, Poisoned Attacks, Regeneration (4+), Undead",
       "specialRuleDescriptions": [
-        "Will be Done, Poisoned Attacks, Regeneration (4+), Undead",
         "Blessing of Asaph: If Khalida is included in your army, any unit of Skeleton Archers, Horse Archers or Chariots may be upgraded to gain the Poisoned Attacks special rule for all shooting attacks for +2 points per model."
       ],
       "upgrades": null,
@@ -2744,9 +2738,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator",
+      "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator (see Necrotect)",
       "specialRuleDescriptions": [
-        "(see Necrotect)",
         "Frantic Fervour: Ramhotep confers the Frenzy special rule onto the unit he accompanies. While he remains in the unit, the unit can never lose its Frenzy.",
         "Master Artisan: At the start of the game, select a single friendly unit of Monstrous Infantry, Monstrous Cavalry, Monstrous Beast or Monster. The models in this unit gain the Natural Armour (6+) special rule for the rest of the battle."
       ],

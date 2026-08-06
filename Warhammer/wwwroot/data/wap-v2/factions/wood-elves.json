@@ -413,10 +413,8 @@
           "raw": "May take Spites up to a total of 100 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree",
-      "specialRuleDescriptions": [
-        "Whack"
-      ],
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree Whack",
+      "specialRuleDescriptions": null,
       "upgrades": "• Strangleroots: Strangleroots have the following profile:\nRange: Strength: Special Rules:\n12\" 5 Multiple Shots (D6+1), Quick to Fire, Rapid Fire",
       "notes": null,
       "unitSize": null,
@@ -746,10 +744,8 @@
           "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magic Resistance (1), Shadow",
-      "specialRuleDescriptions": [
-        "Dances of Loec, Ward save (6+)"
-      ],
+      "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magic Resistance (1), Shadow Dances of Loec, Ward save (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1053,10 +1049,8 @@
           "raw": "May take Spites up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree",
-      "specialRuleDescriptions": [
-        "Aspects"
-      ],
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree Aspects",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -1855,10 +1849,8 @@
           ]
         }
       ],
-      "specialRules": "Elven Grace, Forest Strider, Magic Resistance (1), Shadow Dances of Loec, Skirmishers,",
-      "specialRuleDescriptions": [
-        "Ward save (6+)"
-      ],
+      "specialRules": "Elven Grace, Forest Strider, Magic Resistance (1), Shadow Dances of Loec, Skirmishers, Ward save (6+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "5+",
@@ -2529,9 +2521,8 @@
           ]
         }
       ],
-      "specialRules": "Asrai Archery, Blessings of the Ancients, Fast Cavalry, Forest Strider, Poisoned Attacks,",
+      "specialRules": "Asrai Archery, Blessings of the Ancients, Fast Cavalry, Forest Strider, Poisoned Attacks, Ward save (4+)",
       "specialRuleDescriptions": [
-        "Ward save (4+)",
         "Deepwood Coven: The unit receives an additional +1 to cast for each rank of 5 or more models it has, after the first, to a maximum of +3. Each time the unit casts a spell (or is targeted by a special rule that affects a Wizard), you must nominate one Sister of the Thorn as the caster (or target) for the purposes of line of sight, range, etc. In the event of a Sisters of the Thorn unit rolling a miscast, do not roll on the Miscast table. Instead, the unit suffers D3 Wounds with no saves of any kind allowed."
       ],
       "upgrades": null,
@@ -2811,10 +2802,8 @@
           ]
         }
       ],
-      "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural",
-      "specialRuleDescriptions": [
-        "Armour (5+), Regeneration (5+)"
-      ],
+      "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural Armour (5+), Regeneration (5+)",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": "3+",
@@ -3093,9 +3082,8 @@
       "equipment": null,
       "magic": "Ariel is a level 4 Wizard who uses spells from the Lore of Athel Loren.\nMAGIC ITEMS:\n• The Dart of Doom: Magic Weapon. One use only. The Dart of Doom has a range of 12\". If the dart hits a\nmodel it causes 1 automatic Wound which Ignores Armour saves. If the wound is not saved the dart sucks\nenergy out of the victim, draining their Strength characteristic by D3 to a minimum of 1.\n• The Heartstone of Athel Loren: Talisman. If Ariel successfully dispels a spell targeted at her, the casting\nWizard must immediately take a Leadership test. If he fails, he immediately loses a Wizard level and may\nnot cast that spell for the remainder of the game.\n• The Wand of Wych Elm: Arcane Item. This staff allows any failed Dispel attempt to be re-rolled.\n• The Berry Wine: Enchanted Item. One use only. The wine can be drunk at the start of any phase. Ariel\nwill immediately regain up to D3 Wounds previously lost during the battle.\n• The Acorn of Ages: Enchanted Item. One use only. At the start of the game, after the battlefield has been\nset up, but before deployment begins, place a forest, no more than 12\" in diameter, on the battlefield. This\nforest can be placed anywhere at least 1\" away from another terrain feature and the edge of the battle\nfield. Once the forest have been placed, it scatters 2D6\". If this scatter causes a forest to end up within 1\"\n(or on top of) other terrain, or within 1\" of the battle field edge, reduce or increase the scatter by the\nsmallest amount necessary to avoid the obstruction. When this has been done, declare which type of\nforest you want it to be from those available in the Main Rulebook.",
       "options": [],
-      "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic",
+      "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic Resistance (3)",
       "specialRuleDescriptions": [
-        "Resistance (3)",
         "Aura of the Fey Queen: All friendly units within 6\" of Ariel have the Immunity (Panic) special rule.",
         "Earthbind: Any units declaring a charge on Ariel count as moving through Dangerous Terrain for the duration of the turn. In addition, if Ariel flees from combat, any enemies attempting to pursue her roll an extra D6 when determining their pursuit distance and discard the highest result.",
         "Screech: Ariel may use Screech when it would normally be her time to attack in close combat. This is a special attack that automatically Hits all enemy models in base contact at Strength 4 with the Ignores Armour special rule."
@@ -3344,9 +3332,8 @@
           "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Frenzy, Hatred, Natural Armour (3+),",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Frenzy, Hatred, Natural Armour (3+), Strangleroots (see Treeman Ancient), Stubborn, Tree Whack.",
       "specialRuleDescriptions": [
-        "Strangleroots (see Treeman Ancient), Stubborn, Tree Whack.",
         "Unburden of Thieflings: An Unburden of Thieflings is a close combat attack that can be used in addition to Durthu's other attacks. It has the following profile: Range: Strength: Special Rules: Combat 2 Magical Attacks, Poisoned Attacks, Random Attacks (D6) Any enemy units that suffer Wounds from any of these attacks suffer -1 To Hit and To Wound as well as -1 to their armour saves until the start of your next turn."
       ],
       "upgrades": null,
@@ -3681,9 +3668,8 @@
       "equipment": "Hand weapon\nMAGIC ITEMS:\n• The Binding Bolas: Magic Weapon. The Blinding Bolas is a missile weapon with the following profile:\nRange: Strength: Special Rules:\n18\" 1 Armour Piercing (1), Multiple Shots (2), Sniper\nIf a target has Unit Strength 3 or less and is Hit, but not slain, then it is temporarily entangled and cannot move\nin their next Movement phase. Entangled enemies may be left behind, counting as casualties, or in the case of a\nCharacter, as if they had left the unit.",
       "magic": null,
       "options": [],
-      "specialRules": "Animal Form (see Alters), Elven Grace, Fear, Forest Strider, Mixed Unit, Natural Armour",
+      "specialRules": "Animal Form (see Alters), Elven Grace, Fear, Forest Strider, Mixed Unit, Natural Armour (6+), Skirmishers",
       "specialRuleDescriptions": [
-        "(6+), Skirmishers",
         "Beastmaster: During the Movement phase, Fang and Claw may move away from Gruath if they wish, forming a unit of their own. They may return to Gruath in the Remaining Moves phase by moving within 1\" of him as long as neither of them is fleeing, in which case the unit will revert back to the normal Mixed Unit special rule. While the wolves are more than 12\" away from Gruath they are subject to Frenzy. If both wolves are slain, Gruarth becomes subject to Hatred."
       ],
       "upgrades": null,
@@ -3730,9 +3716,8 @@
           "raw": "May take Spites up to a total of 50 points"
         }
       ],
-      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk, Tree",
+      "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk, Tree Aspects.",
       "specialRuleDescriptions": [
-        "Aspects.",
         "Eternal Rage: Drycha has the Hatred special rule which applies in every round of close combat, not just the first.",
         "Fanatical Resolve: If Drycha is reduced to 1 Wound, she gains the Frenzy special rule. She automatically loses Frenzy if she is healed back to her starting number of Wounds.",
         "Roused to Wrath: You may choose up to D3 units with the Forest Spirit special rule to deploy as Ambushers. When these unit would normally enter the battlefield, instead place them so that all models in the unit are wholly within a forest, and at least 1\" away from other units and impassable terrain. Units that cannot be deployed this way enter the board as normal Ambushers instead. This rule cannot be used if there are no forests on the battlefield when it is time to deploy your army."

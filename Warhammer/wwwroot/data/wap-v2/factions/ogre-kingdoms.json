@@ -2443,10 +2443,8 @@
       "equipment": "Light armour",
       "magic": "Skrag is a Level 4 Wizard that uses spells from the Lore of the Great Maw.\nMAGIC ITEMS:\n• Cauldron of the Great Maw: Enchanted Item. Skrag and all Gorgers in the army receive the blessings of their\never-hungry god according to the table below. The 'Models Killed' column refers to models killed by Skrag in\nclose combat. Models killed by spells or that were pursued and caught when fleeing do not count towards this\ntotal. When a new level is reached, bonuses take effect immediately and are cumulative.\nModels Killed Effect on Skrag Effect on Gorgers\n1+ Skrag gains Regeneration (4+). All Gorgers that have not entered play do so in\ntheir next turn.\n5+ Skrag gains +1 Attack. All Gorgers gain +1 Attack.\n10+ Skrag gains Hatred. All Gorgers gain Hatred.\n15+ Skrag becomes Unbreakable. All Gorgers gain Regeneration (4+).",
       "options": [],
-      "specialRules": "Frenzy, Immunity (Poisoned Attacks), Killing Blow, Natural Armour (6+), Ogre Charge,",
-      "specialRuleDescriptions": [
-        "Terror"
-      ],
+      "specialRules": "Frenzy, Immunity (Poisoned Attacks), Killing Blow, Natural Armour (6+), Ogre Charge, Terror",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -2520,9 +2518,8 @@
           "raw": "May take Magic Items up to a total of 75 points"
         }
       ],
-      "specialRules": "Immunity (Poisoned Attacks), Loremaster (Lore of the Great Maw), Mawseeker (see Big",
+      "specialRules": "Immunity (Poisoned Attacks), Loremaster (Lore of the Great Maw), Mawseeker (see Big Names), Natural Armour (6+), Ogre Charge, Terror",
       "specialRuleDescriptions": [
-        "Names), Natural Armour (6+), Ogre Charge, Terror",
         "The First Butcher: Once per turn, Groth may re-roll a dice when casting a spell or when trying to dispel an enemy spell.",
         "The Lazarghs: Choose one unit of Ogre Bulls or Ironguts in an army including Groth. This unit causes Terror instead of Fear."
       ],
@@ -2557,9 +2554,8 @@
       "equipment": "Gut-plate",
       "magic": "Morg Magmaborn is a Level 3 Wizard that uses spells from the Lore of Fire.\nMAGIC ITEMS:\n• The Basalt Staff: Magic Weapon. Morg’s close combat attacks have the Armour Piercing (1) special rule. In\naddition, the Staff contains a Bound Spell, power level 3, which casts the Fire Ball spell from the Lore of Fire.",
       "options": [],
-      "specialRules": "Fire Breath (see Firebellies), Flaming Attacks, Immunity (Flaming Attacks), Natural",
+      "specialRules": "Fire Breath (see Firebellies), Flaming Attacks, Immunity (Flaming Attacks), Natural Armour (6+), Ogre Charge",
       "specialRuleDescriptions": [
-        "Armour (6+), Ogre Charge",
         "Avatar of the Fire Mouth: When Morg suffers an unsaved wound in close combat, enemy models in base contact suffer a Strength 4 Hit with the Flaming Attacks special rule. When Morg is slain, place the small template above him. All models underneath the template suffer a Strength 4 hit with the Flaming Attacks special rule."
       ],
       "upgrades": null,

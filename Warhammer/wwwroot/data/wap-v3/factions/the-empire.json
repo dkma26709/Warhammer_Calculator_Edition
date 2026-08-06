@@ -189,10 +189,8 @@
           "raw": "A General may take Magic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the",
-      "specialRuleDescriptions": [
-        "Cold-blooded special rule when taking Break tests."
-      ],
+      "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the Cold-blooded special rule when taking Break tests.",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
       "unitSize": null,
@@ -389,10 +387,8 @@
           "raw": "A General may take Magic Items up to a total of 100 points"
         }
       ],
-      "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the",
-      "specialRuleDescriptions": [
-        "Cold-blooded special rule when taking Break tests."
-      ],
+      "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the Cold-blooded special rule when taking Break tests.",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic\nItems they might have.\nCHARACTERS",
       "unitSize": null,
@@ -2563,10 +2559,8 @@
           "raw": "May upgrade one Militia Fighter to a Standard Bearer +10 points"
         }
       ],
-      "specialRules": "• Militia: Models with this special rule can use the Support Fire and Support Charge actions from the State",
-      "specialRuleDescriptions": [
-        "Troops special rule."
-      ],
+      "specialRules": "• Militia: Models with this special rule can use the Support Fire and Support Charge actions from the State Troops special rule.",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• You may not have more units of Free Company Militia than you have units with the State Troops special rule.",
       "unitSize": "10-30",
@@ -4333,9 +4327,8 @@
       "equipment": "Hand weapon, barding",
       "magic": null,
       "options": [],
-      "specialRules": "• Aura of Protection: The Luminark of Hysh and all friendly units within 6\" gain the Magical Ward (6+)",
+      "specialRules": "• Aura of Protection: The Luminark of Hysh and all friendly units within 6\" gain the Magical Ward (6+) special rule.",
       "specialRuleDescriptions": [
-        "special rule.",
         "Locus of Hysh: For each friendly Luminark of Hysh on the battlefield at the start of the enemy magic phase, add 1 dice to your dispel pool.",
         "Solheim's Bolt of Illumination: Arcane Item. Bound Spell (Level 4, cast on 11+). Solheim's Bolt of Illumination is a magic missile with a range of 36\". It causes a Strength 8 hit that has the Multiple Wounds (D3) and Flaming Attacks special rules, and penetrates ranks in the same manner as a shot from a bolt thrower. Armour saves are not permitted against Wounds caused by Solheim's Bolt of Illumination. If the target is a Daemon, Undead or Vampire, all failed To Wound rolls caused by this spell are re-rolled."
       ],
@@ -4394,9 +4387,8 @@
       "equipment": "Hand weapon, barding",
       "magic": null,
       "options": [],
-      "specialRules": "• Locus of Azyr: For each friendly Celestial Hurricanum on the battlefield at the start of your magic phase, add",
+      "specialRules": "• Locus of Azyr: For each friendly Celestial Hurricanum on the battlefield at the start of your magic phase, add 1 dice to your power pool.",
       "specialRuleDescriptions": [
-        "1 dice to your power pool.",
         "Portents of Battle: The Hurricanum and all friendly units within 6\" re-roll 1's when rolling to Hit.",
         "Storm of Shemtek: Arcane Item. Bound Spell (Level 4, cast on 10+). Storm of Shemtek is a direct damage area spell with a range of 24\" that uses the small round template. After resolving its placement, roll a D6 and consult the table below to see what effect it has. If the template hits a unit with the Fly special rule, it suffers D6 Strength 4 hits, in addition to any other effects (even if a Sudden Downpour is summoned). D6 Result 1 Sudden Downpour: No effect. 2 Iceshard Tempest: All models hit by the template suffer a Strength 2 hit with the Ice Attacks special rule. In addition, they suffer a -1 modifier to all To Hit rolls (both shooting and close combat) until the start of the caster's next Magic phase. Shooting attacks that do not use Ballistic Skill are unaffected. 3 Raging Tornado: If a target unit lies beneath the template's central hole and is not engaged in close combat, roll a scatter dice and rotate the unit so that it is facing that direction (if a hit is rolled, the casting player chooses the direction). If, by rotating the unit, it would come within of another unit or impassable terrain, simply stop rotating the unit as soon as it moves to within 1\". 4-5 Lightning Strike: The model under the template's central hole suffers a Strength 6 hit. Other models hit by the template suffer a Strength 3 hit. This is a Lightning Attack. 6 Meteor Strike: The model under the template's central hole suffers a Strength 6 hit with the Multiple Wounds (D6) Special rule. All other models hit by the template suffer a Strength 4 hit."
       ],
@@ -4650,9 +4642,8 @@
       "equipment": "Barding\nMAGIC ITEMS:\n• Grudge Settler, the Solland Runefang: Magic Weapon. All hits from this weapon Wound automatically with\nthe Ignores Armour Saves special rule.\n• Dawn Armour: Magic Armour. Heavy armour. This armour ignores Strength penalties from attacks and\nArmour Piercing.\n• Laurels of Victory: Enchanted Item. Each unsaved Wound caused by Kurt Helborg is multiplied by 2 when\ncalculating the combat result.\n• Rod of Command: Enchanted Item. One use only. The first time the character and his unit has to take a Break\ntest, they automatically pass it.",
       "magic": null,
       "options": [],
-      "specialRules": "Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders), Reiksguard",
+      "specialRules": "Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders), Reiksguard Knight",
       "specialRuleDescriptions": [
-        "Knight",
         "The Emperor's Chosen: If Kurt Helborg is included in your army, you must upgrade one unit of Reiksguard Knights to Inner Circle Knights. Kurt Helborg must join this unit, and may never leave it. The unit may re-roll failed Break tests for as long as he remains in it."
       ],
       "upgrades": null,
@@ -5068,10 +5059,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "• The Hand of Judgement: Bruckner cannot be the Army General. In addition, while fighting in a Challenge,",
-      "specialRuleDescriptions": [
-        "Bruckner has the Unbreakable special rule."
-      ],
+      "specialRules": "• The Hand of Judgement: Bruckner cannot be the Army General. In addition, while fighting in a Challenge, Bruckner has the Unbreakable special rule.",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": "• Reaper is a Monstrous Creature rather than a Monstrous Beast.",
       "unitSize": null,
@@ -5247,9 +5236,8 @@
           "raw": "May be mounted on one of the following:"
         }
       ],
-      "specialRules": "Fly (7) (Carmine Dragon only), Loremaster (Lore of Death), Natural Armour (3+) (Carmine",
+      "specialRules": "Fly (7) (Carmine Dragon only), Loremaster (Lore of Death), Natural Armour (3+) (Carmine Dragon only)",
       "specialRuleDescriptions": [
-        "Dragon only)",
         "Darkwalker: Elspeth has Immunity (Psychology) and all To Wound rolls made against her suffer a -1 penalty. However, she also suffers any extra effect that is listed as specifically damaging Undead.",
         "Coruscating Blast (Carmine Dragon only): This is a missile attack that uses the line template with the following profile: Range: Strength: Special Rules: 12\" * Cumbersome, Ignores Armour Saves, Magical Attacks, Multiple Wounds (D3) This weapon has a Strength equivalent to 10 minus the target's Toughness."
       ],
@@ -5296,9 +5284,8 @@
           "raw": "May be mounted on the War Altar of Sigmar +150 points"
         }
       ],
-      "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magic Resistance (1), Righteous",
+      "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magic Resistance (1), Righteous Fury (see Warrior Priests of Sigmar)",
       "specialRuleDescriptions": [
-        "Fury (see Warrior Priests of Sigmar)",
         "Grand Theogonist: Volkmar the Grim may re-roll failed Leadership tests when using Battle Prayers. In addition, if Volkmar is your Army General, Flagellants count as Core Units rather than Special Units."
       ],
       "upgrades": null,
@@ -5344,9 +5331,8 @@
       "equipment": "Heavy armour, barding\nMAGIC ITEMS:\n• Hammer of Ensorcelled Iron: Magic Weapon. Great weapon. This weapon allows the wielder to re-roll failed\nrolls To Wound.",
       "magic": null,
       "options": [],
-      "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magical Ward (4+), Magic",
+      "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magical Ward (4+), Magic Resistance (1), Righteous Fury (see Warrior Priests of Sigmar)",
       "specialRuleDescriptions": [
-        "Resistance (1), Righteous Fury (see Warrior Priests of Sigmar)",
         "Chosen of Sigmar: Once per game, at the start of any Close Combat phase you may roll a D3; Luthor adds this number to his Weapon Skill, Strength, Toughness, and Attacks characteristics until the end of the turn.",
         "Fiery Demagogue: In addition to his other Battle Prayers, Luthor Huss also knows the following: - Unbending Righteousness: Luthor Huss and his unit gain the Stubborn special rule until the start of your next turn."
       ],
@@ -5398,9 +5384,8 @@
           "raw": "May take Magic Items up to a total of 50 points"
         }
       ],
-      "specialRules": "Hold the Line (see Commanders), Immunity (Psychology), Inspiring Presence (6), Magical",
+      "specialRules": "Hold the Line (see Commanders), Immunity (Psychology), Inspiring Presence (6), Magical Ward (5+), Magic Resistance (2), Righteous Fury (see Warrior Priests of Sigmar)",
       "specialRuleDescriptions": [
-        "Ward (5+), Magic Resistance (2), Righteous Fury (see Warrior Priests of Sigmar)",
         "The Power of Sigmar: In close combat Magnus may make a special Attack at Strength 10 with the Magical Attacks and Multiple Wounds (D3) special rules instead of his normal attacks."
       ],
       "upgrades": null,
@@ -5542,9 +5527,8 @@
           "raw": "May take Magic Items up to a total of 75 points"
         }
       ],
-      "specialRules": "Hatred (Beastmen, Daemons of Chaos, Warriors of Chaos), Immunity (Psychology), Master",
+      "specialRules": "Hatred (Beastmen, Daemons of Chaos, Warriors of Chaos), Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders)",
       "specialRuleDescriptions": [
-        "of Battle (see Masters of the Knightly Orders)",
         "Grand Master of the Knights Panther: Harald Gemunsen has the Knight's Panther special rule. You may not take another Grand Master with this special rule if he is included in your army.",
         "Skilled Duellist: Harald Gemunsen may re-roll failed To Hit rolls in challenges."
       ],
@@ -5676,9 +5660,8 @@
           "raw": "May take Magic Items up to a total of 25 points"
         }
       ],
-      "specialRules": "Battle Prayers of Sigmar (see Warrior Priest of Sigmar), Immunity (Fear), Magic Resistance",
+      "specialRules": "Battle Prayers of Sigmar (see Warrior Priest of Sigmar), Immunity (Fear), Magic Resistance (2), Righteous Fury (see Warrior Priest of Sigmar)",
       "specialRuleDescriptions": [
-        "(2), Righteous Fury (see Warrior Priest of Sigmar)",
         "High Matriarch: If Bertha Bestraufrung is included in your army, you must also include at least one unit of Sisters of Sigmar. Bertha Bestraufrung must join such a unit, and may not leave it. In addition, the unit becomes Stubborn while she remains with it.",
         "Sigmar's Handmaiden: Bertha may re-roll failed Leadership tests when using Battle Prayers of Sigmar."
       ],

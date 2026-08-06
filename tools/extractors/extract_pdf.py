@@ -703,22 +703,47 @@ def normalize_category(cat):
     return mapping.get(cat, cat)
 
 
+# A description is introduced either by a bullet or by a "Name: prose" heading. The
+# comma-separated rule list is whatever comes before the first of those. The name allowance has
+# to be generous — Burlok Damminson's runs to 64 characters — but only ':' ends a heading, never
+# '!', because rule names themselves carry exclamation marks ("Stand Back Sir!", Waaagh!).
+DESCRIPTION_START = re.compile(r'^\s*(?:[•]|[A-Z][^:]{0,80}:)')
+
+
+def _starts_description(line):
+    """True when this line begins the prose rather than continuing the rule list."""
+    if DESCRIPTION_START.match(line):
+        return True
+    # A comma-separated list of rule names never contains a sentence break. This stops a unit
+    # whose SPECIAL RULES field already leaked prose from swallowing its whole description.
+    return '. ' in line
+
+
 def split_special_rules(raw_text):
     """Split special rules into rule names and detailed descriptions.
-    The first line typically has comma-separated rule names.
-    Subsequent lines (especially bullet-pointed) are descriptions.
+    The comma-separated rule names run until the first description, however many lines the
+    PDF wrapped them across. Subsequent lines (especially bullet-pointed) are descriptions.
     Returns (rule_names_string, descriptions_list_or_None)."""
     if not raw_text:
         return None, None
 
     lines = raw_text.split('\n')
-    # First line: comma-separated rule names
-    rule_names = lines[0].strip()
+
+    # The rule list wraps at the column edge, so it routinely runs over more than one line.
+    # Keeping only lines[0] filed the tail under descriptions instead: 135 wap-v2 and 161 wap-v3
+    # rule lists were split that way, and 36 wap-v2 and 40 wap-v3 units thereby lost at least one
+    # rule the engine already understood — v3 Hammerers silently lost Stubborn, and Murderous
+    # Prowess went missing on 8 wap-v2 and 11 wap-v3 Dark Elf units.
+    cut = 1
+    while cut < len(lines) and not _starts_description(lines[cut]):
+        cut += 1
+
+    rule_names = ' '.join(line.strip() for line in lines[:cut]).strip()
 
     # Remaining lines: descriptions (bullet points, paragraphs)
     descriptions = []
     current_desc = None
-    for line in lines[1:]:
+    for line in lines[cut:]:
         line = line.strip()
         if not line:
             continue

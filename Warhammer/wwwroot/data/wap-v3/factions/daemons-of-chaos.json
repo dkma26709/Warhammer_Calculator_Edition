@@ -2816,10 +2816,8 @@
           "raw": "May be upgraded to a Standard Bearer +10 points"
         }
       ],
-      "specialRules": "Daemon of Nurgle, *Random Attacks (D6+1) (Beast of Nurgle only), Regeneration (6+),",
-      "specialRuleDescriptions": [
-        "Slime Trail"
-      ],
+      "specialRules": "Daemon of Nurgle, *Random Attacks (D6+1) (Beast of Nurgle only), Regeneration (6+), Slime Trail",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3697,9 +3695,8 @@
           "raw": "May take 3 Blue Horror crew +12 points"
         }
       ],
-      "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2)",
+      "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2) (Screamers only)",
       "specialRuleDescriptions": [
-        "(Screamers only)",
         "Exalted Fire of Tzeentch: During the Shooting phase, the Exalted Flamer can shoot either Pink Fire or Blue Fire below. If a misfire is rolled when resolving Pink Fire or Blue Fire, the Exalted Flamer suffers D6 Strength D6 hits with the Flaming Attacks special rule. - Blue Fire: Blue Fire is an organ gun with the following profile: Range: Strength: Special Rules: 12/18\" D3+3 Cumbersome, Flaming Attacks, Multiple Shots (Artillery Dice + D6), Rapid Fire - Pink Fire: Pink Fire is a fire thrower that uses the following profile: Range: Strength: Special Rules: n/a D6 Cumbersome , Flaming Attacks",
         "Lesser Flames of Tzeentch (Blue Horrors only): Lesser Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 8/12\" 3 Flaming Attacks, Multiple Shots (2), Quick Shot",
         "Slashing Attack: If a Burning Chariot moves over one or more unengaged enemy units in the Remaining Moves sub-phase, each of those units suffer two Strength 4 Hits, distributed as shooting attacks."

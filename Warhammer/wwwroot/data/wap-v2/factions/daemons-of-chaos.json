@@ -2845,10 +2845,8 @@
           "raw": "May be upgraded to a Standard Bearer +10 points"
         }
       ],
-      "specialRules": "Daemon of Nurgle, *Random Attacks (D6+1) (Beast of Nurgle only), Regeneration (6+),",
-      "specialRuleDescriptions": [
-        "Slime Trail"
-      ],
+      "specialRules": "Daemon of Nurgle, *Random Attacks (D6+1) (Beast of Nurgle only), Regeneration (6+), Slime Trail",
+      "specialRuleDescriptions": null,
       "upgrades": null,
       "notes": null,
       "unitSize": null,
@@ -3727,9 +3725,8 @@
           "raw": "May take 3 Blue Horror crew +12 points"
         }
       ],
-      "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2)",
+      "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2) (Screamers only)",
       "specialRuleDescriptions": [
-        "(Screamers only)",
         "Exalted Flames of Tzeentch: Exalted Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 18\" 4 Flaming Attacks, Multiple Shots (2D6), Quick to Fire",
         "Lesser Flames of Tzeentch (Blue Horrors only): Lesser Flames of Tzeentch have the following profile: Range: Strength: Special Rules: 12\" 3 Flaming Attacks, Multiple Shots (2), Quick to Fire",
         "Slashing Attack: If a Burning Chariot moves over one or more unengaged enemy units in the Remaining Moves sub-phase, each of those units suffer two Strength 4 Hits, distributed as shooting attacks."
