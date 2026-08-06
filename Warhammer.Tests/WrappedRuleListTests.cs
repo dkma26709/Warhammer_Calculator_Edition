@@ -85,7 +85,14 @@ public class WrappedRuleListTests
     private static readonly Dictionary<string, string[]> TailLostInExtraction = new()
     {
         [GameSystems.WapV2] = ["DaemonsOfChaos/Flesh Hounds", "TheEmpire/Grand Master"],
-        [GameSystems.WapV3] = ["DaemonsOfChaos/Flesh Hounds"],
+        [GameSystems.WapV3] =
+        [
+            "DaemonsOfChaos/Flesh Hounds",
+            // Both named characters, and so invisible to this guard until "Named Characters"
+            // gained a category mapping and the repository started returning them.
+            "HighElves/Caradryan of the Flame",
+            "Skaven/Nurglitch",
+        ],
     };
 
     /// <summary>

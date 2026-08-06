@@ -35,10 +35,8 @@ public class ArmyListValidator
         if (limits.HeroesMax is { } heroesMax)
             CheckMax(issues, list, UnitCategory.Heroes, heroesMax, "HEROES_OVER_CAP", "Heroes");
 
-        double charactersPoints =
-            list.PointsInCategory(UnitCategory.Lords) +
-            list.PointsInCategory(UnitCategory.Heroes) +
-            list.PointsInCategory(UnitCategory.Characters);
+        double charactersPoints = UnitCategoryExtensions.CharacterCategories
+            .Sum(list.PointsInCategory);
         if (charactersPoints > limits.CharactersCombinedMax.Points)
         {
             issues.Add(new(ValidationSeverity.Error, "CHARACTERS_OVER_CAP",
