@@ -37,6 +37,11 @@ public record ParsedSpecialRules
     public bool Stubborn { get; init; }
     public bool Unbreakable { get; init; }
     public bool Unstable { get; init; }
+
+    /// <summary>
+    /// Tomb Kings' Indomitable (wap-v3 only): one fewer wound from <see cref="Unstable"/>.
+    /// </summary>
+    public bool Indomitable { get; init; }
     public bool Fear { get; init; }
     public bool Terror { get; init; }
     public int? RandomAttacks { get; init; }
@@ -110,6 +115,7 @@ public record ParsedSpecialRules
             Stubborn = Stubborn || other.Stubborn,
             Unbreakable = Unbreakable || other.Unbreakable,
             Unstable = Unstable || other.Unstable,
+            Indomitable = Indomitable || other.Indomitable,
             Fear = Fear || other.Fear,
             Terror = Terror || other.Terror,
             ColdBlooded = ColdBlooded || other.ColdBlooded,
@@ -152,7 +158,11 @@ public record ParsedSpecialRules
 
             // Bonus-type: take best (higher is better)
             ArmourPiercing = MaxNullable(ArmourPiercing, other.ArmourPiercing),
-            MightyBlow = MaxNullable(MightyBlow, other.MightyBlow),
+
+            // Mighty Blow is the exception: both books say "This rule is cumulative with other
+            // sources of Mighty Blow" (2.32 p63, 3.11 p64), so two sources add rather than
+            // one masking the other.
+            MightyBlow = SumNullable(MightyBlow, other.MightyBlow),
             MultipleWounds = MaxNullable(MultipleWounds, other.MultipleWounds),
             FightInExtraRanks = MaxNullable(FightInExtraRanks, other.FightInExtraRanks),
             ImpactHits = MaxNullable(ImpactHits, other.ImpactHits),
@@ -177,6 +187,10 @@ public record ParsedSpecialRules
 
     private static int? MaxNullable(int? a, int? b) =>
         a.HasValue && b.HasValue ? Math.Max(a.Value, b.Value) :
+        a ?? b;
+
+    private static int? SumNullable(int? a, int? b) =>
+        a.HasValue && b.HasValue ? a.Value + b.Value :
         a ?? b;
 
     public static ParsedSpecialRules Parse(string? specialRulesText)
@@ -219,17 +233,33 @@ public record ParsedSpecialRules
                 "heroic killing blow" => result with { HeroicKillingBlow = true },
                 "lightning attacks" => result with { LightningAttacks = true },
                 "magical attacks" => result with { MagicalAttacks = true },
+                // Not additive within one list, even though Mighty Blow is cumulative across
+                // sources (see Merge). Every unit that lists it twice is a rider/mount split —
+                // "Mighty Blow (1), Mighty Blow (2) (War Boars only)" — where the two numbers
+                // belong to two different models, so adding them would arm the rider with the
+                // mount's bonus.
                 "mighty blow" => result with { MightyBlow = ParseIntParam(param) ?? 1 },
                 "multiple wounds" => result with { MultipleWounds = ParseIntParam(param), MultipleWoundsRoll = ParseDiceParam(param) },
                 "natural armour" => result with { NaturalArmour = ParseSaveParam(param) },
                 "parry" => result with { Parry = ParseSaveParam(param) },
                 "poisoned attacks" => result with { PoisonedAttacks = true },
                 "regeneration" => result with { Regeneration = ParseSaveParam(param) ?? 4 },
-                "ward save" => result with { WardSave = ParseSaveParam(param) },
+                // wap-v3 renamed Ward Save to Magical Ward: "Models with this rule gain an
+                // invulnerable save as indicated in the brackets" (3.11 p63). The two saves are
+                // the same rule renamed — 2.32 p38 "WARD SAVES" and 3.11 p38 "INVULNERABLE
+                // SAVES" carry the same sentences, down to working like armour saves but never
+                // being modified by the attack's Strength. No wap-v3 unit's rule list uses the
+                // v2 spelling at all, so without this name every v3 ward save was dropped: the
+                // data went from 0 units with a parseable ward save to 28.
+                "ward save" or "magical ward" => result with { WardSave = ParseSaveParam(param) },
                 "stomp" => result with { Stomp = ParseIntParam(param), StompRoll = ParseDiceParam(param) },
                 "stubborn" => result with { Stubborn = true },
                 "unbreakable" => result with { Unbreakable = true },
                 "unstable" => result with { Unstable = true },
+
+                // Tomb Kings, wap-v3 only: "Models with this special rule suffer 1 Wound less
+                // than they normally would due to the Unstable special rule" (Tomb Kings 3.1 p4).
+                "indomitable" => result with { Indomitable = true },
                 "fear" => result with { Fear = true },
                 "terror" => result with { Terror = true },
                 "random attacks" => result with { RandomAttacks = ParseIntParam(param), RandomAttacksRoll = ParseDiceParam(param) },
@@ -341,11 +371,19 @@ public record ParsedSpecialRules
 
     private static (string Name, string? Param) ExtractNameAndParam(string rule)
     {
-        var match = Regex.Match(rule, @"^(.+?)\s*\(([^)]+)\)\s*\*?\s*$");
+        // The books end the last rule of a list with a full stop and the extractor keeps it.
+        // Strip it before matching, not after: left in place it either rides along inside the
+        // name ("Stubborn.") or defeats the parenthetical match outright, because the pattern
+        // below requires the string to end at ')' ("Natural Armour (3+)."). Either way the rule
+        // reaches no arm in Parse and is silently dropped — which is how four Giants stopped
+        // being Stubborn and the Star Dragon lost its 2+ Natural Armour.
+        var trimmed = rule.Trim().TrimEnd('.', '*', ' ');
+
+        var match = Regex.Match(trimmed, @"^(.+?)\s*\(([^)]+)\)\s*\*?\s*$");
         if (match.Success)
             return (match.Groups[1].Value.Trim(), match.Groups[2].Value.Trim());
 
-        return (rule.Trim().TrimEnd('*'), null);
+        return (trimmed, null);
     }
 
     private static int? ParseIntParam(string? param)
