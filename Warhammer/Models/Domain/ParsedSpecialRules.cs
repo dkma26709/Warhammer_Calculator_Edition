@@ -260,7 +260,12 @@ public record ParsedSpecialRules
             // one-parenthetical form was applied to the whole unit.
             if (ScopeOf(name, param) is { } scope)
             {
-                var inner = scope.Rule.Length > 0 ? Parse(scope.Rule) : new ParsedSpecialRules();
+                // AllRuleNames is cleared: the outer list already recorded this rule under its
+                // full name including the scope, and Merge concatenates, so keeping the inner
+                // copy would list it twice on whichever model it lands.
+                var inner = scope.Rule.Length > 0
+                    ? Parse(scope.Rule) with { AllRuleNames = [] }
+                    : new ParsedSpecialRules();
                 scoped.Add(new ScopedRules(scope.Model, inner));
                 continue;
             }
@@ -359,18 +364,18 @@ public record ParsedSpecialRules
                 "daemon of khorne" => result with { Hatred = true },
                 "daemon of slaanesh" => result with { AlwaysStrikesFirst = true, ArmourPiercing = Math.Max(result.ArmourPiercing ?? 0, 1) },
                 "daemon of nurgle" => result with { Minus1ToBeHit = true },
-                "daemon of tzeentch" => result with { WardSave = MinWard(result.WardSave, 6) },
-                "daemonic" => result with { WardSave = MinWard(result.WardSave, 5) },
+                "daemon of tzeentch" => result with { WardSave = CombineWard(result.WardSave, 6) },
+                "daemonic" => result with { WardSave = CombineWard(result.WardSave, 5) },
 
                 // Chaos marks
                 "mark of khorne" => result with { Frenzy = true },
                 "mark of nurgle" => result with { Minus1WSToAttackers = true },
                 "mark of slaanesh" => result with { RerollSuccessfulWoundsAgainst = true },
-                "mark of tzeentch" => result with { WardSave = MinWard(result.WardSave, 6) },
+                "mark of tzeentch" => result with { WardSave = CombineWard(result.WardSave, 6) },
 
                 // Faction-wide defensive rules
                 "the red thirst" => result with { Frenzy = true },
-                "blessing of the lady" => result with { BlessingOfTheLady = true, WardSave = MinWard(result.WardSave, 6) },
+                "blessing of the lady" => result with { BlessingOfTheLady = true, WardSave = CombineWard(result.WardSave, 6) },
 
                 // Immunity variants
                 "immunity" => ParseImmunity(result, param),
@@ -534,7 +539,6 @@ public record ParsedSpecialRules
     /// <summary>Combining wards can never produce a save better than this.</summary>
     private const int CombinedWardFloor = 4;
 
-    private static int MinWard(int? existing, int proposed) => CombineWard(existing, proposed) ?? proposed;
 
     /// <summary>
     /// Parse Immunity(target) into the appropriate boolean flags.

@@ -127,6 +127,24 @@ public class ScopedRuleTests
         Assert.Contains("Animosity", parsed.UnitWide.AllRuleNames);
     }
 
+    /// <summary>
+    /// It appears once, under its full name. Merge concatenates AllRuleNames, so carrying the
+    /// inner parse's copy across would list the rule a second time, stripped of its scope, on
+    /// whichever model it landed on.
+    /// </summary>
+    [Fact]
+    public async Task AScopedRuleIsListedOnceAndKeepsItsScope()
+    {
+        var boarBoyz = await Find(GameSystems.WapV2, FactionKey.OrcsAndGoblins, "Boar Boyz");
+        var names = boarBoyz.BaseModel.SpecialRules.AllRuleNames;
+
+        Assert.Equal(1, names.Count(n => n == "Mighty Blow (2) (War Boars only)"));
+        Assert.DoesNotContain("Mighty Blow (2)", names);
+
+        // The unit's own Mighty Blow (1) is a separate, unscoped entry and stays.
+        Assert.Contains("Mighty Blow (1)", names);
+    }
+
     // ─── Routing onto the right model ──────────────────────────────
 
     /// <summary>
