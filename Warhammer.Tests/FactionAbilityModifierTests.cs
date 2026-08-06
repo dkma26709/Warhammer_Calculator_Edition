@@ -115,13 +115,14 @@ public class FactionAbilityModifierTests
     }
 
     [Fact]
-    public void WhirlingDeath_APStacksAsMaxWithBaseRules()
+    public void WhirlingDeath_APIsCumulativeWithBaseRules()
     {
         var unit = TestHelpers.MakeUnit(specialRules: "Armour Piercing (2)");
         var config = new UnitConfiguration(unit) { ModelCount = 5, Frontage = 5 };
         config.SelectedShadowDance = ShadowDance.WhirlingDeath;
 
-        // Merge takes the better AP value, not the sum.
-        Assert.Equal(2, config.EffectiveSpecialRules.ArmourPiercing);
+        // The dance is a separate source, and Armour Piercing is "cumulative with other sources
+        // of Armour Piercing" (2.32 p58, 3.11 p58): the unit's 2 plus the dance's 1.
+        Assert.Equal(3, config.EffectiveSpecialRules.ArmourPiercing);
     }
 }

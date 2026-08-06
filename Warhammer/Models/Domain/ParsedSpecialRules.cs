@@ -156,13 +156,14 @@ public record ParsedSpecialRules
             Dodge = MinNullable(Dodge, other.Dodge),
             NaturalArmour = MinNullable(NaturalArmour, other.NaturalArmour),
 
-            // Bonus-type: take best (higher is better)
-            ArmourPiercing = MaxNullable(ArmourPiercing, other.ArmourPiercing),
-
-            // Mighty Blow is the exception: both books say "This rule is cumulative with other
-            // sources of Mighty Blow" (2.32 p63, 3.11 p64), so two sources add rather than
-            // one masking the other.
+            // Two bonus-type rules say outright that they add. Both books use the same sentence
+            // for each — "This rule is cumulative with other sources of Mighty Blow" (2.32 p63,
+            // 3.11 p64) and the same of Armour Piercing (2.32 p58, 3.11 p58) — so neither is a
+            // v3 divergence, and a second source adds rather than masking the first.
+            ArmourPiercing = SumNullable(ArmourPiercing, other.ArmourPiercing),
             MightyBlow = SumNullable(MightyBlow, other.MightyBlow),
+
+            // Bonus-type: take best (higher is better)
             MultipleWounds = MaxNullable(MultipleWounds, other.MultipleWounds),
             FightInExtraRanks = MaxNullable(FightInExtraRanks, other.FightInExtraRanks),
             ImpactHits = MaxNullable(ImpactHits, other.ImpactHits),

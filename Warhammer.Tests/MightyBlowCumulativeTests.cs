@@ -103,16 +103,26 @@ public class MightyBlowCumulativeTests
     }
 
     /// <summary>
-    /// Armour Piercing says "cumulative with other sources" too (2.32 p58) but is deliberately
-    /// left on max() in this change — it is tracked separately, and this test pins the current
-    /// behaviour so the difference is a decision rather than a drift.
+    /// Armour Piercing carries the same sentence in both books (2.32 p58, 3.11 p58), so it adds
+    /// across sources too. Plenty of faction items grant it in close combat — Da Choppiest Choppa
+    /// (3), Burning Blade of Chotec (2), Soulrender, Sword of Power, Gorecleaver — and the Dwarf
+    /// Rune of Cleaving states the stacking outright: one rune gives Armour Piercing (1), two give
+    /// Armour Piercing (2).
     /// </summary>
     [Fact]
-    public void ArmourPiercingStillTakesTheBestOfItsSources()
+    public void MergingTwoSourcesAddsTheirArmourPiercing()
     {
         var merged = new ParsedSpecialRules { ArmourPiercing = 1 }
             .Merge(new ParsedSpecialRules { ArmourPiercing = 2 });
 
-        Assert.Equal(2, merged.ArmourPiercing);
+        Assert.Equal(3, merged.ArmourPiercing);
+    }
+
+    [Fact]
+    public void MergingWhenOnlyOneSideHasArmourPiercingKeepsIt()
+    {
+        Assert.Equal(1, new ParsedSpecialRules { ArmourPiercing = 1 }
+            .Merge(new ParsedSpecialRules()).ArmourPiercing);
+        Assert.Null(new ParsedSpecialRules().Merge(new ParsedSpecialRules()).ArmourPiercing);
     }
 }
