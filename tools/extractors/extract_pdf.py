@@ -300,6 +300,48 @@ def match_upgrade_family(text):
     return None
 
 
+# An option line usually opens on the verb ("May take Magic Items up to a total of 100
+# points"), but a fair number name the entry first ("A Captain may take Magic Items up to
+# a total of 50 points", "Big 'Uns take a Magic Standard worth up to 50 points"). One
+# options block often covers several entries at once, so that name is the only thing
+# saying which allowance belongs to which — keep it as `appliesTo`.
+SUBJECT = r"(?:An?|The)?\s*(?P<subject>[^,.]+?)\s+"
+
+_ALLOWANCE_TAIL = (
+    r'(?:(?P<family_a>.+?) and(?:/or)? )?Magic Items(?: and(?:/or)? (?P<family_b>.+?))?'
+    r'\s*up to.*?(?P<limit>\d+)\s*points'
+)
+
+# The verb is optional on both sides: the PDF text loses a word often enough
+# ("May Magic Items up to a total of 50 points", "A Spellweaver take one Spite and/or
+# Magic Items...") that requiring "may take" drops real allowances.
+# Bare form first: it must win, or the subject group would swallow the "May".
+MAGIC_ITEM_PATTERNS = [
+    re.compile(r'May (?:take )?' + _ALLOWANCE_TAIL, re.IGNORECASE),
+    re.compile(SUBJECT + r'(?:may take|may|takes?) ' + _ALLOWANCE_TAIL, re.IGNORECASE),
+]
+
+MAGIC_STANDARD_PATTERNS = [
+    re.compile(r'May take a Magic Standard (?P<rest>.*)', re.IGNORECASE),
+    re.compile(SUBJECT + r'(?:may take|takes?) a Magic Standard (?P<rest>.*)', re.IGNORECASE),
+]
+
+
+def match_first(patterns, raw):
+    """Return the first of `patterns` that matches `raw` from the start, or None."""
+    for pattern in patterns:
+        m = pattern.match(raw)
+        if m:
+            return m
+    return None
+
+
+def subject_of(match):
+    """The entry named in an option line, when it named one."""
+    subject = match.groupdict().get('subject')
+    return subject.strip() if subject else None
+
+
 def classify_option(text):
     """Classify and structure a single option line (primary bullet).
     Returns a structured dict."""
@@ -313,20 +355,24 @@ def classify_option(text):
         return {"type": "command", "role": role, "points": cost, "raw": raw}
 
     # --- Magic Standard ---
-    m = re.match(r'May take a Magic Standard (.*)', raw, re.IGNORECASE)
+    m = match_first(MAGIC_STANDARD_PATTERNS, raw)
     if m:
-        limit = parse_limit(m.group(1))
-        return {"type": "magic_standard", "pointsLimit": limit, "raw": raw}
+        option = {"type": "magic_standard", "pointsLimit": parse_limit(m.group('rest')), "raw": raw}
+        subject = subject_of(m)
+        if subject:
+            option["appliesTo"] = subject
+        return option
 
     # --- Magic Items, optionally sharing the allowance with a faction upgrade family ---
-    m = re.match(
-        r'May take (?:(.+?) and/or )?Magic Items(?: and/or (.+?))?\s*up to.*?(\d+)\s*points',
-        raw, re.IGNORECASE)
+    m = match_first(MAGIC_ITEM_PATTERNS, raw)
     if m:
-        option = {"type": "magic_items", "pointsLimit": int(m.group(3)), "raw": raw}
+        option = {"type": "magic_items", "pointsLimit": int(m.group('limit')), "raw": raw}
+        subject = subject_of(m)
+        if subject:
+            option["appliesTo"] = subject
         # Characters get their upgrade family via the shared allowance wording; record it so
         # parse_options can emit a companion option the army builder can render.
-        category = match_upgrade_family(m.group(1) or m.group(2))
+        category = match_upgrade_family(m.group('family_a') or m.group('family_b'))
         if category:
             option["factionUpgrade"] = category
         return option
@@ -649,12 +695,18 @@ def expand_shared_allowance_upgrades(options):
     The allowance stays a magic_items option; the upgrade family becomes its own
     faction_upgrade option so the builder can offer the picks. Each pick costs the
     points listed against it in the faction's extras, so no points go on the option.
+
+    One family gets one companion however many allowances name it: an options block
+    covering several entries repeats the same wording for each, and a second companion
+    would only render the same list of picks twice.
     """
     expanded = []
+    seen = set()
     for option in options:
         category = option.pop('factionUpgrade', None) if isinstance(option, dict) else None
         expanded.append(option)
-        if category:
+        if category and category not in seen:
+            seen.add(category)
             expanded.append({
                 "type": "faction_upgrade",
                 "factionUpgrade": category,

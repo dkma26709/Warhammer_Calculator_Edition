@@ -162,28 +162,16 @@
           "raw": "One Dreadmaster may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Dreadmaster may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Dreadmaster may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Dreadmaster may take Magic Items up to a total of 50 points",
+          "appliesTo": "Dreadmaster"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Dreadlord may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Dreadlord may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Dreadlord may take Magic Items up to a total of 100 points",
+          "appliesTo": "Dreadlord"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
@@ -357,28 +345,16 @@
           "raw": "One Dreadmaster may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Dreadmaster may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Dreadmaster may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Dreadmaster may take Magic Items up to a total of 50 points",
+          "appliesTo": "Dreadmaster"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Dreadlord may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Dreadlord may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Dreadlord may take Magic Items up to a total of 100 points",
+          "appliesTo": "Dreadlord"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
@@ -471,28 +447,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Sorceress may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Sorceress may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Sorceress may take Magic Items up to a total of 50 points",
+          "appliesTo": "Sorceress"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Supreme Sorceress may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Supreme Sorceress may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Supreme Sorceress may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Supreme Sorceress"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess",
@@ -585,28 +549,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Sorceress may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Sorceress may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Sorceress may take Magic Items up to a total of 50 points",
+          "appliesTo": "Sorceress"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Supreme Sorceress may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Supreme Sorceress may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Supreme Sorceress may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Supreme Sorceress"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess",
@@ -688,28 +640,21 @@
           "raw": "One Death Hag may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Death Hag may take Magic Items and/or Gifts of Khaine up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points",
+          "appliesTo": "Death Hag"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of 100 points",
+          "appliesTo": "Hag Queen"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
+          "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
@@ -791,28 +736,21 @@
           "raw": "One Death Hag may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Death Hag may take Magic Items and/or Gifts of Khaine up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points",
+          "appliesTo": "Death Hag"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of 100 points",
+          "appliesTo": "Hag Queen"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_khaine",
+          "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points"
         }
       ],
       "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",

@@ -219,40 +219,22 @@
           "raw": "One Aspiring Champion may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Aspiring Champion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 75,
-              "perModel": false
-            }
-          ],
-          "raw": "An Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of 75 points"
+          "type": "magic_items",
+          "pointsLimit": 75,
+          "raw": "An Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of 75 points",
+          "appliesTo": "Exalted Champion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Warlord may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Warlord may take Gifts of the Gods and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Warlord may take Gifts of the Gods and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Warlord"
         }
       ],
       "specialRules": "Chaos Armour, Eye of the Gods, Will of Chaos",
@@ -483,40 +465,22 @@
           "raw": "One Aspiring Champion may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Aspiring Champion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 75,
-              "perModel": false
-            }
-          ],
-          "raw": "An Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of 75 points"
+          "type": "magic_items",
+          "pointsLimit": 75,
+          "raw": "An Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of 75 points",
+          "appliesTo": "Exalted Champion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Warlord may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Warlord may take Gifts of the Gods and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Warlord may take Gifts of the Gods and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Warlord"
         }
       ],
       "specialRules": "Chaos Armour, Eye of the Gods, Will of Chaos",
@@ -747,40 +711,22 @@
           "raw": "One Aspiring Champion may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Aspiring Champion may take Gifts of the Gods and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Aspiring Champion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 75,
-              "perModel": false
-            }
-          ],
-          "raw": "An Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of 75 points"
+          "type": "magic_items",
+          "pointsLimit": 75,
+          "raw": "An Exalted Champion may take Gifts of the Gods and/or Magic Items up to a total of 75 points",
+          "appliesTo": "Exalted Champion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Warlord may take Gifts of the Gods and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Warlord may take Gifts of the Gods and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Warlord may take Gifts of the Gods and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Warlord"
         }
       ],
       "specialRules": "Chaos Armour, Eye of the Gods, Will of Chaos",

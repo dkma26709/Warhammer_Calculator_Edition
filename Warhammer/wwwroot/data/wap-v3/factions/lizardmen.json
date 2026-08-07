@@ -206,28 +206,16 @@
           "raw": "One Scar-Veteran may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Scar-Veteran"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Oldblood may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Oldblood may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Oldblood may take Blessed Spawnings and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Oldblood"
         }
       ],
       "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
@@ -362,28 +350,16 @@
           "raw": "One Scar-Veteran may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Scar-Veteran may take Blessed Spawnings and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Scar-Veteran"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Oldblood may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Oldblood may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Oldblood may take Blessed Spawnings and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Oldblood"
         }
       ],
       "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
@@ -537,28 +513,21 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Chief may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Chief"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "High Chief may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A High Chief may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A High Chief may take Blessed Spawnings and/or Magic Items up to a total of 100 points",
+          "appliesTo": "High Chief"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
@@ -712,28 +681,21 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Chief may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Chief"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "High Chief may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A High Chief may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A High Chief may take Blessed Spawnings and/or Magic Items up to a total of 100 points",
+          "appliesTo": "High Chief"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "A Chief may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
@@ -809,28 +771,21 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Priest may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Priest"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "High Priest may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A High Priest may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A High Priest may take Blessed Spawnings and/or Magic Items up to a total of 100 points",
+          "appliesTo": "High Priest"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",
@@ -908,28 +863,21 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Priest may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Priest"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "High Priest may take Blessed Spawnings and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A High Priest may take Blessed Spawnings and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A High Priest may take Blessed Spawnings and/or Magic Items up to a total of 100 points",
+          "appliesTo": "High Priest"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "blessed_spawnings",
+          "raw": "A Priest may take Blessed Spawnings and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Aquatic, Cold-blooded, Natural Armour (6+)",

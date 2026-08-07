@@ -19,9 +19,19 @@ pip install -r requirements.txt
 | `extract_army_extras.py` | An army book PDF | Army rules, magic items, lores, faction upgrades → `data/{system}/factions/<faction>-extras.json` |
 | `extract_core_rules.py` | The core rules PDF | Combat tables, weapon/armour profiles, common special rules → `data/{system}/core-rules.json` |
 | `extract_common_magic_items.py` | The core rules PDF | Common magic items → `data/{system}/common-magic-items.json` |
+| `reclassify_options.py` | Already-extracted faction JSON | The same files, with mis-parsed options repaired in place |
 
-All three take the PDF path as the first positional argument and write to `--output`.
-Pass `--pretty` for readable JSON. `--help` lists the rest.
+The four extractors take the PDF path as the first positional argument and write to
+`--output`. Pass `--pretty` for readable JSON. `--help` lists the rest.
+
+`reclassify_options.py` needs no PDF: every option keeps the army book line it came from
+in its `raw` field, so improvements to `classify_option` can be applied to data extracted
+by an older version of the parser. Run it with `--dry-run` first — it prints every option
+it would rewrite.
+
+```bash
+python reclassify_options.py ../../Warhammer/wwwroot/data --dry-run
+```
 
 ## Usage
 

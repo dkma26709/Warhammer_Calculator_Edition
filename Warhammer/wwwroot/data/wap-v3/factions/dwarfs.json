@@ -115,28 +115,16 @@
           "raw": "One Thane may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Thane may take Magic Items and/or Runic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Thane may take Magic Items and/or Runic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Thane may take Magic Items and/or Runic Items up to a total of 50 points",
+          "appliesTo": "Thane"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "King may take Magic Items and/or Runic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A King may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A King may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "King"
         }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute",
@@ -265,28 +253,16 @@
           "raw": "One Thane may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Thane may take Magic Items and/or Runic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Thane may take Magic Items and/or Runic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Thane may take Magic Items and/or Runic Items up to a total of 50 points",
+          "appliesTo": "Thane"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "King may take Magic Items and/or Runic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A King may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A King may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "King"
         }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute",
@@ -382,28 +358,16 @@
           "raw": "May be mounted on an Anvil of Doom (Runelord only) +120 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Runesmith may take Magic Items and/or Runic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Runesmith may take Magic Items and/or Runic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Runesmith may take Magic Items and/or Runic Items up to a total of 50 points",
+          "appliesTo": "Runesmith"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Runelord may take Magic Items and/or Runic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Runelord may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Runelord may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Runelord"
         }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (2), Relentless, Resolute",
@@ -500,28 +464,16 @@
           "raw": "May be mounted on an Anvil of Doom (Runelord only) +120 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Runesmith may take Magic Items and/or Runic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Runesmith may take Magic Items and/or Runic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Runesmith may take Magic Items and/or Runic Items up to a total of 50 points",
+          "appliesTo": "Runesmith"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Runelord may take Magic Items and/or Runic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Runelord may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Runelord may take Magic Items and/or Runic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Runelord"
         }
       ],
       "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (2), Relentless, Resolute",
@@ -617,28 +569,16 @@
           "raw": "May have Wards of Grimnir +20 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Dragon Slayer may take Magic Items and/or Runic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points",
+          "appliesTo": "Dragon Slayer"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemon Slayer may take Magic Items and/or Runic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points",
+          "appliesTo": "Daemon Slayer"
         }
       ],
       "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
@@ -731,28 +671,16 @@
           "raw": "May have Wards of Grimnir +20 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Dragon Slayer may take Magic Items and/or Runic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points",
+          "appliesTo": "Dragon Slayer"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemon Slayer may take Magic Items and/or Runic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points",
+          "appliesTo": "Daemon Slayer"
         }
       ],
       "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",

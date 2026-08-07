@@ -126,28 +126,16 @@
           "raw": "One Paladin may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Paladin may take one Virtue and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Paladin"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Baron may take one Virtue and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Baron"
         }
       ],
       "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation",
@@ -285,28 +273,16 @@
           "raw": "One Paladin may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Paladin may take one Virtue and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Paladin"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Baron may take one Virtue and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Baron"
         }
       ],
       "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation",
@@ -377,28 +353,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Grail Damsel may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points",
+          "appliesTo": "Grail Damsel"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Prophetess may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Prophetess"
         }
       ],
       "specialRules": "Blessing of the Lady, Magic Resistance (1)",
@@ -469,28 +433,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Grail Damsel may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points",
+          "appliesTo": "Grail Damsel"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Prophetess may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Prophetess"
         }
       ],
       "specialRules": "Blessing of the Lady, Magic Resistance (1)",

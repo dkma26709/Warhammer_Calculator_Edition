@@ -151,28 +151,21 @@
           "raw": "One Scion may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Scion may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Scion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Count may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Count may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Count may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Count"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "The Red Thirst, Vampiric",
@@ -335,28 +328,21 @@
           "raw": "One Scion may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Scion may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Scion"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Count may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Count may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Count may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Count"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "The Red Thirst, Vampiric",
@@ -444,28 +430,21 @@
           "raw": "One Acolyte may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Acolyte may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Acolyte"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Master may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Master may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Master may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Master"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "The Red Thirst, Vampiric",
@@ -553,28 +532,21 @@
           "raw": "One Acolyte may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Acolyte may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Acolyte"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Master may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Master may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Master may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Master"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "The Red Thirst, Vampiric",
@@ -753,28 +725,16 @@
           "raw": "One Courtesan may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Courtesan may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Courtesan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Courtesan may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Courtesan"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Lady may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Lady may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Lady may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Lady"
         }
       ],
       "specialRules": "Dodge (6+), The Red Thirst, Vampiric",
@@ -953,28 +913,16 @@
           "raw": "One Courtesan may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Courtesan may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Courtesan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Courtesan may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Courtesan"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Lady may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Lady may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Lady may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Lady"
         }
       ],
       "specialRules": "Dodge (6+), The Red Thirst, Vampiric",
@@ -1122,28 +1070,21 @@
           "raw": "One Kastellan may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Kastellan may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Kastellan"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Lord may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Lord may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Lord may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Lord"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "The Red Thirst, Vampiric",
@@ -1293,28 +1234,21 @@
           "raw": "One Kastellan may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Kastellan may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Kastellan"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Lord may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Lord may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Lord may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Lord"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "The Red Thirst, Vampiric",
@@ -1402,28 +1336,21 @@
           "raw": "One Ghoul Prince may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Ghoul Prince"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Ghoul King may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Ghoul King may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Ghoul King may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Ghoul King"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Hatred, Natural Armour (6+), The Red Thirst, Vampiric",
@@ -1509,28 +1436,21 @@
           "raw": "One Ghoul Prince may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Ghoul Prince"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Ghoul King may take Vampiric Powers and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Ghoul King may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Ghoul King may take Vampiric Powers and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Ghoul King"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
+          "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Hatred, Natural Armour (6+), The Red Thirst, Vampiric",
@@ -1613,28 +1533,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Necromancer may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Necromancer may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Necromancer may take Magic Items up to a total of 50 points",
+          "appliesTo": "Necromancer"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Master Necromancer may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Master Necromancer may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Master Necromancer may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Master Necromancer"
         }
       ],
       "specialRules": null,
@@ -1717,28 +1625,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Necromancer may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Necromancer may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Necromancer may take Magic Items up to a total of 50 points",
+          "appliesTo": "Necromancer"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Master Necromancer may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Master Necromancer may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Master Necromancer may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Master Necromancer"
         }
       ],
       "specialRules": null,
@@ -1904,28 +1800,16 @@
           "raw": "One Wight Lord may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Wight Lord may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Wight Lord may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Wight Lord may take Magic Items up to a total of 50 points",
+          "appliesTo": "Wight Lord"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Wight King may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Wight King may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Wight King may take Magic Items up to a total of 100 points",
+          "appliesTo": "Wight King"
         }
       ],
       "specialRules": "Killing Blow, Magical Attacks, Spectral Steeds, Undead",
@@ -2035,28 +1919,16 @@
           "raw": "One Wight Lord may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Wight Lord may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Wight Lord may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Wight Lord may take Magic Items up to a total of 50 points",
+          "appliesTo": "Wight Lord"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Wight King may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Wight King may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Wight King may take Magic Items up to a total of 100 points",
+          "appliesTo": "Wight King"
         }
       ],
       "specialRules": "Killing Blow, Magical Attacks, Spectral Steeds, Undead",

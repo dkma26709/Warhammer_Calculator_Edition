@@ -156,15 +156,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Big Names and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Big Names and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "big_names",
           "raw": "May take Big Names and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -436,15 +434,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Big Names and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Big Names and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "big_names",
           "raw": "May take Big Names and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -633,15 +629,13 @@
           "raw": "May be mounted on a Stonehorn (replacing the Rider) +250 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Big Names and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Big Names and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "big_names",
           "raw": "May take Big Names and/or Magic Items up to a total of 50 points"
         }
       ],

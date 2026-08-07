@@ -42,6 +42,15 @@ public record UnitOption
     /// <summary>Points limit for magic items or magic standards.</summary>
     public int? PointsLimit { get; init; }
 
+    /// <summary>
+    /// The entry this option belongs to, when the army book named one ("A Captain may take
+    /// Magic Items up to a total of 50 points"). A single options block often covers several
+    /// entries, so every one of them carries all the block's options; this is what tells them
+    /// apart. Null when the line was written without a name, which means it applies to whoever
+    /// holds it.
+    /// </summary>
+    public string? AppliesTo { get; init; }
+
     /// <summary>Descriptive name for wizard_upgrade or upgrade options.</summary>
     public string? Upgrade { get; init; }
 
