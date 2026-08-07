@@ -6,13 +6,14 @@ Reference for AI agents (and humans) working in this repo. Verified against the 
 
 A **Blazor WebAssembly (.NET 10)** app that simulates **Warhammer Armies Project (WAP) 9th Edition** tabletop combat using Monte Carlo dice simulation (default 10,000 iterations), plus a full army list builder. All game data lives in static JSON files under `wwwroot/data/`; there is no backend server.
 
-Three pages:
+Four pages:
 
 | Route | File | Purpose |
 |---|---|---|
 | `/` and `/matchup` | `Warhammer/Pages/Matchup.razor` | Two units head-to-head: win %, wounds, combat-resolution breakdown, distributions |
 | `/gauntlet` | `Warhammer/Pages/Gauntlet.razor` | One "subject" unit profiled against a list of opponent matchups |
 | `/builder` | `Warhammer/Pages/Builder.razor` | Army list builder with WAP composition validation, magic items, banners, wizard lores, JSON export/import, LocalStorage autosave |
+| `/roster` | `Warhammer/Pages/Roster.razor` | Printable battle roster for the current list — stats, saves, equipment, rules and points under Characters/Core/Special/Rare headings. Prints via the browser's own Save-as-PDF |
 
 ## Build / Run / Test
 
@@ -37,7 +38,7 @@ dotnet build Warhammer/Warhammer.sln
 ```
 Warhammer/                  # Main Blazor WASM project (also contains Warhammer.sln)
 ├── Program.cs              # Entry point + DI registration
-├── Pages/                  # Matchup, Gauntlet, Builder
+├── Pages/                  # Matchup, Gauntlet, Builder, Roster
 ├── Components/             # Reusable Razor components. UnitConfigurator is a thin shell
 │                           #   composing UnitOptionsEditor, WizardConfigPanel,
 │                           #   MagicBannerSelector, CommandGroupPanel, FactionAbilityPanel,
@@ -96,6 +97,7 @@ Data flows **upward**: JSON → Services (load/cache) → Domain models → Calc
 | `CombatEngine` | Transient | Monte Carlo simulation |
 | `ArmyListValidator` | Singleton | WAP composition rules (percent caps, 0-X per army, duplicates, General/BSB) |
 | `ArmyListSerializer` | Scoped | ArmyList ↔ JSON DTO (export/import/autosave) |
+| `ArmyRosterBuilder` | Scoped | ArmyList → `RosterDocument`, the flattened battle sheet the `/roster` print view renders |
 | `PortraitService` | Scoped | Resolves portrait URLs against `portrait-manifest.json`; graceful fallback if missing |
 
 Pages call `Repo.EnsureLoadedAsync()` (and `Portraits.EnsureLoadedAsync()`) before use; all loads are idempotent and cached.
@@ -122,8 +124,9 @@ The Calculator layer is **stateless and UI-free** — it takes configured units 
 - **Portraits**: run `tools/PortraitFetcher` (console app; supports per-faction and `--dry-run` args) to fetch PNGs from the Total War fandom wiki and regenerate `portrait-manifest.json`. `PortraitService.Slugify` must stay in sync with the fetcher's filename slugging. Manual name mismatches go in `tools/PortraitFetcher/portrait-overrides.json`.
 - **Builder state vs simulation state.** `UnitConfiguration.Loadout` (an `ArmyLoadout`) holds army-builder-only state: custom name, wizard level/lore/spells, magic banner, General/BSB flags, faction upgrade picks. The combat engine never reads `Loadout`. Simulation-relevant choices (model count, weapon, command group, modifiers) live directly on `UnitConfiguration`.
 - **Faction abilities are modifiers.** Shadow Dances and Tree Aspects (Wood Elves) compile to `UnitModifier` instances via `UnitConfiguration.FactionAbilityModifiers`, flowing through `EffectiveSpecialRules`/`AggregateModifier` like magic items. The Calculator has no faction-specific enums — add new faction abilities the same way, not as engine special cases. (Tree Whack remains a rule-flag-gated attack mode in `AttackResolver`.)
-- **JS interop is minimal**: only `wwwroot/js/army-builder.js` (`window.armyBuilder`) for JSON file download and localStorage. Builder autosaves the single active list to localStorage.
+- **JS interop is minimal**: only `wwwroot/js/army-builder.js` (`window.armyBuilder`) for JSON file download, localStorage and `window.print()`. Builder autosaves the single active list to localStorage. Both localStorage keys are namespaced per game system and defined in one place, `ArmyListStorage` — the Builder writes the print key on the way to `/roster` rather than letting that page read the autosave, which is fire-and-forget and which a rename never triggers.
 - **Styling**: Bootstrap 5 via CDN in `index.html`, dark-theme cards (`bg-dark text-light border-secondary`), custom rules in `wwwroot/css/app.css`. No CSS framework tooling.
+- **Printing is a print stylesheet, not a PDF library.** There is no backend to render PDFs and no JS dependency for it either: `/roster` is a light-on-white page and `app.css` carries an `@media print` block plus an `@page` A4 rule, so the browser's "Save as PDF" destination produces the file. Anything screen-only — the nav bar, the page's own buttons — carries `no-print`. Keep roster logic in `ArmyRosterBuilder` (tested) rather than in the Razor page (not tested).
 - **Testing style**: deterministic tests use fixed-seed `Random` or direct resolver calls; probabilistic tests assert Monte Carlo results within tolerance bands. Follow existing patterns in `TestHelpers.cs`.
 
 ## Docs Map (two folders, different purposes)

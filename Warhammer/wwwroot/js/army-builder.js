@@ -10,6 +10,9 @@ window.armyBuilder = {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     },
+    printPage: function () {
+        window.print();
+    },
     saveLocal: function (key, value) {
         try { localStorage.setItem(key, value); } catch (_) { }
     },
