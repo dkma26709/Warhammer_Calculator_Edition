@@ -243,13 +243,16 @@ public record ParsedSpecialRules
         var allNames = new List<string>();
         var scoped = new List<ScopedRules>();
 
-        // Split by comma, handling parenthetical values
-        var parts = SplitRules(text);
+        var parts = SplitIntoRuleParts(text);
 
         foreach (var part in parts)
         {
-            var (name, param) = ExtractNameAndParam(part.Trim());
+            var (name, rawParam) = ExtractNameAndParam(part.Trim());
             if (string.IsNullOrWhiteSpace(name)) continue;
+
+            // "(see Warrior Priest)" is the book pointing at where the rule is written out, not a
+            // value or a scope. It belongs in neither the badge nor the parse.
+            var param = StripCrossReference(rawParam);
 
             var displayName = param != null ? $"{name} ({param})" : name;
             allNames.Add(displayName);
@@ -436,13 +439,87 @@ public record ParsedSpecialRules
         // Join lines where previous line ends with comma (wrapped text from PDF)
         text = Regex.Replace(text, @",\s*\n\s*", ", ");
 
-        // Truncate at \n followed by all-caps word (3+ chars) or bullet — next unit header or description
-        var cutoff = Regex.Match(text, @"\n(?=[A-Z]{3,}|•)");
+        // Truncate at \n followed by an all-caps word (3+ chars) — the next unit's header. Bullets
+        // are deliberately not a cutoff any more: they introduce rule definitions, which
+        // SplitIntoRuleParts reduces to their names rather than discarding.
+        var cutoff = Regex.Match(text, @"\n(?=[A-Z]{3,})");
         if (cutoff.Success)
             text = text[..cutoff.Index];
 
+        // The PDF breaks a hyphenated word across lines and the extractor keeps the gap:
+        // "Wall- crawler", "Arch- Lector". Two spellings of one rule otherwise reach the badges.
+        text = HyphenBreak.Replace(text, "-");
+
+        // The extractor runs the next page's banner onto the end of the last rule —
+        // "Undead CHARACTERS", "Fly (9) MARKED SPECIAL UNITS". Left on, the banner rides into the
+        // rule name and the rule reaches no arm: the wap-v3 Tomb Banshee stopped being Undead and
+        // Scyla Anfingrimm stopped being Unbreakable. The books never set a rule name in caps, so
+        // a trailing all-caps run is always the banner.
+        var header = TrailingPageBanner.Match(text);
+        if (header.Success && header.Index > 0)
+            text = text[..header.Index];
+
         return text;
     }
+
+    private static readonly Regex HyphenBreak =
+        new(@"(?<=\p{L})-\s+(?=\p{L})", RegexOptions.Compiled);
+
+    private static readonly Regex TrailingPageBanner =
+        new(@"\s+[A-Z]{3,}(?:\s+\(?[A-Z]{2,}\)?)*\s*$", RegexOptions.Compiled);
+
+    /// <summary>
+    /// Split a rule list into the individual rules to parse.
+    /// </summary>
+    /// <remarks>
+    /// A unit's rule list is normally "Fear, Stubborn, Ward Save (5+)" — comma separated names.
+    /// But when a rule is unique to the unit the books write it out in full instead, as a bullet:
+    /// "• Militia: Models with this special rule can use the Support Fire …". Comma-splitting that
+    /// paragraph produced a badge holding the entire sentence plus a handful of prose fragments
+    /// ("add 1 dice to your dispel pool"), so a bulleted definition is reduced to the name in front
+    /// of its colon and is never comma-split — which also lets a rule name contain a comma, as
+    /// Kurdoss Valentian's "If I Cannot Rule, None Shall Rule!" does.
+    /// </remarks>
+    private static List<string> SplitIntoRuleParts(string text)
+    {
+        var segments = text.Split('•');
+
+        // Anything before the first bullet is an ordinary comma-separated list.
+        var parts = SplitRules(segments[0]);
+
+        foreach (var segment in segments.Skip(1))
+        {
+            int colon = segment.IndexOf(':');
+
+            // No colon in a name-length prefix means this bullet is prose or an options line
+            // rather than a rule definition, and it has no name to show.
+            if (colon < 0 || colon > MaxRuleNameLength) continue;
+
+            var name = segment[..colon].Trim();
+            if (name.Length > 0) parts.Add(name);
+        }
+
+        return parts;
+    }
+
+    /// <summary>How far into a bullet a colon can sit and still be a rule name's.</summary>
+    private const int MaxRuleNameLength = 60;
+
+    /// <summary>
+    /// Drop a "see …" cross-reference from a rule's parenthetical, leaving whatever else it holds.
+    /// "(see Cairn Wraiths)" carries nothing else and becomes null; "(Johann van Hal only, see
+    /// Witch Hunter Captain)" keeps the scope that resolves the rule to a model.
+    /// </summary>
+    private static string? StripCrossReference(string? param)
+    {
+        if (param == null) return null;
+
+        var stripped = CrossReference.Replace(param, "").Trim().TrimEnd(',', ' ');
+        return stripped.Length > 0 ? stripped : null;
+    }
+
+    private static readonly Regex CrossReference =
+        new(@"(?:^|,\s*)see\b.*$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private static List<string> SplitRules(string text)
     {
@@ -454,7 +531,7 @@ public record ParsedSpecialRules
         {
             if (text[i] == '(') depth++;
             else if (text[i] == ')') depth--;
-            else if (text[i] == ',' && depth == 0)
+            else if (text[i] == ',' && depth == 0 && StartsANewRule(text, i + 1))
             {
                 parts.Add(text[start..i]);
                 start = i + 1;
@@ -467,6 +544,20 @@ public record ParsedSpecialRules
         return parts;
     }
 
+    /// <summary>
+    /// Whether the text after a top-level comma begins a new rule rather than continuing the
+    /// current one's name. The books capitalise every rule name, so a lowercase word after the
+    /// comma is still inside the name it follows — Lokhir Fellheart's "At 'em, you Curs!" was
+    /// otherwise served as the two badges "At them" and "you Curs!".
+    /// </summary>
+    private static bool StartsANewRule(string text, int index)
+    {
+        while (index < text.Length && char.IsWhiteSpace(text[index]))
+            index++;
+
+        return index >= text.Length || !char.IsLower(text[index]);
+    }
+
     private static (string Name, string? Param) ExtractNameAndParam(string rule)
     {
         // The books end the last rule of a list with a full stop and the extractor keeps it.
@@ -475,7 +566,9 @@ public record ParsedSpecialRules
         // below requires the string to end at ')' ("Natural Armour (3+)."). Either way the rule
         // reaches no arm in Parse and is silently dropped — which is how four Giants stopped
         // being Stubborn and the Star Dragon lost its 2+ Natural Armour.
-        var trimmed = rule.Trim().TrimEnd('.', '*', ' ');
+        // The marker can lead as well as trail — wap-v2 and v3 both give Scyla Anfingrimm
+        // "*Random Attacks (D6+2)", and the asterisk cost him the rule in both.
+        var trimmed = rule.Trim().TrimStart('*', ' ').TrimEnd('.', '*', ' ');
 
         var match = Regex.Match(trimmed, @"^(.+?)\s*\(([^)]+)\)\s*\*?\s*$");
         if (match.Success)
@@ -499,11 +592,17 @@ public record ParsedSpecialRules
         return null;
     }
 
+    /// <summary>
+    /// The die roll a save needs, from either spelling of it. The books write "6+", but the
+    /// extractor produced "Natural Armour (+6)" for the wap-v2 Chaos Troll, and the transposed
+    /// form matched nothing and left the troll with no natural armour at all.
+    /// </summary>
     private static int? ParseSaveParam(string? param)
     {
         if (param == null) return null;
-        var m = Regex.Match(param, @"(\d)\+");
-        return m.Success ? int.Parse(m.Groups[1].Value) : null;
+        var m = Regex.Match(param, @"(?:(\d)\+|\+(\d))");
+        if (!m.Success) return null;
+        return int.Parse(m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value);
     }
 
     /// <summary>

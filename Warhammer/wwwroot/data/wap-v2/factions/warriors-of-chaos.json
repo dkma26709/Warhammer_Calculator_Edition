@@ -6457,7 +6457,7 @@
       "equipment": "Hand weapon",
       "magic": "Festus the Leechlord is a Level 2 Wizard who uses spells from the Lore of Nurgle.\nMAGIC ITEMS:\n• Pestilent Potions: Enchanted Item. At the beginning of each Close Combat phase Festus may either drink his\npotions, in which case he will immediately regain a single lost Wound, or try to force them down the throat of a\nsingle enemy model in base contact. If he attempts the latter, both players roll a D6 and add their model's\nunmodified Strength to the result. If your opponent's total is higher, nothing happens. If Festus' total is equal or\nhigher, his victim immediately suffers D3 Wounds which Ignores Armour saves. Any unsaved Wounds\ninflicted by Pestilent Potions count towards the combat result.",
       "options": [],
-      "specialRules": "of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks, Regeneration (4+), Will of Chaos",
+      "specialRules": "Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks, Regeneration (4+), Will of Chaos",
       "specialRuleDescriptions": [
         "Harbinger of Pestilence: Whilst Festus the Leechlord is in a unit, all models in that unit have the Poisoned Attacks special rule.",
         "Healing Elixirs: Whilst Festus the Leechlord is in a unit, all models in that unit have the Regeneration (6+) special rule.",
