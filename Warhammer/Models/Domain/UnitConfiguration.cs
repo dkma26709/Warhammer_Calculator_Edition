@@ -61,6 +61,14 @@ public class UnitConfiguration
 
     // ─── Capability queries (derived from the unit, not user state) ──
 
+    /// <summary>
+    /// How to refer to this entry in messages: the name the user gave it, qualified by the
+    /// book's name, so a list with three Captains says which one is meant.
+    /// </summary>
+    public string DisplayName => string.IsNullOrWhiteSpace(Loadout.CustomName)
+        ? ResolvedUnit.Name
+        : $"{Loadout.CustomName} ({ResolvedUnit.Name})";
+
     /// <summary>True when this unit has any wizard_upgrade option, indicating it can cast spells.</summary>
     public bool IsWizardCapable =>
         ResolvedUnit.Options.Any(o => o.IsType(OptionType.WizardUpgrade));

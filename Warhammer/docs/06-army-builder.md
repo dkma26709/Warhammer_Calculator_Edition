@@ -155,7 +155,8 @@ Import: file upload → validate schema → replace active list.
 - Mount dropdown on character configs (sourced from faction's CharacterMounts)
 - Wizard lore dropdown
 - **Spell selection at army-creation time** (picks individual spells from chosen lore, subject to wizard level — store on character, surface at simulation time)
-- Magic item budget indicator + cap enforcement (data is already on characters)
+- Magic item budget indicator + cap enforcement (data is already on characters) — **done**, see
+  [Magic Items](#magic-items) below
 
 ### Phase 4 — Magic banners
 - Banner slot on units with Standard Bearer
@@ -167,9 +168,40 @@ Import: file upload → validate schema → replace active list.
 - LocalStorage autosave
 - Import validation (schema version, faction match, unknown units → warnings)
 
+## Magic Items
+
+Allowances come from `options[]` entries of type `magic_items`, whose `pointsLimit` is the
+budget. An army book prints one options block for a page of entries, so an entry carries its
+neighbours' allowances as well as its own; `appliesTo` records the entry a line named, and
+`Unit.ResolveMagicItemAllowance` picks the right one (own name → unnamed → smallest).
+
+The picker itself only shows when an allowance resolved, so a mis-parsed allowance line is
+invisible in the UI rather than obviously broken — `MagicItemAllowanceTests` asserts against
+the shipped data that every line reading like an allowance parses as one.
+
+Item effects are **not** derived from the item's description text. Each selection carries a
+`UnitModifier` the user fills in by hand, and those feed the combat maths through
+`UnitConfiguration.AllModifiers`.
+
+Validated by `ArmyListValidator`:
+
+| Code | Severity | Rule |
+|---|---|---|
+| `MAGIC_ITEMS_NOT_ALLOWED` | Error | Items on an entry with no allowance |
+| `MAGIC_ITEMS_OVER_BUDGET` | Error | Spend above the entry's allowance |
+| `MAGIC_ITEM_CATEGORY_REPEATED` | Error | Two items from one category on one model |
+| `BANNER_NOT_ALLOWED` | Error | Magic standard on an entry that can't carry one |
+| `BANNER_OVER_BUDGET` | Error | Standard above the unit's banner allowance |
+| `DUPLICATE_MAGIC_ITEM` | Warning | Same item carried twice in the army |
+
+Duplicates are a warning rather than an error because the books exempt some items and the
+extracted item lists carry no flag saying which.
+
 ## Open Questions / Risks
 
 - **WAP percentages** documented above need user verification against the WAP rulebook PDF.
+- **One item per category** is enforced as an error on the strength of the 8th-edition
+  wording WAP inherits; worth confirming against the WAP magic items chapter.
 - ~~**Composition-rules-in-code vs JSON**: starting in code for speed. If rules move or become faction-specific, promote to `wwwroot/data/composition-rules.json`.~~ **Done** — wap-v3 differs from wap-v2 (merged `Characters` section, no Lords/Heroes sub-caps), so the percentages now live in `wwwroot/data/{system}/composition.json` and a list may override each limit with either a percentage or a flat points figure.
 - **0-1 per army detection**: requires scanning unit `notes` text for phrases like "0-1 per army". May need a structured field added during re-extraction.
 - **Character mount points**: mount entries have their own profiles; need to ensure character total points correctly include mount cost.

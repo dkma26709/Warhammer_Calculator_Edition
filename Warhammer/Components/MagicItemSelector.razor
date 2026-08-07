@@ -44,7 +44,7 @@
                 <option value="">— Add magic item —</option>
                 @foreach (var category in _groupedItems)
                 {
-                    <optgroup label="@FormatCategory(category.Key)">
+                    <optgroup label="@MagicItemCategories.Plural(category.Key)">
                         @foreach (var item in category)
                         {
                             var cost = ParsePoints(item.Points);
@@ -122,17 +122,6 @@
 
     private static double ParsePoints(string points) =>
         double.TryParse(points, out var v) ? v : 0;
-
-    private static string FormatCategory(string category) => category switch
-    {
-        "magic_weapon" => "Magic Weapons",
-        "magic_armour" => "Magic Armour",
-        "talisman" => "Talismans",
-        "arcane_item" => "Arcane Items",
-        "enchanted_item" => "Enchanted Items",
-        "magic_standard" => "Magic Standards",
-        _ => category,
-    };
 
     private static bool HasAnyEffect(UnitModifier m) =>
         m.StrengthBonus.HasValue || m.ToughnessBonus.HasValue || m.AttacksBonus.HasValue
