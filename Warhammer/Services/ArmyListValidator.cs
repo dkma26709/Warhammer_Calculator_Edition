@@ -155,8 +155,10 @@ public class ArmyListValidator
 
     /// <summary>
     /// Magic item rules: an entry may spend up to the allowance its army book prints, and no
-    /// model may hold two items from the same category. Duplicates across the army are only a
-    /// warning — the books exempt some items, and the extracted item lists don't record which.
+    /// model may hold two items from one of the six printed categories. Dwarf runes are exempt
+    /// from that limit — up to three go on a single item — but no master rune may be repeated
+    /// across the army. Other duplicates are only a warning: the books exempt some items, and
+    /// the extracted item lists don't record which.
     /// </summary>
     private static void CheckMagicItems(List<ValidationIssue> issues, ArmyList list)
     {
@@ -182,6 +184,7 @@ public class ArmyListValidator
                 }
 
                 foreach (var category in unit.SelectedMagicItems
+                             .Where(i => MagicItemCategories.HasOnePerModelLimit(i.Category))
                              .GroupBy(i => i.Category)
                              .Where(g => g.Count() > 1))
                 {
@@ -217,11 +220,21 @@ public class ArmyListValidator
         foreach (var group in carried.GroupBy(c => c.ItemName, StringComparer.OrdinalIgnoreCase)
                      .Where(g => g.Count() > 1))
         {
-            issues.Add(new(ValidationSeverity.Warning, "DUPLICATE_MAGIC_ITEM",
-                $"{group.Key} is carried {group.Count()} times " +
-                $"({string.Join(", ", group.Select(c => c.Unit.DisplayName))}) — " +
-                "most magic items may only be taken once per army",
-                group.First().Unit));
+            string repeated = $"{group.Key} is carried {group.Count()} times " +
+                              $"({string.Join(", ", group.Select(c => c.Unit.DisplayName))})";
+
+            if (MagicItemCategories.IsMasterRune(group.Key))
+            {
+                issues.Add(new(ValidationSeverity.Error, "MASTER_RUNE_REPEATED",
+                    $"{repeated} — no master rune may be used more than once per army",
+                    group.First().Unit));
+            }
+            else
+            {
+                issues.Add(new(ValidationSeverity.Warning, "DUPLICATE_MAGIC_ITEM",
+                    $"{repeated} — most magic items may only be taken once per army",
+                    group.First().Unit));
+            }
         }
     }
 

@@ -449,6 +449,76 @@ public class ArmyListValidatorTests
         Assert.Contains("Captain", issue.Message);
     }
 
+    // ─── Dwarf runes ─────────────────────────────────────────────
+    // "You may inscribe up to three runes onto an item ... Apart from the master runes other
+    // runes can be combined as you wish." The one-per-category limit is for the six printed
+    // lists; applying it to runes would reject a legal Dwarf loadout, and errors block export.
+
+    [Fact]
+    public void TwoRunesOfOneKind_OnOneItem_IsLegal()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 100);
+        GiveItem(lord, "Rune of Cleaving", MagicItemCategories.WeaponRune, 25);
+        GiveItem(lord, "Rune of Fury", MagicItemCategories.WeaponRune, 25);
+
+        Assert.Empty(V.Validate(ListWith(lord)));
+    }
+
+    [Fact]
+    public void ThreeRunesOfOneKind_IsStillLegal()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 100);
+        GiveItem(lord, "Rune of Stone", MagicItemCategories.ArmourRune, 5);
+        GiveItem(lord, "Rune of Iron", MagicItemCategories.ArmourRune, 10);
+        GiveItem(lord, "Rune of Preservation", MagicItemCategories.ArmourRune, 15);
+
+        Assert.Empty(V.Validate(ListWith(lord)));
+    }
+
+    [Fact]
+    public void TwoDifferentMasterRunes_OnOneModel_IsLegal()
+    {
+        // Rule 4 caps master runes per *item*, not per model — a runic weapon and runic
+        // armour may each carry one. Which item a rune sits on isn't modelled, so this
+        // deliberately passes rather than guessing.
+        var lord = MakeCharacter("Dwarf Lord", allowance: 100);
+        GiveItem(lord, "Master Rune of Smiting", MagicItemCategories.WeaponRune, 35);
+        GiveItem(lord, "Master Rune of Adamant", MagicItemCategories.ArmourRune, 30);
+
+        Assert.Empty(V.Validate(ListWith(lord)));
+    }
+
+    [Fact]
+    public void SameMasterRune_TwiceInTheArmy_FlagsError()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 50);
+        GiveItem(lord, "Master Rune of Smiting", MagicItemCategories.WeaponRune, 35);
+        var thane = MakeCharacter("Thane", allowance: 50);
+        GiveItem(thane, "Master Rune of Smiting", MagicItemCategories.WeaponRune, 35);
+
+        var issue = Assert.Single(V.Validate(ListWith(lord, thane)),
+            i => i.Code == "MASTER_RUNE_REPEATED");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+        Assert.Contains("Master Rune of Smiting", issue.Message);
+        Assert.DoesNotContain("MAGIC_ITEM_CATEGORY_REPEATED",
+            V.Validate(ListWith(lord, thane)).Select(i => i.Code));
+    }
+
+    [Fact]
+    public void SameOrdinaryRune_TwiceInTheArmy_OnlyWarns()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 50);
+        GiveItem(lord, "Rune of Cleaving", MagicItemCategories.WeaponRune, 25);
+        var thane = MakeCharacter("Thane", allowance: 50);
+        GiveItem(thane, "Rune of Cleaving", MagicItemCategories.WeaponRune, 25);
+
+        var issue = Assert.Single(V.Validate(ListWith(lord, thane)),
+            i => i.Code == "DUPLICATE_MAGIC_ITEM");
+
+        Assert.Equal(ValidationSeverity.Warning, issue.Severity);
+    }
+
     [Fact]
     public void Banner_OverItsAllowance_FlagsError()
     {

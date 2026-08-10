@@ -189,19 +189,57 @@ Validated by `ArmyListValidator`:
 |---|---|---|
 | `MAGIC_ITEMS_NOT_ALLOWED` | Error | Items on an entry with no allowance |
 | `MAGIC_ITEMS_OVER_BUDGET` | Error | Spend above the entry's allowance |
-| `MAGIC_ITEM_CATEGORY_REPEATED` | Error | Two items from one category on one model |
+| `MAGIC_ITEM_CATEGORY_REPEATED` | Error | Two items from one *printed* category on one model |
 | `BANNER_NOT_ALLOWED` | Error | Magic standard on an entry that can't carry one |
 | `BANNER_OVER_BUDGET` | Error | Standard above the unit's banner allowance |
-| `DUPLICATE_MAGIC_ITEM` | Warning | Same item carried twice in the army |
+| `MASTER_RUNE_REPEATED` | Error | Same master rune twice in the army |
+| `DUPLICATE_MAGIC_ITEM` | Warning | Any other item carried twice in the army |
 
 Duplicates are a warning rather than an error because the books exempt some items and the
-extracted item lists carry no flag saying which.
+extracted item lists carry no flag saying which. Master runes are the exception — the rune
+rules state flatly that none may be used more than once per army, so those are an error.
+
+### Dwarf runes
+
+The item lists hold eleven categories, not six: `dwarfs-extras.json` adds `weapon_rune`,
+`armour_rune`, `talismanic_rune`, `banner_rune` and `engineering_rune` (157 items across both
+systems), and they reach the picker like any other item. Runes answer to their own rules,
+quoted in the data itself — the RULES OF THE RUNES text sits in `Banner Of Lost Holds`'
+description:
+
+> 1) No single item can have more than three runes. … 4) No master rune may be used more than
+> once per army, and no more than one master rune can be inscribed on an item. 5) Apart from
+> the master runes other runes can be combined as you wish.
+
+(That is the wap-v2 numbering; wap-v3 drops the weapon-runes-on-hand-weapons clause and
+renumbers, so its master rune rule is 3.)
+
+So the one-per-model limit applies only to the six printed categories — see
+`MagicItemCategories.HasOnePerModelLimit`. Applying it to runes raised a false error against a
+legal Dwarf loadout in every faction list that carries runes.
+
+**Not enforced**: rules 1 and 3, and the per-item half of rule 4, all count runes *per item*.
+A selection is a flat list with no notion of which weapon or armour a rune is inscribed on, so
+none of the three is checkable without modelling that. Dwarf loadouts therefore get less
+validation than other factions': the army-wide master rune check is the only rune rule enforced.
 
 ## Open Questions / Risks
 
 - **WAP percentages** documented above need user verification against the WAP rulebook PDF.
-- **One item per category** is enforced as an error on the strength of the 8th-edition
-  wording WAP inherits; worth confirming against the WAP magic items chapter.
+- **"Errors block export" (Phase 2, above) is not implemented.** `Builder.ExportList` serialises
+  and downloads unconditionally; no code path anywhere consults issue severity before exporting.
+  Validation is advisory — errors only colour a line red in the panel. Either wire the gate up or
+  strike the claim.
+- ~~**One item per category** is enforced as an error on the strength of the 8th-edition
+  wording WAP inherits; worth confirming against the WAP magic items chapter.~~ **Corroborated**
+  — the rune rules shipped in `dwarfs-extras.json` say "a runic item is no different from a
+  magic item, and all the usual rules for magic items still apply", which only reads as a
+  carve-out if the usual rules carry a per-category limit. Scoped to the six printed
+  categories; see [Dwarf runes](#dwarf-runes).
+- **The RULES OF THE RUNES chapter is mis-extracted** into `Banner Of Lost Holds`' description
+  in both systems — the banner's own rule is the first three lines, the rest is the chapter.
+  Same class as the trailing-page-banner artefact in the special rule parser. Needs an
+  extractor fix, not a hand-edit.
 - ~~**Composition-rules-in-code vs JSON**: starting in code for speed. If rules move or become faction-specific, promote to `wwwroot/data/composition-rules.json`.~~ **Done** — wap-v3 differs from wap-v2 (merged `Characters` section, no Lords/Heroes sub-caps), so the percentages now live in `wwwroot/data/{system}/composition.json` and a list may override each limit with either a percentage or a flat points figure.
 - **0-1 per army detection**: requires scanning unit `notes` text for phrases like "0-1 per army". May need a structured field added during re-extraction.
 - **Character mount points**: mount entries have their own profiles; need to ensure character total points correctly include mount cost.

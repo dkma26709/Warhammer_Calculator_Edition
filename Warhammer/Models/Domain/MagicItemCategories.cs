@@ -1,8 +1,9 @@
 namespace Warhammer.Models.Domain;
 
 /// <summary>
-/// The six categories the magic item lists are printed under. The JSON keys come straight
-/// from the army books; these turn them into something readable.
+/// The category keys magic items carry in the data. Six are the lists every army book prints.
+/// Five more are the Dwarf runes, which sit in the same item lists but answer to their own
+/// rules — see <see cref="HasOnePerModelLimit"/> and <see cref="IsMasterRune"/>.
 /// </summary>
 public static class MagicItemCategories
 {
@@ -13,6 +14,17 @@ public static class MagicItemCategories
     public const string EnchantedItem = "enchanted_item";
     public const string MagicStandard = "magic_standard";
 
+    public const string WeaponRune = "weapon_rune";
+    public const string ArmourRune = "armour_rune";
+    public const string TalismanicRune = "talismanic_rune";
+    public const string BannerRune = "banner_rune";
+    public const string EngineeringRune = "engineering_rune";
+
+    private static readonly HashSet<string> OnePerModel =
+    [
+        MagicWeapon, MagicArmour, Talisman, ArcaneItem, EnchantedItem, MagicStandard,
+    ];
+
     private static readonly Dictionary<string, (string One, string Many)> Names = new()
     {
         [MagicWeapon] = ("magic weapon", "Magic Weapons"),
@@ -21,7 +33,26 @@ public static class MagicItemCategories
         [ArcaneItem] = ("arcane item", "Arcane Items"),
         [EnchantedItem] = ("enchanted item", "Enchanted Items"),
         [MagicStandard] = ("magic standard", "Magic Standards"),
+        [WeaponRune] = ("weapon rune", "Weapon Runes"),
+        [ArmourRune] = ("armour rune", "Armour Runes"),
+        [TalismanicRune] = ("talismanic rune", "Talismanic Runes"),
+        [BannerRune] = ("banner rune", "Banner Runes"),
+        [EngineeringRune] = ("engineering rune", "Engineering Runes"),
     };
+
+    /// <summary>
+    /// Whether a model may hold only one item of this category. True of the six printed lists.
+    /// False of runes: a Dwarf may inscribe up to three on one item, and apart from master
+    /// runes they combine freely.
+    /// </summary>
+    public static bool HasOnePerModelLimit(string category) => OnePerModel.Contains(category);
+
+    /// <summary>
+    /// Whether an item is a master rune, which may be used only once per army. The army books
+    /// name every one of them "Master Rune of ...".
+    /// </summary>
+    public static bool IsMasterRune(string itemName) =>
+        itemName.StartsWith("Master Rune", StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Heading for a whole category, e.g. "Magic Weapons".</summary>
     public static string Plural(string category) =>

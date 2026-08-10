@@ -120,6 +120,34 @@ public class MagicItemAllowanceTests
     }
 
     /// <summary>
+    /// The item lists hold more categories than the six each book prints — Dwarf runes are in
+    /// there too. An unrecognised key is not loud: <see cref="MagicItemCategories.Plural"/>
+    /// returns it verbatim, so the picker shows an "weapon_rune" heading, and the validator
+    /// silently treats it as a category a model may hold only one of.
+    /// </summary>
+    [Theory]
+    [MemberData(nameof(SystemFactions))]
+    public void EveryShippedItemCategory_IsRecognised(string systemKey, string faction)
+    {
+        var path = Path.Combine(
+            TestPaths.SystemDataDir(systemKey), "factions", $"{faction}-extras.json");
+        if (!File.Exists(path))
+            return;
+
+        var extras = JsonSerializer.Deserialize<FactionExtrasData>(
+            File.ReadAllText(path), JsonOptions)!;
+
+        var unnamed = extras.MagicItems
+            .Select(i => i.Category)
+            .Where(c => !string.IsNullOrWhiteSpace(c))
+            .Distinct()
+            .Where(c => MagicItemCategories.Plural(c) == c)
+            .ToList();
+
+        Assert.Empty(unnamed);
+    }
+
+    /// <summary>
     /// Every entry the book gives an allowance to must resolve to exactly one budget, or the
     /// builder shows no magic item picker at all.
     /// </summary>
