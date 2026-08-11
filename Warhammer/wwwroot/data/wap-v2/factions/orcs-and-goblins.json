@@ -2741,15 +2741,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Orc",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional Orc +5 points"
         },
         {
@@ -3045,27 +3039,15 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Goblin",
-              "points": 3,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 3,
+          "perModel": false,
           "raw": "May take an additional Goblin +3 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Giant Wolf",
-              "points": 3,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 3,
+          "perModel": false,
           "raw": "May take an additional Giant Wolf +3 points"
         },
         {

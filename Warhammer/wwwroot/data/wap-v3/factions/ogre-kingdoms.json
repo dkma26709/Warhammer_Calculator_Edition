@@ -409,15 +409,9 @@
       "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Beasts\n• Death\n• Great Maw\n• Heavens\nAt least one of them must choose their spells from the Lore of the Great Maw.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -532,15 +526,9 @@
       "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Beasts\n• Death\n• Great Maw\n• Heavens\nAt least one of them must choose their spells from the Lore of the Great Maw.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -784,15 +772,9 @@
       "magic": "A Firebelly is a Level 1 Wizard who uses the Lore of Fire.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -2585,15 +2567,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Beast Rider",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Beast Rider +10 points"
         },
         {
@@ -2712,15 +2688,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Beast Rider",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Beast Rider +10 points"
         },
         {
@@ -2839,15 +2809,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Beast Rider",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Beast Rider +10 points"
         }
       ],

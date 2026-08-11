@@ -391,15 +391,9 @@
       "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following\nLores of Magic:\n• Beasts\n• Dark\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -493,15 +487,9 @@
       "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following\nLores of Magic:\n• Beasts\n• Dark\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -2495,15 +2483,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Crew 10 points",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Crew 10 points"
         }
       ],

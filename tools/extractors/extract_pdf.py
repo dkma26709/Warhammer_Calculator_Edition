@@ -394,6 +394,15 @@ def classify_option(text):
         cost, _ = parse_cost(m.group(2))
         return {"type": "wizard_upgrade", "upgrade": m.group(1), "points": cost, "raw": raw}
 
+    # --- Wizard level bought as an "additional" ---
+    # "May take an additional Wizard Level +35 points" buys a level, not a model, so it has to be
+    # caught before the additional_model pattern below. The books write the level either way.
+    m = re.search(r'(?:an additional|another)\s+Wizard Level', raw, re.IGNORECASE)
+    if m:
+        cost, _ = parse_cost(raw)
+        return {"type": "wizard_upgrade", "upgrade": "Additional Wizard Level",
+                "points": cost, "raw": raw}
+
     # --- General upgrade (Skirmishers, Ambushers, Inner Circle, Knightly Order, etc.) ---
     m = re.match(r'May be upgraded to (?:a )?(.+)', raw, re.IGNORECASE)
     if m:
@@ -458,6 +467,21 @@ def classify_option(text):
     if m:
         return {"type": "equipment", "action": "choose", "choices": [], "raw": raw}
 
+    # --- Additional model: "May take an additional Skink +5 points/model" ---
+    # Must come before the general "May take" below. Ordered the other way, that pattern
+    # swallowed every one of these and stored it as a wargear checkbox called "an additional
+    # Skink" — no shipped file held a single additional_model option.
+    #
+    # "An additional" is ambiguous in the books: an additional Skink is a model, an additional
+    # hand weapon is gear. EQUIPMENT_CANONICAL is the discriminator — anything it knows is gear
+    # and falls through to the equipment rule below.
+    m = re.match(r'May take an additional (.+)', raw, re.IGNORECASE)
+    if m:
+        subject = re.split(r'\s+[+]\s*[\d.]|\s+free', m.group(1))[0].strip()
+        if not (is_known_equipment(subject) or is_known_equipment(f"additional {subject}")):
+            cost, per_model = parse_cost(m.group(1))
+            return {"type": "additional_model", "points": cost, "perModel": per_model, "raw": raw}
+
     # --- Simple equipment add: "May take spears +1 point/model" ---
     m = re.match(r'May take (.+)', raw, re.IGNORECASE)
     if m:
@@ -468,12 +492,6 @@ def classify_option(text):
         return {"type": "equipment", "action": "add",
                 "choices": [{"name": normalize_equipment_name(name_part), "points": cost, "perModel": per_model}],
                 "raw": raw}
-
-    # --- Additional model: "May take an additional Skink +5 points/model" ---
-    m = re.match(r'May take an additional (.+)', raw, re.IGNORECASE)
-    if m:
-        cost, per_model = parse_cost(m.group(1))
-        return {"type": "additional_model", "points": cost, "perModel": per_model, "raw": raw}
 
     # --- May have (alternative to "May take") ---
     m = re.match(r'May have (.+)', raw, re.IGNORECASE)
@@ -499,17 +517,10 @@ def classify_option(text):
     return {"type": "other", "raw": raw}
 
 
-def normalize_equipment_name(name):
-    """Normalize equipment names for consistent matching across units.
-    Strips articles, pluralizes/singularizes to canonical form."""
-    name = name.strip().rstrip('.')
-    # Remove leading articles
-    name = re.sub(r'^(?:an?\s+|the\s+)', '', name, flags=re.IGNORECASE)
-    # Canonical lowercase for matching
-    lower = name.lower()
-
-    # Map common variations to canonical names
-    canonical = {
+# Map common variations to canonical names. Module level because the classifier queries it as
+# a vocabulary as well as using it to rename: "May take an additional X" is a model when X is
+# not gear and a second weapon when it is, and this dict is the only thing that knows which.
+EQUIPMENT_CANONICAL = {
         # Melee weapons
         'spear': 'spear', 'spears': 'spear',
         'pike': 'pike', 'pikes': 'pike',
@@ -550,8 +561,24 @@ def normalize_equipment_name(name):
         'hochland long rifle': 'hochland long rifle',
         'grenade launching blunderbuss': 'grenade launching blunderbuss',
         'fireleech bolas': 'fireleech bolas',
-    }
-    return canonical.get(lower, name)
+}
+
+
+def strip_articles(name):
+    """"an additional hand weapon" -> "additional hand weapon"."""
+    return re.sub(r'^(?:an?\s+|the\s+)', '', name.strip().rstrip('.'), flags=re.IGNORECASE)
+
+
+def normalize_equipment_name(name):
+    """Normalize equipment names for consistent matching across units.
+    Strips articles, pluralizes/singularizes to canonical form."""
+    stripped = strip_articles(name)
+    return EQUIPMENT_CANONICAL.get(stripped.lower(), stripped)
+
+
+def is_known_equipment(name):
+    """Whether this names gear the books arm models with, rather than a model."""
+    return strip_articles(name).lower() in EQUIPMENT_CANONICAL
 
 
 def parse_sub_choice(text):

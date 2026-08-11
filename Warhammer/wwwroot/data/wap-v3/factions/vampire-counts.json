@@ -379,15 +379,9 @@
       "magic": "• Death\n• Heavens\n• Metal\n• Necromancy\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -481,15 +475,9 @@
       "magic": "• Death\n• Heavens\n• Metal\n• Necromancy\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -1487,15 +1475,9 @@
       "magic": "A Necromancer is a Level 1 Wizard. A Master Necromancer is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Death\n• Necromancy",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -1579,15 +1561,9 @@
       "magic": "A Necromancer is a Level 1 Wizard. A Master Necromancer is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Death\n• Necromancy",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -2243,15 +2219,9 @@
       "magic": "A Strigany Mystic is a Level 1 Wizard who uses one of the following Lores of Magic:\n• Heavens\n• Necromancy",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {

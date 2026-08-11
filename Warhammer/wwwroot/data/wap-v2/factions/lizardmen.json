@@ -2010,15 +2010,9 @@
           "raw": "May take shields +2 points/model"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Skink",
-              "points": 5,
-              "perModel": true
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": true,
           "raw": "May take an additional Skink +5 points/model"
         },
         {
@@ -2373,15 +2367,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Skink",
-              "points": 3,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 3,
+          "perModel": false,
           "raw": "May take an additional Skink +3 points"
         },
         {

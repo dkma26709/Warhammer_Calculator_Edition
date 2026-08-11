@@ -2258,15 +2258,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Crew 11 points",
-              "points": 11,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 11,
+          "perModel": false,
           "raw": "May take an additional Crew 11 points"
         }
       ],

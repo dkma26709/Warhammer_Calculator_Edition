@@ -397,15 +397,9 @@
       "magic": "A Battle Wizard is a Level 1 Wizard. A Battle Wizard Lord is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -492,15 +486,9 @@
       "magic": "A Battle Wizard is a Level 1 Wizard. A Battle Wizard Lord is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -3757,15 +3745,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
@@ -3815,15 +3797,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
@@ -3976,15 +3952,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
@@ -4034,15 +4004,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],

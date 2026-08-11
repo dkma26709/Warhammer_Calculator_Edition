@@ -9,6 +9,12 @@ misparse turns into a meaningless "+50 points" checkbox instead of a points budg
 Pass --all-types to rewrite every option whose classification has changed.
 
     python reclassify_options.py ../../Warhammer/wwwroot/data --dry-run
+
+Option indices are preserved: an existing option is rewritten in place and anything new is
+appended, because saved army lists address a unit's options by index. That guarantee is this
+script's reason to exist and does not extend to `extract_pdf.py` — a full re-extraction rebuilds
+each file from the PDF and may renumber a unit's options for any number of reasons, so saved
+lists have to be treated as stale after one either way.
 """
 import argparse
 import json
@@ -68,16 +74,22 @@ def has_companion(options, companion):
     )
 
 
-def dedupe_companions(options):
-    """Drop repeat faction_upgrade options; each family only needs to be offered once."""
+def dedupe_new_companions(companions):
+    """One companion per upgrade family, over the batch about to be appended.
+
+    Scoped to the new batch and never to the unit's existing options: dropping an option
+    mid-list shifts every index after it, which is the very thing the append-at-the-end rule in
+    process_unit exists to avoid. A legacy duplicate already in the file is left alone —
+    repairing that is a migration of its own, not something this pass should do silently.
+    """
     seen = set()
     kept = []
-    for option in options:
-        if option.get("type") == COMPANION_TYPE:
-            if option.get("factionUpgrade") in seen:
-                continue
-            seen.add(option.get("factionUpgrade"))
-        kept.append(option)
+    for companion in companions:
+        family = companion.get("factionUpgrade")
+        if family in seen:
+            continue
+        seen.add(family)
+        kept.append(companion)
     return kept
 
 
@@ -114,8 +126,8 @@ def process_unit(unit, all_types, changes):
     if len(changes) == changed_before:
         return 0
 
-    options.extend(companions)
-    unit["options"] = dedupe_companions(options)
+    options.extend(dedupe_new_companions(companions))
+    unit["options"] = options
     return len(changes) - changed_before
 
 

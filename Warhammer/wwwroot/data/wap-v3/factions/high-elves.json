@@ -377,15 +377,9 @@
       "magic": "• Beasts\n• Death\n• Heavens\n• High\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -479,15 +473,9 @@
       "magic": "• Beasts\n• Death\n• Heavens\n• High\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -876,15 +864,9 @@
       "magic": "A Dragon Mage is a Level 1 Wizard who uses spells from the Lore of Fire.\nMAGIC ITEMS:\n• Sunstaff: Arcane Item. Staff. Bound Spell (Level 1, cast on 4+). This item contains an augment spell can be\ncast on the Wizard themselves. Until the start of their next Magic phase, the Wizard gains +1 Attack, +3\nStrength, the Flaming Attacks special rule and always Hits on the roll of a 2+ in close combat.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -2319,15 +2301,9 @@
           "raw": "May take medium armour +1 point/Crew"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Crew 10 points",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Crew 10 points"
         }
       ],

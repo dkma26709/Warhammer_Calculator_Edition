@@ -385,15 +385,9 @@
       "magic": "A Bray-Shaman is a Level 1 Wizard. A Great Bray-Shaman is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Chaos\n• Death\n• Shadow\n• Wild\nA Bray-Shaman or Great Bray-Shaman with the Mark of Tzeentch, Nurgle or Slaanesh must use the Lore of Tzeentch,\nNurgle, or Slaanesh, respectively.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -494,15 +488,9 @@
       "magic": "A Bray-Shaman is a Level 1 Wizard. A Great Bray-Shaman is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Chaos\n• Death\n• Shadow\n• Wild\nA Bray-Shaman or Great Bray-Shaman with the Mark of Tzeentch, Nurgle or Slaanesh must use the Lore of Tzeentch,\nNurgle, or Slaanesh, respectively.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {

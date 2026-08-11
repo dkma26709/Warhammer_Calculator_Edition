@@ -303,15 +303,9 @@
       "magic": "A Liche High Priest is a Level 3 Wizard who chooses spells from one of the following Lores of Magic:\n• Death\n• Light\n• Nehekhara",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -400,15 +394,9 @@
       "magic": "A Liche High Priest is a Level 3 Wizard who chooses spells from one of the following Lores of Magic:\n• Death\n• Light\n• Nehekhara",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {

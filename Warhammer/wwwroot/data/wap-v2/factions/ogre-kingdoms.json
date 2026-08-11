@@ -2263,15 +2263,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Ogre Beast Rider (armed with either a chaintrap or harpoon launcher)",
-              "points": 15,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 15,
+          "perModel": false,
           "raw": "May take an additional Ogre Beast Rider (armed with either a chaintrap or harpoon launcher) +15 points"
         }
       ],

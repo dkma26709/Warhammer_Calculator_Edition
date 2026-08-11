@@ -1158,15 +1158,9 @@
       "magic": "A Gaunt Summoner is a Level 3 Wizard who chooses spells from the Lore of Tzeentch. In addition, they\nknow the following spell:\n• Summon Daemons: Level 3, cast on 8+. Summon Daemons is a summoning spell with a range of 18\" that can\ntarget units of Pink Horrors, Brimstone Horrors, Screamers or Flamers. The target unit immediately gains D6\nWounds worth of models.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points May be mounted on a Disc of Tzeentch +25 points"
         },
         {
@@ -1214,15 +1208,9 @@
       "magic": "A Changecaster is a Level 1 Wizard who chooses spells from the Lore of Tzeentch.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {

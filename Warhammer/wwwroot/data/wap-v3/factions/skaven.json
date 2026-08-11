@@ -716,15 +716,9 @@
       "magic": "A Sorcerer is a Level 1 Wizard. A Sorcerer Lord is a Level 3 Wizard. They use the Lore of Stealth.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Sorcerer may take an additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "A Sorcerer may take an additional Wizard Level +35 points"
         },
         {
@@ -774,15 +768,9 @@
       "magic": "A Sorcerer is a Level 1 Wizard. A Sorcerer Lord is a Level 3 Wizard. They use the Lore of Stealth.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Sorcerer may take an additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "A Sorcerer may take an additional Wizard Level +35 points"
         },
         {
@@ -2840,15 +2828,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
