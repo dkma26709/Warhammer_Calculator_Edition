@@ -39,6 +39,19 @@ else if (_document == null)
 }
 else
 {
+    @if (_warnings.Count > 0)
+    {
+        <div class="no-print alert alert-warning m-3">
+            <strong>This sheet may be incomplete.</strong>
+            <ul class="mb-0 small">
+                @foreach (var warning in _warnings)
+                {
+                    <li>@warning</li>
+                }
+            </ul>
+        </div>
+    }
+
     <div class="roster-sheet">
 
         <header class="roster-head">
@@ -113,8 +126,7 @@ else
                         @if (entry.MagicItems.Count > 0)
                         {
                             @Line("Magic items", entry.MagicItems
-                                .Select(i => $"{i.Name} ({Points(i.Points)} pts)")
-                                .ToList())
+                                .Select(i => $"{i.Name} ({Points(i.Points)} pts)"))
                         }
 
                         @Line("Special rules", entry.SpecialRules)
@@ -135,6 +147,7 @@ else
     private RosterDocument? _document;
     private bool _loading = true;
     private string? _error;
+    private IReadOnlyList<string> _warnings = [];
 
     protected override async Task OnInitializedAsync()
     {
@@ -154,25 +167,51 @@ else
     }
 
     /// <summary>
-    /// Read the list the Builder handed over. The autosave is the fallback so the page still
-    /// works when it is opened directly — from a bookmark, or after a reload.
+    /// Read the list the Builder handed over, falling back to the autosave so the page still
+    /// works opened on its own — from a bookmark, or after a reload.
+    ///
+    /// The handover is single-use: the print key is cleared as soon as it is read, because it is
+    /// a snapshot of the moment Print was pressed and goes stale the instant the Builder is
+    /// touched again. Left in place it would outrank the fresher autosave for good, and every
+    /// later visit would print the same old list.
+    ///
+    /// A print key that fails to parse falls through to the autosave rather than giving up — a
+    /// half-written or older-schema snapshot shouldn't hide a list that is sitting right there.
     /// </summary>
     private async Task LoadAsync()
     {
         var system = SystemService.CurrentSystem;
-        var json = await Read(ArmyListStorage.PrintKey(system))
-                   ?? await Read(ArmyListStorage.ActiveKey(system));
 
-        if (string.IsNullOrWhiteSpace(json)) return;
+        var handover = await Read(ArmyListStorage.PrintKey(system));
+        if (handover != null) await Clear(ArmyListStorage.PrintKey(system));
+
+        if (await TryBuild(handover)) return;
+        await TryBuild(await Read(ArmyListStorage.ActiveKey(system)));
+    }
+
+    private async Task<bool> TryBuild(string? json)
+    {
+        if (string.IsNullOrWhiteSpace(json)) return false;
 
         var result = await Serializer.DeserializeAsync(json);
         if (!result.Success || result.List == null)
         {
             _error = string.Join("; ", result.Errors);
-            return;
+            return false;
         }
 
+        // A unit whose saved name no longer resolves is skipped by the deserializer with only a
+        // warning, so the sheet would otherwise print short with nothing to say why.
+        _warnings = result.Warnings;
+        _error = null;
         _document = RosterBuilder.Build(result.List);
+        return true;
+    }
+
+    private async Task Clear(string key)
+    {
+        try { await JS.InvokeVoidAsync("armyBuilder.clearLocal", key); }
+        catch { /* Storage unavailable; the read already succeeded, so nothing to recover. */ }
     }
 
     private async Task<string?> Read(string key)
@@ -196,13 +235,20 @@ else
 
     private void GoBack() => Navigation.NavigateTo("builder");
 
-    /// <summary>Points are whole numbers on a roster; halves only ever come from bad data.</summary>
-    private static string Points(double value) => value.ToString("F0");
+    /// <summary>
+    /// Points as they actually are. Half points are real WAP pricing — light armour at 0.5 a
+    /// model, and a few base profiles — so rounding each figure independently produced a sheet
+    /// that failed its own arithmetic: three entries at 52.5 printed "53" under a section
+    /// heading reading "158". A half is shown as a half so the columns add up.
+    /// </summary>
+    private static string Points(double value) =>
+        value == Math.Floor(value) ? value.ToString("F0") : value.ToString("F1");
 
     /// <summary>One labelled line of comma-separated values, omitted when there is nothing to say.</summary>
-    private static RenderFragment Line(string label, IReadOnlyList<string> values) => builder =>
+    private static RenderFragment Line(string label, IEnumerable<string> values) => builder =>
     {
-        if (values.Count == 0) return;
+        var joined = string.Join(", ", values);
+        if (joined.Length == 0) return;
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "roster-line");
@@ -210,7 +256,7 @@ else
         builder.AddAttribute(3, "class", "roster-label");
         builder.AddContent(4, label);
         builder.CloseElement();
-        builder.AddContent(5, string.Join(", ", values));
+        builder.AddContent(5, joined);
         builder.CloseElement();
     };
 }

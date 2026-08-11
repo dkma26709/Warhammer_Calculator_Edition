@@ -57,8 +57,7 @@ public class ArmyRosterBuilder
         {
             ArmyName = string.IsNullOrWhiteSpace(list.Name) ? "Untitled List" : list.Name.Trim(),
             FactionName = _repo.GetFactionDisplayName(list.Faction),
-            SystemName = GameSystems.All.FirstOrDefault(s => s.Key == _system.CurrentSystem)?.DisplayName
-                         ?? _system.CurrentSystem,
+            SystemName = GameSystems.DisplayNameFor(_system.CurrentSystem),
             TotalPoints = list.TotalPoints,
             PointsTarget = list.PointsTarget,
             Sections = sections,
@@ -138,21 +137,27 @@ public class ArmyRosterBuilder
     private static string Stat(int? value) => value?.ToString() ?? "*";
 
     /// <summary>
-    /// Every save the entry gets, already worked out. The armour figure comes from the same
-    /// calculation the combat engine uses, so the sheet and the simulator cannot disagree.
+    /// Every save the entry gets, already worked out, from the same calculations the combat
+    /// engine uses. The armour figure is the <em>unmodified</em> save, so it is the right
+    /// starting point for applying an attack's Armour Piercing at the table — the 2+ ceiling
+    /// applies to the modified save, which is where the engine clamps it.
     /// </summary>
-    private static IReadOnlyList<string> Saves(UnitConfiguration cfg)
+    private IReadOnlyList<string> Saves(UnitConfiguration cfg)
     {
         var saves = new List<string>();
         var modifier = cfg.ComputeBaseArmourModifier();
 
-        // A save can never be better than 2+, which is where the engine clamps it too.
-        saves.Add(modifier > 0 ? $"Armour {Math.Max(2, 7 - modifier)}+" : "Armour —");
+        saves.Add(modifier > 0 ? $"Armour {7 - modifier}+" : "Armour —");
 
         var rules = cfg.EffectiveSpecialRules;
         if (rules.WardSave is { } ward) saves.Add($"Ward {ward}+");
         if (rules.Regeneration is { } regeneration) saves.Add($"Regeneration {regeneration}+");
-        if (rules.Parry is { } parry) saves.Add($"Parry {parry}+");
+
+        // Parry and Dodge are save-type rules like the two above; the engine folds Dodge into
+        // the ward roll, so leaving it off the sheet loses a save the model actually gets.
+        var weapon = cfg.GetSelectedResolvedWeapon() ?? _repo.GetWeapon(cfg.SelectedWeapon);
+        if (cfg.BaseParry(weapon) is { } parry) saves.Add($"Parry {parry}+");
+        if (rules.Dodge is { } dodge) saves.Add($"Dodge {dodge}+");
 
         return saves;
     }
@@ -188,8 +193,7 @@ public class ArmyRosterBuilder
     {
         var items = new List<string>();
 
-        // The first line only, as the parser reads it — past the newline is prose.
-        foreach (var part in (cfg.UnitEntry.Equipment ?? "").Split('\n')[0].Split(','))
+        foreach (var part in EquipmentParser.SplitItems(cfg.UnitEntry.Equipment))
             if (Unmodelled(part) is { } item) items.Add(item);
 
         var options = cfg.UnitEntry.Options;
@@ -203,14 +207,31 @@ public class ArmyRosterBuilder
             var choice = option.Choices[choiceIndex];
 
             var replaced = choice.Replaces ?? option.Replaces;
-            if (option.Action == "replace" && replaced != null && Unmodelled(replaced) is { } gone)
-                items.RemoveAll(item => string.Equals(item, gone, StringComparison.OrdinalIgnoreCase));
+            if (option.IsAction(OptionAction.Replace) && replaced != null && Unmodelled(replaced) is { } gone)
+                items.RemoveAll(item => SameGear(item, gone));
 
             foreach (var name in choice.Name)
                 if (Unmodelled(name) is { } item) items.Add(item);
         }
 
         return items;
+    }
+
+    /// <summary>
+    /// Whether two equipment names are the same gear. An option's <c>replaces</c> is written in
+    /// whichever number the book used, so "Elven shortbows" has to match the "Elven shortbow" on
+    /// the equipment line — for gear the parser has no key for, the strings are all there is to
+    /// compare. Without this the replaced item stays on the sheet beside its replacement.
+    /// </summary>
+    private static bool SameGear(string a, string b) =>
+        string.Equals(Singular(a), Singular(b), StringComparison.OrdinalIgnoreCase);
+
+    private static string Singular(string name)
+    {
+        var trimmed = name.Trim();
+        return trimmed.EndsWith('s') && !trimmed.EndsWith("ss", StringComparison.OrdinalIgnoreCase)
+            ? trimmed[..^1]
+            : trimmed;
     }
 
     /// <summary>
@@ -283,9 +304,10 @@ public class ArmyRosterBuilder
     }
 
     /// <summary>
-    /// The book's rules for the entry, by name. Rules the book scopes to one model are in the
-    /// unit-wide name list already, and the mount's own are appended, so the sheet shows the
-    /// whole SPECIAL RULES line whichever arm each rule reaches.
+    /// The book's rules for the entry, by name — the whole SPECIAL RULES line, including the
+    /// ones the book scopes to a single model, which the unit-wide name list keeps. The mount's
+    /// set is concatenated for completeness and contributes nothing today:
+    /// <see cref="ParsedSpecialRules.ParseScoped"/> clears the name list on every scoped set.
     /// </summary>
     private static IReadOnlyList<string> SpecialRules(UnitConfiguration cfg) =>
         Unique([.. cfg.SpecialRules.AllRuleNames, .. cfg.MountSpecialRules.AllRuleNames]);

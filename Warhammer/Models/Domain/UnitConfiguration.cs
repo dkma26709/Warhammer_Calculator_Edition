@@ -283,6 +283,38 @@ public class UnitConfiguration
     }
 
     /// <summary>
+    /// The best Parry the model has before any combat modifier: its own special rule, its
+    /// weapon's, and a shield or buckler when it fights with a hand weapon. Null when it has
+    /// none. The negations that depend on the attacker — a Strength gap, or a split profile —
+    /// belong to the attack and are applied by <c>AttackResolver</c>, not here.
+    /// </summary>
+    /// <param name="selectedWeapon">
+    /// The resolved <see cref="SelectedWeapon"/>. Passed in because falling back to the core
+    /// weapon table needs the repository, which this type has no handle on.
+    /// </param>
+    public int? BaseParry(Weapon? selectedWeapon)
+    {
+        int? parry = EffectiveSpecialRules.Parry;
+
+        if (selectedWeapon?.Rules.Parry is { } weaponParry)
+            parry = parry is { } own ? Math.Min(own, weaponParry) : weaponParry;
+
+        if (SelectedWeapon == CloseCombatWeaponKey.HandWeapon)
+        {
+            foreach (var armourKey in EffectiveArmour)
+            {
+                if (ResolvedUnit.AvailableArmour.TryGetValue(armourKey, out var armour)
+                    && armour.ParryValue is { } shieldParry)
+                {
+                    parry = parry is { } best ? Math.Min(best, shieldParry) : shieldParry;
+                }
+            }
+        }
+
+        return parry;
+    }
+
+    /// <summary>
     /// Pre-compute base armour modifier from resolved <see cref="Armour"/> objects,
     /// including equipment upgrades. Uses <see cref="Unit.AvailableArmour"/> for lookup.
     /// </summary>
@@ -385,7 +417,7 @@ public class UnitConfiguration
         for (int i = 0; i < UnitEntry.Options.Count; i++)
         {
             var option = UnitEntry.Options[i];
-            if (option.Type != "equipment" || option.Choices == null) continue;
+            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
             if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
             if (choiceIdx >= option.Choices.Count) continue;
 
@@ -393,7 +425,7 @@ public class UnitConfiguration
 
             // Handle replace: remove the replaced item
             string? replaces = choice.Replaces ?? option.Replaces;
-            if (option.Action == "replace" && replaces != null)
+            if (option.IsAction(OptionAction.Replace) && replaces != null)
             {
                 if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
                     && replacedIsWeapon
@@ -424,7 +456,7 @@ public class UnitConfiguration
         for (int i = 0; i < UnitEntry.Options.Count; i++)
         {
             var option = UnitEntry.Options[i];
-            if (option.Type != "equipment" || option.Choices == null) continue;
+            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
             if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
             if (choiceIdx >= option.Choices.Count) continue;
 
@@ -432,7 +464,7 @@ public class UnitConfiguration
 
             // Handle replace: remove the replaced item
             string? replaces = choice.Replaces ?? option.Replaces;
-            if (option.Action == "replace" && replaces != null)
+            if (option.IsAction(OptionAction.Replace) && replaces != null)
             {
                 if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
                     && !replacedIsWeapon

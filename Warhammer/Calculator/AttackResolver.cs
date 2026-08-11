@@ -569,27 +569,11 @@ public class AttackResolver
 
     private int ResolveDefenderParry(UnitConfiguration defender, int attackerStrength, bool isMountAttack)
     {
-        int parryValue = defender.EffectiveSpecialRules.Parry ?? 7;
-
-        // Weapon Parry — use resolved weapon if available, fall back to enum lookup
+        // Own rule, weapon, and shield/buckler with a hand weapon — folded together by
+        // UnitConfiguration so the roster sheet prints the figure this rolls against.
         var defenderWeapon = defender.GetSelectedResolvedWeapon()
             ?? _repo.GetWeapon(defender.SelectedWeapon);
-        if (defenderWeapon != null && defenderWeapon.Rules.Parry.HasValue)
-            parryValue = Math.Min(parryValue, defenderWeapon.Rules.Parry.Value);
-
-        // Shield/Buckler Parry (only with hand weapon)
-        // Uses EffectiveArmour (base + upgrades) so an upgrade-added shield is detected.
-        if (defender.SelectedWeapon == CloseCombatWeaponKey.HandWeapon)
-        {
-            foreach (var armourKey in defender.EffectiveArmour)
-            {
-                if (defender.ResolvedUnit.AvailableArmour.TryGetValue(armourKey, out var armour)
-                    && armour.ParryValue.HasValue)
-                {
-                    parryValue = Math.Min(parryValue, armour.ParryValue.Value);
-                }
-            }
-        }
+        int parryValue = defender.BaseParry(defenderWeapon) ?? 7;
 
         int defenderS = defender.PrimaryProfile.S ?? 3;
         if (attackerStrength >= defenderS + 3 || defender.TroopType.HasSplitProfile)
