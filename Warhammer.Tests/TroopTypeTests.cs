@@ -1,4 +1,5 @@
 using Warhammer.Models.Domain;
+using Warhammer.Models.Enums;
 
 namespace Warhammer.Tests;
 
@@ -160,5 +161,50 @@ public class TroopTypeTests
         Assert.Equal(BaseTroopType.WarMachine, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(1, info.MinRankWidth);
+    }
+
+    [Theory]
+    [InlineData("Monster (Hydra) \nHANDLERS: 2 Beastmaster Apprentices (Dark Elf)", BaseTroopType.Monster)]
+    [InlineData("Monstrous Infantry (Skaven, Clan Moulder) \nHANDLERS: 1 Packmaster (Skaven)",
+        BaseTroopType.MonstrousInfantry)]
+    [InlineData("Monster (Daemon) \nHANDLER: 3 (Chaos Dwarf)", BaseTroopType.Monster)]
+    [InlineData("War Beast (Saurian) \nHANDLER: 3 Skinks (Lizardman, Skink)", BaseTroopType.WarBeasts)]
+    public void Parse_HandlerLineAfterANewline_ReadsTheFirstLineOnly(string raw, BaseTroopType expected)
+    {
+        // The pattern cannot cross a newline, so the whole match used to fail and these fell back
+        // to Infantry with unit strength 1 — a War Hydra fighting as a footsoldier.
+        var info = TroopTypeInfo.Parse(raw, TestHelpers.TroopTypeRulesFor(GameSystems.Default));
+
+        Assert.Equal(expected, info.BaseType);
+    }
+
+    /// <summary>
+    /// The shipped data rather than a hand-typed string: every unit in both systems must resolve
+    /// to the base type its own first line names. This is the guard that would have caught the
+    /// newline, which no unit test written against a tidy string could.
+    /// </summary>
+    [Theory]
+    [MemberData(nameof(FactionDeserializationTests.SystemFactions), MemberType = typeof(FactionDeserializationTests))]
+    public void EveryShippedTroopType_ResolvesToItsOwnFirstLine(string systemKey, string faction)
+    {
+        Assert.True(FactionKeyExtensions.TryFromJsonKey(faction, out var factionKey), faction);
+
+        var repo = TestHelpers.RepoFor(systemKey);
+        var units = repo.GetUnitsAsync(factionKey).GetAwaiter().GetResult();
+
+        var wrong = new List<string>();
+        foreach (var unit in units)
+        {
+            var raw = unit.RawEntry.TroopType;
+            if (string.IsNullOrWhiteSpace(raw) || !raw.Contains('\n')) continue;
+
+            var expected = TroopTypeInfo.Parse(
+                raw.Split('\n')[0], TestHelpers.TroopTypeRulesFor(systemKey)).BaseType;
+
+            if (unit.BaseModel.TroopType.BaseType != expected)
+                wrong.Add($"{unit.Name}: expected {expected}, got {unit.BaseModel.TroopType.BaseType}");
+        }
+
+        Assert.Empty(wrong);
     }
 }
