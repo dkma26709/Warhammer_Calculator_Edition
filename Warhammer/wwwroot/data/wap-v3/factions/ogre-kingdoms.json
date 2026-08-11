@@ -166,28 +166,21 @@
           "raw": "One Bruiser may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Bruiser may take Big Names and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Bruiser may take Big Names and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Bruiser may take Big Names and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Bruiser"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Tyrant may take Big Names and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Tyrant may take Big Names and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Tyrant may take Big Names and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Tyrant"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "big_names",
+          "raw": "A Bruiser may take Big Names and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge",
@@ -365,28 +358,21 @@
           "raw": "One Bruiser may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Bruiser may take Big Names and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Bruiser may take Big Names and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Bruiser may take Big Names and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Bruiser"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Tyrant may take Big Names and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Tyrant may take Big Names and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Tyrant may take Big Names and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Tyrant"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "big_names",
+          "raw": "A Bruiser may take Big Names and/or Magic Items up to a total of 50 points"
         }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge",
@@ -423,15 +409,9 @@
       "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Beasts\n• Death\n• Great Maw\n• Heavens\nAt least one of them must choose their spells from the Lore of the Great Maw.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -500,28 +480,16 @@
           "raw": "May take a Great Mawpot (Slaughtermaster only) +100 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Butcher may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Butcher may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Butcher may take Magic Items up to a total of 50 points",
+          "appliesTo": "Butcher"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Slaughtermaster may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Slaughtermaster may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Slaughtermaster may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Slaughtermaster"
         }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge, Immunity (Poisoned Attacks)",
@@ -558,15 +526,9 @@
       "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Beasts\n• Death\n• Great Maw\n• Heavens\nAt least one of them must choose their spells from the Lore of the Great Maw.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -635,28 +597,16 @@
           "raw": "May take a Great Mawpot (Slaughtermaster only) +100 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Butcher may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Butcher may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Butcher may take Magic Items up to a total of 50 points",
+          "appliesTo": "Butcher"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Slaughtermaster may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Slaughtermaster may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Slaughtermaster may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Slaughtermaster"
         }
       ],
       "specialRules": "Natural Armour (6+), Ogre Charge, Immunity (Poisoned Attacks)",
@@ -822,15 +772,9 @@
       "magic": "A Firebelly is a Level 1 Wizard who uses the Lore of Fire.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -2623,15 +2567,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Beast Rider",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Beast Rider +10 points"
         },
         {
@@ -2750,15 +2688,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Beast Rider",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Beast Rider +10 points"
         },
         {
@@ -2877,15 +2809,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Beast Rider",
-              "points": 10,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 10,
+          "perModel": false,
           "raw": "May take an additional Beast Rider +10 points"
         }
       ],

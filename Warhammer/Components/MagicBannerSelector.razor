@@ -43,7 +43,7 @@
     [Parameter] public List<MagicItemEntry> MagicItems { get; set; } = [];
 
     private List<MagicItemEntry> AvailableBanners =>
-        MagicItems.Where(m => m.Category == "magic_standard").ToList();
+        MagicItems.Where(m => m.Category == MagicItemCategories.MagicStandard).ToList();
 
     private static double ParseBannerPoints(string points) =>
         double.TryParse(points, out var v) ? v : 0;

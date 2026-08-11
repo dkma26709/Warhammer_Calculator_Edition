@@ -212,6 +212,7 @@ public static class TestHelpers
             MaxUnitSize = null,
             BaseModelCost = points ?? 0,
             Command = command,
+            MagicItemAllowance = Unit.ResolveMagicItemAllowance(name, options),
             AvailableArmour = availableArmour,
             RawEntry = rawEntry,
         };

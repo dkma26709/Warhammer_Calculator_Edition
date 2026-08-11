@@ -159,28 +159,16 @@
           "raw": "One Wargor may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Wargor may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Wargor may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Wargor may take Mutations & Traits and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Wargor"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Beastlord may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Beastlord may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Beastlord may take Mutations & Traits and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Beastlord"
         }
       ],
       "specialRules": "Forest Strider, Primal Fury",
@@ -351,28 +339,16 @@
           "raw": "One Wargor may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Wargor may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Wargor may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Wargor may take Mutations & Traits and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Wargor"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Beastlord may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Beastlord may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Beastlord may take Mutations & Traits and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Beastlord"
         }
       ],
       "specialRules": "Forest Strider, Primal Fury",
@@ -409,15 +385,9 @@
       "magic": "A Bray-Shaman is a Level 1 Wizard. A Great Bray-Shaman is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Chaos\n• Death\n• Shadow\n• Wild\nA Bray-Shaman or Great Bray-Shaman with the Mark of Tzeentch, Nurgle or Slaanesh must use the Lore of Tzeentch,\nNurgle, or Slaanesh, respectively.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -472,28 +442,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Bray-Shaman"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Great Bray-Shaman"
         }
       ],
       "specialRules": "Forest Strider, Primal Fury",
@@ -530,15 +488,9 @@
       "magic": "A Bray-Shaman is a Level 1 Wizard. A Great Bray-Shaman is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Chaos\n• Death\n• Shadow\n• Wild\nA Bray-Shaman or Great Bray-Shaman with the Mark of Tzeentch, Nurgle or Slaanesh must use the Lore of Tzeentch,\nNurgle, or Slaanesh, respectively.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -593,28 +545,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Bray-Shaman"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Great Bray-Shaman"
         }
       ],
       "specialRules": "Forest Strider, Primal Fury",
@@ -729,28 +669,16 @@
           "raw": "One Gorebull may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gorebull may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Gorebull may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Gorebull may take Mutations & Traits and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Gorebull"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Doombull may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Doombull may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Doombull may take Mutations & Traits and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Doombull"
         }
       ],
       "specialRules": "Bloodgreed, Impact Hits (1)",
@@ -865,28 +793,16 @@
           "raw": "One Gorebull may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gorebull may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Gorebull may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Gorebull may take Mutations & Traits and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Gorebull"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Doombull may take Mutations & Traits and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Doombull may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Doombull may take Mutations & Traits and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Doombull"
         }
       ],
       "specialRules": "Bloodgreed, Impact Hits (1)",

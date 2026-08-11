@@ -76,6 +76,12 @@ public static class UnitOptionExtensions
     public static bool IsType(this UnitOption option, OptionType type) =>
         option.GetOptionType() == type;
 
+    /// <summary>True when the option's Action matches the given <see cref="OptionAction"/>.</summary>
+    public static bool IsAction(this UnitOption option, OptionAction action) =>
+        option.Action != null
+        && OptionActionExtensions.TryFromJsonKey(option.Action, out var parsed)
+        && parsed == action;
+
     /// <summary>True when the option's Role text matches the given <see cref="CommandRole"/>.</summary>
     public static bool IsRole(this UnitOption option, CommandRole role) =>
         option.Role != null

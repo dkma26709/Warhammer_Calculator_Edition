@@ -142,15 +142,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -238,15 +236,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -352,15 +348,13 @@
           "raw": "May take a shield +5 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -515,15 +509,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -600,15 +592,13 @@
           "raw": "May be mounted on a Tuskgor Chariot (replacing the Bestigor) +75 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -719,15 +709,13 @@
           "raw": "May take a shield +4 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -855,15 +843,13 @@
           "raw": "May take a shield +2 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -959,15 +945,13 @@
           "raw": "May take a shield +2 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Gifts of Chaos and/or Magic Items up to a total of 25 points",
-              "points": 25,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 25,
+          "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 25 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "gifts_of_chaos",
           "raw": "May take Gifts of Chaos and/or Magic Items up to a total of 25 points"
         }
       ],

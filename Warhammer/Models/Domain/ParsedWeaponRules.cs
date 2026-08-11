@@ -89,6 +89,9 @@ public record ParsedWeaponRules
         bool mbHasAsterisk = false;
         bool initFromRules = false;
 
+        // A plain comma split, unlike ParsedSpecialRules.SplitRules, which has to be
+        // parenthesis-aware for unit rule lists. Safe here: this reads core-rules.json only, and
+        // no weapon's specialRules value in either system puts a comma inside brackets.
         foreach (var part in (specialRules ?? "").Split(',').Select(p => p.Trim()))
         {
             var cleaned = part.TrimEnd('*');

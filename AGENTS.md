@@ -6,13 +6,14 @@ Reference for AI agents (and humans) working in this repo. Verified against the 
 
 A **Blazor WebAssembly (.NET 10)** app that simulates **Warhammer Armies Project (WAP) 9th Edition** tabletop combat using Monte Carlo dice simulation (default 10,000 iterations), plus a full army list builder. All game data lives in static JSON files under `wwwroot/data/`; there is no backend server.
 
-Three pages:
+Four pages:
 
 | Route | File | Purpose |
 |---|---|---|
 | `/` and `/matchup` | `Warhammer/Pages/Matchup.razor` | Two units head-to-head: win %, wounds, combat-resolution breakdown, distributions |
 | `/gauntlet` | `Warhammer/Pages/Gauntlet.razor` | One "subject" unit profiled against a list of opponent matchups |
 | `/builder` | `Warhammer/Pages/Builder.razor` | Army list builder with WAP composition validation, magic items, banners, wizard lores, JSON export/import, LocalStorage autosave |
+| `/roster` | `Warhammer/Pages/Roster.razor` | Printable battle roster for the current list — stats, saves, equipment, rules and points under Characters/Core/Special/Rare headings. Prints via the browser's own Save-as-PDF |
 
 ## Build / Run / Test
 
@@ -20,7 +21,7 @@ Three pages:
 # Run the app (from repo root)
 cd Warhammer && dotnet run          # then open https://localhost:{port}/
 
-# Run tests (~300 xUnit test methods across ~26 classes)
+# Run tests (574 [Fact]/[Theory] methods over 47 files; 961 cases once theories expand)
 cd Warhammer.Tests && dotnet test
 
 # Build everything
@@ -37,7 +38,7 @@ dotnet build Warhammer/Warhammer.sln
 ```
 Warhammer/                  # Main Blazor WASM project (also contains Warhammer.sln)
 ├── Program.cs              # Entry point + DI registration
-├── Pages/                  # Matchup, Gauntlet, Builder
+├── Pages/                  # Matchup, Gauntlet, Builder, Roster
 ├── Components/             # Reusable Razor components. UnitConfigurator is a thin shell
 │                           #   composing UnitOptionsEditor, WizardConfigPanel,
 │                           #   MagicBannerSelector, CommandGroupPanel, FactionAbilityPanel,
@@ -96,6 +97,7 @@ Data flows **upward**: JSON → Services (load/cache) → Domain models → Calc
 | `CombatEngine` | Transient | Monte Carlo simulation |
 | `ArmyListValidator` | Singleton | WAP composition rules (percent caps, 0-X per army, duplicates, General/BSB) |
 | `ArmyListSerializer` | Scoped | ArmyList ↔ JSON DTO (export/import/autosave) |
+| `ArmyRosterBuilder` | Scoped | ArmyList → `RosterDocument`, the flattened battle sheet the `/roster` print view renders |
 | `PortraitService` | Scoped | Resolves portrait URLs against `portrait-manifest.json`; graceful fallback if missing |
 
 Pages call `Repo.EnsureLoadedAsync()` (and `Portraits.EnsureLoadedAsync()`) before use; all loads are idempotent and cached.
@@ -118,12 +120,13 @@ The Calculator layer is **stateless and UI-free** — it takes configured units 
 - **Character categories differ per system.** wap-v2 books split characters into `Lords`/`Heroes` (25% caps each); wap-v3 books have a single `Characters` category. All three count toward the combined 35% cap; `UnitCategoryExtensions.IsCharacterCategory()` is the check to use for "is this a character unit".
 - **Troop type figures are per-system data**, in the hand-maintained `wwwroot/data/{system}/troop-types.json`: minimum rank width, supporting attacks (rider, mount and no-split-profile), inherent Impact Hits, Unit Strength and inherent Swiftstride. The Troop Types chapter is prose rather than a ruled table, so the extractor cannot lift it and core-rules.json carries only the descriptive text. `GameDataRepository` throws on a missing row rather than falling back, so a new system that skips the file fails loudly on load. wap-v3 diverges from wap-v2 on supporting attacks for the monstrous types, on mounts (barred entirely), on Cavalry/Monstrous Cavalry Impact Hits (removed) and on Swiftstride (no type grants it).
 - **Composition percentages are per-system data**, in the hand-maintained `wwwroot/data/{system}/composition.json` — *not* core-rules.json, which `extract_core_rules.py` generates and would overwrite. A category absent from the file has no limit of that kind, which is how wap-v3 expresses having no Lords/Heroes sections. A list may carry its own `CompositionOverrides` (a percentage or a flat points figure per limit); `CompositionRules.Resolve` is the one place that decides precedence, and both the validator and the builder's progress bars go through it.
-- **Faction JSON is generated, not hand-written.** Source of truth is WAP army book PDFs run through the Python extractors in `tools/extractors/` (the PDFs themselves live outside the repo). Fix systematic data issues in the extractors if possible; hand-edits to the JSON can be overwritten by a re-extract.
+- **Faction JSON is generated, not hand-written.** Source of truth is WAP army book PDFs run through the Python extractors in `tools/extractors/` (the PDFs themselves live outside the repo). Fix systematic data issues in the extractors if possible; hand-edits to the JSON can be overwritten by a re-extract. Every option keeps its army book line in `raw`, so a parser fix can be replayed over already-extracted data without the PDFs: `python tools/extractors/reclassify_options.py Warhammer/wwwroot/data` (use `--dry-run` first).
 - **Portraits**: run `tools/PortraitFetcher` (console app; supports per-faction and `--dry-run` args) to fetch PNGs from the Total War fandom wiki and regenerate `portrait-manifest.json`. `PortraitService.Slugify` must stay in sync with the fetcher's filename slugging. Manual name mismatches go in `tools/PortraitFetcher/portrait-overrides.json`.
 - **Builder state vs simulation state.** `UnitConfiguration.Loadout` (an `ArmyLoadout`) holds army-builder-only state: custom name, wizard level/lore/spells, magic banner, General/BSB flags, faction upgrade picks. The combat engine never reads `Loadout`. Simulation-relevant choices (model count, weapon, command group, modifiers) live directly on `UnitConfiguration`.
 - **Faction abilities are modifiers.** Shadow Dances and Tree Aspects (Wood Elves) compile to `UnitModifier` instances via `UnitConfiguration.FactionAbilityModifiers`, flowing through `EffectiveSpecialRules`/`AggregateModifier` like magic items. The Calculator has no faction-specific enums — add new faction abilities the same way, not as engine special cases. (Tree Whack remains a rule-flag-gated attack mode in `AttackResolver`.)
-- **JS interop is minimal**: only `wwwroot/js/army-builder.js` (`window.armyBuilder`) for JSON file download and localStorage. Builder autosaves the single active list to localStorage.
+- **JS interop is minimal**: only `wwwroot/js/army-builder.js` (`window.armyBuilder`) for JSON file download, localStorage and `window.print()`. Builder autosaves the single active list to localStorage. Both localStorage keys are namespaced per game system and defined in one place, `ArmyListStorage` — the Builder writes the print key on the way to `/roster` rather than letting that page read the autosave, which is fire-and-forget and which a rename never triggers.
 - **Styling**: Bootstrap 5 via CDN in `index.html`, dark-theme cards (`bg-dark text-light border-secondary`), custom rules in `wwwroot/css/app.css`. No CSS framework tooling.
+- **Printing is a print stylesheet, not a PDF library.** There is no backend to render PDFs and no JS dependency for it either: `/roster` is a light-on-white page and `app.css` carries an `@media print` block plus an `@page` A4 rule, so the browser's "Save as PDF" destination produces the file. Anything screen-only — the nav bar, the page's own buttons — carries `no-print`. Keep roster logic in `ArmyRosterBuilder` (tested) rather than in the Razor page (not tested).
 - **Testing style**: deterministic tests use fixed-seed `Random` or direct resolver calls; probabilistic tests assert Monte Carlo results within tolerance bands. Follow existing patterns in `TestHelpers.cs`.
 
 ## Docs Map (two folders, different purposes)

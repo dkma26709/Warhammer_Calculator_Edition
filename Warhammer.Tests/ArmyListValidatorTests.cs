@@ -1,5 +1,6 @@
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
+using Warhammer.Models.Json;
 
 namespace Warhammer.Tests;
 
@@ -307,6 +308,279 @@ public class ArmyListValidatorTests
         var codes = V.Validate(list).Select(i => i.Code).ToList();
 
         Assert.DoesNotContain("DUPLICATE_LIMIT_EXCEEDED", codes);
+    }
+
+    // ─── Magic items ────────────────────────────────────────────────
+
+    private static UnitConfiguration MakeCharacter(string name, int? allowance, int? bannerCap = null)
+    {
+        var options = new List<UnitOption>();
+        if (allowance is int limit)
+        {
+            options.Add(new UnitOption { Type = "magic_items", PointsLimit = limit });
+        }
+        if (bannerCap is int cap)
+        {
+            options.Add(new UnitOption
+            {
+                Type = "command",
+                Role = "Standard Bearer",
+                Points = 0,
+                SubOptions = [new UnitOption { Type = "magic_standard", PointsLimit = cap }],
+            });
+        }
+
+        var unit = TestHelpers.MakeUnit(name: name, points: 100, options: options);
+        unit = unit with
+        {
+            Category = UnitCategory.Heroes,
+            RawEntry = unit.RawEntry with { Category = UnitCategory.Heroes.ToJsonKey() },
+        };
+        return new UnitConfiguration(unit) { ModelCount = 1 };
+    }
+
+    private static void GiveItem(UnitConfiguration unit, string name, string category, double points) =>
+        unit.SelectedMagicItems.Add(new SelectedMagicItem
+        {
+            Name = name,
+            Category = category,
+            PointsCost = points,
+        });
+
+    /// <summary>A list whose only interesting property is the character passed in.</summary>
+    private static ArmyList ListWith(params UnitConfiguration[] characters)
+    {
+        characters[0].Loadout.IsGeneral = true;
+        var units = new List<UnitConfiguration>(characters)
+        {
+            MakeEntry("Warriors", UnitCategory.Core, 10, 60),
+        };
+        return MakeList(2000, [.. units]);
+    }
+
+    [Fact]
+    public void MagicItems_WithinAllowance_NoIssue()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50);
+        GiveItem(captain, "Sword of Might", MagicItemCategories.MagicWeapon, 20);
+        GiveItem(captain, "Talisman of Protection", MagicItemCategories.Talisman, 25);
+
+        Assert.Empty(V.Validate(ListWith(captain)));
+    }
+
+    [Fact]
+    public void MagicItems_OverAllowance_FlagsError()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50);
+        GiveItem(captain, "Giant Blade", MagicItemCategories.MagicWeapon, 45);
+        GiveItem(captain, "Talisman of Protection", MagicItemCategories.Talisman, 25);
+
+        var issue = Assert.Single(V.Validate(ListWith(captain)), i => i.Code == "MAGIC_ITEMS_OVER_BUDGET");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+        Assert.Contains("70", issue.Message);
+        Assert.Contains("50", issue.Message);
+    }
+
+    [Fact]
+    public void MagicItems_OnAnEntryWithNoAllowance_FlagsError()
+    {
+        var champion = MakeCharacter("Champion", allowance: null);
+        GiveItem(champion, "Sword of Might", MagicItemCategories.MagicWeapon, 20);
+
+        var codes = V.Validate(ListWith(champion)).Select(i => i.Code).ToList();
+
+        Assert.Contains("MAGIC_ITEMS_NOT_ALLOWED", codes);
+    }
+
+    [Fact]
+    public void TwoItemsFromOneCategory_FlagsError()
+    {
+        var captain = MakeCharacter("Captain", allowance: 100);
+        GiveItem(captain, "Sword of Might", MagicItemCategories.MagicWeapon, 20);
+        GiveItem(captain, "Sword of Striking", MagicItemCategories.MagicWeapon, 30);
+
+        var issue = Assert.Single(V.Validate(ListWith(captain)),
+            i => i.Code == "MAGIC_ITEM_CATEGORY_REPEATED");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+        Assert.Contains("Sword of Might", issue.Message);
+        Assert.Contains("Sword of Striking", issue.Message);
+    }
+
+    [Fact]
+    public void ItemsFromDifferentCategories_AreFine()
+    {
+        var captain = MakeCharacter("Captain", allowance: 100);
+        GiveItem(captain, "Sword of Might", MagicItemCategories.MagicWeapon, 20);
+        GiveItem(captain, "Enchanted Shield", MagicItemCategories.MagicArmour, 10);
+        GiveItem(captain, "Talisman of Protection", MagicItemCategories.Talisman, 25);
+        GiveItem(captain, "Dispel Scroll", MagicItemCategories.ArcaneItem, 25);
+
+        Assert.Empty(V.Validate(ListWith(captain)));
+    }
+
+    [Fact]
+    public void SameItemOnTwoCharacters_Warns()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50);
+        GiveItem(captain, "Sword of Might", MagicItemCategories.MagicWeapon, 20);
+        var wizard = MakeCharacter("Battle Wizard", allowance: 50);
+        GiveItem(wizard, "Sword of Might", MagicItemCategories.MagicWeapon, 20);
+
+        var issue = Assert.Single(V.Validate(ListWith(captain, wizard)),
+            i => i.Code == "DUPLICATE_MAGIC_ITEM");
+
+        Assert.Equal(ValidationSeverity.Warning, issue.Severity);
+        Assert.Contains("Sword of Might", issue.Message);
+    }
+
+    [Fact]
+    public void CustomNamedCharacter_IsIdentifiedByItsOwnName()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50);
+        captain.Loadout.CustomName = "Aldric the Bold";
+        GiveItem(captain, "Giant Blade", MagicItemCategories.MagicWeapon, 45);
+        GiveItem(captain, "Talisman of Protection", MagicItemCategories.Talisman, 25);
+
+        var issue = Assert.Single(V.Validate(ListWith(captain)), i => i.Code == "MAGIC_ITEMS_OVER_BUDGET");
+
+        Assert.Contains("Aldric the Bold", issue.Message);
+        Assert.Contains("Captain", issue.Message);
+    }
+
+    // ─── Dwarf runes ─────────────────────────────────────────────
+    // "You may inscribe up to three runes onto an item ... Apart from the master runes other
+    // runes can be combined as you wish." The one-per-category limit is for the six printed
+    // lists; applying it to runes reported a legal Dwarf loadout as illegal.
+
+    [Fact]
+    public void TwoRunesOfOneKind_OnOneItem_IsLegal()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 100);
+        GiveItem(lord, "Rune of Cleaving", MagicItemCategories.WeaponRune, 25);
+        GiveItem(lord, "Rune of Fury", MagicItemCategories.WeaponRune, 25);
+
+        Assert.Empty(V.Validate(ListWith(lord)));
+    }
+
+    [Fact]
+    public void ThreeRunesOfOneKind_IsStillLegal()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 100);
+        GiveItem(lord, "Rune of Stone", MagicItemCategories.ArmourRune, 5);
+        GiveItem(lord, "Rune of Iron", MagicItemCategories.ArmourRune, 10);
+        GiveItem(lord, "Rune of Preservation", MagicItemCategories.ArmourRune, 15);
+
+        Assert.Empty(V.Validate(ListWith(lord)));
+    }
+
+    [Fact]
+    public void TwoDifferentMasterRunes_OnOneModel_IsLegal()
+    {
+        // Rule 4 caps master runes per *item*, not per model — a runic weapon and runic
+        // armour may each carry one. Which item a rune sits on isn't modelled, so this
+        // deliberately passes rather than guessing.
+        var lord = MakeCharacter("Dwarf Lord", allowance: 100);
+        GiveItem(lord, "Master Rune of Smiting", MagicItemCategories.WeaponRune, 35);
+        GiveItem(lord, "Master Rune of Adamant", MagicItemCategories.ArmourRune, 30);
+
+        Assert.Empty(V.Validate(ListWith(lord)));
+    }
+
+    [Fact]
+    public void SameMasterRune_TwiceInTheArmy_FlagsError()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 50);
+        GiveItem(lord, "Master Rune of Smiting", MagicItemCategories.WeaponRune, 35);
+        var thane = MakeCharacter("Thane", allowance: 50);
+        GiveItem(thane, "Master Rune of Smiting", MagicItemCategories.WeaponRune, 35);
+
+        var issue = Assert.Single(V.Validate(ListWith(lord, thane)),
+            i => i.Code == "MASTER_RUNE_REPEATED");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+        Assert.Contains("Master Rune of Smiting", issue.Message);
+        Assert.DoesNotContain("MAGIC_ITEM_CATEGORY_REPEATED",
+            V.Validate(ListWith(lord, thane)).Select(i => i.Code));
+    }
+
+    [Fact]
+    public void AnUnknownCategory_IsStillHeldToOnePerModel()
+    {
+        // An imported list can carry any category string. Exempting one we don't recognise would
+        // let two Magic Weapons past on a hand-edited "magic_weapons"; runes are the only
+        // documented exception, so everything else answers to the limit.
+        var captain = MakeCharacter("Captain", allowance: 100);
+        GiveItem(captain, "Sword of Might", "magic_weapons", 20);
+        GiveItem(captain, "Sword of Striking", "magic_weapons", 30);
+
+        var issue = Assert.Single(V.Validate(ListWith(captain)),
+            i => i.Code == "MAGIC_ITEM_CATEGORY_REPEATED");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+    }
+
+    [Fact]
+    public void SameOrdinaryRune_TwiceInTheArmy_OnlyWarns()
+    {
+        var lord = MakeCharacter("Dwarf Lord", allowance: 50);
+        GiveItem(lord, "Rune of Cleaving", MagicItemCategories.WeaponRune, 25);
+        var thane = MakeCharacter("Thane", allowance: 50);
+        GiveItem(thane, "Rune of Cleaving", MagicItemCategories.WeaponRune, 25);
+
+        var issue = Assert.Single(V.Validate(ListWith(lord, thane)),
+            i => i.Code == "DUPLICATE_MAGIC_ITEM");
+
+        Assert.Equal(ValidationSeverity.Warning, issue.Severity);
+    }
+
+    [Fact]
+    public void Banner_OverItsAllowance_FlagsError()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50, bannerCap: 25);
+        captain.HasStandardBearer = true;
+        captain.Loadout.SelectedBanner = new SelectedMagicItem
+        {
+            Name = "Banner of Swiftness",
+            Category = MagicItemCategories.MagicStandard,
+            PointsCost = 50,
+        };
+
+        var issue = Assert.Single(V.Validate(ListWith(captain)), i => i.Code == "BANNER_OVER_BUDGET");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+    }
+
+    [Fact]
+    public void Banner_OnAnEntryThatCannotCarryOne_FlagsError()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50);
+        captain.Loadout.SelectedBanner = new SelectedMagicItem
+        {
+            Name = "Banner of Swiftness",
+            Category = MagicItemCategories.MagicStandard,
+            PointsCost = 25,
+        };
+
+        var codes = V.Validate(ListWith(captain)).Select(i => i.Code).ToList();
+
+        Assert.Contains("BANNER_NOT_ALLOWED", codes);
+    }
+
+    [Fact]
+    public void Banner_WithinItsAllowance_NoIssue()
+    {
+        var captain = MakeCharacter("Captain", allowance: 50, bannerCap: 50);
+        captain.HasStandardBearer = true;
+        captain.Loadout.SelectedBanner = new SelectedMagicItem
+        {
+            Name = "Banner of Swiftness",
+            Category = MagicItemCategories.MagicStandard,
+            PointsCost = 50,
+        };
+
+        Assert.Empty(V.Validate(ListWith(captain)));
     }
 
     // Simple wrapper so tests aren't littered with `new ArmyListValidator()`.

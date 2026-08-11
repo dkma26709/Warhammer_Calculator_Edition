@@ -165,28 +165,16 @@
           "raw": "One Captain may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Captain may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Captain may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Captain may take Magic Items up to a total of 50 points",
+          "appliesTo": "Captain"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "General may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A General may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A General may take Magic Items up to a total of 100 points",
+          "appliesTo": "General"
         }
       ],
       "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the Cold-blooded special rule when taking Break tests.",
@@ -363,28 +351,16 @@
           "raw": "One Captain may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Captain may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Captain may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Captain may take Magic Items up to a total of 50 points",
+          "appliesTo": "Captain"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "General may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A General may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A General may take Magic Items up to a total of 100 points",
+          "appliesTo": "General"
         }
       ],
       "specialRules": "• Hold the Line: If a model with this special rule is in a unit with the State Troops special rule, the unit has the Cold-blooded special rule when taking Break tests.",
@@ -421,15 +397,9 @@
       "magic": "A Battle Wizard is a Level 1 Wizard. A Battle Wizard Lord is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -470,28 +440,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Battle Wizard may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Battle Wizard may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Battle Wizard may take Magic Items up to a total of 50 points",
+          "appliesTo": "Battle Wizard"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Battle Wizard Lord may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Battle Wizard Lord may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Battle Wizard Lord may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Battle Wizard Lord"
         }
       ],
       "specialRules": null,
@@ -528,15 +486,9 @@
       "magic": "A Battle Wizard is a Level 1 Wizard. A Battle Wizard Lord is a Level 3 Wizard. They use one of the\nfollowing Lores of Magic:\n• Beasts\n• Death\n• Heavens\n• Fire\n• Light\n• Life\n• Metal\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -577,28 +529,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Battle Wizard may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Battle Wizard may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Battle Wizard may take Magic Items up to a total of 50 points",
+          "appliesTo": "Battle Wizard"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Battle Wizard Lord may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Battle Wizard Lord may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Battle Wizard Lord may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Battle Wizard Lord"
         }
       ],
       "specialRules": null,
@@ -725,28 +665,16 @@
           "raw": "One Chapter Master may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Chapter Master may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Chapter Master may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Chapter Master may take Magic Items up to a total of 50 points",
+          "appliesTo": "Chapter Master"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Grand Master may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Grand Master may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Grand Master may take Magic Items up to a total of 100 points",
+          "appliesTo": "Grand Master"
         }
       ],
       "specialRules": "Immunity (Psychology)",
@@ -875,28 +803,16 @@
           "raw": "One Chapter Master may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Chapter Master may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Chapter Master may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Chapter Master may take Magic Items up to a total of 50 points",
+          "appliesTo": "Chapter Master"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Grand Master may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Grand Master may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Grand Master may take Magic Items up to a total of 100 points",
+          "appliesTo": "Grand Master"
         }
       ],
       "specialRules": "Immunity (Psychology)",
@@ -1003,28 +919,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Warrior Priest may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Warrior Priest may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Warrior Priest may take Magic Items up to a total of 50 points",
+          "appliesTo": "Warrior Priest"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Arch Lector may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Arch Lector may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Arch Lector may take Magic Items up to a total of 100 points",
+          "appliesTo": "Arch Lector"
         }
       ],
       "specialRules": "Magical Attacks, Magic Resistance (1)",
@@ -1132,28 +1036,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Warrior Priest may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Warrior Priest may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Warrior Priest may take Magic Items up to a total of 50 points",
+          "appliesTo": "Warrior Priest"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Arch Lector may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Arch Lector may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Arch Lector may take Magic Items up to a total of 100 points",
+          "appliesTo": "Arch Lector"
         }
       ],
       "specialRules": "Magical Attacks, Magic Resistance (1)",
@@ -1262,28 +1154,16 @@
           "raw": "May be mounted on a Warhorse +15 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Witch Hunter Captain may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Witch Hunter Captain may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Witch Hunter Captain may take Magic Items up to a total of 50 points",
+          "appliesTo": "Witch Hunter Captain"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Witch Hunter General may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Witch Hunter General may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Witch Hunter General may take Magic Items up to a total of 100 points",
+          "appliesTo": "Witch Hunter General"
         }
       ],
       "specialRules": "Hatred (Chaos, Undead, Wizards), Magic Resistance (1)",
@@ -1394,28 +1274,16 @@
           "raw": "May be mounted on a Warhorse +15 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Witch Hunter Captain may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Witch Hunter Captain may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Witch Hunter Captain may take Magic Items up to a total of 50 points",
+          "appliesTo": "Witch Hunter Captain"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Witch Hunter General may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Witch Hunter General may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Witch Hunter General may take Magic Items up to a total of 100 points",
+          "appliesTo": "Witch Hunter General"
         }
       ],
       "specialRules": "Hatred (Chaos, Undead, Wizards), Magic Resistance (1)",
@@ -3877,15 +3745,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
@@ -3935,15 +3797,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
@@ -4096,15 +3952,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],
@@ -4154,15 +4004,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],

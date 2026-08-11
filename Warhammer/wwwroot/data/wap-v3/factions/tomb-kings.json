@@ -118,28 +118,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Tomb Prince may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Tomb Prince may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Tomb Prince may take Magic Items up to a total of 50 points",
+          "appliesTo": "Tomb Prince"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Tomb King may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Tomb King may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Tomb King may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Tomb King"
         }
       ],
       "specialRules": "Curse of the Necropolis, Flammable, Indomitable, My Will Be Done, Undead",
@@ -269,28 +257,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Tomb Prince may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Tomb Prince may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Tomb Prince may take Magic Items up to a total of 50 points",
+          "appliesTo": "Tomb Prince"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Tomb King may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Tomb King may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Tomb King may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Tomb King"
         }
       ],
       "specialRules": "Curse of the Necropolis, Flammable, Indomitable, My Will Be Done, Undead",
@@ -327,15 +303,9 @@
       "magic": "A Liche High Priest is a Level 3 Wizard who chooses spells from one of the following Lores of Magic:\n• Death\n• Light\n• Nehekhara",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -378,28 +348,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Liche Priest may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Liche Priest may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Liche Priest may take Magic Items up to a total of 50 points",
+          "appliesTo": "Liche Priest"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Liche High Priest may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Liche High Priest may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Liche High Priest may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Liche High Priest"
         }
       ],
       "specialRules": "Indomitable, Undead",
@@ -436,15 +394,9 @@
       "magic": "A Liche High Priest is a Level 3 Wizard who chooses spells from one of the following Lores of Magic:\n• Death\n• Light\n• Nehekhara",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -487,28 +439,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Liche Priest may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Liche Priest may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Liche Priest may take Magic Items up to a total of 50 points",
+          "appliesTo": "Liche Priest"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Liche High Priest may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Liche High Priest may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Liche High Priest may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Liche High Priest"
         }
       ],
       "specialRules": "Indomitable, Undead",

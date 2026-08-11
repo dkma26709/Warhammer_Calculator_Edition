@@ -126,28 +126,16 @@
           "raw": "One Paladin may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Paladin may take one Virtue and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Paladin"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Baron may take one Virtue and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Baron"
         }
       ],
       "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation",
@@ -285,28 +273,16 @@
           "raw": "One Paladin may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Paladin may take one Virtue and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Paladin"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Baron may take one Virtue and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Baron"
         }
       ],
       "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation",
@@ -343,15 +319,9 @@
       "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Beasts\n• Heavens\n• Lady\n• Light\n• Life",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -377,28 +347,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Grail Damsel may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points",
+          "appliesTo": "Grail Damsel"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Prophetess may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Prophetess"
         }
       ],
       "specialRules": "Blessing of the Lady, Magic Resistance (1)",
@@ -435,15 +393,9 @@
       "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Beasts\n• Heavens\n• Lady\n• Light\n• Life",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -469,28 +421,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Grail Damsel may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Grail Damsel may take Magic Items up to a total of 50 points",
+          "appliesTo": "Grail Damsel"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Prophetess may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Prophetess may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Prophetess"
         }
       ],
       "specialRules": "Blessing of the Lady, Magic Resistance (1)",
@@ -2503,15 +2443,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Peasant Crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional Peasant Crew +5 points"
         },
         {
@@ -2579,15 +2513,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Peasant Crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional Peasant Crew +5 points"
         },
         {
@@ -2655,15 +2583,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Peasant Crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional Peasant Crew +5 points"
         },
         {

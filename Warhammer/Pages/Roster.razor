@@ -1,0 +1,262 @@
+@page "/roster"
+
+@using Microsoft.JSInterop
+@using Warhammer.Models.Domain
+@using Warhammer.Services
+
+@inject IGameDataRepository Repo
+@inject ArmyListSerializer Serializer
+@inject ArmyRosterBuilder RosterBuilder
+@inject GameSystemService SystemService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
+@* The battle sheet. Deliberately light-on-white regardless of the app's dark theme — this page
+   exists to come out of a printer, and what you see is what the paper gets. *@
+
+<div class="roster-toolbar no-print d-flex flex-wrap align-items-center gap-2 px-3 py-2">
+    <button type="button" class="btn btn-sm btn-outline-light" @onclick="GoBack">← Back to builder</button>
+    <button type="button" class="btn btn-sm btn-light" disabled="@(_document == null)"
+            @onclick="Print">Print / Save as PDF</button>
+    <span class="text-body-secondary small">
+        Choose <strong>Save as PDF</strong> as the destination in your browser's print dialog.
+    </span>
+</div>
+
+@if (_loading)
+{
+    <div class="no-print alert alert-secondary m-3">Loading…</div>
+}
+else if (_document == null)
+{
+    <div class="no-print alert alert-warning m-3">
+        No army list to print. <a href="builder">Open the builder</a>, build a list, then press Print.
+        @if (!string.IsNullOrEmpty(_error))
+        {
+            <div class="small mt-1">@_error</div>
+        }
+    </div>
+}
+else
+{
+    @if (_warnings.Count > 0)
+    {
+        <div class="no-print alert alert-warning m-3">
+            <strong>This sheet may be incomplete.</strong>
+            <ul class="mb-0 small">
+                @foreach (var warning in _warnings)
+                {
+                    <li>@warning</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <div class="roster-sheet">
+
+        <header class="roster-head">
+            <div>
+                <h1 class="roster-title">@_document.ArmyName</h1>
+                <div class="roster-subtitle">
+                    @_document.FactionName · @_document.SystemName
+                </div>
+            </div>
+            <div class="roster-total">
+                <strong>@Points(_document.TotalPoints)</strong> / @_document.PointsTarget pts
+            </div>
+        </header>
+
+        @foreach (var block in _document.Sections)
+        {
+            <section class="roster-section">
+                <h2 class="roster-section-head">
+                    <span>@block.Title</span>
+                    <span class="roster-section-points">@Points(block.Points) pts</span>
+                </h2>
+
+                @foreach (var entry in block.Entries)
+                {
+                    <article class="roster-entry">
+                        <div class="roster-entry-head">
+                            <div>
+                                <span class="roster-entry-name">@entry.Name</span>
+                                @if (entry.BookName != null)
+                                {
+                                    <span class="roster-entry-book">@entry.BookName</span>
+                                }
+                                @foreach (var role in entry.Roles)
+                                {
+                                    <span class="roster-role">@role</span>
+                                }
+                            </div>
+                            <div class="roster-entry-cost">
+                                <span class="roster-models">@entry.ModelLine</span>
+                                <strong>@Points(entry.Points) pts</strong>
+                            </div>
+                        </div>
+
+                        <table class="roster-stats">
+                            <thead>
+                                <tr>
+                                    <th class="roster-stats-name"></th>
+                                    @foreach (var header in RosterProfile.Headers)
+                                    {
+                                        <th>@header</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var profile in entry.Profiles)
+                                {
+                                    <tr>
+                                        <td class="roster-stats-name">@profile.Name</td>
+                                        @foreach (var stat in profile.Stats)
+                                        {
+                                            <td>@stat</td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @Line("Saves", entry.Saves)
+                        @Line("Equipment", entry.Equipment)
+                        @Line("Upgrades", entry.Upgrades)
+
+                        @if (entry.MagicItems.Count > 0)
+                        {
+                            @Line("Magic items", entry.MagicItems
+                                .Select(i => $"{i.Name} ({Points(i.Points)} pts)"))
+                        }
+
+                        @Line("Special rules", entry.SpecialRules)
+                        @Line("Notes", entry.Notes)
+                    </article>
+                }
+            </section>
+        }
+
+        <footer class="roster-foot">
+            @_document.ArmyName · @_document.FactionName ·
+            @Points(_document.TotalPoints) / @_document.PointsTarget pts
+        </footer>
+    </div>
+}
+
+@code {
+    private RosterDocument? _document;
+    private bool _loading = true;
+    private string? _error;
+    private IReadOnlyList<string> _warnings = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await Repo.EnsureLoadedAsync();
+            await LoadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    /// <summary>
+    /// Read the list the Builder handed over, falling back to the autosave so the page still
+    /// works opened on its own — from a bookmark, or after a reload.
+    ///
+    /// The handover is single-use: the print key is cleared as soon as it is read, because it is
+    /// a snapshot of the moment Print was pressed and goes stale the instant the Builder is
+    /// touched again. Left in place it would outrank the fresher autosave for good, and every
+    /// later visit would print the same old list.
+    ///
+    /// A print key that fails to parse falls through to the autosave rather than giving up — a
+    /// half-written or older-schema snapshot shouldn't hide a list that is sitting right there.
+    /// </summary>
+    private async Task LoadAsync()
+    {
+        var system = SystemService.CurrentSystem;
+
+        var handover = await Read(ArmyListStorage.PrintKey(system));
+        if (handover != null) await Clear(ArmyListStorage.PrintKey(system));
+
+        if (await TryBuild(handover)) return;
+        await TryBuild(await Read(ArmyListStorage.ActiveKey(system)));
+    }
+
+    private async Task<bool> TryBuild(string? json)
+    {
+        if (string.IsNullOrWhiteSpace(json)) return false;
+
+        var result = await Serializer.DeserializeAsync(json);
+        if (!result.Success || result.List == null)
+        {
+            _error = string.Join("; ", result.Errors);
+            return false;
+        }
+
+        // A unit whose saved name no longer resolves is skipped by the deserializer with only a
+        // warning, so the sheet would otherwise print short with nothing to say why.
+        _warnings = result.Warnings;
+        _error = null;
+        _document = RosterBuilder.Build(result.List);
+        return true;
+    }
+
+    private async Task Clear(string key)
+    {
+        try { await JS.InvokeVoidAsync("armyBuilder.clearLocal", key); }
+        catch { /* Storage unavailable; the read already succeeded, so nothing to recover. */ }
+    }
+
+    private async Task<string?> Read(string key)
+    {
+        try
+        {
+            var value = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", key);
+            return string.IsNullOrWhiteSpace(value) ? null : value;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private async Task Print()
+    {
+        try { await JS.InvokeVoidAsync("armyBuilder.printPage"); }
+        catch { _error = "The browser blocked the print dialog — use its own Print command instead."; }
+    }
+
+    private void GoBack() => Navigation.NavigateTo("builder");
+
+    /// <summary>
+    /// Points as they actually are. Half points are real WAP pricing — light armour at 0.5 a
+    /// model, and a few base profiles — so rounding each figure independently produced a sheet
+    /// that failed its own arithmetic: three entries at 52.5 printed "53" under a section
+    /// heading reading "158". A half is shown as a half so the columns add up.
+    /// </summary>
+    private static string Points(double value) =>
+        value == Math.Floor(value) ? value.ToString("F0") : value.ToString("F1");
+
+    /// <summary>One labelled line of comma-separated values, omitted when there is nothing to say.</summary>
+    private static RenderFragment Line(string label, IEnumerable<string> values) => builder =>
+    {
+        var joined = string.Join(", ", values);
+        if (joined.Length == 0) return;
+
+        builder.OpenElement(0, "div");
+        builder.AddAttribute(1, "class", "roster-line");
+        builder.OpenElement(2, "span");
+        builder.AddAttribute(3, "class", "roster-label");
+        builder.AddContent(4, label);
+        builder.CloseElement();
+        builder.AddContent(5, joined);
+        builder.CloseElement();
+    };
+}

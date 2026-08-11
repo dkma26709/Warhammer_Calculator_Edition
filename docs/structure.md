@@ -84,6 +84,7 @@ builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
 builder.Services.AddTransient<CombatEngine>();
 builder.Services.AddSingleton<ArmyListValidator>();
 builder.Services.AddScoped<ArmyListSerializer>();
+builder.Services.AddScoped<ArmyRosterBuilder>();
 builder.Services.AddScoped<PortraitService>();
 ```
 

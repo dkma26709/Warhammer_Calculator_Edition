@@ -113,6 +113,8 @@ public class ArmyListValidator
                 $"Total {list.TotalPoints:F0} exceeds target {list.PointsTarget}"));
         }
 
+        CheckMagicItems(issues, list);
+
         foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Name))
         {
             var representative = group.First();
@@ -149,6 +151,101 @@ public class ArmyListValidator
         }
 
         return issues;
+    }
+
+    /// <summary>
+    /// Magic item rules: an entry may spend up to the allowance its army book prints, and no
+    /// model may hold two items from one of the six printed categories. Dwarf runes are exempt
+    /// from that limit — up to three go on a single item — but no master rune may be repeated
+    /// across the army. Other duplicates are only a warning: the books exempt some items, and
+    /// the extracted item lists don't record which.
+    /// </summary>
+    private static void CheckMagicItems(List<ValidationIssue> issues, ArmyList list)
+    {
+        foreach (var unit in list.Units)
+        {
+            string name = unit.DisplayName;
+
+            if (unit.SelectedMagicItems.Count > 0)
+            {
+                double spent = unit.SelectedMagicItems.Sum(i => i.PointsCost);
+                if (unit.ResolvedUnit.MagicItemAllowance is not int allowance)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_NOT_ALLOWED",
+                        $"{name} has no magic item allowance but carries " +
+                        $"{unit.SelectedMagicItems.Count} item(s)",
+                        unit));
+                }
+                else if (spent > allowance)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_OVER_BUDGET",
+                        $"{name} spends {spent:F0} on magic items, over its {allowance} allowance",
+                        unit));
+                }
+
+                foreach (var category in unit.SelectedMagicItems
+                             .Where(i => MagicItemCategories.HasOnePerModelLimit(i.Category))
+                             .GroupBy(i => i.Category)
+                             .Where(g => g.Count() > 1))
+                {
+                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEM_CATEGORY_REPEATED",
+                        $"{name} carries {category.Count()} items from " +
+                        $"{MagicItemCategories.Plural(category.Key)} — a model may only have one " +
+                        $"{MagicItemCategories.Singular(category.Key)} " +
+                        $"({string.Join(", ", category.Select(i => i.Name))})",
+                        unit));
+                }
+            }
+
+            if (unit.Loadout.SelectedBanner is { } banner)
+            {
+                if (unit.BannerBudget is not int bannerCap)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "BANNER_NOT_ALLOWED",
+                        $"{name} carries {banner.Name} but cannot take a magic standard",
+                        unit));
+                }
+                else if (banner.PointsCost > bannerCap)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "BANNER_OVER_BUDGET",
+                        $"{name}: {banner.Name} costs {banner.PointsCost:F0}, " +
+                        $"over the {bannerCap} magic standard allowance",
+                        unit));
+                }
+            }
+        }
+
+        var carried = list.Units.SelectMany(CarriedItems);
+
+        foreach (var group in carried.GroupBy(c => c.ItemName, StringComparer.OrdinalIgnoreCase)
+                     .Where(g => g.Count() > 1))
+        {
+            string repeated = $"{group.Key} is carried {group.Count()} times " +
+                              $"({string.Join(", ", group.Select(c => c.Unit.DisplayName))})";
+
+            if (MagicItemCategories.IsMasterRune(group.Key))
+            {
+                issues.Add(new(ValidationSeverity.Error, "MASTER_RUNE_REPEATED",
+                    $"{repeated} — no master rune may be used more than once per army",
+                    group.First().Unit));
+            }
+            else
+            {
+                issues.Add(new(ValidationSeverity.Warning, "DUPLICATE_MAGIC_ITEM",
+                    $"{repeated} — most magic items may only be taken once per army",
+                    group.First().Unit));
+            }
+        }
+    }
+
+    /// <summary>Every magic item on a unit: its own picks, plus the magic standard it carries.</summary>
+    private static IEnumerable<(UnitConfiguration Unit, string ItemName)> CarriedItems(UnitConfiguration unit)
+    {
+        foreach (var item in unit.SelectedMagicItems)
+            yield return (unit, item.Name);
+
+        if (unit.Loadout.SelectedBanner is { } banner)
+            yield return (unit, banner.Name);
     }
 
     private static void CheckMax(

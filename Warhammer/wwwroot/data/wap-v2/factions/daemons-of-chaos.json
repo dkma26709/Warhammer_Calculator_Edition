@@ -168,15 +168,13 @@
           "raw": "May have the Fly (8) special rule +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -229,15 +227,13 @@
           "raw": "May replace hand weapons with great weapon free"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -332,15 +328,13 @@
           "raw": "May take an additional hand weapon +20 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -435,15 +429,13 @@
           "raw": "May take a buckler +10 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -514,15 +506,13 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -577,15 +567,13 @@
           "raw": "May be mounted on a Disc of Tzeentch +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -749,15 +737,13 @@
           "raw": "May have the Fly (8) special rule +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -843,15 +829,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -949,15 +933,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -995,15 +977,13 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -1043,15 +1023,13 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -1151,15 +1129,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -1197,15 +1173,13 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -1275,15 +1249,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Daemonic Gifts and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "daemonic_gifts",
           "raw": "May take Daemonic Gifts and/or Magic Items up to a total of 50 points"
         }
       ],

@@ -3355,15 +3355,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 6,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 6,
+          "perModel": false,
           "raw": "May take an additional crew +6 points"
         }
       ],
@@ -3413,15 +3407,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 6,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 6,
+          "perModel": false,
           "raw": "May take an additional crew +6 points"
         }
       ],
@@ -3562,15 +3550,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 6,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 6,
+          "perModel": false,
           "raw": "May take an additional crew +6 points"
         }
       ],
@@ -3620,15 +3602,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 6,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 6,
+          "perModel": false,
           "raw": "May take an additional crew +6 points"
         }
       ],

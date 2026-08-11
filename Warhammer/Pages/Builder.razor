@@ -12,6 +12,7 @@
 @inject ArmyListSerializer Serializer
 @inject PortraitService Portraits
 @inject GameSystemService SystemService
+@inject NavigationManager Navigation
 @inject IJSRuntime JS
 
 <div class="container-fluid py-3">
@@ -45,6 +46,10 @@
             <button type="button" class="btn btn-sm btn-outline-light"
                     disabled="@(_factionKey == null)"
                     @onclick="ExportList">Export</button>
+            <button type="button" class="btn btn-sm btn-outline-light"
+                    disabled="@(_factionKey == null)"
+                    title="Open the printable battle roster"
+                    @onclick="OpenRoster">Print</button>
             <label class="btn btn-sm btn-outline-light mb-0">
                 Import
                 <InputFile OnChange="OnImportFileSelected" accept=".json" style="display:none;" />
@@ -280,7 +285,7 @@
                                                 @if (entry.CanHaveChampion && entry.CanHaveMusician && entry.CanHaveStandardBearer)
                                                 {
                                                     <button class="btn btn-sm me-1 @(HasFullCommand(entry) ? "btn-success" : "btn-outline-success")"
-                                                            title="Full Command (Champion + Musician + Standard)"
+                                                            title="Full Command (Leader + Musician + Standard)"
                                                             @onclick="() => ToggleFullCommand(entry)">F/C</button>
                                                 }
                                                 <button class="btn btn-sm btn-outline-secondary me-1"
@@ -380,8 +385,7 @@
 
     private string? _statusMessage;
     private bool _statusIsError;
-    private const string LegacyStorageKey = "warhammer.armylist.active";
-    private string StorageKey => $"warhammer.armylist.active.{SystemService.CurrentSystem}";
+    private string StorageKey => ArmyListStorage.ActiveKey(SystemService.CurrentSystem);
 
     protected override async Task OnInitializedAsync()
     {
@@ -403,7 +407,7 @@
             // Autosaves from before multi-system support live under the unsuffixed key.
             if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Default)
             {
-                saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", LegacyStorageKey);
+                saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", ArmyListStorage.LegacyActiveKey);
                 fromLegacyKey = !string.IsNullOrWhiteSpace(saved);
             }
         }
@@ -426,7 +430,7 @@
                 try
                 {
                     await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, saved);
-                    await JS.InvokeVoidAsync("armyBuilder.clearLocal", LegacyStorageKey);
+                    await JS.InvokeVoidAsync("armyBuilder.clearLocal", ArmyListStorage.LegacyActiveKey);
                 }
                 catch { }
             }
@@ -608,13 +612,50 @@
 
     // ─── Export / Import / New ────────────────────────────────────
 
+    /// <summary>
+    /// An allow-list, not <see cref="Path.GetInvalidFileNameChars"/>: on browser-wasm that
+    /// returns the Unix set — a null and a slash — so it reads as sanitising a filename while
+    /// letting through everything Windows minds. The browser does its own sanitising of the
+    /// download name; this only has to produce something legible with a stem.
+    /// </summary>
+    private static string SafeFileName(string? name)
+    {
+        var cleaned = new string((name ?? "")
+            .Select(c => char.IsLetterOrDigit(c) || c is ' ' or '-' or '_' ? c : '-')
+            .ToArray())
+            .Trim(' ', '-');
+
+        return string.IsNullOrWhiteSpace(cleaned) ? "army-list" : cleaned;
+    }
+
     private async Task ExportList()
     {
         var json = Serializer.Serialize(_armyList);
-        var safeName = string.Concat((_armyList.Name ?? "army-list").Split(Path.GetInvalidFileNameChars()));
-        var filename = $"{safeName}.json";
+        var filename = $"{SafeFileName(_armyList.Name)}.json";
         await JS.InvokeVoidAsync("armyBuilder.downloadJson", filename, json);
         SetStatus($"Exported '{filename}'.", isError: false);
+    }
+
+    /// <summary>
+    /// Hand the list to the print view. The current state is written out and awaited first —
+    /// the autosave is fire-and-forget, and renaming the list never triggers one at all, so the
+    /// roster would otherwise be able to print a version behind what is on screen.
+    /// </summary>
+    private async Task OpenRoster()
+    {
+        try
+        {
+            var json = Serializer.Serialize(_armyList);
+            await JS.InvokeVoidAsync("armyBuilder.saveLocal",
+                ArmyListStorage.PrintKey(SystemService.CurrentSystem), json);
+        }
+        catch
+        {
+            SetStatus("Could not open the print view — browser storage is unavailable.", isError: true);
+            return;
+        }
+
+        Navigation.NavigateTo("roster");
     }
 
     private async Task OnImportFileSelected(InputFileChangeEventArgs e)
@@ -659,7 +700,14 @@
         };
         _expanded.Clear();
         Revalidate();
-        try { await JS.InvokeVoidAsync("armyBuilder.clearLocal", StorageKey); } catch { }
+        try
+        {
+            await JS.InvokeVoidAsync("armyBuilder.clearLocal", StorageKey);
+            // Otherwise /roster, opened on its own, still has the discarded list to fall back on.
+            await JS.InvokeVoidAsync("armyBuilder.clearLocal",
+                ArmyListStorage.PrintKey(SystemService.CurrentSystem));
+        }
+        catch { }
         SetStatus("New list started.", isError: false);
     }
 

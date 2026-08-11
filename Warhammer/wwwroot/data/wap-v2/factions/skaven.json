@@ -999,15 +999,8 @@
           "raw": "May take smoke bombs +5 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "May Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
           "raw": "May Magic Items up to a total of 50 points"
         }
       ],
@@ -1156,15 +1149,8 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "May Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
           "raw": "May Magic Items up to a total of 50 points"
         }
       ],
@@ -1378,15 +1364,8 @@
           "raw": "May take a Warpstone Token 10 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "May Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
           "raw": "May Magic Items up to a total of 50 points"
         }
       ],
@@ -2688,15 +2667,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional crew",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional crew +5 points"
         }
       ],

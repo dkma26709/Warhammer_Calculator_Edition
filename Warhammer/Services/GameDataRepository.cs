@@ -319,10 +319,7 @@ public class GameDataRepository : IGameDataRepository
         }
 
         var command = ResolveCommandAvailability(entry.Options);
-        var magicItemAllowance = entry.Options?
-            .Where(o => o.IsType(OptionType.MagicItems))
-            .Select(o => o.PointsLimit)
-            .FirstOrDefault();
+        var magicItemAllowance = Unit.ResolveMagicItemAllowance(entry.Name, entry.Options);
 
         return new Unit
         {

@@ -57,6 +57,33 @@ public sealed record Unit
 
     /// <summary>The raw <see cref="UnitEntry"/> from JSON.</summary>
     public required UnitEntry RawEntry { get; init; }
+
+    /// <summary>
+    /// The magic item budget an entry may spend. An army book prints one options block for a
+    /// page of entries, so a Captain's allowance and a General's both land on both units; the
+    /// name on the line is what separates them. An unnamed allowance belongs to whoever holds
+    /// it. When only a neighbour's allowances are present, take the smallest — the entry can
+    /// still be equipped, without handing it a budget the book never gave it.
+    /// </summary>
+    public static int? ResolveMagicItemAllowance(string entryName, IEnumerable<UnitOption>? options)
+    {
+        var allowances = options?
+            .Where(o => o.IsType(OptionType.MagicItems))
+            .ToList();
+        if (allowances is null || allowances.Count == 0)
+            return null;
+
+        var mine = allowances.FirstOrDefault(o =>
+            string.Equals(o.AppliesTo?.Trim(), entryName.Trim(), StringComparison.OrdinalIgnoreCase));
+        if (mine != null)
+            return mine.PointsLimit;
+
+        var unnamed = allowances.FirstOrDefault(o => o.AppliesTo is null);
+        if (unnamed != null)
+            return unnamed.PointsLimit;
+
+        return allowances.Min(o => o.PointsLimit);
+    }
 }
 
 /// <summary>

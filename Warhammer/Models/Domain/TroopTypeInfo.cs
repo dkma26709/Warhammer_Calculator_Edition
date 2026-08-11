@@ -110,7 +110,11 @@ public record TroopTypeInfo
         if (string.IsNullOrWhiteSpace(troopTypeString))
             return Resolve(BaseTroopType.Infantry, isCharacter: false, intrinsicArmour: null, rules);
 
-        var cleaned = troopTypeString.TrimEnd('.', ' ');
+        // The first line only. 29 shipped entries carry the handler line after a newline —
+        // "Monster (Hydra)\nHANDLERS: 2 Beastmaster Apprentices (Dark Elf)" — and the pattern
+        // below cannot cross one, so the whole match failed and every one of them fell back to
+        // Infantry with unit strength 1. Equipment and baseSize take their first line the same way.
+        var cleaned = troopTypeString.Split('\n')[0].TrimEnd('.', ' ');
         var match = Regex.Match(cleaned, @"^(.+?)(?:\s*\((.+)\))?$");
 
         var baseTypeStr = match.Groups[1].Value.Trim();

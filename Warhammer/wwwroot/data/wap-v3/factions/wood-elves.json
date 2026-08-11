@@ -172,28 +172,16 @@
           "raw": "One Glade Captain may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Glade Captain may take one Spite and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Glade Captain may take one Spite and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Glade Captain may take one Spite and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Glade Captain"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Glade Lord may take one Spite and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Glade Lord may take one Spite and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Glade Lord may take one Spite and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Glade Lord"
         }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider",
@@ -377,28 +365,16 @@
           "raw": "One Glade Captain may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Glade Captain may take one Spite and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Glade Captain may take one Spite and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Glade Captain may take one Spite and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Glade Captain"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Glade Lord may take one Spite and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Glade Lord may take one Spite and/or Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Glade Lord may take one Spite and/or Magic Items up to a total of 100 points",
+          "appliesTo": "Glade Lord"
         }
       ],
       "specialRules": "Asrai Archery, Elven Grace, Forest Strider",
@@ -435,15 +411,9 @@
       "magic": "A Spellsinger is a Level 1 Wizard. A Spellweaver is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Athel Loren\n• Beasts\n• Heavens\n• Light\n• Life\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -474,28 +444,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Spellsinger may take one Spite and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Spellsinger may take one Spite and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Spellsinger may take one Spite and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Spellsinger"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Spellweaver take one Spite and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Spellweaver take one Spite and/or Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Spellweaver take one Spite and/or Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Spellweaver"
         }
       ],
       "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider",
@@ -532,15 +490,9 @@
       "magic": "A Spellsinger is a Level 1 Wizard. A Spellweaver is a Level 3 Wizard. They use one of the following Lores\nof Magic:\n• Athel Loren\n• Beasts\n• Heavens\n• Light\n• Life\n• Shadow",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -571,28 +523,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Spellsinger may take one Spite and/or Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Spellsinger may take one Spite and/or Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Spellsinger may take one Spite and/or Magic Items up to a total of 50 points",
+          "appliesTo": "Spellsinger"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Spellweaver take one Spite and/or Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Spellweaver take one Spite and/or Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Spellweaver take one Spite and/or Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Spellweaver"
         }
       ],
       "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider",

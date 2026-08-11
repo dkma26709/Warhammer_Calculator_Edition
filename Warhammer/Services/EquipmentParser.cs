@@ -44,6 +44,13 @@ public static class EquipmentParser
             ["sling"] = ("sling", true),
             ["blowpipe"] = ("blowpipe", true),
             ["blowpipes"] = ("blowpipe", true),
+            // These four are in MissileWeaponKey but were missing here, so the books' own
+            // lower-case wording reached the roster sheet unnormalised beside a title-cased
+            // "Handgun". The value is the enum's JSON key, which is camelCase.
+            ["blunderbuss"] = ("blunderbuss", true),
+            ["greatbow"] = ("greatbow", true),
+            ["bolt thrower"] = ("boltThrower", true),
+            ["repeater bolt thrower"] = ("repeaterBoltThrower", true),
             ["light armour"] = ("lightArmour", false),
             ["medium armour"] = ("mediumArmour", false),
             ["heavy armour"] = ("heavyArmour", false),
@@ -73,6 +80,24 @@ public static class EquipmentParser
     }
 
     /// <summary>
+    /// The items on an <c>equipment</c> field, trimmed. The first line only — anything past a
+    /// newline is extended description — split on commas. This is the canonical reading of the
+    /// field (see <c>docs/02-data-format.md</c>); callers that need the unrecognised names too,
+    /// such as the roster sheet, split with this and then normalise themselves rather than
+    /// keeping a second copy of the rule.
+    /// </summary>
+    public static IEnumerable<string> SplitItems(string? equipment)
+    {
+        if (string.IsNullOrWhiteSpace(equipment)) yield break;
+
+        foreach (var item in equipment.Split('\n')[0].Split(','))
+        {
+            var trimmed = item.Trim().TrimEnd('.');
+            if (trimmed.Length > 0) yield return trimmed;
+        }
+    }
+
+    /// <summary>
     /// Parse equipment text into weapon and armour keys matching core-rules.json dictionary keys.
     /// Only parses the first line (before any \n).
     /// </summary>
@@ -82,12 +107,8 @@ public static class EquipmentParser
         var armour = new List<string>();
         if (string.IsNullOrWhiteSpace(equipment)) return (weapons, armour);
 
-        // Stop at \n — anything after is extended description/magic items
-        var mainLine = equipment.Split('\n')[0];
-
-        foreach (var item in mainLine.Split(','))
+        foreach (var trimmed in SplitItems(equipment))
         {
-            var trimmed = item.Trim().TrimEnd('.');
             if (NormMap.TryGetValue(trimmed, out var mapped))
             {
                 if (mapped.IsWeapon)

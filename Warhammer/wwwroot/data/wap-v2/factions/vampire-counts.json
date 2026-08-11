@@ -107,15 +107,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -193,15 +191,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -327,15 +323,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -440,15 +434,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -505,15 +497,13 @@
           "raw": "May be mounted on a Terrorgheist +225 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 100 points",
-              "points": 100,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
         }
       ],
@@ -774,15 +764,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -853,15 +841,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -998,15 +984,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -1111,15 +1095,13 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -1170,15 +1152,13 @@
           "raw": "May be upgraded to a Level 1 Wizard +35 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Vampiric Powers and/or Magic Items up to a total of 50 points",
-              "points": 50,
-              "perModel": false
-            }
-          ],
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
+        },
+        {
+          "type": "faction_upgrade",
+          "factionUpgrade": "vampiric_powers",
           "raw": "May take Vampiric Powers and/or Magic Items up to a total of 50 points"
         }
       ],
@@ -4839,7 +4819,7 @@
       "equipment": null,
       "magic": null,
       "options": [],
-      "specialRules": "Chill Grasp (Kurdoss Valentian only, see Cairn Wraiths), Ethereal, Fly (5), Terror, Undead If I Cannot Rule, None Shall Rule! Kurdoss Valentian or any other Army General cannot make use of their Inspiring Presence special rule while they are within 12\" of him.",
+      "specialRules": "Chill Grasp (Kurdoss Valentian only, see Cairn Wraiths), Ethereal, Fly (5), Terror, Undead • If I Cannot Rule, None Shall Rule!: Kurdoss Valentian or any other Army General cannot make use of their Inspiring Presence special rule while they are within 12\" of him.",
       "specialRuleDescriptions": [
         "Suffer No Rival: Kurdoss may re-roll failed rolls To Hit in close combat against the enemy Army General."
       ],

@@ -166,28 +166,16 @@
           "raw": "One Orc Big Boss may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Orc Big Boss may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Orc Big Boss may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Orc Big Boss may take Magic Items up to a total of 50 points",
+          "appliesTo": "Orc Big Boss"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Orc Warboss may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Orc Warboss may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Orc Warboss may take Magic Items up to a total of 100 points",
+          "appliesTo": "Orc Warboss"
         }
       ],
       "specialRules": "Size Matters, Waaagh!",
@@ -365,28 +353,16 @@
           "raw": "One Orc Big Boss may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Orc Big Boss may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Orc Big Boss may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Orc Big Boss may take Magic Items up to a total of 50 points",
+          "appliesTo": "Orc Big Boss"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Orc Warboss may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Orc Warboss may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Orc Warboss may take Magic Items up to a total of 100 points",
+          "appliesTo": "Orc Warboss"
         }
       ],
       "specialRules": "Size Matters, Waaagh!",
@@ -430,15 +406,9 @@
           "raw": "May be upgraded to a Savage Orc +15 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -464,28 +434,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Weirdboy may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Weirdboy may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Weirdboy may take Magic Items up to a total of 50 points",
+          "appliesTo": "Weirdboy"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Weirdnob may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Weirdnob may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Weirdnob may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Weirdnob"
         }
       ],
       "specialRules": "Size Matters",
@@ -529,15 +487,9 @@
           "raw": "May be upgraded to a Savage Orc +15 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -563,28 +515,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Weirdboy may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Weirdboy may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Weirdboy may take Magic Items up to a total of 50 points",
+          "appliesTo": "Weirdboy"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Weirdnob may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Weirdnob may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Weirdnob may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Weirdnob"
         }
       ],
       "specialRules": "Size Matters",
@@ -774,28 +714,16 @@
           "raw": "One Goblin Big Boss may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Goblin Big Boss may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Goblin Big Boss may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Goblin Big Boss may take Magic Items up to a total of 50 points",
+          "appliesTo": "Goblin Big Boss"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Goblin Warboss may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Goblin Warboss may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Goblin Warboss may take Magic Items up to a total of 100 points",
+          "appliesTo": "Goblin Warboss"
         }
       ],
       "specialRules": "Fear Elves",
@@ -985,28 +913,16 @@
           "raw": "One Goblin Big Boss may carry the Battle Standard +25 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Goblin Big Boss may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "A Goblin Big Boss may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "A Goblin Big Boss may take Magic Items up to a total of 50 points",
+          "appliesTo": "Goblin Big Boss"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Goblin Warboss may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "A Goblin Warboss may take Magic Items up to a total of 100 points"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "A Goblin Warboss may take Magic Items up to a total of 100 points",
+          "appliesTo": "Goblin Warboss"
         }
       ],
       "specialRules": "Fear Elves",
@@ -1076,15 +992,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -1120,28 +1030,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Oddgit may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Oddgit may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Oddgit may take Magic Items up to a total of 50 points",
+          "appliesTo": "Oddgit"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Oddnob may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Oddnob may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Oddnob may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Oddnob"
         }
       ],
       "specialRules": "Fear Elves",
@@ -1211,15 +1109,9 @@
           ]
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -1255,28 +1147,16 @@
           "raw": "May be mounted on one of the following:"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Oddgit may take Magic Items up to a total of",
-              "points": 50,
-              "perModel": false
-            }
-          ],
-          "raw": "An Oddgit may take Magic Items up to a total of 50 points"
+          "type": "magic_items",
+          "pointsLimit": 50,
+          "raw": "An Oddgit may take Magic Items up to a total of 50 points",
+          "appliesTo": "Oddgit"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "Oddnob may take Magic Items up to a total of",
-              "points": 100,
-              "perModel": false
-            }
-          ],
-          "raw": "An Oddnob may take Magic Items up to a total of 100 points CHARACTERS"
+          "type": "magic_items",
+          "pointsLimit": 100,
+          "raw": "An Oddnob may take Magic Items up to a total of 100 points CHARACTERS",
+          "appliesTo": "Oddnob"
         }
       ],
       "specialRules": "Fear Elves",
@@ -1313,15 +1193,9 @@
       "magic": "A Giant River Troll Hag is a Level 2 Wizard who choose spells from the Lore of Troll Magic.",
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Wizard Level",
-              "points": 35,
-              "perModel": false
-            }
-          ],
+          "type": "wizard_upgrade",
+          "upgrade": "Additional Wizard Level",
+          "points": 35,
           "raw": "May take an additional Wizard Level +35 points"
         },
         {
@@ -2031,16 +1905,10 @@
               "raw": "May take a Magic Standard worth up to 25 points"
             },
             {
-              "type": "equipment",
-              "action": "add",
-              "choices": [
-                {
-                  "name": "Big 'Uns take a Magic Standard worth up to",
-                  "points": 50,
-                  "perModel": false
-                }
-              ],
-              "raw": "Big 'Uns take a Magic Standard worth up to 50 points"
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "Big 'Uns take a Magic Standard worth up to 50 points",
+              "appliesTo": "Big 'Uns"
             }
           ]
         }
@@ -2167,16 +2035,10 @@
               "raw": "May take a Magic Standard worth up to 25 points"
             },
             {
-              "type": "equipment",
-              "action": "add",
-              "choices": [
-                {
-                  "name": "Big 'Uns take a Magic Standard worth up to",
-                  "points": 50,
-                  "perModel": false
-                }
-              ],
-              "raw": "Big 'Uns take a Magic Standard worth up to 50 points"
+              "type": "magic_standard",
+              "pointsLimit": 50,
+              "raw": "Big 'Uns take a Magic Standard worth up to 50 points",
+              "appliesTo": "Big 'Uns"
             }
           ]
         }
@@ -2892,15 +2754,9 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Orc",
-              "points": 5,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 5,
+          "perModel": false,
           "raw": "May take an additional Orc +5 points"
         },
         {
@@ -3270,27 +3126,15 @@
       "magic": null,
       "options": [
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Goblin",
-              "points": 3,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 3,
+          "perModel": false,
           "raw": "May take an additional Goblin +3 points"
         },
         {
-          "type": "equipment",
-          "action": "add",
-          "choices": [
-            {
-              "name": "additional Giant Wolf",
-              "points": 3,
-              "perModel": false
-            }
-          ],
+          "type": "additional_model",
+          "points": 3,
+          "perModel": false,
           "raw": "May take an additional Giant Wolf +3 points"
         },
         {
