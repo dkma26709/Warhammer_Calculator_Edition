@@ -113,7 +113,7 @@ Characters track mount + lore + magic items through extensions to existing `Unit
 2. Select faction + points target (presets or custom)
 3. Unit browser on the left — grouped by category, click to add
 4. Active list on the right — each entry opens the existing `UnitConfigurator` for editing
-5. Bottom panel: points bar per category + validation messages (errors block export, warnings don't)
+5. Bottom panel: points bar per category + validation messages (errors in red, warnings in amber — neither blocks export today; see Open Questions)
 6. Header actions: new / export / import / autosave indicator
 
 ## Persistence

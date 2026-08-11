@@ -74,7 +74,11 @@
 
     protected override void OnParametersSet()
     {
+        // Magic standards are taken through the banner slot, against the unit's own banner
+        // allowance. Offering them here too let a model carry one as an ordinary item and then
+        // trip MAGIC_ITEM_CATEGORY_REPEATED against the banner it already had.
         _groupedItems = MagicItems
+            .Where(i => i.Category != MagicItemCategories.MagicStandard)
             .OrderBy(i => i.Category)
             .ThenBy(i => ParsePoints(i.Points))
             .GroupBy(i => i.Category);

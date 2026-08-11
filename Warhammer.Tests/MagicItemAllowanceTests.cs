@@ -122,8 +122,10 @@ public class MagicItemAllowanceTests
     /// <summary>
     /// The item lists hold more categories than the six each book prints — Dwarf runes are in
     /// there too. An unrecognised key is not loud: <see cref="MagicItemCategories.Plural"/>
-    /// returns it verbatim, so the picker shows an "weapon_rune" heading, and the validator
-    /// silently treats it as a category a model may hold only one of.
+    /// returns it verbatim, so the picker would show a raw "weapon_rune" heading. The
+    /// one-per-model check errs the safe way for one it doesn't know
+    /// (<see cref="MagicItemCategories.HasOnePerModelLimit"/> holds an unknown category to the
+    /// limit), but a heading nobody wrote is still a heading nobody wants.
     /// </summary>
     [Theory]
     [MemberData(nameof(SystemFactions))]

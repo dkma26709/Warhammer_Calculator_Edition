@@ -20,9 +20,15 @@ public static class MagicItemCategories
     public const string BannerRune = "banner_rune";
     public const string EngineeringRune = "engineering_rune";
 
-    private static readonly HashSet<string> OnePerModel =
+    /// <summary>
+    /// The rune categories, which are the exception rather than the rule. Kept as the exception
+    /// list rather than listing the six printed categories, so a category the data starts
+    /// carrying tomorrow — a hand-edited saved list, a renamed key after a re-extraction — is
+    /// held to the one-per-model limit instead of quietly escaping it.
+    /// </summary>
+    private static readonly HashSet<string> Runes =
     [
-        MagicWeapon, MagicArmour, Talisman, ArcaneItem, EnchantedItem, MagicStandard,
+        WeaponRune, ArmourRune, TalismanicRune, BannerRune, EngineeringRune,
     ];
 
     private static readonly Dictionary<string, (string One, string Many)> Names = new()
@@ -41,11 +47,11 @@ public static class MagicItemCategories
     };
 
     /// <summary>
-    /// Whether a model may hold only one item of this category. True of the six printed lists.
-    /// False of runes: a Dwarf may inscribe up to three on one item, and apart from master
-    /// runes they combine freely.
+    /// Whether a model may hold only one item of this category. True of the six printed lists,
+    /// and of anything unrecognised. False only for runes: a Dwarf may inscribe up to three on
+    /// one item, and apart from master runes they combine freely.
     /// </summary>
-    public static bool HasOnePerModelLimit(string category) => OnePerModel.Contains(category);
+    public static bool HasOnePerModelLimit(string category) => !Runes.Contains(category);
 
     /// <summary>
     /// Whether an item is a master rune, which may be used only once per army. The army books

@@ -452,7 +452,7 @@ public class ArmyListValidatorTests
     // ─── Dwarf runes ─────────────────────────────────────────────
     // "You may inscribe up to three runes onto an item ... Apart from the master runes other
     // runes can be combined as you wish." The one-per-category limit is for the six printed
-    // lists; applying it to runes would reject a legal Dwarf loadout, and errors block export.
+    // lists; applying it to runes reported a legal Dwarf loadout as illegal.
 
     [Fact]
     public void TwoRunesOfOneKind_OnOneItem_IsLegal()
@@ -503,6 +503,22 @@ public class ArmyListValidatorTests
         Assert.Contains("Master Rune of Smiting", issue.Message);
         Assert.DoesNotContain("MAGIC_ITEM_CATEGORY_REPEATED",
             V.Validate(ListWith(lord, thane)).Select(i => i.Code));
+    }
+
+    [Fact]
+    public void AnUnknownCategory_IsStillHeldToOnePerModel()
+    {
+        // An imported list can carry any category string. Exempting one we don't recognise would
+        // let two Magic Weapons past on a hand-edited "magic_weapons"; runes are the only
+        // documented exception, so everything else answers to the limit.
+        var captain = MakeCharacter("Captain", allowance: 100);
+        GiveItem(captain, "Sword of Might", "magic_weapons", 20);
+        GiveItem(captain, "Sword of Striking", "magic_weapons", 30);
+
+        var issue = Assert.Single(V.Validate(ListWith(captain)),
+            i => i.Code == "MAGIC_ITEM_CATEGORY_REPEATED");
+
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
     }
 
     [Fact]
