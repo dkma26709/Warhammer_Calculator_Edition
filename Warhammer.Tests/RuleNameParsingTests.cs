@@ -355,7 +355,7 @@ public class RuleNameParsingTests
 
     /// <summary>
     /// The books capitalise every rule name, so a lowercase word after a comma continues the name
-    /// it follows. Lokhir Fellheart's "At 'em, you Curs!" was served as two badges.
+    /// it follows. Lokhir Fellheart's "At them, you Curs!" was served as two badges.
     /// </summary>
     [Fact]
     public void ALowercaseFragmentContinuesTheNameBeforeIt()

@@ -180,8 +180,11 @@ public class ArmyListSerializer
     {
         var cfg = new UnitConfiguration(unit)
         {
-            ModelCount = dto.ModelCount,
-            Frontage = dto.Frontage,
+            // Clamped the way the configurator's own inputs clamp them. An imported file is the
+            // one path that bypasses those, and a frontage of 0 makes a 40-model unit report a
+            // single rank rather than failing.
+            ModelCount = Math.Max(1, dto.ModelCount),
+            Frontage = Math.Max(1, dto.Frontage),
             HasChampion = dto.HasChampion,
             HasMusician = dto.HasMusician,
             HasStandardBearer = dto.HasStandardBearer,

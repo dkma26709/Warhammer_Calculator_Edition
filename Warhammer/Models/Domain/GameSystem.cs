@@ -25,4 +25,8 @@ public static class GameSystems
 
     public static bool IsEnabled(string? key) =>
         All.Any(s => s.Enabled && s.Key == key);
+
+    /// <summary>How a system key reads to a person, falling back to the key itself.</summary>
+    public static string DisplayNameFor(string? key) =>
+        All.FirstOrDefault(s => s.Key == key)?.DisplayName ?? key ?? "";
 }

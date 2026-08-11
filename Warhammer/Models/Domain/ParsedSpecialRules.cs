@@ -531,7 +531,7 @@ public record ParsedSpecialRules
         {
             if (text[i] == '(') depth++;
             else if (text[i] == ')') depth--;
-            else if (text[i] == ',' && depth == 0 && StartsANewRule(text, i + 1))
+            else if (text[i] == ',' && depth == 0 && IsStartOfNewRule(text, i + 1))
             {
                 parts.Add(text[start..i]);
                 start = i + 1;
@@ -547,10 +547,10 @@ public record ParsedSpecialRules
     /// <summary>
     /// Whether the text after a top-level comma begins a new rule rather than continuing the
     /// current one's name. The books capitalise every rule name, so a lowercase word after the
-    /// comma is still inside the name it follows — Lokhir Fellheart's "At 'em, you Curs!" was
+    /// comma is still inside the name it follows — Lokhir Fellheart's "At them, you Curs!" was
     /// otherwise served as the two badges "At them" and "you Curs!".
     /// </summary>
-    private static bool StartsANewRule(string text, int index)
+    private static bool IsStartOfNewRule(string text, int index)
     {
         while (index < text.Length && char.IsWhiteSpace(text[index]))
             index++;

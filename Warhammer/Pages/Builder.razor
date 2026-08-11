@@ -612,11 +612,26 @@
 
     // ─── Export / Import / New ────────────────────────────────────
 
+    /// <summary>
+    /// An allow-list, not <see cref="Path.GetInvalidFileNameChars"/>: on browser-wasm that
+    /// returns the Unix set — a null and a slash — so it reads as sanitising a filename while
+    /// letting through everything Windows minds. The browser does its own sanitising of the
+    /// download name; this only has to produce something legible with a stem.
+    /// </summary>
+    private static string SafeFileName(string? name)
+    {
+        var cleaned = new string((name ?? "")
+            .Select(c => char.IsLetterOrDigit(c) || c is ' ' or '-' or '_' ? c : '-')
+            .ToArray())
+            .Trim(' ', '-');
+
+        return string.IsNullOrWhiteSpace(cleaned) ? "army-list" : cleaned;
+    }
+
     private async Task ExportList()
     {
         var json = Serializer.Serialize(_armyList);
-        var safeName = string.Concat((_armyList.Name ?? "army-list").Split(Path.GetInvalidFileNameChars()));
-        var filename = $"{safeName}.json";
+        var filename = $"{SafeFileName(_armyList.Name)}.json";
         await JS.InvokeVoidAsync("armyBuilder.downloadJson", filename, json);
         SetStatus($"Exported '{filename}'.", isError: false);
     }

@@ -21,7 +21,7 @@ Four pages:
 # Run the app (from repo root)
 cd Warhammer && dotnet run          # then open https://localhost:{port}/
 
-# Run tests (~300 xUnit test methods across ~26 classes)
+# Run tests (574 [Fact]/[Theory] methods over 47 files; 961 cases once theories expand)
 cd Warhammer.Tests && dotnet test
 
 # Build everything
