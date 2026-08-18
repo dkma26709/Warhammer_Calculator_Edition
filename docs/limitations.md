@@ -1,63 +1,83 @@
 # Known Limitations
 
+> Verified against the source on 2026-08-11. Every "not implemented" entry below was checked by
+> grepping for its mechanism, not inherited from the previous revision — the file had drifted badly
+> enough to list five shipped features as missing, so please re-check rather than re-copy.
+
 ## Currently Implemented
 
 ### Combat Mechanics
-- Single combat round resolution (Monte Carlo, 10k iterations)
+- Monte Carlo resolution (default 10k iterations), single round and **multi-round**
+  (`CombatEngine.SimulateMultiRound`, `MultiRoundResult`)
 - Full to-hit / to-wound / armour save / ward save pipeline
-- 32 special rules with correct interactions
+- **70 typed special-rule properties** on `ParsedSpecialRules`, with defined interactions
+- **Break tests, Steadfast, Stubborn, Unbreakable and Unstable** (`BreakTestResolver`)
+- **Fleeing and pursuit**, including Swift Stride catch rates (`FleeAndPursueResolver`)
 - Killing Blow and Heroic Killing Blow with eligibility checks
 - Multiple Wounds (fixed and dice-based) with model-by-model allocation
-- Impact Hits (cavalry charge + special rules)
-- Stomps (monstrous units vs eligible targets)
+- Impact Hits (cavalry charge + special rules) and Stomps vs eligible targets
+- **Random Attacks are rolled**, not approximated — `DiceRoller.Roll(rules.RandomAttacksRoll)`
 - Strike order: ASF / ASL / Initiative priority
 - Re-rolls: Hatred (round 1), ASF (if I > opponent), Flaming vs Flammable
-- Cavalry split profiles and mount attacks
+- Cavalry split profiles and mount attacks; rules the book scopes to one model go to that model
 - Weapon modifiers: Initiative, extra attacks, Mighty Blow, Fight in Extra Ranks, Parry
+- Mighty Blow and Armour Piercing are cumulative across sources, per both rulebooks
+- Ward saves combine (capped at 4+); Regeneration, Parry and Dodge take best-of
 - Effective armour save: equipment + Natural Armour + intrinsic troop type save
-- Ward Save / Regeneration / Parry precedence
 - Ethereal (5+ ward vs magical, 2+ vs mundane)
-- Combat Resolution: wounds + rank bonus + standard + charge + fear
-- Wound pool capping: can't deal more wounds than models * W
+- Combat Resolution: wounds + rank bonus + standard + charge + fear + musician
+- Wound pool capping: can't deal more wounds than models × W
+- Some faction rules are parsed into effects (e.g. Predatory Fighter)
 
 ### UI
-- Two-unit matchup with full configuration
-- Weapon selection from equipment + options
-- Command group checkboxes (conditional on unit data)
+- Four pages: `/matchup` (two units), `/gauntlet` (one unit vs many — the comparison mode),
+  `/builder` (army lists), `/roster` (printable battle sheet)
+- **Army list builder** with WAP composition validation, magic items, banners and wizard lores
+- **Printable roster** — profiles, saves, equipment, items, rules and points, browser Save-as-PDF
+- **JSON export / import and LocalStorage autosave** (`ArmyListSerializer`, `ArmyListStorage`)
+- Weapon selection from equipment + options; command group checkboxes from unit data
 - Points cost tracking with per-model and flat upgrades
-- Effective stats comparison panel
-- Win/loss/draw distribution charts
-- Points exchange efficiency analysis
+- Effective stats comparison panel; win/loss/draw distributions; points efficiency analysis
 
 ### Data
-- 15 faction rosters extracted from PDFs
-- Core rules tables, weapons, armour, common special rules
-- Army-specific extras (magic items, lores, army rules) — loaded but not used in combat
+- **Two game systems** — wap-v2 and wap-v3, 15 faction rosters each
+- Core rules tables, weapons, armour, troop types, common special rules
+- Magic items and banners are **selectable and affect combat** through `UnitModifier`
 
 ## Not Yet Implemented
 
 ### Combat Mechanics
-- **Multi-round combat** — only round 1 is simulated. Mighty Blow and Hatred are round-1-only effects; subsequent rounds would drop these bonuses.
-- **Break tests / Steadfast** — no Leadership rolls after losing combat
-- **Fleeing and pursuit** — no retreat/overrun simulation
 - **Flank and rear charges** — attacks always assumed front-to-front
-- **Characters joining units** — no character allocation, "Look Out, Sir!", or challenge mechanics
-- **Magic phase** — no spellcasting, bound spells, or dispelling
-- **Shooting phase** — close combat only
-- **Random Attacks** — parsed but not rolled (units with Random Attacks use their profile A instead)
-- **Berserk Rage / Frenzy loss** — Frenzy gives +1A but doesn't model post-combat restraint tests
-- **Fear/Terror psychology tests** — Fear CR bonus is modelled, but actual Leadership tests to charge or hold are not
-- **Magic Resistance** — not implemented
-- **Stubborn / Unbreakable / Unstable** — parsed but not used (no break tests to apply them to)
+- **Characters joining units** — no character allocation, "Look Out, Sir!", or challenges
+- **Magic phase** — no spellcasting, bound spells or dispelling. Lore and spells are selectable in
+  the builder and recorded on the list, but nothing casts them
+- **Shooting phase** — close combat only. Missile weapons are parsed and printed on the roster
+  sheet but resolve to nothing in the engine
+- **Fear / Terror psychology tests** — the Fear combat-resolution bonus is modelled; the Leadership
+  tests to charge or to hold are not
+- **Frenzy restraint** — Frenzy gives +1A but post-combat restraint tests are not modelled
+- **Magic Resistance** — named by 39 wap-v2 and 88 wap-v3 units, no typed property, no effect
+- **~25 further named rules have no typed property**, so they reach the badges and the roster sheet
+  but the engine cannot act on them. The ones the data names most often: Strider (68/74 units),
+  Loner (40/9), Aquatic (20/21), Stupidity (14/14), Expendable (11/10), Inspiring Presence (2/10),
+  plus Hidden, Sniper, Weapon Team, Animated Construct and Mixed Unit. Most are movement, shooting
+  or deployment rules with no close-combat effect, which is why they were never prioritised —
+  Stupidity, Inspiring Presence and Loner are the ones that touch Leadership and could matter now
+  that break tests exist. The abandoned `seperate_weapons` branch enumerates all of them.
+- **Third and fourth profiles are never fielded**, so a chariot fights with its crew's attacks and
+  not its beasts', and the chassis makes a phantom attack
+- **Champion-only rules go nowhere** — the engine fields one profile for the rank and file
 
 ### Data / Extraction
-- **Faction-specific special rules** — Predatory Fighter, Jungle Poisons, etc. are extracted as text but not parsed into combat effects
-- **Faction-specific weapons** — weapon dropdown only matches the core rules weapon registry; army-unique weapons aren't resolved
-- **Mount stat line extraction** — recently fixed for units with trailing `-` in points column; other armies should be re-extracted to pick up the fix
-- **Magic items** — extracted but not usable in combat configuration
+- **Faction-specific weapons** — the weapon dropdown matches the core rules registry only;
+  army-unique weapons aren't resolved to a profile
+- **Magic item effects are not derived from their description text** — each selection carries a
+  `UnitModifier` the user fills in by hand
+- **Named characters are not split into Lords and Heroes** — the books draw that line only in
+  their tables of contents
+- Two fields are read by nothing: `crew` / `drawnBy` (per-profile model counts, as prose) and
+  `magic` (wap-v3 wizard levels and lore lists)
 
 ### UI
-- No army list builder — single unit vs single unit only
-- No save/load for unit configurations
-- No comparison mode (e.g. "what if I add shields?")
 - No mobile-optimised layout
+- Validation is advisory — no code path gates export on issue severity
