@@ -416,6 +416,132 @@ public class UnitConfigurationTests
         Assert.Equal(90, config.TotalPointsCost); // 80 + 10 * 1 = 90
     }
 
+    // ─── "Choose any" groups (multi-select) ──────────────────────
+
+    private static UnitOption MakeChooseAnyOption(params OptionChoice[] choices) => new()
+    {
+        Type = "equipment",
+        Action = "choose",
+        Choices = [.. choices],
+        Raw = "May choose any of the following:",
+    };
+
+    [Fact]
+    public void ChooseAny_IsDetectedFromTheRawText()
+    {
+        Assert.True(MakeChooseAnyOption().AllowsMultipleChoices);
+        Assert.True(new UnitOption { Raw = "Must choose at least one of the following:" }.AllowsMultipleChoices);
+        Assert.False(new UnitOption { Raw = "May choose one of the following:" }.AllowsMultipleChoices);
+        Assert.False(new UnitOption { Raw = null }.AllowsMultipleChoices);
+    }
+
+    [Fact]
+    public void ChooseAny_CostsEverySelectedChoice()
+    {
+        // The Stegadon's book line: any of Stampede (10), Horns (20), Ancient (30).
+        var unit = MakeUnit(points: 215, options:
+        [
+            MakeChooseAnyOption(
+                new OptionChoice { Name = ["Unstoppable Stampede"], Points = 10 },
+                new OptionChoice { Name = ["Sharpened Horns"], Points = 20 },
+                new OptionChoice { Name = ["Ancient"], Points = 30 })
+        ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 1 };
+        config.SelectedMultiUpgrades[0] = [0, 1, 2];
+
+        Assert.Equal(60, config.UpgradeCost);
+        Assert.Equal(275, config.TotalPointsCost);
+    }
+
+    [Fact]
+    public void ChooseAny_LegacySingleSelection_StillCounts()
+    {
+        // A save from before multi-select stored one pick in SelectedUpgrades.
+        var unit = MakeUnit(points: 215, options:
+        [
+            MakeChooseAnyOption(
+                new OptionChoice { Name = ["Unstoppable Stampede"], Points = 10 },
+                new OptionChoice { Name = ["Ancient"], Points = 30 })
+        ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 1 };
+        config.SelectedUpgrades[0] = 1;
+
+        Assert.Equal(30, config.UpgradeCost);
+        Assert.Equal(new[] { 1 }, config.SelectedChoicesIn(0));
+    }
+
+    [Fact]
+    public void ChooseAny_MultiEntrySupersedesTheLegacyOne()
+    {
+        var unit = MakeUnit(points: 215, options:
+        [
+            MakeChooseAnyOption(
+                new OptionChoice { Name = ["Unstoppable Stampede"], Points = 10 },
+                new OptionChoice { Name = ["Ancient"], Points = 30 })
+        ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 1 };
+        config.SelectedUpgrades[0] = 1;
+        config.SelectedMultiUpgrades[0] = [0];
+
+        // No double counting: the multi entry wins for its group.
+        Assert.Equal(10, config.UpgradeCost);
+    }
+
+    [Fact]
+    public void ChooseAny_EquipmentChoices_AllTakeEffect()
+    {
+        // Dwarf Warriors: "Must choose at least one of the following: shield, great weapon".
+        var unit = MakeUnit(equipment: "Hand weapon", options:
+        [
+            new UnitOption
+            {
+                Type = "equipment",
+                Action = "choose",
+                Choices =
+                [
+                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true },
+                    new OptionChoice { Name = ["great weapon"], Points = 2, PerModel = true },
+                ],
+                Raw = "Must choose at least one of the following:",
+            }
+        ]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 10 };
+        config.SelectedMultiUpgrades[0] = [0, 1];
+
+        Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
+        Assert.Contains(CloseCombatWeaponKey.GreatWeapon, config.EffectiveWeapons);
+        Assert.Equal(30, config.UpgradeCost); // 10 × (1 + 2)
+    }
+
+    [Fact]
+    public async Task ChooseAny_IsDetectedOnTheRealStegadon()
+    {
+        var repo = TestHelpers.CreateRepository();
+        var stegadon = (await repo.GetUnitsAsync(FactionKey.Lizardmen))
+            .Single(u => u.Name == "Stegadon");
+
+        var group = stegadon.Options!.Single(o => o.AllowsMultipleChoices);
+        Assert.Equal(3, group.Choices!.Count);
+
+        // The howdah-weapon replacement stays a one-of group.
+        Assert.Single(stegadon.Options!, o =>
+            o.IsAction(OptionAction.Replace) && !o.AllowsMultipleChoices && o.Replaces == "giant bow");
+    }
+
+    [Fact]
+    public void ChooseAny_OnlyDeclaredGroupsAreMulti()
+    {
+        Assert.False(MakeEquipmentOption("choose",
+        [
+            new OptionChoice { Name = ["shield"], Points = 1 },
+            new OptionChoice { Name = ["great weapon"], Points = 2 },
+        ]).AllowsMultipleChoices);
+    }
+
     [Fact]
     public void ChooseArmourUpgrade_OnlyOneSelectable()
     {

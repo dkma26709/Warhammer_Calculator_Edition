@@ -201,17 +201,20 @@ public class ArmyRosterBuilder
         {
             var option = options[i];
             if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
-            if (!cfg.SelectedUpgrades.TryGetValue(i, out int choiceIndex)) continue;
-            if (choiceIndex < 0 || choiceIndex >= option.Choices.Count) continue;
 
-            var choice = option.Choices[choiceIndex];
+            foreach (int choiceIndex in cfg.SelectedChoicesIn(i))
+            {
+                if (choiceIndex >= option.Choices.Count) continue;
 
-            var replaced = choice.Replaces ?? option.Replaces;
-            if (option.IsAction(OptionAction.Replace) && replaced != null && Unmodelled(replaced) is { } gone)
-                items.RemoveAll(item => SameGear(item, gone));
+                var choice = option.Choices[choiceIndex];
 
-            foreach (var name in choice.Name)
-                if (Unmodelled(name) is { } item) items.Add(item);
+                var replaced = choice.Replaces ?? option.Replaces;
+                if (option.IsAction(OptionAction.Replace) && replaced != null && Unmodelled(replaced) is { } gone)
+                    items.RemoveAll(item => SameGear(item, gone));
+
+                foreach (var name in choice.Name)
+                    if (Unmodelled(name) is { } item) items.Add(item);
+            }
         }
 
         return items;
@@ -265,23 +268,25 @@ public class ArmyRosterBuilder
         for (int i = 0; options != null && i < options.Count; i++)
         {
             var option = options[i];
-            if (!cfg.SelectedUpgrades.TryGetValue(i, out int choiceIndex) || choiceIndex < 0) continue;
 
-            switch (option.GetOptionType())
+            foreach (int choiceIndex in cfg.SelectedChoicesIn(i))
             {
-                case OptionType.Mount when option.Choices != null && choiceIndex < option.Choices.Count:
-                    picks.Add(option.Choices[choiceIndex].DisplayName);
-                    break;
+                switch (option.GetOptionType())
+                {
+                    case OptionType.Mount when option.Choices != null && choiceIndex < option.Choices.Count:
+                        picks.Add(option.Choices[choiceIndex].DisplayName);
+                        break;
 
-                case OptionType.Upgrade when option.SubOptions != null:
-                    if (choiceIndex >= option.SubOptions.Count) break;
-                    var sub = option.SubOptions[choiceIndex];
-                    picks.Add(sub.Choices?.FirstOrDefault()?.DisplayName ?? sub.Upgrade ?? "Upgrade");
-                    break;
+                    case OptionType.Upgrade when option.SubOptions != null:
+                        if (choiceIndex >= option.SubOptions.Count) break;
+                        var sub = option.SubOptions[choiceIndex];
+                        picks.Add(sub.Choices?.FirstOrDefault()?.DisplayName ?? sub.Upgrade ?? "Upgrade");
+                        break;
 
-                case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
-                    if (!string.IsNullOrWhiteSpace(option.Upgrade)) picks.Add(option.Upgrade);
-                    break;
+                    case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
+                        if (!string.IsNullOrWhiteSpace(option.Upgrade)) picks.Add(option.Upgrade);
+                        break;
+                }
             }
         }
 

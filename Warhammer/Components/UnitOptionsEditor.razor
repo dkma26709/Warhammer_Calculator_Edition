@@ -298,6 +298,11 @@
             builder.CloseElement();
             builder.CloseElement();
         }
+        else if (option.AllowsMultipleChoices)
+        {
+            // "Choose any" / "at least one" → one checkbox per choice
+            RenderMultiChoiceCheckboxes(builder, idx, option, classified);
+        }
         else
         {
             // Multiple choices → dropdown
@@ -334,6 +339,50 @@
             builder.CloseElement();
             builder.CloseElement();
         }
+    }
+
+    private void RenderMultiChoiceCheckboxes(
+        Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
+        int idx, UnitOption option, List<ClassifiedChoice> classified)
+    {
+        if (option.Choices == null) return;
+        var selectedNow = Configuration!.SelectedChoicesIn(idx).ToHashSet();
+        var label = option.Raw?.Split('\n')[0].TrimEnd(':').Trim() ?? "May choose any of the following";
+        var capturedIdx = idx;
+
+        builder.OpenElement(0, "div");
+        builder.AddAttribute(1, "class", "mb-2");
+        builder.OpenElement(2, "label");
+        builder.AddAttribute(3, "class", "form-label small text-body-secondary mb-0");
+        builder.AddContent(4, label);
+        builder.CloseElement();
+
+        int seq = 10;
+        for (int ci = 0; ci < option.Choices.Count; ci++)
+        {
+            var choice = option.Choices[ci];
+            var info = classified[ci];
+            var capturedChoice = ci;
+            var inputId = $"{_id}-opt-{capturedIdx}-{ci}";
+
+            builder.OpenElement(seq++, "div");
+            builder.AddAttribute(seq++, "class", "form-check");
+            builder.OpenElement(seq++, "input");
+            builder.AddAttribute(seq++, "class", "form-check-input");
+            builder.AddAttribute(seq++, "type", "checkbox");
+            builder.AddAttribute(seq++, "id", inputId);
+            builder.AddAttribute(seq++, "checked", selectedNow.Contains(ci));
+            builder.AddAttribute(seq++, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this,
+                e => OnMultiUpgradeToggled(capturedIdx, capturedChoice, (bool)(e.Value ?? false))));
+            builder.CloseElement();
+            builder.OpenElement(seq++, "label");
+            builder.AddAttribute(seq++, "class", "form-check-label small");
+            builder.AddAttribute(seq++, "for", inputId);
+            builder.AddContent(seq++, $"{info.DisplayName} {FormatCost(choice)}");
+            builder.CloseElement();
+            builder.CloseElement();
+        }
+        builder.CloseElement();
     }
 
     private void RenderChoicesDropdown(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option, string label)
@@ -547,6 +596,26 @@
             Configuration.SelectedUpgrades[optionIndex] = 0;
         else
             Configuration.SelectedUpgrades.Remove(optionIndex);
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnMultiUpgradeToggled(int optionIndex, int choiceIndex, bool selected)
+    {
+        if (Configuration == null) return;
+        if (!Configuration.SelectedMultiUpgrades.TryGetValue(optionIndex, out var picks))
+        {
+            picks = new List<int>();
+            // Absorb a pick saved while this group was still a single-select dropdown —
+            // the multi entry supersedes SelectedUpgrades for this group from here on.
+            if (Configuration.SelectedUpgrades.TryGetValue(optionIndex, out var legacy) && legacy >= 0)
+                picks.Add(legacy);
+            Configuration.SelectedUpgrades.Remove(optionIndex);
+            Configuration.SelectedMultiUpgrades[optionIndex] = picks;
+        }
+
+        if (selected && !picks.Contains(choiceIndex)) picks.Add(choiceIndex);
+        else if (!selected) picks.Remove(choiceIndex);
+
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 

@@ -385,6 +385,8 @@
             };
             foreach (var kvp in opp.Config.SelectedUpgrades)
                 probe.SelectedUpgrades[kvp.Key] = kvp.Value;
+            foreach (var kvp in opp.Config.SelectedMultiUpgrades)
+                probe.SelectedMultiUpgrades[kvp.Key] = kvp.Value.ToList();
 
             double fixedCost = probe.TotalPointsCost - costPerModel;
             double modelBudget = targetPts - fixedCost;
@@ -507,6 +509,8 @@
         };
         foreach (var kvp in source.SelectedUpgrades)
             clone.SelectedUpgrades[kvp.Key] = kvp.Value;
+        foreach (var kvp in source.SelectedMultiUpgrades)
+            clone.SelectedMultiUpgrades[kvp.Key] = kvp.Value.ToList();
         foreach (var mi in source.SelectedMagicItems)
             clone.SelectedMagicItems.Add(mi);
         foreach (var mod in source.Modifiers)

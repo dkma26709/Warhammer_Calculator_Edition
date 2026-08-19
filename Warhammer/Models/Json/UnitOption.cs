@@ -59,6 +59,16 @@ public record UnitOption
 
     /// <summary>Original text from the army book.</summary>
     public string? Raw { get; init; }
+
+    /// <summary>
+    /// True when the book allows several choices from this group at once — "May choose any of
+    /// the following" / "Must choose at least one of the following" — rather than exactly one.
+    /// </summary>
+    [JsonIgnore]
+    public bool AllowsMultipleChoices =>
+        Raw != null
+        && (Raw.Contains("any of the following", StringComparison.OrdinalIgnoreCase)
+            || Raw.Contains("at least one of the following", StringComparison.OrdinalIgnoreCase));
 }
 
 /// <summary>

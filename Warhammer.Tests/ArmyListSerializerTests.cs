@@ -109,6 +109,45 @@ public class ArmyListSerializerTests
     }
 
     [Fact]
+    public async Task SelectedMultiUpgrades_RoundTripThroughExportAndImport()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Stegadon", points: 215);
+        var original = new UnitConfiguration(unit);
+        original.SelectedMultiUpgrades[1] = [0, 2];
+
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Lizardmen,
+            PointsTarget = 2000,
+            Units = { original },
+        };
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
+        var json = serializer.Serialize(list);
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        var restored = result.List!.Units.Single();
+        Assert.Equal(new List<int> { 0, 2 }, restored.SelectedMultiUpgrades[1]);
+    }
+
+    [Fact]
+    public void Serialize_OmitsMultiUpgrades_WhenNoneSelected()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var list = new ArmyList
+        {
+            Faction = FactionKey.Dwarfs,
+            PointsTarget = 2000,
+            Units = { new UnitConfiguration(unit) },
+        };
+
+        var json = new ArmyListSerializer(new StubRepo(unit), new GameSystemService()).Serialize(list);
+
+        Assert.DoesNotContain("selectedMultiUpgrades", json);
+    }
+
+    [Fact]
     public async Task LegacySingleCharacterOverride_LandsOnSingleUnitMax()
     {
         // A list saved while the cap was still character-only used "singleCharacterMax".

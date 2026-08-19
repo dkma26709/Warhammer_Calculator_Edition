@@ -53,6 +53,33 @@ public class UnitConfiguration
     /// </summary>
     public Dictionary<int, int> SelectedUpgrades { get; } = new();
 
+    /// <summary>
+    /// Selections in "choose any" groups (<see cref="Json.UnitOption.AllowsMultipleChoices"/>),
+    /// where a unit may take several choices at once. Key = index into Unit.Options, value =
+    /// the chosen indices into that option's Choices list. A key present here supersedes the
+    /// same key in <see cref="SelectedUpgrades"/>.
+    /// </summary>
+    public Dictionary<int, List<int>> SelectedMultiUpgrades { get; } = new();
+
+    /// <summary>
+    /// Every choice index selected in option group <paramref name="optionIndex"/> — any number
+    /// for a "choose any" group, at most one otherwise. The one read path over both stores, so
+    /// costing, equipment resolution and the roster cannot disagree.
+    /// </summary>
+    public IEnumerable<int> SelectedChoicesIn(int optionIndex)
+    {
+        if (SelectedMultiUpgrades.TryGetValue(optionIndex, out var many))
+        {
+            foreach (var idx in many)
+                if (idx >= 0)
+                    yield return idx;
+        }
+        else if (SelectedUpgrades.TryGetValue(optionIndex, out var one) && one >= 0)
+        {
+            yield return one;
+        }
+    }
+
     /// <summary>Selected magic items with their configured combat modifiers.</summary>
     public List<SelectedMagicItem> SelectedMagicItems { get; } = [];
 
@@ -418,32 +445,35 @@ public class UnitConfiguration
         {
             var option = UnitEntry.Options[i];
             if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
-            if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
-            if (choiceIdx >= option.Choices.Count) continue;
 
-            var choice = option.Choices[choiceIdx];
-
-            // Handle replace: remove the replaced item
-            string? replaces = choice.Replaces ?? option.Replaces;
-            if (option.IsAction(OptionAction.Replace) && replaces != null)
+            foreach (int choiceIdx in SelectedChoicesIn(i))
             {
-                if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
-                    && replacedIsWeapon
-                    && CloseCombatWeaponKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
+                if (choiceIdx >= option.Choices.Count) continue;
+
+                var choice = option.Choices[choiceIdx];
+
+                // Handle replace: remove the replaced item
+                string? replaces = choice.Replaces ?? option.Replaces;
+                if (option.IsAction(OptionAction.Replace) && replaces != null)
                 {
-                    keys.Remove(replacedEnumKey);
+                    if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
+                        && replacedIsWeapon
+                        && CloseCombatWeaponKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
+                    {
+                        keys.Remove(replacedEnumKey);
+                    }
                 }
-            }
 
-            // Add the selected items
-            foreach (var name in choice.Name)
-            {
-                if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
-                    && itemIsWeapon
-                    && CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey)
-                    && !keys.Contains(enumKey))
+                // Add the selected items
+                foreach (var name in choice.Name)
                 {
-                    keys.Add(enumKey);
+                    if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
+                        && itemIsWeapon
+                        && CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey)
+                        && !keys.Contains(enumKey))
+                    {
+                        keys.Add(enumKey);
+                    }
                 }
             }
         }
@@ -457,32 +487,35 @@ public class UnitConfiguration
         {
             var option = UnitEntry.Options[i];
             if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
-            if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
-            if (choiceIdx >= option.Choices.Count) continue;
 
-            var choice = option.Choices[choiceIdx];
-
-            // Handle replace: remove the replaced item
-            string? replaces = choice.Replaces ?? option.Replaces;
-            if (option.IsAction(OptionAction.Replace) && replaces != null)
+            foreach (int choiceIdx in SelectedChoicesIn(i))
             {
-                if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
-                    && !replacedIsWeapon
-                    && ArmourKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
+                if (choiceIdx >= option.Choices.Count) continue;
+
+                var choice = option.Choices[choiceIdx];
+
+                // Handle replace: remove the replaced item
+                string? replaces = choice.Replaces ?? option.Replaces;
+                if (option.IsAction(OptionAction.Replace) && replaces != null)
                 {
-                    keys.Remove(replacedEnumKey);
+                    if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
+                        && !replacedIsWeapon
+                        && ArmourKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
+                    {
+                        keys.Remove(replacedEnumKey);
+                    }
                 }
-            }
 
-            // Add the selected items
-            foreach (var name in choice.Name)
-            {
-                if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
-                    && !itemIsWeapon
-                    && ArmourKeyExtensions.TryFromJsonKey(key, out var enumKey)
-                    && !keys.Contains(enumKey))
+                // Add the selected items
+                foreach (var name in choice.Name)
                 {
-                    keys.Add(enumKey);
+                    if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
+                        && !itemIsWeapon
+                        && ArmourKeyExtensions.TryFromJsonKey(key, out var enumKey)
+                        && !keys.Contains(enumKey))
+                    {
+                        keys.Add(enumKey);
+                    }
                 }
             }
         }
@@ -689,31 +722,33 @@ public class UnitConfiguration
             for (int i = 0; i < UnitEntry.Options.Count; i++)
             {
                 var option = UnitEntry.Options[i];
-                if (!SelectedUpgrades.TryGetValue(i, out int choiceIdx) || choiceIdx < 0) continue;
 
-                switch (option.GetOptionType())
+                foreach (int choiceIdx in SelectedChoicesIn(i))
                 {
-                    case OptionType.Equipment or OptionType.Mount:
-                        if (option.Choices == null || choiceIdx >= option.Choices.Count) continue;
-                        var choice = option.Choices[choiceIdx];
-                        var choicePts = choice.Points ?? 0;
-                        total += choice.PerModel ? choicePts * ModelCount : choicePts;
-                        break;
+                    switch (option.GetOptionType())
+                    {
+                        case OptionType.Equipment or OptionType.Mount:
+                            if (option.Choices == null || choiceIdx >= option.Choices.Count) continue;
+                            var choice = option.Choices[choiceIdx];
+                            var choicePts = choice.Points ?? 0;
+                            total += choice.PerModel ? choicePts * ModelCount : choicePts;
+                            break;
 
-                    case OptionType.Upgrade when option.SubOptions != null:
-                        if (choiceIdx >= option.SubOptions.Count) continue;
-                        var subOption = option.SubOptions[choiceIdx];
-                        var subChoice = subOption.Choices?.FirstOrDefault();
-                        var subPts = subChoice?.Points ?? subOption.Points ?? 0;
-                        var subPerModel = subChoice?.PerModel ?? subOption.PerModel ?? false;
-                        total += subPerModel ? subPts * ModelCount : subPts;
-                        break;
+                        case OptionType.Upgrade when option.SubOptions != null:
+                            if (choiceIdx >= option.SubOptions.Count) continue;
+                            var subOption = option.SubOptions[choiceIdx];
+                            var subChoice = subOption.Choices?.FirstOrDefault();
+                            var subPts = subChoice?.Points ?? subOption.Points ?? 0;
+                            var subPerModel = subChoice?.PerModel ?? subOption.PerModel ?? false;
+                            total += subPerModel ? subPts * ModelCount : subPts;
+                            break;
 
-                    case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
-                        var flatPts = option.Points ?? 0;
-                        var flatPerModel = option.PerModel ?? false;
-                        total += flatPerModel ? flatPts * ModelCount : flatPts;
-                        break;
+                        case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
+                            var flatPts = option.Points ?? 0;
+                            var flatPerModel = option.PerModel ?? false;
+                            total += flatPerModel ? flatPts * ModelCount : flatPts;
+                            break;
+                    }
                 }
             }
 

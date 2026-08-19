@@ -32,6 +32,10 @@ public sealed record ArmyListUnitDto
     public bool HasMusician { get; init; }
     public bool HasStandardBearer { get; init; }
     public Dictionary<int, int> SelectedUpgrades { get; init; } = new();
+
+    // Additive field: selections in "choose any" option groups, several per group.
+    // Omitted from the written JSON when no such group has a selection.
+    public Dictionary<int, List<int>>? SelectedMultiUpgrades { get; init; }
     public List<MagicItemDto> MagicItems { get; init; } = new();
     public MagicItemDto? Banner { get; init; }
     public int WizardLevel { get; init; } = 2;

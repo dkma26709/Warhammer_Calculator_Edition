@@ -62,6 +62,9 @@ public class ArmyListSerializer
         HasMusician = u.HasMusician,
         HasStandardBearer = u.HasStandardBearer,
         SelectedUpgrades = new Dictionary<int, int>(u.SelectedUpgrades),
+        SelectedMultiUpgrades = u.SelectedMultiUpgrades.Count == 0
+            ? null
+            : u.SelectedMultiUpgrades.ToDictionary(kv => kv.Key, kv => kv.Value.ToList()),
         MagicItems = u.SelectedMagicItems.Select(m => new MagicItemDto
         {
             Name = m.Name,
@@ -204,6 +207,9 @@ public class ArmyListSerializer
 
         foreach (var (k, v) in dto.SelectedUpgrades)
             cfg.SelectedUpgrades[k] = v;
+
+        foreach (var (k, v) in dto.SelectedMultiUpgrades ?? new())
+            cfg.SelectedMultiUpgrades[k] = v.ToList();
 
         foreach (var (category, names) in dto.SelectedFactionUpgrades)
         {

@@ -521,6 +521,7 @@
             },
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
+        foreach (var (k, v) in src.SelectedMultiUpgrades) clone.SelectedMultiUpgrades[k] = v.ToList();
         foreach (var (cat, picks) in src.Loadout.SelectedFactionUpgrades)
             clone.Loadout.SelectedFactionUpgrades[cat] = new List<SelectedFactionUpgrade>(picks);
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
