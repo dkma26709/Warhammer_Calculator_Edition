@@ -8,7 +8,7 @@ public record CompositionData
 {
     public string System { get; init; } = "";
     public double CharactersCombinedMaxPercent { get; init; }
-    public double? SingleCharacterMaxPercent { get; init; }
+    public double? SingleUnitMaxPercent { get; init; }
     public Dictionary<string, CategoryLimitEntry> Categories { get; init; } = [];
 }
 

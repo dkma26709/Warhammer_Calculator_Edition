@@ -66,15 +66,15 @@ public class CompositionDataTests
         Assert.False(data.Categories.ContainsKey("lords"));
         Assert.False(data.Categories.ContainsKey("heroes"));
         Assert.Equal(0.35, data.CharactersCombinedMaxPercent);
-        Assert.Equal(0.25, data.SingleCharacterMaxPercent);
+        Assert.Equal(0.25, data.SingleUnitMaxPercent);
     }
 
     [Theory]
     [MemberData(nameof(EnabledSystems))]
-    public void EverySystem_CapsASingleCharacter(string systemKey)
+    public void EverySystem_CapsASingleUnit(string systemKey)
     {
         // DKM confirmed this applies to both v2 and v3, so no shipped system may omit it.
-        Assert.Equal(0.25, Load(systemKey).SingleCharacterMaxPercent);
+        Assert.Equal(0.25, Load(systemKey).SingleUnitMaxPercent);
     }
 
     /// <summary>The hand-written test constants must not drift from the shipped files.</summary>
@@ -91,14 +91,14 @@ public class CompositionDataTests
         Assert.Equal(expected.HeroesMaxPercent,
             data.Categories.TryGetValue("heroes", out var h) ? h.MaxPercent : null);
         Assert.Equal(expected.CharactersCombinedMaxPercent, data.CharactersCombinedMaxPercent);
-        Assert.Equal(expected.SingleCharacterMaxPercent, data.SingleCharacterMaxPercent);
+        Assert.Equal(expected.SingleUnitMaxPercent, data.SingleUnitMaxPercent);
         Assert.Equal(expected.CoreMinPercent, data.Categories["core"].MinPercent);
         Assert.Equal(expected.SpecialMaxPercent, data.Categories["special"].MaxPercent);
         Assert.Equal(expected.RareMaxPercent, data.Categories["rare"].MaxPercent);
     }
 }
 
-/// <summary>The single-character cap, v3's merged section, and per-list overrides.</summary>
+/// <summary>The single-unit cap, v3's merged section, and per-list overrides.</summary>
 public class CompositionValidationTests
 {
     private static readonly ArmyListValidator Validator = new();
@@ -127,37 +127,37 @@ public class CompositionValidationTests
     private static LimitOverride Pct(double value) => new() { Value = value, Unit = LimitUnit.Percent };
     private static LimitOverride Pts(double value) => new() { Value = value, Unit = LimitUnit.Points };
 
-    // ─── Single-character cap ───────────────────────────────────────
+    // ─── Single-unit cap ────────────────────────────────────────────
 
     [Fact]
-    public void SingleCharacter_OverQuarterOfTarget_IsAnError()
+    public void SingleUnit_OverQuarterOfTarget_IsAnError()
     {
         var lord = Entry("Overpriced Lord", UnitCategory.Lords, 501);
         lord.Loadout.IsGeneral = true;
         var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
 
-        Assert.Contains("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
     }
 
     [Fact]
-    public void SingleCharacter_ExactlyAtTheCap_IsAllowed()
+    public void SingleUnit_ExactlyAtTheCap_IsAllowed()
     {
         var lord = Entry("Lord", UnitCategory.Lords, 500);
         lord.Loadout.IsGeneral = true;
         var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
 
-        Assert.DoesNotContain("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
     }
 
     [Fact]
-    public void SingleCharacter_CapNamesTheOffendingCharacter()
+    public void SingleUnit_CapNamesTheOffendingUnit()
     {
         var lord = Entry("Overpriced Lord", UnitCategory.Lords, 600);
         lord.Loadout.IsGeneral = true;
         var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
 
         var issue = Validator.Validate(list, TestCompositionRules.WapV2)
-            .Single(i => i.Code == "SINGLE_CHARACTER_OVER_CAP");
+            .Single(i => i.Code == "SINGLE_UNIT_OVER_CAP");
 
         Assert.Same(lord, issue.RelatedUnit);
         Assert.Contains("Overpriced Lord", issue.Message);
@@ -174,18 +174,34 @@ public class CompositionValidationTests
 
         var codes = Codes(list, TestCompositionRules.WapV2);
 
-        Assert.DoesNotContain("SINGLE_CHARACTER_OVER_CAP", codes);
+        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", codes);
         Assert.Contains("CHARACTERS_OVER_CAP", codes);
     }
 
     [Fact]
-    public void SingleCharacter_CapAppliesToTheMergedV3Category()
+    public void SingleUnit_CapAppliesToTheMergedV3Category()
     {
         var character = Entry("Verminlord", UnitCategory.Characters, 600);
         character.Loadout.IsGeneral = true;
         var list = List(2000, character, Entry("Clanrats", UnitCategory.Core, 500));
 
-        Assert.Contains("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV3));
+        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV3));
+    }
+
+    [Fact]
+    public void SingleUnit_CapAppliesToNonCharacterUnits()
+    {
+        // "No single character or unit …" — a rank-and-file block is capped like a character.
+        var lord = Entry("Lord", UnitCategory.Lords, 200);
+        lord.Loadout.IsGeneral = true;
+        // 15 pts a model × 40 models = 600, over the 500 cap at a 2000-point target.
+        var horde = Entry("Warrior Horde", UnitCategory.Core, 15, count: 40);
+        var list = List(2000, lord, horde);
+
+        var issue = Validator.Validate(list, TestCompositionRules.WapV2)
+            .Single(i => i.Code == "SINGLE_UNIT_OVER_CAP");
+
+        Assert.Same(horde, issue.RelatedUnit);
     }
 
     // ─── v3's merged Characters section ─────────────────────────────
@@ -273,16 +289,16 @@ public class CompositionValidationTests
     }
 
     [Fact]
-    public void SingleCharacterOverride_IsHonoured()
+    public void SingleUnitOverride_IsHonoured()
     {
         var lord = Entry("Lord", UnitCategory.Lords, 450);
         lord.Loadout.IsGeneral = true;
         var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
 
-        Assert.DoesNotContain("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
 
-        list.Overrides = new CompositionOverrides { SingleCharacterMax = Pct(20) };
-        Assert.Contains("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        list.Overrides = new CompositionOverrides { SingleUnitMax = Pct(20) };
+        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
     }
 
     [Fact]
@@ -327,7 +343,7 @@ public class CompositionValidationTests
         Assert.Equal(500, limits.CoreMin.Points);
         Assert.Equal(1000, limits.SpecialMax.Points);
         Assert.Equal(500, limits.RareMax.Points);
-        Assert.Equal(500, limits.SingleCharacterMax!.Points);
+        Assert.Equal(500, limits.SingleUnitMax!.Points);
         Assert.Equal(3, limits.SpecialDuplicateLimit);
         Assert.Equal(1, limits.RareDuplicateLimit);
         Assert.True(new CompositionOverrides().IsEmpty);
@@ -384,16 +400,16 @@ public class CompositionValidationTests
     }
 
     [Fact]
-    public void PointsOverride_CapsASingleCharacter()
+    public void PointsOverride_CapsASingleUnit()
     {
         var lord = Entry("Lord", UnitCategory.Lords, 450);
         lord.Loadout.IsGeneral = true;
         var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
 
-        Assert.DoesNotContain("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
 
-        list.Overrides = new CompositionOverrides { SingleCharacterMax = Pts(400) };
-        Assert.Contains("SINGLE_CHARACTER_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        list.Overrides = new CompositionOverrides { SingleUnitMax = Pts(400) };
+        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
     }
 
     [Theory]

@@ -753,9 +753,9 @@
                 o.CharactersCombinedMax, limits.CharactersCombinedMax,
                 v => _armyList.Overrides = _armyList.Overrides with { CharactersCombinedMax = v });
 
-            yield return Limit("One character max", _composition.SingleCharacterMaxPercent,
-                o.SingleCharacterMax, limits.SingleCharacterMax,
-                v => _armyList.Overrides = _armyList.Overrides with { SingleCharacterMax = v });
+            yield return Limit("One unit max", _composition.SingleUnitMaxPercent,
+                o.SingleUnitMax, limits.SingleUnitMax,
+                v => _armyList.Overrides = _armyList.Overrides with { SingleUnitMax = v });
 
             yield return Limit("Core min", _composition.CoreMinPercent, o.CoreMin, limits.CoreMin,
                 v => _armyList.Overrides = _armyList.Overrides with { CoreMin = v });

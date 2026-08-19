@@ -59,15 +59,17 @@ public class ArmyListValidator
             .Where(u => u.ResolvedUnit.Category.IsCharacterCategory())
             .ToList();
 
-        if (limits.SingleCharacterMax is { } singleMax)
+        // "No single character or unit in your army may cost more than 25% of your total
+        // points" — the cap covers every entry, not just characters.
+        if (limits.SingleUnitMax is { } singleMax)
         {
-            foreach (var character in characters.Where(c => c.TotalPointsCost > singleMax.Points))
+            foreach (var unit in list.Units.Where(u => u.TotalPointsCost > singleMax.Points))
             {
-                issues.Add(new(ValidationSeverity.Error, "SINGLE_CHARACTER_OVER_CAP",
-                    $"{character.ResolvedUnit.Name} costs {character.TotalPointsCost:F0}, " +
-                    $"over the {singleMax.Points:F0} limit for one character " +
+                issues.Add(new(ValidationSeverity.Error, "SINGLE_UNIT_OVER_CAP",
+                    $"{unit.ResolvedUnit.Name} costs {unit.TotalPointsCost:F0}, " +
+                    $"over the {singleMax.Points:F0} limit for one unit " +
                     $"({singleMax.Description})",
-                    character));
+                    unit));
             }
         }
 

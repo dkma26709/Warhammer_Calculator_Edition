@@ -81,7 +81,7 @@ public class ArmyListSerializerTests
             {
                 RareMax = new() { Value = 15, Unit = LimitUnit.Percent },
                 CoreMin = new() { Value = 600, Unit = LimitUnit.Points },
-                SingleCharacterMax = new() { Value = 400, Unit = LimitUnit.Points },
+                SingleUnitMax = new() { Value = 400, Unit = LimitUnit.Points },
                 SpecialDuplicateLimit = 1,
             },
         };
@@ -101,11 +101,41 @@ public class ArmyListSerializerTests
         Assert.Equal(LimitUnit.Percent, restored.RareMax.Unit);
         Assert.Equal(600, restored.CoreMin!.Value);
         Assert.Equal(LimitUnit.Points, restored.CoreMin.Unit);
-        Assert.Equal(400, restored.SingleCharacterMax!.Value);
-        Assert.Equal(LimitUnit.Points, restored.SingleCharacterMax.Unit);
+        Assert.Equal(400, restored.SingleUnitMax!.Value);
+        Assert.Equal(LimitUnit.Points, restored.SingleUnitMax.Unit);
         Assert.Equal(1, restored.SpecialDuplicateLimit);
         Assert.Null(restored.LordsMax);
         Assert.Null(restored.RareDuplicateLimit);
+    }
+
+    [Fact]
+    public async Task LegacySingleCharacterOverride_LandsOnSingleUnitMax()
+    {
+        // A list saved while the cap was still character-only used "singleCharacterMax".
+        var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
+        var json = """
+        {
+          "schema": "wap-army-list/v1",
+          "system": "wap-v2",
+          "faction": "dwarfs",
+          "pointsTarget": 2000,
+          "name": "Legacy List",
+          "units": [ { "unitName": "Warriors", "modelCount": 10, "frontage": 5 } ],
+          "composition": { "singleCharacterMax": { "value": 400, "unit": "Points" } }
+        }
+        """;
+
+        var serializer = new ArmyListSerializer(new StubRepo(unit), new GameSystemService());
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        Assert.Equal(400, result.List!.Overrides.SingleUnitMax!.Value);
+        Assert.Equal(LimitUnit.Points, result.List.Overrides.SingleUnitMax.Unit);
+
+        // Re-exporting writes the current name only.
+        var rewritten = serializer.Serialize(result.List);
+        Assert.Contains("singleUnitMax", rewritten);
+        Assert.DoesNotContain("singleCharacterMax", rewritten);
     }
 
     [Fact]

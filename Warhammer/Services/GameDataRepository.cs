@@ -242,7 +242,7 @@ public class GameDataRepository : IGameDataRepository
             LordsMaxPercent = Max("lords"),
             HeroesMaxPercent = Max("heroes"),
             CharactersCombinedMaxPercent = data.CharactersCombinedMaxPercent,
-            SingleCharacterMaxPercent = data.SingleCharacterMaxPercent,
+            SingleUnitMaxPercent = data.SingleUnitMaxPercent,
             CoreMinPercent = Require(Min("core"), "categories.core.minPercent"),
             SpecialMaxPercent = Require(Max("special"), "categories.special.maxPercent"),
             RareMaxPercent = Require(Max("rare"), "categories.rare.maxPercent"),

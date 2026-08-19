@@ -46,7 +46,7 @@ public class ArmyListValidatorTests
         lord.Loadout.IsGeneral = true;
         var list = MakeList(2000,
             lord,                                                    // 200 (10%)
-            MakeEntry("Warriors", UnitCategory.Core, 10, 60),       // 600 (30%)
+            MakeEntry("Warriors", UnitCategory.Core, 10, 50),       // 500 (25%)
             MakeEntry("Ironbreakers", UnitCategory.Special, 15, 20) // 300 (15%)
         );
 
@@ -353,7 +353,8 @@ public class ArmyListValidatorTests
         characters[0].Loadout.IsGeneral = true;
         var units = new List<UnitConfiguration>(characters)
         {
-            MakeEntry("Warriors", UnitCategory.Core, 10, 60),
+            // 500 pts: meets the 25% core minimum and sits exactly on the single-unit cap.
+            MakeEntry("Warriors", UnitCategory.Core, 10, 50),
         };
         return MakeList(2000, [.. units]);
     }
@@ -605,7 +606,7 @@ internal static class TestCompositionRules
         LordsMaxPercent = 0.25,
         HeroesMaxPercent = 0.25,
         CharactersCombinedMaxPercent = 0.35,
-        SingleCharacterMaxPercent = 0.25,
+        SingleUnitMaxPercent = 0.25,
         CoreMinPercent = 0.25,
         SpecialMaxPercent = 0.50,
         RareMaxPercent = 0.25,

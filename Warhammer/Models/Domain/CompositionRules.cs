@@ -45,7 +45,7 @@ public sealed record EffectiveLimits
     public EffectiveLimit? LordsMax { get; init; }
     public EffectiveLimit? HeroesMax { get; init; }
     public required EffectiveLimit CharactersCombinedMax { get; init; }
-    public EffectiveLimit? SingleCharacterMax { get; init; }
+    public EffectiveLimit? SingleUnitMax { get; init; }
     public required EffectiveLimit CoreMin { get; init; }
     public required EffectiveLimit SpecialMax { get; init; }
     public required EffectiveLimit RareMax { get; init; }
@@ -69,8 +69,8 @@ public sealed record CompositionRules
     public double? HeroesMaxPercent { get; init; }
     public required double CharactersCombinedMaxPercent { get; init; }
 
-    /// <summary>Cap on any one character's full cost, mount and magic items included.</summary>
-    public double? SingleCharacterMaxPercent { get; init; }
+    /// <summary>Cap on any one unit's full cost — characters included, mounts and magic items counted.</summary>
+    public double? SingleUnitMaxPercent { get; init; }
 
     public required double CoreMinPercent { get; init; }
     public required double SpecialMaxPercent { get; init; }
@@ -116,7 +116,7 @@ public sealed record CompositionRules
             LordsMax = Limit(LordsMaxPercent, o.LordsMax),
             HeroesMax = Limit(HeroesMaxPercent, o.HeroesMax),
             CharactersCombinedMax = characters,
-            SingleCharacterMax = Limit(SingleCharacterMaxPercent, o.SingleCharacterMax),
+            SingleUnitMax = Limit(SingleUnitMaxPercent, o.SingleUnitMax),
             CoreMin = core,
             SpecialMax = special,
             RareMax = rare,
@@ -139,7 +139,7 @@ public sealed record CompositionOverrides
     public LimitOverride? LordsMax { get; init; }
     public LimitOverride? HeroesMax { get; init; }
     public LimitOverride? CharactersCombinedMax { get; init; }
-    public LimitOverride? SingleCharacterMax { get; init; }
+    public LimitOverride? SingleUnitMax { get; init; }
     public LimitOverride? CoreMin { get; init; }
     public LimitOverride? SpecialMax { get; init; }
     public LimitOverride? RareMax { get; init; }
@@ -148,8 +148,20 @@ public sealed record CompositionOverrides
     public int? SpecialDuplicateLimit { get; init; }
     public int? RareDuplicateLimit { get; init; }
 
+    /// <summary>
+    /// The cap's name in saved lists from before it covered non-character units. Read-only:
+    /// deserialising an old list lands the value on <see cref="SingleUnitMax"/>, and the null
+    /// getter keeps it out of everything written from now on.
+    /// </summary>
+    [JsonPropertyName("singleCharacterMax")]
+    public LimitOverride? LegacySingleCharacterMax
+    {
+        get => null;
+        init => SingleUnitMax ??= value;
+    }
+
     public bool IsEmpty =>
         LordsMax is null && HeroesMax is null && CharactersCombinedMax is null
-        && SingleCharacterMax is null && CoreMin is null && SpecialMax is null && RareMax is null
+        && SingleUnitMax is null && CoreMin is null && SpecialMax is null && RareMax is null
         && SpecialDuplicateLimit is null && RareDuplicateLimit is null;
 }

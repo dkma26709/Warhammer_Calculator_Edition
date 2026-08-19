@@ -45,6 +45,7 @@ A standalone army list manager for WAP. User picks a faction and points target, 
 | Core | **min 25%** |
 | Special | max 50% |
 | Rare | max 25% |
+| Any single character or unit | max 25% |
 
 ### General
 - At least one character (Lord or Hero) required. Acts as General.
