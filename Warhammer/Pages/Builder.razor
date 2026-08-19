@@ -183,6 +183,25 @@
             </div>
         </div>
 
+        @* ─── Validation ──────────────────────────────────────────── *@
+        <div class="card bg-dark text-light border-secondary mb-3">
+            <div class="card-header py-2"><strong>Validation</strong></div>
+            <div class="card-body p-2">
+                @if (_issues.Count == 0)
+                {
+                    <div class="text-success small">✓ List is valid.</div>
+                }
+                else
+                {
+                    @foreach (var issue in _issues)
+                    {
+                        var colour = issue.Severity == ValidationSeverity.Error ? "text-danger" : "text-warning";
+                        <div class="small @colour">@issue.Message</div>
+                    }
+                }
+            </div>
+        </div>
+
         <div class="row g-3">
 
             @* ─── Left: Unit browser ────────────────────────────── *@
@@ -327,28 +346,6 @@
             </div>
         </div>
 
-        @* ─── Bottom: Validation ────────────────────────────────── *@
-        <div class="row g-3 mt-2">
-            <div class="col-12">
-                <div class="card bg-dark text-light border-secondary">
-                    <div class="card-header py-2"><strong>Validation</strong></div>
-                    <div class="card-body p-2">
-                        @if (_issues.Count == 0)
-                        {
-                            <div class="text-success small">✓ List is valid.</div>
-                        }
-                        else
-                        {
-                            @foreach (var issue in _issues)
-                            {
-                                var colour = issue.Severity == ValidationSeverity.Error ? "text-danger" : "text-warning";
-                                <div class="small @colour">@issue.Message</div>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
     }
 </div>
 
