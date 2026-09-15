@@ -28,6 +28,12 @@ public class WarBundleTests
     }
 
     [Fact]
+    public void Bundle_IsFormatVersion2()
+    {
+        Assert.Equal(2, Bundle.Value.RootElement.GetProperty("formatVersion").GetInt32());
+    }
+
+    [Fact]
     public void Bundle_HasEveryFaction()
     {
         var factions = Bundle.Value.RootElement.GetProperty("factions");
@@ -36,6 +42,7 @@ public class WarBundleTests
         {
             Assert.False(string.IsNullOrEmpty(faction.Value.GetProperty("name").GetString()),
                 $"{faction.Name} has no name");
+            Assert.Equal(faction.Name, faction.Value.GetProperty("id").GetString());
             Assert.True(faction.Value.GetProperty("units").GetArrayLength() > 0,
                 $"{faction.Name} has no units");
         }
@@ -48,5 +55,13 @@ public class WarBundleTests
         Assert.True(rulebook.GetProperty("rules").EnumerateObject().Any(), "no special rules");
         Assert.True(rulebook.GetProperty("items").GetArrayLength() > 0, "no common magic items");
         Assert.True(rulebook.GetProperty("lores").GetArrayLength() > 0, "no lores");
+    }
+
+    [Fact]
+    public void Bundle_HasTheCompositionAsData()
+    {
+        var composition = Bundle.Value.RootElement.GetProperty("composition");
+        Assert.True(composition.TryGetProperty("pointsCategories", out _), "no points categories");
+        Assert.True(composition.TryGetProperty("duplicates", out _), "no duplicate chart");
     }
 }

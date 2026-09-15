@@ -1,4 +1,4 @@
-using System.Net.Http.Json;
+using System.Collections.Concurrent;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
@@ -6,27 +6,29 @@ using Warhammer.Models.Json;
 namespace Warhammer.Services;
 
 /// <summary>
-/// Loads JSON data, resolves all domain objects (weapons, armour, units), caches results.
-/// Composes <see cref="CoreRulesService"/> and <see cref="FactionDataService"/> internally.
+/// Loads the bundle and the engine's rules files, resolves all domain objects (weapons,
+/// armour, units), caches results. Composes <see cref="CoreRulesService"/> and
+/// <see cref="BundleService"/> internally.
 /// </summary>
 public class GameDataRepository : IGameDataRepository
 {
     private readonly CoreRulesService _coreRules;
-    private readonly FactionDataService _factionData;
+    private readonly BundleService _bundle;
     private readonly GameSystemService _system;
 
     private Dictionary<CloseCombatWeaponKey, Weapon>? _weapons;
     private Dictionary<ArmourKey, Armour>? _armour;
-    private IReadOnlyList<FactionKey>? _factions;
-    private readonly Dictionary<FactionKey, IReadOnlyList<Unit>> _unitCache = new();
-    private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
-    private CompositionRules? _composition;
+    private IReadOnlyList<Faction>? _factions;
+    // Concurrent because the test suite shares one repository across parallel test classes;
+    // in the app every call lands on the single browser thread.
+    private readonly ConcurrentDictionary<string, IReadOnlyList<Unit>> _unitCache = new(StringComparer.OrdinalIgnoreCase);
+    private readonly ConcurrentDictionary<string, CompositionRules> _compositionCache = new(StringComparer.OrdinalIgnoreCase);
     private Dictionary<BaseTroopType, TroopTypeRules>? _troopTypes;
 
-    public GameDataRepository(CoreRulesService coreRules, FactionDataService factionData, GameSystemService system)
+    public GameDataRepository(CoreRulesService coreRules, BundleService bundle, GameSystemService system)
     {
         _coreRules = coreRules;
-        _factionData = factionData;
+        _bundle = bundle;
         _system = system;
     }
 
@@ -38,7 +40,7 @@ public class GameDataRepository : IGameDataRepository
         ResolveWeapons();
         ResolveArmour();
         await ResolveTroopTypesAsync();
-        await ResolveFactionsAsync();
+        _factions ??= await _bundle.GetFactionsAsync();
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class GameDataRepository : IGameDataRepository
     {
         if (_troopTypes != null) return;
 
-        var data = await _factionData.GetTroopTypesAsync();
+        var data = await _bundle.GetTroopTypesAsync();
         var resolved = new Dictionary<BaseTroopType, TroopTypeRules>();
 
         foreach (var type in Enum.GetValues<BaseTroopType>())
@@ -77,23 +79,6 @@ public class GameDataRepository : IGameDataRepository
     public TroopTypeRules GetTroopTypeRules(BaseTroopType type) =>
         (_troopTypes ?? throw new InvalidOperationException(
             "Troop type figures not loaded — call EnsureLoadedAsync first."))[type];
-
-    private async Task ResolveFactionsAsync()
-    {
-        if (_factions != null) return;
-
-        var manifest = await _factionData.GetManifestAsync();
-        var factions = new List<FactionKey>(manifest.Factions.Count);
-        foreach (var jsonKey in manifest.Factions)
-        {
-            if (FactionKeyExtensions.TryFromJsonKey(jsonKey, out var key))
-                factions.Add(key);
-            else
-                Console.Error.WriteLine($"Manifest faction '{jsonKey}' has no FactionKey — skipped.");
-        }
-
-        _factions = factions;
-    }
 
     private void ResolveWeapons()
     {
@@ -143,54 +128,64 @@ public class GameDataRepository : IGameDataRepository
 
     // ─── Factions ────────────────────────────────────────────────
 
-    // Falls back to the full enum list until EnsureLoadedAsync resolves the
-    // active system's manifest (components may render before initialisation).
-    public IReadOnlyList<FactionKey> AllFactions => _factions ?? FactionKeyExtensions.All;
+    // Empty until EnsureLoadedAsync has read the bundle's faction list (components may render
+    // before initialisation).
+    public IReadOnlyList<Faction> AllFactions => _factions ?? [];
 
-    public string GetFactionDisplayName(FactionKey faction) => faction.ToDisplayName();
+    public string GetFactionDisplayName(string factionId) =>
+        AllFactions.FirstOrDefault(f => string.Equals(f.Id, factionId, StringComparison.OrdinalIgnoreCase))?.Name
+        ?? factionId;
+
+    public Task<FactionData> GetFactionAsync(string factionId) => _bundle.GetFactionAsync(factionId);
+
+    public async Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync()
+    {
+        var bundle = await _bundle.GetBundleAsync();
+        return bundle.Rulebook.Items;
+    }
+
+    public async Task<IReadOnlyList<LoreEntry>> GetLoresAsync(string factionId)
+    {
+        var faction = await _bundle.GetFactionAsync(factionId);
+        var bundle = await _bundle.GetBundleAsync();
+
+        var lores = new List<LoreEntry>(faction.Lores);
+        foreach (var lore in bundle.Rulebook.Lores)
+        {
+            if (!lores.Any(l => string.Equals(l.Name, lore.Name, StringComparison.OrdinalIgnoreCase)))
+                lores.Add(lore);
+        }
+
+        return lores;
+    }
 
     // ─── Units ───────────────────────────────────────────────────
 
-    public async Task<IReadOnlyList<Unit>> GetUnitsAsync(FactionKey faction)
+    public async Task<IReadOnlyList<Unit>> GetUnitsAsync(string factionId)
     {
-        if (_unitCache.TryGetValue(faction, out var cached))
+        if (_unitCache.TryGetValue(factionId, out var cached))
             return cached;
 
         await EnsureLoadedAsync();
 
-        var factionData = await _factionData.GetFactionUnitsAsync(faction.ToJsonKey());
-        var units = new List<Unit>(factionData.Units.Count);
+        var faction = await _bundle.GetFactionAsync(factionId);
+        var byId = new Dictionary<string, UnitEntry>(StringComparer.OrdinalIgnoreCase);
+        foreach (var entry in faction.Units)
+            byId.TryAdd(entry.Id, entry);
 
-        foreach (var entry in factionData.Units)
+        var units = new List<Unit>(faction.Units.Count);
+        foreach (var entry in faction.Units)
         {
-            var unit = ResolveUnit(entry, faction);
+            var unit = ResolveUnit(entry, faction.Id, byId);
             if (unit != null)
                 units.Add(unit);
         }
 
-        _unitCache[faction] = units;
+        _unitCache[factionId] = units;
         return units;
     }
 
-    public async Task<FactionExtrasData> GetFactionExtrasAsync(FactionKey faction)
-    {
-        return await _factionData.GetFactionExtrasAsync(faction.ToJsonKey());
-    }
-
-    public async Task<IReadOnlyList<MagicItemEntry>> GetCommonMagicItemsAsync()
-    {
-        if (_commonMagicItems != null)
-            return _commonMagicItems;
-
-        var http = _factionData.GetHttpClient();
-        var items = await http.GetFromJsonAsync<List<MagicItemEntry>>(
-            _system.DataPath("common-magic-items.json"),
-            new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        _commonMagicItems = items ?? [];
-        return _commonMagicItems;
-    }
-
-    // ─── Weapons & Armour ────────────────────────────────────────
+    // ─── Combat tables ───────────────────────────────────────────
 
     public Weapon? GetWeapon(CloseCombatWeaponKey key)
     {
@@ -208,57 +203,55 @@ public class GameDataRepository : IGameDataRepository
         return _armour?.TryGetValue(key, out var a) == true ? a : null;
     }
 
-    // ─── Combat Tables ───────────────────────────────────────────
-
     public RollRequirement GetToHitRequirement(int attackerWS, int defenderWS) =>
         _coreRules.GetToHitRequirement(attackerWS, defenderWS);
 
     public RollRequirement GetToWoundRequirement(int strength, int toughness) =>
         _coreRules.GetToWoundRequirement(strength, toughness);
+
     public int GetArmourSaveModifier(int strength) => _coreRules.GetArmourSaveModifier(strength);
 
     // ─── Composition ─────────────────────────────────────────────
 
-    public async Task<CompositionRules> GetCompositionRulesAsync()
+    public async Task<CompositionRules> GetCompositionRulesAsync(string? factionId = null)
     {
-        if (_composition != null) return _composition;
+        var cacheKey = factionId ?? "";
+        if (_compositionCache.TryGetValue(cacheKey, out var cached)) return cached;
 
-        var data = await _factionData.GetCompositionAsync();
-
-        // A category absent from the file has no limit of that kind. Core/Special/Rare are
-        // required because every system so far constrains them; Lords/Heroes are not, since
-        // wap-v3 merges them into one Characters section.
-        double? Max(string category) =>
-            data.Categories.TryGetValue(category, out var entry) ? entry.MaxPercent : null;
-        double? Min(string category) =>
-            data.Categories.TryGetValue(category, out var entry) ? entry.MinPercent : null;
-
-        double Require(double? value, string what) => value
+        var bundle = await _bundle.GetBundleAsync();
+        var system = bundle.Composition
             ?? throw new InvalidOperationException(
-                $"composition.json for '{_system.CurrentSystem}' is missing {what}.");
+                $"The bundle for '{_system.CurrentSystem}' carries no composition block.");
 
-        _composition = new CompositionRules
-        {
-            LordsMaxPercent = Max("lords"),
-            HeroesMaxPercent = Max("heroes"),
-            CharactersCombinedMaxPercent = data.CharactersCombinedMaxPercent,
-            SingleUnitMaxPercent = data.SingleUnitMaxPercent,
-            CoreMinPercent = Require(Min("core"), "categories.core.minPercent"),
-            SpecialMaxPercent = Require(Max("special"), "categories.special.maxPercent"),
-            RareMaxPercent = Require(Max("rare"), "categories.rare.maxPercent"),
-        };
-        return _composition;
+        CompositionData? own = null;
+        if (factionId != null)
+            own = (await _bundle.GetFactionAsync(factionId)).Composition;
+
+        var rules = CompositionRules.FromData(system, own, _system.CurrentSystem);
+        _compositionCache[cacheKey] = rules;
+        return rules;
     }
 
     // ─── Unit Resolution ─────────────────────────────────────────
 
-    private Unit? ResolveUnit(UnitEntry entry, FactionKey faction)
+    private Unit? ResolveUnit(UnitEntry entry, string factionId, IReadOnlyDictionary<string, UnitEntry> byId)
     {
-        if (!UnitCategoryExtensions.TryFromJsonKey(entry.Category, out var category))
+        // A chapter outside the army list — a bestiary, an appendix — has no section, and the
+        // book's mounts section is kept for what the mount options point at.
+        if (UnitCategoryExtensions.FromSection(entry.Section, entry.Tier, entry.Named) is not { } category)
+            return null;
+        if (entry.Profiles.Count == 0)
             return null;
 
-        var (primaryProfile, mountProfile) = UnitConfiguration.ResolveProfiles(entry);
+        var (priced, mountProfile) = UnitConfiguration.ResolveProfiles(entry);
+        var primaryProfile = priced[0];
         var troopType = TroopTypeInfo.Parse(entry.TroopType, GetTroopTypeRules);
+
+        // Several priced profiles on a character entry are variants — a Captain or a General.
+        // On a unit they are the rank and file and a handler priced apart, and the handler is
+        // not something the unit is fielded as.
+        if (!troopType.IsCharacter && priced.Count > 1)
+            priced = [primaryProfile];
         var parsed = ParsedSpecialRules.ParseScoped(entry.SpecialRules);
 
         // A rule the book scopes to one model — "Mighty Blow (2) (War Boars only)" — belongs to
@@ -274,7 +267,7 @@ public class GameDataRepository : IGameDataRepository
         // only the Slave, the scope half-matches it on the shared word and arms all twenty slaves
         // with their champion's rule. Offered both, it picks the Slave Master — a profile the
         // engine fields no fighter for, so the rule correctly goes nowhere.
-        var profileNames = entry.Profiles?.Select(p => p.Name).ToList() ?? [];
+        var profileNames = entry.Profiles.Select(p => p.Name).ToList();
         var specialRules = parsed.UnitWide;
         var mountRules = new ParsedSpecialRules();
         foreach (var scoped in parsed.Scoped)
@@ -318,27 +311,88 @@ public class GameDataRepository : IGameDataRepository
             };
         }
 
-        var command = ResolveCommandAvailability(entry.Options);
-        var magicItemAllowance = Unit.ResolveMagicItemAllowance(entry.Name, entry.Options);
+        var mountOptions = ResolveMountOptions(entry, byId);
 
         return new Unit
         {
+            Id = entry.Id,
             Name = entry.Name,
-            Faction = faction,
+            FactionId = factionId,
             Category = category,
+            Named = entry.Named,
             BaseModel = baseModel,
+            Profiles = priced,
             Mount = mount,
+            MountOptions = mountOptions,
             BaseWidthMm = UnitConfiguration.ParseBaseWidthMm(entry.BaseSize),
-            Options = entry.Options ?? [],
-            MinUnitSize = troopType.IsCharacter ? 1 : UnitConfiguration.ParseMinUnitSize(entry.UnitSize),
-            MaxUnitSize = ParseMaxUnitSize(entry.UnitSize),
-            BaseModelCost = entry.PointsCost ?? primaryProfile.Points ?? 0,
-            Command = command,
-            MagicItemAllowance = magicItemAllowance,
+            OptionGroups = entry.OptionGroups,
+            MinUnitSize = troopType.IsCharacter
+                ? 1
+                : entry.UnitSizeParsed?.Min ?? UnitConfiguration.ParseMinUnitSize(entry.UnitSize),
+            MaxUnitSize = entry.UnitSizeParsed?.Max ?? ParseMaxUnitSize(entry.UnitSize),
+            BaseModelCost = primaryProfile.Points ?? 0,
+            Command = CommandAvailability.FromGroups(entry.OptionGroups),
             AvailableArmour = _armour ?? new Dictionary<ArmourKey, Armour>(),
             RawEntry = entry,
         };
     }
+
+    /// <summary>
+    /// The mounts an entry's mount option points at, as the book prints them in its mounts
+    /// section: the mount's own profile and rules, and the troop type the rider becomes on it.
+    /// A choice whose id names no entry in the book — a mount the book only describes in prose —
+    /// is left out, and the choice still costs its points and prints its name.
+    /// </summary>
+    private Dictionary<string, MountOption> ResolveMountOptions(UnitEntry entry, IReadOnlyDictionary<string, UnitEntry> byId)
+    {
+        var mounts = new Dictionary<string, MountOption>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var (group, _) in entry.OptionGroups.Flatten())
+        {
+            if (!group.IsKind(OptionKind.Mount)) continue;
+
+            foreach (var choice in group.Choices)
+            {
+                if (choice.UnitId is null || mounts.ContainsKey(choice.UnitId)) continue;
+                if (!byId.TryGetValue(choice.UnitId, out var mountEntry) || mountEntry.Profiles.Count == 0) continue;
+
+                var mountType = TroopTypeInfo.Parse(mountEntry.TroopType, GetTroopTypeRules);
+                var riderType = TroopTypeInfo.Parse(RiderTypeOn(mountType.BaseType) + " (Character)", GetTroopTypeRules);
+
+                var model = new Model
+                {
+                    Name = mountEntry.Profiles[0].Name is { Length: > 0 } name ? name : mountEntry.Name,
+                    Stats = mountEntry.Profiles[0],
+                    TroopType = riderType,
+                    SpecialRules = ParsedSpecialRules.Parse(mountEntry.SpecialRules),
+                    Weapons = [],
+                    Armour = [],
+                };
+
+                mounts[choice.UnitId] = new MountOption(choice.UnitId, model, riderType);
+            }
+        }
+
+        return mounts;
+    }
+
+    /// <summary>
+    /// The troop type a character fights as on a mount, per the Troop Types chapter: on a War
+    /// Beast the model uses the rules for Cavalry, on a Monstrous Beast those for Monstrous
+    /// Cavalry, and on a Monster, Chariot or Shrine it takes that type whole.
+    /// </summary>
+    private static string RiderTypeOn(BaseTroopType mountType) => mountType switch
+    {
+        BaseTroopType.WarBeasts => "Cavalry",
+        BaseTroopType.MonstrousBeasts => "Monstrous Cavalry",
+        BaseTroopType.Cavalry => "Cavalry",
+        BaseTroopType.MonstrousCavalry => "Monstrous Cavalry",
+        BaseTroopType.Monster => "Monster",
+        BaseTroopType.Chariot => "Chariot",
+        BaseTroopType.Shrine => "Shrine",
+        BaseTroopType.MonstrousInfantry => "Monstrous Cavalry",
+        _ => "Cavalry",
+    };
 
     private (List<CloseCombatWeaponKey>, List<ArmourKey>) ResolveEquipmentKeys(string? equipment)
     {
@@ -383,50 +437,6 @@ public class GameDataRepository : IGameDataRepository
         }
 
         return result;
-    }
-
-    private static CommandAvailability ResolveCommandAvailability(List<UnitOption>? options)
-    {
-        if (options == null || options.Count == 0)
-            return CommandAvailability.None;
-
-        bool canChamp = false, canMus = false, canStd = false;
-        double champCost = 0, musCost = 0, stdCost = 0;
-
-        foreach (var opt in options)
-        {
-            if (opt.Type != "command" || opt.Role == null) continue;
-            double cost = opt.Points ?? 0;
-
-            if (CommandRoleExtensions.TryFromRoleText(opt.Role, out var role))
-            {
-                switch (role)
-                {
-                    case CommandRole.Champion:
-                        canChamp = true;
-                        champCost = cost;
-                        break;
-                    case CommandRole.Musician:
-                        canMus = true;
-                        musCost = cost;
-                        break;
-                    case CommandRole.StandardBearer:
-                        canStd = true;
-                        stdCost = cost;
-                        break;
-                }
-            }
-        }
-
-        return new CommandAvailability
-        {
-            CanHaveChampion = canChamp,
-            ChampionCost = champCost,
-            CanHaveMusician = canMus,
-            MusicianCost = musCost,
-            CanHaveStandardBearer = canStd,
-            StandardBearerCost = stdCost,
-        };
     }
 
     private static int? ParseMaxUnitSize(string? unitSize)

@@ -1,17 +1,18 @@
 @using Warhammer.Models.Domain
 @using Warhammer.Models.Json
 
-@if (Configuration != null && Configuration.HasStandardBearer
-     && Configuration.BannerBudget is int bannerCap && AvailableBanners.Count > 0)
+@if (Configuration != null
+     && Configuration.MagicStandardAllowance is { } allowance
+     && AvailableBanners.Count > 0)
 {
     <div class="mb-3 border border-secondary rounded p-2">
         <label class="form-label small text-body-secondary">
-            Magic Standard (@(Configuration.Loadout.SelectedBanner?.PointsCost ?? 0) / @bannerCap pts)
+            Magic Standard (@(Configuration.Loadout.SelectedBanner?.PointsCost ?? 0) / @(allowance.PointsLimit?.ToString() ?? "∞") pts)
         </label>
         @if (Configuration.Loadout.SelectedBanner != null)
         {
             <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="small"><strong>@Configuration.Loadout.SelectedBanner.Name</strong>
+                <span class="small"><strong>@Display(Configuration.Loadout.SelectedBanner.Name)</strong>
                     <span class="text-body-secondary">(@Configuration.Loadout.SelectedBanner.PointsCost pts)</span>
                 </span>
                 <button class="btn btn-outline-danger btn-sm py-0 px-1" style="font-size:0.7rem"
@@ -24,10 +25,10 @@
                 <option value="">— Add magic standard —</option>
                 @foreach (var banner in AvailableBanners)
                 {
-                    var cost = ParseBannerPoints(banner.Points);
-                    var disabled = cost > bannerCap;
-                    <option value="@banner.Name" disabled="@disabled">
-                        @banner.Name (@banner.Points pts)
+                    var cost = banner.Cost ?? 0;
+                    var disabled = allowance.PointsLimit is { } cap && cost > cap;
+                    <option value="@ItemKey(banner)" disabled="@disabled" title="@banner.Text">
+                        @Display(banner.Name) (@cost.ToString("0.#") pts)
                     </option>
                 }
             </select>
@@ -43,25 +44,29 @@
     [Parameter] public List<MagicItemEntry> MagicItems { get; set; } = [];
 
     private List<MagicItemEntry> AvailableBanners =>
-        MagicItems.Where(m => m.Category == MagicItemCategories.MagicStandard).ToList();
+        MagicItems.Where(m => m.Category == MagicItemCategories.Standard)
+            .OrderByDescending(m => m.Cost ?? 0)
+            .ToList();
 
-    private static double ParseBannerPoints(string points) =>
-        double.TryParse(points, out var v) ? v : 0;
+    private static string ItemKey(MagicItemEntry item) => $"{(item.Common ? "common" : "faction")}:{item.Id}";
+
+    private static string Display(string name) => FactionUpgrades.TitleCase(name);
 
     private async Task OnBannerSelected(ChangeEventArgs e)
     {
         if (Configuration == null) return;
-        var name = e.Value?.ToString();
-        if (string.IsNullOrEmpty(name)) return;
+        var key = e.Value?.ToString();
+        if (string.IsNullOrEmpty(key)) return;
 
-        var banner = AvailableBanners.FirstOrDefault(b => b.Name == name);
+        var banner = AvailableBanners.FirstOrDefault(b => ItemKey(b) == key);
         if (banner == null) return;
 
-        var cost = ParseBannerPoints(banner.Points);
-        if (Configuration.BannerBudget is int cap && cost > cap) return;
+        var cost = banner.Cost ?? 0;
+        if (Configuration.MagicStandardAllowance?.PointsLimit is { } cap && cost > cap) return;
 
         Configuration.Loadout.SelectedBanner = new SelectedMagicItem
         {
+            Id = banner.Id,
             Name = banner.Name,
             Category = banner.Category,
             PointsCost = cost,

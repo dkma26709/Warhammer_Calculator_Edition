@@ -10,19 +10,11 @@ namespace Warhammer.Tests;
 /// </summary>
 public class ArmourStackingTests
 {
-    private static UnitOption AddArmour(string name) => new()
-    {
-        Type = "equipment",
-        Action = "add",
-        Choices = [new OptionChoice { Name = [name], Points = 1.5, PerModel = true }],
-        Raw = $"May take {name}",
-    };
-
     private static UnitConfiguration Configured(string equipment, string upgrade)
     {
-        var unit = TestHelpers.MakeUnit(equipment: equipment, options: [AddArmour(upgrade)]);
+        var unit = TestHelpers.MakeUnit(equipment: equipment, options: [TestHelpers.Equipment(upgrade, 1.5, perModel: true)]);
         var config = new UnitConfiguration(unit);
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle(TestHelpers.Slug(upgrade), TestHelpers.Slug(upgrade), true);
         return config;
     }
 
@@ -50,7 +42,7 @@ public class ArmourStackingTests
     public void DeselectingTheUpgrade_RestoresTheBaseArmour()
     {
         var config = Configured("Hand weapon, medium armour", "heavy armour");
-        config.SelectedUpgrades.Remove(0);
+        config.Selections.Clear("heavy-armour");
 
         Assert.Contains(ArmourKey.MediumArmour, config.EffectiveArmour);
         Assert.DoesNotContain(ArmourKey.HeavyArmour, config.EffectiveArmour);
@@ -102,39 +94,5 @@ public class ArmourStackingTests
         var config = new UnitConfiguration(unit);
 
         Assert.Equal(4, config.EffectiveArmourSave(3, 0, 0));
-    }
-
-    // ─── The real matchup that surfaced it ─────────────────────────
-
-    [Fact]
-    public async Task DwarfWarriors_WithHeavyArmour_AreNoBetterArmouredThanLongbeards()
-    {
-        var repo = TestHelpers.CreateRepository();
-        var dwarfs = await repo.GetUnitsAsync(FactionKey.Dwarfs);
-
-        var warriors = dwarfs.First(u => u.Name == "Warriors");
-        var longbeards = dwarfs.First(u => u.Name == "Longbeards");
-
-        // Warriors are medium armour with a heavy armour upgrade; Longbeards start heavy.
-        var warriorConfig = new UnitConfiguration(warriors);
-        int heavyOptionIndex = warriors.Options
-            .Select((o, idx) => (o, idx))
-            .Where(x => x.o.Choices?.Any(c =>
-                c.Name.Any(n => n.Contains("heavy armour", StringComparison.OrdinalIgnoreCase))) == true)
-            .Select(x => x.idx)
-            .DefaultIfEmpty(-1)
-            .First();
-        Assert.True(heavyOptionIndex >= 0, "Warriors should offer a heavy armour upgrade");
-        warriorConfig.SelectedUpgrades[heavyOptionIndex] = 0;
-
-        var longbeardConfig = new UnitConfiguration(longbeards);
-
-        // Both wear heavy armour, so both are 4+ before any strength penalty, and identical
-        // once a great weapon's -2 penalty is applied.
-        Assert.Equal(4, longbeardConfig.EffectiveArmourSave(3, 0, 0));
-        Assert.Equal(4, warriorConfig.EffectiveArmourSave(3, 0, 0));
-        Assert.Equal(
-            longbeardConfig.EffectiveArmourSave(5, 0, -2),
-            warriorConfig.EffectiveArmourSave(5, 0, -2));
     }
 }

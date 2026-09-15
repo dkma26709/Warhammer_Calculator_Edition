@@ -12,13 +12,34 @@ public class UnitConfiguration
     /// <summary>The fully-resolved unit template.</summary>
     public Unit ResolvedUnit { get; }
 
-    /// <summary>The raw JSON unit entry (from <see cref="Unit.RawEntry"/>).</summary>
+    /// <summary>The raw bundle entry (from <see cref="Unit.RawEntry"/>).</summary>
     public UnitEntry UnitEntry { get; }
 
-    public ProfileEntry PrimaryProfile { get; }
-    public ProfileEntry? MountProfile { get; }
-
     // ─── User configuration ─────────────────────────────────────
+
+    private string _selectedProfileId;
+
+    /// <summary>
+    /// Which of the entry's priced profiles is fielded — the Captain or the General of a
+    /// COMMANDERS entry. An id the entry does not have is ignored.
+    /// </summary>
+    public string SelectedProfileId
+    {
+        get => _selectedProfileId;
+        set
+        {
+            if (ResolvedUnit.Profiles.Any(p => string.Equals(p.Id, value, StringComparison.OrdinalIgnoreCase)))
+                _selectedProfileId = value;
+        }
+    }
+
+    public ProfileEntry PrimaryProfile => ResolvedUnit.ProfileById(_selectedProfileId);
+
+    /// <summary>
+    /// The mount's profile: the mount chosen from the entry's mount option, else the mount the
+    /// entry's own profile block prints — a cavalry unit's horses — else null.
+    /// </summary>
+    public ProfileEntry? MountProfile => SelectedMount?.Model.Stats ?? ResolvedUnit.Mount?.Stats;
 
     public int ModelCount { get; set; }
     public int Frontage { get; set; }
@@ -47,38 +68,8 @@ public class UnitConfiguration
     public TreeAspect SelectedTreeAspect { get; set; }
     public bool UseTreeWhack { get; set; }
 
-    /// <summary>
-    /// Tracks selected equipment upgrades. Key = index into Unit.Options,
-    /// Value = index into that option's Choices list. Absent or -1 = none selected.
-    /// </summary>
-    public Dictionary<int, int> SelectedUpgrades { get; } = new();
-
-    /// <summary>
-    /// Selections in "choose any" groups (<see cref="Json.UnitOption.AllowsMultipleChoices"/>),
-    /// where a unit may take several choices at once. Key = index into Unit.Options, value =
-    /// the chosen indices into that option's Choices list. A key present here supersedes the
-    /// same key in <see cref="SelectedUpgrades"/>.
-    /// </summary>
-    public Dictionary<int, List<int>> SelectedMultiUpgrades { get; } = new();
-
-    /// <summary>
-    /// Every choice index selected in option group <paramref name="optionIndex"/> — any number
-    /// for a "choose any" group, at most one otherwise. The one read path over both stores, so
-    /// costing, equipment resolution and the roster cannot disagree.
-    /// </summary>
-    public IEnumerable<int> SelectedChoicesIn(int optionIndex)
-    {
-        if (SelectedMultiUpgrades.TryGetValue(optionIndex, out var many))
-        {
-            foreach (var idx in many)
-                if (idx >= 0)
-                    yield return idx;
-        }
-        else if (SelectedUpgrades.TryGetValue(optionIndex, out var one) && one >= 0)
-        {
-            yield return one;
-        }
-    }
+    /// <summary>What the unit has taken from its option groups, by group id and choice id.</summary>
+    public OptionSelections Selections { get; } = new();
 
     /// <summary>Selected magic items with their configured combat modifiers.</summary>
     public List<SelectedMagicItem> SelectedMagicItems { get; } = [];
@@ -96,86 +87,248 @@ public class UnitConfiguration
         ? ResolvedUnit.Name
         : $"{Loadout.CustomName} ({ResolvedUnit.Name})";
 
-    /// <summary>True when this unit has any wizard_upgrade option, indicating it can cast spells.</summary>
-    public bool IsWizardCapable =>
-        ResolvedUnit.Options.Any(o => o.IsType(OptionType.WizardUpgrade));
+    /// <summary>
+    /// The option groups in force for this configuration: the entry's top-level groups that
+    /// apply to the fielded profile, and under each choice that has been taken, the groups it
+    /// unlocks — a standard bearer's magic standard, a champion's pistol. Command choices count
+    /// as taken through <see cref="HasChampion"/> and its siblings.
+    /// </summary>
+    public IEnumerable<OptionGroup> ActiveGroups() => ActiveGroups(ResolvedUnit.OptionGroups);
 
-    /// <summary>Points cap for this unit's magic standard. Null when the unit can't carry one.</summary>
-    public int? BannerBudget =>
-        ResolvedUnit.Options
-            .FirstOrDefault(o => o.IsRole(CommandRole.StandardBearer) && o.SubOptions != null)?
-            .SubOptions!
-            .FirstOrDefault(s => s.IsType(OptionType.MagicStandard))?
-            .PointsLimit;
+    private IEnumerable<OptionGroup> ActiveGroups(IEnumerable<OptionGroup> groups)
+    {
+        foreach (var group in groups)
+        {
+            if (!group.AppliesToProfile(_selectedProfileId)) continue;
+            yield return group;
+
+            foreach (var choice in group.Choices)
+            {
+                if (choice.Options is null || !IsTaken(group, choice)) continue;
+                foreach (var nested in ActiveGroups(choice.Options))
+                    yield return nested;
+            }
+        }
+    }
+
+    /// <summary>Whether a choice of a group is in effect, whatever kind of group it is.</summary>
+    public bool IsTaken(OptionGroup group, OptionChoice choice)
+    {
+        if (!choice.AppliesToProfile(_selectedProfileId)) return false;
+
+        return group.GetKind() switch
+        {
+            OptionKind.Command => CommandRoleExtensions.TryFromRoleText(group.Role, out var role) && role switch
+            {
+                CommandRole.Champion => HasChampion,
+                CommandRole.Musician => HasMusician,
+                CommandRole.StandardBearer => HasStandardBearer,
+                _ => false,
+            },
+            OptionKind.BattleStandard => Loadout.IsBattleStandardBearer,
+            OptionKind.MagicItems => false,
+            OptionKind.MagicStandard => false,
+            _ => Selections.IsSelected(group.Id, choice.Id),
+        };
+    }
+
+    /// <summary>The choices taken in a group, each with how many times.</summary>
+    public IEnumerable<(OptionChoice Choice, int Count)> TakenIn(OptionGroup group)
+    {
+        foreach (var choice in group.Choices)
+        {
+            if (!IsTaken(group, choice)) continue;
+            int count = group.GetSelectMode() == SelectMode.Count
+                ? Math.Max(1, Selections.CountOf(group.Id, choice.Id))
+                : 1;
+            yield return (choice, count);
+        }
+    }
+
+    /// <summary>The most a count choice may be taken, from its own max and the unit's size.</summary>
+    public int MaxCountOf(OptionChoice choice)
+    {
+        int max = choice.Max ?? int.MaxValue;
+        if (choice.EveryModels is { } every && every > 0)
+            max = Math.Min(max, ModelCount / every);
+        return Math.Max(0, max);
+    }
+
+    /// <summary>True when this unit can cast: it has a wizard level option, or the book gives it a wizard paragraph.</summary>
+    public bool IsWizardCapable =>
+        ActiveGroups().Any(g => g.IsKind(OptionKind.WizardLevel))
+        || (!string.IsNullOrWhiteSpace(UnitEntry.Magic)
+            && UnitEntry.Magic.Contains("wizard", StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>
+    /// The magic standard this entry may carry. A unit takes one through its standard bearer;
+    /// a character through carrying the Battle Standard. Null when it may carry none; a null
+    /// points limit means the book set none — "with no points limit".
+    /// </summary>
+    public MagicStandardAllowance? MagicStandardAllowance
+    {
+        get
+        {
+            foreach (var group in ActiveGroups())
+            {
+                if (!group.IsKind(OptionKind.MagicStandard)) continue;
+
+                // A group under a standard bearer is only active once the bearer is taken, so
+                // reaching it here is the permission. A top-level one is the book's line for the
+                // army's Battle Standard Bearer, or for a unit's standard when the book prints
+                // it beside the command options rather than under them.
+                bool nested = !ResolvedUnit.OptionGroups.Contains(group);
+                bool permitted = nested
+                    || (TroopType.IsCharacter ? Loadout.IsBattleStandardBearer : HasStandardBearer);
+                if (permitted)
+                    return new MagicStandardAllowance(group.PointsLimit);
+            }
+
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Points cap for this unit's magic standard. Null when the unit can't carry one; an
+    /// unlimited allowance reads as the largest cap there is.
+    /// </summary>
+    public int? BannerBudget => MagicStandardAllowance is { } allowance
+        ? allowance.PointsLimit ?? int.MaxValue
+        : null;
+
+    /// <summary>The battle standard group offered to the fielded profile, if any.</summary>
+    private OptionGroup? BattleStandardGroup =>
+        ActiveGroups().FirstOrDefault(g => g.IsKind(OptionKind.BattleStandard));
 
     /// <summary>Extra points cost for carrying the Battle Standard, if eligible and enabled.</summary>
     public double BattleStandardCost =>
-        Loadout.IsBattleStandardBearer
-            ? ResolvedUnit.Options.FirstOrDefault(o => o.IsType(OptionType.BattleStandard))?.Points ?? 0
+        Loadout.IsBattleStandardBearer && BattleStandardGroup is { } group
+            ? group.Points ?? group.Choices.FirstOrDefault()?.Points ?? 0
             : 0;
 
     /// <summary>True when this unit is a character that can carry the Battle Standard.</summary>
-    public bool IsBattleStandardEligible =>
-        ResolvedUnit.Options.Any(o => o.IsType(OptionType.BattleStandard));
+    public bool IsBattleStandardEligible => BattleStandardGroup is not null;
+
+    /// <summary>The magic item budget of the fielded profile, or null when it may take none.</summary>
+    public MagicItemAllowance? MagicItemAllowance =>
+        Unit.ResolveMagicItemAllowance(_selectedProfileId, ActiveGroups());
 
     /// <summary>
-    /// Aggregate cost for faction upgrade selections. Rank-and-file units pay the rate on
-    /// their own option (e.g. blessed_spawning at +2pts/model × spawnings × model count);
-    /// characters take theirs through a shared magic item allowance, so their option carries
-    /// no rate and each pick costs the points listed against it in the faction's extras.
+    /// The upgrade families this entry may pick from: those its own factionUpgrade groups
+    /// offer, and those its magic item allowance admits ("one Virtue and/or Magic Items").
+    /// </summary>
+    public IEnumerable<OfferedFamily> OfferedFamilies
+    {
+        get
+        {
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var group in ActiveGroups().Where(g => g.IsKind(OptionKind.FactionUpgrade)))
+            {
+                if (string.IsNullOrWhiteSpace(group.Family) || !seen.Add(group.Family)) continue;
+                var rate = group.Choices.FirstOrDefault();
+                yield return new OfferedFamily(group.Family, group.PointsLimit, rate?.Points, rate?.PerModel ?? false, false);
+            }
+
+            if (MagicItemAllowance is { } allowance)
+            {
+                foreach (var family in allowance.Families)
+                {
+                    if (!seen.Add(family)) continue;
+                    yield return new OfferedFamily(family, allowance.PointsLimit, null, false, true);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Aggregate cost for faction upgrade selections. A family offered by a group with a rate
+    /// of its own — "+2 pts/model per spawning" — charges that rate per pick, per model when
+    /// the book says so; otherwise each pick costs what the book lists against it.
     /// </summary>
     public double FactionUpgradeCost
     {
         get
         {
             double total = 0;
-            foreach (var option in ResolvedUnit.Options)
-            {
-                var category = FactionUpgradeCategoryFor(option);
-                if (category is null) continue;
-                if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
+            var offered = OfferedFamilies.ToDictionary(f => f.Family, StringComparer.OrdinalIgnoreCase);
 
-                if (option.Points is null)
+            foreach (var (family, picks) in Loadout.SelectedFactionUpgrades)
+            {
+                if (picks.Count == 0) continue;
+
+                if (offered.TryGetValue(family, out var offer) && offer.Rate is { } rate)
                 {
-                    total += picks.Sum(p => p.PointsCost);
+                    double multiplier = offer.RatePerModel ? ModelCount : 1;
+                    total += rate * multiplier * picks.Count;
                     continue;
                 }
 
-                double multiplier = option.PerModel == true ? ModelCount : 1;
-                total += option.Points.Value * multiplier * picks.Count;
+                total += picks.Sum(p => p.PointsCost);
             }
+
             return total;
         }
     }
 
     /// <summary>
-    /// Resolve the factionUpgrades category an option offers. Options name their own category;
-    /// the blessed_spawning type predates that field and is mapped for compatibility.
+    /// What the entry has spent against its magic item allowance: its items, plus the picks
+    /// from any upgrade family the same allowance pays for.
     /// </summary>
-    public static string? FactionUpgradeCategoryFor(UnitOption option) =>
-        !string.IsNullOrWhiteSpace(option.FactionUpgrade)
-            ? option.FactionUpgrade
-            : FactionUpgradeCategoryForType(option.GetOptionType());
-
-    /// <summary>Map an option type to the factionUpgrades category name.</summary>
-    public static string? FactionUpgradeCategoryForType(OptionType? optionType) => optionType switch
+    public double MagicItemSpend
     {
-        OptionType.BlessedSpawning => "blessed_spawnings",
-        _ => null,
-    };
+        get
+        {
+            double spent = SelectedMagicItems.Sum(i => i.PointsCost);
+            if (MagicItemAllowance is not { } allowance) return spent;
+
+            foreach (var family in allowance.Families)
+            {
+                if (Loadout.SelectedFactionUpgrades.TryGetValue(family, out var picks))
+                    spent += picks.Sum(p => p.PointsCost);
+            }
+
+            return spent;
+        }
+    }
 
     // ─── Parsed base data ────────────────────────────────────────
 
-    public TroopTypeInfo TroopType { get; }
+    /// <summary>The mount chosen from the entry's mount option, if it names a mount the book prints.</summary>
+    public MountOption? SelectedMount
+    {
+        get
+        {
+            foreach (var group in ActiveGroups().Where(g => g.IsKind(OptionKind.Mount)))
+            {
+                foreach (var (choice, _) in TakenIn(group))
+                {
+                    if (choice.UnitId is not null
+                        && ResolvedUnit.MountOptions.TryGetValue(choice.UnitId, out var mount))
+                        return mount;
+                }
+            }
+
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// The troop type the model fights as: the entry's own, or — once a character has taken a
+    /// mount — the type that mount makes it.
+    /// </summary>
+    public TroopTypeInfo TroopType => SelectedMount?.RiderTroopType ?? ResolvedUnit.BaseModel.TroopType;
+
     public int BaseWidthMm { get; }
     public ParsedSpecialRules SpecialRules { get; }
 
     /// <summary>
     /// Only the rules the army book scopes to the mount by name — the "Mighty Blow (2)" of
-    /// "Mighty Blow (2) (War Boars only)". Empty for almost every unit, because a unit's special
-    /// rules belong to its riders: a Dark Elf's Murderous Prowess is not its Cold One's.
+    /// "Mighty Blow (2) (War Boars only)" — or, for a chosen mount, the mount entry's own rules.
+    /// Empty for almost every unit, because a unit's special rules belong to its riders.
     /// </summary>
-    public ParsedSpecialRules MountSpecialRules { get; } = new();
+    public ParsedSpecialRules MountSpecialRules =>
+        SelectedMount?.Model.SpecialRules ?? ResolvedUnit.Mount?.SpecialRules ?? new ParsedSpecialRules();
+
     public List<CloseCombatWeaponKey> BaseWeaponKeys { get; }
     public List<ArmourKey> BaseArmourKeys { get; }
 
@@ -283,12 +436,9 @@ public class UnitConfiguration
     {
         ResolvedUnit = unit;
         UnitEntry = unit.RawEntry;
-        PrimaryProfile = unit.BaseModel.Stats;
-        MountProfile = unit.Mount?.Stats;
-        TroopType = unit.BaseModel.TroopType;
+        _selectedProfileId = unit.BaseModel.Stats.Id;
         BaseWidthMm = unit.BaseWidthMm;
         SpecialRules = unit.BaseModel.SpecialRules;
-        MountSpecialRules = unit.Mount?.SpecialRules ?? new ParsedSpecialRules();
         BaseWeaponKeys = unit.BaseModel.Weapons.Select(w => w.Key).ToList();
         BaseArmourKeys = unit.BaseModel.Armour.Select(a => a.Key).ToList();
 
@@ -387,7 +537,7 @@ public class UnitConfiguration
         get
         {
             var weapons = new List<CloseCombatWeaponKey>(BaseWeaponKeys);
-            ApplyWeaponUpgrades(weapons);
+            ApplyEquipmentUpgrades(weapons, null);
             return weapons;
         }
     }
@@ -400,7 +550,7 @@ public class UnitConfiguration
         get
         {
             var armour = new List<ArmourKey>(BaseArmourKeys);
-            ApplyArmourUpgrades(armour);
+            ApplyEquipmentUpgrades(null, armour);
             KeepBestBodyArmour(armour);
             return armour;
         }
@@ -437,85 +587,48 @@ public class UnitConfiguration
         _ => 0,
     };
 
-    private void ApplyWeaponUpgrades(List<CloseCombatWeaponKey> keys)
+    /// <summary>
+    /// Apply every taken equipment choice to the weapon list, the armour list, or both: a
+    /// replaced item goes, the chosen items come. Either list may be null when the caller only
+    /// wants the other.
+    /// </summary>
+    private void ApplyEquipmentUpgrades(List<CloseCombatWeaponKey>? weapons, List<ArmourKey>? armour)
     {
-        if (UnitEntry.Options == null) return;
-
-        for (int i = 0; i < UnitEntry.Options.Count; i++)
+        foreach (var group in ActiveGroups())
         {
-            var option = UnitEntry.Options[i];
-            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
+            if (!group.IsKind(OptionKind.Equipment)) continue;
 
-            foreach (int choiceIdx in SelectedChoicesIn(i))
+            foreach (var (choice, _) in TakenIn(group))
             {
-                if (choiceIdx >= option.Choices.Count) continue;
-
-                var choice = option.Choices[choiceIdx];
-
-                // Handle replace: remove the replaced item
-                string? replaces = choice.Replaces ?? option.Replaces;
-                if (option.IsAction(OptionAction.Replace) && replaces != null)
+                if (choice.Replaces is { } replaces)
                 {
-                    if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
-                        && replacedIsWeapon
-                        && CloseCombatWeaponKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
+                    foreach (var replaced in EquipmentParser.SplitChoiceName(replaces))
                     {
-                        keys.Remove(replacedEnumKey);
+                        if (!EquipmentParser.TryNormalize(replaced, out var replacedKey, out bool replacedIsWeapon))
+                            continue;
+
+                        if (replacedIsWeapon && weapons is not null
+                            && CloseCombatWeaponKeyExtensions.TryFromJsonKey(replacedKey, out var replacedWeapon))
+                            weapons.Remove(replacedWeapon);
+                        else if (!replacedIsWeapon && armour is not null
+                            && ArmourKeyExtensions.TryFromJsonKey(replacedKey, out var replacedArmour))
+                            armour.Remove(replacedArmour);
                     }
                 }
 
-                // Add the selected items
-                foreach (var name in choice.Name)
+                foreach (var name in EquipmentParser.SplitChoiceName(choice.Name))
                 {
-                    if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
-                        && itemIsWeapon
-                        && CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var enumKey)
-                        && !keys.Contains(enumKey))
-                    {
-                        keys.Add(enumKey);
-                    }
-                }
-            }
-        }
-    }
+                    if (!EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon))
+                        continue;
 
-    private void ApplyArmourUpgrades(List<ArmourKey> keys)
-    {
-        if (UnitEntry.Options == null) return;
-
-        for (int i = 0; i < UnitEntry.Options.Count; i++)
-        {
-            var option = UnitEntry.Options[i];
-            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
-
-            foreach (int choiceIdx in SelectedChoicesIn(i))
-            {
-                if (choiceIdx >= option.Choices.Count) continue;
-
-                var choice = option.Choices[choiceIdx];
-
-                // Handle replace: remove the replaced item
-                string? replaces = choice.Replaces ?? option.Replaces;
-                if (option.IsAction(OptionAction.Replace) && replaces != null)
-                {
-                    if (EquipmentParser.TryNormalize(replaces, out var replacedKey, out bool replacedIsWeapon)
-                        && !replacedIsWeapon
-                        && ArmourKeyExtensions.TryFromJsonKey(replacedKey, out var replacedEnumKey))
-                    {
-                        keys.Remove(replacedEnumKey);
-                    }
-                }
-
-                // Add the selected items
-                foreach (var name in choice.Name)
-                {
-                    if (EquipmentParser.TryNormalize(name, out var key, out bool itemIsWeapon)
-                        && !itemIsWeapon
-                        && ArmourKeyExtensions.TryFromJsonKey(key, out var enumKey)
-                        && !keys.Contains(enumKey))
-                    {
-                        keys.Add(enumKey);
-                    }
+                    if (itemIsWeapon && weapons is not null
+                        && CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out var weaponKey)
+                        && !weapons.Contains(weaponKey))
+                        weapons.Add(weaponKey);
+                    else if (!itemIsWeapon && armour is not null
+                        && ArmourKeyExtensions.TryFromJsonKey(key, out var armourKey)
+                        && !armour.Contains(armourKey))
+                        armour.Add(armourKey);
                 }
             }
         }
@@ -593,8 +706,9 @@ public class UnitConfiguration
     private int SplitProfileMax(Func<ProfileEntry, int?> stat, int fallback)
     {
         int primary = stat(PrimaryProfile) ?? fallback;
-        if (MountProfile != null && TroopType.HasSplitProfile)
-            return Math.Max(primary, stat(MountProfile) ?? fallback);
+        var mount = MountProfile;
+        if (mount != null && TroopType.HasSplitProfile)
+            return Math.Max(primary, stat(mount) ?? fallback);
         return primary;
     }
 
@@ -685,7 +799,7 @@ public class UnitConfiguration
         int supportingRanks = Math.Max(0, Ranks - 1);
         int actualSupportRanks = Math.Min(supportingRanks, 1);
 
-        // Zero in wap-v3, which bars mounts from supporting attacks entirely.
+        // Zero where the system bars mounts from supporting attacks entirely.
         int mountSupportPerModel = Math.Min(mountA, TroopType.MountSupportingAttacks);
         int supportModels = actualSupportRanks * Frontage;
         int supportAttacks = supportModels * mountSupportPerModel;
@@ -693,62 +807,62 @@ public class UnitConfiguration
         return frontAttacks + supportAttacks;
     }
 
-    public static (ProfileEntry Primary, ProfileEntry? Mount) ResolveProfiles(UnitEntry unit)
+    /// <summary>
+    /// The profiles an entry prints, sorted into what it fields: the priced profiles are the
+    /// variants a player chooses between; the first unpriced one after them is the mount the
+    /// profile block carries — a cavalry unit's horse, a chariot's crew line is not one.
+    /// </summary>
+    public static (IReadOnlyList<ProfileEntry> Priced, ProfileEntry? Mount) ResolveProfiles(UnitEntry unit)
     {
         var profiles = unit.Profiles;
         if (profiles.Count == 0)
             throw new InvalidOperationException($"Unit {unit.Name} has no profiles");
         if (profiles.Count == 1)
-            return (profiles[0], null);
+            return ([profiles[0]], null);
 
-        var primary = profiles.FirstOrDefault(p => p.Points.HasValue) ?? profiles[0];
-        var mount = profiles.FirstOrDefault(p => p != primary);
+        var priced = profiles.Where(p => p.Points.HasValue).ToList();
+        if (priced.Count == 0)
+            priced = [profiles[0]];
 
-        return (primary, mount);
+        var mount = profiles.FirstOrDefault(p => !priced.Contains(p));
+        return (priced, mount);
     }
 
     // ─── Points Cost ─────────────────────────────────────────────
 
-    public double BaseModelCost => ResolvedUnit.BaseModelCost;
+    /// <summary>Points per model of the fielded profile.</summary>
+    public double BaseModelCost => PrimaryProfile.Points ?? ResolvedUnit.BaseModelCost;
 
-    /// <summary>Total points cost of all selected upgrades (equipment, mounts, upgrades, etc.).</summary>
+    /// <summary>
+    /// Total points cost of all taken option choices: equipment, mounts, wizard levels, special
+    /// rules and upgrades. Command, banners, magic items, the battle standard and faction
+    /// upgrades are priced by their own properties.
+    /// </summary>
     public double UpgradeCost
     {
         get
         {
-            if (UnitEntry.Options == null) return 0;
             double total = 0;
 
-            for (int i = 0; i < UnitEntry.Options.Count; i++)
+            foreach (var group in ActiveGroups())
             {
-                var option = UnitEntry.Options[i];
-
-                foreach (int choiceIdx in SelectedChoicesIn(i))
+                switch (group.GetKind())
                 {
-                    switch (option.GetOptionType())
-                    {
-                        case OptionType.Equipment or OptionType.Mount:
-                            if (option.Choices == null || choiceIdx >= option.Choices.Count) continue;
-                            var choice = option.Choices[choiceIdx];
-                            var choicePts = choice.Points ?? 0;
-                            total += choice.PerModel ? choicePts * ModelCount : choicePts;
-                            break;
+                    case OptionKind.Equipment:
+                    case OptionKind.Mount:
+                    case OptionKind.WizardLevel:
+                    case OptionKind.SpecialRule:
+                    case OptionKind.Upgrade:
+                    case null:
+                        break;
+                    default:
+                        continue;
+                }
 
-                        case OptionType.Upgrade when option.SubOptions != null:
-                            if (choiceIdx >= option.SubOptions.Count) continue;
-                            var subOption = option.SubOptions[choiceIdx];
-                            var subChoice = subOption.Choices?.FirstOrDefault();
-                            var subPts = subChoice?.Points ?? subOption.Points ?? 0;
-                            var subPerModel = subChoice?.PerModel ?? subOption.PerModel ?? false;
-                            total += subPerModel ? subPts * ModelCount : subPts;
-                            break;
-
-                        case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
-                            var flatPts = option.Points ?? 0;
-                            var flatPerModel = option.PerModel ?? false;
-                            total += flatPerModel ? flatPts * ModelCount : flatPts;
-                            break;
-                    }
+                foreach (var (choice, count) in TakenIn(group))
+                {
+                    var points = choice.Points ?? 0;
+                    total += (choice.PerModel ? points * ModelCount : points) * count;
                 }
             }
 
@@ -788,6 +902,42 @@ public class UnitConfiguration
         }
     }
 
+    /// <summary>Copy every user choice from another configuration of the same entry.</summary>
+    public void CopySelectionsFrom(UnitConfiguration source, bool includeIdentity)
+    {
+        SelectedProfileId = source.SelectedProfileId;
+        ModelCount = source.ModelCount;
+        Frontage = source.Frontage;
+        HasChampion = source.HasChampion;
+        HasMusician = source.HasMusician;
+        HasStandardBearer = source.HasStandardBearer;
+        SelectedWeapon = source.SelectedWeapon;
+        SelectedShadowDance = source.SelectedShadowDance;
+        SelectedTreeAspect = source.SelectedTreeAspect;
+        UseTreeWhack = source.UseTreeWhack;
+        Selections.CopyFrom(source.Selections);
+        SelectedMagicItems.Clear();
+        SelectedMagicItems.AddRange(source.SelectedMagicItems);
+        Modifiers.Clear();
+        Modifiers.AddRange(source.Modifiers);
+
+        Loadout.WizardLevel = source.Loadout.WizardLevel;
+        Loadout.SelectedLore = source.Loadout.SelectedLore;
+        Loadout.SelectedSpells.Clear();
+        Loadout.SelectedSpells.AddRange(source.Loadout.SelectedSpells);
+        Loadout.SelectedBanner = source.Loadout.SelectedBanner;
+        Loadout.SelectedFactionUpgrades.Clear();
+        foreach (var (family, picks) in source.Loadout.SelectedFactionUpgrades)
+            Loadout.SelectedFactionUpgrades[family] = new List<SelectedFactionUpgrade>(picks);
+
+        if (includeIdentity)
+        {
+            Loadout.CustomName = source.Loadout.CustomName;
+            Loadout.IsGeneral = source.Loadout.IsGeneral;
+            Loadout.IsBattleStandardBearer = source.Loadout.IsBattleStandardBearer;
+        }
+    }
+
     // ─── Static helpers ──────────────────────────────────────────
 
     public static int ParseBaseWidthMm(string? baseSize)
@@ -805,3 +955,14 @@ public class UnitConfiguration
         return match.Success ? int.Parse(match.Groups[1].Value) : 1;
     }
 }
+
+/// <summary>An upgrade family an entry may pick from, and how its picks are priced.</summary>
+/// <param name="Family">The family id — the faction's upgrade chapter in kebab-case.</param>
+/// <param name="PointsLimit">The most the entry may spend on the family, when the book caps it.</param>
+/// <param name="Rate">A rate on the entry's own option — "+2 pts/model" — that prices every pick; null when each pick costs what the book lists.</param>
+/// <param name="RatePerModel">Whether <paramref name="Rate"/> is charged per model.</param>
+/// <param name="ThroughMagicItems">True when the family comes through the entry's magic item allowance and its picks count against that budget.</param>
+public sealed record OfferedFamily(string Family, int? PointsLimit, double? Rate, bool RatePerModel, bool ThroughMagicItems);
+
+/// <summary>A magic standard the entry may carry; a null limit means the book set none.</summary>
+public sealed record MagicStandardAllowance(int? PointsLimit);

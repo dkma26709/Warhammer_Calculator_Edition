@@ -21,7 +21,8 @@
                        SelectedFactionKey="@_attackerFactionKey"
                        OnFactionSelected="OnAttackerFactionSelected"
                        FactionUnits="@_attackerFactionUnits"
-                       FactionExtras="@_attackerExtras"
+                       Faction="@_attackerFaction"
+                       Lores="@_attackerLores"
                        CommonMagicItems="@_commonMagicItems"
                        SelectedUnit="@_attackerUnit"
                        OnUnitSelected="OnAttackerUnitSelected"
@@ -48,7 +49,8 @@
                        SelectedFactionKey="@_defenderFactionKey"
                        OnFactionSelected="OnDefenderFactionSelected"
                        FactionUnits="@_defenderFactionUnits"
-                       FactionExtras="@_defenderExtras"
+                       Faction="@_defenderFaction"
+                       Lores="@_defenderLores"
                        CommonMagicItems="@_commonMagicItems"
                        SelectedUnit="@_defenderUnit"
                        OnUnitSelected="OnDefenderUnitSelected"
@@ -98,14 +100,16 @@
     // --- Attacker state ---
     private string? _attackerFactionKey;
     private IReadOnlyList<Unit>? _attackerFactionUnits;
-    private FactionExtrasData? _attackerExtras;
+    private FactionData? _attackerFaction;
+    private IReadOnlyList<LoreEntry>? _attackerLores;
     private Unit? _attackerUnit;
     private UnitConfiguration? _attackerConfig;
 
     // --- Defender state ---
     private string? _defenderFactionKey;
     private IReadOnlyList<Unit>? _defenderFactionUnits;
-    private FactionExtrasData? _defenderExtras;
+    private FactionData? _defenderFaction;
+    private IReadOnlyList<LoreEntry>? _defenderLores;
     private Unit? _defenderUnit;
     private UnitConfiguration? _defenderConfig;
 
@@ -135,15 +139,17 @@
         _attackerConfig = null;
         ClearResults();
 
-        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        if (!string.IsNullOrEmpty(factionKey))
         {
-            _attackerFactionUnits = await Repo.GetUnitsAsync(fk);
-            _attackerExtras = await Repo.GetFactionExtrasAsync(fk);
+            _attackerFactionUnits = await Repo.GetUnitsAsync(factionKey);
+            _attackerFaction = await Repo.GetFactionAsync(factionKey);
+            _attackerLores = await Repo.GetLoresAsync(factionKey);
         }
         else
         {
             _attackerFactionUnits = null;
-            _attackerExtras = null;
+            _attackerFaction = null;
+            _attackerLores = null;
         }
     }
 
@@ -168,15 +174,17 @@
         _defenderConfig = null;
         ClearResults();
 
-        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        if (!string.IsNullOrEmpty(factionKey))
         {
-            _defenderFactionUnits = await Repo.GetUnitsAsync(fk);
-            _defenderExtras = await Repo.GetFactionExtrasAsync(fk);
+            _defenderFactionUnits = await Repo.GetUnitsAsync(factionKey);
+            _defenderFaction = await Repo.GetFactionAsync(factionKey);
+            _defenderLores = await Repo.GetLoresAsync(factionKey);
         }
         else
         {
             _defenderFactionUnits = null;
-            _defenderExtras = null;
+            _defenderFaction = null;
+            _defenderLores = null;
         }
     }
 

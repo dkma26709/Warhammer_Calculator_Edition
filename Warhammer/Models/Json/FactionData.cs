@@ -2,62 +2,73 @@ using System.Text.Json.Serialization;
 
 namespace Warhammer.Models.Json;
 
+/// <summary>One army book from the bundle: its rules, items, upgrades, lores and units.</summary>
 public record FactionData
 {
-    public string FactionName { get; init; } = "";
+    public string Id { get; init; } = "";
+    public string Name { get; init; } = "";
+    public string Version { get; init; } = "";
+
+    /// <summary>order, destruction or neutral.</summary>
+    public string? Align { get; init; }
+
+    public List<FactionRuleEntry> Rules { get; init; } = [];
+    public List<MagicItemEntry> Items { get; init; } = [];
+    public List<UpgradeEntry> Upgrades { get; init; } = [];
+    public List<LoreEntry> Lores { get; init; } = [];
+
+    /// <summary>Present when the book states constraints of its own; holds only <c>unitConstraints</c>.</summary>
+    public CompositionData? Composition { get; init; }
+
     public List<UnitEntry> Units { get; init; } = [];
 }
 
-public record UnitEntry
+public record FactionRuleEntry
 {
+    public string Id { get; init; } = "";
     public string Name { get; init; } = "";
-    public string Category { get; set; } = "";
-    public List<ProfileEntry> Profiles { get; init; } = [];
-    public string TroopType { get; init; } = "";
-    public string? BaseSize { get; init; }
-    public string? Equipment { get; init; }
-    public List<UnitOption>? Options { get; init; }
-    public string? SpecialRules { get; init; }
-    public string? UnitSize { get; init; }
-    public double? PointsCost { get; init; }
-    public string? Magic { get; init; }
-    public string? Upgrades { get; init; }
-    public string? Notes { get; init; }
-    public string? Crew { get; init; }
-    public string? Mount { get; init; }
-    public string? DrawnBy { get; init; }
+    public string Text { get; init; } = "";
 }
 
-public record ProfileEntry
+/// <summary>
+/// One entry of a faction's upgrade chapter — a Knightly Order, a Blessed Spawning, a rune.
+/// Its family is the chapter it sits in, which option groups name by kebab-case id.
+/// </summary>
+public record UpgradeEntry
 {
+    public string Id { get; init; } = "";
+    public string Chapter { get; init; } = "";
+
+    /// <summary>A heading within the chapter, when it has them: "WEAPON RUNES".</summary>
+    public string? Group { get; init; }
+
     public string Name { get; init; } = "";
 
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? M { get; init; }
+    [JsonConverter(typeof(UpgradeCostConverter))]
+    public UpgradeCost? Cost { get; init; }
 
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? WS { get; init; }
+    [JsonConverter(typeof(LenientStringConverter))]
+    public string? Only { get; init; }
 
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? BS { get; init; }
+    [JsonConverter(typeof(LenientStringConverter))]
+    public string? Bound { get; init; }
 
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? S { get; init; }
+    public bool OneUse { get; init; }
+    public string Text { get; init; } = "";
+}
 
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? T { get; init; }
+/// <summary>
+/// An upgrade's price: flat, or tiered by who takes it. Exactly one of the two is set.
+/// </summary>
+public record UpgradeCost
+{
+    public double? Flat { get; init; }
+    public List<UpgradeCostTier> Tiers { get; init; } = [];
+}
 
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? W { get; init; }
-
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? I { get; init; }
-
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? A { get; init; }
-
-    [JsonConverter(typeof(NullableIntConverter))]
-    public int? Ld { get; init; }
-
-    public double? Points { get; init; }
+/// <summary>"Cavalry/Infantry" → "1 point per model".</summary>
+public record UpgradeCostTier
+{
+    public string Scope { get; init; } = "";
+    public string Text { get; init; } = "";
 }

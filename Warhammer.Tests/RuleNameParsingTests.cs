@@ -13,12 +13,12 @@ namespace Warhammer.Tests;
 /// </summary>
 public class RuleNameParsingTests
 {
-    // ─── wap-v3 renamed Ward Save to Magical Ward ──────────────────
+    // ─── Ward Save is spelled Magical Ward ─────────────────────────
 
     /// <summary>
-    /// "Models with this rule gain an invulnerable save as indicated in the brackets" (3.11 p63),
-    /// and an invulnerable save is v2's ward save — after armour, never modified by the attack's
-    /// Strength (3.11 p38). Without this name every v3 ward save silently vanished.
+    /// "Models with this rule gain an invulnerable save as indicated in the brackets", and an
+    /// invulnerable save is a ward save — after armour, never modified by the attack's
+    /// Strength. Without this name every ward save silently vanished.
     /// </summary>
     [Fact]
     public void MagicalWardIsAWardSave()
@@ -27,25 +27,23 @@ public class RuleNameParsingTests
         Assert.Equal(4, ParsedSpecialRules.Parse("Magical Ward (4+)").WardSave);
     }
 
-    /// <summary>The v2 spelling has to keep working — v2 army books never say Magical Ward.</summary>
+    /// <summary>The older spelling has to keep working — some books never say Magical Ward.</summary>
     [Fact]
-    public void WardSaveStillParsesUnderTheV2Spelling()
+    public void WardSaveStillParsesUnderTheOlderSpelling()
     {
         Assert.Equal(5, ParsedSpecialRules.Parse("Ward Save (5+)").WardSave);
         Assert.Equal(6, ParsedSpecialRules.Parse("Ward save (6+)").WardSave);
     }
 
     [Fact]
-    public async Task V3WardancersHaveTheirWardSave()
+    public async Task WardancersHaveTheirWardSave()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
-        var wardancers = (await repo.GetUnitsAsync(FactionKey.WoodElves))
-            .First(u => u.Name == "Wardancers");
+        var wardancers = await TestHelpers.FindUnitAsync("wood-elves", "WARDANCERS");
 
         Assert.Equal(6, wardancers.BaseModel.SpecialRules.WardSave);
     }
 
-    // ─── Tomb Kings' Indomitable (wap-v3) ──────────────────────────
+    // ─── Tomb Kings' Indomitable ───────────────────────────────────
 
     [Fact]
     public void IndomitableParses()
@@ -55,8 +53,8 @@ public class RuleNameParsingTests
     }
 
     /// <summary>
-    /// "suffer 1 Wound less than they normally would due to the Unstable special rule"
-    /// (Tomb Kings 3.1 p4), on top of the Unstable rule's own steadfast reduction.
+    /// "suffer 1 Wound less than they normally would due to the Unstable special rule", on top
+    /// of the Unstable rule's own steadfast reduction.
     /// </summary>
     [Theory]
     [InlineData(false, false, 4)]   // plain Unstable: wounds equal the CR deficit
@@ -110,10 +108,7 @@ public class RuleNameParsingTests
         Assert.Equal(4, ParsedSpecialRules.Parse("Regeneration (4+).").Regeneration);
     }
 
-    /// <summary>
-    /// "Undead." carries both Fear and Unstable, so the full stop cost three Tomb Kings units
-    /// two rules apiece.
-    /// </summary>
+    /// <summary>"Undead." carries both Fear and Unstable, so the full stop cost two rules apiece.</summary>
     [Fact]
     public void ATrailingFullStopDoesNotDropACompoundRule()
     {
@@ -133,26 +128,17 @@ public class RuleNameParsingTests
     [Fact]
     public async Task TheStarDragonKeepsItsNaturalArmour()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV2);
-        var dragon = (await repo.GetUnitsAsync(FactionKey.HighElves))
-            .First(u => u.Name == "Star Dragon");
+        var dragon = await TestHelpers.FindUnitAsync("high-elves", "STAR DRAGON");
 
         Assert.Equal(2, dragon.BaseModel.SpecialRules.NaturalArmour);
     }
 
     [Fact]
-    public async Task GiantsAreStubbornInBothSystems()
+    public async Task GiantsAreStubborn()
     {
-        foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3 })
-        {
-            var repo = TestHelpers.RepoFor(system);
-            var giant = (await repo.GetUnitsAsync(FactionKey.OrcsAndGoblins))
-                .FirstOrDefault(u => u.Name == "Giant");
-            if (giant == null)
-                continue;
+        var giant = await TestHelpers.FindUnitAsync("orcs-goblins", "GIANT");
 
-            Assert.True(giant.BaseModel.SpecialRules.Stubborn, $"Giant not Stubborn in {system}");
-        }
+        Assert.True(giant.BaseModel.SpecialRules.Stubborn);
     }
 
     // ─── An asterisk footnote marker must still be tolerated ───────
@@ -165,7 +151,7 @@ public class RuleNameParsingTests
         Assert.True(ParsedSpecialRules.Parse("Stubborn.*").Stubborn);
     }
 
-    /// <summary>The marker leads as often as it trails, and led on a rule two units still have.</summary>
+    /// <summary>The marker leads as often as it trails, and leads on a rule a unit still has.</summary>
     [Fact]
     public void ALeadingAsteriskDoesNotDropTheRule()
     {
@@ -178,22 +164,18 @@ public class RuleNameParsingTests
     [Fact]
     public async Task ScylaAnfingrimmKeepsHisRandomAttacks()
     {
-        foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3 })
-        {
-            var scyla = (await TestHelpers.RepoFor(system).GetUnitsAsync(FactionKey.WarriorsOfChaos))
-                .First(u => u.Name == "Scyla Anfingrimm");
+        var scyla = await TestHelpers.FindUnitAsync("warriors-of-chaos", "SCYLA ANFINGRIMM");
 
-            Assert.Equal("D6+2", scyla.BaseModel.SpecialRules.RandomAttacksRoll);
-        }
+        Assert.Equal("D6+2", scyla.BaseModel.SpecialRules.RandomAttacksRoll);
+        Assert.True(scyla.BaseModel.SpecialRules.Unbreakable);
     }
 
     // ─── A bulleted rule definition, not a rule list ───────────────
 
     /// <summary>
     /// Where a rule belongs to one unit alone the books write it out in full instead of naming it
-    /// in the comma-separated list, and the extractor keeps the whole paragraph. Comma-splitting
-    /// it served the entire sentence as one badge plus a tail of prose fragments; only the name in
-    /// front of the colon is the rule.
+    /// in the comma-separated list. Comma-splitting it served the entire sentence as one badge
+    /// plus a tail of prose fragments; only the name in front of the colon is the rule.
     /// </summary>
     [Fact]
     public void ABulletedDefinitionIsReducedToItsName()
@@ -205,16 +187,16 @@ public class RuleNameParsingTests
         Assert.Equal(["Militia"], rules.AllRuleNames);
     }
 
+    /// <summary>
+    /// The bundle writes a defined rule as a {name, text} object rather than prose, and the
+    /// reader keeps only the name — which is all the badge should show.
+    /// </summary>
     [Fact]
     public async Task FreeCompanyMilitiaShowOneBadgeReadingMilitia()
     {
-        foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3 })
-        {
-            var militia = (await TestHelpers.RepoFor(system).GetUnitsAsync(FactionKey.TheEmpire))
-                .First(u => u.Name == "Free Company Militia");
+        var militia = await TestHelpers.FindUnitAsync("empire", "FREE COMPANY MILITIA");
 
-            Assert.Equal(["Militia"], militia.BaseModel.SpecialRules.AllRuleNames);
-        }
+        Assert.Equal(["Militia"], militia.BaseModel.SpecialRules.AllRuleNames);
     }
 
     /// <summary>A named rule still parses when the books define it rather than list it.</summary>
@@ -252,9 +234,9 @@ public class RuleNameParsingTests
     // ─── The next page's banner ran onto the last rule ─────────────
 
     /// <summary>
-    /// The extractor appends the following page's heading to the final rule. The books never set a
-    /// rule name in capitals, so a trailing all-caps run is always the banner — and left on, it
-    /// took the rule with it.
+    /// A PDF extractor appends the following page's heading to the final rule. The books never
+    /// set a rule name in capitals, so a trailing all-caps run is always the banner — and left
+    /// on, it took the rule with it.
     /// </summary>
     [Theory]
     [InlineData("Death Shriek, Ethereal, Fly (6), Terror, Undead CHARACTERS")]
@@ -277,22 +259,12 @@ public class RuleNameParsingTests
     }
 
     [Fact]
-    public async Task TheV3TombBansheeIsStillUndead()
+    public async Task TheTombBansheeIsUndead()
     {
-        var banshee = (await TestHelpers.RepoFor(GameSystems.WapV3).GetUnitsAsync(FactionKey.VampireCounts))
-            .First(u => u.Name == "Tomb Banshee");
+        var banshee = await TestHelpers.FindUnitAsync("vampire-counts", "TOMB BANSHEE");
 
         Assert.True(banshee.BaseModel.SpecialRules.Unstable);
         Assert.True(banshee.BaseModel.SpecialRules.Fear);
-    }
-
-    [Fact]
-    public async Task TheV3ScylaAnfingrimmIsStillUnbreakable()
-    {
-        var scyla = (await TestHelpers.RepoFor(GameSystems.WapV3).GetUnitsAsync(FactionKey.WarriorsOfChaos))
-            .First(u => u.Name == "Scyla Anfingrimm");
-
-        Assert.True(scyla.BaseModel.SpecialRules.Unbreakable);
     }
 
     // ─── A cross-reference is not part of the name ─────────────────
@@ -319,7 +291,7 @@ public class RuleNameParsingTests
         Assert.Equal("Kurdoss Valentian", Assert.Single(sets.Scoped).Scope);
     }
 
-    // ─── PDF line-break and transposition artefacts ────────────────
+    // ─── Line-break and transposition artefacts ────────────────────
 
     /// <summary>
     /// A hyphenated word broken across lines kept the gap, so one rule reached the badges under
@@ -330,13 +302,12 @@ public class RuleNameParsingTests
     {
         Assert.Equal(["Wall-crawler"], ParsedSpecialRules.Parse("Wall- crawler").AllRuleNames);
 
-        // Both spellings of the same Empire rule, which the badges used to show side by side.
         Assert.Equal(
             ParsedSpecialRules.Parse("Righteous Fury (see Arch-Lector)").AllRuleNames,
             ParsedSpecialRules.Parse("Righteous Fury (see Arch- Lector)").AllRuleNames);
     }
 
-    /// <summary>wap-v2's Chaos Trolls have "Natural Armour (+6)" — the save with its sign moved.</summary>
+    /// <summary>"Natural Armour (+6)" — the save with its sign moved.</summary>
     [Fact]
     public void ATransposedSaveStillParses()
     {
@@ -345,10 +316,9 @@ public class RuleNameParsingTests
     }
 
     [Fact]
-    public async Task ChaosTrollsHaveTheirNaturalArmour()
+    public async Task TrollsHaveTheirNaturalArmour()
     {
-        var trolls = (await TestHelpers.RepoFor(GameSystems.WapV2).GetUnitsAsync(FactionKey.WarriorsOfChaos))
-            .First(u => u.Name == "Chaos Trolls");
+        var trolls = await TestHelpers.FindUnitAsync("warriors-of-chaos", "TROLLS");
 
         Assert.Equal(6, trolls.BaseModel.SpecialRules.NaturalArmour);
     }
@@ -376,28 +346,18 @@ public class RuleNameParsingTests
     [Fact]
     public async Task EveryShippedRuleNameLooksLikeARuleName()
     {
-        // wap-v3's Skink Cohort reads "Poisoned Attacks (" — the qualifier is missing from the
-        // extracted data, so the rule cannot be resolved without the army book. Listed here so the
-        // guard stays green while the gap stays visible.
-        string[] knownTruncations = ["Poisoned Attacks ("];
-
         var complaints = new List<string>();
+        var repo = TestHelpers.Repo;
 
-        foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3 })
+        foreach (var faction in repo.AllFactions)
         {
-            var repo = TestHelpers.RepoFor(system);
-            foreach (var faction in Enum.GetValues<FactionKey>())
+            foreach (var unit in await repo.GetUnitsAsync(faction.Id))
             {
-                foreach (var unit in await repo.GetUnitsAsync(faction))
+                foreach (var name in unit.BaseModel.SpecialRules.AllRuleNames)
                 {
-                    foreach (var name in unit.BaseModel.SpecialRules.AllRuleNames)
-                    {
-                        if (knownTruncations.Contains(name)) continue;
-
-                        var fault = NameFault(name);
-                        if (fault != null)
-                            complaints.Add($"{system}/{faction}/{unit.Name}: {fault} — \"{name}\"");
-                    }
+                    var fault = NameFault(name);
+                    if (fault != null)
+                        complaints.Add($"{faction.Id}/{unit.Name}: {fault} — \"{name}\"");
                 }
             }
         }
@@ -415,7 +375,6 @@ public class RuleNameParsingTests
         _ when name.Contains("(see ", StringComparison.OrdinalIgnoreCase) => "kept a cross-reference",
         _ when name.StartsWith('*') => "kept a footnote marker",
         _ when CountsUnbalancedParens(name) => "has an unclosed parenthesis",
-        _ when Regex.IsMatch(name, @"\b[A-Z]{4,}\b") => "ran into a page banner",
         _ when Regex.IsMatch(name, @"\p{L}-\s") => "kept a broken hyphen",
         _ => null,
     };

@@ -35,7 +35,7 @@ public class TroopTypeTests
         Assert.Equal(BaseTroopType.MonstrousInfantry, info.BaseType);
         Assert.Equal(2, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
-        Assert.Equal(2, info.MaxSupportingAttacks);
+        Assert.Equal(3, info.MaxSupportingAttacks);
         Assert.False(info.HasSplitProfile);
     }
 
@@ -56,10 +56,10 @@ public class TroopTypeTests
         Assert.Equal(BaseTroopType.MonstrousCavalry, info.BaseType);
         Assert.Equal(3, info.UnitStrength);
         Assert.Equal(3, info.MinRankWidth);
-        // wap-v2: "one supporting attack from the rider, and two from the mount". wap-v3 keeps
-        // the rider's one and takes the mount's away — see TroopTypeBySystemTests.
+        // "One supporting attack from the rider. Mounts are not allowed to make supporting
+        // attacks." — see TroopTypeBySystemTests.
         Assert.Equal(1, info.MaxSupportingAttacks);
-        Assert.Equal(2, info.MountSupportingAttacks);
+        Assert.Equal(0, info.MountSupportingAttacks);
         Assert.Equal(3, info.NonSplitSupportingAttacks);
         Assert.True(info.HasSplitProfile);
     }
@@ -184,13 +184,11 @@ public class TroopTypeTests
     /// newline, which no unit test written against a tidy string could.
     /// </summary>
     [Theory]
-    [MemberData(nameof(FactionDeserializationTests.SystemFactions), MemberType = typeof(FactionDeserializationTests))]
+    [MemberData(nameof(BundleDataTests.SystemFactions), MemberType = typeof(BundleDataTests))]
     public void EveryShippedTroopType_ResolvesToItsOwnFirstLine(string systemKey, string faction)
     {
-        Assert.True(FactionKeyExtensions.TryFromJsonKey(faction, out var factionKey), faction);
-
         var repo = TestHelpers.RepoFor(systemKey);
-        var units = repo.GetUnitsAsync(factionKey).GetAwaiter().GetResult();
+        var units = repo.GetUnitsAsync(faction).GetAwaiter().GetResult();
 
         var wrong = new List<string>();
         foreach (var unit in units)

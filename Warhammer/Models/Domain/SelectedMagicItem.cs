@@ -6,10 +6,13 @@ namespace Warhammer.Models.Domain;
 /// </summary>
 public record SelectedMagicItem
 {
+    /// <summary>The item's bundle id, when it came from the data; null for a hand-entered item.</summary>
+    public string? Id { get; init; }
+
     /// <summary>Item name as it appears in the army book.</summary>
     public required string Name { get; init; }
 
-    /// <summary>Item category: magic_weapon, magic_armour, talisman, arcane_item, enchanted_item, magic_standard.</summary>
+    /// <summary>Item category: weapon, armour, talisman, arcane, enchanted or standard.</summary>
     public required string Category { get; init; }
 
     /// <summary>Points cost of the item.</summary>

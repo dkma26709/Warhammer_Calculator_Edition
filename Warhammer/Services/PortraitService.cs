@@ -1,18 +1,18 @@
 using System.Net.Http.Json;
 using System.Text;
-using Warhammer.Models.Enums;
 
 namespace Warhammer.Services;
 
 /// <summary>
 /// Resolves unit portrait URLs against a pre-generated manifest so the app
 /// can avoid 404s and render fallbacks cleanly when a portrait is missing.
-/// The manifest is produced by the <c>tools/PortraitFetcher</c> utility.
+/// The manifest is produced by the <c>tools/PortraitFetcher</c> utility and is keyed by the
+/// faction's bundle id.
 /// </summary>
 public sealed class PortraitService
 {
     private readonly HttpClient _http;
-    private Dictionary<string, HashSet<string>> _slugsByFaction = new();
+    private Dictionary<string, HashSet<string>> _slugsByFaction = new(StringComparer.OrdinalIgnoreCase);
     private bool _loaded;
 
     public PortraitService(HttpClient http) => _http = http;
@@ -30,7 +30,8 @@ public sealed class PortraitService
             {
                 _slugsByFaction = manifest.ToDictionary(
                     kv => kv.Key,
-                    kv => new HashSet<string>(kv.Value, StringComparer.Ordinal));
+                    kv => new HashSet<string>(kv.Value, StringComparer.Ordinal),
+                    StringComparer.OrdinalIgnoreCase);
             }
         }
         catch
@@ -41,16 +42,16 @@ public sealed class PortraitService
     }
 
     /// <summary>True when a portrait exists for this faction + unit name.</summary>
-    public bool HasPortrait(FactionKey faction, string unitName)
+    public bool HasPortrait(string factionId, string unitName)
     {
         var slug = Slugify(unitName);
-        return _slugsByFaction.TryGetValue(faction.ToJsonKey(), out var slugs)
+        return _slugsByFaction.TryGetValue(factionId, out var slugs)
             && slugs.Contains(slug);
     }
 
     /// <summary>Relative URL to the portrait asset. Does not check for existence.</summary>
-    public string GetPortraitUrl(FactionKey faction, string unitName) =>
-        $"images/units/{faction.ToJsonKey()}/{Slugify(unitName)}.png";
+    public string GetPortraitUrl(string factionId, string unitName) =>
+        $"images/units/{factionId}/{Slugify(unitName)}.png";
 
     /// <summary>Normalize a unit name into the same slug the fetcher uses for filenames.</summary>
     internal static string Slugify(string s)

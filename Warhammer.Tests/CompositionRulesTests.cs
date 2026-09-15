@@ -7,7 +7,7 @@ using Warhammer.Services;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// The shipped composition.json files, and the rules the validator derives from them.
+/// The composition block the bundle carries, and the rules the validator derives from it.
 /// </summary>
 public class CompositionDataTests
 {
@@ -18,9 +18,10 @@ public class CompositionDataTests
 
     private static CompositionData Load(string systemKey)
     {
-        var path = Path.Combine(TestPaths.SystemDataDir(systemKey), "composition.json");
-        Assert.True(File.Exists(path), $"{systemKey} has no composition.json");
-        return JsonSerializer.Deserialize<CompositionData>(File.ReadAllText(path), JsonOptions)!;
+        var path = Path.Combine(TestPaths.SystemDataDir(systemKey), $"{systemKey}.json");
+        var bundle = JsonSerializer.Deserialize<BundleData>(File.ReadAllText(path), JsonOptions)!;
+        Assert.NotNull(bundle.Composition);
+        return bundle.Composition;
     }
 
     public static TheoryData<string> EnabledSystems()
@@ -33,39 +34,27 @@ public class CompositionDataTests
 
     [Theory]
     [MemberData(nameof(EnabledSystems))]
-    public void Composition_Deserializes_AndCarriesTheRequiredCategories(string systemKey)
+    public void Composition_CarriesTheRequiredCategories(string systemKey)
     {
         var data = Load(systemKey);
 
-        Assert.Equal(systemKey, data.System);
-        Assert.InRange(data.CharactersCombinedMaxPercent, 0.01, 1.0);
+        foreach (var required in new[] { "characters", "core", "special", "rare" })
+            Assert.True(data.PointsCategories.ContainsKey(required), $"{systemKey} is missing '{required}'");
 
-        foreach (var required in new[] { "core", "special", "rare" })
-            Assert.True(data.Categories.ContainsKey(required), $"{systemKey} is missing '{required}'");
-
-        Assert.NotNull(data.Categories["core"].MinPercent);
-        Assert.NotNull(data.Categories["special"].MaxPercent);
-        Assert.NotNull(data.Categories["rare"].MaxPercent);
+        Assert.NotNull(data.PointsCategories["characters"].MaxPercent);
+        Assert.NotNull(data.PointsCategories["core"].MinPercent);
+        Assert.NotNull(data.PointsCategories["special"].MaxPercent);
+        Assert.NotNull(data.PointsCategories["rare"].MaxPercent);
     }
 
     [Fact]
-    public void WapV2_SplitsCharactersIntoLordsAndHeroes()
+    public void War_MergesCharacters_SoDeclaresNoLordsOrHeroesCaps()
     {
-        var data = Load("wap-v2");
+        var data = Load(GameSystems.War);
 
-        Assert.Equal(0.25, data.Categories["lords"].MaxPercent);
-        Assert.Equal(0.25, data.Categories["heroes"].MaxPercent);
-        Assert.Equal(0.35, data.CharactersCombinedMaxPercent);
-    }
-
-    [Fact]
-    public void WapV3_MergesCharacters_SoDeclaresNoLordsOrHeroesCaps()
-    {
-        var data = Load("wap-v3");
-
-        Assert.False(data.Categories.ContainsKey("lords"));
-        Assert.False(data.Categories.ContainsKey("heroes"));
-        Assert.Equal(0.35, data.CharactersCombinedMaxPercent);
+        Assert.False(data.PointsCategories.ContainsKey("lords"));
+        Assert.False(data.PointsCategories.ContainsKey("heroes"));
+        Assert.Equal(0.35, data.PointsCategories["characters"].MaxPercent);
         Assert.Equal(0.25, data.SingleUnitMaxPercent);
     }
 
@@ -73,407 +62,158 @@ public class CompositionDataTests
     [MemberData(nameof(EnabledSystems))]
     public void EverySystem_CapsASingleUnit(string systemKey)
     {
-        // DKM confirmed this applies to both v2 and v3, so no shipped system may omit it.
         Assert.Equal(0.25, Load(systemKey).SingleUnitMaxPercent);
     }
 
-    /// <summary>The hand-written test constants must not drift from the shipped files.</summary>
-    [Theory]
-    [InlineData("wap-v2")]
-    [InlineData("wap-v3")]
-    public void TestConstants_MatchTheShippedFiles(string systemKey)
+    /// <summary>The hand-written test constants must not drift from the shipped bundle.</summary>
+    [Fact]
+    public void TestConstants_MatchTheShippedBundle()
     {
-        var data = Load(systemKey);
-        var expected = systemKey == "wap-v2" ? TestCompositionRules.WapV2 : TestCompositionRules.WapV3;
+        var rules = CompositionRules.FromData(Load(GameSystems.War), null, GameSystems.War);
+        var expected = TestCompositionRules.War;
 
-        Assert.Equal(expected.LordsMaxPercent,
-            data.Categories.TryGetValue("lords", out var l) ? l.MaxPercent : null);
-        Assert.Equal(expected.HeroesMaxPercent,
-            data.Categories.TryGetValue("heroes", out var h) ? h.MaxPercent : null);
-        Assert.Equal(expected.CharactersCombinedMaxPercent, data.CharactersCombinedMaxPercent);
-        Assert.Equal(expected.SingleUnitMaxPercent, data.SingleUnitMaxPercent);
-        Assert.Equal(expected.CoreMinPercent, data.Categories["core"].MinPercent);
-        Assert.Equal(expected.SpecialMaxPercent, data.Categories["special"].MaxPercent);
-        Assert.Equal(expected.RareMaxPercent, data.Categories["rare"].MaxPercent);
+        Assert.Equal(expected.LordsMaxPercent, rules.LordsMaxPercent);
+        Assert.Equal(expected.HeroesMaxPercent, rules.HeroesMaxPercent);
+        Assert.Equal(expected.CharactersCombinedMaxPercent, rules.CharactersCombinedMaxPercent);
+        Assert.Equal(expected.SingleUnitMaxPercent, rules.SingleUnitMaxPercent);
+        Assert.Equal(expected.CoreMinPercent, rules.CoreMinPercent);
+        Assert.Equal(expected.SpecialMaxPercent, rules.SpecialMaxPercent);
+        Assert.Equal(expected.RareMaxPercent, rules.RareMaxPercent);
+        Assert.Equal(expected.GeneralRequired, rules.GeneralRequired);
+        Assert.Equal(expected.BattleStandardMax, rules.BattleStandardMax);
+        Assert.Equal(expected.SpecialCharactersMaxEach, rules.SpecialCharactersMaxEach);
+
+        for (int points = 500; points <= 10_000; points += 500)
+        {
+            Assert.Equal(expected.SpecialDuplicates.LimitFor(points), rules.SpecialDuplicates.LimitFor(points));
+            Assert.Equal(expected.RareDuplicates.LimitFor(points), rules.RareDuplicates.LimitFor(points));
+        }
+    }
+
+    /// <summary>A faction's own constraints are appended to the system's, so the validator reads one list.</summary>
+    [Fact]
+    public async Task FactionRules_CarryTheBooksOwnConstraints()
+    {
+        var rules = await TestHelpers.Repo.GetCompositionRulesAsync("empire");
+
+        Assert.Contains(rules.UnitConstraints, c => c.UnitIds.Contains("war-altar-of-sigmar") && c.Max == 1);
+        Assert.Equal(0.35, rules.CharactersCombinedMaxPercent);
+    }
+
+    // ─── The duplicate chart ───────────────────────────────────────
+
+    [Theory]
+    [InlineData(500, 1, 1)]
+    [InlineData(999, 1, 1)]
+    [InlineData(1000, 2, 1)]
+    [InlineData(1999, 2, 1)]
+    [InlineData(2000, 3, 1)]
+    [InlineData(2500, 3, 1)]
+    [InlineData(2999, 3, 1)]
+    [InlineData(3000, 4, 2)]
+    [InlineData(3999, 4, 2)]
+    [InlineData(4000, 5, 3)]
+    [InlineData(4999, 5, 3)]
+    [InlineData(5000, 6, 4)]
+    [InlineData(5999, 6, 4)]
+    [InlineData(6000, 7, 5)]
+    [InlineData(10_000, 11, 9)]
+    public void DuplicateLimits_MatchTheBooksChart(int points, int expectedSpecial, int expectedRare)
+    {
+        var rules = TestCompositionRules.War;
+
+        Assert.Equal(expectedSpecial, rules.SpecialDuplicates.LimitFor(points));
+        Assert.Equal(expectedRare, rules.RareDuplicates.LimitFor(points));
+    }
+
+    [Fact]
+    public void ARuleWithNoBands_IsUnlimited()
+    {
+        Assert.Equal(int.MaxValue, DuplicateRule.Unlimited.LimitFor(2000));
+        Assert.Equal(int.MaxValue, DuplicateRule.FromData(null).LimitFor(2000));
     }
 }
 
-/// <summary>The single-unit cap, v3's merged section, and per-list overrides.</summary>
+/// <summary>The single-unit cap, the merged characters section, and per-list overrides.</summary>
 public class CompositionValidationTests
 {
     private static readonly ArmyListValidator Validator = new();
 
     private static UnitConfiguration Entry(string name, UnitCategory category, double points, int count = 1)
     {
-        var unit = TestHelpers.MakeUnit(name: name, points: points);
-        unit = unit with
-        {
-            Category = category,
-            RawEntry = unit.RawEntry with { Category = category.ToJsonKey() },
-        };
+        var unit = TestHelpers.MakeUnit(name: name, points: points, category: category,
+            troopType: category.IsCharacterCategory() ? "Infantry (Character)" : "Infantry");
         return new UnitConfiguration(unit) { ModelCount = count };
     }
 
     private static ArmyList List(int target, params UnitConfiguration[] units) => new()
     {
-        Faction = FactionKey.Dwarfs,
+        FactionId = "dwarfs",
         PointsTarget = target,
         Units = units.ToList(),
     };
 
-    private static List<string> Codes(ArmyList list, CompositionRules rules) =>
-        Validator.Validate(list, rules).Select(i => i.Code).ToList();
-
-    private static LimitOverride Pct(double value) => new() { Value = value, Unit = LimitUnit.Percent };
-    private static LimitOverride Pts(double value) => new() { Value = value, Unit = LimitUnit.Points };
-
-    // ─── Single-unit cap ────────────────────────────────────────────
-
     [Fact]
-    public void SingleUnit_OverQuarterOfTarget_IsAnError()
+    public void ASingleUnitOverTheCap_FlagsError()
     {
-        var lord = Entry("Overpriced Lord", UnitCategory.Lords, 501);
+        var lord = Entry("Lord", UnitCategory.Characters, 600);
         lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
+        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 10, 50));
 
-        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        var issue = Assert.Single(Validator.Validate(list, TestCompositionRules.War),
+            i => i.Code == "SINGLE_UNIT_OVER_CAP");
+        Assert.Equal(ValidationSeverity.Error, issue.Severity);
+        Assert.Contains("Lord", issue.Message);
     }
 
     [Fact]
-    public void SingleUnit_ExactlyAtTheCap_IsAllowed()
+    public void TheSingleUnitCap_CoversRankAndFileToo()
     {
-        var lord = Entry("Lord", UnitCategory.Lords, 500);
+        var lord = Entry("Lord", UnitCategory.Characters, 100);
         lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
+        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 10, 60));   // 600 > 500
 
-        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
+        Assert.Contains(Validator.Validate(list, TestCompositionRules.War), i => i.Code == "SINGLE_UNIT_OVER_CAP");
     }
 
     [Fact]
-    public void SingleUnit_CapNamesTheOffendingUnit()
+    public void AListOverride_ReplacesTheSystemsPercentage()
     {
-        var lord = Entry("Overpriced Lord", UnitCategory.Lords, 600);
+        var lord = Entry("Lord", UnitCategory.Characters, 100);
         lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
+        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 10, 50),
+            Entry("Cannon", UnitCategory.Rare, 400));
+        list.Overrides = new CompositionOverrides
+        {
+            RareMax = new LimitOverride { Value = 15, Unit = LimitUnit.Percent },
+        };
 
-        var issue = Validator.Validate(list, TestCompositionRules.WapV2)
-            .Single(i => i.Code == "SINGLE_UNIT_OVER_CAP");
-
-        Assert.Same(lord, issue.RelatedUnit);
-        Assert.Contains("Overpriced Lord", issue.Message);
+        var issue = Assert.Single(Validator.Validate(list, TestCompositionRules.War),
+            i => i.Code == "RARE_OVER_CAP");
+        Assert.Contains("15% of 2000", issue.Message);
     }
 
     [Fact]
-    public void TwoCharactersEachUnderTheCap_DoNotTripIt()
+    public void AFlatPointsOverride_IsIndependentOfTheTarget()
     {
-        // 400 + 400 = 800, over the 700 combined cap but neither is over 500 alone.
-        var lord = Entry("Lord", UnitCategory.Lords, 400);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Thane", UnitCategory.Heroes, 400),
-            Entry("Warriors", UnitCategory.Core, 500));
+        var rules = TestCompositionRules.War;
+        var limits = rules.Resolve(new CompositionOverrides
+        {
+            CoreMin = new LimitOverride { Value = 600, Unit = LimitUnit.Points },
+        }, 2000);
 
-        var codes = Codes(list, TestCompositionRules.WapV2);
-
-        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", codes);
-        Assert.Contains("CHARACTERS_OVER_CAP", codes);
-    }
-
-    [Fact]
-    public void SingleUnit_CapAppliesToTheMergedV3Category()
-    {
-        var character = Entry("Verminlord", UnitCategory.Characters, 600);
-        character.Loadout.IsGeneral = true;
-        var list = List(2000, character, Entry("Clanrats", UnitCategory.Core, 500));
-
-        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV3));
-    }
-
-    [Fact]
-    public void SingleUnit_CapAppliesToNonCharacterUnits()
-    {
-        // "No single character or unit …" — a rank-and-file block is capped like a character.
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        // 15 pts a model × 40 models = 600, over the 500 cap at a 2000-point target.
-        var horde = Entry("Warrior Horde", UnitCategory.Core, 15, count: 40);
-        var list = List(2000, lord, horde);
-
-        var issue = Validator.Validate(list, TestCompositionRules.WapV2)
-            .Single(i => i.Code == "SINGLE_UNIT_OVER_CAP");
-
-        Assert.Same(horde, issue.RelatedUnit);
-    }
-
-    // ─── v3's merged Characters section ─────────────────────────────
-
-    [Fact]
-    public void V3_HasNoLordsOrHeroesCaps()
-    {
-        // 600 in Lords would breach v2's 25% sub-cap; v3 declares no such limit.
-        var lord = Entry("Grey Seer", UnitCategory.Lords, 400);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Thane", UnitCategory.Heroes, 200),
-            Entry("Clanrats", UnitCategory.Core, 500));
-
-        var codes = Codes(list, TestCompositionRules.WapV3);
-
-        Assert.DoesNotContain("LORDS_OVER_CAP", codes);
-        Assert.DoesNotContain("HEROES_OVER_CAP", codes);
-    }
-
-    [Fact]
-    public void V3_StillEnforcesTheCombinedCharactersCap()
-    {
-        var character = Entry("Verminlord", UnitCategory.Characters, 450);
-        character.Loadout.IsGeneral = true;
-        var list = List(2000, character, Entry("Warlock Master", UnitCategory.Characters, 300),
-            Entry("Clanrats", UnitCategory.Core, 500));
-
-        // 750 > 700 (35% of 2000)
-        Assert.Contains("CHARACTERS_OVER_CAP", Codes(list, TestCompositionRules.WapV3));
-    }
-
-    [Fact]
-    public void V2_StillEnforcesTheLordsSubCap()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 600);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
-
-        Assert.Contains("LORDS_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    // ─── Per-list overrides ─────────────────────────────────────────
-
-    [Fact]
-    public void RareOverride_TightensTheCap()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Gyrocopter", UnitCategory.Rare, 400));
-
-        // 400 is inside the stock 25% (500) but outside a house 15% (300).
-        Assert.DoesNotContain("RARE_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { RareMax = Pct(15) };
-        Assert.Contains("RARE_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Fact]
-    public void SpecialOverride_CanLoosenTheCap()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Hammerers", UnitCategory.Special, 1100));
-
-        Assert.Contains("SPECIAL_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { SpecialMax = Pct(60) };
-        Assert.DoesNotContain("SPECIAL_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Fact]
-    public void CoreMinimumOverride_IsHonoured()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 300));
-
-        // 300 is under the stock 25% floor (500) but clears a relaxed 10% (200).
-        Assert.Contains("CORE_BELOW_MIN", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { CoreMin = Pct(10) };
-        Assert.DoesNotContain("CORE_BELOW_MIN", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Fact]
-    public void SingleUnitOverride_IsHonoured()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 450);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
-
-        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { SingleUnitMax = Pct(20) };
-        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Fact]
-    public void DuplicateLimitOverride_ReplacesThePointsBracketFigure()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000,
-            lord,
-            Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Hammerers", UnitCategory.Special, 100),
-            Entry("Hammerers", UnitCategory.Special, 100));
-
-        // 2000 pts allows 3 Special duplicates, so two is fine by default.
-        Assert.DoesNotContain("DUPLICATE_LIMIT_EXCEEDED", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { SpecialDuplicateLimit = 1 };
-        Assert.Contains("DUPLICATE_LIMIT_EXCEEDED", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Fact]
-    public void LordsOverride_AppliesEvenWhereTheSystemDeclaresNoCap()
-    {
-        // A house ruleset may reintroduce a sub-cap v3 does not have.
-        var lord = Entry("Grey Seer", UnitCategory.Lords, 400);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Clanrats", UnitCategory.Core, 500));
-
-        Assert.DoesNotContain("LORDS_OVER_CAP", Codes(list, TestCompositionRules.WapV3));
-
-        list.Overrides = new CompositionOverrides { LordsMax = Pct(10) };
-        Assert.Contains("LORDS_OVER_CAP", Codes(list, TestCompositionRules.WapV3));
-    }
-
-    [Fact]
-    public void NoOverrides_ResolveToTheSystemPercentages()
-    {
-        var limits = TestCompositionRules.WapV2.Resolve(new CompositionOverrides(), 2000);
-
-        Assert.Equal(500, limits.LordsMax!.Points);
-        Assert.Equal(700, limits.CharactersCombinedMax.Points);
-        Assert.Equal(500, limits.CoreMin.Points);
+        Assert.Equal(600, limits.CoreMin.Points);
+        Assert.Equal("600 pts", limits.CoreMin.Description);
         Assert.Equal(1000, limits.SpecialMax.Points);
-        Assert.Equal(500, limits.RareMax.Points);
-        Assert.Equal(500, limits.SingleUnitMax!.Points);
-        Assert.Equal(3, limits.SpecialDuplicateLimit);
-        Assert.Equal(1, limits.RareDuplicateLimit);
-        Assert.True(new CompositionOverrides().IsEmpty);
-    }
-
-    // ─── Fixed points overrides ─────────────────────────────────────
-
-    [Fact]
-    public void PointsOverride_CapsAtAFlatFigure()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Gyrocopter", UnitCategory.Rare, 400));
-
-        // 400 clears the stock 25% (500) but breaches a flat 300.
-        Assert.DoesNotContain("RARE_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { RareMax = Pts(300) };
-        Assert.Contains("RARE_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
     }
 
     [Fact]
-    public void PointsOverride_DoesNotScaleWithThePointsTarget()
+    public void ADuplicateOverride_ReplacesTheChart()
     {
-        var overrides = new CompositionOverrides { RareMax = Pts(300) };
+        var limits = TestCompositionRules.War.Resolve(
+            new CompositionOverrides { SpecialDuplicateLimit = 1 }, 3000);
 
-        Assert.Equal(300, TestCompositionRules.WapV2.Resolve(overrides, 1000).RareMax.Points);
-        Assert.Equal(300, TestCompositionRules.WapV2.Resolve(overrides, 2000).RareMax.Points);
-        Assert.Equal(300, TestCompositionRules.WapV2.Resolve(overrides, 6000).RareMax.Points);
-    }
-
-    [Fact]
-    public void PercentOverride_ScalesWithThePointsTarget()
-    {
-        var overrides = new CompositionOverrides { RareMax = Pct(15) };
-
-        Assert.Equal(150, TestCompositionRules.WapV2.Resolve(overrides, 1000).RareMax.Points);
-        Assert.Equal(300, TestCompositionRules.WapV2.Resolve(overrides, 2000).RareMax.Points);
-        Assert.Equal(900, TestCompositionRules.WapV2.Resolve(overrides, 6000).RareMax.Points);
-    }
-
-    [Fact]
-    public void PointsOverride_WorksForAMinimumToo()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 300));
-
-        Assert.Contains("CORE_BELOW_MIN", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { CoreMin = Pts(250) };
-        Assert.DoesNotContain("CORE_BELOW_MIN", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Fact]
-    public void PointsOverride_CapsASingleUnit()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 450);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500));
-
-        Assert.DoesNotContain("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-
-        list.Overrides = new CompositionOverrides { SingleUnitMax = Pts(400) };
-        Assert.Contains("SINGLE_UNIT_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Theory]
-    [InlineData(800)]
-    [InlineData(2500)]
-    [InlineData(100000)]
-    public void PointsOverride_IsNotClampedToOneHundred(double points)
-    {
-        var limits = TestCompositionRules.WapV2.Resolve(
-            new CompositionOverrides { RareMax = Pts(points) }, 2000);
-
-        Assert.Equal(points, limits.RareMax.Points);
-    }
-
-    [Fact]
-    public void PercentOverride_AboveOneHundred_IsAllowed()
-    {
-        // A house ruleset is entitled to say "Special up to 120%".
-        var limits = TestCompositionRules.WapV2.Resolve(
-            new CompositionOverrides { SpecialMax = Pct(120) }, 2000);
-
-        Assert.Equal(2400, limits.SpecialMax.Points);
-    }
-
-    [Fact]
-    public void PointsOverride_LargerThanTheTarget_StillResolves()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Gyrocopter", UnitCategory.Rare, 800));
-        list.Overrides = new CompositionOverrides { RareMax = Pts(900) };
-
-        Assert.DoesNotContain("RARE_OVER_CAP", Codes(list, TestCompositionRules.WapV2));
-    }
-
-    [Theory]
-    [InlineData(15, LimitUnit.Percent, "15% of 2000")]
-    [InlineData(300, LimitUnit.Points, "300 pts")]
-    public void Messages_NameTheSourceOfTheLimit(double value, LimitUnit unit, string expected)
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Gyrocopter", UnitCategory.Rare, 400));
-        list.Overrides = new CompositionOverrides { RareMax = new() { Value = value, Unit = unit } };
-
-        var message = Validator.Validate(list, TestCompositionRules.WapV2)
-            .Single(i => i.Code == "RARE_OVER_CAP").Message;
-
-        Assert.Contains(expected, message);
-    }
-
-    [Fact]
-    public void SystemLimit_MessageStillReadsAsAPercentage()
-    {
-        var lord = Entry("Lord", UnitCategory.Lords, 200);
-        lord.Loadout.IsGeneral = true;
-        var list = List(2000, lord, Entry("Warriors", UnitCategory.Core, 500),
-            Entry("Gyrocopter", UnitCategory.Rare, 600));
-
-        var message = Validator.Validate(list, TestCompositionRules.WapV2)
-            .Single(i => i.Code == "RARE_OVER_CAP").Message;
-
-        Assert.Contains("25% of 2000", message);
+        Assert.Equal(1, limits.SpecialDuplicateLimit);
+        Assert.Equal(2, limits.RareDuplicateLimit);
     }
 }

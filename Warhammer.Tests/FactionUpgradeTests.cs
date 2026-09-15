@@ -7,20 +7,6 @@ namespace Warhammer.Tests;
 public class FactionUpgradeTests
 {
     [Fact]
-    public void FactionUpgradeCategoryForType_BlessedSpawning_MapsToPlural()
-    {
-        Assert.Equal("blessed_spawnings",
-            UnitConfiguration.FactionUpgradeCategoryForType(OptionType.BlessedSpawning));
-    }
-
-    [Fact]
-    public void FactionUpgradeCategoryForType_Unknown_ReturnsNull()
-    {
-        Assert.Null(UnitConfiguration.FactionUpgradeCategoryForType(OptionType.Command));
-        Assert.Null(UnitConfiguration.FactionUpgradeCategoryForType(null));
-    }
-
-    [Fact]
     public void SelectedFactionUpgrades_DefaultsToEmpty()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
@@ -28,18 +14,15 @@ public class FactionUpgradeTests
     }
 
     [Fact]
-    public void FactionUpgradeCost_PerModel_ScalesWithModelCountAndSelectionCount()
+    public void FactionUpgradeCost_PerModelRate_ScalesWithModelCountAndSelectionCount()
     {
         // 20 models × 1 pt/model × 2 spawnings selected = 40 pts
-        var unit = TestHelpers.MakeUnit(points: 10, options: new List<UnitOption>
-        {
-            new() { Type = "blessed_spawning", Points = 1, PerModel = true },
-        });
+        var unit = TestHelpers.MakeUnit(points: 10, options: [TestHelpers.FactionUpgrade("blessed-spawnings", rate: 1, perModel: true)]);
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] =
+        config.Loadout.SelectedFactionUpgrades["blessed-spawnings"] =
         [
-            new SelectedFactionUpgrade("Blessed Spawning Of Chotec", 10),
-            new SelectedFactionUpgrade("Blessed Spawning Of Sotek", 10),
+            new SelectedFactionUpgrade("blessed-spawning-of-chotec", "Blessed Spawning Of Chotec", 10),
+            new SelectedFactionUpgrade("blessed-spawning-of-sotek", "Blessed Spawning Of Sotek", 10),
         ];
 
         Assert.Equal(40, config.FactionUpgradeCost);
@@ -48,10 +31,7 @@ public class FactionUpgradeTests
     [Fact]
     public void FactionUpgradeCost_ZeroWhenNoneSelected()
     {
-        var unit = TestHelpers.MakeUnit(options: new List<UnitOption>
-        {
-            new() { Type = "blessed_spawning", Points = 1, PerModel = true },
-        });
+        var unit = TestHelpers.MakeUnit(options: [TestHelpers.FactionUpgrade("blessed-spawnings", rate: 1, perModel: true)]);
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
 
         Assert.Equal(0, config.FactionUpgradeCost);
@@ -60,14 +40,11 @@ public class FactionUpgradeTests
     [Fact]
     public void TotalPointsCost_IncludesFactionUpgradeCost()
     {
-        var unit = TestHelpers.MakeUnit(points: 10, options: new List<UnitOption>
-        {
-            new() { Type = "blessed_spawning", Points = 1, PerModel = true },
-        });
+        var unit = TestHelpers.MakeUnit(points: 10, options: [TestHelpers.FactionUpgrade("blessed-spawnings", rate: 1, perModel: true)]);
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] =
+        config.Loadout.SelectedFactionUpgrades["blessed-spawnings"] =
         [
-            new SelectedFactionUpgrade("Blessed Spawning Of Chotec", 10),
+            new SelectedFactionUpgrade("blessed-spawning-of-chotec", "Blessed Spawning Of Chotec", 10),
         ];
 
         // 20 × 10 (base) + 20 × 1 × 1 (spawning) = 220
@@ -76,115 +53,119 @@ public class FactionUpgradeTests
     }
 
     [Fact]
-    public void FactionUpgradeCategoryFor_Option_PrefersItsOwnCategory()
+    public void FactionUpgradeCost_NoRateOnTheGroup_ChargesEachPicksOwnPoints()
     {
-        var option = new UnitOption { Type = "faction_upgrade", FactionUpgrade = "gifts_of_khaine" };
-        Assert.Equal("gifts_of_khaine", UnitConfiguration.FactionUpgradeCategoryFor(option));
-    }
-
-    [Fact]
-    public void FactionUpgradeCategoryFor_Option_FallsBackToBlessedSpawningType()
-    {
-        var option = new UnitOption { Type = "blessed_spawning", Points = 2, PerModel = true };
-        Assert.Equal("blessed_spawnings", UnitConfiguration.FactionUpgradeCategoryFor(option));
-    }
-
-    [Fact]
-    public void FactionUpgradeCost_NoRateOnOption_ChargesEachPicksOwnPoints()
-    {
-        // Characters take upgrades through a shared allowance, so the option carries no rate
-        // and each pick costs what the army book lists against it — 10 + 5 = 15.
-        var unit = TestHelpers.MakeUnit(points: 100, options: new List<UnitOption>
-        {
-            new() { Type = "faction_upgrade", FactionUpgrade = "blessed_spawnings" },
-        });
+        // Characters take upgrades priced individually, so the group carries no rate and each
+        // pick costs what the army book lists against it — 10 + 5 = 15.
+        var unit = TestHelpers.MakeUnit(points: 100, troopType: "Infantry (Character)",
+            options: [TestHelpers.FactionUpgrade("knightly-orders")]);
         var config = new UnitConfiguration(unit) { ModelCount = 1 };
-        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] =
+        config.Loadout.SelectedFactionUpgrades["knightly-orders"] =
         [
-            new SelectedFactionUpgrade("Blessed Spawning Of Chotec", 10),
-            new SelectedFactionUpgrade("Blessed Spawning Of Itzl", 5),
+            new SelectedFactionUpgrade("a", "Order A", 10),
+            new SelectedFactionUpgrade("b", "Order B", 5),
         ];
 
         Assert.Equal(15, config.FactionUpgradeCost);
     }
 
     [Fact]
-    public void FactionUpgradeCost_NoRateOnOption_DoesNotScaleWithModelCount()
+    public void OfferedFamilies_ComeFromGroupsAndFromTheMagicItemAllowance()
     {
-        var unit = TestHelpers.MakeUnit(points: 100, options: new List<UnitOption>
-        {
-            new() { Type = "faction_upgrade", FactionUpgrade = "blessed_spawnings" },
-        });
-        var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.Loadout.SelectedFactionUpgrades["blessed_spawnings"] =
+        var unit = TestHelpers.MakeUnit(troopType: "Infantry (Character)", options:
         [
-            new SelectedFactionUpgrade("Blessed Spawning Of Chotec", 10),
-        ];
+            TestHelpers.FactionUpgrade("runic-items", pointsLimit: 50),
+            TestHelpers.MagicItems(100, families: ["virtues"]),
+        ]);
+        var config = new UnitConfiguration(unit);
 
-        Assert.Equal(10, config.FactionUpgradeCost);
+        var offered = config.OfferedFamilies.ToDictionary(f => f.Family);
+        Assert.Equal(50, offered["runic-items"].PointsLimit);
+        Assert.False(offered["runic-items"].ThroughMagicItems);
+        Assert.True(offered["virtues"].ThroughMagicItems);
+        Assert.Equal(100, offered["virtues"].PointsLimit);
+    }
+
+    // ─── Pricing the book's entries ─────────────────────────────────
+
+    [Fact]
+    public void FamilyOf_IsTheChaptersSlug()
+    {
+        var entry = new UpgradeEntry { Chapter = "KNIGHTLY ORDERS", Name = "REIKSGUARD KNIGHTS" };
+        Assert.Equal("knightly-orders", FactionUpgrades.FamilyOf(entry));
+    }
+
+    [Fact]
+    public void AFlatCost_IsTheSameForEveryone()
+    {
+        var cost = new UpgradeCost { Flat = 35 };
+        Assert.Equal((35, false), FactionUpgrades.ResolveCost(cost, isCharacter: true, BaseTroopType.Infantry));
+        Assert.Equal((35, false), FactionUpgrades.ResolveCost(cost, isCharacter: false, BaseTroopType.Cavalry));
+    }
+
+    [Fact]
+    public void ATieredCost_IsReadByWhoTakesIt()
+    {
+        // The Empire's Knightly Orders: Characters free, Cavalry/Infantry 1 pt/model, Monstrous Cavalry 3 pts/model.
+        var cost = new UpgradeCost
+        {
+            Tiers =
+            [
+                new UpgradeCostTier { Scope = "Characters", Text = "free" },
+                new UpgradeCostTier { Scope = "Cavalry/Infantry", Text = "1 point per model" },
+                new UpgradeCostTier { Scope = "Monstrous Cavalry", Text = "3 points per model" },
+            ],
+        };
+
+        Assert.Equal((0, false), FactionUpgrades.ResolveCost(cost, isCharacter: true, BaseTroopType.Cavalry));
+        Assert.Equal((1, true), FactionUpgrades.ResolveCost(cost, isCharacter: false, BaseTroopType.Cavalry));
+        Assert.Equal((1, true), FactionUpgrades.ResolveCost(cost, isCharacter: false, BaseTroopType.Infantry));
+        Assert.Equal((3, true), FactionUpgrades.ResolveCost(cost, isCharacter: false, BaseTroopType.MonstrousCavalry));
+    }
+
+    [Theory]
+    [InlineData("free", 0, false)]
+    [InlineData("25 points", 25, false)]
+    [InlineData("3 points per model", 3, true)]
+    [InlineData("0.5 pts/model", 0.5, true)]
+    [InlineData(null, 0, false)]
+    public void CostText_Parses(string? text, double points, bool perModel)
+    {
+        Assert.Equal((points, perModel), FactionUpgrades.ParseCostText(text));
     }
 
     // ─── Data consistency ────────────────────────────────────────
 
     [Theory]
-    [InlineData(FactionKey.Lizardmen, "Saurus Scar-veteran", "blessed_spawnings")]
-    [InlineData(FactionKey.Lizardmen, "Saurus Oldblood", "blessed_spawnings")]
-    [InlineData(FactionKey.Lizardmen, "Skink Priest", "blessed_spawnings")]
-    [InlineData(FactionKey.Lizardmen, "Slann Mage-priest", "disciplines")]
-    [InlineData(FactionKey.DarkElves, "Death Hag", "gifts_of_khaine")]
-    [InlineData(FactionKey.DarkElves, "Khainite Assassin", "gifts_of_khaine")]
-    public async Task Characters_SharingAnAllowance_OfferTheirUpgradeFamily(
-        FactionKey faction, string unitName, string expectedCategory)
+    [InlineData("empire", "KNIGHTS", "knightly-orders")]
+    [InlineData("lizardmen", "SAURUS WARRIORS", "blessed-spawnings")]
+    [InlineData("dwarfs", "BOLT THROWER", "runic-items")]
+    public async Task Entries_OfferTheirUpgradeFamily(string factionId, string unitName, string family)
     {
-        var units = await TestHelpers.Repo.GetUnitsAsync(faction);
-        var unit = units.Single(u => u.Name == unitName);
+        var unit = await TestHelpers.FindUnitAsync(factionId, unitName);
+        var config = new UnitConfiguration(unit);
 
-        var categories = unit.Options
-            .Select(UnitConfiguration.FactionUpgradeCategoryFor)
-            .Where(c => c is not null)
-            .ToList();
-
-        Assert.Contains(expectedCategory, categories);
+        Assert.Contains(family, config.OfferedFamilies.Select(f => f.Family));
     }
 
     [Theory]
-    [InlineData(FactionKey.Lizardmen)]
-    [InlineData(FactionKey.DarkElves)]
-    public async Task EveryOfferedUpgradeCategory_HasEntriesInFactionExtras(FactionKey faction)
+    [InlineData("empire")]
+    [InlineData("lizardmen")]
+    [InlineData("dwarfs")]
+    [InlineData("bretonnia")]
+    public async Task EveryOfferedFamily_HasEntriesInTheBook(string factionId)
     {
-        var units = await TestHelpers.Repo.GetUnitsAsync(faction);
-        var extras = await TestHelpers.Repo.GetFactionExtrasAsync(faction);
+        var units = await TestHelpers.Repo.GetUnitsAsync(factionId);
+        var faction = await TestHelpers.Repo.GetFactionAsync(factionId);
 
         var offered = units
-            .SelectMany(u => u.Options)
-            .Select(UnitConfiguration.FactionUpgradeCategoryFor)
-            .Where(c => c is not null)
-            .Distinct();
+            .SelectMany(u => new UnitConfiguration(u).OfferedFamilies)
+            .Select(f => f.Family)
+            .Distinct()
+            .ToList();
 
-        foreach (var category in offered)
-        {
-            Assert.True(extras.FactionUpgrades.TryGetValue(category!, out var entries),
-                $"{faction} offers '{category}' but its extras have no such category");
-            Assert.NotEmpty(entries);
-        }
-    }
-
-    [Theory]
-    [InlineData(FactionKey.Lizardmen, "blessed_spawnings")]
-    [InlineData(FactionKey.Lizardmen, "disciplines")]
-    [InlineData(FactionKey.DarkElves, "gifts_of_khaine")]
-    public async Task UpgradeEntries_AreRealUpgrades_NotSectionHeaders(
-        FactionKey faction, string category)
-    {
-        var extras = await TestHelpers.Repo.GetFactionExtrasAsync(faction);
-        var entries = extras.FactionUpgrades[category];
-
-        // A section header parsed as an entry carries prose where its cost should be.
-        foreach (var entry in entries)
-        {
-            Assert.True(double.TryParse(entry.Points, out var points),
-                $"'{entry.Name}' has non-numeric points '{entry.Points}' — likely a section header");
-            Assert.True(points > 0, $"'{entry.Name}' costs nothing");
-        }
+        Assert.NotEmpty(offered);
+        foreach (var family in offered)
+            Assert.True(FactionUpgrades.InFamily(faction.Upgrades, family).Any(), $"{factionId}: '{family}' has no entries");
     }
 }

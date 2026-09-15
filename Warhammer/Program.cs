@@ -14,7 +14,7 @@ builder.Services.AddScoped(sp =>
 
 builder.Services.AddScoped<GameSystemService>();
 builder.Services.AddScoped<CoreRulesService>();
-builder.Services.AddScoped<FactionDataService>();
+builder.Services.AddScoped<BundleService>();
 builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
 builder.Services.AddTransient<CombatEngine>();
 builder.Services.AddSingleton<ArmyListValidator>();

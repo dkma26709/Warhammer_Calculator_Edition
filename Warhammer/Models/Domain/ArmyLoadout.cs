@@ -14,10 +14,10 @@ public sealed class ArmyLoadout
     /// </summary>
     public string? CustomName { get; set; }
 
-    /// <summary>Wizard level (1-4) for casting spells. Default 2; only meaningful for wizard-capable units.</summary>
-    public int WizardLevel { get; set; } = 2;
+    /// <summary>Wizard level (1-4) for casting spells. Only meaningful for wizard-capable units.</summary>
+    public int WizardLevel { get; set; } = 1;
 
-    /// <summary>Selected lore name (matches LoreEntry.Name from faction extras). Null if not a wizard or unset.</summary>
+    /// <summary>Selected lore name (matches a lore's name in the bundle). Null if not a wizard or unset.</summary>
     public string? SelectedLore { get; set; }
 
     /// <summary>Names of spells the wizard knows (picked from the selected lore at army creation time).</summary>
@@ -33,8 +33,9 @@ public sealed class ArmyLoadout
     public bool IsBattleStandardBearer { get; set; }
 
     /// <summary>
-    /// Faction-specific upgrade selections keyed by category (e.g. "blessed_spawnings",
-    /// "gifts_of_khaine"). Values are the chosen upgrades for that category.
+    /// Faction-specific upgrade selections keyed by family — the faction's upgrade chapter in
+    /// kebab-case: "knightly-orders", "blessed-spawnings", "runic-items". Values are the chosen
+    /// entries of that family.
     /// </summary>
     public Dictionary<string, List<SelectedFactionUpgrade>> SelectedFactionUpgrades { get; } = new();
 }

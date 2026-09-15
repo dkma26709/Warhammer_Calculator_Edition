@@ -1,31 +1,23 @@
-using System.Text.Json;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
-using Warhammer.Services;
 
 namespace Warhammer.Tests;
 
 /// <summary>
 /// The army books put special characters under their own SPECIAL CHARACTERS heading, which the
-/// extractor files as category "Named Characters". UnitCategoryExtensions had no key for it, so
-/// TryFromJsonKey failed, ResolveUnit returned null and GetUnitsAsync dropped the unit — silently,
-/// because the caller only adds non-null. That hid 253 of 920 wap-v2 units and 205 of 902 wap-v3
-/// units: every named character in the game.
+/// bundle marks <c>named</c>. They are characters for every purpose the engine cares about:
+/// the combined characters cap, the single-unit cap, and standing as the army's General — and
+/// each may be fielded once.
 /// </summary>
 public class NamedCharacterCategoryTests
 {
     [Fact]
-    public void NamedCharactersMapFromTheirJsonKey()
+    public void NamedCharactersMapFromTheirSection()
     {
-        Assert.True(UnitCategoryExtensions.TryFromJsonKey("Named Characters", out var category));
-        Assert.Equal(UnitCategory.NamedCharacters, category);
+        Assert.Equal(UnitCategory.NamedCharacters, UnitCategoryExtensions.FromSection("characters", null, named: true));
         Assert.Equal("Named Characters", UnitCategory.NamedCharacters.ToJsonKey());
     }
 
-    /// <summary>
-    /// They are characters for every purpose the engine cares about: the combined characters cap,
-    /// the single-character cap, and standing as the army's General.
-    /// </summary>
     [Fact]
     public void NamedCharactersCountAsCharacters()
     {
@@ -49,51 +41,26 @@ public class NamedCharacterCategoryTests
     }
 
     [Theory]
-    [InlineData(GameSystems.WapV2, FactionKey.Dwarfs, "Thorgrim Grudgebearer")]
-    [InlineData(GameSystems.WapV3, FactionKey.Dwarfs, "Thorgrim Grudgebearer")]
-    [InlineData(GameSystems.WapV3, FactionKey.HighElves, "Caradryan of the Flame")]
-    [InlineData(GameSystems.WapV3, FactionKey.Skaven, "Nurglitch")]
-    public async Task NamedCharactersNowResolve(string system, FactionKey faction, string name)
+    [InlineData("dwarfs", "THORGRIM GRUDGEBEARER")]
+    [InlineData("high-elves", "CARADRYAN OF THE FLAME")]
+    [InlineData("skaven", "NURGLITCH")]
+    [InlineData("empire", "KARL FRANZ")]
+    public async Task NamedCharactersResolveAsNamed(string faction, string name)
     {
-        var units = await TestHelpers.RepoFor(system).GetUnitsAsync(faction);
-        var unit = units.FirstOrDefault(u => u.Name == name);
+        var unit = await TestHelpers.FindUnitAsync(faction, name);
 
-        Assert.NotNull(unit);
         Assert.Equal(UnitCategory.NamedCharacters, unit.Category);
+        Assert.True(unit.Named);
+        Assert.True(unit.BaseModel.TroopType.IsCharacter);
     }
 
-    /// <summary>
-    /// A category present in the shipped data but absent from the mapping is dropped without a
-    /// word, so this compares what the repository returns against what the JSON holds — for every
-    /// faction at once, rather than waiting for someone to notice a missing unit.
-    /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task EveryFactionResolvesEveryUnitInItsData(string system)
+    /// <summary>A book's mounts section is kept for what mount options point at, not fielded on its own.</summary>
+    [Fact]
+    public async Task MountsResolveAsCharacterMounts()
     {
-        var repo = TestHelpers.RepoFor(system);
-        var factionsDir = Path.Combine(
-            TestHelpers.FindProjectRoot(), "wwwroot", "data", system, "factions");
-        var shortfalls = new List<string>();
+        var warhorse = await TestHelpers.FindUnitAsync("empire", "WARHORSE");
 
-        foreach (var faction in Enum.GetValues<FactionKey>())
-        {
-            var path = Path.Combine(factionsDir, $"{faction.ToJsonKey()}.json");
-            if (!File.Exists(path))
-                continue;
-
-            using var json = JsonDocument.Parse(File.ReadAllText(path));
-            if (!json.RootElement.TryGetProperty("units", out var unitsNode))
-                continue;
-
-            int inData = unitsNode.GetArrayLength();
-            int resolved = (await repo.GetUnitsAsync(faction)).Count;
-
-            if (resolved != inData)
-                shortfalls.Add($"{faction}: repository returned {resolved} of {inData}");
-        }
-
-        Assert.Empty(shortfalls);
+        Assert.Equal(UnitCategory.CharacterMounts, warhorse.Category);
+        Assert.Equal(0, warhorse.BaseModelCost);
     }
 }

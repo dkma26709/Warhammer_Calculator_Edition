@@ -20,7 +20,7 @@ public class ArmyRosterBuilderTests
 
     private static ArmyList MakeList(params UnitConfiguration[] units)
     {
-        var list = new ArmyList { Faction = FactionKey.TheEmpire, PointsTarget = 2000, Name = "Test Army" };
+        var list = new ArmyList { FactionId = "empire", PointsTarget = 2000, Name = "Test Army" };
         list.Units.AddRange(units);
         return list;
     }
@@ -33,7 +33,7 @@ public class ArmyRosterBuilderTests
     }
 
     private static Unit InCategory(UnitCategory category, string name, string troopType = "Infantry") =>
-        TestHelpers.MakeUnit(name: name, troopType: troopType) with { Category = category };
+        TestHelpers.MakeUnit(name: name, troopType: troopType, category: category);
 
     private static RosterEntry Only(RosterDocument document) =>
         Assert.Single(Assert.Single(document.Sections).Entries);
@@ -46,7 +46,7 @@ public class ArmyRosterBuilderTests
         var list = MakeList(
             Configure(InCategory(UnitCategory.Rare, "Rare Beast")),
             Configure(InCategory(UnitCategory.Core, "Spearmen")),
-            Configure(InCategory(UnitCategory.Lords, "General", "Infantry (Character)")),
+            Configure(InCategory(UnitCategory.Characters, "General", "Infantry (Character)")),
             Configure(InCategory(UnitCategory.Special, "Knights")));
 
         var titles = MakeBuilder().Build(list).Sections.Select(s => s.Title);
@@ -65,8 +65,8 @@ public class ArmyRosterBuilderTests
     }
 
     /// <summary>
-    /// v2 splits characters into Lords and Heroes and v3 merges them into Characters; the books
-    /// also keep a SPECIAL CHARACTERS section. On the table they are all just characters.
+    /// A book may split characters into Lords and Heroes or merge them, and keeps a SPECIAL
+    /// CHARACTERS section besides. On the table they are all just characters.
     /// </summary>
     [Theory]
     [InlineData(UnitCategory.Lords)]
@@ -97,8 +97,8 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Section_AndArmyTotalsAddUpTheEntries()
     {
-        var spearmen = TestHelpers.MakeUnit(name: "Spearmen", points: 6) with { Category = UnitCategory.Core };
-        var knights = TestHelpers.MakeUnit(name: "Knights", points: 20) with { Category = UnitCategory.Special };
+        var spearmen = TestHelpers.MakeUnit(name: "Spearmen", points: 6, category: UnitCategory.Core);
+        var knights = TestHelpers.MakeUnit(name: "Knights", points: 20, category: UnitCategory.Special);
 
         var list = MakeList(
             Configure(spearmen, c => c.ModelCount = 10),
@@ -119,7 +119,7 @@ public class ArmyRosterBuilderTests
 
         Assert.Equal("Test Army", document.ArmyName);
         Assert.Equal("The Empire", document.FactionName);
-        Assert.Equal("WAP v2", document.SystemName);
+        Assert.Equal("Warhammer Armies Revamped", document.SystemName);
     }
 
     // ─── Entry identity ──────────────────────────────────────────
@@ -128,7 +128,7 @@ public class ArmyRosterBuilderTests
     public void A_NamedCharacterLeadsWithItsNameAndKeepsTheBookName()
     {
         var list = MakeList(Configure(
-            InCategory(UnitCategory.Heroes, "Captain", "Infantry (Character)"),
+            InCategory(UnitCategory.Characters, "Captain", "Infantry (Character)"),
             c => c.Loadout.CustomName = "Aldric the Bold"));
 
         var entry = Only(MakeBuilder().Build(list));
@@ -147,11 +147,21 @@ public class ArmyRosterBuilderTests
         Assert.Null(entry.BookName);
     }
 
+    /// <summary>The bundle prints entry names as running headers; the sheet is not the place to shout.</summary>
+    [Fact]
+    public void A_ShoutedBookNameIsTitleCased()
+    {
+        var entry = Only(MakeBuilder().Build(
+            MakeList(Configure(InCategory(UnitCategory.Core, "FREE COMPANY MILITIA")))));
+
+        Assert.Equal("Free Company Militia", entry.Name);
+    }
+
     [Fact]
     public void General_AndBattleStandardAreCalledOut()
     {
         var list = MakeList(Configure(
-            InCategory(UnitCategory.Lords, "General", "Infantry (Character)"),
+            InCategory(UnitCategory.Characters, "General", "Infantry (Character)"),
             c =>
             {
                 c.Loadout.IsGeneral = true;
@@ -174,7 +184,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_SingleModelNeedsNoFrontage()
     {
-        var list = MakeList(Configure(InCategory(UnitCategory.Heroes, "Captain", "Infantry (Character)")));
+        var list = MakeList(Configure(InCategory(UnitCategory.Characters, "Captain", "Infantry (Character)")));
 
         Assert.Equal("1 model", Only(MakeBuilder().Build(list)).ModelLine);
     }
@@ -185,8 +195,7 @@ public class ArmyRosterBuilderTests
     public void Profile_PrintsTheNineStatsInOrder()
     {
         var unit = TestHelpers.MakeUnit(
-            name: "Spearmen", m: 4, ws: 3, bs: 3, s: 3, t: 3, w: 1, i: 3, a: 1, ld: 7)
-            with { Category = UnitCategory.Core };
+            name: "Spearmen", m: 4, ws: 3, bs: 3, s: 3, t: 3, w: 1, i: 3, a: 1, ld: 7, category: UnitCategory.Core);
 
         var profile = Assert.Single(Only(MakeBuilder().Build(MakeList(Configure(unit)))).Profiles);
 
@@ -199,14 +208,12 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_MissingStatPrintsAsAStar()
     {
-        var chariot = TestHelpers.MakeUnit(name: "Chariot", troopType: "Chariot");
+        var chariot = TestHelpers.MakeUnit(name: "Chariot", troopType: "Chariot", category: UnitCategory.Special);
+        var stats = chariot.BaseModel.Stats with { M = null };
         var unit = chariot with
         {
-            Category = UnitCategory.Special,
-            BaseModel = chariot.BaseModel with
-            {
-                Stats = chariot.BaseModel.Stats with { M = null },
-            },
+            BaseModel = chariot.BaseModel with { Stats = stats },
+            Profiles = [stats],
         };
 
         var profile = Assert.Single(Only(MakeBuilder().Build(MakeList(Configure(unit)))).Profiles);
@@ -219,8 +226,7 @@ public class ArmyRosterBuilderTests
     {
         var mount = new ProfileEntry { Name = "Warhorse", M = 8, WS = 3, BS = 0, S = 3, T = 3, W = 1, I = 3, A = 1, Ld = 5 };
         var unit = TestHelpers.MakeUnit(
-            name: "Knight", troopType: "Cavalry (Character)", mountProfile: mount)
-            with { Category = UnitCategory.Heroes };
+            name: "Knight", troopType: "Cavalry (Character)", mountProfile: mount, category: UnitCategory.Characters);
 
         var profiles = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Profiles;
 
@@ -229,14 +235,28 @@ public class ArmyRosterBuilderTests
         Assert.Equal("8", profiles[1].Stats[0]);
     }
 
+    /// <summary>The fielded profile is what prints, not the entry's first.</summary>
+    [Fact]
+    public void The_FieldedProfilePrints()
+    {
+        var general = new ProfileEntry { Id = "general", Name = "General", Points = 95, M = 4, WS = 5 };
+        var captain = new ProfileEntry { Id = "captain", Name = "Captain", Points = 55, M = 4, WS = 4 };
+        var unit = TestHelpers.MakeUnit(name: "Commanders", troopType: "Infantry (Character)",
+            category: UnitCategory.Characters, profiles: [general, captain]);
+
+        var entry = Only(MakeBuilder().Build(MakeList(Configure(unit, c => c.SelectedProfileId = "captain"))));
+
+        Assert.Equal("Captain", Assert.Single(entry.Profiles).Name);
+        Assert.Equal(55, entry.Points);
+    }
+
     // ─── Saves ───────────────────────────────────────────────────
 
     [Fact]
     public void Armour_SaveIsWorkedOutRatherThanLeftAsEquipment()
     {
         var unit = TestHelpers.MakeUnit(
-            name: "Knights", equipment: "Hand weapon, Heavy armour, Shields")
-            with { Category = UnitCategory.Special };
+            name: "Knights", equipment: "Hand weapon, Heavy armour, Shields", category: UnitCategory.Special);
 
         var saves = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Saves;
 
@@ -247,8 +267,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void An_UnarmouredUnitSaysSo()
     {
-        var unit = TestHelpers.MakeUnit(name: "Peasants", equipment: "Hand weapon")
-            with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Peasants", equipment: "Hand weapon", category: UnitCategory.Core);
 
         Assert.Contains("Armour —", Only(MakeBuilder().Build(MakeList(Configure(unit)))).Saves);
     }
@@ -257,8 +276,7 @@ public class ArmyRosterBuilderTests
     public void Ward_AndRegenerationSavesReachTheSheet()
     {
         var unit = TestHelpers.MakeUnit(
-            name: "Troll", specialRules: "Ward Save (5+), Regeneration (4+)")
-            with { Category = UnitCategory.Rare };
+            name: "Troll", specialRules: "Ward Save (5+), Regeneration (4+)", category: UnitCategory.Rare);
 
         var saves = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Saves;
 
@@ -270,8 +288,7 @@ public class ArmyRosterBuilderTests
     public void Dodge_ReachesTheSheet()
     {
         // The engine folds Dodge into the ward roll, so omitting it hides a save the model has.
-        var unit = TestHelpers.MakeUnit(name: "Assassin", specialRules: "Dodge (5+)")
-            with { Category = UnitCategory.Heroes };
+        var unit = TestHelpers.MakeUnit(name: "Assassin", specialRules: "Dodge (5+)", category: UnitCategory.Characters);
 
         Assert.Contains("Dodge 5+", Only(MakeBuilder().Build(MakeList(Configure(unit)))).Saves);
     }
@@ -281,8 +298,7 @@ public class ArmyRosterBuilderTests
     {
         // Parry comes off the shield, not a special rule — core-rules.json gives shields
         // "Parry (6+)", and the engine takes it whenever the model fights with a hand weapon.
-        var unit = TestHelpers.MakeUnit(name: "Spearmen", equipment: "Hand weapon, Shields")
-            with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Spearmen", equipment: "Hand weapon, Shields", category: UnitCategory.Core);
 
         var saves = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Saves;
 
@@ -297,8 +313,7 @@ public class ArmyRosterBuilderTests
         // one would leave a player resolving AP(2) a pip adrift of what the simulator rolls.
         var unit = TestHelpers.MakeUnit(
             name: "Dragon", equipment: "Hand weapon, Heavy armour, Shields",
-            specialRules: "Natural Armour (5+)")
-            with { Category = UnitCategory.Rare };
+            specialRules: "Natural Armour (5+)", category: UnitCategory.Rare);
 
         var saves = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Saves;
 
@@ -310,8 +325,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Equipment_IsNamedInBookCaseNotShouted()
     {
-        var unit = TestHelpers.MakeUnit(name: "Greatswords", equipment: "Great weapon, Heavy armour")
-            with { Category = UnitCategory.Special };
+        var unit = TestHelpers.MakeUnit(name: "Greatswords", equipment: "Great weapon, Heavy armour", category: UnitCategory.Special);
 
         var equipment = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Equipment;
 
@@ -322,8 +336,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void The_WeaponTheUnitFightsWithIsListedFirst()
     {
-        var unit = TestHelpers.MakeUnit(name: "Greatswords", equipment: "Hand weapon, Great weapon")
-            with { Category = UnitCategory.Special };
+        var unit = TestHelpers.MakeUnit(name: "Greatswords", equipment: "Hand weapon, Great weapon", category: UnitCategory.Special);
 
         var equipment = Only(MakeBuilder().Build(MakeList(
             Configure(unit, c => c.SelectedWeapon = CloseCombatWeaponKey.GreatWeapon)))).Equipment;
@@ -339,19 +352,11 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Equipment_TheParserCannotNormaliseStillPrints()
     {
-        var options = new List<UnitOption>
-        {
-            new()
-            {
-                Type = "equipment",
-                Action = "add",
-                Choices = [new OptionChoice { Name = ["Throwing nets"], Points = 5 }],
-            },
-        };
-        var unit = TestHelpers.MakeUnit(name: "Corsairs", options: options) with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Corsairs", category: UnitCategory.Core,
+            options: [TestHelpers.Equipment("Throwing nets", 5)]);
 
         var equipment = Only(MakeBuilder().Build(MakeList(
-            Configure(unit, c => c.SelectedUpgrades[0] = 0)))).Equipment;
+            Configure(unit, c => c.Selections.Toggle("throwing-nets", "throwing-nets", true))))).Equipment;
 
         Assert.Contains("Throwing nets", equipment);
     }
@@ -363,8 +368,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Missile_WeaponsReachTheSheetEvenThoughTheEngineIgnoresThem()
     {
-        var unit = TestHelpers.MakeUnit(name: "Handgunners", equipment: "Hand weapon, handgun")
-            with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Handgunners", equipment: "Hand weapon, handgun", category: UnitCategory.Core);
 
         var equipment = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Equipment;
 
@@ -374,8 +378,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_MissileWeaponPrintsUnderOneNameWhateverTheBookCalledIt()
     {
-        var unit = TestHelpers.MakeUnit(name: "Pistoliers", equipment: "Brace of pistols, medium armour")
-            with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Pistoliers", equipment: "Brace of pistols, medium armour", category: UnitCategory.Core);
 
         var equipment = Only(MakeBuilder().Build(MakeList(Configure(unit)))).Equipment;
 
@@ -387,8 +390,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Unrecognised_BaseEquipmentKeepsTheBooksWording()
     {
-        var unit = TestHelpers.MakeUnit(name: "Outriders", equipment: "Repeater handgun, medium armour")
-            with { Category = UnitCategory.Special };
+        var unit = TestHelpers.MakeUnit(name: "Outriders", equipment: "Repeater handgun, medium armour", category: UnitCategory.Special);
 
         Assert.Contains("Repeater handgun", Only(MakeBuilder().Build(MakeList(Configure(unit)))).Equipment);
     }
@@ -396,21 +398,11 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void An_UpgradeThatReplacesAMissileWeaponRemovesIt()
     {
-        var options = new List<UnitOption>
-        {
-            new()
-            {
-                Type = "equipment",
-                Action = "replace",
-                Replaces = "bow",
-                Choices = [new OptionChoice { Name = ["crossbow"], Points = 2 }],
-            },
-        };
-        var unit = TestHelpers.MakeUnit(name: "Archers", equipment: "Hand weapon, bow", options: options)
-            with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Archers", equipment: "Hand weapon, bow", category: UnitCategory.Core,
+            options: [TestHelpers.Equipment("crossbow", 2, replaces: "bow")]);
 
         var equipment = Only(MakeBuilder().Build(MakeList(
-            Configure(unit, c => c.SelectedUpgrades[0] = 0)))).Equipment;
+            Configure(unit, c => c.Selections.Toggle("crossbow", "crossbow", true))))).Equipment;
 
         Assert.Contains("Crossbow", equipment);
         Assert.DoesNotContain("Bow", equipment);
@@ -419,26 +411,14 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_ReplaceWrittenInThePluralStillRemovesTheSingularItem()
     {
-        // wap-v3 Shadow Warriors: the equipment line says "Elven shortbow", the option replaces
-        // "Elven shortbows". Neither is in the parser's vocabulary, so the strings are all there
-        // is to match on — and matching them exactly left both bows on the sheet.
-        var options = new List<UnitOption>
-        {
-            new()
-            {
-                Type = "equipment",
-                Action = "replace",
-                Replaces = "Elven shortbows",
-                Choices = [new OptionChoice { Name = ["Elven longbows"], Points = 1, PerModel = true }],
-            },
-        };
+        // The equipment line says "Elven shortbow", the option replaces "Elven shortbows".
+        // Neither is in the parser's vocabulary, so the strings are all there is to match on.
         var unit = TestHelpers.MakeUnit(
-            name: "Shadow Warriors", equipment: "Hand weapon, Elven shortbow, light armour",
-            options: options)
-            with { Category = UnitCategory.Special };
+            name: "Shadow Warriors", equipment: "Hand weapon, Elven shortbow, light armour", category: UnitCategory.Special,
+            options: [TestHelpers.Equipment("Elven longbows", 1, perModel: true, replaces: "Elven shortbows")]);
 
         var equipment = Only(MakeBuilder().Build(MakeList(
-            Configure(unit, c => c.SelectedUpgrades[0] = 0)))).Equipment;
+            Configure(unit, c => c.Selections.Toggle("elven-longbows", "elven-longbows", true))))).Equipment;
 
         Assert.Contains("Elven longbows", equipment);
         Assert.DoesNotContain("Elven shortbow", equipment);
@@ -447,19 +427,11 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_MountUpgradeIsListedAsAnUpgrade()
     {
-        var options = new List<UnitOption>
-        {
-            new()
-            {
-                Type = "mount",
-                Choices = [new OptionChoice { Name = ["Barded Warhorse"], Points = 12 }],
-            },
-        };
-        var unit = TestHelpers.MakeUnit(name: "Captain", troopType: "Infantry (Character)", options: options)
-            with { Category = UnitCategory.Heroes };
+        var unit = TestHelpers.MakeUnit(name: "Captain", troopType: "Infantry (Character)", category: UnitCategory.Characters,
+            options: [TestHelpers.Mounts(("Barded Warhorse", 12, null))]);
 
         var upgrades = Only(MakeBuilder().Build(MakeList(
-            Configure(unit, c => c.SelectedUpgrades[0] = 0)))).Upgrades;
+            Configure(unit, c => c.Selections.SelectOne("mount", "barded-warhorse"))))).Upgrades;
 
         Assert.Contains("Barded Warhorse", upgrades);
     }
@@ -469,8 +441,8 @@ public class ArmyRosterBuilderTests
     {
         var unit = InCategory(UnitCategory.Core, "Saurus Warriors");
         var list = MakeList(Configure(unit, c =>
-            c.Loadout.SelectedFactionUpgrades["blessed_spawnings"] =
-                [new SelectedFactionUpgrade("Spawning of Sotek", 2)]));
+            c.Loadout.SelectedFactionUpgrades["blessed-spawnings"] =
+                [new SelectedFactionUpgrade("spawning-of-sotek", "Spawning of Sotek", 2)]));
 
         Assert.Contains("Spawning of Sotek", Only(MakeBuilder().Build(list)).Upgrades);
     }
@@ -479,16 +451,16 @@ public class ArmyRosterBuilderTests
     public void Magic_ItemsAndTheBannerPrintWithTheirCost()
     {
         var list = MakeList(Configure(
-            InCategory(UnitCategory.Heroes, "Captain", "Infantry (Character)"),
+            InCategory(UnitCategory.Characters, "Captain", "Infantry (Character)"),
             c =>
             {
                 c.SelectedMagicItems.Add(new SelectedMagicItem
                 {
-                    Name = "Sword of Striking", Category = "magic_weapon", PointsCost = 30,
+                    Name = "Sword of Striking", Category = MagicItemCategories.Weapon, PointsCost = 30,
                 });
                 c.Loadout.SelectedBanner = new SelectedMagicItem
                 {
-                    Name = "War Banner", Category = "magic_standard", PointsCost = 25,
+                    Name = "War Banner", Category = MagicItemCategories.Standard, PointsCost = 25,
                 };
             }));
 
@@ -504,8 +476,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Special_RulesPrintByName()
     {
-        var unit = TestHelpers.MakeUnit(name: "Witch Elves", specialRules: "Frenzy, Poisoned Attacks, Hatred")
-            with { Category = UnitCategory.Special };
+        var unit = TestHelpers.MakeUnit(name: "Witch Elves", specialRules: "Frenzy, Poisoned Attacks, Hatred", category: UnitCategory.Special);
 
         var rules = Only(MakeBuilder().Build(MakeList(Configure(unit)))).SpecialRules;
 
@@ -516,8 +487,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_ScopedRuleKeepsItsScopeOnTheSheet()
     {
-        var unit = TestHelpers.MakeUnit(name: "Boar Boyz", specialRules: "Mighty Blow (2) (War Boars only)")
-            with { Category = UnitCategory.Special };
+        var unit = TestHelpers.MakeUnit(name: "Boar Boyz", specialRules: "Mighty Blow (2) (War Boars only)", category: UnitCategory.Special);
 
         Assert.Contains("Mighty Blow (2) (War Boars only)",
             Only(MakeBuilder().Build(MakeList(Configure(unit)))).SpecialRules);
@@ -526,8 +496,7 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void A_RuleListedTwicePrintsOnce()
     {
-        var unit = TestHelpers.MakeUnit(name: "Spearmen", specialRules: "Fear, Fear")
-            with { Category = UnitCategory.Core };
+        var unit = TestHelpers.MakeUnit(name: "Spearmen", specialRules: "Fear, Fear", category: UnitCategory.Core);
 
         Assert.Equal(["Fear"], Only(MakeBuilder().Build(MakeList(Configure(unit)))).SpecialRules);
     }
@@ -548,9 +517,8 @@ public class ArmyRosterBuilderTests
     [Fact]
     public void Wizard_LevelLoreAndSpellsAreNoted()
     {
-        var options = new List<UnitOption> { new() { Type = "wizard_upgrade", Points = 35 } };
-        var unit = TestHelpers.MakeUnit(name: "Wizard", troopType: "Infantry (Character)", options: options)
-            with { Category = UnitCategory.Heroes };
+        var unit = TestHelpers.MakeUnit(name: "Wizard", troopType: "Infantry (Character)", category: UnitCategory.Characters,
+            options: [TestHelpers.WizardLevel(35)]);
 
         var notes = Only(MakeBuilder().Build(MakeList(Configure(unit, c =>
         {

@@ -17,7 +17,7 @@ public class UnitConfigurationTests
         string? unitSize = "10+",
         string? baseSize = "25x25",
         ProfileEntry? mountProfile = null,
-        List<UnitOption>? options = null)
+        List<OptionGroup>? options = null)
         => TestHelpers.MakeUnit(name, troopType, m, ws, bs, s, t, w, i, a, ld, points,
             equipment, specialRules, unitSize, baseSize, mountProfile, options);
 
@@ -45,7 +45,7 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(a: 1);
         var config = new UnitConfiguration(unit) { ModelCount = 10, Frontage = 5, HasChampion = true };
-        // Champion does NOT add +1 attack in WAP
+        // Champion does NOT add +1 attack
         // 5 front * 1 = 5, 5 support * 1 = 5
         Assert.Equal(10, config.TotalAttacks(false, 1));
     }
@@ -97,23 +97,13 @@ public class UnitConfigurationTests
     }
 
     [Fact]
-    public void MountAttacks_Cavalry_WithSupportRank()
+    public void MountAttacks_Cavalry_MountsDoNotSupport()
     {
         var mount = new ProfileEntry { Name = "Warhorse", M = 8, WS = 3, BS = 0, S = 3, T = 3, W = 1, I = 3, A = 1, Ld = 5 };
         var unit = MakeUnit(troopType: "Cavalry", unitSize: "10+", mountProfile: mount);
         var config = new UnitConfiguration(unit) { ModelCount = 10, Frontage = 5 };
-        // 5 front * 1A = 5, 1 support rank * 5 models * 1 mount support attack = 5
-        Assert.Equal(10, config.MountAttacks());
-    }
-
-    [Fact]
-    public void MountAttacks_MonstrousCavalry_WithSupportRank()
-    {
-        var mount = new ProfileEntry { Name = "Monster", M = 7, WS = 3, BS = 0, S = 4, T = 4, W = 3, I = 2, A = 2, Ld = 5 };
-        var unit = MakeUnit(troopType: "Monstrous Cavalry", unitSize: "6+", mountProfile: mount);
-        var config = new UnitConfiguration(unit) { ModelCount = 6, Frontage = 3 };
-        // 3 front * 2A = 6, 1 support rank * 3 models * 2 mount support = 6
-        Assert.Equal(12, config.MountAttacks());
+        // 5 front * 1A = 5; "Mounts are not allowed to make supporting attacks"
+        Assert.Equal(5, config.MountAttacks());
     }
 
     [Fact]
@@ -128,20 +118,31 @@ public class UnitConfigurationTests
     public void ResolveProfiles_SingleProfile_NullMount()
     {
         var unit = MakeUnit();
-        var (primary, mount) = UnitConfiguration.ResolveProfiles(unit.RawEntry);
-        Assert.NotNull(primary);
+        var (priced, mount) = UnitConfiguration.ResolveProfiles(unit.RawEntry);
+        Assert.Single(priced);
         Assert.Null(mount);
     }
 
     [Fact]
     public void ResolveProfiles_TwoProfiles_PrimaryHasPoints()
     {
-        var p1 = new ProfileEntry { Name = "Rider", Points = 10 };
-        var p2 = new ProfileEntry { Name = "Mount" };
+        var p1 = new ProfileEntry { Id = "rider", Name = "Rider", Points = 10 };
+        var p2 = new ProfileEntry { Id = "mount", Name = "Mount" };
         var unit = new UnitEntry { Name = "Cavalry", Profiles = [p1, p2], TroopType = "Cavalry" };
-        var (primary, mount) = UnitConfiguration.ResolveProfiles(unit);
-        Assert.Equal("Rider", primary.Name);
+        var (priced, mount) = UnitConfiguration.ResolveProfiles(unit);
+        Assert.Equal("Rider", Assert.Single(priced).Name);
         Assert.Equal("Mount", mount!.Name);
+    }
+
+    [Fact]
+    public void ResolveProfiles_TwoPricedProfiles_AreBothVariants()
+    {
+        var general = new ProfileEntry { Id = "general", Name = "General", Points = 95 };
+        var captain = new ProfileEntry { Id = "captain", Name = "Captain", Points = 55 };
+        var unit = new UnitEntry { Name = "Commanders", Profiles = [general, captain], TroopType = "Infantry (Character)" };
+        var (priced, mount) = UnitConfiguration.ResolveProfiles(unit);
+        Assert.Equal(["General", "Captain"], priced.Select(p => p.Name));
+        Assert.Null(mount);
     }
 
     [Fact]
@@ -247,8 +248,7 @@ public class UnitConfigurationTests
             Key = CloseCombatWeaponKey.Flail, Name = "Flail",
             Strength = WeaponStrength.Parse("As user"), Rules = new ParsedWeaponRules(),
         };
-        // Unit MB=1 plus the flail's 2 — "cumulative with other sources of Mighty Blow"
-        // (2.32 p63, 3.11 p64). This asserted 5 while the engine took the highest instead.
+        // Unit MB=1 plus the flail's 2 — "cumulative with other sources of Mighty Blow".
         Assert.Equal(6, config.EffectiveStrength(weapon, false, 1, weaponMightyBlow: 2));
     }
 
@@ -298,41 +298,17 @@ public class UnitConfigurationTests
 
     // --- Equipment Upgrade Tests ---
 
-    private static UnitOption MakeEquipmentOption(
-        string action, List<OptionChoice> choices, string? replaces = null) =>
-        new()
-        {
-            Type = "equipment",
-            Action = action,
-            Replaces = replaces,
-            Choices = choices,
-        };
-
-    private static UnitOption MakeCommandOption(string role, double points) =>
-        new()
-        {
-            Type = "command",
-            Role = role,
-            Points = points,
-        };
-
     [Fact]
     public void ShieldUpgrade_AddsToEffectiveArmour()
     {
         var unit = MakeUnit(
             equipment: "Hand weapon, light armour",
-            options:
-            [
-                MakeEquipmentOption("add",
-                [
-                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
-                ])
-            ]);
+            options: [TestHelpers.Equipment("shield", 1, perModel: true)]);
 
         var config = new UnitConfiguration(unit);
         Assert.DoesNotContain(ArmourKey.Shields, config.EffectiveArmour);
 
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("shield", "shield", true);
         Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
         Assert.Contains(ArmourKey.LightArmour, config.EffectiveArmour);
     }
@@ -342,13 +318,7 @@ public class UnitConfigurationTests
     {
         var unit = MakeUnit(
             equipment: "Hand weapon, light armour",
-            options:
-            [
-                MakeEquipmentOption("add",
-                [
-                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
-                ])
-            ]);
+            options: [TestHelpers.Equipment("shield", 1, perModel: true)]);
 
         var config = new UnitConfiguration(unit);
 
@@ -356,84 +326,45 @@ public class UnitConfigurationTests
         Assert.Equal(6, config.EffectiveArmourSave(3, 0, 0));
 
         // With shield: light armour +1 + shield +1 → save 5+
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("shield", "shield", true);
         Assert.Equal(5, config.EffectiveArmourSave(3, 0, 0));
     }
 
     [Fact]
     public void UpgradeCost_PerModel()
     {
-        var unit = MakeUnit(
-            options:
-            [
-                MakeEquipmentOption("add",
-                [
-                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
-                ])
-            ]);
+        var unit = MakeUnit(options: [TestHelpers.Equipment("shield", 1, perModel: true)]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
         Assert.Equal(0, config.UpgradeCost);
 
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("shield", "shield", true);
         Assert.Equal(20, config.UpgradeCost);
     }
 
     [Fact]
     public void UpgradeCost_FlatCost()
     {
-        var unit = MakeUnit(
-            options:
-            [
-                MakeEquipmentOption("add",
-                [
-                    new OptionChoice { Name = ["heavy armour"], Points = 9, PerModel = false }
-                ])
-            ]);
+        var unit = MakeUnit(options: [TestHelpers.Equipment("heavy armour", 9)]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 20 };
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("heavy-armour", "heavy-armour", true);
         Assert.Equal(9, config.UpgradeCost);
     }
 
     [Fact]
     public void UpgradeCost_IncludedInTotalPoints()
     {
-        var unit = MakeUnit(
-            points: 8,
-            options:
-            [
-                MakeEquipmentOption("add",
-                [
-                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
-                ])
-            ]);
+        var unit = MakeUnit(points: 8, options: [TestHelpers.Equipment("shield", 1, perModel: true)]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 10 };
         Assert.Equal(80, config.TotalPointsCost); // 10 * 8 = 80
 
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("shield", "shield", true);
         Assert.Equal(90, config.TotalPointsCost); // 80 + 10 * 1 = 90
     }
 
     // ─── "Choose any" groups (multi-select) ──────────────────────
-
-    private static UnitOption MakeChooseAnyOption(params OptionChoice[] choices) => new()
-    {
-        Type = "equipment",
-        Action = "choose",
-        Choices = [.. choices],
-        Raw = "May choose any of the following:",
-    };
-
-    [Fact]
-    public void ChooseAny_IsDetectedFromTheRawText()
-    {
-        Assert.True(MakeChooseAnyOption().AllowsMultipleChoices);
-        Assert.True(new UnitOption { Raw = "Must choose at least one of the following:" }.AllowsMultipleChoices);
-        Assert.False(new UnitOption { Raw = "May choose one of the following:" }.AllowsMultipleChoices);
-        Assert.False(new UnitOption { Raw = null }.AllowsMultipleChoices);
-    }
 
     [Fact]
     public void ChooseAny_CostsEverySelectedChoice()
@@ -441,53 +372,19 @@ public class UnitConfigurationTests
         // The Stegadon's book line: any of Stampede (10), Horns (20), Ancient (30).
         var unit = MakeUnit(points: 215, options:
         [
-            MakeChooseAnyOption(
-                new OptionChoice { Name = ["Unstoppable Stampede"], Points = 10 },
-                new OptionChoice { Name = ["Sharpened Horns"], Points = 20 },
-                new OptionChoice { Name = ["Ancient"], Points = 30 })
+            TestHelpers.Equipment("upgrades", SelectMode.Any,
+                TestHelpers.Choice("Unstoppable Stampede", 10),
+                TestHelpers.Choice("Sharpened Horns", 20),
+                TestHelpers.Choice("Ancient", 30)),
         ]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 1 };
-        config.SelectedMultiUpgrades[0] = [0, 1, 2];
+        config.Selections.Toggle("upgrades", "unstoppable-stampede", true);
+        config.Selections.Toggle("upgrades", "sharpened-horns", true);
+        config.Selections.Toggle("upgrades", "ancient", true);
 
         Assert.Equal(60, config.UpgradeCost);
         Assert.Equal(275, config.TotalPointsCost);
-    }
-
-    [Fact]
-    public void ChooseAny_LegacySingleSelection_StillCounts()
-    {
-        // A save from before multi-select stored one pick in SelectedUpgrades.
-        var unit = MakeUnit(points: 215, options:
-        [
-            MakeChooseAnyOption(
-                new OptionChoice { Name = ["Unstoppable Stampede"], Points = 10 },
-                new OptionChoice { Name = ["Ancient"], Points = 30 })
-        ]);
-
-        var config = new UnitConfiguration(unit) { ModelCount = 1 };
-        config.SelectedUpgrades[0] = 1;
-
-        Assert.Equal(30, config.UpgradeCost);
-        Assert.Equal(new[] { 1 }, config.SelectedChoicesIn(0));
-    }
-
-    [Fact]
-    public void ChooseAny_MultiEntrySupersedesTheLegacyOne()
-    {
-        var unit = MakeUnit(points: 215, options:
-        [
-            MakeChooseAnyOption(
-                new OptionChoice { Name = ["Unstoppable Stampede"], Points = 10 },
-                new OptionChoice { Name = ["Ancient"], Points = 30 })
-        ]);
-
-        var config = new UnitConfiguration(unit) { ModelCount = 1 };
-        config.SelectedUpgrades[0] = 1;
-        config.SelectedMultiUpgrades[0] = [0];
-
-        // No double counting: the multi entry wins for its group.
-        Assert.Equal(10, config.UpgradeCost);
     }
 
     [Fact]
@@ -496,21 +393,14 @@ public class UnitConfigurationTests
         // Dwarf Warriors: "Must choose at least one of the following: shield, great weapon".
         var unit = MakeUnit(equipment: "Hand weapon", options:
         [
-            new UnitOption
-            {
-                Type = "equipment",
-                Action = "choose",
-                Choices =
-                [
-                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true },
-                    new OptionChoice { Name = ["great weapon"], Points = 2, PerModel = true },
-                ],
-                Raw = "Must choose at least one of the following:",
-            }
+            TestHelpers.Equipment("gear", SelectMode.Any,
+                TestHelpers.Choice("shield", 1, perModel: true),
+                TestHelpers.Choice("great weapon", 2, perModel: true)),
         ]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 10 };
-        config.SelectedMultiUpgrades[0] = [0, 1];
+        config.Selections.Toggle("gear", "shield", true);
+        config.Selections.Toggle("gear", "great-weapon", true);
 
         Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
         Assert.Contains(CloseCombatWeaponKey.GreatWeapon, config.EffectiveWeapons);
@@ -518,107 +408,136 @@ public class UnitConfigurationTests
     }
 
     [Fact]
-    public async Task ChooseAny_IsDetectedOnTheRealStegadon()
-    {
-        var repo = TestHelpers.CreateRepository();
-        var stegadon = (await repo.GetUnitsAsync(FactionKey.Lizardmen))
-            .Single(u => u.Name == "Stegadon");
-
-        var group = stegadon.Options!.Single(o => o.AllowsMultipleChoices);
-        Assert.Equal(3, group.Choices!.Count);
-
-        // The howdah-weapon replacement stays a one-of group.
-        Assert.Single(stegadon.Options!, o =>
-            o.IsAction(OptionAction.Replace) && !o.AllowsMultipleChoices && o.Replaces == "giant bow");
-    }
-
-    [Fact]
-    public void ChooseAny_OnlyDeclaredGroupsAreMulti()
-    {
-        Assert.False(MakeEquipmentOption("choose",
-        [
-            new OptionChoice { Name = ["shield"], Points = 1 },
-            new OptionChoice { Name = ["great weapon"], Points = 2 },
-        ]).AllowsMultipleChoices);
-    }
-
-    [Fact]
-    public void ChooseArmourUpgrade_OnlyOneSelectable()
+    public void SelectOne_ReplacesThePreviousChoiceInTheGroup()
     {
         var unit = MakeUnit(
             equipment: "Hand weapon, medium armour",
             options:
             [
-                MakeEquipmentOption("choose",
-                [
-                    new OptionChoice { Name = ["heavy armour"], Points = 9, PerModel = false },
-                    new OptionChoice { Name = ["shield"], Points = 3, PerModel = false }
-                ])
+                TestHelpers.Equipment("armour", SelectMode.One,
+                    TestHelpers.Choice("heavy armour", 9),
+                    TestHelpers.Choice("shield", 3)),
             ]);
 
         var config = new UnitConfiguration(unit);
 
         // Select heavy armour
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.SelectOne("armour", "heavy-armour");
         Assert.Contains(ArmourKey.HeavyArmour, config.EffectiveArmour);
         Assert.DoesNotContain(ArmourKey.Shields, config.EffectiveArmour);
 
         // Switch to shield
-        config.SelectedUpgrades[0] = 1;
+        config.Selections.SelectOne("armour", "shield");
         Assert.DoesNotContain(ArmourKey.HeavyArmour, config.EffectiveArmour);
         Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
     }
 
     [Fact]
-    public void ReplaceAction_RemovesBaseEquipment()
+    public void ReplaceChoice_RemovesBaseEquipment()
     {
         var unit = MakeUnit(
             equipment: "Hand weapon, spear",
-            options:
-            [
-                MakeEquipmentOption("replace",
-                [
-                    new OptionChoice { Name = ["pike"], Points = 1.5, PerModel = true }
-                ], replaces: "spear")
-            ]);
+            options: [TestHelpers.Equipment("pike", 1.5, perModel: true, replaces: "spear")]);
 
         var config = new UnitConfiguration(unit);
         Assert.Contains(CloseCombatWeaponKey.Spear, config.EffectiveWeapons);
         Assert.DoesNotContain(CloseCombatWeaponKey.Pike, config.EffectiveWeapons);
 
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("pike", "pike", true);
         Assert.DoesNotContain(CloseCombatWeaponKey.Spear, config.EffectiveWeapons);
         Assert.Contains(CloseCombatWeaponKey.Pike, config.EffectiveWeapons);
     }
 
     [Fact]
-    public void ReplaceAction_PointsCostCorrect()
+    public void ReplaceChoice_PointsCostCorrect()
     {
         var unit = MakeUnit(
             equipment: "Hand weapon, spear",
-            options:
-            [
-                MakeEquipmentOption("replace",
-                [
-                    new OptionChoice { Name = ["pike"], Points = 1.5, PerModel = true }
-                ], replaces: "spear")
-            ]);
+            options: [TestHelpers.Equipment("pike", 1.5, perModel: true, replaces: "spear")]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 10 };
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("pike", "pike", true);
         Assert.Equal(15, config.UpgradeCost); // 1.5 * 10
     }
 
     [Fact]
-    public void CommandGroup_DetectedFromTypedOptions()
+    public void AChoiceNamingTwoItems_GrantsBoth()
     {
-        var unit = MakeUnit(
-            options:
-            [
-                MakeCommandOption("Leader", 5),
-                MakeCommandOption("Musician", 5),
-                MakeCommandOption("Standard Bearer", 10),
-            ]);
+        var unit = MakeUnit(equipment: "Hand weapon",
+            options: [TestHelpers.Equipment("Spear and shield", 2, perModel: true)]);
+
+        var config = new UnitConfiguration(unit);
+        config.Selections.Toggle("spear-and-shield", "spear-and-shield", true);
+
+        Assert.Contains(CloseCombatWeaponKey.Spear, config.EffectiveWeapons);
+        Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
+    }
+
+    // ─── Count groups ────────────────────────────────────────────
+
+    [Fact]
+    public void ACountChoice_CostsItsPointsPerTake()
+    {
+        var group = new OptionGroup
+        {
+            Id = "genies", Kind = "upgrade", Select = "count", Min = 0, Max = null,
+            Raw = "A Magus may be accompanied by up to two Genies +85 points/Genie",
+            Choices = [new OptionChoice { Id = "genies", Name = "Genies", Points = 85, Per = "Genie", Min = 0, Max = 2, Raw = "Genies" }],
+        };
+        var unit = MakeUnit(points: 100, troopType: "Infantry (Character)", options: [group]);
+        var config = new UnitConfiguration(unit);
+
+        Assert.Equal(2, config.MaxCountOf(group.Choices[0]));
+
+        config.Selections.Set("genies", "genies", 2);
+        Assert.Equal(170, config.UpgradeCost);
+        Assert.Equal(270, config.TotalPointsCost);
+    }
+
+    [Fact]
+    public void ACountChoice_ScalingWithTheUnit_IsCappedByItsSize()
+    {
+        var choice = new OptionChoice { Id = "fanatic", Name = "Fanatic", Points = 25, EveryModels = 10, Raw = "Fanatic" };
+        var group = new OptionGroup { Id = "fanatics", Kind = "upgrade", Select = "count", Raw = "one Fanatic for every 10 models", Choices = [choice] };
+        var unit = MakeUnit(options: [group]);
+
+        Assert.Equal(2, new UnitConfiguration(unit) { ModelCount = 25 }.MaxCountOf(choice));
+        Assert.Equal(0, new UnitConfiguration(unit) { ModelCount = 9 }.MaxCountOf(choice));
+    }
+
+    // ─── Nested groups ───────────────────────────────────────────
+
+    [Fact]
+    public void ANestedGroup_OnlyCountsOnceItsParentIsTaken()
+    {
+        var pistol = TestHelpers.Equipment("pistol", 3);
+        var leader = TestHelpers.Command(CommandRole.Champion, 5);
+        leader = leader with { Choices = [leader.Choices[0] with { Options = [pistol] }] };
+        var unit = MakeUnit(points: 5, options: [leader]);
+
+        var config = new UnitConfiguration(unit) { ModelCount = 10 };
+        config.Selections.Toggle("pistol", "pistol", true);
+
+        // Nobody is the champion yet, so the champion's pistol is not in force.
+        Assert.Equal(50, config.TotalPointsCost);
+        Assert.DoesNotContain(config.ActiveGroups(), g => g.Id == "pistol");
+
+        config.HasChampion = true;
+        Assert.Contains(config.ActiveGroups(), g => g.Id == "pistol");
+        Assert.Equal(50 + 5 + 3, config.TotalPointsCost);
+    }
+
+    // ─── Command ─────────────────────────────────────────────────
+
+    [Fact]
+    public void CommandGroup_DetectedFromTypedGroups()
+    {
+        var unit = MakeUnit(options:
+        [
+            TestHelpers.Command(CommandRole.Champion, 5),
+            TestHelpers.Command(CommandRole.Musician, 5),
+            TestHelpers.Command(CommandRole.StandardBearer, 10),
+        ]);
 
         var config = new UnitConfiguration(unit);
         Assert.True(config.CanHaveChampion);
@@ -634,13 +553,11 @@ public class UnitConfigurationTests
     [Fact]
     public void CommandGroup_CostIncludedInTotal()
     {
-        var unit = MakeUnit(
-            points: 8,
-            options:
-            [
-                MakeCommandOption("Leader", 5),
-                MakeCommandOption("Musician", 5),
-            ]);
+        var unit = MakeUnit(points: 8, options:
+        [
+            TestHelpers.Command(CommandRole.Champion, 5),
+            TestHelpers.Command(CommandRole.Musician, 5),
+        ]);
 
         var config = new UnitConfiguration(unit)
         {
@@ -661,16 +578,11 @@ public class UnitConfigurationTests
             equipment: "Hand weapon, light armour",
             options:
             [
-                MakeEquipmentOption("add",
-                [
-                    new OptionChoice { Name = ["shield"], Points = 1, PerModel = true }
-                ]),
-                MakeEquipmentOption("choose",
-                [
-                    new OptionChoice { Name = ["spear"], Points = 1, PerModel = true },
-                    new OptionChoice { Name = ["great weapon"], Points = 2, PerModel = true }
-                ]),
-                MakeCommandOption("Musician", 5),
+                TestHelpers.Equipment("shield", 1, perModel: true),
+                TestHelpers.Equipment("melee-weapon", SelectMode.One,
+                    TestHelpers.Choice("spear", 1, perModel: true),
+                    TestHelpers.Choice("great weapon", 2, perModel: true)),
+                TestHelpers.Command(CommandRole.Musician, 5),
             ]);
 
         var config = new UnitConfiguration(unit)
@@ -679,32 +591,98 @@ public class UnitConfigurationTests
             HasMusician = true,
         };
 
-        // Select shield + great weapon
-        config.SelectedUpgrades[0] = 0; // shield: +1/model
-        config.SelectedUpgrades[1] = 1; // great weapon: +2/model
+        config.Selections.Toggle("shield", "shield", true);              // shield: +1/model
+        config.Selections.SelectOne("melee-weapon", "great-weapon");    // great weapon: +2/model
 
-        // Base: 20 * 6 = 120
-        // Shield: 20 * 1 = 20
-        // Great weapon: 20 * 2 = 40
-        // Musician: 5
-        // Total: 185
+        // Base: 20 * 6 = 120, shield 20, great weapon 40, musician 5 → 185
         Assert.Equal(185, config.TotalPointsCost);
     }
 
     [Fact]
     public void NullPointsChoice_TreatedAsZero()
     {
-        var unit = MakeUnit(
-            options:
-            [
-                MakeEquipmentOption("replace",
-                [
-                    new OptionChoice { Name = ["bow"], Points = null, PerModel = false }
-                ], replaces: "hand weapon")
-            ]);
+        var unit = MakeUnit(options: [TestHelpers.Equipment("bow", null, replaces: "hand weapon")]);
 
         var config = new UnitConfiguration(unit) { ModelCount = 10 };
-        config.SelectedUpgrades[0] = 0;
+        config.Selections.Toggle("bow", "bow", true);
         Assert.Equal(0, config.UpgradeCost);
+    }
+
+    // ─── Profiles and mounts ─────────────────────────────────────
+
+    [Fact]
+    public void AGroupNamingAProfile_IsOnlyInForceForThatProfile()
+    {
+        var general = new ProfileEntry { Id = "general", Name = "General", Points = 95, S = 4 };
+        var captain = new ProfileEntry { Id = "captain", Name = "Captain", Points = 55, S = 4 };
+        var fullPlate = TestHelpers.Equipment("full plate", 10) with { AppliesTo = "general" };
+        var unit = TestHelpers.MakeUnit(name: "Commanders", troopType: "Infantry (Character)",
+            profiles: [general, captain], options: [fullPlate]);
+
+        var config = new UnitConfiguration(unit);
+        Assert.Contains(config.ActiveGroups(), g => g.Id == "full-plate");
+
+        config.SelectedProfileId = "captain";
+        Assert.DoesNotContain(config.ActiveGroups(), g => g.Id == "full-plate");
+        Assert.Equal("Captain", config.PrimaryProfile.Name);
+    }
+
+    [Fact]
+    public void AChosenMount_SuppliesTheMountProfileAndTroopType()
+    {
+        var repo = TestHelpers.Repo;
+        var horse = new ProfileEntry { Id = "warhorse", Name = "Warhorse", M = 8, WS = 3, S = 3, T = 3, W = 1, I = 3, A = 1 };
+        var mountModel = new Model
+        {
+            Name = "Warhorse", Stats = horse,
+            TroopType = TroopTypeInfo.Parse("Cavalry (Character)", repo.GetTroopTypeRules),
+            SpecialRules = new ParsedSpecialRules(), Weapons = [], Armour = [],
+        };
+        var mounts = new Dictionary<string, MountOption>
+        {
+            ["warhorse"] = new("warhorse", mountModel, mountModel.TroopType),
+        };
+        var unit = TestHelpers.MakeUnit(name: "Captain", troopType: "Infantry (Character)", points: 55,
+            options: [TestHelpers.Mounts(("Warhorse", 15, "warhorse"), ("Pegasus", 25, null))],
+            mountOptions: mounts);
+
+        var config = new UnitConfiguration(unit);
+        Assert.Null(config.MountProfile);
+        Assert.False(config.HasMount);
+        Assert.Equal(BaseTroopType.Infantry, config.TroopType.BaseType);
+
+        config.Selections.SelectOne("mount", "warhorse");
+        Assert.Equal("Warhorse", config.MountProfile!.Name);
+        Assert.True(config.HasMount);
+        Assert.Equal(BaseTroopType.Cavalry, config.TroopType.BaseType);
+        Assert.True(config.TroopType.IsCharacter);
+        Assert.Equal(70, config.TotalPointsCost);
+
+        // A mount the book only describes in prose still costs its points, without a profile.
+        config.Selections.SelectOne("mount", "pegasus");
+        Assert.Null(config.MountProfile);
+        Assert.Equal(80, config.TotalPointsCost);
+    }
+
+    [Fact]
+    public void CopySelectionsFrom_CarriesEveryChoice()
+    {
+        var unit = MakeUnit(points: 8, options:
+        [
+            TestHelpers.Equipment("shield", 1, perModel: true),
+            TestHelpers.Command(CommandRole.Musician, 5),
+        ]);
+        var source = new UnitConfiguration(unit) { ModelCount = 20, HasMusician = true };
+        source.Selections.Toggle("shield", "shield", true);
+        source.Loadout.CustomName = "The Emerald Guard";
+        source.Loadout.IsGeneral = true;
+
+        var clone = new UnitConfiguration(unit);
+        clone.CopySelectionsFrom(source, includeIdentity: false);
+
+        Assert.Equal(source.TotalPointsCost, clone.TotalPointsCost);
+        Assert.True(clone.Selections.IsSelected("shield", "shield"));
+        Assert.Null(clone.Loadout.CustomName);
+        Assert.False(clone.Loadout.IsGeneral);
     }
 }

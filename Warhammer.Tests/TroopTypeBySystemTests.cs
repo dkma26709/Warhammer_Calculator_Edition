@@ -9,13 +9,12 @@ using Warhammer.Services;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// The Troop Types chapter (p71–76) diverges between the editions in three places, all
-/// verified against the 2.32 and 3.11 core rules books: supporting attacks for the monstrous
-/// types, mount supporting attacks, and the inherent special rules.
+/// The Troop Types chapter's figures, as the per-system troop-types.json states them:
+/// supporting attacks for the monstrous types, mount supporting attacks, inherent Impact
+/// Hits and Swiftstride. Verified against the rulebook the bundle prints.
 /// </summary>
 public class TroopTypeBySystemTests
 {
-
     // ─── The figures are data, and a gap is loud ───────────────────
 
     /// <summary>
@@ -32,16 +31,16 @@ public class TroopTypeBySystemTests
             BaseAddress = new Uri("http://localhost/"),
         };
         var system = new GameSystemService();
-        system.Initialize(GameSystems.WapV3);
+        system.Initialize(GameSystems.War);
         var repo = new GameDataRepository(
-            new CoreRulesService(http, system), new FactionDataService(http, system), system);
+            new CoreRulesService(http, system), new BundleService(http, system), system);
 
         var error = Assert.Throws<InvalidOperationException>(
             () => repo.EnsureLoadedAsync().GetAwaiter().GetResult());
 
         Assert.Contains("troop-types.json", error.Message);
         Assert.Contains("monstrous-cavalry", error.Message);
-        Assert.Contains(GameSystems.WapV3, error.Message);
+        Assert.Contains(GameSystems.War, error.Message);
     }
 
     /// <summary>Serves the real data, minus one troop type row.</summary>
@@ -72,30 +71,23 @@ public class TroopTypeBySystemTests
     // ─── Supporting attacks ────────────────────────────────────────
 
     [Theory]
-    [InlineData("Monstrous Infantry", GameSystems.WapV2, 2)]
-    [InlineData("Monstrous Infantry", GameSystems.WapV3, 3)]
-    [InlineData("Monstrous Beast", GameSystems.WapV2, 2)]
-    [InlineData("Monstrous Beast", GameSystems.WapV3, 3)]
-    [InlineData("Infantry", GameSystems.WapV2, 1)]
-    [InlineData("Infantry", GameSystems.WapV3, 1)]
-    [InlineData("Swarms", GameSystems.WapV2, 5)]
-    [InlineData("Swarms", GameSystems.WapV3, 5)]
-    [InlineData("War Beasts", GameSystems.WapV2, 1)]
-    [InlineData("War Beasts", GameSystems.WapV3, 1)]
-    public void SupportingAttacksMatchTheBook(string troopType, string systemKey, int expected)
+    [InlineData("Monstrous Infantry", 3)]
+    [InlineData("Monstrous Beast", 3)]
+    [InlineData("Infantry", 1)]
+    [InlineData("Swarms", 5)]
+    [InlineData("War Beasts", 1)]
+    public void SupportingAttacksMatchTheBook(string troopType, int expected)
     {
-        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(systemKey)).MaxSupportingAttacks);
+        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.War)).MaxSupportingAttacks);
     }
 
     [Theory]
-    [InlineData("Cavalry", GameSystems.WapV2, 1, 1, 2)]
-    [InlineData("Cavalry", GameSystems.WapV3, 1, 0, 1)]
-    [InlineData("Monstrous Cavalry", GameSystems.WapV2, 1, 2, 3)]
-    [InlineData("Monstrous Cavalry", GameSystems.WapV3, 1, 0, 3)]
+    [InlineData("Cavalry", 1, 0, 1)]
+    [InlineData("Monstrous Cavalry", 1, 0, 3)]
     public void MountedSupportingAttacksMatchTheBook(
-        string troopType, string systemKey, int rider, int mount, int nonSplit)
+        string troopType, int rider, int mount, int nonSplit)
     {
-        var info = TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(systemKey));
+        var info = TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.War));
 
         Assert.Equal(rider, info.MaxSupportingAttacks);
         Assert.Equal(mount, info.MountSupportingAttacks);
@@ -103,67 +95,53 @@ public class TroopTypeBySystemTests
     }
 
     [Fact]
-    public void V3MountsMakeNoSupportingAttacks()
+    public void MountsMakeNoSupportingAttacks()
     {
-        // "Mounts are not allowed to make supporting attacks" (3.11 p72–73).
+        // "Mounts are not allowed to make supporting attacks."
         var mount = new ProfileEntry { Name = "Warhorse", M = 8, WS = 3, S = 3, T = 3, W = 1, I = 3, A = 1 };
 
-        int V3Mount(string troopType) => new UnitConfiguration(
-            TestHelpers.MakeUnit(troopType: troopType, mountProfile: mount, systemKey: GameSystems.WapV3))
+        int MountAttacks(string troopType) => new UnitConfiguration(
+            TestHelpers.MakeUnit(troopType: troopType, mountProfile: mount, systemKey: GameSystems.War))
         { ModelCount = 10, Frontage = 5 }.MountAttacks();
 
-        int V2Mount(string troopType) => new UnitConfiguration(
-            TestHelpers.MakeUnit(troopType: troopType, mountProfile: mount, systemKey: GameSystems.WapV2))
-        { ModelCount = 10, Frontage = 5 }.MountAttacks();
-
-        // Five front-rank mounts attack in both; only wap-v2 adds the second rank's five.
-        Assert.Equal(5, V3Mount("Cavalry"));
-        Assert.Equal(10, V2Mount("Cavalry"));
+        // Five front-rank mounts attack; the second rank's five do not.
+        Assert.Equal(5, MountAttacks("Cavalry"));
     }
 
     // ─── Inherent Impact Hits ──────────────────────────────────────
 
     [Theory]
-    [InlineData("Cavalry", GameSystems.WapV2, 1)]
-    [InlineData("Cavalry", GameSystems.WapV3, 0)]
-    [InlineData("Monstrous Cavalry", GameSystems.WapV2, 1)]
-    [InlineData("Monstrous Cavalry", GameSystems.WapV3, 0)]
-    [InlineData("Infantry", GameSystems.WapV2, 0)]
-    [InlineData("Chariot", GameSystems.WapV3, 0)]
-    public void InherentImpactHitsMatchTheBook(string troopType, string systemKey, int expected)
+    [InlineData("Cavalry", 0)]
+    [InlineData("Monstrous Cavalry", 0)]
+    [InlineData("Infantry", 0)]
+    [InlineData("Chariot", 0)]
+    public void NoTroopTypeGrantsImpactHitsOfItsOwn(string troopType, int expected)
     {
-        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(systemKey)).InherentImpactHits);
+        // Chariots take their Impact Hits from their own entry's special rules line.
+        Assert.Equal(expected, TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.War)).InherentImpactHits);
     }
 
     [Fact]
-    public async Task V3KnightsDoNoImpactHitsOnTheCharge()
+    public async Task KnightsDoNoImpactHitsOnTheCharge()
     {
-        // Knights of the Realm have no Impact Hits on their entry, so in wap-v3 a charge
-        // produces none at all. In wap-v2 the troop type supplies one per front-rank model.
-        var resolverV2 = new AttackResolver(TestHelpers.RepoFor(GameSystems.WapV2));
-        var resolverV3 = new AttackResolver(TestHelpers.RepoFor(GameSystems.WapV3));
+        // Knights of the Realm have no Impact Hits on their entry, and the troop type supplies
+        // none, so a charge produces none at all.
+        var repo = TestHelpers.RepoFor(GameSystems.War);
+        var resolver = new AttackResolver(repo);
 
-        async Task<int> Wounds(GameDataRepository repo, AttackResolver resolver)
-        {
-            var knights = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Bretonnia))
-                .First(u => u.Name == "Knight of the Realm")) { ModelCount = 10, Frontage = 5 };
-            var target = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
-                .First(u => u.Name == "Halberdiers")) { ModelCount = 25, Frontage = 5 };
-            var context = new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 };
+        var knights = new UnitConfiguration(await TestHelpers.FindUnitAsync("bretonnia", "KNIGHT OF THE REALM"))
+            { ModelCount = 10, Frontage = 5 };
+        var target = new UnitConfiguration(await TestHelpers.FindUnitAsync("empire", "HALBERDIERS"))
+            { ModelCount = 25, Frontage = 5 };
+        var context = new CombatContext { Charge = ChargeState.AttackerCharged, CombatRound = 1 };
 
-            int total = 0;
-            var rng = new Random(4);
-            for (int i = 0; i < 2000; i++)
-                total += resolver.ResolveImpactHits(knights, target, context, rng,
-                    resolver.ComputeBaseArmour(target));
-            return total;
-        }
+        int total = 0;
+        var rng = new Random(4);
+        for (int i = 0; i < 2000; i++)
+            total += resolver.ResolveImpactHits(knights, target, context, rng,
+                resolver.ComputeBaseArmour(target));
 
-        int v2 = await Wounds(TestHelpers.RepoFor(GameSystems.WapV2), resolverV2);
-        int v3 = await Wounds(TestHelpers.RepoFor(GameSystems.WapV3), resolverV3);
-
-        Assert.True(v2 > 0, "wap-v2 cavalry should land impact hits on the charge");
-        Assert.Equal(0, v3);
+        Assert.Equal(0, total);
     }
 
     // ─── Inherent Swiftstride ──────────────────────────────────────
@@ -176,43 +154,26 @@ public class TroopTypeBySystemTests
     [InlineData("War Beasts")]
     [InlineData("Monster")]
     [InlineData("Chariot")]
-    public void SwiftstrideIsInherentInV2AndGoneInV3(string troopType)
-    {
-        // wap-v2 lists Swiftstride against each of these types; wap-v3 lists Independent
-        // in its place, which has no combat effect here.
-        Assert.True(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV2)).HasInherentSwiftstride, troopType);
-        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV3)).HasInherentSwiftstride, troopType);
-    }
-
-    [Theory]
     [InlineData("Infantry")]
     [InlineData("Swarms")]
     [InlineData("War Machine")]
-    public void FootTroopsNeverGetInherentSwiftstride(string troopType)
+    public void NoTroopTypeGrantsSwiftstride(string troopType)
     {
-        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV2)).HasInherentSwiftstride);
-        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.WapV3)).HasInherentSwiftstride);
+        // The chapter lists Independent against the mounted types, which has no combat effect here.
+        Assert.False(TroopTypeInfo.Parse(troopType, TestHelpers.TroopTypeRulesFor(GameSystems.War)).HasInherentSwiftstride, troopType);
     }
 
     // ─── Through the engine ────────────────────────────────────────
 
     [Fact]
-    public async Task V3MonstrousInfantryFieldsMoreAttacksThanV2()
+    public async Task MonstrousInfantrySupportsThreeAttacks()
     {
-        // Kroxigors, 6 models three wide: two ranks, so the second rank supports. wap-v2 caps
-        // a supporting model at two attacks, wap-v3 at three, and Kroxigors have three each.
-        int Attacks(GameDataRepository repo, IReadOnlyList<Unit> units) =>
-            new UnitConfiguration(units.First(u => u.Name == "Kroxigors")) { ModelCount = 6, Frontage = 3 }
-                .TotalAttacks(isCharging: false, combatRound: 1);
+        // Kroxigors, 6 models three wide: two ranks, so the second rank supports with all
+        // three of its attacks.
+        var kroxigors = await TestHelpers.FindUnitAsync("lizardmen", "KROXIGORS");
+        var config = new UnitConfiguration(kroxigors) { ModelCount = 6, Frontage = 3 };
 
-        var v2Repo = TestHelpers.RepoFor(GameSystems.WapV2);
-        var v3Repo = TestHelpers.RepoFor(GameSystems.WapV3);
-
-        int v2 = Attacks(v2Repo, await v2Repo.GetUnitsAsync(FactionKey.Lizardmen));
-        int v3 = Attacks(v3Repo, await v3Repo.GetUnitsAsync(FactionKey.Lizardmen));
-
-        Assert.Equal(3 * 3 + 3 * 2, v2);   // front rank full, supporting rank capped at 2
-        Assert.Equal(3 * 3 + 3 * 3, v3);   // supporting rank now matches the profile
-        Assert.True(v3 > v2);
+        int attacks = kroxigors.BaseModel.Stats.A ?? 1;
+        Assert.Equal(3 * attacks + 3 * Math.Min(attacks, 3), config.TotalAttacks(isCharging: false, combatRound: 1));
     }
 }

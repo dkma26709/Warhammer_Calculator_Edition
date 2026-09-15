@@ -26,7 +26,7 @@
                 <option value="">-- Select Faction --</option>
                 @foreach (var f in Repo.AllFactions)
                 {
-                    <option value="@f.ToJsonKey()">@f.ToDisplayName()</option>
+                    <option value="@f.Id">@f.Name</option>
                 }
             </select>
         </div>
@@ -126,7 +126,7 @@
                         <span class="badge bg-warning text-dark ms-2">House rules</span>
                     }
                     <span class="text-body-secondary ms-2" style="font-size: 0.75rem;">
-                        @SystemService.CurrentSystem defaults unless changed
+                        @SystemName defaults unless changed
                     </span>
 
                     @if (_showOverrides)
@@ -173,7 +173,7 @@
                         <div class="d-flex align-items-center gap-2 mt-2">
                             <button type="button" class="btn btn-sm btn-outline-secondary"
                                     disabled="@_armyList.Overrides.IsEmpty"
-                                    @onclick="ResetOverrides">Reset to @SystemService.CurrentSystem</button>
+                                    @onclick="ResetOverrides">Reset to @SystemName</button>
                             <span class="text-body-secondary" style="font-size: 0.75rem;">
                                 Blank uses the system value. Saved and exported with this list.
                             </span>
@@ -271,7 +271,7 @@
                                                     {
                                                         <div>
                                                             <strong>@entry.Loadout.CustomName</strong>
-                                                            <span class="text-body-secondary"> · @entry.ResolvedUnit.Name</span>
+                                                            <span class="text-body-secondary"> · @EntryTitle(entry)</span>
                                                             @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
                                                             @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
                                                         </div>
@@ -279,7 +279,7 @@
                                                     else
                                                     {
                                                         <div>
-                                                            @entry.ResolvedUnit.Name
+                                                            @EntryTitle(entry)
                                                             @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
                                                             @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
                                                         </div>
@@ -331,7 +331,8 @@
                                                                       Unit="entry.ResolvedUnit"
                                                                       Configuration="entry"
                                                                       ConfigurationChanged="OnEntryChanged"
-                                                                      FactionExtras="_factionExtras"
+                                                                      Faction="_faction"
+                                                                      Lores="_lores"
                                                                       CommonMagicItems="_commonMagicItems"
                                                                       ShowCustomNameField="true" />
                                                 </div>
@@ -360,12 +361,13 @@
     private string? _factionKey;
     private string _pointsText = "2000";
     private IReadOnlyList<Unit>? _factionUnits;
-    private FactionExtrasData? _factionExtras;
+    private FactionData? _faction;
+    private IReadOnlyList<LoreEntry>? _lores;
     private IReadOnlyList<MagicItemEntry>? _commonMagicItems;
 
     private ArmyList _armyList = new()
     {
-        Faction = FactionKeyExtensions.All.First(),
+        FactionId = "",
         PointsTarget = 2000,
     };
 
@@ -383,30 +385,22 @@
     private string? _statusMessage;
     private bool _statusIsError;
     private string StorageKey => ArmyListStorage.ActiveKey(SystemService.CurrentSystem);
+    private string SystemName => GameSystems.DisplayNameFor(SystemService.CurrentSystem);
 
     protected override async Task OnInitializedAsync()
     {
         await Repo.EnsureLoadedAsync();
         await Portraits.EnsureLoadedAsync();
         _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
-        _composition = await Repo.GetCompositionRulesAsync();
         await TryLoadFromStorage();
     }
 
     private async Task TryLoadFromStorage()
     {
         string? saved;
-        bool fromLegacyKey = false;
         try
         {
             saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", StorageKey);
-
-            // Autosaves from before multi-system support live under the unsuffixed key.
-            if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Default)
-            {
-                saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", ArmyListStorage.LegacyActiveKey);
-                fromLegacyKey = !string.IsNullOrWhiteSpace(saved);
-            }
         }
         catch { return; }
 
@@ -416,23 +410,27 @@
         if (result.Success && result.List != null)
         {
             _armyList = result.List;
-            _factionKey = result.List.Faction.ToJsonKey();
+            _factionKey = result.List.FactionId;
             _pointsText = result.List.PointsTarget.ToString();
-            _factionUnits = await Repo.GetUnitsAsync(result.List.Faction);
-            _factionExtras = await Repo.GetFactionExtrasAsync(result.List.Faction);
+            await LoadFactionAsync(result.List.FactionId);
             Revalidate();
-
-            if (fromLegacyKey)
-            {
-                try
-                {
-                    await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, saved);
-                    await JS.InvokeVoidAsync("armyBuilder.clearLocal", ArmyListStorage.LegacyActiveKey);
-                }
-                catch { }
-            }
         }
     }
+
+    /// <summary>The faction's units, book data and composition rules, all keyed by its bundle id.</summary>
+    private async Task LoadFactionAsync(string factionId)
+    {
+        _factionUnits = await Repo.GetUnitsAsync(factionId);
+        _faction = await Repo.GetFactionAsync(factionId);
+        _lores = await Repo.GetLoresAsync(factionId);
+        _composition = await Repo.GetCompositionRulesAsync(factionId);
+    }
+
+    /// <summary>The entry's name, with the fielded profile when the book prints several.</summary>
+    private static string EntryTitle(UnitConfiguration entry) =>
+        entry.ResolvedUnit.Profiles.Count > 1
+            ? $"{entry.ResolvedUnit.Name} · {entry.PrimaryProfile.Name}"
+            : entry.ResolvedUnit.Name;
 
     // ─── Faction + points + name ──────────────────────────────────
 
@@ -441,14 +439,14 @@
         var key = e.Value?.ToString();
         _factionKey = string.IsNullOrEmpty(key) ? null : key;
         _factionUnits = null;
-        _factionExtras = null;
+        _faction = null;
+        _lores = null;
         _expanded.Clear();
 
-        if (_factionKey != null && FactionKeyExtensions.TryFromJsonKey(_factionKey, out var fk))
+        if (_factionKey != null)
         {
-            _armyList = _armyList with { Faction = fk, Units = new() };
-            _factionUnits = await Repo.GetUnitsAsync(fk);
-            _factionExtras = await Repo.GetFactionExtrasAsync(fk);
+            _armyList = _armyList with { FactionId = _factionKey, Units = new() };
+            await LoadFactionAsync(_factionKey);
         }
 
         Revalidate();
@@ -503,30 +501,10 @@
 
     private void DuplicateUnit(UnitConfiguration src)
     {
-        var clone = new UnitConfiguration(src.ResolvedUnit)
-        {
-            ModelCount = src.ModelCount,
-            Frontage = src.Frontage,
-            HasChampion = src.HasChampion,
-            HasMusician = src.HasMusician,
-            HasStandardBearer = src.HasStandardBearer,
-            SelectedWeapon = src.SelectedWeapon,
-            Loadout =
-            {
-                WizardLevel = src.Loadout.WizardLevel,
-                SelectedLore = src.Loadout.SelectedLore,
-                SelectedBanner = src.Loadout.SelectedBanner,
-                // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
-                // CustomName is also not copied — a named character should not share its identity with its clone.
-            },
-        };
-        foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
-        foreach (var (k, v) in src.SelectedMultiUpgrades) clone.SelectedMultiUpgrades[k] = v.ToList();
-        foreach (var (cat, picks) in src.Loadout.SelectedFactionUpgrades)
-            clone.Loadout.SelectedFactionUpgrades[cat] = new List<SelectedFactionUpgrade>(picks);
-        clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
-        clone.Modifiers.AddRange(src.Modifiers);
-        clone.Loadout.SelectedSpells.AddRange(src.Loadout.SelectedSpells);
+        var clone = new UnitConfiguration(src.ResolvedUnit);
+        // Duplicate does NOT copy IsGeneral / IsBattleStandardBearer — single-instance flags.
+        // CustomName is also not copied — a named character should not share its identity with its clone.
+        clone.CopySelectionsFrom(src, includeIdentity: false);
 
         var idx = _armyList.Units.IndexOf(src);
         _armyList.Units.Insert(idx + 1, clone);
@@ -672,10 +650,9 @@
             }
 
             _armyList = result.List!;
-            _factionKey = _armyList.Faction.ToJsonKey();
+            _factionKey = _armyList.FactionId;
             _pointsText = _armyList.PointsTarget.ToString();
-            _factionUnits = await Repo.GetUnitsAsync(_armyList.Faction);
-            _factionExtras = await Repo.GetFactionExtrasAsync(_armyList.Faction);
+            await LoadFactionAsync(_armyList.FactionId);
             _expanded.Clear();
 
             var msg = $"Imported {_armyList.Units.Count} units.";
@@ -693,7 +670,7 @@
     {
         _armyList = new ArmyList
         {
-            Faction = _armyList.Faction,
+            FactionId = _armyList.FactionId,
             PointsTarget = _armyList.PointsTarget,
         };
         _expanded.Clear();
@@ -764,12 +741,12 @@
             yield return Limit("Rare max", _composition.RareMaxPercent, o.RareMax, limits.RareMax,
                 v => _armyList.Overrides = _armyList.Overrides with { RareMax = v });
 
-            var (bracketSpecial, bracketRare) = ArmyCompositionRules.DuplicateLimits(_armyList.PointsTarget);
-
-            yield return Count("Special dupes", bracketSpecial, o.SpecialDuplicateLimit,
+            yield return Count("Special dupes", _composition.SpecialDuplicates.LimitFor(_armyList.PointsTarget),
+                o.SpecialDuplicateLimit,
                 v => _armyList.Overrides = _armyList.Overrides with { SpecialDuplicateLimit = v });
 
-            yield return Count("Rare dupes", bracketRare, o.RareDuplicateLimit,
+            yield return Count("Rare dupes", _composition.RareDuplicates.LimitFor(_armyList.PointsTarget),
+                o.RareDuplicateLimit,
                 v => _armyList.Overrides = _armyList.Overrides with { RareDuplicateLimit = v });
         }
     }
@@ -817,7 +794,7 @@
     private OverrideField Count(string label, int systemValue, int? overridden, Action<int?> set) =>
         new(Label: label,
             Unit: "#",
-            Placeholder: systemValue.ToString(),
+            Placeholder: systemValue == int.MaxValue ? "none" : systemValue.ToString(),
             Value: overridden?.ToString() ?? "",
             Effective: null,
             IsOverridden: overridden is not null,
@@ -897,8 +874,8 @@
             var limits = _composition.Resolve(_armyList.Overrides, _armyList.PointsTarget);
 
             // Whether characters split into Lords and Heroes is a property of the system's
-            // rules, not of a faction's data — v3 merges them into one Characters section
-            // and so declares no per-section caps.
+            // rules, not of a faction's data — a merged characters section declares no
+            // per-section caps.
             bool split = limits.LordsMax is not null || limits.HeroesMax is not null;
 
             if (limits.LordsMax is { } lordsMax)

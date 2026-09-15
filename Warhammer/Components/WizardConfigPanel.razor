@@ -5,6 +5,10 @@
 {
     <div class="mb-3 border border-secondary rounded p-2">
         <label class="form-label small text-body-secondary">Wizard</label>
+        @if (!string.IsNullOrWhiteSpace(Configuration.UnitEntry.Magic))
+        {
+            <div class="text-body-secondary mb-1" style="font-size: 0.75rem;">@Configuration.UnitEntry.Magic.Split('\n')[0]</div>
+        }
         <div class="row g-2">
             <div class="col-4">
                 <label class="form-label small text-body-secondary mb-0">Level</label>
@@ -23,7 +27,7 @@
                     <option value="">— Select lore —</option>
                     @foreach (var lore in AvailableLores)
                     {
-                        <option value="@lore.Name">@lore.Name</option>
+                        <option value="@lore.Name">@Display(lore.Name)</option>
                     }
                 </select>
             </div>
@@ -47,10 +51,10 @@
                                checked="@checkedNow"
                                disabled="@disabled"
                                @onchange="e => OnSpellToggled(spell.Name, (bool)(e.Value ?? false))" />
-                        <label class="form-check-label" for="@(_id + "-spell-" + spell.Name.GetHashCode())">
-                            @spell.Name
-                            @if (spell.Level > 0) { <span class="text-body-secondary"> (L@(spell.Level))</span> }
-                            @if (spell.CastValue > 0) { <span class="text-body-secondary"> cast @(spell.CastValue)+</span> }
+                        <label class="form-check-label" for="@(_id + "-spell-" + spell.Name.GetHashCode())" title="@spell.Text">
+                            @Display(spell.Name)
+                            @if (!string.IsNullOrEmpty(spell.Level)) { <span class="text-body-secondary"> (@LevelLabel(spell.Level))</span> }
+                            @if (!string.IsNullOrEmpty(spell.Cast)) { <span class="text-body-secondary"> cast @spell.Cast</span> }
                         </label>
                     </div>
                 }
@@ -62,17 +66,23 @@
 @code {
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
-    [Parameter] public FactionExtrasData? FactionExtras { get; set; }
+
+    /// <summary>The lores the faction's wizards may use — the book's own, then the rulebook's.</summary>
+    [Parameter] public IReadOnlyList<LoreEntry>? Lores { get; set; }
 
     private string _id = Guid.NewGuid().ToString("N")[..8];
 
-    private List<LoreEntry> AvailableLores =>
-        FactionExtras?.LoresOfMagic ?? new List<LoreEntry>();
+    private IReadOnlyList<LoreEntry> AvailableLores => Lores ?? [];
 
     private LoreEntry? SelectedLoreEntry =>
         Configuration?.Loadout.SelectedLore == null
             ? null
-            : AvailableLores.FirstOrDefault(l => l.Name == Configuration.Loadout.SelectedLore);
+            : AvailableLores.FirstOrDefault(l => string.Equals(l.Name, Configuration.Loadout.SelectedLore, StringComparison.OrdinalIgnoreCase));
+
+    private static string Display(string name) => FactionUpgrades.TitleCase(name);
+
+    /// <summary>"1" prints as "L1"; the two unnumbered kinds print as the book names them.</summary>
+    private static string LevelLabel(string level) => int.TryParse(level, out _) ? $"L{level}" : level;
 
     private async Task OnWizardLevelChanged(ChangeEventArgs e)
     {

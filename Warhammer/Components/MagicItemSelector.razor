@@ -1,11 +1,11 @@
 @using Warhammer.Models.Domain
 @using Warhammer.Models.Json
 
-@if (MagicItems.Count > 0 && Configuration != null)
+@if (MagicItems.Count > 0 && Configuration != null && Configuration.MagicItemAllowance is { } allowance)
 {
     <div class="mb-2">
         <label class="form-label small text-body-secondary">
-            Magic Items (@PointsUsed.ToString("F0") / @PointsBudget pts)
+            Magic Items (@PointsUsed.ToString("F0") / @BudgetLabel(allowance) pts)
         </label>
 
         @* ── Selected items ── *@
@@ -14,7 +14,7 @@
             <div class="border border-secondary rounded p-2 mb-1">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <strong class="small">@item.Name</strong>
+                        <strong class="small">@Display(item.Name)</strong>
                         <span class="text-body-secondary small">(@item.PointsCost pts)</span>
                     </div>
                     <button class="btn btn-outline-danger btn-sm py-0 px-1" style="font-size:0.7rem"
@@ -47,10 +47,10 @@
                     <optgroup label="@MagicItemCategories.Plural(category.Key)">
                         @foreach (var item in category)
                         {
-                            var cost = ParsePoints(item.Points);
+                            var cost = item.Cost ?? 0;
                             var disabled = cost > PointsRemaining;
-                            <option value="@item.Name" disabled="@disabled">
-                                @item.Name (@item.Points pts)@(item.Restriction != null ? $" [{item.Restriction}]" : "")
+                            <option value="@ItemKey(item)" disabled="@disabled" title="@item.Text">
+                                @Display(item.Name) (@cost.ToString("0.#") pts)@(item.Only != null ? $" [{item.Only}]" : "")
                             </option>
                         }
                     </optgroup>
@@ -68,36 +68,47 @@
     private int _expandedIndex = -1;
     private IEnumerable<IGrouping<string, MagicItemEntry>> _groupedItems = [];
 
-    private double PointsBudget => Configuration?.ResolvedUnit.MagicItemAllowance ?? 0;
-    private double PointsUsed => Configuration?.SelectedMagicItems.Sum(i => i.PointsCost) ?? 0;
+    private double PointsBudget => Configuration?.MagicItemAllowance?.PointsLimit ?? int.MaxValue;
+    private double PointsUsed => Configuration?.MagicItemSpend ?? 0;
     private double PointsRemaining => PointsBudget - PointsUsed;
+
+    private static string BudgetLabel(MagicItemAllowance allowance) =>
+        allowance.PointsLimit?.ToString() ?? "∞";
 
     protected override void OnParametersSet()
     {
+        var allowance = Configuration?.MagicItemAllowance;
+
         // Magic standards are taken through the banner slot, against the unit's own banner
         // allowance. Offering them here too let a model carry one as an ordinary item and then
-        // trip MAGIC_ITEM_CATEGORY_REPEATED against the banner it already had.
+        // trip MAGIC_ITEM_CATEGORY_REPEATED against the banner it already had. An allowance that
+        // names its lists — "Talismans up to 50 points" — offers those lists only.
         _groupedItems = MagicItems
-            .Where(i => i.Category != MagicItemCategories.MagicStandard)
-            .OrderBy(i => i.Category)
-            .ThenBy(i => ParsePoints(i.Points))
+            .Where(i => i.Category != MagicItemCategories.Standard)
+            .Where(i => allowance is null || allowance.Admits(i.Category))
+            .OrderBy(i => MagicItemCategories.All.ToList().IndexOf(i.Category) is var index && index >= 0 ? index : 99)
+            .ThenByDescending(i => i.Cost ?? 0)
             .GroupBy(i => i.Category);
     }
+
+    /// <summary>The bundle's ids are unique within a list, not across the common and faction lists together.</summary>
+    private static string ItemKey(MagicItemEntry item) => $"{(item.Common ? "common" : "faction")}:{item.Id}";
 
     private async Task OnItemSelected(ChangeEventArgs e)
     {
         if (Configuration == null) return;
-        var name = e.Value?.ToString();
-        if (string.IsNullOrEmpty(name)) return;
+        var key = e.Value?.ToString();
+        if (string.IsNullOrEmpty(key)) return;
 
-        var entry = MagicItems.FirstOrDefault(i => i.Name == name);
+        var entry = MagicItems.FirstOrDefault(i => ItemKey(i) == key);
         if (entry == null) return;
 
-        var cost = ParsePoints(entry.Points);
+        var cost = entry.Cost ?? 0;
         if (cost > PointsRemaining) return;
 
         Configuration.SelectedMagicItems.Add(new SelectedMagicItem
         {
+            Id = entry.Id,
             Name = entry.Name,
             Category = entry.Category,
             PointsCost = cost,
@@ -124,8 +135,7 @@
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
-    private static double ParsePoints(string points) =>
-        double.TryParse(points, out var v) ? v : 0;
+    private static string Display(string name) => FactionUpgrades.TitleCase(name);
 
     private static bool HasAnyEffect(UnitModifier m) =>
         m.StrengthBonus.HasValue || m.ToughnessBonus.HasValue || m.AttacksBonus.HasValue

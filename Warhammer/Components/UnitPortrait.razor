@@ -9,9 +9,9 @@
     var heightPx = $"{Height}px";
     var border = ShowBorder ? "1px solid #444" : "none";
 
-    @if (Portraits.HasPortrait(Unit.Faction, Unit.Name))
+    @if (Portraits.HasPortrait(Unit.FactionId, Unit.Name))
     {
-        <img src="@Portraits.GetPortraitUrl(Unit.Faction, Unit.Name)"
+        <img src="@Portraits.GetPortraitUrl(Unit.FactionId, Unit.Name)"
              alt="@Unit.Name"
              title="@Unit.Name"
              class="unit-portrait"

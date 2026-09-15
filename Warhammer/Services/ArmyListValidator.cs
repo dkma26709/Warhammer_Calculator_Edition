@@ -1,18 +1,15 @@
-using System.Text.RegularExpressions;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
+using Warhammer.Models.Json;
 
 namespace Warhammer.Services;
 
 public class ArmyListValidator
 {
-    private static readonly Regex PerArmyPattern =
-        new(@"\b0-(\d+)\s+per\s+army\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
     /// <param name="rules">
-    /// The active system's percentages. Passed per call rather than held as state because this
-    /// is a singleton and the selected system can change at runtime. Any
-    /// <see cref="ArmyList.Overrides"/> on the list win over these.
+    /// The active system's rules, with the faction's own unit constraints. Passed per call
+    /// rather than held as state because this is a singleton and the selected faction can
+    /// change at runtime. Any <see cref="ArmyList.Overrides"/> on the list win over these.
     /// </param>
     public List<ValidationIssue> Validate(ArmyList list, CompositionRules rules)
     {
@@ -28,7 +25,7 @@ public class ArmyListValidator
         var limits = rules.Resolve(list.Overrides, list.PointsTarget);
 
         // Null limit = neither the system nor the list imposes one
-        // (wap-v3 has no Lords/Heroes sections).
+        // (a book with one characters section has no Lords/Heroes caps).
         if (limits.LordsMax is { } lordsMax)
             CheckMax(issues, list, UnitCategory.Lords, lordsMax, "LORDS_OVER_CAP", "Lords");
 
@@ -73,31 +70,34 @@ public class ArmyListValidator
             }
         }
 
-        if (characters.Count == 0)
+        if (rules.GeneralRequired)
         {
-            issues.Add(new(ValidationSeverity.Error, "NO_GENERAL",
-                "Army must include at least one character to act as General"));
-        }
-        else
-        {
-            var generals = characters.Where(c => c.Loadout.IsGeneral).ToList();
-            if (generals.Count == 0)
+            if (characters.Count == 0)
             {
-                issues.Add(new(ValidationSeverity.Warning, "NO_GENERAL_DESIGNATED",
-                    "No General designated — pick one character to lead the army"));
+                issues.Add(new(ValidationSeverity.Error, "NO_GENERAL",
+                    "Army must include at least one character to act as General"));
             }
-            else if (generals.Count > 1)
+            else
             {
-                issues.Add(new(ValidationSeverity.Error, "MULTIPLE_GENERALS",
-                    $"Exactly one character may be General (found {generals.Count})"));
+                var generals = characters.Where(c => c.Loadout.IsGeneral).ToList();
+                if (generals.Count == 0)
+                {
+                    issues.Add(new(ValidationSeverity.Warning, "NO_GENERAL_DESIGNATED",
+                        "No General designated — pick one character to lead the army"));
+                }
+                else if (generals.Count > 1)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "MULTIPLE_GENERALS",
+                        $"Exactly one character may be General (found {generals.Count})"));
+                }
             }
         }
 
         var bsbs = list.Units.Where(u => u.Loadout.IsBattleStandardBearer).ToList();
-        if (bsbs.Count > 1)
+        if (bsbs.Count > rules.BattleStandardMax)
         {
             issues.Add(new(ValidationSeverity.Error, "MULTIPLE_BSB",
-                $"Only one character may carry the Battle Standard (found {bsbs.Count})"));
+                $"Only {rules.BattleStandardMax} character may carry the Battle Standard (found {bsbs.Count})"));
         }
         foreach (var bsb in bsbs)
         {
@@ -116,78 +116,63 @@ public class ArmyListValidator
         }
 
         CheckMagicItems(issues, list);
+        CheckFactionUpgrades(issues, list);
 
-        foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Name))
+        // "Each special character may be included once."
+        foreach (var group in list.Units.Where(u => u.ResolvedUnit.Named).GroupBy(u => u.ResolvedUnit.Id))
         {
-            var representative = group.First();
-            var notes = representative.UnitEntry.Notes ?? "";
-            var match = PerArmyPattern.Match(notes);
-            if (match.Success && int.TryParse(match.Groups[1].Value, out var cap) && group.Count() > cap)
+            if (group.Count() > rules.SpecialCharactersMaxEach)
             {
-                issues.Add(new(ValidationSeverity.Error, "PER_ARMY_LIMIT_EXCEEDED",
-                    $"{group.Key}: 0-{cap} per army limit exceeded ({group.Count()} in list)",
-                    representative));
+                issues.Add(new(ValidationSeverity.Error, "SPECIAL_CHARACTER_REPEATED",
+                    $"{group.First().ResolvedUnit.Name} is a special character and may be included " +
+                    $"{rules.SpecialCharactersMaxEach} time(s) ({group.Count()} in list)",
+                    group.First()));
             }
         }
 
-        int specialCap = limits.SpecialDuplicateLimit;
-        int rareCap = limits.RareDuplicateLimit;
-        foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Name))
-        {
-            var representative = group.First();
-            var category = representative.ResolvedUnit.Category;
-            int count = group.Count();
-
-            if (category == UnitCategory.Special && count > specialCap)
-            {
-                issues.Add(new(ValidationSeverity.Error, "DUPLICATE_LIMIT_EXCEEDED",
-                    $"{group.Key}: Special duplicate limit {specialCap} exceeded ({count} in list)",
-                    representative));
-            }
-            else if (category == UnitCategory.Rare && count > rareCap)
-            {
-                issues.Add(new(ValidationSeverity.Error, "DUPLICATE_LIMIT_EXCEEDED",
-                    $"{group.Key}: Rare duplicate limit {rareCap} exceeded ({count} in list)",
-                    representative));
-            }
-        }
+        CheckUnitConstraints(issues, list, rules);
+        CheckDuplicates(issues, list, rules, limits);
 
         return issues;
     }
 
     /// <summary>
-    /// Magic item rules: an entry may spend up to the allowance its army book prints, and no
-    /// model may hold two items from one of the six printed categories. Dwarf runes are exempt
-    /// from that limit — up to three go on a single item — but no master rune may be repeated
-    /// across the army. Other duplicates are only a warning: the books exempt some items, and
-    /// the extracted item lists don't record which.
+    /// Magic item rules: an entry may spend up to the allowance its army book prints — the
+    /// picks from any upgrade family the same allowance pays for included — only from the
+    /// lists it admits, and no model may hold two items from one of the six printed lists.
+    /// Other duplicates are only a warning: the books exempt some items, and the item lists
+    /// don't record which.
     /// </summary>
     private static void CheckMagicItems(List<ValidationIssue> issues, ArmyList list)
     {
         foreach (var unit in list.Units)
         {
             string name = unit.DisplayName;
+            var allowance = unit.MagicItemAllowance;
 
             if (unit.SelectedMagicItems.Count > 0)
             {
-                double spent = unit.SelectedMagicItems.Sum(i => i.PointsCost);
-                if (unit.ResolvedUnit.MagicItemAllowance is not int allowance)
+                if (allowance is null)
                 {
                     issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_NOT_ALLOWED",
                         $"{name} has no magic item allowance but carries " +
                         $"{unit.SelectedMagicItems.Count} item(s)",
                         unit));
                 }
-                else if (spent > allowance)
+                else
                 {
-                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_OVER_BUDGET",
-                        $"{name} spends {spent:F0} on magic items, over its {allowance} allowance",
-                        unit));
+                    foreach (var item in unit.SelectedMagicItems.Where(i => !allowance.Admits(i.Category)))
+                    {
+                        issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEM_TYPE_NOT_ALLOWED",
+                            $"{name} may only take {string.Join(", ", allowance.ItemTypes!.Select(MagicItemCategories.Plural))}, " +
+                            $"not {item.Name} ({MagicItemCategories.Singular(item.Category)})",
+                            unit));
+                    }
                 }
 
                 foreach (var category in unit.SelectedMagicItems
                              .Where(i => MagicItemCategories.HasOnePerModelLimit(i.Category))
-                             .GroupBy(i => i.Category)
+                             .GroupBy(i => i.Category, StringComparer.OrdinalIgnoreCase)
                              .Where(g => g.Count() > 1))
                 {
                     issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEM_CATEGORY_REPEATED",
@@ -199,15 +184,26 @@ public class ArmyListValidator
                 }
             }
 
+            if (allowance?.PointsLimit is { } limit)
+            {
+                double spent = unit.MagicItemSpend;
+                if (spent > limit)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_OVER_BUDGET",
+                        $"{name} spends {spent:F0} on magic items, over its {limit} allowance",
+                        unit));
+                }
+            }
+
             if (unit.Loadout.SelectedBanner is { } banner)
             {
-                if (unit.BannerBudget is not int bannerCap)
+                if (unit.MagicStandardAllowance is not { } bannerAllowance)
                 {
                     issues.Add(new(ValidationSeverity.Error, "BANNER_NOT_ALLOWED",
                         $"{name} carries {banner.Name} but cannot take a magic standard",
                         unit));
                 }
-                else if (banner.PointsCost > bannerCap)
+                else if (bannerAllowance.PointsLimit is { } bannerCap && banner.PointsCost > bannerCap)
                 {
                     issues.Add(new(ValidationSeverity.Error, "BANNER_OVER_BUDGET",
                         $"{name}: {banner.Name} costs {banner.PointsCost:F0}, " +
@@ -240,7 +236,175 @@ public class ArmyListValidator
         }
     }
 
-    /// <summary>Every magic item on a unit: its own picks, plus the magic standard it carries.</summary>
+    /// <summary>
+    /// Faction upgrade rules: a family the book caps — "engineering runes up to 50 points" —
+    /// may not be overspent, and a family an entry is not offered cannot be picked from.
+    /// </summary>
+    private static void CheckFactionUpgrades(List<ValidationIssue> issues, ArmyList list)
+    {
+        foreach (var unit in list.Units)
+        {
+            var offered = unit.OfferedFamilies.ToDictionary(f => f.Family, StringComparer.OrdinalIgnoreCase);
+
+            foreach (var (family, picks) in unit.Loadout.SelectedFactionUpgrades)
+            {
+                if (picks.Count == 0) continue;
+
+                if (!offered.TryGetValue(family, out var offer))
+                {
+                    issues.Add(new(ValidationSeverity.Error, "FACTION_UPGRADE_NOT_ALLOWED",
+                        $"{unit.DisplayName} is not offered {family.Replace('-', ' ')} but takes " +
+                        $"{string.Join(", ", picks.Select(p => p.Name))}",
+                        unit));
+                    continue;
+                }
+
+                // A family paid for by the magic item allowance is checked with the items.
+                if (offer.ThroughMagicItems || offer.PointsLimit is not { } cap) continue;
+
+                double spent = picks.Sum(p => p.PointsCost);
+                if (spent > cap)
+                {
+                    issues.Add(new(ValidationSeverity.Error, "FACTION_UPGRADE_OVER_BUDGET",
+                        $"{unit.DisplayName} spends {spent:F0} on {family.Replace('-', ' ')}, over its {cap} allowance",
+                        unit));
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// The constraints a book prints under its units, as the bundle reads them. Handler ratios
+    /// within a unit are not checked: the handler's count is not something the list records.
+    /// </summary>
+    private static void CheckUnitConstraints(List<ValidationIssue> issues, ArmyList list, CompositionRules rules)
+    {
+        foreach (var constraint in rules.UnitConstraints)
+        {
+            var affected = list.Units
+                .Where(u => constraint.UnitIds.Contains(u.ResolvedUnit.Id, StringComparer.OrdinalIgnoreCase))
+                .ToList();
+            if (affected.Count == 0) continue;
+
+            var representative = affected[0];
+            string label = representative.ResolvedUnit.Name;
+
+            switch (constraint.Type)
+            {
+                case "max":
+                case "limited":
+                {
+                    var counted = constraint.ProfileId is { } profile
+                        ? affected.Where(u => string.Equals(u.SelectedProfileId, profile, StringComparison.OrdinalIgnoreCase)).ToList()
+                        : affected;
+                    if (constraint.Max is not { } max) break;
+
+                    int cap = constraint.PerPoints is { } per && per > 0
+                        ? max * Math.Max(1, list.PointsTarget / per)
+                        : max;
+
+                    if (counted.Count > cap)
+                    {
+                        issues.Add(new(ValidationSeverity.Error, "PER_ARMY_LIMIT_EXCEEDED",
+                            $"{label}: {constraint.Raw} ({counted.Count} in list, limit {cap})",
+                            counted[0]));
+                    }
+                    break;
+                }
+
+                case "ratio":
+                {
+                    int have = list.Units.Count(u => Satisfies(u, constraint));
+                    int max = constraint.Max ?? 1;
+                    int allowed = constraint.PerUnit == true ? have * max : max;
+                    if (affected.Count > allowed)
+                    {
+                        issues.Add(new(ValidationSeverity.Error, "RATIO_EXCEEDED",
+                            $"{label}: {constraint.Raw} ({affected.Count} in list, {have} required unit(s))",
+                            representative));
+                    }
+                    break;
+                }
+
+                case "general":
+                {
+                    if (constraint.MayBeGeneral == false)
+                    {
+                        foreach (var unit in affected.Where(u => u.Loadout.IsGeneral))
+                        {
+                            issues.Add(new(ValidationSeverity.Error, "MAY_NOT_BE_GENERAL",
+                                $"{unit.DisplayName}: {constraint.Raw}", unit));
+                        }
+                    }
+
+                    if (constraint.MustBeGeneral == true
+                        && !affected.Any(u => u.Loadout.IsGeneral)
+                        && list.Units.Any(u => u.Loadout.IsGeneral))
+                    {
+                        issues.Add(new(ValidationSeverity.Error, "MUST_BE_GENERAL",
+                            $"{label}: {constraint.Raw}", representative));
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    /// <summary>Whether a unit is one of those a ratio constraint counts against — by id, or by a rule it has.</summary>
+    private static bool Satisfies(UnitConfiguration unit, UnitConstraintEntry constraint)
+    {
+        var id = unit.ResolvedUnit.Id;
+        if (constraint.Requires?.Contains(id, StringComparer.OrdinalIgnoreCase) == true) return true;
+        if (constraint.RequiresRule is { } rule
+            && unit.SpecialRules.AllRuleNames.Any(r => r.Contains(rule, StringComparison.OrdinalIgnoreCase)))
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// The duplicate chart: how many of one Special or Rare entry a list may field at its
+    /// points target. A book may let two of an entry fill one choice — "1-2 Bolt Throwers as a
+    /// single Rare choice" — in which case the pair counts once.
+    /// </summary>
+    private static void CheckDuplicates(List<ValidationIssue> issues, ArmyList list, CompositionRules rules, EffectiveLimits limits)
+    {
+        int specialCap = limits.SpecialDuplicateLimit;
+        int rareCap = limits.RareDuplicateLimit;
+
+        foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Id))
+        {
+            var representative = group.First();
+            var category = representative.ResolvedUnit.Category;
+            int count = group.Count();
+
+            var perSlot = rules.UnitConstraints.FirstOrDefault(c =>
+                c.Type == "perSlot"
+                && c.PerSlot is { Max: > 0 }
+                && c.UnitIds.Contains(group.Key, StringComparer.OrdinalIgnoreCase));
+            int choices = perSlot is not null
+                ? (count + perSlot.PerSlot!.Max - 1) / perSlot.PerSlot.Max
+                : count;
+
+            string name = representative.ResolvedUnit.Name;
+            if (category == UnitCategory.Special && choices > specialCap)
+            {
+                issues.Add(new(ValidationSeverity.Error, "DUPLICATE_LIMIT_EXCEEDED",
+                    $"{name}: Special duplicate limit {specialCap} exceeded ({count} in list)",
+                    representative));
+            }
+            else if (category == UnitCategory.Rare && choices > rareCap)
+            {
+                issues.Add(new(ValidationSeverity.Error, "DUPLICATE_LIMIT_EXCEEDED",
+                    $"{name}: Rare duplicate limit {rareCap} exceeded ({count} in list)",
+                    representative));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Every magic item on a unit: its own picks, the magic standard it carries, and the runes
+    /// and other upgrade-family picks that answer to the once-per-army rule.
+    /// </summary>
     private static IEnumerable<(UnitConfiguration Unit, string ItemName)> CarriedItems(UnitConfiguration unit)
     {
         foreach (var item in unit.SelectedMagicItems)
@@ -248,6 +412,10 @@ public class ArmyListValidator
 
         if (unit.Loadout.SelectedBanner is { } banner)
             yield return (unit, banner.Name);
+
+        foreach (var picks in unit.Loadout.SelectedFactionUpgrades.Values)
+            foreach (var pick in picks.Where(p => MagicItemCategories.IsMasterRune(p.Name)))
+                yield return (unit, pick.Name);
     }
 
     private static void CheckMax(

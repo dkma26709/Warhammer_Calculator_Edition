@@ -18,16 +18,19 @@ public static class TestHelpers
     public static readonly CoreRulesData CoreData;
     private static readonly Lazy<GameDataRepository> LazyRepo;
 
+    /// <summary>The faction id fixture units are filed under. Any real faction will do; it only has to exist.</summary>
+    public const string FixtureFaction = "empire";
+
     static TestHelpers()
     {
-        var dataDir = Path.Combine(FindProjectRoot(), "wwwroot", "data", "wap-v2");
+        var dataDir = Path.Combine(FindProjectRoot(), "wwwroot", "data", GameSystems.Default);
         var json = File.ReadAllText(Path.Combine(dataDir, "core-rules.json"));
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         CoreData = JsonSerializer.Deserialize<CoreRulesData>(json, options)!;
         LazyRepo = new Lazy<GameDataRepository>(() => CreateRepository());
     }
 
-    /// <summary>Shared repository instance for test unit resolution (wap-v2).</summary>
+    /// <summary>Shared repository instance for test unit resolution (the default system).</summary>
     public static GameDataRepository Repo => LazyRepo.Value;
 
     private static readonly Dictionary<string, GameDataRepository> RepoCache = new();
@@ -35,7 +38,7 @@ public static class TestHelpers
     /// <summary>
     /// A fully-loaded repository for a specific game system, cached across tests. Use this in
     /// preference to hand-rolling the service stack — the wiring order matters, and a
-    /// <see cref="GameSystemService"/> left uninitialised silently serves wap-v2 data.
+    /// <see cref="GameSystemService"/> left uninitialised silently serves the default system's data.
     /// </summary>
     public static GameDataRepository RepoFor(string systemKey)
     {
@@ -56,6 +59,15 @@ public static class TestHelpers
     /// </summary>
     public static Func<BaseTroopType, TroopTypeRules> TroopTypeRulesFor(string systemKey)
         => RepoFor(systemKey).GetTroopTypeRules;
+
+    /// <summary>A unit of the shared repository by faction id and book name, case-insensitive.</summary>
+    public static async Task<Unit> FindUnitAsync(string factionId, string name, string systemKey = GameSystems.Default)
+    {
+        var units = await RepoFor(systemKey).GetUnitsAsync(factionId);
+        return units.FirstOrDefault(u => string.Equals(u.Name, name, StringComparison.OrdinalIgnoreCase))
+            ?? throw new InvalidOperationException(
+                $"{factionId} has no unit named '{name}'. Units: {string.Join(", ", units.Select(u => u.Name))}");
+    }
 
     public static string FindProjectRoot()
     {
@@ -81,7 +93,7 @@ public static class TestHelpers
 
     /// <summary>
     /// Create a fully-loaded GameDataRepository backed by the on-disk wwwroot data.
-    /// Weapons, armour, troop type figures and the system manifest are all resolved.
+    /// Weapons, armour, troop type figures and the bundle's faction list are all resolved.
     /// </summary>
     public static GameDataRepository CreateRepository(string systemKey = GameSystems.Default)
     {
@@ -92,8 +104,8 @@ public static class TestHelpers
         var system = new GameSystemService();
         system.Initialize(systemKey);
         var coreRules = new CoreRulesService(http, system);
-        var factionData = new FactionDataService(http, system);
-        var repo = new GameDataRepository(coreRules, factionData, system);
+        var bundle = new BundleService(http, system);
+        var repo = new GameDataRepository(coreRules, bundle, system);
         repo.EnsureLoadedAsync().GetAwaiter().GetResult();
         return repo;
     }
@@ -112,16 +124,25 @@ public static class TestHelpers
         string? unitSize = "10+",
         string? baseSize = "25x25",
         ProfileEntry? mountProfile = null,
-        List<UnitOption>? options = null,
-        string systemKey = GameSystems.Default)
+        List<OptionGroup>? options = null,
+        string systemKey = GameSystems.Default,
+        UnitCategory category = UnitCategory.Core,
+        IReadOnlyList<ProfileEntry>? profiles = null,
+        IReadOnlyDictionary<string, MountOption>? mountOptions = null)
     {
         // Everything — weapons, armour and the troop type figures — comes from the one system,
         // so a unit can't end up with one edition's troop type wearing another's weapon rules.
         var repo = RepoFor(systemKey);
-        var primaryProfile = new ProfileEntry
-        {
-            Name = name, M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points
-        };
+
+        // When the caller supplies the entry's priced profiles, the first is the one fielded by
+        // default, as the repository does; otherwise the stats given build the one profile.
+        var primaryProfile = profiles is { Count: > 0 }
+            ? profiles[0]
+            : new ProfileEntry
+            {
+                Id = Slug(name), Name = name,
+                M = m, WS = ws, BS = bs, S = s, T = t, W = w, I = i, A = a, Ld = ld, Points = points,
+            };
 
         var parsedTroopType = TroopTypeInfo.Parse(troopType, repo.GetTroopTypeRules);
         var parsedRules = ParsedSpecialRules.Parse(specialRules);
@@ -172,23 +193,24 @@ public static class TestHelpers
             };
         }
 
-        // Resolve command availability
-        var command = ResolveCommand(options);
+        var groups = options ?? [];
 
         // Build the raw UnitEntry for RawEntry
-        var profiles = new List<ProfileEntry> { primaryProfile };
-        if (mountProfile != null) profiles.Add(mountProfile);
+        var allProfiles = new List<ProfileEntry>(profiles ?? [primaryProfile]);
+        if (mountProfile != null) allProfiles.Add(mountProfile);
 
         var rawEntry = new UnitEntry
         {
+            Id = Slug(name),
             Name = name,
+            Section = category.ToSectionKey(),
             TroopType = troopType,
-            Profiles = profiles,
+            Profiles = allProfiles,
             Equipment = equipment,
             SpecialRules = specialRules,
             UnitSize = unitSize,
             BaseSize = baseSize,
-            Options = options,
+            OptionGroups = groups,
         };
 
         // Build available armour dictionary from repo (all armour types)
@@ -201,66 +223,151 @@ public static class TestHelpers
 
         return new Unit
         {
+            Id = Slug(name),
             Name = name,
-            Faction = FactionKey.TheEmpire,
-            Category = UnitCategory.Core,
+            FactionId = FixtureFaction,
+            Category = category,
             BaseModel = baseModel,
+            Profiles = profiles ?? [primaryProfile],
             Mount = mount,
+            MountOptions = mountOptions ?? new Dictionary<string, MountOption>(),
             BaseWidthMm = UnitConfiguration.ParseBaseWidthMm(baseSize),
-            Options = options ?? [],
+            OptionGroups = groups,
             MinUnitSize = parsedTroopType.IsCharacter ? 1 : UnitConfiguration.ParseMinUnitSize(unitSize),
             MaxUnitSize = null,
-            BaseModelCost = points ?? 0,
-            Command = command,
-            MagicItemAllowance = Unit.ResolveMagicItemAllowance(name, options),
+            BaseModelCost = primaryProfile.Points ?? points ?? 0,
+            Command = CommandAvailability.FromGroups(groups),
             AvailableArmour = availableArmour,
             RawEntry = rawEntry,
         };
     }
 
-    private static CommandAvailability ResolveCommand(List<UnitOption>? options)
+    /// <summary>kebab-case, as the bundle derives ids from names.</summary>
+    public static string Slug(string text) => FactionUpgrades.Slug(text);
+
+    // ─── Option group fixtures ──────────────────────────────────────
+
+    /// <summary>An equipment group: "May choose one of the following" (select one) or independent adds.</summary>
+    public static OptionGroup Equipment(string id, SelectMode select, params OptionChoice[] choices) => new()
     {
-        if (options == null || options.Count == 0)
-            return CommandAvailability.None;
+        Id = id,
+        Kind = OptionKind.Equipment.ToJsonKey(),
+        Select = select.ToString().ToLowerInvariant(),
+        Min = 0,
+        Max = select == SelectMode.One ? 1 : choices.Length,
+        Raw = select == SelectMode.One ? "May choose one of the following:" : "May take any of the following:",
+        Choices = [.. choices],
+    };
 
-        bool canChamp = false, canMus = false, canStd = false;
-        double champCost = 0, musCost = 0, stdCost = 0;
+    /// <summary>A single-line equipment option — "May take a shield +1 point/model".</summary>
+    public static OptionGroup Equipment(string name, double? points, bool perModel = false, string? replaces = null) => new()
+    {
+        Id = Slug(name),
+        Kind = OptionKind.Equipment.ToJsonKey(),
+        Select = "any",
+        Min = 0,
+        Max = 1,
+        Raw = $"May take {name}",
+        Choices = [Choice(name, points, perModel, replaces)],
+    };
 
-        foreach (var opt in options)
+    public static OptionChoice Choice(string name, double? points, bool perModel = false, string? replaces = null) => new()
+    {
+        Id = Slug(name),
+        Name = name,
+        Points = points,
+        PerModel = perModel,
+        Replaces = replaces,
+        Raw = points is null ? name : $"{name} +{points} points{(perModel ? "/model" : "")}",
+    };
+
+    /// <summary>A command group with a nested magic standard allowance when a banner cap is given.</summary>
+    public static OptionGroup Command(CommandRole role, double points, int? bannerCap = null, bool bannerUnlimited = false)
+    {
+        var roleKey = role switch
         {
-            if (opt.Type != "command" || opt.Role == null) continue;
-            double cost = opt.Points ?? 0;
-
-            if (!CommandRoleExtensions.TryFromRoleText(opt.Role, out var role))
-                continue;
-
-            switch (role)
+            CommandRole.Champion => "champion",
+            CommandRole.Musician => "musician",
+            _ => "standardBearer",
+        };
+        var choice = new OptionChoice
+        {
+            Id = roleKey, Name = role.ToString(), Points = points, Raw = $"May upgrade one model to a {role} +{points} points",
+        };
+        if (bannerCap is not null || bannerUnlimited)
+        {
+            choice = choice with
             {
-                case CommandRole.Champion:
-                    canChamp = true;
-                    champCost = cost;
-                    break;
-                case CommandRole.Musician:
-                    canMus = true;
-                    musCost = cost;
-                    break;
-                case CommandRole.StandardBearer:
-                    canStd = true;
-                    stdCost = cost;
-                    break;
-            }
+                Options =
+                [
+                    new OptionGroup
+                    {
+                        Id = "magic-standard", Kind = OptionKind.MagicStandard.ToJsonKey(), Select = "any",
+                        Min = 0, Max = 1, PointsLimit = bannerCap,
+                        Raw = bannerCap is null ? "May take a Magic Standard with no points limit" : $"May take a Magic Standard worth up to {bannerCap} points",
+                        Choices = [new OptionChoice { Id = "magic-standard", Name = "Magic Standard", Raw = "May take a Magic Standard" }],
+                    },
+                ],
+            };
         }
 
-        return new CommandAvailability
+        return new OptionGroup
         {
-            CanHaveChampion = canChamp,
-            ChampionCost = champCost,
-            CanHaveMusician = canMus,
-            MusicianCost = musCost,
-            CanHaveStandardBearer = canStd,
-            StandardBearerCost = stdCost,
+            Id = roleKey, Kind = OptionKind.Command.ToJsonKey(), Select = "any", Min = 0, Max = 1,
+            Role = roleKey, Raw = choice.Raw, Choices = [choice],
         };
     }
+
+    /// <summary>A magic item allowance, optionally for one profile, one list, or a family too.</summary>
+    public static OptionGroup MagicItems(int? limit, string? appliesTo = null, List<string>? itemTypes = null, List<string>? families = null) => new()
+    {
+        Id = appliesTo is null ? "magic-items" : $"magic-items-{appliesTo}",
+        Kind = OptionKind.MagicItems.ToJsonKey(),
+        Select = "any", Min = 0, Max = 1,
+        AppliesTo = appliesTo,
+        PointsLimit = limit,
+        ItemTypes = itemTypes,
+        Families = families,
+        Raw = appliesTo is null
+            ? $"May take Magic Items up to a total of {limit} points"
+            : $"A {appliesTo} may take Magic Items up to a total of {limit} points",
+        Choices = [new OptionChoice { Id = "magic-items", Name = "Magic Items", Raw = "Magic Items" }],
+    };
+
+    public static OptionGroup BattleStandard(double points, string? appliesTo = null) => new()
+    {
+        Id = "battle-standard", Kind = OptionKind.BattleStandard.ToJsonKey(), Select = "any", Min = 0, Max = 1,
+        AppliesTo = appliesTo, Points = points,
+        Raw = $"May carry the Battle Standard +{points} points",
+        Choices = [new OptionChoice { Id = "battle-standard", Name = "Battle Standard", Points = points, Raw = "Battle Standard" }],
+    };
+
+    public static OptionGroup WizardLevel(double points) => new()
+    {
+        Id = "wizard-level", Kind = OptionKind.WizardLevel.ToJsonKey(), Select = "any", Min = 0, Max = 1,
+        Raw = $"May take an additional Wizard Level +{points} points",
+        Choices = [new OptionChoice { Id = "additional-wizard-level", Name = "additional Wizard Level", Points = points, LevelDelta = 1, Raw = "additional Wizard Level" }],
+    };
+
+    /// <summary>A faction upgrade family offered by a group, with an optional per-pick rate.</summary>
+    public static OptionGroup FactionUpgrade(string family, double? rate = null, bool perModel = false, int? pointsLimit = null) => new()
+    {
+        Id = family, Kind = OptionKind.FactionUpgrade.ToJsonKey(), Select = "any", Min = 0, Max = 1,
+        Family = family, PointsLimit = pointsLimit,
+        Raw = $"May take {family.Replace('-', ' ')}",
+        Choices = [new OptionChoice { Id = family, Name = family.Replace('-', ' '), Points = rate, PerModel = perModel, Raw = $"May take {family}" }],
+    };
+
+    /// <summary>A mount menu whose choices name the mounts by id.</summary>
+    public static OptionGroup Mounts(params (string Name, double Points, string? UnitId)[] mounts) => new()
+    {
+        Id = "mount", Kind = OptionKind.Mount.ToJsonKey(), Select = "one", Min = 0, Max = 1,
+        Raw = "May be mounted on one of the following:",
+        Choices = mounts.Select(m => new OptionChoice
+        {
+            Id = Slug(m.Name), Name = m.Name, Points = m.Points, UnitId = m.UnitId, Raw = $"{m.Name} +{m.Points} points",
+        }).ToList(),
+    };
 
     // ─── Statistical Helpers ────────────────────────────────────────
 
@@ -344,7 +451,7 @@ public record AggregatedRoundResult(int Trials, long TotalAttackerWounds, long T
 
 /// <summary>
 /// HttpMessageHandler that reads files from a local directory, mapping URL paths to file paths.
-/// e.g. GET http://localhost/data/wap-v2/core-rules.json → {baseDir}/data/wap-v2/core-rules.json
+/// e.g. GET http://localhost/data/war/core-rules.json → {baseDir}/data/war/core-rules.json
 /// </summary>
 public class FileBasedHttpHandler : HttpMessageHandler
 {

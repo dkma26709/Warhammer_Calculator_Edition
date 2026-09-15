@@ -1,18 +1,10 @@
-using System.Text.Json;
 using Warhammer.Models.Domain;
-using Warhammer.Models.Enums;
-using Warhammer.Models.Json;
 using Warhammer.Services;
 
 namespace Warhammer.Tests;
 
 public class GameSystemTests
 {
-    private static readonly JsonSerializerOptions JsonOptions = new()
-    {
-        PropertyNameCaseInsensitive = true
-    };
-
     [Fact]
     public void Registry_DefaultSystemIsEnabled()
     {
@@ -21,16 +13,16 @@ public class GameSystemTests
     }
 
     [Fact]
-    public void Service_DefaultsToWapV2()
+    public void Service_DefaultsToTheDefaultSystem()
     {
-        Assert.Equal("wap-v2", new GameSystemService().CurrentSystem);
+        Assert.Equal(GameSystems.Default, new GameSystemService().CurrentSystem);
     }
 
     [Theory]
     [InlineData(null)]
     [InlineData("")]
     [InlineData("not-a-system")]
-    [InlineData("old-world")] // exists in the registry but is disabled
+    [InlineData("wap-v3")] // an old system this build no longer ships
     public void Initialize_InvalidOrDisabledKey_KeepsDefault(string? persisted)
     {
         var service = new GameSystemService();
@@ -38,22 +30,27 @@ public class GameSystemTests
         Assert.Equal(GameSystems.Default, service.CurrentSystem);
     }
 
-    [Theory]
-    [InlineData("wap-v2")]
-    [InlineData("wap-v3")]
-    public void Initialize_EnabledKey_SetsCurrentSystem(string key)
+    [Fact]
+    public void Initialize_EnabledKey_SetsCurrentSystem()
     {
         var service = new GameSystemService();
-        service.Initialize(key);
-        Assert.Equal(key, service.CurrentSystem);
+        service.Initialize(GameSystems.War);
+        Assert.Equal(GameSystems.War, service.CurrentSystem);
     }
 
     [Fact]
     public void DataPath_ResolvesInsideSystemFolder()
     {
         var service = new GameSystemService();
-        Assert.Equal("data/wap-v2/core-rules.json", service.DataPath("core-rules.json"));
-        Assert.Equal("data/wap-v2/factions/dwarfs.json", service.DataPath("factions/dwarfs.json"));
+        Assert.Equal($"data/{GameSystems.Default}/core-rules.json", service.DataPath("core-rules.json"));
+    }
+
+    [Fact]
+    public void Bundle_PathIsNamedAfterTheSystem()
+    {
+        var service = new GameSystemService();
+        var bundle = new BundleService(new HttpClient(), service);
+        Assert.Equal($"data/{GameSystems.Default}/{GameSystems.Default}.json", bundle.BundlePath);
     }
 
     public static TheoryData<string> EnabledSystems()
@@ -64,39 +61,22 @@ public class GameSystemTests
         return data;
     }
 
+    /// <summary>Adding a system is a data exercise: the bundle and the two engine files, nothing else.</summary>
     [Theory]
     [MemberData(nameof(EnabledSystems))]
-    public void Manifest_ParsesAndEveryFactionResolvesWithDataFiles(string systemKey)
+    public void EverySystem_ShipsItsBundleAndEngineFiles(string systemKey)
     {
-        var systemDir = Path.Combine(
-            TestHelpers.FindProjectRoot(), "wwwroot", "data", systemKey);
-        var manifest = JsonSerializer.Deserialize<SystemManifest>(
-            File.ReadAllText(Path.Combine(systemDir, "manifest.json")), JsonOptions);
+        var systemDir = TestPaths.SystemDataDir(systemKey);
 
-        Assert.NotNull(manifest);
-        Assert.Equal(systemKey, manifest.System);
-        Assert.NotEmpty(manifest.Factions);
-
-        Assert.True(File.Exists(Path.Combine(systemDir, "core-rules.json")),
-            $"Missing core-rules.json for '{systemKey}'");
-        Assert.True(File.Exists(Path.Combine(systemDir, "common-magic-items.json")),
-            $"Missing common-magic-items.json for '{systemKey}'");
-
-        foreach (var key in manifest.Factions)
-        {
-            Assert.True(FactionKeyExtensions.TryFromJsonKey(key, out _),
-                $"Manifest faction '{key}' has no FactionKey");
-            Assert.True(File.Exists(Path.Combine(systemDir, "factions", $"{key}.json")),
-                $"Missing roster file for '{key}'");
-            Assert.True(File.Exists(Path.Combine(systemDir, "factions", $"{key}-extras.json")),
-                $"Missing extras file for '{key}'");
-        }
+        Assert.True(File.Exists(Path.Combine(systemDir, $"{systemKey}.json")), $"Missing bundle for '{systemKey}'");
+        Assert.True(File.Exists(Path.Combine(systemDir, "core-rules.json")), $"Missing core-rules.json for '{systemKey}'");
+        Assert.True(File.Exists(Path.Combine(systemDir, "troop-types.json")), $"Missing troop-types.json for '{systemKey}'");
     }
 
     [Fact]
-    public void Repository_AllFactions_ComesFromManifest()
+    public void Repository_AllFactions_ComesFromTheBundle()
     {
-        // TestHelpers.Repo loads the wap-v2 manifest from disk; it lists all 15 factions.
-        Assert.Equal(FactionKeyExtensions.All, TestHelpers.Repo.AllFactions);
+        Assert.Equal(30, TestHelpers.Repo.AllFactions.Count);
+        Assert.Contains(TestHelpers.Repo.AllFactions, f => f.Id == "empire" && f.Name == "The Empire");
     }
 }

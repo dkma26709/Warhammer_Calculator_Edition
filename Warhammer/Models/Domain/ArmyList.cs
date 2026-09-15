@@ -4,7 +4,9 @@ namespace Warhammer.Models.Domain;
 
 public sealed record ArmyList
 {
-    public required FactionKey Faction { get; init; }
+    /// <summary>The faction's bundle id — see <see cref="Faction.Id"/>.</summary>
+    public required string FactionId { get; init; }
+
     public required int PointsTarget { get; init; }
     public string Name { get; init; } = "Untitled List";
     public List<UnitConfiguration> Units { get; init; } = new();
