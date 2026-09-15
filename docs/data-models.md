@@ -2,57 +2,91 @@
 
 ## JSON Data Files
 
-### core-rules.json
+Every system ships three files under `wwwroot/data/{system}/`. Only `war` ships today.
 
-WAP 9th Edition core combat rules. Loaded by `CoreRulesService`.
+### `{system}.json` — the bundle
+
+The whole edition in one file, formatVersion 2, exported by `export.py` in the
+`warhammer-armies-revamped` repo and copied here on a release. Deserialised by `BundleService`
+into `BundleData`; each faction stays a raw `JsonElement` until a page asks for it, then becomes a
+`FactionData`.
 
 ```
-closeCombatToHit.table    — 10x10 int[][] (WS 1-10 vs WS 1-10)
-toWound.table             — 10x10 int[][] (S 1-10 vs T 1-10)
-armourSaves.strengthModifiers — {"S3": 0, "S4": -1, "S5": -2, ...}
-weapons.closeCombat       — {key: WeaponEntry} (handWeapon, spear, greatWeapon, etc.)
-weapons.missile           — {key: WeaponEntry} (bow, crossbow, etc.)
-armour                    — {key: ArmourEntry} (lightArmour, heavyArmour, shield, etc.)
-commonSpecialRules        — {key: SpecialRuleEntry} (killing-blow, hatred, etc.)
-troopTypes                — {key: TroopTypeEntry}
+formatVersion, system, version, source     — identity; source is the export's git commit
+rulebook.rules                              — {"ALWAYS STRIKES FIRST": "text", ...}
+rulebook.items                              — common magic items (category, name, cost, only, text)
+rulebook.lores[].spells[]                   — name, level ("1".."4", "Signature Spell", "Lore Attribute"), cast, text
+composition                                 — pointsCategories, singleUnitMaxPercent, general, battleStandard,
+                                              specialCharacters, duplicates (bands + beyond), sources
+factions.{id}                               — one army book, see below
 ```
 
-### {faction}.json
+A faction:
 
-Unit roster per army. Loaded by `FactionDataService`.
+```
+id, name, align                             — "empire", "The Empire", "order"
+rules[]                                     — army special rules: id, name, text
+items[]                                     — the book's magic items, same shape as the rulebook's, with ids
+upgrades[]                                  — upgrade chapters: id, chapter, group, name, cost (number | tiers | null), only, text
+lores[]                                     — the book's own lores
+composition.unitConstraints[]               — max / limited / perSlot / ratio / general / handlers, each with raw
+units[]                                     — see below
+```
+
+A unit:
 
 ```json
 {
-  "factionName": "Lizardmen",
-  "units": [{
-    "name": "Saurus Warriors",
-    "category": "Core",
-    "profiles": [
-      {"name": "Saurus Warrior", "M": 4, "WS": 3, "BS": 0, "S": 4, "T": 4, "W": 1, "I": 1, "A": 2, "Ld": 8, "points": 13}
-    ],
-    "troopType": "Infantry (Lizardman, Saurus)",
-    "baseSize": "25x25 or 30x30",
-    "equipment": "Hand weapon, shield",
-    "options": [
-      {"type": "equipment", "action": "add", "choices": [{"name": "spear", "points": 1, "perModel": true}], "raw": "May take spears +1 point/model"},
-      {"type": "command", "role": "Leader", "points": 5, "raw": "May upgrade one Saurus Warrior to a Leader +5 points"},
-      {"type": "command", "role": "Musician", "points": 5, "raw": "May upgrade one Saurus Warrior to a Musician +5 points"},
-      {"type": "command", "role": "Standard Bearer", "points": 10, "raw": "May upgrade one Saurus Warrior to a Standard Bearer +10 points"}
-    ],
-    "specialRules": "Cold-blooded, Predatory Fighter, Natural Armour (5+)",
-    "unitSize": "10+",
-    "pointsCost": 13
-  }]
+  "id": "halberdiers",
+  "name": "HALBERDIERS",
+  "section": "core",            "tier": null,          "named": false,
+  "profiles": [{ "id": "halberdier", "name": "Halberdier", "M": 4, "WS": 3, "BS": 3, "S": 3, "T": 3, "W": 1, "I": 3, "A": 1, "Ld": 7, "points": 5 }],
+  "unitSize": "15-45",          "unitSizeParsed": { "min": 15, "max": 45 },
+  "troopType": "Infantry (Human)",
+  "baseSize": "20x20 or 25x25",
+  "equipment": "Polearm",       "equipmentList": ["Polearm"],
+  "specialRules": "State Troops","specialRulesList": ["State Troops"],
+  "optionGroups": [
+    { "id": "armour", "kind": "equipment", "select": "one", "min": 0, "max": 1, "appliesTo": null,
+      "raw": "May choose one of the following:",
+      "choices": [
+        { "id": "light-armour", "name": "Light armour", "points": 0.5, "perModel": true, "raw": "Light armour +0.5 point/model" },
+        { "id": "medium-armour", "name": "Medium armour", "points": 1.5, "perModel": true, "raw": "Medium armour +1.5 points/model" }
+      ] },
+    { "id": "standard-bearer", "kind": "command", "select": "any", "role": "standardBearer",
+      "raw": "May upgrade one Halberdier to a Standard Bearer +10 points",
+      "choices": [ { "id": "standard-bearer", "name": "Standard Bearer", "points": 10,
+        "options": [ { "id": "magic-standard", "kind": "magicStandard", "pointsLimit": 25, "choices": [ ... ] } ] } ] }
+  ]
 }
 ```
 
-**Multi-profile units** (e.g. cavalry, characters on mounts) have multiple entries in `profiles`. The primary profile has `points`; the mount profile does not.
+Group kinds: `equipment`, `mount`, `command`, `magicStandard`, `magicItems`, `battleStandard`,
+`wizardLevel`, `factionUpgrade`, `specialRule`, `upgrade`. Selection modes: `one`, `any`, `count`.
+A choice may carry `replaces`, `unitId` (a mount's own entry), `appliesTo` (a profile id),
+`min`/`max`/`everyModels` (counted picks), `level`/`levelDelta` (wizard levels) and nested
+`options`. The full contract is `warhammer-armies-revamped/docs/format.md`.
 
-**Options** can be either simple strings or structured objects with `type`, `raw`, `choices` fields. The `OptionsListConverter` normalises both to `List<string>`.
+Fields the bundle writes in more than one shape (`specialRules`, `upgrades`, `notes`, an item's
+`bound`, a profile's `points`) are read by the converters in `Models/Json/Converters.cs`.
 
-### {faction}-extras.json
+### `core-rules.json` — the engine's tables (hand-maintained)
 
-Army rules, magic items, lores. Currently loaded but not used in combat simulation.
+```
+closeCombatToHit.table        — 10x10 string[][] (WS 1-10 vs WS 1-10), plain scores
+toWound.table                 — 10x10 string[][] (S 1-10 vs T 1-10), "6+/2+" compound cells allowed
+armourSaves.strengthModifiers — {"S3": 0, "S4": -1, "S5": -2, ...}
+weapons.closeCombat           — {key: WeaponEntry} (handWeapon, spear, greatWeapon, ...)
+armour                        — {key: ArmourEntry} (lightArmour, heavyArmour, shields, ...)
+```
+
+The bundle's rulebook prints the same charts as text; `BundleDataTests` holds this file to them.
+
+### `troop-types.json` — the Troop Types chapter's figures (hand-maintained)
+
+One row per `BaseTroopType`: minimum rank width, supporting attacks (rider, mount, no split
+profile), inherent Impact Hits, Unit Strength, split profile, Swiftstride. Loading throws on a
+missing row.
 
 ---
 
@@ -60,51 +94,47 @@ Army rules, magic items, lores. Currently loaded but not used in combat simulati
 
 ### JSON -> C# (Models/Json/)
 
-| JSON File | C# Record | Key Fields |
+| JSON | C# Record | Key Fields |
 |-----------|-----------|------------|
+| the bundle | `BundleData` | `FormatVersion`, `Source`, `Rulebook`, `Composition`, `Factions` (raw elements) |
+| `rulebook` | `RulebookData` | `Rules`, `Items: List<MagicItemEntry>`, `Lores: List<LoreEntry>` |
+| `composition` | `CompositionData` | `PointsCategories`, `SingleUnitMaxPercent`, `Duplicates`, `UnitConstraints` |
+| a faction | `FactionData` | `Id`, `Name`, `Rules`, `Items`, `Upgrades: List<UpgradeEntry>`, `Lores`, `Composition`, `Units` |
+| a unit | `UnitEntry` | `Id`, `Name`, `Section`, `Tier`, `Named`, `Profiles`, `UnitSizeParsed`, `TroopType`, `Equipment`, `SpecialRules`, `Magic`, `Notes`, `OptionGroups` |
+| a profile | `ProfileEntry` | `Id`, `Name`, `M/WS/BS/S/T/W/I/A/Ld` (nullable int), `Points` (nullable) |
+| an option group | `OptionGroup` / `OptionChoice` | see above |
 | core-rules.json | `CoreRulesData` | `CloseCombatToHit`, `ToWound`, `ArmourSaves`, `Weapons`, `Armour` |
-| {faction}.json | `FactionData` | `FactionName`, `Units: List<UnitEntry>` |
-| — | `UnitEntry` | `Name`, `Category`, `Profiles`, `TroopType`, `Equipment`, `Options`, `SpecialRules` |
-| — | `ProfileEntry` | `Name`, `M/WS/BS/S/T/W/I/A/Ld` (nullable int), `Points` |
-| {faction}-extras.json | `FactionExtrasData` | `ArmySpecialRules`, `MagicItems`, `LoresOfMagic`, `FactionUpgrades` |
+| troop-types.json | `TroopTypesData` | `Types` keyed by kebab-case troop type |
 
-### Custom JSON Converters
+### Custom JSON Converters (`Models/Json/Converters.cs`)
 
 | Converter | Purpose |
 |-----------|---------|
-| `NullableIntConverter` | Parses stat values: numbers, `"*"`, `"-"`, whitespace -> `int?` |
-| `OptionsListConverter` | Normalises `string[]` or `object[]` options to `List<string>` |
+| `NullableIntConverter` | Stat values: numbers, `"*"`, `"-"`, whitespace -> `int?` |
+| `NullableDoubleConverter` | Points: numbers, `"-"`, `"free"` -> `double?` |
+| `StringOrStringListConverter` | A string, a list of strings, or a list of `{name, text}` definitions -> one comma-joined string of names |
+| `LenientStringConverter` / `LenientStringListConverter` | Any scalar, object (by `name`/`spell`/`text`) or array -> text |
+| `StringOrNumberConverter` | A spell's level, `1` or `"Signature Spell"` -> text |
+| `UpgradeCostConverter` | A number, or `[[scope, text], ...]` tiers -> `UpgradeCost` |
 
 ### Domain Models (Models/Domain/)
 
 | Model | Built From | Purpose |
 |-------|-----------|---------|
-| `UnitConfiguration` | `UnitEntry` | User config + computed combat stats (attacks, strength, armour save, ranks, points) |
-| `ParsedSpecialRules` | `UnitEntry.SpecialRules` string | 32 typed properties for combat rules |
+| `Faction` | a faction's header | `Id`, `Name`, `Align` — the faction list the pages show |
+| `Unit` | `UnitEntry` | The resolved entry: base model, priced `Profiles`, `MountOptions` (from the book's mounts section), `OptionGroups`, command availability, the raw entry |
+| `UnitConfiguration` | `Unit` | User config: fielded profile, `OptionSelections` by group and choice id, command, magic items, `Loadout`; computed combat stats and points |
+| `OptionSelections` | — | Group id → choice id → count |
+| `CompositionRules` | `CompositionData` | Percentages, the duplicate chart (`DuplicateRule`), the book's constraints; `Resolve` applies a list's overrides |
+| `FactionUpgrades` | `UpgradeEntry` | Family ids from chapter titles, flat or tiered cost resolution |
+| `MagicItemAllowance` | a `magicItems` group | Points limit, admitted item lists, families the allowance pays for |
+| `ParsedSpecialRules` | `UnitEntry.SpecialRules` | 70 typed properties for combat rules; scoped rules routed to the mount |
 | `ParsedWeaponRules` | `WeaponEntry.SpecialRules` + `Notes` | Weapon modifiers (initiative, extra attacks, MB, FiER, parry) |
-| `TroopTypeInfo` | `UnitEntry.TroopType` string | Base type enum + combat properties (rank width, support attacks, unit strength) |
+| `TroopTypeInfo` | `UnitEntry.TroopType` + `troop-types.json` | Base type enum + combat properties (rank width, support attacks, unit strength) |
 
-### ParsedSpecialRules — All 32 Properties
+### Saved lists (`ArmyListDto`, schema `army-list/v2`)
 
-**Offensive:** KillingBlow, HeroicKillingBlow, PoisonedAttacks, FlamingAttacks, IceAttacks, LightningAttacks, MagicalAttacks, IgnoresArmourSaves, ArmourPiercing(int), Hatred, Frenzy, DevastatingCharge, MightyBlow(int), AlwaysStrikesFirst, AlwaysStrikesLast, MultipleWounds(int), MultipleWoundsRoll(string), FightInExtraRanks(int)
-
-**Defensive:** NaturalArmour(int), WardSave(int), Regeneration(int), Parry(int), Ethereal, Flammable
-
-**Impact/Stomp:** ImpactHits(int), ImpactHitsRoll(string), Stomp(int), StompRoll(string), RandomAttacks(int), RandomAttacksRoll(string)
-
-**Morale:** Fear, Terror, Stubborn, Unbreakable, Unstable, ColdBlooded
-
-### TroopTypeInfo — Key Properties by Type
-
-| Base Type | Min Rank Width | Max Support Attacks | Unit Strength | Split Profile |
-|-----------|---------------|--------------------|----|------|
-| Infantry | 5 | 1 | 1 | No |
-| Large Infantry | 3 | 2 | 1 | No |
-| Monstrous Infantry | 3 | 2 | 2 | No |
-| Cavalry | 5 | 1 | 2 | Yes |
-| Monstrous Cavalry | 3 | 2 | 3 | Yes |
-| War Beasts | 5 | 1 | 1 | No |
-| Monstrous Beasts | 3 | 2 | 2 | No |
-| Monster | 1 | 0 | 3 | No |
-| Chariot | 1 | 0 | 3 | No |
-| Swarms | 3 | 5 | 3 | No |
+`faction` is the faction id; each unit carries `unitId` (and `unitName` as a fallback), the
+fielded `profileId`, `selections` as group id → choice id → count, magic items and the banner by
+id, and `factionUpgrades` as family → entry ids. Costs of upgrade picks are re-resolved from the
+book on import.

@@ -1,6 +1,6 @@
 # Project Structure
 
-> **Note:** this document describes the layout as of the initial Matchup-only release and has not been fully updated since. The repo has since gained the Gauntlet (`Pages/Gauntlet.razor`) and Builder (`Pages/Builder.razor`) pages, army builder services (`ArmyListValidator`, `ArmyListSerializer`), the `IGameDataRepository`/`GameDataRepository` facade, `PortraitService` + `tools/PortraitFetcher`, multi-round combat (`BreakTestResolver`, `FleeAndPursueResolver`), and many more components and tests. See `AGENTS.md` at the repo root for the current layout.
+> See `AGENTS.md` at the repo root for the layout with commentary; this is the short form.
 
 ## Repository Layout
 
@@ -9,77 +9,60 @@
 ├── Warhammer/                      # Main Blazor WASM app
 │   ├── Program.cs                  # Entry point, service registration
 │   ├── App.razor                   # Router configuration
-│   ├── _Imports.razor              # Global usings
 │   │
 │   ├── Models/
-│   │   ├── Json/                   # JSON deserialisation models
+│   │   ├── Json/                   # JSON deserialisation models (records, no logic)
+│   │   │   ├── BundleData.cs       # The bundle: rulebook, composition, raw factions
+│   │   │   ├── CompositionData.cs  # Percentages, duplicate chart, unit constraints
+│   │   │   ├── FactionData.cs      # One army book: rules, items, upgrades, lores, units
+│   │   │   ├── UnitEntry.cs        # A unit and its profiles
+│   │   │   ├── OptionGroup.cs      # Typed option groups and choices
 │   │   │   ├── CoreRulesData.cs    # core-rules.json mapping
-│   │   │   ├── FactionData.cs      # {faction}.json mapping (UnitEntry, ProfileEntry)
-│   │   │   ├── FactionExtrasData.cs# {faction}-extras.json mapping
-│   │   │   ├── NullableIntConverter.cs  # Handles null/"*"/"-" stat values
-│   │   │   └── OptionsListConverter.cs  # Handles both string[] and object[] options
+│   │   │   ├── TroopTypesData.cs   # troop-types.json mapping
+│   │   │   └── Converters.cs       # Lenient readers for fields the bundle writes in several shapes
 │   │   │
-│   │   └── Domain/                 # Business logic models
-│   │       ├── UnitConfiguration.cs     # Unit + user config + computed combat stats
-│   │       ├── ParsedSpecialRules.cs    # 32 typed special rule properties
-│   │       ├── ParsedWeaponRules.cs     # Weapon-specific modifiers
-│   │       └── TroopTypeInfo.cs         # Troop type enum + combat properties
+│   │   ├── Domain/                 # Business logic models
+│   │   │   ├── Faction.cs, Unit.cs, UnitConfiguration.cs, OptionSelections.cs
+│   │   │   ├── CompositionRules.cs, FactionUpgrades.cs, MagicItemAllowance.cs
+│   │   │   ├── ArmyList.cs, ArmyListDto.cs, ArmyLoadout.cs, RosterDocument.cs
+│   │   │   ├── ParsedSpecialRules.cs, ParsedWeaponRules.cs, TroopTypeInfo.cs
+│   │   │   └── GameSystem.cs, MagicItemCategories.cs, UnitModifier.cs, ...
+│   │   │
+│   │   └── Enums/                  # OptionEnums (OptionKind, SelectMode, CommandRole),
+│   │                               #   UnitCategory, CloseCombatWeaponKey, ArmourKey, ...
 │   │
 │   ├── Services/
-│   │   ├── CoreRulesService.cs     # Loads core-rules.json; table lookups
-│   │   ├── FactionDataService.cs   # Loads faction JSONs; caching
-│   │   └── EquipmentParser.cs      # Equipment text -> weapon/armour keys
+│   │   ├── GameSystemService.cs    # Active system key; data paths
+│   │   ├── BundleService.cs        # Fetches the bundle; factions on demand; troop types
+│   │   ├── CoreRulesService.cs     # Loads core-rules.json; chart lookups
+│   │   ├── GameDataRepository.cs   # Facade: resolves Units, composition rules, lores
+│   │   ├── ArmyListValidator.cs, ArmyListSerializer.cs, ArmyRosterBuilder.cs
+│   │   ├── EquipmentParser.cs      # Equipment text -> weapon/armour keys
+│   │   └── PortraitService.cs
 │   │
-│   ├── Calculator/
-│   │   ├── CombatEngine.cs         # Monte Carlo orchestrator (10k iterations)
-│   │   ├── CombatResolver.cs       # Single-round phase-based resolution
-│   │   ├── AttackResolver.cs       # To-hit, to-wound, saves, special rules
-│   │   ├── BaseContactCalculator.cs # Geometric base contact calculation
-│   │   └── Models/
-│   │       ├── CombatContext.cs     # Charge state, round number
-│   │       └── CombatResults.cs    # Result records (RoundResult, AttackResult, etc.)
-│   │
-│   ├── Components/
-│   │   ├── UnitSelector.razor      # Faction + category + unit dropdowns
-│   │   ├── UnitConfigurator.razor   # Stats, model count, weapon, command group
-│   │   ├── UnitPanel.razor          # Card wrapper: selector + configurator
-│   │   ├── CombatControls.razor     # Charge state + simulate button
-│   │   ├── EffectiveStatsPanel.razor# Computed stats comparison table
-│   │   ├── ResultsPanel.razor       # Full results: win%, wounds, CR, distributions
-│   │   ├── StatTable.razor          # Profile stat row display
-│   │   └── SpecialRuleBadges.razor  # Colour-coded rule badges
-│   │
-│   ├── Pages/
-│   │   └── Matchup.razor           # Main page (routes: /, /matchup)
-│   │
-│   ├── Layout/
-│   │   └── MainLayout.razor        # Root layout template
-│   │
+│   ├── Calculator/                 # Combat engine (pure C#)
+│   ├── Components/                 # Razor components
+│   ├── Pages/                      # Matchup, Gauntlet, Builder, Roster
+│   ├── Layout/MainLayout.razor
 │   └── wwwroot/
-│       ├── index.html              # Bootstrap CDN, app entry
-│       └── data/
-│           ├── core-rules.json     # Combat tables, weapons, armour, rules
-│           └── factions/
-│               ├── {faction}.json       # Unit rosters (15 files)
-│               └── {faction}-extras.json # Army rules, items, spells (15 files)
+│       ├── index.html
+│       ├── data/war/
+│       │   ├── war.json            # The bundle (generated in warhammer-armies-revamped)
+│       │   ├── core-rules.json     # Engine charts, weapons, armour (hand-maintained)
+│       │   └── troop-types.json    # Troop type figures (hand-maintained)
+│       ├── data/portrait-manifest.json
+│       └── images/units/{faction-id}/
 │
-└── Warhammer.Tests/                # MSTest project
-    ├── AttackResolverTests.cs      # Attack resolution + special rules
-    ├── CombatResolverTests.cs      # Full round resolution + phases
-    ├── CoreRulesServiceTests.cs    # Table lookups + parsing
-    ├── EquipmentParserTests.cs     # Equipment string mapping
-    ├── FactionDeserializationTests.cs # All 15 factions deserialise correctly
-    ├── SpecialRulesParsingTests.cs # 32 special rules parsing
-    ├── TroopTypeTests.cs           # Troop type classification
-    ├── UnitConfigurationTests.cs   # Unit config calculations
-    └── WeaponRulesTests.cs         # Weapon special rule parsing
+├── Warhammer.Tests/                # xUnit, one class per subject
+└── tools/PortraitFetcher/          # Fetches portraits and writes the manifest
 ```
 
 ## Service Registration (Program.cs)
 
 ```csharp
+builder.Services.AddScoped<GameSystemService>();
 builder.Services.AddScoped<CoreRulesService>();
-builder.Services.AddScoped<FactionDataService>();
+builder.Services.AddScoped<BundleService>();
 builder.Services.AddScoped<IGameDataRepository, GameDataRepository>();
 builder.Services.AddTransient<CombatEngine>();
 builder.Services.AddSingleton<ArmyListValidator>();

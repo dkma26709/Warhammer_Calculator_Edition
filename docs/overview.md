@@ -2,49 +2,55 @@
 
 ## What It Is
 
-A Blazor WebAssembly (.NET 10) application that simulates Warhammer Armies Project (WAP) 9th Edition close combat matchups using Monte Carlo dice simulation. Select two units, configure them, and run 10,000 simulated combats to see win/loss probabilities, average wounds, and combat resolution breakdowns.
+A Blazor WebAssembly (.NET 10) application that simulates Warhammer Armies Revamped (WAR) close
+combat matchups using Monte Carlo dice simulation, and builds army lists against the edition's
+composition rules. Select two units, configure them, and run 10,000 simulated combats to see
+win/loss probabilities, average wounds, and combat resolution breakdowns.
 
-Three pages:
+Four pages:
 
 - **Matchup** (`/`, `/matchup`) — two units head-to-head, single or multi-round simulation
 - **Gauntlet** (`/gauntlet`) — profile one unit against a list of opponent matchups
-- **Builder** (`/builder`) — army list builder with WAP composition validation, magic items, banners, wizard lores, JSON export/import, and LocalStorage autosave
+- **Builder** (`/builder`) — army list builder with composition validation, magic items, banners,
+  wizard lores, faction upgrade families, JSON export/import, and LocalStorage autosave
+- **Roster** (`/roster`) — printable battle sheet for the current list
 
 ## Tech Stack
 
 - **Framework:** Blazor WASM (.NET 10)
 - **Styling:** Bootstrap 5 (CDN)
-- **Charts:** plain HTML/CSS bars (no chart library; ApexCharts was planned but never adopted)
-- **Data:** JSON files extracted from WAP army book PDFs
-- **Tests:** xUnit, ~290 test methods across ~25 test classes
+- **Charts:** plain HTML/CSS bars (no chart library)
+- **Data:** one JSON bundle per game system, exported from the `warhammer-armies-revamped` repo
+- **Tests:** xUnit, about 600 test methods across 50 test classes
 
 ## Data Pipeline
 
 ```
-WAP Army Book PDFs (source of truth)
+Warhammer Armies Project army books (PDF)
         |
-  Python extractors (pdfplumber + regex)
+  Re-typeset as Typst in warhammer-armies-revamped, revised into the WAR edition
         |
-  JSON files (F:\Warhammer\...\Extracted\json\)
+  python export.py --check      (that repo's gate: every record, byte-identical text)
         |
-  Copied to wwwroot/data/factions/
+  build/war.json  →  copied to wwwroot/data/war/war.json on a release
         |
-  C# deserialisation (HttpClient + custom converters)
+  BundleService (fetch once, factions on demand) + custom converters
         |
   Domain models + Combat engine
 ```
 
-### Extractors (at `F:\Warhammer\Warhammer pdfs\WAP\Extracted\`)
+Beside the bundle, `core-rules.json` and `troop-types.json` are hand-maintained per system for
+the combat engine: the rulebook's charts and the Troop Types chapter's figures, which the
+bundle's prose rulebook cannot feed.
 
-| Script | Output | Description |
-|--------|--------|-------------|
-| `extract_pdf.py` | `{faction}.json` | Unit profiles, stats, equipment, options, special rules |
-| `extract_core_rules.py` | `core-rules.json` | To-hit/wound tables, weapons, armour, common special rules |
-| `extract_army_extras.py` | `{faction}-extras.json` | Army rules, magic items, lores of magic, faction upgrades |
+### Supported Factions (30)
 
-### Supported Factions (15)
+Albion, Amazons, Araby, Beastmen, Bretonnia, Chaos Dwarfs, Daemons of Chaos, Dark Elves, Dogs of
+War, Dwarfs, The Empire, Estalia, Grand Cathay, Halflings, High Elves, Hobgoblins, Kingdoms of
+Ind, Kislev, Lizardmen, Nippon, Norsca, Ogre Kingdoms, Orcs & Goblins, Pirates of Sartosa,
+Skaven, Tomb Kings, Vampire Counts, Warriors of Chaos, Wood Elves, Zombie Pirates
 
-Beastmen, Bretonnia, Daemons of Chaos, Dark Elves, Dwarfs, High Elves, Lizardmen, Ogre Kingdoms, Orcs & Goblins, Skaven, The Empire, Tomb Kings, Vampire Counts, Warriors of Chaos, Wood Elves
+Earlier editions (WAP 9th v2 and v3) are not shipped by this build; use an older build for those.
 
 ## How To Run
 
@@ -53,7 +59,7 @@ cd Warhammer
 dotnet run
 ```
 
-Navigate to `https://localhost:{port}/matchup` (or just `/`).
+Navigate to `http://localhost:5075/`.
 
 ## How To Test
 
@@ -66,6 +72,6 @@ dotnet test
 
 - [Project Structure](structure.md) — files, folders, and their roles
 - [Combat Engine](combat-engine.md) — how combat simulation works
-- [Data Models](data-models.md) — JSON schemas and C# model mapping
+- [Data Models](data-models.md) — the bundle format and C# model mapping
 - [Components & UI](components.md) — Blazor component hierarchy and behaviour
 - [Known Limitations](limitations.md) — what's not yet implemented

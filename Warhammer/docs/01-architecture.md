@@ -1,5 +1,11 @@
 # Architecture & Project Structure
 
+> **Historical design document.** Written before implementation and kept for intent. Since
+> 2026-09-15 the app reads one bundle per game system (formatVersion 2, exported from
+> `warhammer-armies-revamped`) instead of per-faction files, factions are ids rather than an enum,
+> and options are typed groups addressed by id. `AGENTS.md`, `02-data-format.md` and
+> `docs/data-models.md` describe the current shape; trust the code over the specifics below.
+
 ## Overview
 
 Fresh Blazor WebAssembly (.NET 10) application. Clean rewrite — no code carried over from the previous version, though proven patterns (Monte Carlo simulation, service-based data loading) inform the design.

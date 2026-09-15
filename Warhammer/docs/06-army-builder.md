@@ -1,5 +1,11 @@
 # Army Builder — Design & Roadmap
 
+> **Historical design document.** Written before implementation and kept for intent. Since
+> 2026-09-15 the app reads one bundle per game system (formatVersion 2, exported from
+> `warhammer-armies-revamped`) instead of per-faction files, factions are ids rather than an enum,
+> and options are typed groups addressed by id. `AGENTS.md`, `02-data-format.md` and
+> `docs/data-models.md` describe the current shape; trust the code over the specifics below.
+
 ## Goal
 
 A standalone army list manager for WAP. User picks a faction and points target, adds and configures units, and exports the finished list as JSON. Full WAP composition rules are validated.

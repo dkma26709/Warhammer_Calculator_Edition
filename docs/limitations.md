@@ -1,6 +1,6 @@
 # Known Limitations
 
-> Verified against the source on 2026-08-11. Every "not implemented" entry below was checked by
+> Verified against the source on 2026-09-15. Every "not implemented" entry below was checked by
 > grepping for its mechanism, not inherited from the previous revision — the file had drifted badly
 > enough to list five shipped features as missing, so please re-check rather than re-copy.
 
@@ -32,7 +32,7 @@
 ### UI
 - Four pages: `/matchup` (two units), `/gauntlet` (one unit vs many — the comparison mode),
   `/builder` (army lists), `/roster` (printable battle sheet)
-- **Army list builder** with WAP composition validation, magic items, banners and wizard lores
+- **Army list builder** with the bundle's composition rules (percentages, the duplicate chart, each book's own unit constraints), magic items, banners, wizard lores and faction upgrade families
 - **Printable roster** — profiles, saves, equipment, items, rules and points, browser Save-as-PDF
 - **JSON export / import and LocalStorage autosave** (`ArmyListSerializer`, `ArmyListStorage`)
 - Weapon selection from equipment + options; command group checkboxes from unit data
@@ -40,8 +40,9 @@
 - Effective stats comparison panel; win/loss/draw distributions; points efficiency analysis
 
 ### Data
-- **Two game systems** — wap-v2 and wap-v3, 15 faction rosters each
-- Core rules tables, weapons, armour, troop types, common special rules
+- **One game system** — Warhammer Armies Revamped, 30 army books from one bundle
+- Core rules tables, weapons, armour and troop types beside it, hand-maintained
+- Profile variants (a Captain or a General from one entry) and character mounts from the book's mounts section
 - Magic items and banners are **selectable and affect combat** through `UnitModifier`
 
 ## Not Yet Implemented
@@ -56,7 +57,7 @@
 - **Fear / Terror psychology tests** — the Fear combat-resolution bonus is modelled; the Leadership
   tests to charge or to hold are not
 - **Frenzy restraint** — Frenzy gives +1A but post-combat restraint tests are not modelled
-- **Magic Resistance** — named by 39 wap-v2 and 88 wap-v3 units, no typed property, no effect
+- **Magic Resistance** — named by many units, no typed property, no effect
 - **~25 further named rules have no typed property**, so they reach the badges and the roster sheet
   but the engine cannot act on them. The ones the data names most often: Strider (68/74 units),
   Loner (40/9), Aquatic (20/21), Stupidity (14/14), Expendable (11/10), Inspiring Presence (2/10),
@@ -68,15 +69,18 @@
   not its beasts', and the chassis makes a phantom attack
 - **Champion-only rules go nowhere** — the engine fields one profile for the rank and file
 
-### Data / Extraction
+### Data
 - **Faction-specific weapons** — the weapon dropdown matches the core rules registry only;
   army-unique weapons aren't resolved to a profile
 - **Magic item effects are not derived from their description text** — each selection carries a
   `UnitModifier` the user fills in by hand
-- **Named characters are not split into Lords and Heroes** — the books draw that line only in
-  their tables of contents
-- Two fields are read by nothing: `crew` / `drawnBy` (per-profile model counts, as prose) and
-  `magic` (wap-v3 wizard levels and lore lists)
+- **Upstream bundle gaps** — the rulebook's common items carry no ids (the loader derives one from
+  the name), 26 units' special-rules strings are cut off mid-parenthesis (the parser drops the
+  dangling fragment), two entries share an id with another (`albion/amanthas`,
+  `high-elves/great-eagle`), and 25 option lines are unclassified and render as plain toggles
+- **Handler ratios inside a unit** ("one Handler per 5 War Hounds") are not validated
+- `crew` / `drawnBy` (per-profile model counts, as prose) are read by nothing; `magic` is only
+  shown as text
 
 ### UI
 - No mobile-optimised layout
