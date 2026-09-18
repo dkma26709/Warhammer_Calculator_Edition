@@ -1,5 +1,5 @@
 using Warhammer.Models.Domain;
-using Warhammer.Models.Json;
+using Warhammer.Models.Enums;
 
 namespace Warhammer.Tests;
 
@@ -9,47 +9,70 @@ public class MagicBannerTests
     public void BannerBudget_Null_WhenNoStandardBearerOption()
     {
         var unit = TestHelpers.MakeUnit();
-        var config = new UnitConfiguration(unit);
+        var config = new UnitConfiguration(unit) { HasStandardBearer = true };
+
+        Assert.Null(config.BannerBudget);
+        Assert.Null(config.MagicStandardAllowance);
+    }
+
+    [Fact]
+    public void BannerBudget_Null_WhenStandardBearerHasNoMagicStandardUnderIt()
+    {
+        var unit = TestHelpers.MakeUnit(options: [TestHelpers.Command(CommandRole.StandardBearer, 10)]);
+        var config = new UnitConfiguration(unit) { HasStandardBearer = true };
 
         Assert.Null(config.BannerBudget);
     }
 
     [Fact]
-    public void BannerBudget_Null_WhenStandardBearerHasNoMagicStandardSubOption()
+    public void BannerBudget_Null_UntilTheStandardBearerIsTaken()
     {
-        var unit = TestHelpers.MakeUnit(options: new List<UnitOption>
-        {
-            new()
-            {
-                Type = "command",
-                Role = "Standard Bearer",
-                Points = 10,
-            },
-        });
+        var unit = TestHelpers.MakeUnit(options: [TestHelpers.Command(CommandRole.StandardBearer, 10, bannerCap: 25)]);
         var config = new UnitConfiguration(unit);
 
         Assert.Null(config.BannerBudget);
+
+        config.HasStandardBearer = true;
+        Assert.Equal(25, config.BannerBudget);
     }
 
     [Fact]
-    public void BannerBudget_MatchesPointsLimit_FromMagicStandardSubOption()
+    public void BannerBudget_MatchesThePointsLimit_UnderTheStandardBearer()
     {
-        var unit = TestHelpers.MakeUnit(options: new List<UnitOption>
-        {
-            new()
-            {
-                Type = "command",
-                Role = "Standard Bearer",
-                Points = 10,
-                SubOptions = new List<UnitOption>
-                {
-                    new() { Type = "magic_standard", PointsLimit = 25 },
-                },
-            },
-        });
-        var config = new UnitConfiguration(unit);
+        var unit = TestHelpers.MakeUnit(options: [TestHelpers.Command(CommandRole.StandardBearer, 10, bannerCap: 25)]);
+        var config = new UnitConfiguration(unit) { HasStandardBearer = true };
 
         Assert.Equal(25, config.BannerBudget);
+        Assert.Equal(25, config.MagicStandardAllowance!.PointsLimit);
+    }
+
+    [Fact]
+    public void AnUnlimitedAllowance_HasNoPointsLimit()
+    {
+        var unit = TestHelpers.MakeUnit(options: [TestHelpers.Command(CommandRole.StandardBearer, 10, bannerUnlimited: true)]);
+        var config = new UnitConfiguration(unit) { HasStandardBearer = true };
+
+        Assert.Null(config.MagicStandardAllowance!.PointsLimit);
+        Assert.Equal(int.MaxValue, config.BannerBudget);
+    }
+
+    [Fact]
+    public void ACharacter_TakesItsBannerThroughTheBattleStandard()
+    {
+        var banner = new Models.Json.OptionGroup
+        {
+            Id = "magic-standard", Kind = "magicStandard", Select = "any", Min = 0, Max = 1, PointsLimit = null,
+            Raw = "The Battle Standard Bearer can have a Magic Standard with no points limit",
+            Choices = [new Models.Json.OptionChoice { Id = "magic-standard", Name = "Magic Standard", Raw = "Magic Standard" }],
+        };
+        var unit = TestHelpers.MakeUnit(troopType: "Infantry (Character)", options: [TestHelpers.BattleStandard(25), banner]);
+        var config = new UnitConfiguration(unit);
+
+        Assert.Null(config.MagicStandardAllowance);
+
+        config.Loadout.IsBattleStandardBearer = true;
+        Assert.NotNull(config.MagicStandardAllowance);
+        Assert.Null(config.MagicStandardAllowance.PointsLimit);
     }
 
     [Fact]
@@ -64,7 +87,7 @@ public class MagicBannerTests
                 SelectedBanner = new SelectedMagicItem
                 {
                     Name = "Razor Standard",
-                    Category = "magic_standard",
+                    Category = MagicItemCategories.Standard,
                     PointsCost = 45,
                 },
             },

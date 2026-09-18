@@ -1,5 +1,3 @@
-using System.Text.Json;
-using System.Text.RegularExpressions;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
@@ -8,111 +6,134 @@ namespace Warhammer.Tests;
 
 /// <summary>
 /// An army book prints one options block per page, so an entry carries its neighbours'
-/// allowances alongside its own. These cover picking the right one, and the shipped data
-/// actually offering one wherever the book does.
+/// allowances alongside its own, each naming the profile it belongs to. These cover picking
+/// the right one, and the shipped data actually offering one wherever the book does.
 /// </summary>
 public class MagicItemAllowanceTests
 {
-    private static UnitOption Allowance(int limit, string? appliesTo = null) => new()
-    {
-        Type = "magic_items",
-        PointsLimit = limit,
-        AppliesTo = appliesTo,
-        Raw = appliesTo is null
-            ? $"May take Magic Items up to a total of {limit} points"
-            : $"A {appliesTo} may take Magic Items up to a total of {limit} points",
-    };
-
     [Fact]
-    public void NoAllowanceOption_ResolvesToNull()
+    public void NoAllowanceGroup_ResolvesToNull()
     {
-        Assert.Null(Unit.ResolveMagicItemAllowance("Captain", []));
-        Assert.Null(Unit.ResolveMagicItemAllowance("Captain", null));
+        Assert.Null(Unit.ResolveMagicItemAllowance("captain", []));
+        Assert.Null(Unit.ResolveMagicItemAllowance("captain", null));
     }
 
     [Fact]
     public void UnnamedAllowance_AppliesToWhoeverHoldsIt()
     {
-        Assert.Equal(50, Unit.ResolveMagicItemAllowance("Captain", [Allowance(50)]));
+        Assert.Equal(50, Unit.ResolveMagicItemAllowance("captain", [TestHelpers.MagicItems(50)])!.PointsLimit);
     }
 
     [Fact]
-    public void NamedAllowance_MatchingTheEntry_Wins()
+    public void NamedAllowance_MatchingTheProfile_Wins()
     {
-        // The Empire's General entry carries both its own line and the Captain's.
-        var options = new List<UnitOption> { Allowance(50, "Captain"), Allowance(100, "General") };
+        // The Empire's COMMANDERS entry carries both the Captain's line and the General's.
+        var groups = new List<OptionGroup> { TestHelpers.MagicItems(50, "captain"), TestHelpers.MagicItems(100, "general") };
 
-        Assert.Equal(100, Unit.ResolveMagicItemAllowance("General", options));
-        Assert.Equal(50, Unit.ResolveMagicItemAllowance("Captain", options));
+        Assert.Equal(100, Unit.ResolveMagicItemAllowance("general", groups)!.PointsLimit);
+        Assert.Equal(50, Unit.ResolveMagicItemAllowance("captain", groups)!.PointsLimit);
     }
 
     [Fact]
-    public void NamedAllowance_MatchesRegardlessOfCaseAndSpacing()
+    public void NamedAllowance_MatchesRegardlessOfCase()
     {
-        var options = new List<UnitOption> { Allowance(100, " battle wizard LORD ") };
+        var groups = new List<OptionGroup> { TestHelpers.MagicItems(100, "Battle-Wizard-Lord") };
 
-        Assert.Equal(100, Unit.ResolveMagicItemAllowance("Battle Wizard Lord", options));
+        Assert.Equal(100, Unit.ResolveMagicItemAllowance("battle-wizard-lord", groups)!.PointsLimit);
     }
 
     [Fact]
     public void UnnamedAllowance_BeatsANeighboursNamedOne()
     {
-        var options = new List<UnitOption> { Allowance(100, "Grand Master"), Allowance(50) };
+        var groups = new List<OptionGroup> { TestHelpers.MagicItems(100, "grand-master"), TestHelpers.MagicItems(50) };
 
-        Assert.Equal(50, Unit.ResolveMagicItemAllowance("Chapter Master", options));
+        Assert.Equal(50, Unit.ResolveMagicItemAllowance("chapter-master", groups)!.PointsLimit);
     }
 
     [Fact]
     public void OnlyNeighboursAllowances_TakesTheSmallest()
     {
-        // Nothing names this entry, so the book never granted it the larger budget.
-        var options = new List<UnitOption> { Allowance(100, "Prince"), Allowance(50, "Noble") };
+        // Nothing names this profile, so the book never granted it the larger budget.
+        var groups = new List<OptionGroup> { TestHelpers.MagicItems(100, "prince"), TestHelpers.MagicItems(50, "noble") };
 
-        Assert.Equal(50, Unit.ResolveMagicItemAllowance("Loremaster", options));
+        Assert.Equal(50, Unit.ResolveMagicItemAllowance("loremaster", groups)!.PointsLimit);
+    }
+
+    [Fact]
+    public void AnAllowance_CarriesItsListsAndFamilies()
+    {
+        var group = TestHelpers.MagicItems(50, itemTypes: ["talisman"], families: ["virtues-of-the-chivalric-knight"]);
+        var allowance = Unit.ResolveMagicItemAllowance(null, [group])!;
+
+        Assert.True(allowance.Admits(MagicItemCategories.Talisman));
+        Assert.False(allowance.Admits(MagicItemCategories.Weapon));
+        Assert.Equal(["virtues-of-the-chivalric-knight"], allowance.Families);
+    }
+
+    [Fact]
+    public void AnAllowanceNamingNoLists_AdmitsAny()
+    {
+        var allowance = Unit.ResolveMagicItemAllowance(null, [TestHelpers.MagicItems(50)])!;
+
+        Assert.True(allowance.Admits(MagicItemCategories.Weapon));
+        Assert.True(allowance.Admits(MagicItemCategories.Enchanted));
+    }
+
+    // ─── Through the configuration ──────────────────────────────────
+
+    [Fact]
+    public void TheFieldedProfile_DecidesTheAllowance()
+    {
+        var general = new ProfileEntry { Id = "general", Name = "General", Points = 95, WS = 5 };
+        var captain = new ProfileEntry { Id = "captain", Name = "Captain", Points = 55, WS = 4 };
+        var unit = TestHelpers.MakeUnit(name: "Commanders", troopType: "Infantry (Character)",
+            profiles: [general, captain],
+            options: [TestHelpers.MagicItems(50, "captain"), TestHelpers.MagicItems(100, "general")]);
+
+        var config = new UnitConfiguration(unit);
+        Assert.Equal(100, config.MagicItemAllowance!.PointsLimit);
+
+        config.SelectedProfileId = "captain";
+        Assert.Equal(50, config.MagicItemAllowance!.PointsLimit);
+        Assert.Equal(55, config.BaseModelCost);
+    }
+
+    [Fact]
+    public void FamilyPicks_CountAgainstTheAllowance()
+    {
+        var unit = TestHelpers.MakeUnit(name: "Paladin", troopType: "Infantry (Character)", points: 100,
+            options: [TestHelpers.MagicItems(100, families: ["virtues"])]);
+        var config = new UnitConfiguration(unit);
+        config.SelectedMagicItems.Add(new SelectedMagicItem { Name = "Sword", Category = "weapon", PointsCost = 40 });
+        config.Loadout.SelectedFactionUpgrades["virtues"] = [new SelectedFactionUpgrade("virtue-of-valour", "Virtue of Valour", 35)];
+
+        Assert.Equal(75, config.MagicItemSpend);
+        Assert.Equal(175, config.TotalPointsCost);
     }
 
     // ─── Shipped data ───────────────────────────────────────────────
 
-    private static readonly JsonSerializerOptions JsonOptions = new()
-    {
-        PropertyNameCaseInsensitive = true,
-    };
-
-    /// <summary>The wording every allowance line ends with, whatever precedes it.</summary>
-    private static readonly Regex AllowanceWording =
-        new(@"Magic Items.*?\d+\s*points", RegexOptions.IgnoreCase);
-
-    public static TheoryData<string, string> SystemFactions() =>
-        FactionDeserializationTests.SystemFactions();
+    public static TheoryData<string, string> SystemFactions() => BundleDataTests.SystemFactions();
 
     /// <summary>
-    /// A line the parser fails to recognise as an allowance does not disappear — it falls
-    /// through to the generic equipment rule and becomes a checkbox that charges the cap as
-    /// if it were a wargear upgrade. Every allowance line must parse as one.
+    /// Every profile a magic item allowance names must be a profile of its entry, or the
+    /// allowance can never apply.
     /// </summary>
     [Theory]
     [MemberData(nameof(SystemFactions))]
-    public void EveryAllowanceLine_ParsesAsAnAllowance(string systemKey, string faction)
+    public async Task EveryNamedAllowance_NamesAProfileOfItsEntry(string systemKey, string faction)
     {
-        var json = File.ReadAllText(
-            Path.Combine(TestPaths.SystemDataDir(systemKey), "factions", $"{faction}.json"));
-        var data = JsonSerializer.Deserialize<FactionData>(json, JsonOptions)!;
-
+        var units = await TestHelpers.RepoFor(systemKey).GetUnitsAsync(faction);
         var stragglers = new List<string>();
-        foreach (var entry in data.Units)
+
+        foreach (var unit in units)
         {
-            foreach (var option in entry.Options ?? [])
+            var profileIds = unit.RawEntry.Profiles.Select(p => p.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            foreach (var (group, _) in unit.OptionGroups.Flatten())
             {
-                if (option.Raw is null || !AllowanceWording.IsMatch(option.Raw))
-                    continue;
-
-                // The companion option offering a shared upgrade family repeats the
-                // allowance's wording; it is not itself an allowance.
-                var type = option.GetOptionType();
-                if (type is OptionType.MagicItems or OptionType.FactionUpgrade)
-                    continue;
-
-                stragglers.Add($"{entry.Name}: [{option.Type}] {option.Raw}");
+                if (!group.IsKind(OptionKind.MagicItems) || group.AppliesTo is null) continue;
+                if (!profileIds.Contains(group.AppliesTo))
+                    stragglers.Add($"{unit.Name}: allowance for '{group.AppliesTo}' ({group.Raw})");
             }
         }
 
@@ -120,60 +141,28 @@ public class MagicItemAllowanceTests
     }
 
     /// <summary>
-    /// The item lists hold more categories than the six each book prints — Dwarf runes are in
-    /// there too. An unrecognised key is not loud: <see cref="MagicItemCategories.Plural"/>
-    /// returns it verbatim, so the picker would show a raw "weapon_rune" heading. The
-    /// one-per-model check errs the safe way for one it doesn't know
-    /// (<see cref="MagicItemCategories.HasOnePerModelLimit"/> holds an unknown category to the
-    /// limit), but a heading nobody wrote is still a heading nobody wants.
+    /// Every entry the book gives an allowance to must resolve to a budget for each of its
+    /// priced profiles, or the builder shows no magic item picker at all.
     /// </summary>
     [Theory]
     [MemberData(nameof(SystemFactions))]
-    public void EveryShippedItemCategory_IsRecognised(string systemKey, string faction)
+    public async Task EntriesWithAnAllowance_ResolveToABudget(string systemKey, string faction)
     {
-        var path = Path.Combine(
-            TestPaths.SystemDataDir(systemKey), "factions", $"{faction}-extras.json");
-        if (!File.Exists(path))
-            return;
+        var units = await TestHelpers.RepoFor(systemKey).GetUnitsAsync(faction);
 
-        var extras = JsonSerializer.Deserialize<FactionExtrasData>(
-            File.ReadAllText(path), JsonOptions)!;
-
-        var unnamed = extras.MagicItems
-            .Select(i => i.Category)
-            .Where(c => !string.IsNullOrWhiteSpace(c))
-            .Distinct()
-            .Where(c => MagicItemCategories.Plural(c) == c)
-            .ToList();
-
-        Assert.Empty(unnamed);
-    }
-
-    /// <summary>
-    /// Every entry the book gives an allowance to must resolve to exactly one budget, or the
-    /// builder shows no magic item picker at all.
-    /// </summary>
-    [Theory]
-    [MemberData(nameof(SystemFactions))]
-    public void EntriesWithAnAllowance_ResolveToABudget(string systemKey, string faction)
-    {
-        var json = File.ReadAllText(
-            Path.Combine(TestPaths.SystemDataDir(systemKey), "factions", $"{faction}.json"));
-        var data = JsonSerializer.Deserialize<FactionData>(json, JsonOptions)!;
-
-        foreach (var entry in data.Units)
+        foreach (var unit in units)
         {
-            var allowances = (entry.Options ?? [])
-                .Where(o => o.IsType(OptionType.MagicItems))
-                .ToList();
-            if (allowances.Count == 0)
+            if (!unit.OptionGroups.Any(g => g.IsKind(OptionKind.MagicItems)))
                 continue;
 
-            var resolved = Unit.ResolveMagicItemAllowance(entry.Name, entry.Options);
+            foreach (var profile in unit.Profiles)
+            {
+                var config = new UnitConfiguration(unit) { SelectedProfileId = profile.Id };
+                var resolved = config.MagicItemAllowance;
 
-            Assert.True(resolved > 0,
-                $"{systemKey}/{faction}: {entry.Name} has {allowances.Count} allowance option(s) " +
-                $"but resolved to {resolved?.ToString() ?? "null"}");
+                Assert.True(resolved is not null,
+                    $"{systemKey}/{faction}: {unit.Name} ({profile.Name}) has allowance groups but resolved to none");
+            }
         }
     }
 }

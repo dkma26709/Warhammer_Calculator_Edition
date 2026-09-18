@@ -2,8 +2,7 @@ using System.Collections.Concurrent;
 using System.Net.Http.Json;
 using System.Text.Json;
 using Warhammer.Models.Domain;
-using Warhammer.Models.Bundle;
-using TroopTypesData = Warhammer.Models.Json.TroopTypesData;
+using Warhammer.Models.Json;
 
 namespace Warhammer.Services;
 

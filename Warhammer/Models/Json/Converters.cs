@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Warhammer.Models.Bundle;
+namespace Warhammer.Models.Json;
 
 /// <summary>
 /// A points figure the books print as a number, "-" for a profile that is not bought on its

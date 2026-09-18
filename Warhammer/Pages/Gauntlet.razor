@@ -20,7 +20,8 @@
                        SelectedFactionKey="@_subjectFactionKey"
                        OnFactionSelected="OnSubjectFactionSelected"
                        FactionUnits="@_subjectFactionUnits"
-                       FactionExtras="@_subjectExtras"
+                       Faction="@_subjectFaction"
+                       Lores="@_subjectLores"
                        CommonMagicItems="@_commonMagicItems"
                        SelectedUnit="@_subjectUnit"
                        OnUnitSelected="OnSubjectUnitSelected"
@@ -119,7 +120,7 @@
                                     var opp = _opponents[i];
                                     <tr>
                                         <td>@opp.Unit.Name</td>
-                                        <td class="text-body-secondary">@opp.FactionKey</td>
+                                        <td class="text-body-secondary">@Repo.GetFactionDisplayName(opp.FactionKey ?? "")</td>
                                         <td class="text-end">@opp.Config.ModelCount</td>
                                         <td class="text-body-secondary small">@opp.Config.SelectedWeapon.ToJsonKey()</td>
                                         <td class="text-end">@($"{opp.Config.TotalPointsCost:F0}")</td>
@@ -168,7 +169,8 @@
                                           Unit="_stagingUnit"
                                           Configuration="_stagingConfig"
                                           ConfigurationChanged="OnStagingConfigChanged"
-                                          FactionExtras="_stagingExtras"
+                                          Faction="_stagingFaction"
+                                          Lores="_stagingLores"
                                           CommonMagicItems="_commonMagicItems" />
                     }
                 </div>
@@ -208,14 +210,16 @@
     // ── Subject state ──
     private string? _subjectFactionKey;
     private IReadOnlyList<Unit>? _subjectFactionUnits;
-    private FactionExtrasData? _subjectExtras;
+    private FactionData? _subjectFaction;
+    private IReadOnlyList<LoreEntry>? _subjectLores;
     private Unit? _subjectUnit;
     private UnitConfiguration? _subjectConfig;
 
     // ── Staging area (add opponent) ──
     private string? _stagingFactionKey;
     private IReadOnlyList<Unit>? _stagingFactionUnits;
-    private FactionExtrasData? _stagingExtras;
+    private FactionData? _stagingFaction;
+    private IReadOnlyList<LoreEntry>? _stagingLores;
     private Unit? _stagingUnit;
     private UnitConfiguration? _stagingConfig;
     private object _stagingKey = new(); // forces re-render of UnitConfigurator
@@ -254,15 +258,17 @@
         _subjectConfig = null;
         ClearResults();
 
-        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        if (!string.IsNullOrEmpty(factionKey))
         {
-            _subjectFactionUnits = await Repo.GetUnitsAsync(fk);
-            _subjectExtras = await Repo.GetFactionExtrasAsync(fk);
+            _subjectFactionUnits = await Repo.GetUnitsAsync(factionKey);
+            _subjectFaction = await Repo.GetFactionAsync(factionKey);
+            _subjectLores = await Repo.GetLoresAsync(factionKey);
         }
         else
         {
             _subjectFactionUnits = null;
-            _subjectExtras = null;
+            _subjectFaction = null;
+            _subjectLores = null;
         }
     }
 
@@ -287,15 +293,17 @@
         _stagingUnit = null;
         _stagingConfig = null;
 
-        if (!string.IsNullOrEmpty(factionKey) && FactionKeyExtensions.TryFromJsonKey(factionKey, out var fk))
+        if (!string.IsNullOrEmpty(factionKey))
         {
-            _stagingFactionUnits = await Repo.GetUnitsAsync(fk);
-            _stagingExtras = await Repo.GetFactionExtrasAsync(fk);
+            _stagingFactionUnits = await Repo.GetUnitsAsync(factionKey);
+            _stagingFaction = await Repo.GetFactionAsync(factionKey);
+            _stagingLores = await Repo.GetLoresAsync(factionKey);
         }
         else
         {
             _stagingFactionUnits = null;
-            _stagingExtras = null;
+            _stagingFaction = null;
+            _stagingLores = null;
         }
     }
 
@@ -371,22 +379,12 @@
 
         foreach (var opp in _opponents)
         {
-            double costPerModel = opp.Unit.BaseModelCost;
+            double costPerModel = opp.Config.BaseModelCost;
             if (costPerModel <= 0) continue;
 
             // Subtract fixed costs (command, upgrades, magic items) to get the model budget
-            var probe = new UnitConfiguration(opp.Unit)
-            {
-                ModelCount = 1,
-                HasChampion = opp.Config.HasChampion,
-                HasMusician = opp.Config.HasMusician,
-                HasStandardBearer = opp.Config.HasStandardBearer,
-                SelectedWeapon = opp.Config.SelectedWeapon,
-            };
-            foreach (var kvp in opp.Config.SelectedUpgrades)
-                probe.SelectedUpgrades[kvp.Key] = kvp.Value;
-            foreach (var kvp in opp.Config.SelectedMultiUpgrades)
-                probe.SelectedMultiUpgrades[kvp.Key] = kvp.Value.ToList();
+            var probe = CloneConfig(opp.Unit, opp.Config);
+            probe.ModelCount = 1;
 
             double fixedCost = probe.TotalPointsCost - costPerModel;
             double modelBudget = targetPts - fixedCost;
@@ -404,16 +402,17 @@
 
         if (!Enum.TryParse<BaseTroopType>(preset, out var targetType)) return;
 
-        foreach (var fk in Repo.AllFactions)
+        foreach (var faction in Repo.AllFactions)
         {
-            var units = await Repo.GetUnitsAsync(fk);
+            var units = await Repo.GetUnitsAsync(faction.Id);
             foreach (var unit in units)
             {
                 if (unit.BaseModel.TroopType.IsCharacter) continue;
+                if (unit.Category == UnitCategory.CharacterMounts) continue;
                 if (unit.BaseModel.TroopType.BaseType != targetType) continue;
 
                 var config = new UnitConfiguration(unit);
-                _opponents.Add(new OpponentEntry(unit, config, fk.ToJsonKey()));
+                _opponents.Add(new OpponentEntry(unit, config, faction.Id));
             }
         }
 
@@ -495,26 +494,8 @@
 
     private static UnitConfiguration CloneConfig(Unit unit, UnitConfiguration source)
     {
-        var clone = new UnitConfiguration(unit)
-        {
-            ModelCount = source.ModelCount,
-            Frontage = source.Frontage,
-            SelectedWeapon = source.SelectedWeapon,
-            HasChampion = source.HasChampion,
-            HasMusician = source.HasMusician,
-            HasStandardBearer = source.HasStandardBearer,
-            SelectedShadowDance = source.SelectedShadowDance,
-            SelectedTreeAspect = source.SelectedTreeAspect,
-            UseTreeWhack = source.UseTreeWhack,
-        };
-        foreach (var kvp in source.SelectedUpgrades)
-            clone.SelectedUpgrades[kvp.Key] = kvp.Value;
-        foreach (var kvp in source.SelectedMultiUpgrades)
-            clone.SelectedMultiUpgrades[kvp.Key] = kvp.Value.ToList();
-        foreach (var mi in source.SelectedMagicItems)
-            clone.SelectedMagicItems.Add(mi);
-        foreach (var mod in source.Modifiers)
-            clone.Modifiers.Add(mod);
+        var clone = new UnitConfiguration(unit);
+        clone.CopySelectionsFrom(source, includeIdentity: false);
         return clone;
     }
 

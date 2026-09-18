@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Warhammer.Models.Bundle;
+namespace Warhammer.Models.Json;
 
 /// <summary>
 /// The whole edition as one file — <c>wwwroot/data/{system}/{system}.json</c>, formatVersion 2.

@@ -14,11 +14,25 @@
         </div>
     }
 
+    @if (Unit.Profiles.Count > 1)
+    {
+        <div class="mb-2">
+            <label class="form-label small text-body-secondary">Profile</label>
+            <select class="form-select form-select-sm" value="@Configuration.SelectedProfileId"
+                    @onchange="OnProfileChanged">
+                @foreach (var profile in Unit.Profiles)
+                {
+                    <option value="@profile.Id">@profile.Name (@FormatPoints(profile.Points) pts)</option>
+                }
+            </select>
+        </div>
+    }
+
     <StatTable Profile="Configuration.PrimaryProfile" MountProfile="Configuration.MountProfile" />
 
     <div class="mb-2 d-flex justify-content-between align-items-center">
         <small class="text-body-secondary">
-            @Configuration.BaseModelCost pts/model
+            @FormatPoints(Configuration.BaseModelCost) pts/model
         </small>
         <span class="fw-bold">
             @Configuration.TotalPointsCost.ToString("F0") pts
@@ -46,7 +60,7 @@
     <UnitOptionsEditor Unit="Unit"
                        Configuration="Configuration"
                        ConfigurationChanged="ConfigurationChanged"
-                       FactionExtras="FactionExtras" />
+                       Faction="Faction" />
 
     <FactionAbilityPanel Configuration="Configuration"
                          ConfigurationChanged="ConfigurationChanged" />
@@ -56,13 +70,13 @@
 
     <WizardConfigPanel Configuration="Configuration"
                        ConfigurationChanged="ConfigurationChanged"
-                       FactionExtras="FactionExtras" />
+                       Lores="Lores" />
 
     <MagicBannerSelector Configuration="Configuration"
                          ConfigurationChanged="ConfigurationChanged"
                          MagicItems="AllMagicItems" />
 
-    @if (Configuration.ResolvedUnit.MagicItemAllowance.HasValue && AllMagicItems.Count > 0)
+    @if (Configuration.MagicItemAllowance != null && AllMagicItems.Count > 0)
     {
         <MagicItemSelector MagicItems="AllMagicItems"
                            Configuration="Configuration"
@@ -86,7 +100,13 @@
     [Parameter] public Unit? Unit { get; set; }
     [Parameter] public UnitConfiguration? Configuration { get; set; }
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
-    [Parameter] public FactionExtrasData? FactionExtras { get; set; }
+
+    /// <summary>The unit's army book: its items, upgrade chapters and rules.</summary>
+    [Parameter] public FactionData? Faction { get; set; }
+
+    /// <summary>The lores the faction's wizards may use — the book's own and the rulebook's.</summary>
+    [Parameter] public IReadOnlyList<LoreEntry>? Lores { get; set; }
+
     [Parameter] public IReadOnlyList<MagicItemEntry>? CommonMagicItems { get; set; }
 
     /// <summary>
@@ -101,13 +121,25 @@
             : "e.g. The Emerald Guard";
 
     private List<MagicItemEntry> AllMagicItems =>
-        [.. CommonMagicItems ?? [], .. FactionExtras?.MagicItems ?? []];
+        [.. CommonMagicItems ?? [], .. Faction?.Items ?? []];
+
+    private static string FormatPoints(double? value) =>
+        value is null ? "—" : value.Value % 1 == 0 ? value.Value.ToString("F0") : value.Value.ToString("0.#");
 
     private async Task OnCustomNameChanged(ChangeEventArgs e)
     {
         if (Configuration == null) return;
         var raw = e.Value?.ToString();
         Configuration.Loadout.CustomName = string.IsNullOrWhiteSpace(raw) ? null : raw.Trim();
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnProfileChanged(ChangeEventArgs e)
+    {
+        if (Configuration == null) return;
+        var id = e.Value?.ToString();
+        if (!string.IsNullOrEmpty(id))
+            Configuration.SelectedProfileId = id;
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 

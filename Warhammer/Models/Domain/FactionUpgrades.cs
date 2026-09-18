@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using Warhammer.Models.Bundle;
+using Warhammer.Models.Json;
 
 namespace Warhammer.Models.Domain;
 

@@ -56,7 +56,7 @@ public class ArmyRosterBuilder
         return new RosterDocument
         {
             ArmyName = string.IsNullOrWhiteSpace(list.Name) ? "Untitled List" : list.Name.Trim(),
-            FactionName = _repo.GetFactionDisplayName(list.Faction),
+            FactionName = _repo.GetFactionDisplayName(list.FactionId),
             SystemName = GameSystems.DisplayNameFor(_system.CurrentSystem),
             TotalPoints = list.TotalPoints,
             PointsTarget = list.PointsTarget,
@@ -85,8 +85,8 @@ public class ArmyRosterBuilder
 
         return new RosterEntry
         {
-            Name = named ? custom! : cfg.ResolvedUnit.Name,
-            BookName = named ? cfg.ResolvedUnit.Name : null,
+            Name = named ? custom! : BookCase(cfg.ResolvedUnit.Name),
+            BookName = named ? BookCase(cfg.ResolvedUnit.Name) : null,
             Roles = Roles(cfg),
             ModelLine = ModelLine(cfg),
             Profiles = Profiles(cfg),
@@ -116,15 +116,15 @@ public class ArmyRosterBuilder
             : $"{cfg.ModelCount} models · {cfg.Frontage} wide";
 
     /// <summary>
-    /// The rider's line, then the mount's. Printed whenever the book gives the entry a second
+    /// The fielded profile's line, then the mount's. Printed whenever the entry has a second
     /// profile, including the troop types that don't fight as a split profile — the sheet is
     /// there to save looking the mount up, whether or not it gets its own attacks.
     /// </summary>
     private static IReadOnlyList<RosterProfile> Profiles(UnitConfiguration cfg)
     {
         var profiles = new List<RosterProfile> { Profile(cfg.PrimaryProfile, cfg.ResolvedUnit.Name) };
-        if (cfg.MountProfile != null)
-            profiles.Add(Profile(cfg.MountProfile, cfg.ResolvedUnit.Mount?.Name ?? "Mount"));
+        if (cfg.MountProfile is { } mount)
+            profiles.Add(Profile(mount, cfg.SelectedMount?.Model.Name ?? cfg.ResolvedUnit.Mount?.Name ?? "Mount"));
         return profiles;
     }
 
@@ -196,24 +196,21 @@ public class ArmyRosterBuilder
         foreach (var part in EquipmentParser.SplitItems(cfg.UnitEntry.Equipment))
             if (Unmodelled(part) is { } item) items.Add(item);
 
-        var options = cfg.UnitEntry.Options;
-        for (int i = 0; options != null && i < options.Count; i++)
+        foreach (var group in cfg.ActiveGroups())
         {
-            var option = options[i];
-            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
+            if (!group.IsKind(OptionKind.Equipment)) continue;
 
-            foreach (int choiceIndex in cfg.SelectedChoicesIn(i))
+            foreach (var (choice, _) in cfg.TakenIn(group))
             {
-                if (choiceIndex >= option.Choices.Count) continue;
+                if (choice.Replaces is { } replaced)
+                {
+                    foreach (var part in EquipmentParser.SplitChoiceName(replaced))
+                        if (Unmodelled(part) is { } gone)
+                            items.RemoveAll(item => SameGear(item, gone));
+                }
 
-                var choice = option.Choices[choiceIndex];
-
-                var replaced = choice.Replaces ?? option.Replaces;
-                if (option.IsAction(OptionAction.Replace) && replaced != null && Unmodelled(replaced) is { } gone)
-                    items.RemoveAll(item => SameGear(item, gone));
-
-                foreach (var name in choice.Name)
-                    if (Unmodelled(name) is { } item) items.Add(item);
+                foreach (var part in EquipmentParser.SplitChoiceName(choice.Name))
+                    if (Unmodelled(part) is { } item) items.Add(item);
             }
         }
 
@@ -257,41 +254,34 @@ public class ArmyRosterBuilder
     }
 
     /// <summary>
-    /// Mounts, upgrades and faction upgrades taken. Equipment options are left out: they are
-    /// already in <see cref="Equipment"/>, resolved to what the models end up holding.
+    /// Mounts, upgrades, wizard levels, special rules and faction upgrades taken. Equipment
+    /// options are left out: they are already in <see cref="Equipment"/>, resolved to what the
+    /// models end up holding.
     /// </summary>
     private static IReadOnlyList<string> Upgrades(UnitConfiguration cfg)
     {
         var picks = new List<string>();
-        var options = cfg.UnitEntry.Options;
 
-        for (int i = 0; options != null && i < options.Count; i++)
+        foreach (var group in cfg.ActiveGroups())
         {
-            var option = options[i];
-
-            foreach (int choiceIndex in cfg.SelectedChoicesIn(i))
+            switch (group.GetKind())
             {
-                switch (option.GetOptionType())
-                {
-                    case OptionType.Mount when option.Choices != null && choiceIndex < option.Choices.Count:
-                        picks.Add(option.Choices[choiceIndex].DisplayName);
-                        break;
-
-                    case OptionType.Upgrade when option.SubOptions != null:
-                        if (choiceIndex >= option.SubOptions.Count) break;
-                        var sub = option.SubOptions[choiceIndex];
-                        picks.Add(sub.Choices?.FirstOrDefault()?.DisplayName ?? sub.Upgrade ?? "Upgrade");
-                        break;
-
-                    case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
-                        if (!string.IsNullOrWhiteSpace(option.Upgrade)) picks.Add(option.Upgrade);
-                        break;
-                }
+                case OptionKind.Mount:
+                case OptionKind.WizardLevel:
+                case OptionKind.SpecialRule:
+                case OptionKind.Upgrade:
+                case null:
+                    break;
+                default:
+                    continue;
             }
+
+            foreach (var (choice, count) in cfg.TakenIn(group))
+                picks.Add(count > 1 ? $"{count} × {choice.Name}" : choice.Name);
         }
 
         foreach (var (_, selections) in cfg.Loadout.SelectedFactionUpgrades)
-            picks.AddRange(selections.Select(s => s.Name));
+            picks.AddRange(selections.Select(s => BookCase(s.Name)));
 
         return Unique(picks);
     }
@@ -299,11 +289,11 @@ public class ArmyRosterBuilder
     private static IReadOnlyList<RosterItem> MagicItems(UnitConfiguration cfg)
     {
         var items = cfg.SelectedMagicItems
-            .Select(item => new RosterItem(item.Name, item.PointsCost))
+            .Select(item => new RosterItem(BookCase(item.Name), item.PointsCost))
             .ToList();
 
         if (cfg.Loadout.SelectedBanner is { } banner)
-            items.Add(new RosterItem(banner.Name, banner.PointsCost));
+            items.Add(new RosterItem(BookCase(banner.Name), banner.PointsCost));
 
         return items;
     }
@@ -311,8 +301,7 @@ public class ArmyRosterBuilder
     /// <summary>
     /// The book's rules for the entry, by name — the whole SPECIAL RULES line, including the
     /// ones the book scopes to a single model, which the unit-wide name list keeps. The mount's
-    /// set is concatenated for completeness and contributes nothing today:
-    /// <see cref="ParsedSpecialRules.ParseScoped"/> clears the name list on every scoped set.
+    /// set is concatenated for completeness.
     /// </summary>
     private static IReadOnlyList<string> SpecialRules(UnitConfiguration cfg) =>
         Unique([.. cfg.SpecialRules.AllRuleNames, .. cfg.MountSpecialRules.AllRuleNames]);
@@ -331,11 +320,11 @@ public class ArmyRosterBuilder
         {
             var wizard = $"Wizard Level {cfg.Loadout.WizardLevel}";
             if (!string.IsNullOrWhiteSpace(cfg.Loadout.SelectedLore))
-                wizard += $" · {cfg.Loadout.SelectedLore}";
+                wizard += $" · {BookCase(cfg.Loadout.SelectedLore)}";
             notes.Add(wizard);
 
             if (cfg.Loadout.SelectedSpells.Count > 0)
-                notes.Add("Spells: " + string.Join(", ", cfg.Loadout.SelectedSpells));
+                notes.Add("Spells: " + string.Join(", ", cfg.Loadout.SelectedSpells.Select(BookCase)));
         }
 
         if (cfg.SelectedShadowDance != ShadowDance.None)
@@ -368,9 +357,9 @@ public class ArmyRosterBuilder
             .ToList();
 
     /// <summary>
-    /// core-rules.json holds weapon and armour names as the rulebook's tables print them —
-    /// "HAND WEAPON". Shouting suits a table and not a roster line, so an all-caps name is
-    /// title-cased; a name that already has lower-case letters is left as the data has it.
+    /// The bundle prints names as the books' running headers do — "HALBERDIERS", "HAND WEAPON".
+    /// Shouting suits a heading and not a roster line, so an all-caps name is title-cased; a name
+    /// that already has lower-case letters is left as the data has it.
     /// </summary>
     private static string BookCase(string name)
     {

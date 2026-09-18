@@ -1,4 +1,3 @@
-using Warhammer.Calculator.Models;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
 using Warhammer.Services;
@@ -6,20 +5,13 @@ using Warhammer.Services;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// Rules the army books scope to one model in a unit — "Mighty Blow (2) (War Boars only)". They
-/// used to be mishandled in both directions. The two-parenthetical form reached no arm at all and
-/// was dropped: 33 instances in wap-v2 and 31 in wap-v3. The one-parenthetical form parsed cleanly
-/// and was applied to the whole unit: 54 and 53 instances, arming every Daemonette with its Steed
-/// of Slaanesh's poison. 60 wap-v2 and 59 wap-v3 units were affected one way or the other.
+/// Rules the army books scope to one model in a unit — "Poisoned Attacks (Steed of Slaanesh
+/// only)". They used to be mishandled in both directions: the two-parenthetical form reached no
+/// arm at all and was dropped, and the one-parenthetical form parsed cleanly and was applied to
+/// the whole unit, arming every Daemonette with its Steed of Slaanesh's poison.
 /// </summary>
 public class ScopedRuleTests
 {
-    private static async Task<Unit> Find(string system, FactionKey faction, string name)
-    {
-        var repo = TestHelpers.RepoFor(system);
-        return (await repo.GetUnitsAsync(faction)).First(u => u.Name == name);
-    }
-
     // ─── Matching the book's name to a profile ─────────────────────
 
     [Theory]
@@ -135,54 +127,32 @@ public class ScopedRuleTests
     [Fact]
     public async Task AScopedRuleIsListedOnceAndKeepsItsScope()
     {
-        var boarBoyz = await Find(GameSystems.WapV2, FactionKey.OrcsAndGoblins, "Boar Boyz");
+        var boarBoyz = await TestHelpers.FindUnitAsync("orcs-goblins", "BOAR BOYZ");
         var names = boarBoyz.BaseModel.SpecialRules.AllRuleNames;
 
-        Assert.Equal(1, names.Count(n => n == "Mighty Blow (2) (War Boars only)"));
-        Assert.DoesNotContain("Mighty Blow (2)", names);
-
-        // The unit's own Mighty Blow (1) is a separate, unscoped entry and stays.
-        Assert.Contains("Mighty Blow (1)", names);
+        Assert.Equal(1, names.Count(n => n == "Tusker Charge (War Boar only)"));
+        Assert.DoesNotContain("Tusker Charge", names);
     }
 
     // ─── Routing onto the right model ──────────────────────────────
 
     /// <summary>
-    /// The boar's Mighty Blow is the boar's, not the Orc's. wap-v2 only: v3 replaced the boar's
-    /// "Mighty Blow (2) (War Boars only)" with Tusker Charge, and dropped the Orc's own bonus.
+    /// Ripperdactyl Riders were the clearest over-application: the Skink Brave was getting the
+    /// beast's Armour Piercing.
     /// </summary>
     [Fact]
-    public async Task BoarBoyzGiveTheirMightyBlowToTheBoar()
+    public async Task RipperdactylRulesBelongToTheRipperdactyl()
     {
-        var boarBoyz = await Find(GameSystems.WapV2, FactionKey.OrcsAndGoblins, "Boar Boyz");
+        var riders = await TestHelpers.FindUnitAsync("lizardmen", "RIPPERDACTYL RIDERS");
 
-        Assert.Equal(1, boarBoyz.BaseModel.SpecialRules.MightyBlow);
-        Assert.Equal(2, boarBoyz.Mount!.SpecialRules.MightyBlow);
-    }
-
-    /// <summary>
-    /// Ripperdactyl Riders were the clearest over-application: the Skink Brave was getting the
-    /// beast's Killing Blow, Frenzy and Armour Piercing.
-    /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task RipperdactylRulesBelongToTheRipperdactyl(string system)
-    {
-        var riders = await Find(system, FactionKey.Lizardmen, "Ripperdactyl Riders");
-
-        Assert.False(riders.BaseModel.SpecialRules.KillingBlow);
         Assert.Null(riders.BaseModel.SpecialRules.ArmourPiercing);
-        Assert.True(riders.Mount!.SpecialRules.KillingBlow);
-        Assert.Equal(1, riders.Mount.SpecialRules.ArmourPiercing);
+        Assert.Equal(1, riders.Mount!.SpecialRules.ArmourPiercing);
     }
 
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task SeekersGiveTheirPoisonToTheSteed(string system)
+    [Fact]
+    public async Task SeekersGiveTheirPoisonToTheSteed()
     {
-        var seekers = await Find(system, FactionKey.DaemonsOfChaos, "Seekers");
+        var seekers = await TestHelpers.FindUnitAsync("daemons-of-chaos", "SEEKERS");
 
         Assert.False(seekers.BaseModel.SpecialRules.PoisonedAttacks);
         Assert.True(seekers.Mount!.SpecialRules.PoisonedAttacks);
@@ -192,29 +162,25 @@ public class ScopedRuleTests
     /// A scope naming the unit's own fighting profile belongs to the unit — this is the direction
     /// that was silently dropped rather than over-applied.
     /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task ASalamandersOwnNaturalArmourApplies(string system)
+    [Fact]
+    public async Task ASalamandersOwnNaturalArmourApplies()
     {
-        var salamander = await Find(system, FactionKey.Lizardmen, "Salamander");
+        var salamander = await TestHelpers.FindUnitAsync("lizardmen", "SALAMANDER");
 
-        // "Natural Armour (5+) (Salamander only)" is the Salamander's; the Skink Handler's 6+ is
+        // "Natural Armour (5+) (Salamander only)" is the Salamander's; the Skink Handler's is
         // not, and the handler is not fielded as a fighting model.
         Assert.Equal(5, salamander.BaseModel.SpecialRules.NaturalArmour);
     }
 
     /// <summary>
     /// A champion-only rule goes nowhere. The engine fields one profile for the rank and file, so
-    /// there is no model to put a Slave Master's Murderous Prowess on — and giving it to all
+    /// there is no model to put a Slavemaster's Murderous Prowess on — and giving it to all
     /// twenty slaves, which is what happened before, is worse than leaving it out.
     /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task AChampionOnlyRuleIsNotGivenToTheWholeUnit(string system)
+    [Fact]
+    public async Task AChampionOnlyRuleIsNotGivenToTheWholeUnit()
     {
-        var slaves = await Find(system, FactionKey.DarkElves, "Slaves");
+        var slaves = await TestHelpers.FindUnitAsync("dark-elves", "SLAVES");
 
         Assert.False(slaves.BaseModel.SpecialRules.MurderousProwess);
         Assert.False(slaves.BaseModel.SpecialRules.Hatred);
@@ -224,25 +190,9 @@ public class ScopedRuleTests
     // ─── It reaches the combat maths ───────────────────────────────
 
     /// <summary>
-    /// The boar's Mighty Blow has to raise the mount's Strength, which read straight off the
-    /// profile before. A War Boar is S3, so first-round attacks land at S5.
-    /// </summary>
-    [Fact]
-    public async Task TheBoarsMightyBlowRaisesTheMountsStrength()
-    {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV2);
-        var boarBoyz = new UnitConfiguration(
-            (await repo.GetUnitsAsync(FactionKey.OrcsAndGoblins)).First(u => u.Name == "Boar Boyz"))
-        { ModelCount = 5, Frontage = 5 };
-
-        Assert.Equal(2, boarBoyz.MountSpecialRules.MightyBlow);
-        Assert.Equal(3, boarBoyz.MountProfile!.S);
-    }
-
-    /// <summary>
-    /// wap-v3 replaced the boar's "Mighty Blow (2) (War Boars only)" with Tusker Charge — "Models
-    /// with this special rule have the Mighty Blow (1) special rule in any turn that they charge"
-    /// — and scoped that to the boar too. With no arm for it, v3 Boar Boyz had no boar bonus at all.
+    /// "Tusker Charge (War Boar only)" — "Models with this special rule have the Mighty Blow (1)
+    /// special rule in any turn that they charge" — is scoped to the boar. With no arm for it,
+    /// Boar Boyz had no boar bonus at all.
     /// </summary>
     [Fact]
     public void TuskerChargeIsMightyBlowOnTheCharge()
@@ -274,42 +224,33 @@ public class ScopedRuleTests
     }
 
     [Fact]
-    public async Task V3BoarBoyzGiveTuskerChargeToTheBoar()
+    public async Task BoarBoyzGiveTuskerChargeToTheBoar()
     {
-        var boarBoyz = await Find(GameSystems.WapV3, FactionKey.OrcsAndGoblins, "Boar Boyz");
+        var boarBoyz = await TestHelpers.FindUnitAsync("orcs-goblins", "BOAR BOYZ");
 
         Assert.True(boarBoyz.Mount!.SpecialRules.TuskerCharge);
         Assert.False(boarBoyz.BaseModel.SpecialRules.TuskerCharge);
+
+        var config = new UnitConfiguration(boarBoyz) { ModelCount = 5, Frontage = 5 };
+        Assert.True(config.MountSpecialRules.TuskerCharge);
+        Assert.NotNull(config.MountProfile);
     }
 
     /// <summary>
     /// Where scoped rules end up is pinned across all shipped data, so a change to the matching
     /// shows up as a diff here rather than as a quiet shift in a simulation.
     /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task OnlyTheseUnitsArmTheirMount(string system)
+    [Fact]
+    public async Task OnlyTheseUnitsArmTheirMount()
     {
-        var repo = TestHelpers.RepoFor(system);
+        var repo = TestHelpers.Repo;
         var armed = new List<string>();
 
-        foreach (var faction in Enum.GetValues<FactionKey>())
+        foreach (var faction in repo.AllFactions)
         {
-            IReadOnlyList<Unit> units;
-            try
+            foreach (var unit in await repo.GetUnitsAsync(faction.Id))
             {
-                units = await repo.GetUnitsAsync(faction);
-            }
-            catch (Exception)
-            {
-                continue;
-            }
-
-            foreach (var unit in units)
-            {
-                // Only rules the engine acts on. A scoped rule with no arm yet — wap-v3's Tusker
-                // Charge, say — reaches the mount but changes nothing, so it does not belong here.
+                // Only rules the engine acts on.
                 var mount = unit.Mount?.SpecialRules;
                 if (mount is null)
                     continue;
@@ -319,17 +260,18 @@ public class ScopedRuleTests
                     || mount.KillingBlow || mount.HeroicKillingBlow || mount.PoisonedAttacks
                     || mount.FlamingAttacks || mount.MagicalAttacks || mount.IgnoresArmourSaves
                     || mount.LightningAttacks || mount.PredatoryFighter || mount.MurderousProwess
-                    || mount.MartialProwess || mount.PrimalFury || mount.TreeWhack)
+                    || mount.MartialProwess || mount.PrimalFury || mount.TreeWhack || mount.TuskerCharge)
                 {
-                    armed.Add($"{faction}/{unit.Name}");
+                    armed.Add($"{faction.Id}/{unit.Name}");
                 }
             }
         }
 
         // Joined into one string so a mismatch prints the whole list rather than an elision.
-        Assert.Equal(
-            string.Join("\n", ExpectedArmedMounts[system].OrderBy(s => s)),
-            string.Join("\n", armed.OrderBy(s => s)));
+        var expected = string.Join("\n", ExpectedArmedMounts.OrderBy(s => s));
+        var actual = string.Join("\n", armed.OrderBy(s => s));
+        Assert.True(expected == actual,
+            $"The units arming their mount changed.\nExpected:\n{expected}\nActual:\n{actual}");
     }
 
     /// <summary>
@@ -338,40 +280,24 @@ public class ScopedRuleTests
     /// Steed of Slaanesh's attacks — and none of them armed the mount, because AttackResolver
     /// suppressed every unit rule on a mount attack.
     /// </summary>
-    private static readonly Dictionary<string, string[]> ExpectedArmedMounts = new()
-    {
-        [GameSystems.WapV2] =
-        [
-            "Bretonnia/Lady Elise Duchard",
-            "DaemonsOfChaos/Pleasureseekers",
-            "DaemonsOfChaos/Seekers",
-            "Lizardmen/Ripperdactyl Riders",
-            "OrcsAndGoblins/Big 'un Boar Boyz",
-            "OrcsAndGoblins/Boar Boyz",
-            "OrcsAndGoblins/Gorbad Ironclaw",
-            "OrcsAndGoblins/Gore-gruntas",
-            "TombKings/Necropolis Knights",
-            "WarriorsOfChaos/Hellstriders",
-            "WarriorsOfChaos/Kayzk the Befouled",
-            "WarriorsOfChaos/Pusgoyle Blightlords",
-            "WarriorsOfChaos/Rot Knights",
-            "WarriorsOfChaos/Slickblade Seekers",
-        ],
-        [GameSystems.WapV3] =
-        [
-            "Bretonnia/Lady Elise Duchard",
-            "DaemonsOfChaos/Pleasureseekers",
-            "DaemonsOfChaos/Seekers",
-            "Lizardmen/Ripperdactyl Riders",
-            "OrcsAndGoblins/Gigantic Spider Riders",
-            "OrcsAndGoblins/Snagla Grobspit",
-            "OrcsAndGoblins/Spider Riders",
-            "TheEmpire/Demigryph Knights",
-            "TombKings/Necropolis Knights",
-            "WarriorsOfChaos/Hellstriders",
-            "WarriorsOfChaos/Pusgoyle Blightlords",
-            "WarriorsOfChaos/Rot Knights",
-            "WarriorsOfChaos/Slickblade Seekers",
-        ],
-    };
+    private static readonly string[] ExpectedArmedMounts =
+    [
+        "amazons/CULCHAN RIDERS",
+        "amazons/HUNTRESSES",
+        "bretonnia/LADY ELISE DUCHARD",
+        "daemons-of-chaos/PLEASURESEEKERS",
+        "daemons-of-chaos/SEEKERS",
+        "empire/DEMIGRYPH KNIGHTS",
+        "estalia/KNIGHTS OF THE RAGING BULL",
+        "kingdoms-of-ind/BENGAL RIDERS",
+        "lizardmen/RIPPERDACTYL RIDERS",
+        "orcs-goblins/BOAR BOY BIG 'UNS",
+        "orcs-goblins/BOAR BOYZ",
+        "orcs-goblins/GIGANTIC SPIDER RIDERS",
+        "orcs-goblins/GORBAD IRONCLAW",
+        "orcs-goblins/SNAGLA GROBSPIT",
+        "tomb-kings/NECROPOLIS KNIGHTS",
+        "warriors-of-chaos/HELLSTRIDERS",
+        "warriors-of-chaos/SLICKBLADE SEEKERS",
+    ];
 }

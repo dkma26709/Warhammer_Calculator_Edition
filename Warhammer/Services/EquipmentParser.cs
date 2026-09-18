@@ -80,6 +80,26 @@ public static class EquipmentParser
     }
 
     /// <summary>
+    /// The items an option choice names. Usually one — "Great weapon" — but a book may offer
+    /// two at once, "Spear and shield" or "Javelins &amp; shield", so a choice is split on the
+    /// conjunctions before each part is normalised. A part the parser has no key for stays as
+    /// the book wrote it, for the roster to print.
+    /// </summary>
+    public static IEnumerable<string> SplitChoiceName(string? name)
+    {
+        if (string.IsNullOrWhiteSpace(name)) yield break;
+
+        var parts = name.Split([" and ", " & ", ", "], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (parts.Length > 1 && parts.All(p => NormMap.ContainsKey(p.TrimEnd('.'))))
+        {
+            foreach (var part in parts) yield return part.TrimEnd('.');
+            yield break;
+        }
+
+        yield return name.Trim().TrimEnd('.');
+    }
+
+    /// <summary>
     /// The items on an <c>equipment</c> field, trimmed. The first line only — anything past a
     /// newline is extended description — split on commas. This is the canonical reading of the
     /// field (see <c>docs/02-data-format.md</c>); callers that need the unrecognised names too,

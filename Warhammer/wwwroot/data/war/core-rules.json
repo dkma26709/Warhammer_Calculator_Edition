@@ -1,5 +1,5 @@
 {
-  "name": "Warhammer: The Game of Fantasy Battles - 9th Edition v3.11",
+  "name": "Warhammer Armies Revamped - Core Rules",
   "closeCombatToHit": {
     "description": "Roll a D6 for each attack. Compare WS of attacker and defender. Natural 1 always misses, natural 6 always hits.",
     "table": [

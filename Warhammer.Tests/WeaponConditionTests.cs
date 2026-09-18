@@ -102,8 +102,7 @@ public class WeaponConditionTests
     // ─── The shipped weapon tables ─────────────────────────────────
 
     [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public void LancesOnlyBiteOnTheChargeInEverySystem(string systemKey)
     {
         var repo = TestHelpers.RepoFor(systemKey);
@@ -120,8 +119,7 @@ public class WeaponConditionTests
     }
 
     [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public void GreatWeaponsAndPolearmsCarryTheirStrengthBonus(string systemKey)
     {
         // The Strength column reads "As user +1" in v3 and a bare "+1" in v2. Reading only the
@@ -138,8 +136,7 @@ public class WeaponConditionTests
     }
 
     [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public void GreatWeaponsStrikeLast(string systemKey)
     {
         var greatWeapon = TestHelpers.RepoFor(systemKey).GetWeapon(CloseCombatWeaponKey.GreatWeapon);
@@ -150,8 +147,7 @@ public class WeaponConditionTests
     }
 
     [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public void NoWeaponLeavesAStrayModifierInItsSpecialRules(string systemKey)
     {
         // A signed number at the head of specialRules means a column split went wrong: either

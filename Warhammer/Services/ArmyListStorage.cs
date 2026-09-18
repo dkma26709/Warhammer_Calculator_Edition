@@ -6,11 +6,8 @@ namespace Warhammer.Services;
 /// </summary>
 public static class ArmyListStorage
 {
-    /// <summary>The Builder's autosave from before multi-system support, which carried no suffix.</summary>
-    public const string LegacyActiveKey = "warhammer.armylist.active";
-
     /// <summary>The Builder's autosave of the list being edited.</summary>
-    public static string ActiveKey(string system) => $"{LegacyActiveKey}.{system}";
+    public static string ActiveKey(string system) => $"warhammer.armylist.active.{system}";
 
     /// <summary>
     /// The list handed to the print view. Written on the way to <c>/roster</c> rather than read

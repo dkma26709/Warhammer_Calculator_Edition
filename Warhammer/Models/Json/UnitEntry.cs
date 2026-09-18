@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
-using Warhammer.Models.Json;
 
-namespace Warhammer.Models.Bundle;
+namespace Warhammer.Models.Json;
 
 /// <summary>
 /// One army list entry as the bundle prints it. The book's own fields keep their exact text;

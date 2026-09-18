@@ -6,7 +6,7 @@ namespace Warhammer.Tests;
 public class WizardConfigurationTests
 {
     [Fact]
-    public void IsWizardCapable_FalseWhenNoWizardUpgradeOption()
+    public void IsWizardCapable_FalseWhenNoWizardLevelOption()
     {
         var unit = TestHelpers.MakeUnit();
         var config = new UnitConfiguration(unit);
@@ -15,22 +15,40 @@ public class WizardConfigurationTests
     }
 
     [Fact]
-    public void IsWizardCapable_TrueWhenWizardUpgradeOptionPresent()
+    public void IsWizardCapable_TrueWhenWizardLevelOptionPresent()
     {
-        var unit = TestHelpers.MakeUnit(options: new List<UnitOption>
-        {
-            new() { Type = "wizard_upgrade", Upgrade = "Level 4 Wizard", Points = 35 },
-        });
+        var unit = TestHelpers.MakeUnit(options: [TestHelpers.WizardLevel(35)]);
         var config = new UnitConfiguration(unit);
 
         Assert.True(config.IsWizardCapable);
     }
 
     [Fact]
-    public void WizardLevel_DefaultsToTwo()
+    public void IsWizardCapable_TrueWhenTheBookGivesAWizardParagraph()
+    {
+        var unit = TestHelpers.MakeUnit();
+        unit = unit with { RawEntry = unit.RawEntry with { Magic = "A Battle Wizard is a Level 1 Wizard." } };
+        var config = new UnitConfiguration(unit);
+
+        Assert.True(config.IsWizardCapable);
+    }
+
+    [Fact]
+    public void AWizardLevelUpgrade_CostsItsPoints()
+    {
+        var unit = TestHelpers.MakeUnit(points: 65, troopType: "Infantry (Character)", options: [TestHelpers.WizardLevel(35)]);
+        var config = new UnitConfiguration(unit);
+        Assert.Equal(65, config.TotalPointsCost);
+
+        config.Selections.Toggle("wizard-level", "additional-wizard-level", true);
+        Assert.Equal(100, config.TotalPointsCost);
+    }
+
+    [Fact]
+    public void WizardLevel_DefaultsToOne()
     {
         var config = new UnitConfiguration(TestHelpers.MakeUnit());
-        Assert.Equal(2, config.Loadout.WizardLevel);
+        Assert.Equal(1, config.Loadout.WizardLevel);
     }
 
     [Fact]
@@ -60,5 +78,15 @@ public class WizardConfigurationTests
         Assert.Equal(2, config.Loadout.SelectedSpells.Count);
         Assert.Contains("Bestial Surge", config.Loadout.SelectedSpells);
         Assert.Equal(4, config.Loadout.WizardLevel);
+    }
+
+    [Fact]
+    public async Task AFactionsLores_AreItsOwnThenTheRulebooks()
+    {
+        var lores = await TestHelpers.Repo.GetLoresAsync("bretonnia");
+
+        Assert.Equal("THE LORE OF THE LADY", lores[0].Name);
+        Assert.Contains(lores, l => l.Name == "THE LORE OF FIRE");
+        Assert.All(lores, l => Assert.NotEmpty(l.Spells));
     }
 }

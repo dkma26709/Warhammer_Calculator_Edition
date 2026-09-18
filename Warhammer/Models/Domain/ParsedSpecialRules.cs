@@ -223,6 +223,33 @@ public record ParsedSpecialRules
     public sealed record ScopedRuleSets(ParsedSpecialRules UnitWide, IReadOnlyList<ScopedRules> Scoped);
 
     /// <summary>
+    /// A rule cut off inside a parenthesis — "Hatred (High", "Flaming Breath (see Bale" — is a
+    /// source line the export truncated. What is left of the parenthetical is neither a value
+    /// nor a scope, so it goes; the rule's name, and any parenthetical that did close, stay.
+    /// </summary>
+    private static string StripUnclosedTail(string part)
+    {
+        int depth = 0, lastOpenAtDepthZero = -1;
+        for (int i = 0; i < part.Length; i++)
+        {
+            if (part[i] == '(')
+            {
+                if (depth == 0) lastOpenAtDepthZero = i;
+                depth++;
+            }
+            else if (part[i] == ')' && depth > 0)
+            {
+                depth--;
+                if (depth == 0) lastOpenAtDepthZero = -1;
+            }
+        }
+
+        return depth > 0 && lastOpenAtDepthZero >= 0
+            ? part[..lastOpenAtDepthZero].TrimEnd()
+            : part;
+    }
+
+    /// <summary>
     /// Parse a rule list, keeping only the rules that apply to the whole unit. Rules the book
     /// scopes to one model are excluded — applying them unit-wide arms every model with a mount's
     /// or a champion's rule. Use <see cref="ParseScoped"/> to get those back.
@@ -247,7 +274,7 @@ public record ParsedSpecialRules
 
         foreach (var part in parts)
         {
-            var (name, rawParam) = ExtractNameAndParam(part.Trim());
+            var (name, rawParam) = ExtractNameAndParam(StripUnclosedTail(part.Trim()));
             if (string.IsNullOrWhiteSpace(name)) continue;
 
             // "(see Warrior Priest)" is the book pointing at where the rule is written out, not a

@@ -6,9 +6,9 @@ using Warhammer.Models.Enums;
 namespace Warhammer.Tests;
 
 /// <summary>
-/// <see cref="ChargeState.BothCharged"/> models a counter-charge — one of wap-v3's four charge
-/// reactions, where "both units are considered to have charged during this turn" (3.11 p17). So
-/// both collect the charge bonus, impact hits and any charge-conditional weapon modifier, and
+/// <see cref="ChargeState.BothCharged"/> models a counter-charge — one of the four charge
+/// reactions, where both units are considered to have charged during the turn. So both
+/// collect the charge bonus, impact hits and any charge-conditional weapon modifier, and
 /// neither counts as having held, which is what the spear and pike bonuses require.
 /// </summary>
 public class CounterChargeTests
@@ -48,9 +48,9 @@ public class CounterChargeTests
     [Fact]
     public async Task BothSidesTakeTheChargeCombatResBonus()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var engine = new CombatEngine(repo);
-        var (attacker, defender) = await Infantry(repo);
+        var (attacker, defender) = await Infantry();
 
         double Charge(ChargeState state)
         {
@@ -70,9 +70,9 @@ public class CounterChargeTests
     {
         // Two identical units: a mutual charge should leave the exchange level, where a
         // one-sided charge tilts it. This is the point of having the option.
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var engine = new CombatEngine(repo);
-        var (attacker, defender) = await Infantry(repo);
+        var (attacker, defender) = await Infantry();
 
         double Margin(ChargeState state)
         {
@@ -91,24 +91,25 @@ public class CounterChargeTests
     [Fact]
     public async Task BothSidesDeliverImpactHitsOnACounterCharge()
     {
-        // wap-v2 cavalry carry Impact Hits from the troop type, so a mutual charge should
-        // produce roughly the sum of the two one-sided charges' impact wounds.
-        var repo = TestHelpers.RepoFor(GameSystems.WapV2);
+        // Stegadons carry Impact Hits on their entry, so a mutual charge should see both sides
+        // land them.
+        var repo = TestHelpers.Repo;
         var resolver = new CombatResolver(repo);
-        var knights = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Bretonnia))
-            .First(u => u.Name == "Knight of the Realm")) { ModelCount = 10, Frontage = 5 };
-        var otherKnights = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Bretonnia))
-            .First(u => u.Name == "Knight of the Realm")) { ModelCount = 10, Frontage = 5 };
+        var stegadon = await TestHelpers.FindUnitAsync("lizardmen", "STEGADON");
+        Assert.NotNull(stegadon.BaseModel.SpecialRules.ImpactHitsRoll);
+
+        var one = new UnitConfiguration(stegadon) { ModelCount = 1, Frontage = 1 };
+        var other = new UnitConfiguration(stegadon) { ModelCount = 1, Frontage = 1 };
 
         (double Att, double Def) Round(ChargeState state)
         {
             var context = Context(state);
-            var groups = resolver.PrepareAttackGroups(knights, otherKnights, context);
+            var groups = resolver.PrepareAttackGroups(one, other, context);
             long a = 0, d = 0;
             var rng = new Random(77);
             for (int i = 0; i < 3000; i++)
             {
-                var r = resolver.ResolveRound(knights, otherKnights, context, groups, rng);
+                var r = resolver.ResolveRound(one, other, context, groups, rng);
                 a += r.AttackerWoundsDealt;
                 d += r.DefenderWoundsDealt;
             }
@@ -127,11 +128,10 @@ public class CounterChargeTests
     [Fact]
     public async Task ASpearLosesItsHeldBonusWhenItCounterCharges()
     {
-        // wap-v3's spear requires a Hold or Stand & Shoot reaction. Counter-charge is neither,
-        // so a counter-charging spear unit does not get its Mighty Blow.
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
-        var spearmen = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
-            .First(u => u.Name == "Spearmen")) { ModelCount = 20, Frontage = 5 };
+        // The spear requires a Hold or Stand & Shoot reaction. Counter-charge is neither, so a
+        // counter-charging spear unit does not get its Mighty Blow.
+        var spearmen = new UnitConfiguration(await TestHelpers.FindUnitAsync("empire", "SPEARMEN"))
+            { ModelCount = 20, Frontage = 5 };
         var spear = spearmen.GetSelectedResolvedWeapon();
 
         Assert.NotNull(spear);
@@ -154,9 +154,9 @@ public class CounterChargeTests
     [Fact]
     public async Task ACounterChargeLapsesAfterTheFirstRound()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var resolver = new CombatResolver(repo);
-        var (attacker, defender) = await Infantry(repo);
+        var (attacker, defender) = await Infantry();
 
         var sets = resolver.PrepareRoundGroups(attacker, defender, Context(ChargeState.BothCharged), maxRounds: 3);
 
@@ -169,15 +169,13 @@ public class CounterChargeTests
     {
         Charge = state,
         CombatRound = 1,
-        AttackerFactionKey = "the-empire",
-        DefenderFactionKey = "the-empire",
+        AttackerFactionKey = "empire",
+        DefenderFactionKey = "empire",
     };
 
-    private static async Task<(UnitConfiguration Attacker, UnitConfiguration Defender)> Infantry(
-        Warhammer.Services.GameDataRepository repo)
+    private static async Task<(UnitConfiguration Attacker, UnitConfiguration Defender)> Infantry()
     {
-        var units = await repo.GetUnitsAsync(FactionKey.TheEmpire);
-        var entry = units.First(u => u.Name == "Halberdiers");
+        var entry = await TestHelpers.FindUnitAsync("empire", "HALBERDIERS");
         return (new UnitConfiguration(entry) { ModelCount = 20, Frontage = 5 },
                 new UnitConfiguration(entry) { ModelCount = 20, Frontage = 5 });
     }

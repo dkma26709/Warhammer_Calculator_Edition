@@ -1,3 +1,4 @@
+using Warhammer.Calculator.Models;
 using Warhammer.Models.Domain;
 using Warhammer.Models.Enums;
 
@@ -38,34 +39,40 @@ public class DomainModelTests
         Assert.Equal(key, parsed);
     }
 
+    // ─── Factions are ids, not an enum ──────────────────────────────
+
     [Theory]
-    [InlineData(FactionKey.TheEmpire, "the-empire", "The Empire")]
-    [InlineData(FactionKey.DarkElves, "dark-elves", "Dark Elves")]
-    [InlineData(FactionKey.OrcsAndGoblins, "orcs-and-goblins", "Orcs & Goblins")]
-    public void FactionKey_JsonKeyAndDisplayName(FactionKey key, string jsonKey, string displayName)
+    [InlineData("high-elves", true)]
+    [InlineData("dark-elves", true)]
+    [InlineData("wood-elves", true)]
+    [InlineData("empire", false)]
+    [InlineData("orcs-goblins", false)]
+    [InlineData(null, false)]
+    public void FactionRaces_IsElf(string? factionId, bool expected)
     {
-        Assert.Equal(jsonKey, key.ToJsonKey());
-        Assert.Equal(displayName, key.ToDisplayName());
-        Assert.True(FactionKeyExtensions.TryFromJsonKey(jsonKey, out var parsed));
-        Assert.Equal(key, parsed);
+        Assert.Equal(expected, FactionRaces.IsElf(factionId));
+    }
+
+    [Theory]
+    [InlineData("Orcs", "orcs-goblins", true)]
+    [InlineData("Orcs, Goblins", "hobgoblins", true)]
+    [InlineData("Dwarfs", "chaos-dwarfs", true)]
+    [InlineData("Elves", "empire", false)]
+    [InlineData("Undead", "zombie-pirates", true)]
+    public void FactionRaces_HatredTargetsMatchTheRaceTable(string target, string factionId, bool expected)
+    {
+        Assert.Equal(expected, FactionRaces.HatredApplies(target, factionId));
     }
 
     [Fact]
-    public void FactionKey_AllFactions_Returns15()
+    public void FactionRaces_KnowsEveryFactionTheBundleShips()
     {
-        Assert.Equal(15, FactionKeyExtensions.All.Count);
+        var known = FactionRaces.KnownFactions.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach (var faction in TestHelpers.Repo.AllFactions)
+            Assert.Contains(faction.Id, known);
     }
 
-    [Theory]
-    [InlineData(FactionKey.HighElves, true)]
-    [InlineData(FactionKey.DarkElves, true)]
-    [InlineData(FactionKey.WoodElves, true)]
-    [InlineData(FactionKey.TheEmpire, false)]
-    [InlineData(FactionKey.OrcsAndGoblins, false)]
-    public void FactionKey_IsElf(FactionKey key, bool expected)
-    {
-        Assert.Equal(expected, key.IsElf());
-    }
+    // ─── Categories ─────────────────────────────────────────────────
 
     [Theory]
     [InlineData(UnitCategory.Core, "Core")]
@@ -73,19 +80,57 @@ public class DomainModelTests
     [InlineData(UnitCategory.CharacterMounts, "Character Mounts")]
     public void UnitCategory_RoundTrips(UnitCategory cat, string jsonKey)
     {
+        Assert.Equal(jsonKey, cat.ToJsonKey());
         Assert.True(UnitCategoryExtensions.TryFromJsonKey(jsonKey, out var parsed));
         Assert.Equal(cat, parsed);
     }
 
     [Theory]
+    [InlineData("characters", null, false, UnitCategory.Characters)]
+    [InlineData("characters", "lord", false, UnitCategory.Lords)]
+    [InlineData("characters", "hero", false, UnitCategory.Heroes)]
+    [InlineData("characters", "lord", true, UnitCategory.NamedCharacters)]
+    [InlineData("core", null, false, UnitCategory.Core)]
+    [InlineData("special", null, false, UnitCategory.Special)]
+    [InlineData("rare", null, false, UnitCategory.Rare)]
+    [InlineData("mounts", null, false, UnitCategory.CharacterMounts)]
+    [InlineData(null, null, false, null)]
+    [InlineData("bestiary", null, false, null)]
+    public void UnitCategory_FromTheBundlesSectionTierAndNamed(string? section, string? tier, bool named, UnitCategory? expected)
+    {
+        Assert.Equal(expected, UnitCategoryExtensions.FromSection(section, tier, named));
+    }
+
+    [Theory]
+    [InlineData("champion", CommandRole.Champion)]
     [InlineData("Leader", CommandRole.Champion)]
     [InlineData("Champion", CommandRole.Champion)]
-    [InlineData("Musician", CommandRole.Musician)]
+    [InlineData("musician", CommandRole.Musician)]
+    [InlineData("standardBearer", CommandRole.StandardBearer)]
     [InlineData("Standard Bearer", CommandRole.StandardBearer)]
     public void CommandRole_FromRoleText(string text, CommandRole expected)
     {
         Assert.True(CommandRoleExtensions.TryFromRoleText(text, out var parsed));
         Assert.Equal(expected, parsed);
+    }
+
+    [Theory]
+    [InlineData("equipment", OptionKind.Equipment)]
+    [InlineData("magicItems", OptionKind.MagicItems)]
+    [InlineData("MAGICSTANDARD", OptionKind.MagicStandard)]
+    [InlineData("factionUpgrade", OptionKind.FactionUpgrade)]
+    public void OptionKind_FromTheBundlesKey(string key, OptionKind expected)
+    {
+        Assert.True(OptionKindExtensions.TryFromJsonKey(key, out var parsed));
+        Assert.Equal(expected, parsed);
+        Assert.Equal(expected, OptionKindExtensions.TryFromJsonKey(expected.ToJsonKey(), out var back) ? back : (OptionKind?)null);
+    }
+
+    [Fact]
+    public void OptionKind_UnknownKey_ReturnsFalse()
+    {
+        Assert.False(OptionKindExtensions.TryFromJsonKey("teleporter", out _));
+        Assert.False(OptionKindExtensions.TryFromJsonKey(null, out _));
     }
 
     // ─── WeaponStrength Parsing ─────────────────────────────────────
@@ -148,5 +193,21 @@ public class DomainModelTests
         Assert.False(none.CanHaveChampion);
         Assert.False(none.CanHaveMusician);
         Assert.False(none.CanHaveStandardBearer);
+    }
+
+    [Fact]
+    public void CommandAvailability_FromGroups_ReadsRolesAndCosts()
+    {
+        var command = CommandAvailability.FromGroups(
+        [
+            TestHelpers.Command(CommandRole.Champion, 5),
+            TestHelpers.Command(CommandRole.StandardBearer, 10),
+        ]);
+
+        Assert.True(command.CanHaveChampion);
+        Assert.Equal(5, command.ChampionCost);
+        Assert.False(command.CanHaveMusician);
+        Assert.True(command.CanHaveStandardBearer);
+        Assert.Equal(10, command.StandardBearerCost);
     }
 }

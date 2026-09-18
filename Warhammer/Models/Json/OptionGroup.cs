@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Warhammer.Models.Bundle;
+namespace Warhammer.Models.Json;
 
 /// <summary>
 /// One line of a unit's OPTIONS list, typed. A line that ends in "the following:" is a menu and

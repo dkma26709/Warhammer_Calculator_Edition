@@ -1,9 +1,9 @@
 {
-  "source": "Warhammer: The Game of Fantasy Battles - 9th Edition v3.11, Troop Types chapter (p71-76)",
+  "source": "Warhammer Armies Revamped rulebook, Troop Types chapter (rulebook.chapters in war.json)",
   "notes": [
-    "Hand-maintained. The Troop Types chapter is prose, not a ruled table, so extract_core_rules.py cannot lift these figures — core-rules.json carries only the descriptive text.",
-    "Divergences from wap-v2: Monstrous Infantry and Monstrous Beasts support three attacks rather than two; mounts may not make supporting attacks at all; Cavalry without a split profile drops from two to one; Cavalry and Monstrous Cavalry lose their inherent Impact Hits; no troop type grants Swiftstride any more (Independent took its place, which has no combat effect here).",
-    "large-infantry is not a wap-v3 troop type — the chapter drops it, and the nine wap-v2 units that declared it were re-typed. One wap-v3 entry still names it (Zoggrok Anvilsmasha, Orcs & Goblins), so the row is kept rather than letting a lookup throw. Figures carried over from wap-v2."
+    "Hand-maintained. The Troop Types chapter is prose, not a ruled table, so the figures are read off the chapter text and kept here for the combat engine.",
+    "Read from the WAR rulebook: Infantry, Cavalry and War Beasts rank five wide with one supporting attack; Monstrous Infantry, Monstrous Cavalry, Monstrous Beasts, Swarms and Chariots rank three wide; Monstrous Infantry and Monstrous Beasts support three attacks, Swarms five; mounts make no supporting attacks; Cavalry without a split profile supports one, Monstrous Cavalry without one three; Chariots cannot support and take their Impact Hits from their own entry; no troop type grants Swiftstride.",
+    "large-infantry is not a WAR troop type. One entry in the corpus still names it, so the row is kept rather than letting a lookup throw."
   ],
   "types": {
     "infantry": {

@@ -14,15 +14,14 @@ namespace Warhammer.Tests;
 /// </summary>
 public class RoundDependentModifierTests
 {
-
     /// <summary>
-    /// wap-v3's spear grants +1 Initiative in the first round of close combat only. Strike
-    /// order comes from the pre-built groups, so if those aren't rebuilt the bonus persists.
+    /// The spear grants +1 Initiative in the first round of close combat only. Strike order
+    /// comes from the pre-built groups, so if those aren't rebuilt the bonus persists.
     /// </summary>
     [Fact]
     public void AFirstRoundInitiativeBonusDoesNotSurviveIntoLaterRounds()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var spear = repo.GetWeapon(CloseCombatWeaponKey.Spear);
 
         Assert.NotNull(spear);
@@ -37,21 +36,18 @@ public class RoundDependentModifierTests
     /// The engine builds one group set for the charge round and one for the rounds after it.
     /// Both must reflect their own context — this is the regression the pre-built groups hid.
     /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task StrikeOrderIsRebuiltWhenTheRoundContextChanges(string systemKey)
+    [Fact]
+    public async Task StrikeOrderIsRebuiltWhenTheRoundContextChanges()
     {
-        var repo = TestHelpers.RepoFor(systemKey);
+        var repo = TestHelpers.Repo;
         var resolver = new CombatResolver(repo);
 
-        // Spearmen (I3, spear) against Saurus Warriors (I1, hand weapon). A spear's Initiative
-        // bonus is first-round-only in wap-v3 and unconditional in wap-v2, so the two systems
-        // should disagree about round 2 and agree about round 1.
-        var spearmen = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
-            .First(u => u.Name == "Spearmen")) { ModelCount = 20, Frontage = 5 };
-        var saurus = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Lizardmen))
-            .First(u => u.Name == "Saurus Warriors")) { ModelCount = 20, Frontage = 5 };
+        // Spearmen (spear) against Saurus Warriors (hand weapon). A spear's Initiative bonus is
+        // first-round-only, so the spearmen's priority drops after round one.
+        var spearmen = new UnitConfiguration(await TestHelpers.FindUnitAsync("empire", "SPEARMEN"))
+            { ModelCount = 20, Frontage = 5 };
+        var saurus = new UnitConfiguration(await TestHelpers.FindUnitAsync("lizardmen", "SAURUS WARRIORS"))
+            { ModelCount = 20, Frontage = 5 };
 
         var round1 = new CombatContext { Charge = ChargeState.Neither, CombatRound = 1 };
         var round2 = round1 with { CombatRound = 2 };
@@ -64,30 +60,25 @@ public class RoundDependentModifierTests
         int opening = SpearmenPriority(round1);
         int later = SpearmenPriority(round2);
 
-        if (systemKey == GameSystems.WapV3)
-            Assert.True(opening > later,
-                $"wap-v3 spear should lose its Initiative bonus after round 1 ({opening} then {later})");
-        else
-            Assert.Equal(opening, later);
+        Assert.True(opening > later,
+            $"the spear should lose its Initiative bonus after round 1 ({opening} then {later})");
     }
 
     /// <summary>
     /// A lance's Mighty Blow applies only on the turn it charges. The charge round and the
     /// rounds after it must therefore resolve at different Strength.
     /// </summary>
-    [Theory]
-    [InlineData(GameSystems.WapV2)]
-    [InlineData(GameSystems.WapV3)]
-    public async Task ALanceStopsHittingAtChargeStrengthAfterTheChargeRound(string systemKey)
+    [Fact]
+    public async Task ALanceStopsHittingAtChargeStrengthAfterTheChargeRound()
     {
-        var repo = TestHelpers.RepoFor(systemKey);
-        var knights = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Bretonnia))
-            .First(u => u.Name == "Knight of the Realm")) { ModelCount = 10, Frontage = 5 };
+        var knights = new UnitConfiguration(await TestHelpers.FindUnitAsync("bretonnia", "KNIGHT OF THE REALM"))
+            { ModelCount = 10, Frontage = 5 };
         var lance = knights.GetSelectedResolvedWeapon();
 
         Assert.NotNull(lance);
         Assert.Equal(WeaponCondition.WhenCharging, lance.Rules.MightyBlowCondition);
 
+        int baseStrength = knights.PrimaryProfile.S ?? 3;
         int Strength(bool charging, int round)
         {
             int mb = ParsedWeaponRules.Holds(lance.Rules.MightyBlowCondition, charging, false, round)
@@ -96,9 +87,9 @@ public class RoundDependentModifierTests
             return knights.EffectiveStrength(lance, charging, round, mb);
         }
 
-        Assert.Equal(5, Strength(charging: true, round: 1));    // S3 + Mighty Blow (2)
-        Assert.Equal(3, Strength(charging: false, round: 1));   // no charge, no lance
-        Assert.Equal(3, Strength(charging: false, round: 2));
+        Assert.Equal(baseStrength + (lance.Rules.MightyBlow ?? 0), Strength(charging: true, round: 1));
+        Assert.Equal(baseStrength, Strength(charging: false, round: 1));   // no charge, no lance
+        Assert.Equal(baseStrength, Strength(charging: false, round: 2));
     }
 
     /// <summary>
@@ -108,25 +99,23 @@ public class RoundDependentModifierTests
     [Fact]
     public async Task LaterRoundsGetTheirOwnGroupSet()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var resolver = new CombatResolver(repo);
 
-        // Empire Spearmen (I3, spear) against Bloodletters (I4). wap-v3's spear grants +1
-        // Initiative in the first round only, so the strike order genuinely flips: round one
-        // is a 4-vs-4 tie resolved simultaneously, round two has the Bloodletters going first.
-        var spearmen = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
-            .First(u => u.Name == "Spearmen")) { ModelCount = 20, Frontage = 5 };
-        var bloodletters = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.DaemonsOfChaos))
-            .First(u => u.Name == "Bloodletters")) { ModelCount = 20, Frontage = 5 };
+        // Empire Spearmen (spear) against Bloodletters. The spear grants +1 Initiative in the
+        // first round only, so the spearmen strike a step later from round two.
+        var spearmen = new UnitConfiguration(await TestHelpers.FindUnitAsync("empire", "SPEARMEN"))
+            { ModelCount = 20, Frontage = 5 };
+        var bloodletters = new UnitConfiguration(await TestHelpers.FindUnitAsync("daemons-of-chaos", "BLOODLETTERS"))
+            { ModelCount = 20, Frontage = 5 };
 
         var context = new CombatContext { Charge = ChargeState.Neither, CombatRound = 1 };
         var sets = resolver.PrepareRoundGroups(spearmen, bloodletters, context, maxRounds: 4);
 
-        static string Order(List<CombatResolver.AttackGroup> groups) => string.Join(",",
-            groups.Select(g => $"{(g.IsAttackerSide ? "attacker" : "defender")}:{g.Priority}"));
+        static int AttackerPriority(List<CombatResolver.AttackGroup> groups) =>
+            groups.First(g => g.IsAttackerSide && !g.IsMountAttack).Priority;
 
-        Assert.Equal("attacker:4,defender:4", Order(sets.For(1)));
-        Assert.Equal("defender:4,attacker:3", Order(sets.For(2)));
+        Assert.Equal(AttackerPriority(sets.For(1)) - 1, AttackerPriority(sets.For(2)));
 
         // Rounds three onward are the same context as round two, so they share its set.
         Assert.Same(sets.For(2), sets.For(3));
@@ -137,13 +126,13 @@ public class RoundDependentModifierTests
     [Fact]
     public async Task ASingleRoundRunNeedsOnlyTheOpeningSet()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var resolver = new CombatResolver(repo);
 
-        var spearmen = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
-            .First(u => u.Name == "Spearmen")) { ModelCount = 20, Frontage = 5 };
-        var saurus = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Lizardmen))
-            .First(u => u.Name == "Saurus Warriors")) { ModelCount = 20, Frontage = 5 };
+        var spearmen = new UnitConfiguration(await TestHelpers.FindUnitAsync("empire", "SPEARMEN"))
+            { ModelCount = 20, Frontage = 5 };
+        var saurus = new UnitConfiguration(await TestHelpers.FindUnitAsync("lizardmen", "SAURUS WARRIORS"))
+            { ModelCount = 20, Frontage = 5 };
 
         var context = new CombatContext { Charge = ChargeState.Neither, CombatRound = 1 };
         var sets = resolver.PrepareRoundGroups(spearmen, saurus, context, maxRounds: 1);
@@ -157,18 +146,18 @@ public class RoundDependentModifierTests
     [Fact]
     public async Task AChargeBonusDoesNotInflateLaterRoundsOfAMultiRoundRun()
     {
-        var repo = TestHelpers.RepoFor(GameSystems.WapV3);
+        var repo = TestHelpers.Repo;
         var engine = new CombatEngine(repo);
 
-        var knights = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.Bretonnia))
-            .First(u => u.Name == "Knight of the Realm")) { ModelCount = 10, Frontage = 5 };
-        var halberdiers = new UnitConfiguration((await repo.GetUnitsAsync(FactionKey.TheEmpire))
-            .First(u => u.Name == "Halberdiers")) { ModelCount = 25, Frontage = 5 };
+        var knights = new UnitConfiguration(await TestHelpers.FindUnitAsync("bretonnia", "KNIGHT OF THE REALM"))
+            { ModelCount = 10, Frontage = 5 };
+        var halberdiers = new UnitConfiguration(await TestHelpers.FindUnitAsync("empire", "HALBERDIERS"))
+            { ModelCount = 25, Frontage = 5 };
 
         var charged = new CombatContext
         {
             Charge = ChargeState.AttackerCharged, CombatRound = 1,
-            AttackerFactionKey = "bretonnia", DefenderFactionKey = "the-empire"
+            AttackerFactionKey = "bretonnia", DefenderFactionKey = "empire"
         };
         var neither = charged with { Charge = ChargeState.Neither };
 

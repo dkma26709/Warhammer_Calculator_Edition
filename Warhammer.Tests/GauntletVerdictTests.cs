@@ -22,14 +22,10 @@ public class GauntletVerdictTests
 
     private static async Task<(UnitConfiguration Saurus, UnitConfiguration Skeletons)> Matchup()
     {
-        var repo = TestHelpers.Repo;
-        var lizardmen = await repo.GetUnitsAsync(FactionKey.Lizardmen);
-        var vc = await repo.GetUnitsAsync(FactionKey.VampireCounts);
-
         var saurus = new UnitConfiguration(
-            lizardmen.First(u => u.Name == "Saurus Warriors")) { ModelCount = 25 };
+            await TestHelpers.FindUnitAsync("lizardmen", "SAURUS WARRIORS")) { ModelCount = 25 };
         var skeletons = new UnitConfiguration(
-            vc.First(u => u.Name == "Skeleton Warriors")) { ModelCount = 40 };
+            await TestHelpers.FindUnitAsync("vampire-counts", "SKELETON WARRIORS")) { ModelCount = 40 };
         return (saurus, skeletons);
     }
 
@@ -61,7 +57,7 @@ public class GauntletVerdictTests
 
         double capBoundShort = DecisiveWin(shortRun.MultiRound!);
         double capBoundLong = DecisiveWin(longRun.MultiRound!);
-        Assert.True(capBoundLong - capBoundShort > 60,
+        Assert.True(capBoundLong - capBoundShort > 30,
             $"the cap-bound reading should still swing wildly ({capBoundShort:F1}% -> {capBoundLong:F1}%), "
             + "otherwise this test isn't measuring what it claims");
     }

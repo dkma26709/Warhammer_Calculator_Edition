@@ -10,7 +10,7 @@
         <option value="">-- Select Faction --</option>
         @foreach (var faction in Repo.AllFactions)
         {
-            <option value="@faction.ToJsonKey()">@faction.ToDisplayName()</option>
+            <option value="@faction.Id">@faction.Name</option>
         }
     </select>
 </div>
@@ -52,8 +52,11 @@
     private string? _categoryFilter;
     private int _selectedIndex = -1;
 
+    /// <summary>The book's mounts section is what mount options point at, not something to field on its own.</summary>
+    private static bool Fieldable(Unit unit) => unit.Category != UnitCategory.CharacterMounts;
+
     private IEnumerable<string> Categories =>
-        FactionUnits?.Select(u => u.Category.ToJsonKey()).Distinct().OrderBy(c => c)
+        FactionUnits?.Where(Fieldable).Select(u => u.Category.ToJsonKey()).Distinct().OrderBy(c => c)
         ?? Enumerable.Empty<string>();
 
     private IEnumerable<(Unit Unit, int Index)> FilteredUnitsWithIndex
@@ -63,6 +66,7 @@
             if (FactionUnits == null) return [];
             return FactionUnits
                 .Select((u, i) => (Unit: u, Index: i))
+                .Where(x => Fieldable(x.Unit))
                 .Where(x => _categoryFilter == null || x.Unit.Category.ToJsonKey() == _categoryFilter)
                 .OrderBy(x => x.Unit.Category)
                 .ThenBy(x => x.Unit.Name);
@@ -131,10 +135,11 @@
         await OnFactionSelected.InvokeAsync(value ?? "");
     }
 
-    private async Task OnCategoryChanged(ChangeEventArgs e)
+    private Task OnCategoryChanged(ChangeEventArgs e)
     {
         var value = e.Value?.ToString();
         _categoryFilter = string.IsNullOrEmpty(value) ? null : value;
+        return Task.CompletedTask;
     }
 
     private async Task OnUnitChanged(ChangeEventArgs e)
