@@ -22,6 +22,23 @@ public record MultiRoundSimulationResult
     public double AvgRoundsPlayed { get; init; }
     public Dictionary<CombatOutcome, double> OutcomePcts { get; init; } = new();
     public List<RoundSummary> RoundSummaries { get; init; } = [];
+
+    /// <summary>Percentage of combats the defender loses: wiped out or broken.</summary>
+    public double AttackerPrevailsPct => SumOutcomes(
+        CombatOutcome.DefenderWipedOut, CombatOutcome.DefenderBroke,
+        CombatOutcome.DefenderBrokeCaught, CombatOutcome.DefenderBrokeEscaped);
+
+    /// <summary>Percentage of combats the attacker loses: wiped out or broken.</summary>
+    public double DefenderPrevailsPct => SumOutcomes(
+        CombatOutcome.AttackerWipedOut, CombatOutcome.AttackerBroke,
+        CombatOutcome.AttackerBrokeCaught, CombatOutcome.AttackerBrokeEscaped);
+
+    /// <summary>Percentage of combats with no winner: both wiped out, or the round cap reached.</summary>
+    public double NeitherPrevailsPct => SumOutcomes(
+        CombatOutcome.BothWipedOut, CombatOutcome.MaxRoundsReached);
+
+    private double SumOutcomes(params CombatOutcome[] outcomes) =>
+        outcomes.Sum(o => OutcomePcts.GetValueOrDefault(o));
 }
 
 /// <summary>

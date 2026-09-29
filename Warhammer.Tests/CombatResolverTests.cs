@@ -424,4 +424,17 @@ public class CombatResolverTests
             $"Symmetric match should be roughly equal: att={result.AvgAttackerWounds:F2}, " +
             $"def={result.AvgDefenderWounds:F2}");
     }
+
+    // ─── Strike Priority ────────────────────────────────────────────
+
+    [Theory]
+    [InlineData(false, false, 4)]
+    [InlineData(true, false, 104)]
+    [InlineData(false, true, -96)]
+    [InlineData(true, true, 4)]   // ASF and ASL cancel out
+    public void StrikePriority_RanksAlwaysStrikesFirstAndLastAroundInitiative(
+        bool alwaysStrikesFirst, bool alwaysStrikesLast, int expected)
+    {
+        Assert.Equal(expected, CombatResolver.StrikePriority(4, alwaysStrikesFirst, alwaysStrikesLast));
+    }
 }

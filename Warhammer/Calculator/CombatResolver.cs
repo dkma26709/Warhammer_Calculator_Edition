@@ -259,6 +259,31 @@ public class CombatResolver
 
     // ─── Attack Groups ─────────────────────────────────────────────
 
+    /// <summary>
+    /// Strike order: groups sort by this descending and equal values strike simultaneously.
+    /// Always Strikes First and Always Strikes Last cancel each other out.
+    /// </summary>
+    public static int StrikePriority(int initiative, bool alwaysStrikesFirst, bool alwaysStrikesLast)
+    {
+        if (alwaysStrikesFirst && alwaysStrikesLast) return initiative;
+        if (alwaysStrikesFirst) return 100 + initiative;
+        if (alwaysStrikesLast) return -100 + initiative;
+        return initiative;
+    }
+
+    /// <summary>
+    /// The Initiative a unit's rider strikes at: its weapon's modifiers apply, except to a
+    /// Swordmaster, who keeps its profile Initiative.
+    /// </summary>
+    public static int RiderInitiative(UnitConfiguration unit, ParsedWeaponRules weaponRules,
+        bool isCharging, bool isBeingCharged, int combatRound)
+    {
+        int baseI = unit.PrimaryProfile.I ?? 1;
+        return unit.EffectiveSpecialRules.Swordmaster
+            ? baseI
+            : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged, combatRound);
+    }
+
     private List<AttackGroup> BuildAttackGroups(
         UnitConfiguration attacker, UnitConfiguration defender, CombatContext context)
     {
@@ -278,22 +303,19 @@ public class CombatResolver
         UnitConfiguration unit, UnitConfiguration opponent,
         bool isAttackerSide, CombatContext context)
     {
-        var weapon = ResolveWeapon(unit);
+        var weapon = ResolveWeapon(unit, _repo);
         var weaponRules = weapon.Rules;
 
         bool isCharging = context.IsCharging(isAttackerSide);
         bool isBeingCharged = context.IsHoldingAgainstCharge(isAttackerSide);
-        int baseI = unit.PrimaryProfile.I ?? 1;
         var unitRules = unit.EffectiveSpecialRules;
-        int effectiveI = unitRules.Swordmaster
-            ? baseI
-            : weaponRules.ApplyToInitiative(baseI, isCharging, isBeingCharged, context.CombatRound);
+        int effectiveI = RiderInitiative(unit, weaponRules, isCharging, isBeingCharged, context.CombatRound);
 
         int defenderParry = _attackResolver.ComputeDefenderParry(opponent, unit, weapon, weaponRules, context, isAttackerSide);
         int defenderBaseArmour = _attackResolver.ComputeBaseArmour(opponent);
 
         // Pre-compute defender effective initiative
-        var defWeapon = ResolveWeapon(opponent);
+        var defWeapon = ResolveWeapon(opponent, _repo);
         int defenderEffI = opponent.PrimaryProfile.I ?? 1;
         if (!opponent.EffectiveSpecialRules.Swordmaster)
         {
@@ -345,18 +367,18 @@ public class CombatResolver
     /// Resolve a unit's selected weapon to a domain Weapon object.
     /// Uses resolved unit path first, falls back to enum key lookup.
     /// </summary>
-    private Weapon ResolveWeapon(UnitConfiguration unit)
+    public static Weapon ResolveWeapon(UnitConfiguration unit, IGameDataRepository repo)
     {
         // Try resolved weapon from Unit domain object
         var resolved = unit.GetSelectedResolvedWeapon();
         if (resolved != null) return resolved;
 
         // Fall back to repository lookup by enum key
-        var weapon = _repo.GetWeapon(unit.SelectedWeapon);
+        var weapon = repo.GetWeapon(unit.SelectedWeapon);
         if (weapon != null) return weapon;
 
         // Final fallback: hand weapon
-        return _repo.GetHandWeapon();
+        return repo.GetHandWeapon();
     }
 
     // ─── Deathblow ─────────────────────────────────────────────────
@@ -540,15 +562,6 @@ public class CombatResolver
         public int CachedDefenderBaseArmour { get; init; }
         public int CachedEffectiveDefenderI { get; init; }
 
-        public int Priority
-        {
-            get
-            {
-                if (HasASF && HasASL) return Initiative;
-                if (HasASF) return 100 + Initiative;
-                if (HasASL) return -100 + Initiative;
-                return Initiative;
-            }
-        }
+        public int Priority => StrikePriority(Initiative, HasASF, HasASL);
     }
 }
