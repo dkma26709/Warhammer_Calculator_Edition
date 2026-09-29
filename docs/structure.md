@@ -42,9 +42,11 @@
 │   ├── Components/
 │   │   ├── UnitSelector.razor      # Faction + category + unit dropdowns
 │   │   ├── UnitConfigurator.razor   # Stats, model count, weapon, command group
-│   │   ├── UnitPanel.razor          # Card wrapper: selector + configurator
-│   │   ├── CombatControls.razor     # Charge state + simulate button
+│   │   ├── LoadoutPanel.razor       # Matchup/Gauntlet column: selector + configurator
 │   │   ├── UnitHero.razor           # Hero band side: portrait, stat line, this fight
+│   │   ├── WinSplit.razor           # Headline win/draw split with its bar
+│   │   ├── StatusIcon.razor         # Error/warning glyph beside status text
+│   │   ├── CombatControls.razor     # Charge state + simulate button
 │   │   ├── ResultsPanel.razor       # Full results: win%, wounds, CR, distributions
 │   │   ├── StatTable.razor          # Profile stat row display
 │   │   └── SpecialRuleBadges.razor  # Colour-coded rule badges

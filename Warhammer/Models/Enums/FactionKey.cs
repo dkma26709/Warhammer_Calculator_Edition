@@ -72,6 +72,10 @@ public static class FactionKeyExtensions
     public static bool TryFromJsonKey(string jsonKey, out FactionKey result)
         => FromJson.TryGetValue(jsonKey, out result);
 
+    /// <summary>The display name for a JSON key; an unknown key is shown as it is, a missing one as a dash.</summary>
+    public static string DisplayNameForJsonKey(string? jsonKey) =>
+        jsonKey is null ? "—" : TryFromJsonKey(jsonKey, out var key) ? key.ToDisplayName() : jsonKey;
+
     public static IReadOnlyList<FactionKey> All { get; } = Enum.GetValues<FactionKey>();
 
     public static bool IsElf(this FactionKey key) =>

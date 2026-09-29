@@ -1075,6 +1075,48 @@ body {
     text-align: right;
 }
 
+/* ─── Gauntlet ─── */
+
+/* Positioned so hidden text inside the scrolled rows is clipped with the list. */
+.wr-roster {
+    position: relative;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-top: 1px solid var(--wr-rule);
+}
+
+.wr-roster-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.25rem 0.45rem 0;
+    border-bottom: 1px solid var(--wr-surface-hover);
+}
+
+.wr-sort,
+.wr-row-toggle {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+}
+
+.wr-sort {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.wr-row-toggle:hover,
+.wr-sort:hover {
+    color: var(--wr-brass-hover);
+}
+
+.wr-clickable-row {
+    cursor: pointer;
+}
+
 /* ─── Portrait fallback tiles (unit initials), by category ─── */
 
 .tile-lords { background: #5b4719; color: #f1e3bf; }
