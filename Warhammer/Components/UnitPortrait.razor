@@ -7,7 +7,7 @@
 @if (Unit != null)
 {
     var heightPx = $"{Height}px";
-    var border = ShowBorder ? "1px solid #444" : "none";
+    var border = ShowBorder ? "1px solid var(--wr-rule)" : "none";
 
     @if (Portraits.HasPortrait(Unit.Faction, Unit.Name))
     {
@@ -21,10 +21,10 @@
     {
         @* Fallback: 2:3 rectangle with category-coloured background + unit initials. *@
         var fallbackWidth = (int)Math.Round(Height * 0.6);
-        <span class="unit-portrait-fallback"
+        <span class="unit-portrait-fallback @TileClass(Unit.Category)"
               title="@Unit.Name"
-              style="height:@heightPx; width:@(fallbackWidth)px; border-radius:2px; background:@CategoryColour(Unit.Category);
-                     color:#fff; display:inline-flex; align-items:center; justify-content:center;
+              style="height:@heightPx; width:@(fallbackWidth)px; border-radius:2px;
+                     display:inline-flex; align-items:center; justify-content:center;
                      font-weight:600; font-size:@(Height * 0.28)px; letter-spacing:-0.5px;
                      border:@border; flex-shrink:0;">
             @Initials(Unit.Name)
@@ -48,15 +48,16 @@
         return $"{char.ToUpperInvariant(words[0][0])}{char.ToUpperInvariant(words[1][0])}";
     }
 
-    private static string CategoryColour(UnitCategory cat) => cat switch
+    // Tile colours live in app.css (.tile-*).
+    private static string TileClass(UnitCategory cat) => cat switch
     {
-        UnitCategory.Lords   => "#8a6a1f",
-        UnitCategory.Heroes  => "#5a5a5a",
-        UnitCategory.Characters => "#8a6a1f",
-        UnitCategory.NamedCharacters => "#7a4a1f",
-        UnitCategory.Core    => "#3a5a3a",
-        UnitCategory.Special => "#2a4a7a",
-        UnitCategory.Rare    => "#5a2a5a",
-        _                    => "#3a3a3a",
+        UnitCategory.Lords   => "tile-lords",
+        UnitCategory.Heroes  => "tile-heroes",
+        UnitCategory.Characters => "tile-lords",
+        UnitCategory.NamedCharacters => "tile-named",
+        UnitCategory.Core    => "tile-core",
+        UnitCategory.Special => "tile-special",
+        UnitCategory.Rare    => "tile-rare",
+        _                    => "tile-heroes",
     };
 }

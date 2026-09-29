@@ -10,11 +10,11 @@
         @* Section A: Headline Stats *@
         <div class="row mb-3">
             <div class="col-5">
-                <div class="card bg-dark border-success text-center p-3">
-                    <div class="text-success fw-bold mb-1">@AttackerName</div>
-                    <div class="display-6 fw-bold text-success">@($"{Result.AvgAttackerWounds:F1}")</div>
+                <div class="card bg-dark border-attacker text-center p-3">
+                    <div class="text-attacker fw-bold mb-1">@AttackerName</div>
+                    <div class="display-6 fw-bold text-attacker">@($"{Result.AvgAttackerWounds:F1}")</div>
                     <div class="small text-body-secondary">avg wounds dealt</div>
-                    <div class="mt-1 fw-bold text-success">@($"{Result.AttackerWinPct:F1}")% win</div>
+                    <div class="mt-1 fw-bold text-attacker">@($"{Result.AttackerWinPct:F1}")% win</div>
                 </div>
             </div>
             <div class="col-2 d-flex align-items-center justify-content-center">
@@ -24,11 +24,11 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="card bg-dark border-danger text-center p-3">
-                    <div class="text-danger fw-bold mb-1">@DefenderName</div>
-                    <div class="display-6 fw-bold text-danger">@($"{Result.AvgDefenderWounds:F1}")</div>
+                <div class="card bg-dark border-defender text-center p-3">
+                    <div class="text-defender fw-bold mb-1">@DefenderName</div>
+                    <div class="display-6 fw-bold text-defender">@($"{Result.AvgDefenderWounds:F1}")</div>
                     <div class="small text-body-secondary">avg wounds dealt</div>
-                    <div class="mt-1 fw-bold text-danger">@($"{Result.DefenderWinPct:F1}")% win</div>
+                    <div class="mt-1 fw-bold text-defender">@($"{Result.DefenderWinPct:F1}")% win</div>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="d-flex mb-4 rounded overflow-hidden" style="height: 1.5rem;">
             @if (Result.AttackerWinPct > 0)
             {
-                <div class="bg-success d-flex align-items-center justify-content-center text-white fw-bold small"
+                <div class="bg-attacker d-flex align-items-center justify-content-center fw-bold small"
                      style="width: @(Result.AttackerWinPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
                     @if (Result.AttackerWinPct >= 10)
                     {
@@ -47,7 +47,7 @@
             }
             @if (Result.DrawPct > 0)
             {
-                <div class="bg-secondary d-flex align-items-center justify-content-center text-white small"
+                <div class="bg-draw d-flex align-items-center justify-content-center small"
                      style="width: @(Result.DrawPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
                     @if (Result.DrawPct >= 10)
                     {
@@ -57,7 +57,7 @@
             }
             @if (Result.DefenderWinPct > 0)
             {
-                <div class="bg-danger d-flex align-items-center justify-content-center text-white fw-bold small"
+                <div class="bg-defender d-flex align-items-center justify-content-center fw-bold small"
                      style="width: @(Result.DefenderWinPct.ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%;">
                     @if (Result.DefenderWinPct >= 10)
                     {
@@ -70,7 +70,7 @@
         @* Section C: Wound Distribution Charts *@
         <div class="row mb-4">
             <div class="col-6">
-                <h6 class="text-success small">Wounds: @AttackerName</h6>
+                <h6 class="text-attacker small">Wounds: @AttackerName</h6>
                 @if (Result.AttackerWoundDistribution.Count > 0)
                 {
                     <div class="d-flex align-items-end justify-content-center gap-0" style="height: 120px; overflow-x: auto;">
@@ -84,7 +84,7 @@
                                         @($"{entry.Percentage:F0}")
                                     }
                                 </span>
-                                <div class="bg-success rounded-top mt-auto"
+                                <div class="bg-attacker rounded-top mt-auto"
                                      style="width: 70%; height: @(barH)px;"
                                      title="@($"{entry.Wounds} wounds: {entry.Percentage:F1}%")">
                                 </div>
@@ -95,7 +95,7 @@
                 }
             </div>
             <div class="col-6">
-                <h6 class="text-danger small">Wounds: @DefenderName</h6>
+                <h6 class="text-defender small">Wounds: @DefenderName</h6>
                 @if (Result.DefenderWoundDistribution.Count > 0)
                 {
                     <div class="d-flex align-items-end justify-content-center gap-0" style="height: 120px; overflow-x: auto;">
@@ -109,7 +109,7 @@
                                         @($"{entry.Percentage:F0}")
                                     }
                                 </span>
-                                <div class="bg-danger rounded-top mt-auto"
+                                <div class="bg-defender rounded-top mt-auto"
                                      style="width: 70%; height: @(barH)px;"
                                      title="@($"{entry.Wounds} wounds: {entry.Percentage:F1}%")">
                                 </div>
@@ -124,7 +124,7 @@
         @* Section D: Combat Resolution Breakdown *@
         <div class="row mb-4">
             <div class="col-6">
-                <h6 class="text-success small mb-1">@AttackerName CR Breakdown</h6>
+                <h6 class="text-attacker small mb-1">@AttackerName CR Breakdown</h6>
                 <table class="table table-sm table-dark mb-0">
                     <tbody>
                         <tr><td>Wounds dealt</td><td class="text-end">@($"{Result.AvgAttackerBreakdown.Wounds:F2}")</td></tr>
@@ -144,7 +144,7 @@
                 </table>
             </div>
             <div class="col-6">
-                <h6 class="text-danger small mb-1">@DefenderName CR Breakdown</h6>
+                <h6 class="text-defender small mb-1">@DefenderName CR Breakdown</h6>
                 <table class="table table-sm table-dark mb-0">
                     <tbody>
                         <tr><td>Wounds dealt</td><td class="text-end">@($"{Result.AvgDefenderBreakdown.Wounds:F2}")</td></tr>
@@ -181,7 +181,7 @@
 
             <div class="row mb-4">
                 <div class="col-6">
-                    <h6 class="text-success small mb-1">@AttackerName Points</h6>
+                    <h6 class="text-attacker small mb-1">@AttackerName Points</h6>
                     <table class="table table-sm table-dark mb-0">
                         <tbody>
                             <tr><td>Invested</td><td class="text-end">@($"{AttackerConfig.TotalPointsCost:F0}") pts</td></tr>
@@ -191,7 +191,7 @@
                     </table>
                 </div>
                 <div class="col-6">
-                    <h6 class="text-danger small mb-1">@DefenderName Points</h6>
+                    <h6 class="text-defender small mb-1">@DefenderName Points</h6>
                     <table class="table table-sm table-dark mb-0">
                         <tbody>
                             <tr><td>Invested</td><td class="text-end">@($"{DefenderConfig.TotalPointsCost:F0}") pts</td></tr>
@@ -204,12 +204,12 @@
             <div class="mb-4 text-center small">
                 @if (ptsWinner == "attacker")
                 {
-                    <span class="text-success fw-bold">@AttackerName wins on points</span>
+                    <span class="text-attacker fw-bold">@AttackerName wins on points</span>
                     <span class="text-body-secondary"> (+@($"{Math.Abs(netPoints):F1}") pts net)</span>
                 }
                 else if (ptsWinner == "defender")
                 {
-                    <span class="text-danger fw-bold">@DefenderName wins on points</span>
+                    <span class="text-defender fw-bold">@DefenderName wins on points</span>
                     <span class="text-body-secondary"> (+@($"{Math.Abs(netPoints):F1}") pts net)</span>
                 }
                 else
@@ -231,7 +231,7 @@
                 @foreach (var entry in Result.Distribution)
                 {
                     var barH = GetBarHeight(entry.Percentage, CRMaxPct, 80);
-                    var color = entry.CombatResDifference > 0 ? "success" : entry.CombatResDifference < 0 ? "danger" : "secondary";
+                    var color = entry.CombatResDifference > 0 ? "attacker" : entry.CombatResDifference < 0 ? "defender" : "draw";
                     var label = FormatCRLabel(entry.CombatResDifference);
                     var tooltip = $"CR diff {label}: {entry.Percentage:F1}%";
                     <div class="d-flex flex-column align-items-center" style="min-width: 18px; flex: 1; max-width: 28px;">

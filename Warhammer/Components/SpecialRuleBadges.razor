@@ -5,7 +5,8 @@
     <div class="d-flex flex-wrap gap-1 mt-2">
         @foreach (var rule in Rules.AllRuleNames)
         {
-            <span class="badge @GetBadgeClass(rule)" title="@rule">@rule</span>
+            var category = Category(rule);
+            <span class="rule-chip rule-@category" title="@rule · @category rule">@rule</span>
         }
     </div>
 }
@@ -13,48 +14,49 @@
 @code {
     [Parameter] public ParsedSpecialRules? Rules { get; set; }
 
-    private static string GetBadgeClass(string ruleName)
+    // The category is a class hook and tooltip text; the chips all look alike.
+    private static string Category(string ruleName)
     {
         var lower = ruleName.ToLowerInvariant();
 
         // Immunities first — a rule like "Immunity (Flaming Attacks)" is defensive,
         // not offensive, despite naming the attack it protects against.
         if (lower.Contains("immun"))
-            return "bg-primary";
+            return "defensive";
 
-        // Offensive rules (red)
+        // Offensive rules
         if (lower.Contains("killing blow") || lower.Contains("hatred") || lower.Contains("frenzy")
             || lower.Contains("poisoned") || lower.Contains("flaming") || lower.Contains("lightning")
             || lower.Contains("ice attacks") || lower.Contains("armour piercing")
             || lower.Contains("mighty blow") || lower.Contains("multiple wounds")
             || lower.Contains("devastating charge") || lower.Contains("impact hits")
             || lower.Contains("magical attacks") || lower.Contains("stomp"))
-            return "bg-danger";
+            return "offensive";
 
-        // Shooting rules (cyan)
+        // Shooting rules
         if (lower.Contains("rapid fire") || lower.Contains("quick to fire") || lower.Contains("slow to fire")
             || lower.Contains("move or fire") || lower.Contains("volley fire") || lower.Contains("multiple shots")
             || lower.Contains("sniper") || lower.Contains("breath weapon") || lower.Contains("weapon team"))
-            return "bg-info text-dark";
+            return "shooting";
 
-        // Defensive rules (blue)
+        // Defensive rules
         if (lower.Contains("ward save") || lower.Contains("regeneration") || lower.Contains("natural armour")
             || lower.Contains("parry") || lower.Contains("ethereal") || lower.Contains("dodge")
             || lower.Contains("magic resistance") || lower.Contains("gromril armour") || lower.Contains("chaos armour"))
-            return "bg-primary";
+            return "defensive";
 
-        // Movement rules (green) — "stride" covers Strider and Swiftstride
+        // Movement rules — "stride" covers Strider and Swiftstride
         if (lower.Contains("aquatic") || lower.Contains("stride") || lower.Contains("random movement")
             || lower.Contains("ponderous"))
-            return "bg-success";
+            return "movement";
 
-        // Morale/leadership (yellow)
+        // Morale/leadership
         if (lower.Contains("fear") || lower.Contains("terror") || lower.Contains("stubborn")
             || lower.Contains("unbreakable") || lower.Contains("unstable") || lower.Contains("cold-blooded")
             || lower.Contains("stupidity") || lower.Contains("hold your ground") || lower.Contains("inspiring presence")
             || lower.Contains("loner") || lower.Contains("expendable"))
-            return "bg-warning text-dark";
+            return "morale";
 
-        return "bg-secondary";
+        return "other";
     }
 }
