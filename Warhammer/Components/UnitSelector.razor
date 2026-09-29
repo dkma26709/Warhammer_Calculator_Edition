@@ -4,8 +4,8 @@
 @inject IGameDataRepository Repo
 
 <div class="mb-3">
-    <label class="form-label small text-body-secondary">Faction</label>
-    <select class="form-select form-select-sm" value="@SelectedFactionKey"
+    <label class="form-label small text-body-secondary" for="@($"{_id}-faction")">Faction</label>
+    <select id="@($"{_id}-faction")" class="form-select form-select-sm" value="@SelectedFactionKey"
             @onchange="OnFactionChanged">
         <option value="">-- Select Faction --</option>
         @foreach (var faction in Repo.AllFactions)
@@ -18,8 +18,8 @@
 @if (FactionUnits != null)
 {
     <div class="mb-2">
-        <label class="form-label small text-body-secondary">Category</label>
-        <select class="form-select form-select-sm" value="@_categoryFilter"
+        <label class="form-label small text-body-secondary" for="@($"{_id}-category")">Category</label>
+        <select id="@($"{_id}-category")" class="form-select form-select-sm" value="@_categoryFilter"
                 @onchange="OnCategoryChanged">
             <option value="">All</option>
             @foreach (var cat in Categories)
@@ -30,8 +30,8 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-label small text-body-secondary">Unit</label>
-        <select class="form-select form-select-sm" value="@_selectedIndex"
+        <label class="form-label small text-body-secondary" for="@($"{_id}-unit")">Unit</label>
+        <select id="@($"{_id}-unit")" class="form-select form-select-sm" value="@_selectedIndex"
                 @onchange="OnUnitChanged">
             <option value="-1">-- Select Unit --</option>
             @foreach (var (unit, idx) in FilteredUnitsWithIndex)
@@ -43,6 +43,9 @@
 }
 
 @code {
+    // Several selectors can share a page (attacker and defender), so each labels its own ids.
+    private readonly string _id = $"unit-selector-{Guid.NewGuid():N}"[..22];
+
     [Parameter] public string? SelectedFactionKey { get; set; }
     [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
     [Parameter] public IReadOnlyList<Unit>? FactionUnits { get; set; }

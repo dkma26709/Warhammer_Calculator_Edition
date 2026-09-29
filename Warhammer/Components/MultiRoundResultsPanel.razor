@@ -1,15 +1,11 @@
 @using Warhammer.Calculator.Models
 
-<div class="card bg-dark text-light border-secondary">
-    <div class="card-header">
-        <h5 class="card-title mb-0">
-            Multi-Round Results
-            <span class="text-body-secondary small fw-normal">
-                (@Result.Iterations.ToString("N0") iterations, up to @Result.MaxRounds rounds in @FormatElapsed(Result.ElapsedMs))
-            </span>
-        </h5>
+<section class="wr-results" aria-labelledby="@_headingId">
+    <div class="wr-results-head">
+        <h3 id="@_headingId" class="wr-section-title">Up to @Result.MaxRounds rounds</h3>
+        <span class="small text-body-secondary">@Result.Iterations.ToString("N0") fights · @FormatElapsed(Result.ElapsedMs)</span>
     </div>
-    <div class="card-body">
+    <div>
 
         @* Section A: Outcome Distribution *@
         <h6 class="small mb-2">Combat Outcomes</h6>
@@ -304,12 +300,14 @@
             </div>
         }
     </div>
-</div>
+</section>
 
 @code {
     [Parameter] public MultiRoundSimulationResult Result { get; set; } = null!;
     [Parameter] public string AttackerName { get; set; } = "Attacker";
     [Parameter] public string DefenderName { get; set; } = "Defender";
+
+    private readonly string _headingId = $"multiround-{Guid.NewGuid():N}"[..19];
 
     private HashSet<int> _expandedRounds = new() { 1 };
 

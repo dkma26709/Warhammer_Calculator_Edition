@@ -1,0 +1,45 @@
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Json
+
+@* One side's loadout on the Matchup page: unit picker and configurator. The unit's
+   stat line and special rules show in the hero band above, so they are left out here. *@
+<section class="wr-loadout @AreaClass" aria-labelledby="@HeadingId">
+    <h2 id="@HeadingId" class="wr-section-title text-@Side">@Title</h2>
+
+    <UnitSelector SelectedFactionKey="@SelectedFactionKey"
+                  OnFactionSelected="OnFactionSelected"
+                  FactionUnits="@FactionUnits"
+                  SelectedUnitName="@SelectedUnit?.Name"
+                  OnUnitSelected="OnUnitSelected" />
+
+    @if (SelectedUnit != null && Configuration != null)
+    {
+        <UnitConfigurator @key="SelectedUnit"
+                          Unit="SelectedUnit"
+                          Configuration="Configuration"
+                          ConfigurationChanged="ConfigurationChanged"
+                          FactionExtras="FactionExtras"
+                          CommonMagicItems="CommonMagicItems"
+                          ShowStats="false"
+                          ShowRuleBadges="false" />
+    }
+</section>
+
+@code {
+    /// <summary>"attacker" or "defender": picks the colour and the grid area.</summary>
+    [Parameter, EditorRequired] public string Side { get; set; } = "attacker";
+
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string? SelectedFactionKey { get; set; }
+    [Parameter] public EventCallback<string> OnFactionSelected { get; set; }
+    [Parameter] public IReadOnlyList<Unit>? FactionUnits { get; set; }
+    [Parameter] public FactionExtrasData? FactionExtras { get; set; }
+    [Parameter] public IReadOnlyList<MagicItemEntry>? CommonMagicItems { get; set; }
+    [Parameter] public Unit? SelectedUnit { get; set; }
+    [Parameter] public EventCallback<Unit?> OnUnitSelected { get; set; }
+    [Parameter] public UnitConfiguration? Configuration { get; set; }
+    [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
+
+    private string HeadingId => $"loadout-{Side}";
+    private string AreaClass => $"wr-area-{Side}";
+}

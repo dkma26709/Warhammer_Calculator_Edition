@@ -157,6 +157,8 @@ body {
 /* ─── Header ─── */
 
 .wr-header {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
     background-color: var(--wr-bg-deep);
     border-bottom: 1px solid var(--wr-rule);
     --bs-navbar-color: var(--wr-muted);
@@ -463,6 +465,395 @@ body {
 }
 .outcome-both-wiped-out { background: var(--wr-draw); }
 .outcome-max-rounds { background: #b8ad98; }
+
+/* ─── Matchup: hero band ───
+   Attacker and defender face each other across the controls; below
+   1200px the three parts stack. */
+
+.wr-section-title {
+    margin: 0;
+    font-family: var(--wr-font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.wr-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+    padding: 1.5rem 1rem;
+    background: var(--wr-bg-raised);
+    border-bottom: 1px solid var(--wr-rule);
+}
+
+.wr-hero-side {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+.wr-hero-side.is-defender {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.wr-hero-portrait img {
+    max-width: 130px;
+    object-fit: contain;
+}
+
+.wr-hero-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.wr-hero-side.is-defender .wr-hero-body {
+    align-items: flex-end;
+}
+
+.wr-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.wr-hero-name {
+    margin: 0;
+    font-family: var(--wr-font-display);
+    font-size: 2.375rem;
+    font-weight: 700;
+    line-height: 1;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 575.98px) {
+    .wr-hero-name {
+        font-size: 1.75rem;
+    }
+}
+
+.wr-hero-name.is-empty {
+    color: var(--wr-muted);
+}
+
+.wr-hero-meta,
+.wr-this-fight {
+    color: var(--wr-muted);
+}
+
+.wr-hero-meta strong,
+.wr-this-fight span {
+    color: var(--wr-text);
+}
+
+.wr-this-fight {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.wr-statline {
+    width: 100%;
+    border-top: 1px solid var(--wr-rule);
+    border-bottom: 1px solid var(--wr-rule);
+}
+
+.wr-statline th {
+    padding-top: 0.45rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--wr-muted);
+    text-align: center;
+}
+
+.wr-statline td {
+    padding-bottom: 0.45rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.wr-statline .wr-statline-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--wr-text-2);
+    text-align: start;
+    white-space: nowrap;
+}
+
+.wr-statline tbody tr + tr td {
+    color: var(--wr-text-2);
+    font-size: 1.05rem;
+}
+
+.wr-hero-side .rule-chip + .rule-chip {
+    margin-left: 0;
+}
+
+.wr-hero-side.is-defender .d-flex.flex-wrap {
+    justify-content: flex-end;
+}
+
+/* ─── Matchup: centre controls and the headline split ─── */
+
+.wr-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.wr-segmented {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1px solid var(--wr-field);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.wr-segmented .btn {
+    min-height: 40px;
+    padding: 0.25rem;
+    border: 0;
+    border-right: 1px solid var(--wr-rule);
+    border-radius: 0;
+    background: var(--wr-surface);
+    color: var(--wr-muted);
+    font-weight: 500;
+}
+
+.wr-segmented .btn:last-child {
+    border-right: 0;
+}
+
+.wr-segmented .btn:hover {
+    color: var(--wr-text);
+    background: var(--wr-surface-hover);
+}
+
+.wr-segmented .btn[aria-pressed=true] {
+    background: var(--wr-brass);
+    color: var(--wr-on-fill);
+    font-weight: 800;
+}
+
+/* The group clips its children, so the focus ring is drawn inside. */
+.wr-segmented .btn:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--wr-bg), inset 0 0 0 4px var(--wr-brass);
+}
+
+.wr-simulate {
+    min-height: 50px;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+}
+
+.wr-winsplit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wr-winsplit-figures {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: end;
+    gap: 0.75rem;
+}
+
+.wr-winsplit-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.wr-winsplit-big {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.wr-winsplit-mid {
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--wr-text-2);
+}
+
+.wr-winsplit-label {
+    font-size: 0.8rem;
+    color: var(--wr-muted);
+    overflow-wrap: anywhere;
+}
+
+.wr-winsplit-bar {
+    display: flex;
+    gap: 2px;
+    height: 10px;
+}
+
+.wr-winsplit-bar > div {
+    min-width: 2px;
+}
+
+.wr-winsplit-bar > div:first-child { border-radius: 2px 0 0 2px; }
+.wr-winsplit-bar > div:last-child { border-radius: 0 2px 2px 0; }
+
+/* ─── Matchup: loadouts either side of the results ─── */
+
+.wr-matchup-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "attacker" "defender" "results";
+    gap: 1.75rem 2rem;
+    padding: 1.75rem 1rem 2rem;
+}
+
+.wr-area-attacker { grid-area: attacker; }
+.wr-area-defender { grid-area: defender; }
+.wr-area-results { grid-area: results; }
+
+@media (min-width: 768px) {
+    .wr-matchup-body {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas: "attacker defender" "results results";
+    }
+}
+
+@media (min-width: 1200px) {
+    .wr-hero {
+        grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr);
+        align-items: end;
+        gap: 2rem;
+        padding: 2rem 2.5rem;
+    }
+
+    .wr-matchup-body {
+        grid-template-columns: 320px minmax(0, 1fr) 320px;
+        grid-template-areas: "attacker results defender";
+        padding: 1.75rem 2.5rem 2rem;
+    }
+}
+
+.wr-loadout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.wr-loadout .wr-section-title {
+    margin-bottom: 0.75rem;
+}
+
+.wr-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+.wr-empty {
+    padding: 2rem 1rem;
+    border: 1px dashed var(--wr-rule);
+    border-radius: 4px;
+    color: var(--wr-muted);
+    text-align: center;
+}
+
+/* ─── Results figures ─── */
+
+.wr-results-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.wr-figure {
+    margin: 0;
+    padding: 1rem;
+    background: var(--wr-surface);
+    border: 1px solid var(--wr-rule-soft);
+    border-radius: 4px;
+}
+
+.wr-figure figcaption,
+.wr-figure .wr-figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.wr-caption-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wr-muted);
+}
+
+.wr-caption-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.wr-caption-unit {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--wr-muted);
+}
+
+.wr-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.wr-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 0.4rem;
+    border-radius: 2px;
+    vertical-align: -1px;
+}
+
+.wr-compare {
+    margin-bottom: 0;
+}
+
+.wr-compare caption {
+    caption-side: top;
+    padding: 0 0 0.5rem;
+}
+
+.wr-compare tfoot th,
+.wr-compare tfoot td {
+    font-weight: 800;
+    border-top: 1px solid var(--wr-rule);
+}
+
+.wr-verdict {
+    margin: 0.75rem 0 0;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--wr-rule);
+}
 
 /* ─── Portrait fallback tiles (unit initials), by category ─── */
 

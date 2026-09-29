@@ -1,0 +1,130 @@
+@using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
+@using Warhammer.Services
+
+@* One side of the Matchup hero band: portrait, name, stat line and what the unit does in
+   this fight. The defender's side mirrors the attacker's. *@
+<div class="wr-hero-side @(IsDefender ? "is-defender" : "")">
+    @if (Unit != null)
+    {
+        <div class="wr-hero-portrait">
+            <UnitPortrait Unit="Unit" Height="200" ShowBorder="false" />
+        </div>
+    }
+    <div class="wr-hero-body">
+        <div class="wr-eyebrow text-@Side">@Eyebrow</div>
+        @if (Unit == null || Config == null)
+        {
+            <h2 class="wr-hero-name is-empty">No unit chosen</h2>
+            <div class="wr-hero-meta">Pick a faction and unit in the @Label.ToLowerInvariant() loadout.</div>
+        }
+        else
+        {
+            <h2 class="wr-hero-name">@Unit.Name</h2>
+            <div class="wr-hero-meta">@Meta · <strong>@Config.TotalPointsCost.ToString("F0") pts</strong></div>
+
+            <table class="wr-statline">
+                <caption class="visually-hidden">@Unit.Name profile</caption>
+                <thead>
+                    <tr>
+                        @if (HasMount) { <th scope="col"><span class="visually-hidden">Model</span></th> }
+                        @foreach (var stat in StatNames) { <th scope="col">@stat</th> }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @if (HasMount) { <th scope="row" class="wr-statline-name">@Config.PrimaryProfile.Name</th> }
+                        @foreach (var value in Values(Config.PrimaryProfile)) { <td>@value</td> }
+                    </tr>
+                    @if (Config.MountProfile is { } mount)
+                    {
+                        <tr>
+                            <th scope="row" class="wr-statline-name">@mount.Name</th>
+                            @foreach (var value in Values(mount)) { <td>@value</td> }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (Stats != null)
+            {
+                <div class="wr-this-fight">This fight: <span>@FightSummary</span></div>
+            }
+
+            <SpecialRuleBadges Rules="Config.EffectiveSpecialRules" />
+        }
+    </div>
+</div>
+
+@code {
+    /// <summary>"Attacker" or "Defender".</summary>
+    [Parameter, EditorRequired] public string Label { get; set; } = "";
+
+    /// <summary>"attacker" or "defender": picks the colour and mirrors the defender.</summary>
+    [Parameter, EditorRequired] public string Side { get; set; } = "attacker";
+
+    [Parameter] public Unit? Unit { get; set; }
+    [Parameter] public UnitConfiguration? Config { get; set; }
+    [Parameter] public string? FactionKey { get; set; }
+
+    /// <summary>This unit's numbers against the opponent; null until both units are chosen.</summary>
+    [Parameter] public EffectiveStats? Stats { get; set; }
+
+    /// <summary>The opponent's numbers, for the strike order.</summary>
+    [Parameter] public EffectiveStats? OpponentStats { get; set; }
+
+    private static readonly string[] StatNames = ["M", "WS", "BS", "S", "T", "W", "I", "A", "Ld"];
+
+    private bool IsDefender => Side == "defender";
+    private bool HasMount => Config?.MountProfile != null;
+
+    private string Eyebrow
+    {
+        get
+        {
+            var parts = new List<string> { Label };
+            if (FactionKey != null && FactionKeyExtensions.TryFromJsonKey(FactionKey, out var faction))
+                parts.Add(faction.ToDisplayName());
+            if (Unit != null)
+                parts.Add(Unit.Category == UnitCategory.NamedCharacters ? "Named Characters" : Unit.Category.ToString());
+            return string.Join(" · ", parts);
+        }
+    }
+
+    private string Meta
+    {
+        get
+        {
+            var models = $"{Config!.ModelCount} model{(Config.ModelCount == 1 ? "" : "s")}";
+            return Config.TroopType.IsCharacter ? models : $"{models} · {Config.Frontage} wide";
+        }
+    }
+
+    private string FightSummary
+    {
+        get
+        {
+            var s = Stats!;
+            var parts = new List<string>
+            {
+                s.HasMount ? $"{s.TotalAttacks} attacks (+{s.MountAttacks} mount)" : $"{s.TotalAttacks} attacks",
+                $"hits on {s.ToHitNeeded}+",
+                $"wounds on {s.ToWoundNeeded}{(s.HasPoison ? " (poison)" : "")}",
+            };
+            if (s.ImpactHits > 0) parts.Add($"{s.ImpactHits} impact hits");
+            if (s.ArmourSave <= 6) parts.Add($"{s.ArmourSave}+ armour");
+            if (s.WardSave <= 6) parts.Add($"{s.WardSave}+ ward");
+            // A mount strikes at its own initiative, so one phrase can't state the order.
+            if (OpponentStats != null && !s.HasMount && !OpponentStats.HasMount)
+                parts.Add(StrikeOrder(s.StrikePriority, OpponentStats.StrikePriority));
+            return string.Join(" · ", parts);
+        }
+    }
+
+    // Same rule as the engine: higher priority strikes first, equal priority simultaneously.
+    private static string StrikeOrder(int mine, int theirs) =>
+        mine > theirs ? "strikes first" : mine < theirs ? "strikes last" : "strikes simultaneously";
+
+    private static IEnumerable<string> Values(Warhammer.Models.Json.ProfileEntry p) =>
+        new[] { p.M, p.WS, p.BS, p.S, p.T, p.W, p.I, p.A, p.Ld }.Select(v => v?.ToString() ?? "*");
+}

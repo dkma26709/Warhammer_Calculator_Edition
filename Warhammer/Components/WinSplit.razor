@@ -1,0 +1,41 @@
+@* The headline of a simulation: the attacker's and defender's share as big figures,
+   the middle outcome between them, and a thin bar underneath (defender hatched). *@
+<div class="wr-winsplit">
+    <div class="wr-winsplit-figures">
+        <div class="wr-winsplit-side">
+            <span class="wr-winsplit-big text-attacker">@Pct(AttackerPct)</span>
+            <span class="wr-winsplit-label">@AttackerName @Verb</span>
+        </div>
+        <div class="wr-winsplit-side text-center">
+            <span class="wr-winsplit-mid">@Pct(MiddlePct)</span>
+            <span class="wr-winsplit-label">@MiddleLabel</span>
+        </div>
+        <div class="wr-winsplit-side text-end">
+            <span class="wr-winsplit-big text-defender">@Pct(DefenderPct)</span>
+            <span class="wr-winsplit-label">@DefenderName @Verb</span>
+        </div>
+    </div>
+    <div class="wr-winsplit-bar" aria-hidden="true">
+        @if (AttackerPct > 0) { <div class="bg-attacker" style="flex: @Flex(AttackerPct)"></div> }
+        @if (MiddlePct > 0) { <div class="bg-draw" style="flex: @Flex(MiddlePct)"></div> }
+        @if (DefenderPct > 0) { <div class="bg-defender" style="flex: @Flex(DefenderPct)"></div> }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string AttackerName { get; set; } = "Attacker";
+    [Parameter] public string DefenderName { get; set; } = "Defender";
+    [Parameter] public double AttackerPct { get; set; }
+    [Parameter] public double MiddlePct { get; set; }
+    [Parameter] public double DefenderPct { get; set; }
+
+    /// <summary>"win" for one round of combat resolution; "prevail" over a multi-round fight.</summary>
+    [Parameter] public string Verb { get; set; } = "win";
+
+    [Parameter] public string MiddleLabel { get; set; } = "Draw";
+
+    private static string Pct(double value) => $"{value:F1}%";
+
+    private static string Flex(double value) =>
+        value.ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
+}
