@@ -312,32 +312,10 @@ public class AttackResolver
 
     // ─── Private helpers ───────────────────────────────────────────
 
-    private int ComputeEffectiveI(UnitConfiguration unit, CombatContext context, bool isAttackerSide)
-    {
-        int baseI = unit.PrimaryProfile.I ?? 1;
-
-        // Try resolved weapon first
-        var resolvedWeapon = unit.GetSelectedResolvedWeapon();
-        if (resolvedWeapon != null)
-        {
-            return resolvedWeapon.Rules.ApplyToInitiative(baseI,
-                context.IsCharging(isAttackerSide),
-                context.IsCharging(!isAttackerSide),
-                context.CombatRound);
-        }
-
-        // Legacy path: lookup by string key
-        var weapon = _repo.GetWeapon(unit.SelectedWeapon);
-        if (weapon != null)
-        {
-            return weapon.Rules.ApplyToInitiative(baseI,
-                context.IsCharging(isAttackerSide),
-                context.IsCharging(!isAttackerSide),
-                context.CombatRound);
-        }
-
-        return baseI;
-    }
+    private int ComputeEffectiveI(UnitConfiguration unit, CombatContext context, bool isAttackerSide) =>
+        CombatResolver.RiderInitiative(unit, CombatResolver.ResolveWeapon(unit, _repo).Rules,
+            context.IsCharging(isAttackerSide), context.IsHoldingAgainstCharge(isAttackerSide),
+            context.CombatRound);
 
     private static int CountAttacks(
         UnitConfiguration attacker, ParsedSpecialRules rules,

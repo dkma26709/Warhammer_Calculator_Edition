@@ -65,7 +65,7 @@
     [Parameter] public bool IsSimulating { get; set; }
     [Parameter] public EventCallback OnSimulate { get; set; }
 
-    private readonly string _id = $"combat-controls-{Guid.NewGuid():N}"[..25];
+    private readonly string _id = $"combat-controls-{Guid.NewGuid():N}";
 
     private sealed record ChargeOption(ChargeState State, string Label, string? Title);
 

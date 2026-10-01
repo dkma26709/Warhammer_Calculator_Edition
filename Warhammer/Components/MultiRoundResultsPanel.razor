@@ -307,7 +307,7 @@
     [Parameter] public string AttackerName { get; set; } = "Attacker";
     [Parameter] public string DefenderName { get; set; } = "Defender";
 
-    private readonly string _headingId = $"multiround-{Guid.NewGuid():N}"[..19];
+    private readonly string _headingId = $"multiround-{Guid.NewGuid():N}";
 
     private HashSet<int> _expandedRounds = new() { 1 };
 

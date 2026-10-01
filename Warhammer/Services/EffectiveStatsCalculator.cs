@@ -25,10 +25,46 @@ public sealed record EffectiveStats
 
     /// <summary>Strike order: higher strikes first, equal strikes simultaneously.</summary>
     public int StrikePriority { get; init; }
+
+    /// <summary>
+    /// The Matchup hero band's "This fight" phrase, without its prefix. Strike order is stated
+    /// only against an opponent and when neither side has a mount.
+    /// </summary>
+    public string FightSummary(EffectiveStats? opponent)
+    {
+        var attacks = $"{TotalAttacks} attack{(TotalAttacks == 1 ? "" : "s")} at S{EffectiveStrength}";
+        if (HasMount) attacks += $" (+{MountAttacks} mount)";
+
+        var parts = new List<string>
+        {
+            $"{BaseContact} in base contact",
+            attacks,
+            $"hits on {ToHitNeeded}+",
+            // Poison's to-wound step is not applied here yet, so "cannot wound" carries no poison tag.
+            ToWoundNeeded.CanSucceed
+                ? $"wounds on {ToWoundNeeded}{(HasPoison ? " (poison)" : "")}"
+                : "cannot wound",
+        };
+        if (ImpactHits > 0) parts.Add($"{ImpactHits} impact hit{(ImpactHits == 1 ? "" : "s")}");
+        if (ArmourSave <= 6) parts.Add($"{ArmourSave}+ armour");
+        if (WardSave <= 6) parts.Add($"{WardSave}+ ward");
+
+        // A mount strikes at its own Initiative, so one phrase can't state the order.
+        var initiative = $"I{EffectiveInitiative}";
+        if (opponent != null && !HasMount && !opponent.HasMount)
+            initiative += $", {StrikeOrder(StrikePriority, opponent.StrikePriority)}";
+        parts.Add(initiative);
+
+        return string.Join(" · ", parts);
+    }
+
+    // Same rule as the engine: higher priority strikes first, equal priority simultaneously.
+    private static string StrikeOrder(int mine, int theirs) =>
+        mine > theirs ? "strikes first" : mine < theirs ? "strikes last" : "strikes simultaneously";
 }
 
 /// <summary>
-/// Per-unit effective stats for a matchup, shared by the Matchup hero and EffectiveStatsPanel.
+/// Per-unit effective stats for a matchup, which the Matchup hero band states.
 /// </summary>
 public sealed class EffectiveStatsCalculator(IGameDataRepository repo)
 {

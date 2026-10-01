@@ -44,7 +44,7 @@
 
 @code {
     // Several selectors can share a page (attacker and defender), so each labels its own ids.
-    private readonly string _id = $"unit-selector-{Guid.NewGuid():N}"[..22];
+    private readonly string _id = $"unit-selector-{Guid.NewGuid():N}";
 
     [Parameter] public string? SelectedFactionKey { get; set; }
     [Parameter] public EventCallback<string> OnFactionSelected { get; set; }

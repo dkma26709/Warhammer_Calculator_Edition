@@ -14,10 +14,16 @@
 @inject PortraitService Portraits
 @inject EffectiveStatsCalculator StatsCalculator
 
+@{
+    // Each read of these properties computes, so read them once per render.
+    var attackerStats = AttackerStats;
+    var defenderStats = DefenderStats;
+}
+
 <section class="wr-hero" aria-label="The matchup">
     <UnitHero Label="Attacker" Side="attacker"
               Unit="_attackerUnit" Config="_attackerConfig" FactionKey="@_attackerFactionKey"
-              Stats="AttackerStats" OpponentStats="DefenderStats" />
+              Stats="attackerStats" OpponentStats="defenderStats" />
 
     <div class="d-flex flex-column gap-3">
         <CombatControls ChargeState="@_chargeState"
@@ -45,7 +51,7 @@
 
     <UnitHero Label="Defender" Side="defender"
               Unit="_defenderUnit" Config="_defenderConfig" FactionKey="@_defenderFactionKey"
-              Stats="DefenderStats" OpponentStats="AttackerStats" />
+              Stats="defenderStats" OpponentStats="attackerStats" />
 </section>
 
 <div class="wr-matchup-body">
@@ -83,13 +89,6 @@
                     ? "Both sides are set. Simulate to see how the fight goes."
                     : "Choose a unit on each side, then simulate.")
             </p>
-        }
-
-        @if (_attackerConfig != null && _defenderConfig != null)
-        {
-            <EffectiveStatsPanel Attacker="_attackerConfig"
-                                 Defender="_defenderConfig"
-                                 ChargeState="_chargeState" />
         }
     </div>
 

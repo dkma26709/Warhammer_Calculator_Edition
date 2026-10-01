@@ -179,7 +179,7 @@
     /// </summary>
     [Parameter] public bool ShowHeadline { get; set; } = true;
 
-    private readonly string _headingId = $"results-{Guid.NewGuid():N}"[..16];
+    private readonly string _headingId = $"results-{Guid.NewGuid():N}";
 
     // Points per wound: target's total cost spread across all wounds in the unit
     private double AttackerPointsPerWound => DefenderConfig != null

@@ -103,7 +103,7 @@ Data flows **upward**: JSON → Services (load/cache) → Domain models → Calc
 | `ArmyListSerializer` | Scoped | ArmyList ↔ JSON DTO (export/import/autosave) |
 | `ArmyRosterBuilder` | Scoped | ArmyList → `RosterDocument`, the flattened battle sheet the `/roster` print view renders |
 | `PortraitService` | Scoped | Resolves portrait URLs against `portrait-manifest.json`; graceful fallback if missing |
-| `EffectiveStatsCalculator` | Scoped | Per-unit effective stats for a matchup (attacks, to-hit, to-wound, saves, strike priority), shared by the Matchup hero and EffectiveStatsPanel |
+| `EffectiveStatsCalculator` | Scoped | Per-unit effective stats for a matchup (attacks, to-hit, to-wound, saves, strike priority) for the Matchup hero band, which also phrases its "This fight" line (`EffectiveStats.FightSummary`) |
 
 Pages call `Repo.EnsureLoadedAsync()` (and `Portraits.EnsureLoadedAsync()`) before use; all loads are idempotent and cached.
 

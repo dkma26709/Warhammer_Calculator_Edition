@@ -8,7 +8,7 @@ namespace Warhammer.Tests;
 
 /// <summary>
 /// The numbers the Matchup page states for each side. The Greatswords/Hammerers figures are the
-/// ones EffectiveStatsPanel displayed before the computation moved out of the component.
+/// ones the old EffectiveStatsPanel displayed before the computation moved out of the component.
 /// </summary>
 public class EffectiveStatsCalculatorTests
 {
@@ -84,10 +84,16 @@ public class EffectiveStatsCalculatorTests
     [Theory]
     [InlineData(FactionKey.HighElves, ChargeState.Neither)]
     [InlineData(FactionKey.HighElves, ChargeState.AttackerCharged)]
+    [InlineData(FactionKey.HighElves, ChargeState.DefenderCharged)]
+    [InlineData(FactionKey.HighElves, ChargeState.BothCharged)]
     [InlineData(FactionKey.DarkElves, ChargeState.Neither)]
     [InlineData(FactionKey.DarkElves, ChargeState.AttackerCharged)]
+    [InlineData(FactionKey.DarkElves, ChargeState.DefenderCharged)]
+    [InlineData(FactionKey.DarkElves, ChargeState.BothCharged)]
     [InlineData(FactionKey.TheEmpire, ChargeState.Neither)]
     [InlineData(FactionKey.TheEmpire, ChargeState.AttackerCharged)]
+    [InlineData(FactionKey.TheEmpire, ChargeState.DefenderCharged)]
+    [InlineData(FactionKey.TheEmpire, ChargeState.BothCharged)]
     public async Task InitiativeAndStrikePriority_AgreeWithTheEnginesRiderGroups(FactionKey faction, ChargeState charge)
     {
         var (_, hammerers) = await Matchup();
@@ -103,6 +109,13 @@ public class EffectiveStatsCalculatorTests
                 mismatches.Add($"{attacker.ResolvedUnit.Name} vs {defender.ResolvedUnit.Name}, "
                     + $"{(attackerSide ? "attacker" : "defender")} side: calculator I{stats.EffectiveInitiative} "
                     + $"P{stats.StrikePriority}, engine I{group.Initiative} P{group.Priority}");
+
+            // The Initiative this group's ASF/ASL reroll compares against is the opponent's own.
+            int opponentI = RiderGroup(attacker, defender, charge, !attackerSide).Initiative;
+            if (group.CachedEffectiveDefenderI != opponentI)
+                mismatches.Add($"{attacker.ResolvedUnit.Name} vs {defender.ResolvedUnit.Name}, "
+                    + $"{(attackerSide ? "attacker" : "defender")} side: cached defender I{group.CachedEffectiveDefenderI}, "
+                    + $"opponent's rider group I{opponentI}");
         }
 
         // Every unit of the faction attacks the fixed opponent, then defends against it.
@@ -167,5 +180,73 @@ public class EffectiveStatsCalculatorTests
         Assert.True(knights.ModelsInFrontRank > 0);
         Assert.Equal(knights.ModelsInFrontRank, charging.ImpactHits);
         Assert.Equal(0, standing.ImpactHits);
+    }
+
+    [Fact]
+    public async Task FightSummary_GreatswordsVsHammerers_StatesEachSidesFight()
+    {
+        var (greatswords, hammerers) = await Matchup();
+
+        var attacker = Calculator.Compute(greatswords, hammerers, ChargeState.Neither, isAttackerSide: true);
+        var defender = Calculator.Compute(hammerers, greatswords, ChargeState.Neither, isAttackerSide: false);
+
+        Assert.Equal("5 in base contact · 10 attacks at S5 · hits on 4+ · wounds on 3+ · I2, strikes first",
+            attacker.FightSummary(defender));
+        Assert.Equal("5 in base contact · 15 attacks at S6 · hits on 3+ · wounds on 2+ · 6+ armour · I1, strikes last",
+            defender.FightSummary(attacker));
+    }
+
+    // A unit on foot with no saves, for phrasing that needs no real data.
+    private static EffectiveStats OnFoot(int strikePriority = 3) => new()
+    {
+        BaseContact = 5,
+        TotalAttacks = 5,
+        EffectiveStrength = 3,
+        EffectiveInitiative = 3,
+        ToHitNeeded = 4,
+        ToWoundNeeded = RollRequirement.Plain(4),
+        ArmourSave = 7,
+        WardSave = 7,
+        StrikePriority = strikePriority
+    };
+
+    [Fact]
+    public void FightSummary_WhenTheChartSaysNA_SaysCannotWound()
+    {
+        var stats = OnFoot() with { ToWoundNeeded = RollRequirement.Impossible, HasPoison = true };
+
+        var summary = stats.FightSummary(null);
+
+        Assert.Equal("5 in base contact · 5 attacks at S3 · hits on 4+ · cannot wound · I3", summary);
+        Assert.DoesNotContain("n/a", summary);
+    }
+
+    [Theory]
+    [InlineData(4, 3, "strikes first")]
+    [InlineData(3, 4, "strikes last")]
+    [InlineData(3, 3, "strikes simultaneously")]
+    public void FightSummary_StatesStrikeOrderByPriority(int mine, int theirs, string expected)
+    {
+        Assert.EndsWith($" · I3, {expected}", OnFoot(mine).FightSummary(OnFoot(theirs)));
+    }
+
+    [Fact]
+    public void FightSummary_WithAMountOnEitherSideOrNoOpponent_StatesNoStrikeOrder()
+    {
+        var mounted = OnFoot() with { HasMount = true, MountAttacks = 2 };
+
+        Assert.Equal("5 in base contact · 5 attacks at S3 (+2 mount) · hits on 4+ · wounds on 4+ · I3",
+            mounted.FightSummary(OnFoot()));
+        Assert.EndsWith(" · I3", OnFoot().FightSummary(mounted));
+        Assert.EndsWith(" · I3", OnFoot().FightSummary(null));
+    }
+
+    [Fact]
+    public void FightSummary_CountsOfOne_AreSingular()
+    {
+        var stats = OnFoot() with { TotalAttacks = 1, ImpactHits = 1 };
+
+        Assert.Equal("5 in base contact · 1 attack at S3 · hits on 4+ · wounds on 4+ · 1 impact hit · I3",
+            stats.FightSummary(null));
     }
 }

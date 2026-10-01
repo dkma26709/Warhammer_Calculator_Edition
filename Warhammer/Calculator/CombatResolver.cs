@@ -316,13 +316,8 @@ public class CombatResolver
 
         // Pre-compute defender effective initiative
         var defWeapon = ResolveWeapon(opponent, _repo);
-        int defenderEffI = opponent.PrimaryProfile.I ?? 1;
-        if (!opponent.EffectiveSpecialRules.Swordmaster)
-        {
-            defenderEffI = defWeapon.Rules.ApplyToInitiative(defenderEffI,
-                context.IsCharging(!isAttackerSide), context.IsCharging(isAttackerSide),
-                context.CombatRound);
-        }
+        int defenderEffI = RiderInitiative(opponent, defWeapon.Rules,
+            context.IsCharging(!isAttackerSide), context.IsHoldingAgainstCharge(!isAttackerSide), context.CombatRound);
 
         groups.Add(new AttackGroup
         {

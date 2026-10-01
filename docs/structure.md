@@ -44,7 +44,7 @@
 │   │   ├── UnitConfigurator.razor   # Stats, model count, weapon, command group
 │   │   ├── UnitPanel.razor          # Card wrapper: selector + configurator
 │   │   ├── CombatControls.razor     # Charge state + simulate button
-│   │   ├── EffectiveStatsPanel.razor# Computed stats comparison table
+│   │   ├── UnitHero.razor           # Hero band side: portrait, stat line, this fight
 │   │   ├── ResultsPanel.razor       # Full results: win%, wounds, CR, distributions
 │   │   ├── StatTable.razor          # Profile stat row display
 │   │   └── SpecialRuleBadges.razor  # Colour-coded rule badges

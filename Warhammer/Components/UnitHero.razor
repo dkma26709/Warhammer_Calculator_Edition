@@ -48,7 +48,7 @@
 
             @if (Stats != null)
             {
-                <div class="wr-this-fight">This fight: <span>@FightSummary</span></div>
+                <div class="wr-this-fight">This fight: <span>@Stats.FightSummary(OpponentStats)</span></div>
             }
 
             <SpecialRuleBadges Rules="Config.EffectiveSpecialRules" />
@@ -99,31 +99,6 @@
             return Config.TroopType.IsCharacter ? models : $"{models} · {Config.Frontage} wide";
         }
     }
-
-    private string FightSummary
-    {
-        get
-        {
-            var s = Stats!;
-            var parts = new List<string>
-            {
-                s.HasMount ? $"{s.TotalAttacks} attacks (+{s.MountAttacks} mount)" : $"{s.TotalAttacks} attacks",
-                $"hits on {s.ToHitNeeded}+",
-                $"wounds on {s.ToWoundNeeded}{(s.HasPoison ? " (poison)" : "")}",
-            };
-            if (s.ImpactHits > 0) parts.Add($"{s.ImpactHits} impact hits");
-            if (s.ArmourSave <= 6) parts.Add($"{s.ArmourSave}+ armour");
-            if (s.WardSave <= 6) parts.Add($"{s.WardSave}+ ward");
-            // A mount strikes at its own initiative, so one phrase can't state the order.
-            if (OpponentStats != null && !s.HasMount && !OpponentStats.HasMount)
-                parts.Add(StrikeOrder(s.StrikePriority, OpponentStats.StrikePriority));
-            return string.Join(" · ", parts);
-        }
-    }
-
-    // Same rule as the engine: higher priority strikes first, equal priority simultaneously.
-    private static string StrikeOrder(int mine, int theirs) =>
-        mine > theirs ? "strikes first" : mine < theirs ? "strikes last" : "strikes simultaneously";
 
     private static IEnumerable<string> Values(Warhammer.Models.Json.ProfileEntry p) =>
         new[] { p.M, p.WS, p.BS, p.S, p.T, p.W, p.I, p.A, p.Ld }.Select(v => v?.ToString() ?? "*");
