@@ -214,21 +214,21 @@ else
                                 <div class="wr-entry-actions">
                                     @if (cat.IsCharacterCategory())
                                     {
-                                        <button class="btn btn-sm @(entry.Loadout.IsGeneral ? "btn-warning" : "btn-outline-warning")"
+                                        <button class="btn btn-sm btn-outline-light"
                                                 aria-pressed="@(entry.Loadout.IsGeneral ? "true" : "false")"
                                                 title="Designate General"
                                                 @onclick="() => ToggleGeneral(entry)">General</button>
                                     }
                                     @if (entry.IsBattleStandardEligible)
                                     {
-                                        <button class="btn btn-sm @(entry.Loadout.IsBattleStandardBearer ? "btn-info" : "btn-outline-info")"
+                                        <button class="btn btn-sm btn-outline-light"
                                                 aria-pressed="@(entry.Loadout.IsBattleStandardBearer ? "true" : "false")"
                                                 title="Battle Standard Bearer"
                                                 @onclick="() => ToggleBsb(entry)">BSB</button>
                                     }
                                     @if (entry.CanHaveChampion && entry.CanHaveMusician && entry.CanHaveStandardBearer)
                                     {
-                                        <button class="btn btn-sm @(HasFullCommand(entry) ? "btn-success" : "btn-outline-success")"
+                                        <button class="btn btn-sm btn-outline-light"
                                                 aria-pressed="@(HasFullCommand(entry) ? "true" : "false")"
                                                 title="Full Command (Leader + Musician + Standard)"
                                                 @onclick="() => ToggleFullCommand(entry)">F/C</button>

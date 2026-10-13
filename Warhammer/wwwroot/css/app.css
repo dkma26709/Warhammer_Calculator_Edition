@@ -1049,6 +1049,20 @@ body {
     gap: 0.25rem;
 }
 
+/* General, BSB and F/C are toggles, not statuses: pressed fills brass like
+   the Matchup's .wr-segmented, never success/warning/info. */
+.wr-entry-actions .btn[aria-pressed=true] {
+    --bs-btn-color: var(--wr-on-fill);
+    --bs-btn-bg: var(--wr-brass);
+    --bs-btn-border-color: var(--wr-brass);
+    --bs-btn-hover-color: var(--wr-on-fill);
+    --bs-btn-hover-bg: var(--wr-brass-hover);
+    --bs-btn-hover-border-color: var(--wr-brass-hover);
+    --bs-btn-active-color: var(--wr-on-fill);
+    --bs-btn-active-bg: var(--wr-brass-hover);
+    --bs-btn-active-border-color: var(--wr-brass-hover);
+}
+
 .wr-entry-config {
     margin: 0.25rem 0 0.9rem;
     padding: 0.9rem;
