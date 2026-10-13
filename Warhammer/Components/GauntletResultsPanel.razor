@@ -47,21 +47,21 @@
     </div>
 
     @* ── Per-matchup table ── *@
-    <div class="table-responsive wr-figure p-0">
+    <div class="table-responsive wr-figure p-0 wr-table-frame">
         <table class="table table-dark table-sm table-hover mb-0">
             <caption class="visually-hidden">Every matchup; sort by any column, open an opponent for the detail</caption>
             <thead>
                 <tr>
                     @SortHeader("name", "Opponent")
-                    @SortHeader("faction", "Faction")
+                    @SortHeader("faction", "Faction", secondary: true)
                     @SortHeader("pts", "Pts", end: true)
                     @SortHeader("win", "Win%", "Share of iterations the subject won combat resolution", end: true)
-                    @SortHeader("draw", "Draw%", end: true)
+                    @SortHeader("draw", "Draw%", end: true, secondary: true)
                     @SortHeader("loss", "Loss%", end: true)
-                    @SortHeader("cr", "CR", "Average combat resolution, subject vs opponent", end: true)
-                    @SortHeader("dealt", "Dealt", end: true)
-                    @SortHeader("taken", "Taken", end: true)
-                    @SortHeader("ptseff", "Pts Eff", end: true)
+                    @SortHeader("cr", "CR", "Average combat resolution, subject vs opponent", end: true, secondary: true)
+                    @SortHeader("dealt", "Dealt", end: true, secondary: true)
+                    @SortHeader("taken", "Taken", end: true, secondary: true)
+                    @SortHeader("ptseff", "Pts Eff", end: true, secondary: true)
                 </tr>
             </thead>
             <tbody>
@@ -79,38 +79,42 @@
                                 @m.Opponent.Name
                             </button>
                         </td>
-                        <td class="text-body-secondary">@FactionKeyExtensions.DisplayNameForJsonKey(m.OpponentFactionKey)</td>
+                        <td class="text-body-secondary @Secondary">@FactionKeyExtensions.DisplayNameForJsonKey(m.OpponentFactionKey)</td>
                         <td class="text-end">@($"{m.OpponentConfig.TotalPointsCost:F0}")</td>
                         <td class="text-end @WinColour(m.WinPct)">@($"{m.WinPct:F1}")</td>
-                        <td class="text-end text-body-secondary">@($"{m.DrawPct:F1}")</td>
+                        <td class="text-end text-body-secondary @Secondary">@($"{m.DrawPct:F1}")</td>
                         <td class="text-end text-defender">@($"{m.LossPct:F1}")</td>
-                        <td class="text-end text-nowrap">
+                        <td class="text-end text-nowrap @Secondary">
                             <span class="text-attacker">@($"{m.AvgCombatRes:F1}")</span>
                             <span class="text-body-secondary mx-1">v</span>
                             <span class="text-defender">@($"{m.AvgOpponentCombatRes:F1}")</span>
                         </td>
-                        <td class="text-end text-attacker">@($"{m.AvgWoundsDealt:F1}")</td>
-                        <td class="text-end text-defender">@($"{m.AvgWoundsTaken:F1}")</td>
-                        <td class="text-end @PtsEffColour(ptsEff)">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
+                        <td class="text-end text-attacker @Secondary">@($"{m.AvgWoundsDealt:F1}")</td>
+                        <td class="text-end text-defender @Secondary">@($"{m.AvgWoundsTaken:F1}")</td>
+                        <td class="text-end @PtsEffColour(ptsEff) @Secondary">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
                     </tr>
                     @if (open)
                     {
                         <tr>
-                            <td colspan="10" class="p-3">
-                                @if (m.SingleRound != null)
-                                {
-                                    <ResultsPanel Result="m.SingleRound"
-                                                  AttackerName="@SubjectName"
-                                                  DefenderName="@m.Opponent.Name"
-                                                  AttackerConfig="SubjectConfig"
-                                                  DefenderConfig="m.OpponentConfig" />
-                                }
-                                else if (m.MultiRound != null)
-                                {
-                                    <MultiRoundResultsPanel Result="m.MultiRound"
-                                                            AttackerName="@SubjectName"
-                                                            DefenderName="@m.Opponent.Name" />
-                                }
+                            <td colspan="10" class="p-0">
+                                @* Sized to the frame, not the table, and pinned to its left edge:
+                                   the detail reads in place however far the table scrolls. *@
+                                <div class="wr-row-detail">
+                                    @if (m.SingleRound != null)
+                                    {
+                                        <ResultsPanel Result="m.SingleRound"
+                                                      AttackerName="@SubjectName"
+                                                      DefenderName="@m.Opponent.Name"
+                                                      AttackerConfig="SubjectConfig"
+                                                      DefenderConfig="m.OpponentConfig" />
+                                    }
+                                    else if (m.MultiRound != null)
+                                    {
+                                        <MultiRoundResultsPanel Result="m.MultiRound"
+                                                                AttackerName="@SubjectName"
+                                                                DefenderName="@m.Opponent.Name" />
+                                    }
+                                </div>
                             </td>
                         </tr>
                     }
@@ -126,7 +130,7 @@
     [Parameter] public UnitConfiguration? SubjectConfig { get; set; }
 
     private GauntletMatchup? _expandedMatchup;
-    private readonly string _headingId = $"gauntlet-{Guid.NewGuid():N}"[..17];
+    private readonly string _headingId = $"gauntlet-{Guid.NewGuid():N}";
     private string _sortColumn = "win";
     private bool _sortDescending = true;
 
@@ -184,10 +188,13 @@
     private string AriaSort(string column) =>
         _sortColumn != column ? "none" : _sortDescending ? "descending" : "ascending";
 
+    // Columns a phone drops so the table fits its frame.
+    private const string Secondary = "d-none d-md-table-cell";
+
     // A real button in each header, so sorting works from the keyboard too.
-    private RenderFragment SortHeader(string column, string label, string? title = null, bool end = false) => __builder =>
+    private RenderFragment SortHeader(string column, string label, string? title = null, bool end = false, bool secondary = false) => __builder =>
     {
-        <th scope="col" class="@(end ? "text-end" : "")" aria-sort="@AriaSort(column)" title="@title">
+        <th scope="col" class="@(end ? "text-end" : "") @(secondary ? Secondary : "")" aria-sort="@AriaSort(column)" title="@title">
             <button type="button" class="wr-sort" @onclick="() => SortBy(column)">
                 @label <span aria-hidden="true">@SortIndicator(column)</span>
             </button>

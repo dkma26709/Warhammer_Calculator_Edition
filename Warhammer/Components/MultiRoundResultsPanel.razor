@@ -58,33 +58,35 @@
         @if (Result.RoundSummaries.Count > 1)
         {
             <h6 class="small mb-2">Round Overview</h6>
-            <table class="table table-sm table-dark mb-4">
-                <thead>
-                    <tr>
-                        <th>Rnd</th>
-                        <th class="text-end text-attacker">@AttackerName left</th>
-                        <th class="text-end text-defender">@DefenderName left</th>
-                        <th class="text-end text-attacker">Avg wounds</th>
-                        <th class="text-end text-defender">Avg wounds</th>
-                        <th class="text-end text-attacker">Fled</th>
-                        <th class="text-end text-defender">Fled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var round in Result.RoundSummaries)
-                    {
+            <div class="table-responsive mb-4">
+                <table class="table table-sm table-dark mb-0">
+                    <thead>
                         <tr>
-                            <td>@round.Round</td>
-                            <td class="text-end text-attacker">@($"{round.AvgAttackerModelsRemaining:F1}")</td>
-                            <td class="text-end text-defender">@($"{round.AvgDefenderModelsRemaining:F1}")</td>
-                            <td class="text-end text-attacker">@($"{round.AvgAttackerWounds:F1}")</td>
-                            <td class="text-end text-defender">@($"{round.AvgDefenderWounds:F1}")</td>
-                            <td class="text-end text-attacker">@(round.AttackerFledPct > 0 ? $"{round.AttackerFledPct:F1}%" : "—")</td>
-                            <td class="text-end text-defender">@(round.DefenderFledPct > 0 ? $"{round.DefenderFledPct:F1}%" : "—")</td>
+                            <th>Rnd</th>
+                            <th class="text-end text-attacker">@AttackerName left</th>
+                            <th class="text-end text-defender">@DefenderName left</th>
+                            <th class="text-end text-attacker">Avg wounds</th>
+                            <th class="text-end text-defender">Avg wounds</th>
+                            <th class="text-end text-attacker">Fled</th>
+                            <th class="text-end text-defender">Fled</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var round in Result.RoundSummaries)
+                        {
+                            <tr>
+                                <td>@round.Round</td>
+                                <td class="text-end text-attacker">@($"{round.AvgAttackerModelsRemaining:F1}")</td>
+                                <td class="text-end text-defender">@($"{round.AvgDefenderModelsRemaining:F1}")</td>
+                                <td class="text-end text-attacker">@($"{round.AvgAttackerWounds:F1}")</td>
+                                <td class="text-end text-defender">@($"{round.AvgDefenderWounds:F1}")</td>
+                                <td class="text-end text-attacker">@(round.AttackerFledPct > 0 ? $"{round.AttackerFledPct:F1}%" : "—")</td>
+                                <td class="text-end text-defender">@(round.DefenderFledPct > 0 ? $"{round.DefenderFledPct:F1}%" : "—")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
 
         @* Section D: Individual Round Details *@
