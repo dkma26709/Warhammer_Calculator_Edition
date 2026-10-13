@@ -29,7 +29,7 @@
 
             @* Combat settings *@
             <div class="card bg-dark text-light border-secondary mt-3">
-                <div class="card-header"><h6 class="mb-0">Combat Settings</h6></div>
+                <div class="card-header"><h6 class="card-title mb-0">Combat Settings</h6></div>
                 <div class="card-body">
                     <CombatControls ChargeState="@_chargeState"
                                     ChargeStateChanged="OnChargeStateChanged"
@@ -49,7 +49,7 @@
             @* Preset loader *@
             <div class="card bg-dark text-light border-secondary mb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="mb-0">Opponent Roster (@_opponents.Count)</h6>
+                    <h6 class="card-title mb-0">Opponent Roster (@_opponents.Count)</h6>
                     <div class="d-flex gap-2 align-items-center">
                         <select class="form-select form-select-sm" style="width: auto"
                                 @onchange="OnPresetChanged">
@@ -146,7 +146,7 @@
             @* Add opponent staging area *@
             <div class="card bg-dark text-light border-secondary">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="mb-0">Add Opponent</h6>
+                    <h6 class="card-title mb-0">Add Opponent</h6>
                     @if (_stagingUnit != null && _stagingConfig != null)
                     {
                         <button class="btn btn-success btn-sm" @onclick="AddStagedOpponent">
@@ -182,7 +182,7 @@
         <div class="row mt-3">
             <div class="col-12">
                 <div class="progress" style="height: 24px">
-                    <div class="progress-bar bg-danger" role="progressbar"
+                    <div class="progress-bar" role="progressbar"
                          style="width: @(_progressPct)%">
                         @_progressCurrent / @_opponents.Count
                     </div>

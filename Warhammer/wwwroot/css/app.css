@@ -1,9 +1,483 @@
+/* ─── War Room theme ───────────────────────────────────────────────
+   Design, rationale and the accessibility rules it keeps:
+   docs/07-war-room-redesign.md. Every colour the screens use is a token
+   here; Razor markup names a role (attacker, defender, draw, error),
+   never a hex value. */
+
+/* Fonts are self-hosted (OFL, fonts/OFL.txt): a third-party font link would
+   send every visitor's IP address to its host without consent. Latin subsets,
+   the files Google Fonts serves for these weights. */
+@font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/cinzel-700.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('../fonts/alegreya-sans-400.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('../fonts/alegreya-sans-500.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('../fonts/alegreya-sans-700.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Alegreya Sans';
+    src: url('../fonts/alegreya-sans-800.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+:root {
+    --wr-font-display: 'Cinzel', Georgia, serif;
+    --wr-font-body: 'Alegreya Sans', Candara, 'Segoe UI', sans-serif;
+
+    --wr-bg-deep: #0c0a08;
+    --wr-bg: #110e0b;
+    --wr-bg-raised: #16120e;
+    --wr-surface: #1a1612;
+    --wr-surface-hover: #221d17;
+    --wr-rule-soft: #2c251e;
+    --wr-rule: #3b3228;
+    --wr-field: #8a7c67;
+    --wr-text: #eee5d2;
+    --wr-text-2: #d9cfbb;
+    --wr-muted: #aa9d87;
+
+    --wr-brass: #d6a849;
+    --wr-brass-hover: #f0c96e;
+    --wr-defender: #74b2ea;
+    --wr-defender-stripe: #4a88ca;
+    --wr-draw: #8b8170;
+    --wr-warning: #f0c96e;
+    --wr-error: #ef7f98;
+    --wr-error-fill: #c93c5f;
+    --wr-on-fill: #0c0a08;
+
+    /* Defender fills are hatched as well as blue, so the two sides never
+       differ by colour alone (WCAG 1.4.1). */
+    --wr-hatch-defender: repeating-linear-gradient(135deg,
+        var(--wr-defender) 0 5px, var(--wr-defender-stripe) 5px 8px);
+}
+
+/* Bootstrap's own variables, re-pointed at the tokens. */
+:root[data-bs-theme=dark] {
+    --bs-body-font-family: var(--wr-font-body);
+    --bs-body-bg: var(--wr-bg);
+    --bs-body-bg-rgb: 17, 14, 11;
+    --bs-body-color: var(--wr-text);
+    --bs-body-color-rgb: 238, 229, 210;
+    --bs-emphasis-color: #fbf6ea;
+    --bs-emphasis-color-rgb: 251, 246, 234;
+    --bs-heading-color: var(--wr-text);
+    --bs-secondary-color: var(--wr-muted);
+    --bs-secondary-color-rgb: 170, 157, 135;
+    --bs-secondary-bg: var(--wr-surface);
+    --bs-tertiary-bg: var(--wr-bg-raised);
+    --bs-border-color: var(--wr-rule);
+    --bs-border-color-translucent: rgba(238, 229, 210, 0.12);
+    --bs-link-color: var(--wr-brass);
+    --bs-link-color-rgb: 214, 168, 73;
+    --bs-link-hover-color: var(--wr-brass-hover);
+    --bs-link-hover-color-rgb: 240, 201, 110;
+
+    /* success = OK, danger = error, info = neutral bone, warning = pale gold.
+       Sides are not statuses: see .text-attacker / .text-defender below. */
+    --bs-primary-rgb: 214, 168, 73;
+    --bs-success-rgb: 214, 168, 73;
+    --bs-danger-rgb: 239, 127, 152;
+    --bs-info-rgb: 217, 207, 187;
+    --bs-warning-rgb: 240, 201, 110;
+    --bs-secondary-rgb: 170, 157, 135;
+    --bs-dark-rgb: 26, 22, 18;
+    --bs-light-rgb: 238, 229, 210;
+
+    --bs-secondary-bg-subtle: var(--wr-bg-raised);
+    --bs-secondary-border-subtle: var(--wr-rule);
+    --bs-secondary-text-emphasis: var(--wr-text-2);
+    --bs-info-bg-subtle: var(--wr-bg-raised);
+    --bs-info-border-subtle: var(--wr-rule);
+    --bs-info-text-emphasis: var(--wr-text-2);
+    --bs-warning-bg-subtle: #2a2210;
+    --bs-warning-border-subtle: #5b4719;
+    --bs-warning-text-emphasis: #f1e3bf;
+    --bs-danger-bg-subtle: #2b1219;
+    --bs-danger-border-subtle: #62223a;
+    --bs-danger-text-emphasis: #f8b8c6;
+}
+
 body {
-    background-color: #1a1a2e;
+    background-color: var(--wr-bg);
+    font-variant-numeric: tabular-nums;
+}
+
+.card-title,
+.navbar-brand .wr-brand-name {
+    font-family: var(--wr-font-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Run counts and timings inside a title stay in the body face. */
+.card-title .small {
+    font-family: var(--wr-font-body);
+    letter-spacing: 0;
 }
 
 .card {
-    border-color: #444;
+    --bs-card-border-color: var(--wr-rule);
+}
+
+.card-header {
+    background-color: var(--wr-bg-raised);
+}
+
+.border-secondary {
+    border-color: var(--wr-rule) !important;
+}
+
+.bg-danger {
+    background-color: var(--wr-error-fill) !important;
+}
+
+/* ─── Header ─── */
+
+.wr-header {
+    background-color: var(--wr-bg-deep);
+    border-bottom: 1px solid var(--wr-rule);
+    --bs-navbar-color: var(--wr-muted);
+    --bs-navbar-hover-color: var(--wr-text);
+    --bs-navbar-active-color: var(--wr-text);
+}
+
+.wr-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--wr-text);
+}
+
+.wr-brand svg {
+    color: var(--wr-brass);
+}
+
+.wr-brand-kicker {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--wr-muted);
+}
+
+.wr-brand-name {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.wr-header .nav-link {
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+}
+
+.wr-header .nav-link.active {
+    border-bottom-color: var(--wr-brass);
+    font-weight: 700;
+}
+
+.wr-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wr-muted);
+}
+
+/* ─── Form controls: borders at 3:1 (WCAG 1.4.11) ─── */
+
+.form-control,
+.form-select,
+.input-group-text {
+    background-color: var(--wr-surface);
+    border-color: var(--wr-field);
+    color: var(--wr-text);
+}
+
+.form-control.border-secondary,
+.form-select.border-secondary {
+    border-color: var(--wr-field) !important;
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background-color: var(--wr-bg-raised);
+    border-color: var(--wr-rule) !important;
+    color: var(--wr-muted);
+}
+
+.form-check-input {
+    background-color: var(--wr-surface);
+    border-color: var(--wr-field);
+}
+
+.form-check-input:checked {
+    background-color: var(--wr-brass);
+    border-color: var(--wr-brass);
+}
+
+.form-check-input:checked[type=checkbox] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%230c0a08' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked[type=radio] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%230c0a08'/%3e%3c/svg%3e");
+}
+
+/* ─── Focus: a brass double ring on everything focusable (WCAG 2.4.7) ─── */
+
+:focus-visible {
+    outline: 2px solid var(--wr-brass);
+    outline-offset: 2px;
+}
+
+.btn:focus-visible,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: var(--wr-brass);
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--wr-bg), 0 0 0 4px var(--wr-brass);
+}
+
+/* ─── Buttons ─── */
+
+.btn-primary,
+.btn-success {
+    --bs-btn-color: var(--wr-on-fill);
+    --bs-btn-bg: var(--wr-brass);
+    --bs-btn-border-color: var(--wr-brass);
+    --bs-btn-hover-color: var(--wr-on-fill);
+    --bs-btn-hover-bg: var(--wr-brass-hover);
+    --bs-btn-hover-border-color: var(--wr-brass-hover);
+    --bs-btn-active-color: var(--wr-on-fill);
+    --bs-btn-active-bg: var(--wr-brass-hover);
+    --bs-btn-active-border-color: var(--wr-brass-hover);
+    --bs-btn-disabled-color: var(--wr-on-fill);
+    --bs-btn-disabled-bg: var(--wr-draw);
+    --bs-btn-disabled-border-color: var(--wr-draw);
+    font-weight: 800;
+}
+
+.btn-outline-success {
+    --bs-btn-color: var(--wr-brass);
+    --bs-btn-border-color: var(--wr-brass);
+    --bs-btn-hover-color: var(--wr-on-fill);
+    --bs-btn-hover-bg: var(--wr-brass);
+    --bs-btn-hover-border-color: var(--wr-brass);
+    --bs-btn-active-color: var(--wr-on-fill);
+    --bs-btn-active-bg: var(--wr-brass);
+    --bs-btn-active-border-color: var(--wr-brass);
+}
+
+.btn-warning,
+.btn-info,
+.btn-light {
+    --bs-btn-color: var(--wr-on-fill);
+    --bs-btn-hover-color: var(--wr-on-fill);
+    --bs-btn-active-color: var(--wr-on-fill);
+    --bs-btn-disabled-color: var(--wr-on-fill);
+}
+
+.btn-warning {
+    --bs-btn-bg: var(--wr-warning);
+    --bs-btn-border-color: var(--wr-warning);
+    --bs-btn-hover-bg: #f6d88f;
+    --bs-btn-hover-border-color: #f6d88f;
+    --bs-btn-active-bg: #f6d88f;
+    --bs-btn-active-border-color: #f6d88f;
+}
+
+.btn-info,
+.btn-light {
+    --bs-btn-bg: var(--wr-text-2);
+    --bs-btn-border-color: var(--wr-text-2);
+    --bs-btn-hover-bg: var(--wr-text);
+    --bs-btn-hover-border-color: var(--wr-text);
+    --bs-btn-active-bg: var(--wr-text);
+    --bs-btn-active-border-color: var(--wr-text);
+    --bs-btn-disabled-bg: var(--wr-draw);
+    --bs-btn-disabled-border-color: var(--wr-draw);
+}
+
+.btn-outline-warning {
+    --bs-btn-color: var(--wr-warning);
+    --bs-btn-border-color: var(--wr-warning);
+    --bs-btn-hover-color: var(--wr-on-fill);
+    --bs-btn-hover-bg: var(--wr-warning);
+    --bs-btn-hover-border-color: var(--wr-warning);
+    --bs-btn-active-color: var(--wr-on-fill);
+    --bs-btn-active-bg: var(--wr-warning);
+    --bs-btn-active-border-color: var(--wr-warning);
+}
+
+.btn-outline-info {
+    --bs-btn-color: var(--wr-text-2);
+    --bs-btn-border-color: var(--wr-text-2);
+    --bs-btn-hover-color: var(--wr-on-fill);
+    --bs-btn-hover-bg: var(--wr-text-2);
+    --bs-btn-hover-border-color: var(--wr-text-2);
+    --bs-btn-active-color: var(--wr-on-fill);
+    --bs-btn-active-bg: var(--wr-text-2);
+    --bs-btn-active-border-color: var(--wr-text-2);
+}
+
+.btn-outline-secondary,
+.btn-outline-light {
+    --bs-btn-color: var(--wr-text-2);
+    --bs-btn-border-color: var(--wr-field);
+    --bs-btn-hover-color: var(--wr-text);
+    --bs-btn-hover-bg: var(--wr-surface-hover);
+    --bs-btn-hover-border-color: var(--wr-brass);
+    --bs-btn-active-color: var(--wr-text);
+    --bs-btn-active-bg: var(--wr-surface-hover);
+    --bs-btn-active-border-color: var(--wr-brass);
+    --bs-btn-disabled-color: var(--wr-muted);
+    --bs-btn-disabled-border-color: var(--wr-rule);
+}
+
+.btn-outline-light {
+    --bs-btn-color: var(--wr-text);
+}
+
+.btn-danger {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--wr-error-fill);
+    --bs-btn-border-color: var(--wr-error-fill);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #b3324f;
+    --bs-btn-hover-border-color: #b3324f;
+}
+
+.btn-outline-danger {
+    --bs-btn-color: var(--wr-error);
+    --bs-btn-border-color: var(--wr-error-fill);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--wr-error-fill);
+    --bs-btn-hover-border-color: var(--wr-error-fill);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--wr-error-fill);
+    --bs-btn-active-border-color: var(--wr-error-fill);
+}
+
+/* ─── Badges, tables, progress ─── */
+
+.badge.bg-success,
+.badge.bg-primary {
+    color: var(--wr-on-fill);
+}
+
+.rule-chip {
+    display: inline-block;
+    padding: 0.3em 0.55em;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--wr-text-2);
+    border: 1px solid var(--wr-rule);
+    border-radius: 3px;
+}
+
+.table-dark {
+    --bs-table-color: var(--wr-text);
+    --bs-table-bg: var(--wr-surface);
+    --bs-table-border-color: var(--wr-rule-soft);
+    --bs-table-striped-color: var(--wr-text);
+    --bs-table-striped-bg: var(--wr-surface-hover);
+    --bs-table-active-color: var(--wr-text);
+    --bs-table-active-bg: #2a241d;
+    --bs-table-hover-color: var(--wr-text);
+    --bs-table-hover-bg: var(--wr-surface-hover);
+}
+
+.progress {
+    --bs-progress-bg: var(--wr-rule-soft);
+    --bs-progress-bar-bg: var(--wr-brass);
+    --bs-progress-bar-color: var(--wr-on-fill);
+}
+
+/* A limit the list fails: dashed outline as well as the error colour. */
+.progress.wr-failing {
+    outline: 1px dashed var(--wr-error-fill);
+    outline-offset: 2px;
+}
+
+.wr-track {
+    background-color: var(--wr-rule-soft);
+}
+
+/* ─── Sides: attacker (Gauntlet: subject) and defender (opponent) ─── */
+
+.text-attacker { color: var(--wr-brass) !important; }
+.text-defender { color: var(--wr-defender) !important; }
+.border-attacker { border-color: var(--wr-brass) !important; }
+.border-defender { border-color: var(--wr-defender) !important; }
+
+.bg-attacker {
+    background: var(--wr-brass) !important;
+    color: var(--wr-on-fill);
+}
+
+.bg-defender {
+    background: var(--wr-hatch-defender) !important;
+    color: var(--wr-on-fill);
+}
+
+.bg-draw {
+    background: var(--wr-draw) !important;
+    color: var(--wr-on-fill);
+}
+
+/* Multi-round outcomes: the attacker-favoured three in brass, the
+   defender-favoured three hatched blue, each family stepping in lightness. */
+.outcome { color: var(--wr-on-fill); }
+.outcome-defender-wiped-out { background: var(--wr-brass); }
+.outcome-defender-broke-caught { background: #e4c275; }
+.outcome-defender-broke-escaped { background: #f1dfae; }
+.outcome-attacker-wiped-out { background: var(--wr-hatch-defender); }
+.outcome-attacker-broke-caught {
+    background: repeating-linear-gradient(135deg, #a3cbf1 0 5px, #7fb4e8 5px 8px);
+}
+.outcome-attacker-broke-escaped {
+    background: repeating-linear-gradient(135deg, #d0e4f8 0 5px, #b3d2f2 5px 8px);
+}
+.outcome-both-wiped-out { background: var(--wr-draw); }
+.outcome-max-rounds { background: #b8ad98; }
+
+/* ─── Portrait fallback tiles (unit initials), by category ─── */
+
+.tile-lords { background: #5b4719; color: #f1e3bf; }
+.tile-heroes { background: #3a342d; color: #e4dccb; }
+.tile-named { background: #4a3219; color: #efdcc4; }
+.tile-core { background: #26311f; color: #dfe6d3; }
+.tile-special { background: #223044; color: #d5deeb; }
+.tile-rare { background: #3a2440; color: #e8d8ec; }
+
+/* ─── Status icons ─── */
+
+.wr-status-icon {
+    flex-shrink: 0;
+    vertical-align: -0.125em;
 }
 
 /* Stat table compact sizing */
@@ -54,8 +528,8 @@ body {
    printed, so the preview should be what comes out of the printer. */
 
 .roster-toolbar {
-    background-color: #16213e;
-    border-bottom: 1px solid #444;
+    background-color: var(--wr-bg-deep);
+    border-bottom: 1px solid var(--wr-rule);
 }
 
 .roster-sheet {

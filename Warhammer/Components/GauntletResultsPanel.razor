@@ -33,16 +33,16 @@
             <div class="col-md-2">
                 <div class="text-center">
                     <div class="small text-body-secondary">Overall Loss Rate</div>
-                    <div class="h4 fw-bold text-danger">@($"{AvgLossPct:F1}")%</div>
+                    <div class="h4 fw-bold text-defender">@($"{AvgLossPct:F1}")%</div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="text-center">
                     <div class="small text-body-secondary">Avg Wounds Dealt / Taken</div>
                     <div class="h5">
-                        <span class="text-success fw-bold">@($"{AvgWoundsDealt:F1}")</span>
+                        <span class="text-attacker fw-bold">@($"{AvgWoundsDealt:F1}")</span>
                         <span class="text-body-secondary mx-1">/</span>
-                        <span class="text-danger fw-bold">@($"{AvgWoundsTaken:F1}")</span>
+                        <span class="text-defender fw-bold">@($"{AvgWoundsTaken:F1}")</span>
                     </div>
                 </div>
             </div>
@@ -52,12 +52,12 @@
                     <div class="small">
                         <div>
                             <span class="text-body-secondary">Best:</span>
-                            <span class="text-success">@BestMatchup.Opponent.Name</span>
+                            <span class="fw-bold">@BestMatchup.Opponent.Name</span>
                             <span class="text-body-secondary">(CR @($"{BestMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
                         </div>
                         <div>
                             <span class="text-body-secondary">Worst:</span>
-                            <span class="text-danger">@WorstMatchup.Opponent.Name</span>
+                            <span class="fw-bold">@WorstMatchup.Opponent.Name</span>
                             <span class="text-body-secondary">(CR @($"{WorstMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
                         </div>
                     </div>
@@ -69,21 +69,21 @@
         <div class="d-flex mb-4 rounded overflow-hidden" style="height: 1.5rem;">
             @if (AvgWinPct > 0)
             {
-                <div class="bg-success d-flex align-items-center justify-content-center text-white fw-bold small"
+                <div class="bg-attacker d-flex align-items-center justify-content-center fw-bold small"
                      style="width: @Pct(AvgWinPct);">
                     @if (AvgWinPct >= 10) { @($"{AvgWinPct:F0}%") }
                 </div>
             }
             @if (AvgDrawPct > 0)
             {
-                <div class="bg-secondary d-flex align-items-center justify-content-center text-white fw-bold small"
+                <div class="bg-draw d-flex align-items-center justify-content-center fw-bold small"
                      style="width: @Pct(AvgDrawPct);">
                     @if (AvgDrawPct >= 10) { @($"{AvgDrawPct:F0}%") }
                 </div>
             }
             @if (AvgLossPct > 0)
             {
-                <div class="bg-danger d-flex align-items-center justify-content-center text-white fw-bold small"
+                <div class="bg-defender d-flex align-items-center justify-content-center fw-bold small"
                      style="width: @Pct(AvgLossPct);">
                     @if (AvgLossPct >= 10) { @($"{AvgLossPct:F0}%") }
                 </div>
@@ -120,14 +120,14 @@
                         <td class="text-end">@($"{m.OpponentConfig.TotalPointsCost:F0}")</td>
                         <td class="text-end @WinColour(m.WinPct)">@($"{m.WinPct:F1}")</td>
                         <td class="text-end text-body-secondary">@($"{m.DrawPct:F1}")</td>
-                        <td class="text-end text-danger">@($"{m.LossPct:F1}")</td>
+                        <td class="text-end text-defender">@($"{m.LossPct:F1}")</td>
                         <td class="text-end">
-                            <span class="text-success">@($"{m.AvgCombatRes:F1}")</span>
+                            <span class="text-attacker">@($"{m.AvgCombatRes:F1}")</span>
                             <span class="text-body-secondary mx-1">v</span>
-                            <span class="text-danger">@($"{m.AvgOpponentCombatRes:F1}")</span>
+                            <span class="text-defender">@($"{m.AvgOpponentCombatRes:F1}")</span>
                         </td>
-                        <td class="text-end text-success">@($"{m.AvgWoundsDealt:F1}")</td>
-                        <td class="text-end text-danger">@($"{m.AvgWoundsTaken:F1}")</td>
+                        <td class="text-end text-attacker">@($"{m.AvgWoundsDealt:F1}")</td>
+                        <td class="text-end text-defender">@($"{m.AvgWoundsTaken:F1}")</td>
                         <td class="text-end @PtsEffColour(ptsEff)">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
                     </tr>
                     @if (m == _expandedMatchup)
@@ -238,15 +238,15 @@
 
     private static string WinColour(double winPct) => winPct switch
     {
-        >= 60 => "text-success",
-        >= 40 => "text-warning",
-        _ => "text-danger"
+        >= 60 => "text-attacker",
+        >= 40 => "",
+        _ => "text-defender"
     };
 
     private static string PtsEffColour(double eff) => eff switch
     {
-        > 0.5 => "text-success",
-        < -0.5 => "text-danger",
+        > 0.5 => "text-attacker",
+        < -0.5 => "text-defender",
         _ => "text-body-secondary"
     };
 

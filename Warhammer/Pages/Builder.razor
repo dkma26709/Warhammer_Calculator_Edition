@@ -89,11 +89,12 @@
                 <div class="d-flex justify-content-between align-items-baseline mb-1">
                     <strong>@_armyList.Name</strong>
                     <span class="@(totalOver ? "text-danger" : "")">
+                        @if (totalOver) { <StatusIcon Severity="ValidationSeverity.Error" /> }
                         <strong>@total.ToString("F0")</strong>
                         <span class="text-body-secondary"> / @target pts</span>
                     </span>
                 </div>
-                <div class="progress mb-2" style="height: 8px; background-color: #333;">
+                <div class="progress mb-2 @(totalOver ? "wr-failing" : "")" style="height: 8px;">
                     <div class="progress-bar @totalClass" role="progressbar" style="width: @totalPct.ToString("F0")%"></div>
                 </div>
 
@@ -104,11 +105,11 @@
                         var over = isMin ? used < cap : used > cap;
                         var barClass = over ? "bg-danger" : "bg-success";
                         <div class="col-6 col-md-4 col-xl-2">
-                            <div class="d-flex justify-content-between" style="font-size: 0.75rem;">
-                                <span>@cat @(isMin ? "(min)" : "")</span>
+                            <div class="d-flex justify-content-between @(over ? "text-danger fw-bold" : "")" style="font-size: 0.75rem;">
+                                <span>@if (over) { <StatusIcon Severity="ValidationSeverity.Error" Size="12" /> } @cat @(isMin ? "(min)" : "")</span>
                                 <span>@used.ToString("F0")/@cap.ToString("F0")</span>
                             </div>
-                            <div class="progress" style="height: 5px; background-color: #333;">
+                            <div class="progress @(over ? "wr-failing" : "")" style="height: 5px;">
                                 <div class="progress-bar @barClass" role="progressbar" style="width: @pct.ToString("F0")%"></div>
                             </div>
                         </div>
@@ -185,7 +186,7 @@
 
         @* ─── Validation ──────────────────────────────────────────── *@
         <div class="card bg-dark text-light border-secondary mb-3">
-            <div class="card-header py-2"><strong>Validation</strong></div>
+            <div class="card-header py-2"><strong class="card-title mb-0">Validation</strong></div>
             <div class="card-body p-2">
                 @if (_issues.Count == 0)
                 {
@@ -195,8 +196,11 @@
                 {
                     @foreach (var issue in _issues)
                     {
-                        var colour = issue.Severity == ValidationSeverity.Error ? "text-danger" : "text-warning";
-                        <div class="small @colour">@issue.Message</div>
+                        var isError = issue.Severity == ValidationSeverity.Error;
+                        <div class="small d-flex align-items-start gap-2 @(isError ? "text-danger" : "text-warning")">
+                            <StatusIcon Severity="issue.Severity" />
+                            <span><span class="visually-hidden">@(isError ? "Error: " : "Warning: ")</span>@issue.Message</span>
+                        </div>
                     }
                 }
             </div>
@@ -208,7 +212,7 @@
             <div class="col-lg-4">
                 <div class="card bg-dark text-light border-secondary">
                     <div class="card-header py-2">
-                        <strong>Add units</strong>
+                        <strong class="card-title mb-0">Add units</strong>
                     </div>
                     <div class="card-body p-2" style="max-height: 70vh; overflow-y: auto;">
                         @foreach (var cat in BrowseCategories)
@@ -238,7 +242,7 @@
             <div class="col-lg-8">
                 <div class="card bg-dark text-light border-secondary">
                     <div class="card-header py-2 d-flex justify-content-between">
-                        <strong>Army List</strong>
+                        <strong class="card-title mb-0">Army List</strong>
                         <span class="text-body-secondary">
                             @_armyList.TotalPoints.ToString("F0") / @_armyList.PointsTarget pts
                         </span>
@@ -292,18 +296,21 @@
                                                 @if (cat.IsCharacterCategory())
                                                 {
                                                     <button class="btn btn-sm me-1 @(entry.Loadout.IsGeneral ? "btn-warning" : "btn-outline-warning")"
+                                                            aria-pressed="@(entry.Loadout.IsGeneral ? "true" : "false")"
                                                             title="Designate General"
                                                             @onclick="() => ToggleGeneral(entry)">General</button>
                                                 }
                                                 @if (entry.IsBattleStandardEligible)
                                                 {
                                                     <button class="btn btn-sm me-1 @(entry.Loadout.IsBattleStandardBearer ? "btn-info" : "btn-outline-info")"
+                                                            aria-pressed="@(entry.Loadout.IsBattleStandardBearer ? "true" : "false")"
                                                             title="Battle Standard Bearer"
                                                             @onclick="() => ToggleBsb(entry)">BSB</button>
                                                 }
                                                 @if (entry.CanHaveChampion && entry.CanHaveMusician && entry.CanHaveStandardBearer)
                                                 {
                                                     <button class="btn btn-sm me-1 @(HasFullCommand(entry) ? "btn-success" : "btn-outline-success")"
+                                                            aria-pressed="@(HasFullCommand(entry) ? "true" : "false")"
                                                             title="Full Command (Leader + Musician + Standard)"
                                                             @onclick="() => ToggleFullCommand(entry)">F/C</button>
                                                 }

@@ -112,6 +112,9 @@ Stack vertically: Attacker → Defender → Controls → Results
 
 ## Styling Direction
 
+> Superseded by `07-war-room-redesign.md` (2026-09-29), which also replaces the green/grey/red
+> results colouring below.
+
 - Dark theme (dark backgrounds, light text) — fitting Warhammer's grim aesthetic
 - Bootstrap 5 (CDN loaded) as the base framework
 - Accent colours for faction identity (optional, can be plain initially)
