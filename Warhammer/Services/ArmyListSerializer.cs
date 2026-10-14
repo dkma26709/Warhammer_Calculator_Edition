@@ -127,7 +127,14 @@ public class ArmyListSerializer
                 [$"Faction '{dto.Faction}' is not in the current system '{_system.CurrentSystem}'."]);
 
         var factionUnits = await _repo.GetUnitsAsync(faction);
-        var unitsByName = factionUnits.ToDictionary(u => u.Name, StringComparer.OrdinalIgnoreCase);
+        // A mount and a unit can share a name (High Elves' Great Eagle), and exported data may
+        // repeat an entry outright. A list names a unit it holds, so a non-mount entry wins.
+        var unitsByName = factionUnits
+            .GroupBy(u => u.Name, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(
+                g => g.Key,
+                g => g.FirstOrDefault(u => u.Category != UnitCategory.CharacterMounts) ?? g.First(),
+                StringComparer.OrdinalIgnoreCase);
         var upgradeCosts = await LoadFactionUpgradeCostsAsync(faction);
 
         var list = new ArmyList

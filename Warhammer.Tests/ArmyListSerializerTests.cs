@@ -534,4 +534,70 @@ public class ArmyListSerializerTests
         Assert.Contains("Razor Standard", json);
         Assert.Contains("magic_standard", json);
     }
+
+    // ─── Duplicate unit names ───────────────────────────────────────
+
+    [Fact]
+    public async Task DeserializeAsync_DuplicateUnitNames_PrefersTheNonMountEntry()
+    {
+        // High Elves list a Great Eagle both as a character mount and as a Rare unit.
+        var mount = TestHelpers.MakeUnit(name: "Great Eagle", points: null) with { Category = UnitCategory.CharacterMounts };
+        var rare = TestHelpers.MakeUnit(name: "Great Eagle", points: 50) with { Category = UnitCategory.Rare };
+        var list = new ArmyList
+        {
+            Faction = FactionKey.HighElves,
+            PointsTarget = 2000,
+            Units = { new UnitConfiguration(rare) { ModelCount = 1 } },
+        };
+
+        var serializer = new ArmyListSerializer(new StubRepo(mount, rare), new GameSystemService());
+        var result = await serializer.DeserializeAsync(serializer.Serialize(list));
+
+        Assert.True(result.Success);
+        var imported = Assert.Single(result.List!.Units);
+        Assert.Equal(UnitCategory.Rare, imported.ResolvedUnit.Category);
+    }
+
+    /// <summary>
+    /// Every unit a list can hold must survive export and import against the shipped data, so a
+    /// faction whose roster repeats a name cannot fault the Builder's autosave restore.
+    /// </summary>
+    [Theory]
+    [InlineData(GameSystems.WapV2)]
+    [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
+    public async Task DeserializeAsync_EveryFactionInEverySystem_ImportsEveryUnit(string system)
+    {
+        var repo = TestHelpers.RepoFor(system);
+        var systemService = new GameSystemService();
+        systemService.Initialize(system);
+        var serializer = new ArmyListSerializer(repo, systemService);
+        var failures = new List<string>();
+
+        foreach (var faction in repo.AllFactions)
+        {
+            var units = await repo.GetUnitsAsync(faction);
+            var list = new ArmyList { Faction = faction, PointsTarget = 2000, Name = "Every unit" };
+            foreach (var unit in units.Where(u => u.Category != UnitCategory.CharacterMounts))
+                list.Units.Add(new UnitConfiguration(unit));
+
+            ImportResult result;
+            try
+            {
+                result = await serializer.DeserializeAsync(serializer.Serialize(list));
+            }
+            catch (Exception ex)
+            {
+                failures.Add($"{faction}: {ex.GetType().Name}: {ex.Message}");
+                continue;
+            }
+
+            if (!result.Success)
+                failures.Add($"{faction}: import failed: {string.Join("; ", result.Errors)}");
+            else if (result.List!.Units.Count != list.Units.Count)
+                failures.Add($"{faction}: imported {result.List.Units.Count} of {list.Units.Count} units");
+        }
+
+        Assert.True(failures.Count == 0, string.Join(Environment.NewLine, failures));
+    }
 }
