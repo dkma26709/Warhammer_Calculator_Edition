@@ -2,8 +2,8 @@ namespace Warhammer.Models.Json;
 
 /// <summary>
 /// The active system's <c>troop-types.json</c>: the figures the Troop Types chapter states for
-/// each troop type. Hand-maintained per system, like <see cref="CompositionData"/> — the
-/// chapter is prose, so <c>extract_core_rules.py</c> cannot lift it into core-rules.json.
+/// each troop type. Hand-maintained per system: the chapter is prose rather than a ruled
+/// table, so the figures are read off it by hand.
 /// </summary>
 public record TroopTypesData
 {
