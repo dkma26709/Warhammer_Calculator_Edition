@@ -41,6 +41,7 @@ public class GameSystemTests
     [Theory]
     [InlineData("wap-v2")]
     [InlineData("wap-v3")]
+    [InlineData("war")]
     public void Initialize_EnabledKey_SetsCurrentSystem(string key)
     {
         var service = new GameSystemService();
@@ -93,10 +94,28 @@ public class GameSystemTests
         }
     }
 
-    [Fact]
-    public void Repository_AllFactions_ComesFromManifest()
+    /// <summary>
+    /// The repository offers the active system's manifest, in its order — not every FactionKey,
+    /// which spans all systems. A manifest key with no FactionKey is skipped by the loader with
+    /// only a console line, so it is asserted here rather than left to go missing from the picker.
+    /// </summary>
+    [Theory]
+    [InlineData(GameSystems.WapV2)]
+    [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
+    public void Repository_AllFactions_ComesFromManifest(string systemKey)
     {
-        // TestHelpers.Repo loads the wap-v2 manifest from disk; it lists all 15 factions.
-        Assert.Equal(FactionKeyExtensions.All, TestHelpers.Repo.AllFactions);
+        var manifest = JsonSerializer.Deserialize<SystemManifest>(
+            File.ReadAllText(Path.Combine(TestPaths.SystemDataDir(systemKey), "manifest.json")),
+            JsonOptions)!;
+
+        var expected = manifest.Factions.Select(jsonKey =>
+        {
+            Assert.True(FactionKeyExtensions.TryFromJsonKey(jsonKey, out var key),
+                $"{systemKey} manifest lists '{jsonKey}', which has no FactionKey");
+            return key;
+        }).ToList();
+
+        Assert.Equal(expected, TestHelpers.RepoFor(systemKey).AllFactions);
     }
 }

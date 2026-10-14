@@ -1,0 +1,4963 @@
+{
+ "factionName": "Vampire Counts",
+ "units": [
+  {
+   "name": "Count",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Count",
+     "M": 6,
+     "WS": 7,
+     "BS": 5,
+     "S": 6,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 4,
+     "Ld": 10,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, von Carstein)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A von Carstein who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 1 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 2 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 2 Wizard +70 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 3 Wizard",
+     "points": 105,
+     "perModel": false,
+     "raw": "Level 3 Wizard (Count only) +105 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      },
+      {
+       "name": "Zombie Dragon",
+       "points": 245,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Count",
+     "raw": "A Count may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Count may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "Scion",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Scion",
+     "M": 6,
+     "WS": 6,
+     "BS": 5,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 9,
+     "points": 80
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, von Carstein)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A von Carstein who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 1 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 2 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 2 Wizard +70 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Scion may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Scion",
+     "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Scion may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "Master",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Master",
+     "M": 6,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 6,
+     "A": 3,
+     "Ld": 9,
+     "points": 245
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Necrarch)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Acolyte is a Level 1 Wizard. A Master is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Master of the Dead",
+     "points": 20,
+     "perModel": false,
+     "raw": "May be upgraded to a Master of the Dead +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      },
+      {
+       "name": "Zombie Dragon",
+       "points": 245,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Master",
+     "raw": "A Master may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Master may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 245
+  },
+  {
+   "name": "Acolyte",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Acolyte",
+     "M": 6,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Necrarch)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Acolyte is a Level 1 Wizard. A Master is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Master of the Dead",
+     "points": 20,
+     "perModel": false,
+     "raw": "May be upgraded to a Master of the Dead +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Acolyte may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Acolyte",
+     "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "An Acolyte may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "Lady",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Lady",
+     "M": 6,
+     "WS": 6,
+     "BS": 5,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 8,
+     "A": 4,
+     "Ld": 10,
+     "points": 175
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Lahmian)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "A Lahmian who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 1 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 2 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 2 Wizard +70 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 3 Wizard",
+     "points": 105,
+     "perModel": false,
+     "raw": "Level 3 Wizard (Lady only) +105 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapon",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take an additional hand weapon +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May take throwing weapons +6 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 10,
+     "perModel": false,
+     "raw": "May have Poisoned Attacks +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Coven Throne",
+       "points": 200,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Lady",
+     "raw": "A Lady may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Dodge (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "Courtesan",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Courtesan",
+     "M": 6,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Lahmian)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "A Lahmian who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 1 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 2 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 2 Wizard +70 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapon",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take an additional hand weapon +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May take throwing weapons +6 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 10,
+     "perModel": false,
+     "raw": "May have Poisoned Attacks +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "May take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Courtesan may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Courtesan",
+     "raw": "A Courtesan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Dodge (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "Lord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Lord",
+     "M": 6,
+     "WS": 8,
+     "BS": 3,
+     "S": 6,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 215
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Blood Dragon)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": "A Blood Dragon who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 1 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 2 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 2 Wizard (Lord only) +70 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May take heavy armour +18 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      },
+      {
+       "name": "Zombie Dragon",
+       "points": 245,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Lord",
+     "raw": "A Lord may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Lord may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 215
+  },
+  {
+   "name": "Kastellan",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Kastellan",
+     "M": 6,
+     "WS": 7,
+     "BS": 3,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Blood Dragon)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": "A Blood Dragon who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "May be upgraded to one of the following:"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May take heavy armour +18 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      },
+      {
+       "name": "Zombie Dragon",
+       "points": 245,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Kastellan may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Kastellan",
+     "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Kastellan may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "Ghoul King",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Ghoul King",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 9,
+     "points": 220
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Strigoi)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Strigoi who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 1 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 2 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 2 Wizard (Ghoul King only) +70 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Terrorgheist",
+       "points": 225,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Terrorgheist (Ghoul King only) +225 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Ghoul King",
+     "raw": "A Ghoul King may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Ghoul King may take Vampiric Powers and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Hatred, Natural Armour (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 220
+  },
+  {
+   "name": "Ghoul Prince",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Ghoul Prince",
+     "M": 6,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 6,
+     "A": 4,
+     "Ld": 8,
+     "points": 120
+    }
+   ],
+   "troopType": "Infantry (Character, Vampire, Strigoi)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Strigoi who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "May be upgraded to one of the following:"
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Ghoul Prince may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Ghoul Prince",
+     "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "vampiric_powers",
+     "raw": "A Ghoul Prince may take Vampiric Powers and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Hatred, Natural Armour (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "Master Necromancer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Master Necromancer",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Necromancer is a Level 1 Wizard. A Master Necromancer is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Master of the Dead",
+     "points": 20,
+     "perModel": false,
+     "raw": "May be upgraded to a Master of the Dead +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Corpse Cart",
+       "points": 100,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Master Necromancer",
+     "raw": "A Master Necromancer may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Necromancer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Necromancer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Necromancer is a Level 1 Wizard. A Master Necromancer is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Master of the Dead",
+     "points": 20,
+     "perModel": false,
+     "raw": "May be upgraded to a Master of the Dead +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Corpse Cart",
+       "points": 100,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Necromancer",
+     "raw": "A Necromancer may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "LICHE LORD",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Liche Lord",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 290
+    }
+   ],
+   "troopType": "Infantry (Character, Undead, Liche)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Liche Lord is a Level 4 Wizard who chooses spells from one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Mortis Engine replacing the (Corpsemaster)",
+       "points": 200,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Mortis Engine replacing the (Corpsemaster) +200 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Master of the Dead, Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 290
+  },
+  {
+   "name": "Wight King",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Wight King",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 4,
+     "A": 4,
+     "Ld": 9,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Character, Undead, Wight)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 12,
+       "perModel": false
+      },
+      {
+       "name": "Barrow Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Wight King",
+     "raw": "A Wight King may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Spectral Steeds, Undead",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "Wight Lord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Wight Lord",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 8,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Character, Undead, Wight)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 12,
+       "perModel": false
+      },
+      {
+       "name": "Barrow Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Wight Lord may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Wight Lord",
+     "raw": "A Wight Lord may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Spectral Steeds, Undead",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "CAIRN WRAITH",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Cairn Wraith",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 7,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Undead, Spirit).",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 2,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Skeletal Steed +12 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ethereal, Ignores Armour Saves, Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "TOMB BANSHEE",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Tomb Banshee",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 80
+    }
+   ],
+   "troopType": "Infantry (Character, Undead, Spirit)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Death Shriek, Ethereal, Fly (6), Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "SWAIN",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Swain",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "pistol",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a pistol +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Immunity (Psychology)",
+   "upgrades": null,
+   "notes": "You may only include a Swain if your army contains at least one Lahmian Vampire Character.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "CRYPT GHAST",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Crypt Ghast",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 7,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Ghoul)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Crypt Ghast may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Fear, Poisoned Attacks",
+   "upgrades": null,
+   "notes": "A Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic standard can only carry other magic items up to a total of 25 points.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "STRIGANY MYSTIC",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Strigany Mystic",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Strigany Mystic is a Level 1 Wizard who uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Expendable",
+   "upgrades": null,
+   "notes": "You may only include a Strigany Mystic if your army contains at least one Strigoi Vampire Character.\nA Strigany Mystic may only join units of Strigany or Ghouls.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "SKELETAL STEED",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Skeletal Steed",
+     "M": 8,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Undead, Skeleton)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "NIGHTMARE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Nightmare",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Undead, Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "HELLSTEED",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Hellsteed",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Undead, Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (9), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "BARROW CHARIOT",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Barrow Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 5+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Crew (Undead, Skeleton)",
+   "mount": null,
+   "drawnBy": "2 Skeletal Steeds (Undead, Skeleton)",
+   "pointsCost": null
+  },
+  {
+   "name": "ABYSSAL TERROR",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Abyssal Terror",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 2,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Undead, Chimeric)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Poisonous Tail",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Poisonous Tail +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Sword-claws",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take Sword-claws +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8), Undead",
+   "upgrades": "Poisonous Tail: The Abyssal Terror gains the Poisoned Attacks special rule.\nSword-claws: The Abyssal Terror gains the Armour Piercing (1) special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "SKELETON WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Warrior",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Undead, Skeleton)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless they are armed with great weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "SKELETON ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Archer",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Undead, Skeleton)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shortbows",
+     "choices": [
+      {
+       "name": "Longbows",
+       "points": 1,
+       "perModel": true,
+       "replaces": "shortbows"
+      },
+      {
+       "name": "Crossbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shortbows"
+      }
+     ],
+     "raw": "May replace shortbows with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Archer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Archer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Archer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": "You may not have more units of Skeleton Archers than Skeleton Warriors.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "SKELETON HORSEMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Horseman",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 9
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": 8,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Undead, Skeleton)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "bows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Horseman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Horseman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Horseman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Undead",
+   "upgrades": null,
+   "notes": "You may not have more units of Skeleton Horsemen than Skeleton Warriors.",
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Skeletal Steed (Undead, Skeleton)",
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "ZOMBIES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Zombie",
+     "M": 4,
+     "WS": 1,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 1,
+     "A": 1,
+     "Ld": 2,
+     "points": 2.5
+    }
+   ],
+   "troopType": "Infantry (Undead, Zombie)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Zombie to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Zombie to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2.5
+  },
+  {
+   "name": "CRYPT GHOULS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Crypt Ghoul",
+     "M": 4,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 6,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Ghoul)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Crypt Ghoul to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "SYLVANIAN LEVY",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Peasant",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 2
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Longbows",
+       "points": 4,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Peasant to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Peasant to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Peasant to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable",
+   "upgrades": null,
+   "notes": "You may only include Sylvanian Peasant Levy if your army includes a von Carstein Vampire Character.",
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "STRIGANY",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Strigany",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Strigany to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Strigany to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Strigany to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable",
+   "upgrades": null,
+   "notes": "You may only include Strigany if your army includes a Strigoi Vampire Character.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "DIRE WOLVES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Dire Wolf",
+     "M": 9,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": 5
+    }
+   ],
+   "troopType": "War Beast (Undead, Canine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Dire Wolf to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "FELL BATS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Fell Bat",
+     "M": 1,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 5,
+     "points": 12
+    }
+   ],
+   "troopType": "War Beast (Chiropter)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (9)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "BAT SWARMS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Bat Swarm",
+     "M": 1,
+     "WS": 3,
+     "BS": 0,
+     "S": 2,
+     "T": 2,
+     "W": 6,
+     "I": 4,
+     "A": 6,
+     "Ld": 3,
+     "points": 30
+    }
+   ],
+   "troopType": "Swarm (Chiropter)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (6)",
+   "upgrades": null,
+   "notes": "Bat Swarms have a Line of Sight value of 1.",
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "SPIRIT HOSTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Spirit Host",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 4,
+     "I": 1,
+     "A": 4,
+     "Ld": 4,
+     "points": 40
+    }
+   ],
+   "troopType": "Swarm (Undead, Spirit)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ethereal, Undead",
+   "upgrades": null,
+   "notes": "Spirit Hosts have a Line of Sight value of 1.",
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "GRAVE GUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Grave Guard",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Undead, Wight)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with great weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Grave Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Grave Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Grave Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "BLACK KNIGHTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Black Knight",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 22
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": 8,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Undead, Wight)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Black Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Black Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Black Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Spectral Steeds, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Skeletal Steed (Undead, Skeleton)",
+   "drawnBy": null,
+   "pointsCost": 22
+  },
+  {
+   "name": "CRYPT GUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Crypt Guard",
+     "M": 4,
+     "WS": 4,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Ghoul)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take polearms +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Crypt Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Crypt Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Crypt Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fear, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "CRYPT HORRORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Crypt Horror",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": 35
+    }
+   ],
+   "troopType": "Monstrous Infantry (Ghoul)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Crypt Horror to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Poisoned Attacks, Regeneration (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "VARGHEISTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Vargheist",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Infantry (Vampire)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Vargheist to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8), Frenzy, The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "FLESH GOLEMS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Flesh Golem",
+     "M": "*",
+     "WS": 2,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 1,
+     "A": "*",
+     "Ld": 2,
+     "points": 20
+    }
+   ],
+   "troopType": "Monstrous Infantry (Undead)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Random Attacks (D3+1), Random Movement (2D6), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 20
+  },
+  {
+   "name": "SKELETON CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Skeleton Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 45
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 1,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light lances +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bows",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take bows +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May take shields +8 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Crew (Undead, Skeleton)",
+   "mount": null,
+   "drawnBy": "2 Skeletal Steeds (Undead, Skeleton)",
+   "pointsCost": 45
+  },
+  {
+   "name": "CORPSE CART",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Corpse Cart",
+     "M": 4,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Corpsemaster",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "The Restless Dead",
+     "M": "-",
+     "WS": 1,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 1,
+     "A": "*",
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Shrine (Armour save 6+, Undead)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Balefire",
+       "choices": [
+        {
+         "name": "Balefire",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Balefire +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Unholy Lodestone",
+       "choices": [
+        {
+         "name": "Unholy Lodestone",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Unholy Lodestone +20 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Random Attacks (2D6) (The Restless Dead only), Regeneration (4+), Undead",
+   "upgrades": "Balefire: Enemy Wizards suffer a -1 casting penalty if there is one or more Corpse Carts with a Balefire within 18\".\nUnholy Lodestone: When a friendly Wizard within 12\" of an Unholy Lodestone successfully casts Invocation of Nehek, they may re-roll a single dice to determine how many Wounds are restored.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Corpsemaster (Human)",
+   "mount": null,
+   "drawnBy": "The Restless Dead (Undead, Zombie)",
+   "pointsCost": 100
+  },
+  {
+   "name": "WRAITHWISPS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Wraithwisp",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 13
+    }
+   ],
+   "troopType": "Infantry (Undead, Spirit)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Wraithwisp to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Wraithwisp to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Wraithwisp to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ethereal, Terror, Skirmishers, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "HEXWRAITHS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Hexwraith",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 27
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": 8,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Undead, Spirit)",
+   "baseSize": "25x50",
+   "equipment": "Great weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hexwraith to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ethereal, Fast Cavalry, Flaming Attacks, Ignores Armour Saves, Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Skeletal Steed (Undead, Skeleton)",
+   "drawnBy": null,
+   "pointsCost": 27
+  },
+  {
+   "name": "VARGHULF",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Varghulf",
+     "M": 8,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 4,
+     "A": 5,
+     "Ld": 7,
+     "points": 135
+    }
+   ],
+   "troopType": "Monstrous Creature (Vampire)",
+   "baseSize": "50x50 or 50x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Hatred, The Red Thirst, Regeneration (4+), Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 135
+  },
+  {
+   "name": "MOURNGUL",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Mourngul",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 2,
+     "A": 4,
+     "Ld": 5,
+     "points": 130
+    }
+   ],
+   "troopType": "Monstrous Creature (Undead, Spirit)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ice Attacks, Killing Blow, Magical Ward (4+), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "BLOOD KNIGHTS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Blood Knight",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 36
+    },
+    {
+     "name": "Nightmare",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Vampire)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Blood Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Blood Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Blood Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 75,
+       "raw": "May take a Magic Standard worth up to 75 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Nightmare (Undead, Equine)",
+   "drawnBy": null,
+   "pointsCost": 36
+  },
+  {
+   "name": "LAHMIAN HANDMAIDENS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Handmaiden",
+     "M": 6,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 6,
+     "A": 2,
+     "Ld": 8,
+     "points": 18
+    }
+   ],
+   "troopType": "Infantry (Vampire, Lahmian)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 2,
+     "perModel": true,
+     "raw": "May have Poisoned Attacks +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Handmaiden to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Dodge (6+), Scouts, Skirmishers, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 18
+  },
+  {
+   "name": "MORBHEG KNIGHTS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Morbheg Knight",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 35
+    },
+    {
+     "name": "Nightshrieker",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Ghoul)",
+   "baseSize": "50x75",
+   "equipment": "Light lance, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Morbheg Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Morbheg Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Morbheg Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fly (5), Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Nightshrieker (Chiropter)",
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "TERRORGHEIST",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Terrorgheist",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 4,
+     "Ld": 4,
+     "points": 225
+    }
+   ],
+   "troopType": "Monster (Undead, Chiropter)",
+   "baseSize": "100x150",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Infested",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Infested +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Rancid Maw",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Rancid Maw +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Shriek, Fly (7), Regeneration (6+), Undead",
+   "upgrades": "Infested: When a Terrorgheist with this upgrade is removed as a casualty, all units that were in base contact (friend or foe) take 3D6 Strength 2 hits.\nRancid Maw: Attacks made by a Terrorgheist with this upgrade have the Poisoned Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 225
+  },
+  {
+   "name": "ZOMBIE DRAGON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Zombie Dragon",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 2,
+     "A": 5,
+     "Ld": 4,
+     "points": 245
+    }
+   ],
+   "troopType": "Monster (Undead, Draconid)",
+   "baseSize": "50x50 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (7), Natural Armour (5+), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 245
+  },
+  {
+   "name": "NECROFEX COLOSSUS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Necrofex Colossus",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 1,
+     "A": "*",
+     "Ld": 8,
+     "points": 240
+    }
+   ],
+   "troopType": "Monster (Undead, Animated Construct)",
+   "baseSize": "50x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Scythes and Barbs",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take Scythes and Barbs +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Vampire Blood",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Vampire Blood +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Corpse Killers",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take Corpse Killers +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Dark Soul",
+     "points": 45,
+     "perModel": false,
+     "raw": "May take Dark Soul +45 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Regeneration (4+), Undead",
+   "upgrades": "Corpse Killers: After resolving its regular attacks, all enemy units in base contact with the Necrofex Colossus suffer D6 Strength 2 hits.\nDark Soul: The Necrofex Colossus becomes a Level 1 Wizard who uses spells from the Lore of Death or Lore of Necromancy. However, should the Necrofex Colossus suffer a miscast, in addition to any other effect, the Necrofex Colossus permanently has its Toughness value reduced by 1, as the backlash of the miscast damages the very fabric that holds the horror together.\nScythes and Barbs: The Necrofex Colossus' number of Random Attacks and Stomp hits may be re-rolled.\nVampire Blood: The Necrofex Colossus gains the Regeneration (3+) special rule, but is also subject to the Berserk Rage part of Frenzy.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "SKELETON CATAPULT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Skeleton Catapult",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 80
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, stone thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Undead, Skeleton)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "BLACK COACH",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Black Coach",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 140
+    },
+    {
+     "name": "Wraith",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 2,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "Spectres",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 1,
+     "A": 3,
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Nightmare",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 5+)",
+   "baseSize": "50x100",
+   "equipment": "Great weapon (Wraith only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "two additional Nightmares",
+     "points": 6,
+     "perModel": false,
+     "raw": "May take two additional Nightmares +6 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Spectres",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Spectres +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Magical Attacks, Magical Ward (4+), Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Wraith (Undead, Spirit)",
+   "mount": null,
+   "drawnBy": "2 Nightmares (Undead, Equine)",
+   "pointsCost": 140
+  },
+  {
+   "name": "COVEN THRONE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Coven Throne",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 200
+    },
+    {
+     "name": "Pallid Handmaiden",
+     "M": "-",
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": "-",
+     "W": "-",
+     "I": 6,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Spirit Horde",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 1,
+     "A": "*",
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 5+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (7), Magical Attacks (Spirit Horde only), Magical Ward (4+), Random Attacks (2D6)",
+   "upgrades": null,
+   "notes": "A Coven Throne has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": "3 Pallid Handmaidens (Vampire, Lahmian)",
+   "mount": null,
+   "drawnBy": "1 Spirit Horde (Undead, Spirit)",
+   "pointsCost": 200
+  },
+  {
+   "name": "MORTIS ENGINE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Mortis Engine",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 220
+    },
+    {
+     "name": "Corpsemaster",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "Banshee",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Spirit Horde",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": "*",
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 5+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Death Shriek, Fly (7), Magical Attacks (Spirit Horde only), Random Attacks (2D6) (Spirit",
+   "upgrades": null,
+   "notes": "A Mortis Engine has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": "1 Corpsemaster (Human), 3 Banshees (Undead, Spirit)",
+   "mount": null,
+   "drawnBy": "1 Spirit Horde (Undead, Spirit)",
+   "pointsCost": 220
+  },
+  {
+   "name": "VLAD VON CARSTEIN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Vlad von Carstein",
+     "M": 6,
+     "WS": 7,
+     "BS": 5,
+     "S": 6,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 450
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, von Carstein)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": "Vlad von Carstein is a Level 3 Wizard who uses the Lore of Necromancy.",
+   "options": null,
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 450
+  },
+  {
+   "name": "ISABELLA VON CARSTEIN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Isabella von Carstein",
+     "M": 6,
+     "WS": 6,
+     "BS": 4,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 110
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, von Carstein)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 110
+  },
+  {
+   "name": "KONRAD VON CARSTEIN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Konrad von Carstein",
+     "M": 6,
+     "WS": 7,
+     "BS": 4,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 6,
+     "points": 215
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, von Carstein)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 215
+  },
+  {
+   "name": "MANNFRED VON CARSTEIN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Mannfred von Carstein",
+     "M": 6,
+     "WS": 7,
+     "BS": 5,
+     "S": 6,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 4,
+     "Ld": 10,
+     "points": 565
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, von Carstein)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": "Mannfred von Carstein is a Level 4 Wizard who uses both of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      },
+      {
+       "name": "Zombie Dragon",
+       "points": 245,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Loremaster (Lore of Death, Necromancy), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 565
+  },
+  {
+   "name": "ZACHARIAS THE EVERLIVING",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Zacharias the Everliving",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 6,
+     "A": 3,
+     "Ld": 9,
+     "points": 720
+    },
+    {
+     "name": "Zombie Dragon",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 2,
+     "A": 5,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Special Character, Vampire, Necrarch)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon.",
+   "magic": "Zacharias is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Fly (7), Natural Armour (5+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Zombie Dragon (Undead, Dragon)",
+   "drawnBy": null,
+   "pointsCost": 720
+  },
+  {
+   "name": "MELKHIOR THE ANCIENT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Melkhior",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 6,
+     "A": 3,
+     "Ld": 9,
+     "points": 455
+    },
+    {
+     "name": "Abyssal Terror",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 2,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Special Character, Vampire, Necrarch)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": "Melkhior is a Level 4 Wizard who uses the Lore of Necromancy.",
+   "options": null,
+   "specialRules": "Fly (8), Frenzy, Stupidity, The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Abyssal Terror (Undead)",
+   "drawnBy": null,
+   "pointsCost": 455
+  },
+  {
+   "name": "NEFERATA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Neferata",
+     "M": 6,
+     "WS": 7,
+     "BS": 5,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 9,
+     "A": 5,
+     "Ld": 10,
+     "points": 510
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, Lahmian).",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "Neferata is a Level 3 Wizard who uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +9 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Nightmare",
+       "points": 21,
+       "perModel": false
+      },
+      {
+       "name": "Hellsteed",
+       "points": 30,
+       "perModel": false
+      },
+      {
+       "name": "Abyssal Terror",
+       "points": 125,
+       "perModel": false
+      },
+      {
+       "name": "Coven Throne",
+       "points": 200,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Dodge (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 510
+  },
+  {
+   "name": "SEKHAR",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sekhar",
+     "M": 6,
+     "WS": 6,
+     "BS": 5,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 190
+    },
+    {
+     "name": "Ouboroth",
+     "M": "-",
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 4,
+     "A": 2,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, Lahmian)",
+   "baseSize": "40x60 or 50x75",
+   "equipment": "Polearm, medium armour",
+   "magic": "Sekhar is a Level 2 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Dodge (6+), Poisoned Attacks (Ouboroth only), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": "Sekhar has a Unit Strength of 2.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "WALACH HARKON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Walach Harkon",
+     "M": 6,
+     "WS": 9,
+     "BS": 3,
+     "S": 6,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 490
+    },
+    {
+     "name": "Nightmare",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Vampire, Blood Dragon)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Barding",
+   "magic": "Walach Harkon is a Level 2 Wizard who uses the Lore of Necromancy.",
+   "options": null,
+   "specialRules": "Hatred (The Empire), Martial Honour (see Blood Dragons), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Nightmare (Undead, Equine)",
+   "drawnBy": null,
+   "pointsCost": 490
+  },
+  {
+   "name": "PRINCE VHORDRAI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Prince Vhordrai",
+     "M": 6,
+     "WS": 8,
+     "BS": 3,
+     "S": 6,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 615
+    },
+    {
+     "name": "Shordemaire (Zombie Dragon)",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 2,
+     "A": 5,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Special Character, Vampire, Blood Dragon)",
+   "baseSize": "100x150",
+   "equipment": "Heavy armour, shield",
+   "magic": "Prince Vhordrai is a Level 1 Wizard who uses the Lore of Necromancy.",
+   "options": null,
+   "specialRules": "Fly (7), Martial Honour (see Blood Dragons), Natural Armour (5+), The Red Thirst, Swarm",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Zombie Dragon (Undead, Draconid)",
+   "drawnBy": null,
+   "pointsCost": 615
+  },
+  {
+   "name": "USHORAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ushoran",
+     "M": 6,
+     "WS": 7,
+     "BS": 3,
+     "S": 7,
+     "T": 7,
+     "W": 4,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 590
+    }
+   ],
+   "troopType": "Monstrous Creature (Special Character, Vampire, Strigoi)",
+   "baseSize": "100x100",
+   "equipment": null,
+   "magic": "Ushoran is a Level 2 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Hatred, Natural Armour (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 590
+  },
+  {
+   "name": "GORMAYNE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Gormayne",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 6,
+     "A": 4,
+     "Ld": 8,
+     "points": 170
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire, Strigoi)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Hatred, Natural Armour (6+), The Red Thirst, Vampiric",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 170
+  },
+  {
+   "name": "HEINRICH KEMMLER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Heinrich Kemmler",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 325
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "Heinrich Kemmler is a Level 4 Wizard who uses the Lore of Necromancy.",
+   "options": null,
+   "specialRules": "Loremaster (Lore of Necromancy), Master of the Dead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 325
+  },
+  {
+   "name": "HELMAN GHORST",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Helman Ghorst",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 165
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human).",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Helman Ghorst is a Level 2 Wizard who uses the Lore of Necromancy.",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Corpse Cart",
+       "points": 100,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Corpse Cart (replacing the Corpsemaster) +100 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Loremaster (Lore of Necromancy), Master of the Dead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 165
+  },
+  {
+   "name": "KRELL",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Krell",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 235
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead, Wight)",
+   "baseSize": "20x20, 25x25 or 30x30",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Killing Blow, Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 235
+  }
+ ]
+}

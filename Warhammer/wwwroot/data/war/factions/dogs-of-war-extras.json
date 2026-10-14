@@ -1,0 +1,806 @@
+{
+ "factionName": "Dogs of War",
+ "armySpecialRules": [
+  {
+   "name": "BACKSTABBERS",
+   "description": "A unit with this special rule that successfully restrains from pursuing after breaking an enemy unit in close combat causes D6 Strength 3 hits on the fleeing unit for every complete rank the Hobgoblin unit has (up to a maximum of 3). Resolve any casualties before moving the fleeing unit."
+  },
+  {
+   "name": "COWARDLY DESPOILERS",
+   "description": "Models with this special rule gain +1 To Hit in the first round of combat if they successfully charge an enemy in the rear or flank."
+  },
+  {
+   "name": "CUNNING RETREAT",
+   "description": "When an enemy unit declares to fire at a unit with this special rule in their Shooting phase, it may choose to make a Feigned Flight move directly away from the enemy unit shooting at it. Once the unit has completed its move, the enemy unit may continue with its shooting as declared (provided they are still in range)."
+  },
+  {
+   "name": "DED SHOOTY",
+   "description": "Mounted models with this special rule do not suffer penalties To Hit for Moving and Shooting and may Volley Fire even while moving."
+  },
+  {
+   "name": "DUCK & WEAVE",
+   "description": "Enemies attacking Infantry models with this special rule suffer -1 To Hit in close combat."
+  },
+  {
+   "name": "ELVEN GRACE",
+   "description": "Models with this special rule have the Dodge (6+) special rule in close combat. However, this cannot be used against enemies that attack before the model with Elven Grace."
+  },
+  {
+   "name": "MERCENARIES",
+   "description": "Every time a unit with this special rule fails a Break test, roll on the Mercenary Loyalty table below and apply the results. This rule has no effect on a unit that is joined by the Army General or Paymaster.\nD6 | Result\n1-3 | Wavering Loyalty: The unit flees as normal, and all models in the unit suffer a -1 modifier to their Leadership for the rest of the battle.\n4-5 | Soldier On: The unit flees as normal.\n6 | Stand Fast! The unit has the Disciplined special rule on their next Rally test."
+  },
+  {
+   "name": "OGRE CHARGE",
+   "description": "The model has the Impact Hits (1) special rule. In addition, they add their current Rank Bonus to the Strength of the Impact Hits they inflict. In addition, they count as having one more rank than their actual number for the purpose of determining Steadfast in any turn that they charge."
+  },
+  {
+   "name": "RACIAL DISTRUST",
+   "description": "Most models belong to a certain race as detailed in their Troop Type. This includes Human, Dwarf, Elf, Halfling, Ogre, Orc and Hobgoblin. Characters may only join units belonging to the same race. Only a Human character may be the Army General."
+  },
+  {
+   "name": "RELENTLESS",
+   "description": "Units entirely composed of models with this special rule do not need to pass a Leadership test in order to march, regardless of the proximity of enemy units."
+  },
+  {
+   "name": "RESOLUTE",
+   "description": "When taking Break tests, models with this special rule count as having lost the combat with 1 point fewer than they actually have."
+  },
+  {
+   "name": "DWARFEN CROSSBOW",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n30/36\" | 4 | Ponderous"
+  },
+  {
+   "name": "DWARFEN PISTOL",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n9/12\" | 5 | Quick Shot"
+  },
+  {
+   "name": "ELVEN SHORTBOW",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n16/24\" | 3 | Armour Piercing (1), March & Shoot Multiple Shots (2)*, Volley Fire\n*Only applies in turns the model has not marched. Cannot be used as a charge reaction."
+  },
+  {
+   "name": "ELVEN LONGBOW",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n24/36\" | 3 | Armour Piercing (1), Multiple Shots (2)*, Volley Fire\n*Only applies in turns the model has not moved. Cannot be used as a charge reaction."
+  },
+  {
+   "name": "GUT-PLATE",
+   "description": "A model with a gut-plate gains a 6+ armour save against attacks to the front."
+  },
+  {
+   "name": "IRONFIST",
+   "description": "Buckler. If a model with an ironfist rolls a natural 6 when making a Parry save, it automatically inflicts an extra Hit back onto the model or unit that struck the blow."
+  },
+  {
+   "name": "OGRE PISTOLS",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n12/24\" | 5 | Multiple Shots (2)*, Quick Shot\n*Requires a brace of Ogre pistols."
+  },
+  {
+   "name": "ORIENTAL LONGSWORD",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\nCombat | As user | Parry (6+), Requires Two Hands\nAn Oriental Longsword gives the wielder +1 To Wound."
+  },
+  {
+   "name": "PAVISE",
+   "description": "A Pavise has the following armour profile:\nCOMBAT | MISSILE | SPECIAL RULES\n- | +3/4+* | -\n*Only applies to missile attacks in the front arc."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "HURCIO'S CLUB",
+   "points": "60",
+   "category": "magic_weapon",
+   "description": "Requires two hands. The wielder of this club adds +1 to his Strength and Attacks at the start of each close combat phase (up to a maximum of +3), for as long as he remains in combat.",
+   "restriction": null
+  },
+  {
+   "name": "CATHAYAN DRAGONSWORD",
+   "points": "45",
+   "category": "magic_weapon",
+   "description": "The Dragonsword gives the wielder +1 Weapon Skill, +1 Initiative as well as the Killing Blow, Armour Piercing (1) and Flaming Attacks special rules.\nDOMINGO'S ARBALEST 45 points Mercenary General or Mercenary Captain only. This is a bolt thrower with the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n24/36\" | 5 | Armour Piercing (1), Multiple Wounds (D3), Ponderous",
+   "restriction": null
+  },
+  {
+   "name": "DAWNSTAR SWORD",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon doubles their Attacks characteristic.",
+   "restriction": null
+  },
+  {
+   "name": "GRUDGEBRINGER SWORD",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "All attacks made with the Grudgebringer Sword gain +1 To Hit and have the Flaming Attacks special rule. In addition, it contains the Fireball spell from the Lore of Fire as a Bound Spell.",
+   "restriction": null
+  },
+  {
+   "name": "PIKE OF REMAS",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "This weapon inflicts D3 Strength 5 Impact Hits when the wielder is charged to their front. In addition, it has the Heroic Killing Blow special rule against Cavalry and Monstrous Cavalry. This item can be taken despite Mercenary Captains not normally being allowed to take pikes.",
+   "restriction": "Mercenary Captain on foot"
+  },
+  {
+   "name": "SWORD OF ANTI-HEROES",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The wielder gains +1 Strength and +1 Attack for every enemy character in base contact with them or their unit. These bonuses are calculated at the start of each round of close combat and last until its end.",
+   "restriction": null
+  },
+  {
+   "name": "SILVERSTONE AXE",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The wielder always treats their Strength as at least 1 point higher than their opponent's Toughness and has the Multiple Wounds (D3) special rule. In addition, any Wizard that suffers one or more Wounds from this weapon must immediately roll on the Miscast table.",
+   "restriction": null
+  },
+  {
+   "name": "CACKLING BLADE",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder +D6 Attacks at the start of each round of close combat. However, if they roll a natural 6 when determining the number of Attacks they get, they suffer a Hit at their own Strength value as well.",
+   "restriction": null
+  },
+  {
+   "name": "COLD IRON BLADE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The Cold Iron Blade gives +1 Strength to the wielder. Against models with the Ethereal special rule, it automatically Wounds.",
+   "restriction": null
+  },
+  {
+   "name": "BLADE OF PRESCIENT PERFECTION",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "All attacks with this weapon automatically Hit.",
+   "restriction": null
+  },
+  {
+   "name": "SWORD OF SORROW",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "This weapon has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n30\" | 5 | Multiple Wounds (2)\nNo saves are allowed against Wounds caused by this weapon.",
+   "restriction": null
+  },
+  {
+   "name": "METEOR HAMMER",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "This weapon automatically Wounds on the roll of a 2+.",
+   "restriction": null
+  },
+  {
+   "name": "BLADE OF LAST RESORT",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder must always accept challenges if possible. While they are fighting in a challenge, they gain +D3 to their Weapon Skill, Strength, Toughness, Initiative and Attacks (roll once and apply the result to all characteristics for the duration of the challenge). If the wielder slays their opponent in the challenge, they suffer D3 Wounds themselves with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "TORMENTOR SWORD",
+   "points": "5",
+   "category": "magic_weapon",
+   "description": "A monster or character that suffers an unsaved wound from the Tormentor sword has the Stupidity special rule for the rest of the game.",
+   "restriction": null
+  },
+  {
+   "name": "WARRIOR BANE",
+   "points": "5",
+   "category": "magic_weapon",
+   "description": "A monster or character that suffers unsaved wounds from Warrior Bane permanently loses one Attack for each unsaved wound (to a minimum of 1 Attack).",
+   "restriction": null
+  },
+  {
+   "name": "GIANTKIN HELM",
+   "points": "50",
+   "category": "magic_armour",
+   "description": "This item gives the wearer a 6+ armour save. In addition, it can be used at the start of any of your turns. When used, the model turns into a Giant (see Rare Units). If they are in a unit, they must be placed 1\" to the side, facing the same direction. While transformed, the model cannot cast spells, nor use any equipment or other magic items. If you do not have a suitable model to place, this item has no effect. At the start of each subsequent turn, roll a D6. On a 1, the model is turned back into their normal profile. Any Wounds suffered while in Giant form are retaining, even if this kills the wearer.",
+   "restriction": "Mercenary General or Mercenary Captain on foot"
+  },
+  {
+   "name": "HELM OF MYRMIDIA",
+   "points": "45",
+   "category": "magic_armour",
+   "description": "This item gives the wearer a 6+ armour save. Enemies attacking the wearer in Close Combat suffer -1 to Hit and lose 1 Attack, down to a minimum of 1. In addition, the wearer gains the Hatred (Undead) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "MAMBRINIO'S GOLDEN ARMOUR",
+   "points": "45",
+   "category": "magic_armour",
+   "description": "The wearer gains +2 to their armour save and the Immunity (Multiple Wounds) special rule. However, they suffer -2 Initiative and a -1 penalty to Dangerous Terrain tests.",
+   "restriction": null
+  },
+  {
+   "name": "HELM OF DISCORD",
+   "points": "20",
+   "category": "magic_armour",
+   "description": "This item gives the wearer a 6+ armour save. In addition, at the start of each Close Combat phase, choose an enemy character in base contact with the bearer or his unit. That character must immediately take a Leadership test. If the test is failed, the victim cannot make attacks and is hit automatically in this Close Combat round.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF PTOLOS",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "The bearer has a 2+ armour save against shooting attacks.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF STUBBORN REFUSAL",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "The bearer is always Steadfast in the first round of combat. In addition, if they are with a unit that would otherwise flee as a result of a failed break test that the bearer would normally pass, the bearer will remain in combat while the rest of the unit flees.",
+   "restriction": null
+  },
+  {
+   "name": "HELM OF THE HEADLESS HORSEMAN",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "This item gives the wearer a 6+ armour save. In addition, the wearer gains the Flaming Attacks and Killing Blow special rules. However, they must roll a D6 at the start of each of your turns. On the roll of a 1, the model suffers a Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "LEVITATING SHIELD",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "The wielder may use this shield and a weapon that Requires Two Hands at the same time.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "GUARDIAN AMULET",
+   "points": "40",
+   "category": "talisman",
+   "description": "The bearer gains a Magical Ward (2+). Roll separately for every wound suffered. For every successful save you make, the Magical Ward will weaken for the rest of the game, so after one save it will be a 3+, after two saves a 4+ etc. until a minimum of a 6+ save.",
+   "restriction": null
+  },
+  {
+   "name": "WARDS OF BATTLE",
+   "points": "30",
+   "category": "talisman",
+   "description": "The bearer has a Magical Ward (4+) against close combat attacks.",
+   "restriction": null
+  },
+  {
+   "name": "DASHING CLOAK OF HEROIC RENOWN",
+   "points": "20",
+   "category": "talisman",
+   "description": "The bearer gains the Regeneration (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ICON OF FORTITUDE",
+   "points": "20",
+   "category": "talisman",
+   "description": "The bearer of this item gains +1 Toughness.",
+   "restriction": null
+  },
+  {
+   "name": "MASTER DUELLIST'S MARK",
+   "points": "20",
+   "category": "talisman",
+   "description": "The bearer gains the Dodge (6+) and Parry (6+) special rules.",
+   "restriction": "Mercenary Captain"
+  },
+  {
+   "name": "HOURGLASS OF MORR",
+   "points": "10",
+   "category": "talisman",
+   "description": "At the beginning of the game, write down a number in secret. This is the turn number when the bearer of this item cannot be reduced below 1 Wound or removed as a casualty, unless they are caught when fleeing.",
+   "restriction": null
+  },
+  {
+   "name": "IRONCURSE ICON",
+   "points": "10",
+   "category": "talisman",
+   "description": "The bearer and any unit they are with gain a Magical Ward (6+) against artillery weapons.",
+   "restriction": null
+  },
+  {
+   "name": "IRONHIDE TALISMAN",
+   "points": "10",
+   "category": "talisman",
+   "description": "All missile attacks targeting the bearer of this item must re-roll 6's To Wound with missile attacks.",
+   "restriction": null
+  },
+  {
+   "name": "SHARD OF MORRSLIEB",
+   "points": "5",
+   "category": "talisman",
+   "description": "The model gains the Immunity (Killing Blow/Poisoned Attacks/Lore of Death) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "WINDCATCHER PRISM",
+   "points": "55",
+   "category": "arcane_item",
+   "description": "This item contains the Signature Spells from all the eight Winds of Magic. Note that you may only attempt to cast one each Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "THE WHITE SISTRUM",
+   "points": "50",
+   "category": "arcane_item",
+   "description": "The bearer gains +1 Power Dice at the start of your Magic phase. In addition, all enemy units within 6\" suffer -1 to their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "THE CRUCIBLE OF HORRORS",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "This item contains a direct damage spell. The caster makes a Breath Weapon attack. This may be cast in close combat, following the normal rules for Breath Weapons. All models Hit suffer a hit with a Strength value of 2D6 (roll once per cast) minus the target's Toughness and the Ignores Armour Saves special rule. However, every time this spell is successfully cast, the bearer must pass a Leadership test on their own unmodified Leadership or suffer a Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "ROCKCHARMER'S FLUTE",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "This is special type of spell. Choose a hill within 18\". Any unit on it suffers 2D6 Strength 4 Hits. The hill is then moved 2D6\" in a direction of your choice, stopping within 1\" of any impassable terrain.",
+   "restriction": null
+  },
+  {
+   "name": "SIVEJIR'S HEX SCROLL",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "When an enemy spell has been cast, a Wizard who has a Hex Scroll can read it instead of attempting to dispel the spell. The spell is cast as normal, but a portion of the spell's energy is transformed and redirected at the caster. The enemy wizard can resist the spell's effects by rolling equal to or under his wizard level on a D6. If failed, the wizard cannot channel or cast spells, all of his magic items and mundane equipment (armour, weapons, etc.) temporarily stop working and all of their characteristics are reduced to 1 (except for his wounds, which are unaffected). Their controlling player can roll a D6 at the start of each of his subsequent magic phases; the spell dissipates on a roll of 4+ and the wizard returns to their normal form.",
+   "restriction": null
+  },
+  {
+   "name": "STAFF OF FICKLE FORTUNE",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "At the beginning of each of your magic phases, roll a D6; on a roll of 1 the bearer suffers -D3 to his casting rolls (roll for each spell) for the remainder of the turn; on a roll of 2 nothing happens; on a 3+ however, the wizard gains +D3 to all his casting attempts (roll for each spell) for the remainder of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "STAFF OF QUIETUDE",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "Bound Spell (Level 2, cast on 7 +). This is a special aura spell with a range of 24\". If successfully cast, all Remains in Play spells and spells that last more than one turn within range are immediately dispelled and cease to have any effect.",
+   "restriction": null
+  },
+  {
+   "name": "BOOK OF ASHUR",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "The Wizard gains the Loremaster special rule. This has no effect on models that can choose spells from more than one Lore of Magic at the same time.",
+   "restriction": null
+  },
+  {
+   "name": "THE MYSTIC SHIELD OF BRAG",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The Mystic Shield of Brag may be used against any enemy spell that directly targets any friendly unit within dispel range. The enemy spell has no effect.",
+   "restriction": null
+  },
+  {
+   "name": "BECALMING ORB",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "All enemy Wizards within 18\" of the bearer of this item suffer a -2 casting penalty.",
+   "restriction": null
+  },
+  {
+   "name": "MYSTIC MAZE",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The Mystic Maze may be used against any enemy spell that directly targets any friendly unit within dispel range. Roll 3D6 measured from the centre of the unit; this is the distance the spell scatters in a random direction. Should the spell end up on another unit, this unit will become the target of the spell; otherwise the spell has no effect.",
+   "restriction": null
+  },
+  {
+   "name": "TOME OF SPELLCRAFT",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "This item allows the bearer to re-roll one failed casting attempt each Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "HYPNOTIC EYE SCROLL",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "The Hypnotic Eye Scroll can be used whenever an enemy wizard successfully casts a spell instead of attempting to dispel. The casting wizard must pass a Leadership test; if failed, you may choose the target of the spell just as if you had cast the spell yourself. If no target can be chosen, the spell has no effect. Note that the spell is still cast from the original Wizard as normal.",
+   "restriction": null
+  },
+  {
+   "name": "SCROLL OF LYKOS",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "Bound Spell. This item contains the Arcane Urgency spell from the Lore of Battle Magic.",
+   "restriction": null
+  },
+  {
+   "name": "SCROLL OF DISRUPTION",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "This item allows the bearer to re- roll failed dispel attempts for the remainder of the Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "TRICKSTER'S SHARD",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "Declare you are using this item at the start of one of your magic phases. For the duration of the phase, when one of the bearer's spells is dispelled by an enemy Wizard, roll a D6. On a 4+, that Wizard suffers a Wound which Ignores Armour Saves.",
+   "restriction": null
+  },
+  {
+   "name": "JUSTINTINE'S PAYCHEST",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The Paymaster and any unit they are with gain the Cold- blooded special rule.",
+   "restriction": "Paymaster with Pay Chest or Pay Cart"
+  },
+  {
+   "name": "LIFESTONE OF ASHRAAZ",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The Lifestone of Ashraaz can be used at the start of any close combat phase. The bearer can swap his current number Wounds with the current number of Wounds of any one enemy model in base contact. The effect lasts the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "THE OTHER TRICKSTER'S SHARD",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer, and all units in base contact with them (friend and foe) must re-roll successful invulnerable saves.",
+   "restriction": null
+  },
+  {
+   "name": "ARCH-LIGHTNING ROD",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any enemy Movement phase. Once used, no units within 24\" of the bearer may use the Fly special rule this turn.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF LIFE",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "Choose a friendly model within 12\" and roll a D6. On a roll of a 1 that model loses one Wound with no saves allowed, on a roll of a 2 nothing happens, on a roll of a 3-5 that model regains one Wound up to the models starting value, and on a roll of a 6 that model regains all lost wounds.",
+   "restriction": null
+  },
+  {
+   "name": "SINISTER CONTRACT",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "When the bearer and any unit they join fail the first Break test during the game, instead treat them as having the Unstable special rule until the end of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "WYSSAN'S WEIGHTED DICE",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any close combat phase in which they are involved in. When used, choose two numbers from 1 to 6. For the remainder of this round, all dice rolls of the first number are treated as the second number. This applies to both you and your opponent's dice.",
+   "restriction": null
+  },
+  {
+   "name": "THE TERRIFYING MASK OF EEE!",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The wearer of this mask causes Terror. However, other models can never use their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "EYE OF THE TILEAN MUR",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The bearer has the Always Strikes First and Armour Piercing (1) special rules in any turn they successfully charge an enemy in the flank or rear.",
+   "restriction": null
+  },
+  {
+   "name": "THE LAST CHANCE",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "This item can be used in the shooting phase with the model's missile weapon. If the shot hits, it will automatically Wound with the Ignores Armour Saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "PAYMASTER'S COIN",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The model may re-roll one dice when rolling To Hit or To Wound each round of close combat.\nMASTRO VIVETTI’S MAGNIFICENT",
+   "restriction": null
+  },
+  {
+   "name": "MACROSCOPE",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "No enemy units may deploy using the Scouts special rule within Line of Sight of the bearer of this item. In addition, you opponent must reveal any Hidden models in units within Line of Sight at the start of the game.",
+   "restriction": null
+  },
+  {
+   "name": "SCALED BOOTS OF DELAYED ALACRITY",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "The bearer gains the Random Movement (2D6) Special Rule.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "BANNER OF MIGHT",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "A unit with this standard gains +1 To Hit in the first round of close combat.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF SWIRLING WIND",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "All enemy missile fire targeting the unit carrying this standard suffer -1 To Hit.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF MONTE CASTELLO",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Cold-blooded special rule.",
+   "restriction": "Humans"
+  },
+  {
+   "name": "EAGLE BANNER",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "Enemies can never get the Outnumber, Flank or Rear combat resolution bonus against the unit carrying this standard.",
+   "restriction": "Humans"
+  },
+  {
+   "name": "ENSIGN OF THE REMAN LEGION",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "A unit carrying this magic standard has the Fight in Extra Ranks (1) special rule.",
+   "restriction": "Human Infantry"
+  },
+  {
+   "name": "MONSTER HUNTER'S TAPESTRY",
+   "points": "5",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Immunity (Stomps) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "PENNANT OF LOYALTY",
+   "points": "5",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard can re-roll the result on the Mercenaries table.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [
+  {
+   "name": "LORE OF BATTLE MAGIC",
+   "attribute": "Whenever a Wizard successfully casts a spell from this lore, they gain a +1 casting bonus for the remainder of the Magic phase. This bonus is cumulative. However, if they Miscast, they must add this casting bonus to the result rolled on the Miscast table.",
+   "spells": [
+    {
+     "name": "HAMMERHAND",
+     "level": 0,
+     "castValue": 5,
+     "description": "Hammerhand is a direct damage spell that causes 2D6 Strength 4 hits on one enemy unit in base contact with the caster.",
+     "type": null
+    },
+    {
+     "name": "FLIGHT OF ZIMMERAN",
+     "level": 1,
+     "castValue": 5,
+     "description": "Flight of Zimmeran is a conveyance spell with a range of 18\". One friendly Character may immediately make a move using the Fly (10) special rule as if it were the Remaining Moves sub-phase.",
+     "type": null
+    },
+    {
+     "name": "MAGICAL MIGHT",
+     "level": 1,
+     "castValue": 5,
+     "description": "Magical Might is an augment spell with a range of 18\". The target gains the Mighty Blow (1) special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "CURSE OF COWARDLY FLIGHT",
+     "level": 1,
+     "castValue": 6,
+     "description": "Curse of Cowardly Flight is a hex spell with a range of 18\". The target must immediately take a Panic test with a -1 Leadership modifier.",
+     "type": null
+    },
+    {
+     "name": "DREAD OF ARAMAR",
+     "level": 1,
+     "castValue": 6,
+     "description": "Dread of Aramar is a hex aura spell with a range of 12\". The target units treat all enemy units in base contact as causing Fear until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "ARCANE URGENCY",
+     "level": 2,
+     "castValue": 7,
+     "description": "Arcane Urgency is a conveyance spell with a range of 18\". The target may immediately make a move as if it were the Remaining Moves sub-phase.",
+     "type": null
+    },
+    {
+     "name": "DEATHLY SHARDS",
+     "level": 2,
+     "castValue": 7,
+     "description": "Deathly Shards is a magic missile with a range of 24\" that causes D6 Strength 4 Hits with the Armour Piercing (1) special rule.",
+     "type": null
+    },
+    {
+     "name": "HANDS OF KARKORA",
+     "level": 2,
+     "castValue": 7,
+     "description": "Hands of Karkora is a hex spell with a range of 24\". Until the start of the caster's next Magic phase, all close combat attacks targeting the unit will always Hit on a 3+ or better, and all models in the unit can only Hit on a 4+ or worse themselves.",
+     "type": null
+    },
+    {
+     "name": "SWORD OF REZHEBEL",
+     "level": 2,
+     "castValue": 7,
+     "description": "Remains in Play. Sword of Rezhebel is an augment spell with a range of 18\" that can be cast on a friendly Character. While the spell is in effect, the model gains +1 To Hit, +2 Strength, +1 Attack as well as the Flaming Attacks and Magical Attacks special rules to their close combat attacks.",
+     "type": null
+    },
+    {
+     "name": "ARROW STORM",
+     "level": 3,
+     "castValue": 8,
+     "description": "Arrow Storm is an augment spell with a range of 18\". The target gains the Multiple Shot (2) special rule until the start of the caster's next Magic phase. Weapons that already fire Multiple Shots instead fire an additional shot. This has no effect on Magic Items or artillery weapons.",
+     "type": null
+    },
+    {
+     "name": "CRIMSON BANDS",
+     "level": 3,
+     "castValue": 8,
+     "description": "Crimson Bands is a hex spell with a range of 24\". All models in the target unit suffer a -1 penalty to their Attacks until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "GLEAMING ARROW",
+     "level": 3,
+     "castValue": 8,
+     "description": "Gleaming Arrow is a magical missile with a range of 24\" that targets a single enemy model (even a character in a unit). The target suffers D3 Strength 4 Hits.",
+     "type": null
+    },
+    {
+     "name": "MANACLE OF CALOE",
+     "level": 3,
+     "castValue": 8,
+     "description": "Manacle of Caloe is a hex spell with a range of 24\". The target unit has all its movement halved until the start of the caster's next Magic phase.",
+     "type": null
+    }
+   ]
+  }
+ ],
+ "factionUpgrades": {
+  "quirks_of_character": [
+   {
+    "name": "GRIZZLED WARRIOR",
+    "points": "Characters 25 points",
+    "description": "All successful To Wound rolls against this model must be re-rolled."
+   },
+   {
+    "name": "CHARISMATIC LEADER",
+    "points": "Characters 25 points",
+    "description": "The model gains the Inspiring Presence (6) special rule."
+   },
+   {
+    "name": "GREEDY",
+    "points": "Characters 20 points",
+    "description": "All friendly models using the Paymaster's Hold Your Ground ability may choose to re-roll just one of the dice when taking Break or Panic tests."
+   },
+   {
+    "name": "EAGLE EYE",
+    "points": "Characters 20 points",
+    "description": "The model gains the Sniper special rule."
+   },
+   {
+    "name": "BEASTSLAYER",
+    "points": "Characters 15 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Multiple Wounds (2) special rule."
+   },
+   {
+    "name": "BLOOD FEUD",
+    "points": "Characters 15 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model has the Hatred special rule."
+   },
+   {
+    "name": "DEFIANT",
+    "points": "Characters 15 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Stubborn special rule."
+   },
+   {
+    "name": "EXECUTIONER",
+    "points": "Characters 15 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Killing Blow special rule."
+   },
+   {
+    "name": "FEARSOME REPUTATION",
+    "points": "Characters 15 points\nInfantry 1 point per model\nCavalry 2 points per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Fear special rule."
+   },
+   {
+    "name": "RANGER",
+    "points": "Characters 15 points\nInfantry 1 point per model",
+    "description": "The model gains the Scouts special rule."
+   },
+   {
+    "name": "TACTICIAN",
+    "points": "Characters 15 points",
+    "description": "One per army. You may add +1 to the result when determining who chooses which side of the table to deploy on."
+   },
+   {
+    "name": "BERSERKER",
+    "points": "Characters 10 points\nInfantry 1 point per model\nCavalry 2 points per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Frenzy special rule."
+   },
+   {
+    "name": "BLADEMASTER",
+    "points": "Characters 10 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Parry (6+) special rule."
+   },
+   {
+    "name": "DIPLOMAT",
+    "points": "Characters 10 points",
+    "description": "One unit of Dwarfs, Norse, Elves, Halflings, Ogres, Orcs or Hobgoblins may be taken as a Core Unit instead of a Special Unit, or as a Special Unit instead of a Rare Unit."
+   },
+   {
+    "name": "HARD HITTER",
+    "points": "Characters 10 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Mighty Blow (1) special rule."
+   },
+   {
+    "name": "POISONER",
+    "points": "Characters 10 points\nInfantry/Cavalry 1 point per model",
+    "description": "The model gains the Poisoned Attacks special rule."
+   },
+   {
+    "name": "BATTLE-EAGER",
+    "points": "Characters 5 points\nInfantry 0.5 point per model\nCavalry 1 points per model\nMonstrous Infantry 1.5 points per model",
+    "description": "The model gains the Vanguard special rule."
+   },
+   {
+    "name": "DRILLED",
+    "points": "Characters 5 points\nInfantry 0.5 point per model\nCavalry 1 points per model\nMonstrous Infantry 1.5 points per model",
+    "description": "The model gains the Disciplined special rule."
+   },
+   {
+    "name": "FEARLESS",
+    "points": "Characters 5 points\nInfantry 1 point per model\nCavalry 2 points per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Immunity (Fear, Panic) special rule."
+   },
+   {
+    "name": "FLEET-FOOTED",
+    "points": "Characters 5 points\nInfantry/Cavalry 1 point per model",
+    "description": "The model gains the Swiftstride special rule."
+   },
+   {
+    "name": "FURIOUS CHARGER",
+    "points": "Characters 5 points\nInfantry 0.5 point per model\nCavalry 1 points per model\nMonstrous Infantry 1.5 points per model",
+    "description": "The model gains the Devastating Charge special rule."
+   },
+   {
+    "name": "MARKSMAN",
+    "points": "Characters 5 points\nInfantry/Cavalry 0.5 point per model\nMonstrous Infantry 1.5 points per model",
+    "description": "The model does not suffer penalties for shooting at long range."
+   },
+   {
+    "name": "PRECISION STRIKER",
+    "points": "Characters 5 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Armour Piercing (1) special rule."
+   },
+   {
+    "name": "QUICK DRAW",
+    "points": "Characters 5 points\nInfantry/Cavalry 1 point per model\nMonstrous Infantry 3 points per model",
+    "description": "The model gains the Rapid Fire special rule."
+   },
+   {
+    "name": "RAIDER",
+    "points": "Characters 5 points\nInfantry 1 point per model",
+    "description": "The model gains the Ambushers special rule."
+   },
+   {
+    "name": "STEADY AIM",
+    "points": "Characters 5 points\nInfantry 0.5 point per model\nCavalry 1 point per model",
+    "description": "The model does not suffer the normal To Hit penalty for moving & shooting."
+   },
+   {
+    "name": "VETERAN",
+    "points": "Infantry/Cavalry 1 point per model",
+    "description": "The model gains +1 Weapon Skill. This Quirk may be taken once per full 1000 points in your army."
+   },
+   {
+    "name": "WEALTHY",
+    "points": "Infantry 1 point per model\nCavalry 2 points per model\nMonstrous Infantry 3 points per model",
+    "description": "The model counts its armour save as being 1 point higher than it actually is. This Quirk may be taken once per full 1000 points in your army."
+   }
+  ]
+ }
+}

@@ -1,0 +1,4623 @@
+{
+ "factionName": "Dogs of War",
+ "units": [
+  {
+   "name": "Mercenary General",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Mercenary General",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 90
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Oriental longsword",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Brace of pistols",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Buckler",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Griffon",
+       "points": 125,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Mercenary General",
+     "raw": "A Mercenary General may take Quirks of Character and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "A Mercenary General may take Quirks of Character and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "Mercenary Captain",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Mercenary Captain",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Oriental longsword",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Brace of pistols",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Buckler",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Mercenary Captain",
+     "raw": "A Mercenary Captain may take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "A Mercenary Captain may take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "Hireling Wizard Lord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hireling Wizard Lord",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Hireling Wizard is a Level 1 Wizard. A Hireling Wizard Lord is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Griffon",
+       "points": 125,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Hireling Wizard Lord",
+     "raw": "A Hireling Wizard Lord may take Quirks of Character and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "A Hireling Wizard Lord may take Quirks of Character and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Hireling Wizard",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hireling Wizard",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Hireling Wizard is a Level 1 Wizard. A Hireling Wizard Lord is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Hireling Wizard",
+     "raw": "A Hireling Wizard may take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "A Hireling Wizard may take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "PAYMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Paymaster",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 45
+    },
+    {
+     "name": "Money Lender",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Pistol",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Brace of pistols",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Buckler",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Money Lender",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take a Money Lender +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May take one of the following",
+     "raw": "May take one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Paychest",
+       "choices": [
+        {
+         "name": "Paychest",
+         "points": 30,
+         "perModel": false
+        }
+       ],
+       "raw": "Paychest +30 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Paycart",
+       "choices": [
+        {
+         "name": "Paycart",
+         "points": 60,
+         "perModel": false
+        }
+       ],
+       "raw": "Paycart +60 points"
+      }
+     ]
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 45
+  },
+  {
+   "name": "ASSASSINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Assassin",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 85
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Throwing weapons",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Pistol",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Dodge (5+), Hidden, Mercenaries, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "DWARF CAPTAINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Dwarf Captain",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 10,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dwarfen pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen crossbow",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Hatred (Goblins, Orcs, Skaven), Magic Resistance (1), Mercenaries, Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "ELF CAPTAINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Elf Captain",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 55
+    }
+   ],
+   "troopType": "Infantry (Character, Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Elven shortbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Elven longbow",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "HALFLING CAPTAINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Halfling Captain",
+     "M": 4,
+     "WS": 4,
+     "BS": 6,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 35
+    }
+   ],
+   "troopType": "Infantry (Character, Halfling)",
+   "baseSize": "20x25 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Flail",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Throwing weapons",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Shortbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Sling",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Buckler",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Duck & Weave, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "OGRE CAPTAINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Ogre Captain",
+     "M": 6,
+     "WS": 5,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": 135
+    }
+   ],
+   "troopType": "Monstrous Infantry (Character, Ogre)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon, gut-plate",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Ironfist",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Ogre pistol",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Brace of Ogre pistols",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +12 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Natural Armour (6+), Mercenaries, Ogre Charge",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 135
+  },
+  {
+   "name": "ORC CAPTAINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Orc Captain",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "HOBGOBLIN CAPTAINS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hobgoblin Captain",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 50
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Character, Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "raw": "May take Quirks of Character and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Cunning Retreat, Ded Shooty, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "PEGASUS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Pegasus",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Iron-hard Hooves",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Iron-hard Hooves +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Swift as the Wind",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Swift as the Wind +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (9)",
+   "upgrades": "Iron-hard Hooves: A Pegasus with this upgrade re-roils failed To Wound rolls.\nSwift as the Wind: A Pegasus with this upgrade gains the Swiftstride special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GRIFFON",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Griffon",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 4,
+     "A": 4,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Chimeric)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Shredding Talons",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Shredding Talons +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Swooping Strike",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Swooping Strike +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8)",
+   "upgrades": "Shredding Talons: The model gains the Armour Piercing (1) special rule.\nSwooping Strike: The model gains the Devastating Charge special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "PAYCHEST",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Paychest Bodyguards",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Polearm",
+   "magic": null,
+   "options": null,
+   "specialRules": "Hold Your Ground (6)",
+   "upgrades": null,
+   "notes": "A Paymaster with a Paychest may either be modelled on top of it, or placed next to it on the table. It must remain in base contact with the Paymaster at all times.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "PAYCART",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Paycart",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Mule",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Shrine (Armour save 6+)",
+   "baseSize": "40x80, 50x100 or 60x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Hold Your Ground (12)",
+   "upgrades": null,
+   "notes": "A Paymaster with a Paycart may either be modelled on top of it, or placed next to it on the table. It must remain in base contact with the Paymaster at all times.\nA Paycart has a Line of Sight value of 2.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": "1 Mule (Animal)",
+   "pointsCost": null
+  },
+  {
+   "name": "PIKEMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Pikeman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Pike",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bucklers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bucklers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Pikeman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Pikeman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Pikeman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "CROSSBOWMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Crossbowman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, crossbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "crossbows",
+     "choices": [
+      {
+       "name": "handguns",
+       "points": 0,
+       "perModel": false,
+       "replaces": "crossbows"
+      }
+     ],
+     "raw": "May replace crossbows with handguns free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "pavises",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take pavises +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Crossbowman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Crossbowman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Crossbowman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": "Your army may not contain more units armed with handguns than crossbows.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "SELLSWORDS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Sellsword",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Flails",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with two hand weapons, flails, great weapons or shortbows) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Sellsword to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Sellsword to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Sellsword to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": "Each unit of Sellswords must pick at least one weapon option and/or shields.",
+   "unitSize": "10-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "DUELLISTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Duellist",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Oriental longswords",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Pistols",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Duellist to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Mercenaries, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "STRADIOTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Stradiot",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 10
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Handguns",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Stradiot to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Stradiot to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Stradiot to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "PAYMASTER'S BODYGUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Paymaster's Bodyguard",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Paymaster's Bodyguard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Paymaster's Bodyguard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Paymaster's Bodyguard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": "You may not include more than one unit of Paymaster's Bodyguard in your army.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "FREELANCERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Freelancer",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 17
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Freelancer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Freelancer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Freelancer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "GLADIATORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Gladiator",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bucklers",
+     "choices": [
+      {
+       "name": "Shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      },
+      {
+       "name": "Nets & spears",
+       "points": 4,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May replace bucklers with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Gladiator to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Fear), Mercenaries, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "NORSEMEN",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Norseman",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "dditional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Flails",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing axes +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Norseman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Norseman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Norseman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Mercenaries",
+   "upgrades": "Fur Cloak: A fur cloak gives the wearer the Natural Armour (6+) special rule against missile attacks.",
+   "notes": null,
+   "unitSize": "10-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "DWARFS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Dwarf",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Dwarfen crossbows",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May take Dwarfen crossbows +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Heavy armour",
+       "points": 2.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Dwarf to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Dwarf to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Dwarf to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Hatred (Goblins, Orcs, Skaven), Magic Resistance (1), Mercenaries, Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "ELVES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Elves",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Elven shortbow",
+       "points": 4,
+       "perModel": true
+      },
+      {
+       "name": "Elven longbow",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with additional hand weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers (if armed with missile weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Elf to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Elf to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Elf to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HALFLINGS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Halfling",
+     "M": 4,
+     "WS": 2,
+     "BS": 4,
+     "S": 2,
+     "T": 2,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Halfling)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Shortbows",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Slings",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with missile weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers (if armed with missile weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Halfling to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Halfling to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Halfling to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Duck & Weave, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "OGRES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ogre",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": 27
+    }
+   ],
+   "troopType": "Monstrous Infantry (Ogre)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Ironfists",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 9,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Gut-plates",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Light armour & gut plates",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ogre to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ogre to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Natural Armour (6+), Mercenaries, Ogre Charge",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 27
+  },
+  {
+   "name": "ORCS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Orc",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with great weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Orc to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Orc to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Orc to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "• Animosity: Units with this special rule must test for Animosity in the Charge sub-phase after all normal charges have been declared during each of your turns, unless any of the following applies:\n  - The unit has fewer than 5 models.\n  - The unit has declared a charge this turn.\n  - The unit is engaged in close combat.\n  - The unit is garrisoning a building.\n  - The unit is fleeing or currently off the battlefield.\nRoll a D6 for each eligible unit. If the dice roll is a 2 or more, the unit behaves normally this turn. If the roll is a 1, however, the unit has failed its Animosity test and must roll on the Animosity table below:\nD6 | Result\n1 | Get 'Em: For every complete rank the unit has, it suffers D3 hits at the Strength characteristic of the majority of the models in the unit. The unit may not voluntarily move or shoot this turn. Wounds caused by the Get 'Em result never cause Panic tests.\n2-4 | Squabble: If it is possible to do so, the unit must declare a charge against the closest viable enemy unit. If the unit is unable to declare a charge, the unit may not move in the Movement phase or shoot this turn.\n5-6 | We'll Show 'Em: Pivot the unit on the spot to face the nearest visible enemy unit, and then make a full normal move in a straight line towards it. If there is no visible enemy, the unit must move straight ahead instead. If it is impossible for the unit to pivot to face the closest enemy, it will pivot towards it as far as it can, and will then move as far forward as it can while still keeping the enemy within its forward arc. After the move is complete the unit must declare a charge against the closest visible enemy unit, if it is possible to do so. If the unit cannot declare a charge then it may carry on with the rest of its turn normally, as if it had not yet moved this turn.",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HOBGOBLINS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Hobgoblin",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 9
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shortbows +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hobgoblin to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hobgoblin to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Hobgoblin to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Cunning Retreat, Ded Shooty, Fast Cavalry, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "BALLISTA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ballista",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 40
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "40x40 or 50x50 (Ballista), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +0.5 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional crew +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "SCORPION",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Scorpion",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 25
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "25x25 or 30x30 (Scorpion), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, scorpion",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +0.5 point/crew",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": "You may take 1-2 Scorpions as a single Special choice.",
+   "unitSize": null,
+   "crew": "2 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 25
+  },
+  {
+   "name": "MANEATERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Maneater",
+     "M": 6,
+     "WS": 4,
+     "BS": 4,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 43
+    }
+   ],
+   "troopType": "Monstrous Infantry (Ogre)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon, gut-plate",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Ironfists",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Oriental longsword",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Ogre pistol",
+       "points": 6,
+       "perModel": true
+      },
+      {
+       "name": "Great weapon",
+       "points": 6,
+       "perModel": true
+      },
+      {
+       "name": "Polearm",
+       "points": 6,
+       "perModel": true
+      },
+      {
+       "name": "Brace of Ogre pistols",
+       "points": 9,
+       "perModel": true
+      }
+     ],
+     "raw": "Any model may be armed with one of the following (different models may have different weapons):",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "quirks_of_character",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May take Quirks of Character no points limit"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Maneater to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Maneater to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Maneater to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Ogre Charge, Stubborn",
+   "upgrades": null,
+   "notes": "Each Maneater can choose a separate Quirk of Character.",
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 43
+  },
+  {
+   "name": "SERPENTINE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Serpentine",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Serpentine), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, cannon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +0.5 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional crew +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "ONAGER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Onager",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Onager), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, stone thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +0.5 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional crew +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "RIBAULT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Ribault",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Ribault), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, organ gun",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +0.5 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional crew +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "HOT POT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Hot Pot",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 5,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 70
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 4,
+     "S": 2,
+     "T": 2,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "20x20, 25x25 or 50x50 (Hot Pot), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, hot pot",
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Halfling)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "MARIENBURG LAND SHIP",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Land Ship",
+     "M": "*",
+     "WS": "-",
+     "BS": "-",
+     "S": 6,
+     "T": 6,
+     "W": 10,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 250
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 3+)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Hand weapon, handgun, chase gun",
+   "magic": null,
+   "options": null,
+   "specialRules": "Terror, Unbreakable",
+   "upgrades": null,
+   "notes": "A Land Ship has a Line of Sight value of 5.\nYou may not have more than 3 Marienburg Land Ships in your army.",
+   "unitSize": null,
+   "crew": "6 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "BORGIO THE BESIEGER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Borgio the Besieger",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 200
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Shield, barding",
+   "magic": null,
+   "options": null,
+   "specialRules": "Hold the Line, Immunity (Psychology)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Animal)",
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "LUCREZZIA BELLADONNA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Lucrezzia Belladonna",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 300
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Two hand weapons, phial of poison",
+   "magic": "Lucrezzia Belladonna is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Animal)",
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "LORENZO LUPO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Lorenzo Lupo",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 210
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "• Fights on Foot: Any Infantry unit joined by Lorenzo Lupo add +1 to their combat resolution bonus.\n• Mighty Athlete: Roll a D6 at the start of the battle to determine which pursuit he has been following prior to joining the army.\nD6 | Pursuit | Effect\n1-2 | Running | +1 Toughness\n3-4 | Wrestling | +1 Attack\n5-6 | Rowing | +1 Strength",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "MARCO COLOMBO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Marco Colombo",
+     "M": 4,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20, 25x25, 40x40 or 50x50",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "crossbow",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a crossbow +7 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Crossbow Hunter, Navigator's Telescope",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "LIETPOLD THE BLACK",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Lietpold the Black",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 215
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy armour, barding",
+   "magic": null,
+   "options": null,
+   "specialRules": "Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Animal)",
+   "drawnBy": null,
+   "pointsCost": 215
+  },
+  {
+   "name": "GHAZAK KHAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ghazak Khan",
+     "M": 4,
+     "WS": 7,
+     "BS": 6,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 205
+    },
+    {
+     "name": "Warghan (Giant Wolf)",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Hobgoblin)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Shortbow, medium armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Fear, Mercenaries, Quell Treachery",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warghan (Canine)",
+   "drawnBy": null,
+   "pointsCost": 205
+  },
+  {
+   "name": "MYDAS THE MEAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Mydas the Mean",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 210
+    },
+    {
+     "name": "Sheikh Yadosh",
+     "M": "-",
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25 (Mydas), 50x100 (Paycart)",
+   "equipment": "Hand weapon, heavy armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Mercenaries, Paymaster",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Paycart (Sheikh Yadosh only)",
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "LEONARDO DA MIRAGLIANO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Leonardo da Miragliano",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 75
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, Sphere of Alchemy, Prism of Power, Compass of Meteoric Silver",
+   "magic": null,
+   "options": null,
+   "specialRules": "Artillery Accuracy, Battle Strategy, Crossbow Accuracy",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 75
+  },
+  {
+   "name": "ULLI & MARQUAND",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Marquand",
+     "M": 4,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 70
+    },
+    {
+     "name": "Ulli",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, great weapon (Ulli only), light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "Marquand may take Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "Ulli may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Devastating Charge (Ulli only), Dodge (6+) (Marquand only), Mercenaries, Parry (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "NICODEMUS",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Nicodemus",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 155
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Nicodemus is a Level 2 Wizard who uses the Lore of Battle Magic.",
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Fear, Loremaster (Lore of Battle Magic), Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 155
+  },
+  {
+   "name": "SIMIUS GANTT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Simius Gantt",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 135
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Simius Gantt is a Level 2 Wizard who uses the Lore of Death.",
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Decay of Ages, Needle and Thread",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 135
+  },
+  {
+   "name": "JOHANN THE KNIFE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Johann the Knife",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 135
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (5+), Hidden, Mercenaries, Poisoned Attacks, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 135
+  },
+  {
+   "name": "AENUR",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Aenur",
+     "M": 5,
+     "WS": 8,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 8,
+     "points": 120
+    }
+   ],
+   "troopType": "Infantry (Special Character, Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Mercenaries",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "MARIANNA CHEVAUX",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Marianna Chevaux",
+     "M": 6,
+     "WS": 6,
+     "BS": 6,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 9,
+     "A": 3,
+     "Ld": 9,
+     "points": 180
+    }
+   ],
+   "troopType": "Infantry (Special Character, Vampire)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, throwing weapon, crossbow",
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (5+), Hidden, Mercenaries, Poisoned Attacks, Scouts",
+   "upgrades": null,
+   "notes": "Marianna Chevaux may join units of Humans despite being a Vampire.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  }
+ ]
+}

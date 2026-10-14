@@ -1,0 +1,3397 @@
+{
+ "factionName": "Chaos Dwarfs",
+ "units": [
+  {
+   "name": "Sorcerer-Prophet",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Sorcerer-Prophet",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 9,
+     "points": 195
+    }
+   ],
+   "troopType": "Infantry (Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Sorcerer-Priest is a Level 1 Wizard. A Sorcerer-Prophet is a Level 3 Wizard. They use one of the following",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Naptha Bombs",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take Naptha Bombs +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Palanquin",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Great Taurus",
+       "points": 95,
+       "perModel": false
+      },
+      {
+       "name": "Altar of Hashut",
+       "points": 100,
+       "perModel": false
+      },
+      {
+       "name": "Lammasu",
+       "points": 155,
+       "perModel": false
+      },
+      {
+       "name": "Bale Taurus",
+       "points": 175,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Sorcerer-Prophet",
+     "raw": "A Sorcerer-Prophet may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Resolute, Sorcerer's Curse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 195
+  },
+  {
+   "name": "Sorcerer-Priest",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Sorcerer-Priest",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 80
+    }
+   ],
+   "troopType": "Infantry (Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Sorcerer-Priest is a Level 1 Wizard. A Sorcerer-Prophet is a Level 3 Wizard. They use one of the following",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Naptha Bombs",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take Naptha Bombs +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Palanquin",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Great Taurus",
+       "points": 95,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Sorcerer-Priest",
+     "raw": "A Sorcerer-Priest may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Resolute, Sorcerer's Curse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "Overlord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Overlord",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 10,
+     "points": 125
+    }
+   ],
+   "troopType": "Infantry (Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Fireglaive",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Pistol",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Blunderbuss",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Great Taurus",
+       "points": 95,
+       "perModel": false
+      },
+      {
+       "name": "Bale Taurus",
+       "points": 175,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Overlord",
+     "raw": "An Overlord may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Resolute",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "Overseer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Overseer",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 9,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Fireglaive",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Pistol",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Blunderbuss",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Great Taurus",
+       "points": 95,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Overseer may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Overseer",
+     "raw": "An Overseer may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Resolute",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "DAEMONSMITH",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Daemonsmith",
+     "M": 3,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Daemonsmith who is a Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 1 Wizard",
+     "points": 50,
+     "perModel": false,
+     "raw": "May be upgraded to a Level 1 Wizard +50 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Blunderbuss",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Fireglaive",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Naptha Bombs",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take Naptha Bombs +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Resolute, Sorcerer's Curse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "BULL CENTAUR TAUR'RUK",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Bull Centaur Taur'ruk",
+     "M": 7,
+     "WS": 5,
+     "BS": 2,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 4,
+     "A": 4,
+     "Ld": 9,
+     "points": 140
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Character, Chaos Dwarf, Bull Centaur)",
+   "baseSize": "50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Contempt, Natural Armour (5+)",
+   "upgrades": null,
+   "notes": "A Bull Centaur Taur'ruk may not be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "HOBGOBLIN CHIEFTAIN",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hobgoblin Chieftain",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 40
+    }
+   ],
+   "troopType": "Infantry (Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Giant Wolf +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers",
+   "upgrades": null,
+   "notes": "A Hobgoblin Chieftain may not be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "GIANT WOLF",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Canine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "PALANQUIN",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Palanquin",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 4,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Contempt, Inspiring Presence (6), Relentless, Resolute",
+   "upgrades": null,
+   "notes": "A Palanquin adds +1 Line of Sight value and +4 to the Unit Strength of any model mounted on it.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GREAT TAURUS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Great Taurus",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Chaos Beast, Bovine)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Bloodrage",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Bloodrage +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Flaming Breath",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Flaming Breath +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blazing Body, Fly (8), Mighty Blow (1)",
+   "upgrades": "Flaming Breath: The model gains a Strength 4 Breath Weapon with the Flaming Attacks special rule.\nBloodrage: The model gains the Frenzy and Hatred special rules.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "BALE TAURUS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Bale Taurus",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 5,
+     "I": 3,
+     "A": 4,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Chaos Beast, Bovine)",
+   "baseSize": "50x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Bloodrage",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Bloodrage +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Flaming Breath",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Flaming Breath +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blazing Body, Fly (8)",
+   "upgrades": "Flaming Breath: This gives the Taurus a Strength 4 Breath Weapon with the Flaming Attacks special rule.\nBloodrage: This gives the Taurus the Frenzy and Hatred special rules.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "ALTAR OF HASHUT",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Altar",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Altar Guard",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Altar of Hashut: A Sorcerer-Prophet with an Altar of Hashut gains the Magical Ward (4+) and Unbreakable special rules. In addition, their troop type changes to War Machine and they count as being part of the crew. Randomise any missile hits between the Sorcerer-Prophet and the crew. The Sorcerer-Prophet can never choose to leave the Altar during the game. If the Sorcerer-Prophet is killed, the whole Altar is also removed as a casualty.\nBlessing of Hashut: A Sorcerer-Prophet on an Altar of Hashut add +12\" to the range of their spells.\nSacrifices to Hashut: Once per Magic phase, the Sorcerer-Prophet may sacrifice one of the slaves chained to the Altar to Hashut before they attempt to cast a spell. Roll a D6 and add the result to the casting result of the spell. However, if a 1 is rolled, the Sorcerer-Prophet instead suffers a Wound with no saves of any kind possible.",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Altar Guards (Chaos Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Warrior",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Contempt, Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "RAZERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Razer",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, blunderbuss, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "blunderbusses",
+     "choices": [
+      {
+       "name": "Crossbows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "blunderbusses"
+      },
+      {
+       "name": "Flamehurlers",
+       "points": 0,
+       "perModel": false,
+       "replaces": "blunderbusses"
+      }
+     ],
+     "raw": "May replace blunderbusses with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Blunderbusser to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Blunderbusser to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Blunderbusser to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Contempt, Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "HOBGOBLIN CUTTHROATS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Cutthroat",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 3.5
+    }
+   ],
+   "troopType": "Infantry (Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take spears +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Cutthroat to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Cutthroat to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Cutthroat to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3.5
+  },
+  {
+   "name": "HOBGOBLIN ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Archer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 4.5
+    }
+   ],
+   "troopType": "Infantry (Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Archer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4.5
+  },
+  {
+   "name": "WOLF RAIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Wolf Raider",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 9
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shortbows +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Ambushers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Wolf Raider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Wolf Raider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Wolf Raider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Fast Cavalry, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "ORC SLAVES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Orc Slave",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 4,
+     "points": 6
+    },
+    {
+     "name": "Overseer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with additional hand weapons or great weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hobgoblin Overseer",
+     "points": 20,
+     "perModel": false,
+     "raw": "May include one Hobgoblin Overseer +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animosity, Expendable, Independent, Mixed Unit",
+   "upgrades": null,
+   "notes": "You may not have more units of Orc Slaves than you have units of Hobgoblin Cutthroats or Hobgoblin Archers in your army.",
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "GOBLIN SLAVES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Goblin Slave",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": 2
+    },
+    {
+     "name": "Overseer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Goblin)",
+   "baseSize": null,
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take spears +0.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hobgoblin Overseer",
+     "points": 20,
+     "perModel": false,
+     "raw": "May include one Hobgoblin Overseer +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animosity, Expendable, Independent, Mixed Unit",
+   "upgrades": null,
+   "notes": "You may not have more units of Goblin Slaves than you have units of Hobgoblin Cutthroats or Hobgoblin Archers in your army.",
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "INFERNAL GUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Infernal Guard",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, heavy armour, shields",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "Great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      },
+      {
+       "name": "Fireglaives",
+       "points": 3,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Infernal Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Infernal Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Infernal Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "ZEALOT BERZERKERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Zealot Berzerker",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 9,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Zealot Berzerker to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Zealot Berzerker to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Zealot Berzerker to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Contempt, Frenzy, Hatred, Relentless, Resolute, Vanguard",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "DEVASTATORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Devastator",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 25
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": null,
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bazuka",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Inferno Gun",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Earthshaker Mortar",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "Must choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Contempt, Relentless, Resolute, Weapon Team",
+   "upgrades": null,
+   "notes": "Devastators have a Unit Strength of 2.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 25
+  },
+  {
+   "name": "BULL CENTAURS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bull Centaur",
+     "M": 7,
+     "WS": 4,
+     "BS": 2,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 18
+    }
+   ],
+   "troopType": "Cavalry (Chaos Dwarf, Bull Centaur)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bull Centaur to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bull Centaur to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bull Centaur to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Contempt, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 18
+  },
+  {
+   "name": "WHIRLWIND/TENDERISER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Whirlwind/Tenderizer",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Bull Centaur",
+     "M": "-",
+     "WS": 4,
+     "BS": 2,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Contempt, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": "You must choose whether or not the model is a Whirlwind or a Tenderizer while making your army list.",
+   "unitSize": null,
+   "crew": "1 Bull Centaur (Chaos Dwarf, Bull Centaur)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "SNEAKY GITS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sneaky Git",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Scouts",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Scouts +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Sneaky Git to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Poisoned Attacks, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "BOLT THROWA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bolt Throwa",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 35
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Bolt Throwa), 20x20 or 25x25 (Hobgoblin)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": null,
+   "specialRules": "Slipshod",
+   "upgrades": null,
+   "notes": "You may take 1-2 Bolt Throwas as a single Special choice.",
+   "unitSize": null,
+   "crew": "3 Hobgoblins (Hobgoblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "BLACK ORCS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Black Orc",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Black Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shields",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Spears",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "Must take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Black Orc to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Black Orc to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Black Orc to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Independent, Mighty Blow (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "OGRE SLAVES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ogre Slave",
+     "M": 4,
+     "WS": 3,
+     "BS": 2,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 4,
+     "points": 24
+    },
+    {
+     "name": "Hobgoblin Overseer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Infantry (Ogre)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hobgoblin Overseer",
+     "points": 20,
+     "perModel": false,
+     "raw": "May include one Hobgoblin Overseer +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Independent, Mixed Unit",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 24
+  },
+  {
+   "name": "K'DAAI FIREBORN",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "K'daai Fireborn",
+     "M": 6,
+     "WS": 4,
+     "BS": 2,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Infantry (Daemon)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one K'daai Fireborn to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blazing Body, Daemonic, Independent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "IRON DAEMON",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Iron Daemon",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 190
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 4+)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Hand weapon, steam cannonade, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "Steam Cannonade",
+     "choices": [
+      {
+       "name": "Skullcracker",
+       "points": 30,
+       "perModel": false,
+       "replaces": "Steam Cannonade"
+      }
+     ],
+     "raw": "May replace Steam Cannonade with a Skullcracker +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hellbound",
+     "points": 30,
+     "perModel": false,
+     "raw": "May be given the Hellbound special rule +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Impact hits (D6+1), Relentless, Terror, Unbreakable",
+   "upgrades": "Skullcracker: The Iron Daemon gains the Impact Hits (2D6) special rule and its Grind Attack inflicts 2D6 hits instead of D6. In addition, its Stomp works against all models regardless of their Line of Sight value.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Chaos Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "MAGMA CANNON",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Magma Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x100 (Magma Cannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, magma cannon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hellbound",
+     "points": 30,
+     "perModel": false,
+     "raw": "May be given the Hellbound special rule +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Contempt, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Chaos Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "DEATHSHRIEKER ROCKET LAUNCHER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Rocket Launcher",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 95
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Rocket Launcher), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, rocket launcher, demolition rocket, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hellbound",
+     "points": 30,
+     "perModel": false,
+     "raw": "May be given the Hellbound special rule +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Contempt, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Chaos Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  },
+  {
+   "name": "IMMORTALS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Immortal",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 16
+    }
+   ],
+   "troopType": "Infantry (Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Immortal to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Immortal to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Immortal to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 75,
+       "raw": "May take a Magic Standard worth up to 75 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Relentless, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 16
+  },
+  {
+   "name": "BULL CENTAUR RENDERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Bull Centaur Render",
+     "M": 7,
+     "WS": 4,
+     "BS": 2,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Chaos Dwarf, Bull Centaur)",
+   "baseSize": "50x75",
+   "equipment": "Hand weapon, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bull Centaur Render to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bull Centaur Render to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bull Centaur Render to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Contempt, Natural Armour (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "LAMMASU",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Lammasu",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 1,
+     "A": 2,
+     "Ld": 8,
+     "points": 155
+    }
+   ],
+   "troopType": "Monstrous Creature (Chaos Beast)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": "A Lammasu is a Level 1 Wizard that uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Mace Tail",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May take Mace Tail +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Sorcerous Exhalation",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take Sorcerous Exhalation +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8), Magic Resistance (3)",
+   "upgrades": "Mace Tail: The Lammasu gains +1 Attack.\nSorcerous Exhalation: This gives the Lammasu a Strength 3 Breath Weapon with the Magical Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 155
+  },
+  {
+   "name": "DREADQUAKE MORTAR",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Dreadquake Mortar",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 130
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    },
+    {
+     "name": "Ogre Slave",
+     "M": 6,
+     "WS": 3,
+     "BS": 2,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 or 100x150 (Dreadquake Mortar), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, dreadquake mortar, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Slave Ogre",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take a Slave Ogre +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hellbound",
+     "points": 30,
+     "perModel": false,
+     "raw": "May be given the Hellbound special rule +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Contempt, Resolute",
+   "upgrades": "Ogre Slave: An Ogre Slave has the Fear and Natural Armour (6+) special rule. In addition, it increases the Unit Strength of the war machine by 3 rather than 1 and gives it Line of Sight (2).",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Chaos Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "HELLCANNON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Hellcannon",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": 1,
+     "A": 5,
+     "Ld": 4,
+     "points": 190
+    },
+    {
+     "name": "Chaos Dwarf Handler",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Daemon)",
+   "baseSize": "100x150 (Hellcannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, doomfire, light armour (Handlers only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour (Handlers only) +3 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Daemonic, Mixed Unit, Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "JUGGERNAUT SIEGE TOWER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Juggernaut Siege Tower",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 6,
+     "W": 10,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 230
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 5+)",
+   "baseSize": "50x75, 50x100 or 60x100",
+   "equipment": "Hand weapon, crossbow, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew",
+     "points": 6,
+     "perModel": false,
+     "raw": "May take up to 7 additional Crew +6 points/Crew",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Terror, Unbreakable",
+   "upgrades": null,
+   "notes": "A Juggernaut Siege Tower has a Line of Sight value of 8.",
+   "unitSize": null,
+   "crew": "3 Crew (Chaos Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 230
+  },
+  {
+   "name": "KOLOSSUS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Kolossus",
+     "M": 6,
+     "WS": 4,
+     "BS": 3,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 10,
+     "points": 250
+    }
+   ],
+   "troopType": "Monster (Animated Construct)",
+   "baseSize": "75x50 or 100x100",
+   "equipment": "Bane maces, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bane maces",
+     "choices": [
+      {
+       "name": "immolation cannons",
+       "points": 40,
+       "perModel": false,
+       "replaces": "bane maces"
+      }
+     ],
+     "raw": "May replace bane maces with immolation cannons +40 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Greed Pistons",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Greed Pistons +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Breath of Contempt",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Breath of Contempt +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Overdrive Switch",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take Overdrive Switch +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animated Construct, Hellbound",
+   "upgrades": "Breath of Contempt: The Kolossus gains a Strength 2 Breath Weapon with the Armour Piercing (2) special rule that can be used in close combat.\nGreed Pistons: The Kolossus gains +1 Movement.\nOverdrive Switch: The Kolossus may choose to add +D3 Attacks in each round of close combat when it is its turn to attack. However, if it does so, it suffers a Strength 6 Hit for every natural To Hit roll of 1 it makes.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "K'DAAI DESTROYER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "K'daai Destroyer",
+     "M": 6,
+     "WS": 5,
+     "BS": 3,
+     "S": 7,
+     "T": 6,
+     "W": 6,
+     "I": 5,
+     "A": 5,
+     "Ld": 7,
+     "points": 265
+    }
+   ],
+   "troopType": "Monster (Daemon)",
+   "baseSize": "100x150",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Gore Blades",
+     "points": 10,
+     "perModel": false,
+     "raw": "Gore Blades +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Dark Colossus",
+     "points": 20,
+     "perModel": false,
+     "raw": "Dark Colossus +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Brazen Wings",
+     "points": 30,
+     "perModel": false,
+     "raw": "Brazen Wings +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Flaming Breath",
+     "points": 30,
+     "perModel": false,
+     "raw": "Flaming Breath +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Razor Horns",
+     "points": 35,
+     "perModel": false,
+     "raw": "Razor Horns +35 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blazing Body, Daemonic, Frenzy",
+   "upgrades": "Brazen Wings: The model gains the Fly (7) special rule.\nDark Colossus: The model gains +1 Wound.\nFlaming Breath: The model gains a Strength 4 Breath Weapon with the Flaming Attacks special rule.\nGore Blades: When attacking the model in close combat, all 'To Hit' rolls of 1 by the enemy inflicts a Strength 3 hit on the attacking model(s).\nRazor Horns: The model gains the Impact Hits (D6) special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 265
+  },
+  {
+   "name": "SIEGE GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Siege Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 200
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x75",
+   "equipment": "Hand weapon, siege armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Runes of Hates",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take Runes of Hates +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Scaling Spikes",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Scaling Spikes +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": "Runes of Hate: A Giant with Runes of Hate becomes subject to the Berserk Rage rule from Frenzy. In addition, whenever the Giant is called upon to roll for a random number of attacks, this may be re-rolled.\nScaling Spikes: If a Giant with this upgrade perishes and falls over an obstacle such as a moat, ditch or wall, mark the obstacle, which now may be crossed as open terrain. Additionally, if the Giant dies at the foot of a building or fortification, models assaulting any garrison across the location of its body gain a special +1 bonus to their Combat Resolution.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "ASTRAGOTH IRONHAND",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Astragoth Ironhand",
+     "M": 6,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 1,
+     "A": 2,
+     "Ld": 10,
+     "points": 290
+    }
+   ],
+   "troopType": "Infantry (Special Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "Astragoth Ironhand is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Blackshard Armour, Contempt, Resolute, Sorcerer's Curse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 290
+  },
+  {
+   "name": "DRAZHOATH THE ASHEN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Drazhoath the Ashen",
+     "M": 3,
+     "WS": 5,
+     "BS": 4,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 9,
+     "points": 560
+    },
+    {
+     "name": "Cinderbreath (Bale Taurus)",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 5,
+     "I": 3,
+     "A": 4,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Special Character, Chaos Dwarf)",
+   "baseSize": "50x100",
+   "equipment": "Heavy armour",
+   "magic": "Drazhoath the Ashen is a Level 4 Wizard who uses spells from the Lore of Hashut.",
+   "options": null,
+   "specialRules": "Blackshard Armour, Blazing Body, Contempt, Flaming Attacks, Flaming Breath (see Bale",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Cinderbreath (Bovine, Chaos Beast)",
+   "drawnBy": null,
+   "pointsCost": 560
+  },
+  {
+   "name": "ZHATAN THE BLACK",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Zhatan the Black",
+     "M": 3,
+     "WS": 8,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 275
+    }
+   ],
+   "troopType": "Infantry (Special Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Blackshard Armour, Contempt, Infernal Cohort (see Overlord), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 275
+  },
+  {
+   "name": "RYKARTH THE UNBREAKABLE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Rykarth",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 10,
+     "points": 125
+    }
+   ],
+   "troopType": "Infantry (Special Character, Chaos Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blackshard Armour, Contempt, Hold Your Ground (6), Relentless",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "SHAR'TOR THE EXECUTIONER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Shar'tor the Executioner",
+     "M": 7,
+     "WS": 6,
+     "BS": 2,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 3,
+     "A": 5,
+     "Ld": 9,
+     "points": 265
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Special Character, Chaos Dwarf, Bull Centaur)",
+   "baseSize": "50x75",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Contempt, Impact Hits (D3), Natural Armour (4+)",
+   "upgrades": null,
+   "notes": "Shar'tor the Executioner may not be your Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 265
+  },
+  {
+   "name": "GORDUZ BACKSTABBER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Gorduz Backstabber",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 7,
+     "points": 90
+    }
+   ],
+   "troopType": "Infantry (Special Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Giant Wolf +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers",
+   "upgrades": null,
+   "notes": "Gorduz Backstabber may not be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  }
+ ]
+}

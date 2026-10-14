@@ -1,0 +1,3855 @@
+{
+ "factionName": "Nippon",
+ "units": [
+  {
+   "name": "Daimyo",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Daimyo",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 95
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "katana",
+     "choices": [
+      {
+       "name": "Two hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Buckler",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Light lance",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Polearm",
+       "points": 5,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false,
+       "replaces": "katana"
+      }
+     ],
+     "raw": "May replace katana with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Horo cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Horo cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Mizuchi",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Daimyo",
+     "raw": "A Daimyo may take one Clan Mon and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "raw": "A Daimyo may take one Clan Mon and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  },
+  {
+   "name": "Taisho",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Taisho",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 55
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "katana",
+     "choices": [
+      {
+       "name": "Two hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Buckler",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Light lance",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Polearm",
+       "points": 5,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false,
+       "replaces": "katana"
+      }
+     ],
+     "raw": "May replace katana with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Horo cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Horo cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Taisho",
+     "raw": "A Taisho may take one Clan Mon and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "raw": "A Taisho may take one Clan Mon and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "Master Onmyoji",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Master Onmyoji",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Onmyoji is a Level 1 Wizard. A Master Onmyoji is a Level 3 Wizard. They use one of the following",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Master Onmyoji",
+     "raw": "A Master Onmyoji may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Onmyoji",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Onmyoji",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Onmyoji is a Level 1 Wizard. A Master Onmyoji is a Level 3 Wizard. They use one of the following",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Onmyoji",
+     "raw": "A Onmyoji may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "HATAMOTO",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hatamoto",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 40
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Hatamoto may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "katana",
+     "choices": [
+      {
+       "name": "Two hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Light lance",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Polearm",
+       "points": 5,
+       "perModel": false,
+       "replaces": "katana"
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false,
+       "replaces": "katana"
+      }
+     ],
+     "raw": "May replace katana with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Pistol",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Horo cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Horo cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Hatamoto may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": "Battle Standard: The Battle Standard Bearer can have a magic banner with no points limit. However, a model carrying a magic standard can only carry other magic items up to a total of 25 points.",
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "KENSAI",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Kensai",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 8,
+     "points": 120
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "katana",
+     "choices": [
+      {
+       "name": "two hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katana"
+      }
+     ],
+     "raw": "May replace katana with two hand weapons free",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Killing Blow, Parry (5+), Way of the Warrior",
+   "upgrades": null,
+   "notes": "A Kensai may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "YAMABUSHI",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Yamabushi",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Longbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Magical Attacks, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "SHINOBI",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Shinobi",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 95
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Caltrops",
+     "points": 5,
+     "perModel": false,
+     "raw": "Caltrops +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Grappling hook",
+     "points": 5,
+     "perModel": false,
+     "raw": "Grappling hook +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Smoke bombs",
+     "points": 5,
+     "perModel": false,
+     "raw": "Smoke bombs +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Blowpipe",
+     "points": 5,
+     "perModel": false,
+     "raw": "Blowpipe +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Night Milk",
+       "choices": [
+        {
+         "name": "Night Milk",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Night Milk +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Snake Venom",
+       "choices": [
+        {
+         "name": "Snake Venom",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Snake Venom +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spider Venom",
+       "choices": [
+        {
+         "name": "Spider Venom",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Spider Venom +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Fauntei Shi",
+       "choices": [
+        {
+         "name": "Fauntei Shi",
+         "points": 30,
+         "perModel": false
+        }
+       ],
+       "raw": "Fauntei Shi +30 points"
+      }
+     ]
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "raw": "May take one Clan Mon and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Dodge (5+), Hidden, Independent, Poisoned Attacks, Scouts",
+   "upgrades": "Fauntei Shi: A model wounded (after saves) by Fauntei Shi must pass a Toughness test or lose all remaining wounds.\nNight Milk: Any To Hit roll of 6 made by a model with their weapon coated in Night Milk automatically Wounds.\nSnake Venom: A model that takes a wound (after saves) from snake venom will lose one Attack and gains the Always Strikes Last special rule for the remainder of the game.\nSpider Venom: Single unit models and characters wounded (after saves) by spider venom must pass a Toughness at the start of their turns for the rest of the game, or lose 1 Wound with no saves allowed.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "KOMAINU",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Komainu",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Chimeric)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "KIRIN",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Kirin",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Chimeric)",
+   "baseSize": "25x50, 30x60, 40x40, 40x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fear, Fly (9), Impale, Magical Attacks, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "SAMURAI WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Samurai",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "katanas",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katanas"
+      },
+      {
+       "name": "Polearms",
+       "points": 1,
+       "perModel": true,
+       "replaces": "katanas"
+      },
+      {
+       "name": "Great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "katanas"
+      }
+     ],
+     "raw": "May replace katanas with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Samurai to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "SAMURAI ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Samurai",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 13
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, longbow, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "longbows",
+     "choices": [
+      {
+       "name": "handguns",
+       "points": 1,
+       "perModel": true,
+       "replaces": "longbows"
+      }
+     ],
+     "raw": "May replace longbows with handguns +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Heavy armour",
+       "points": 1.5,
+       "perModel": true
+      },
+      {
+       "name": "Mantlets",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Samurai to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "SAMURAI CAVALRY",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Samurai",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Katana, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Longbows",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Horo cloaks",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take Horo cloaks +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Samurai to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Fast Cavalry, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "ASHIGARU SPEARMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Ashigaru",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 3.5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Spear, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "spears",
+     "choices": [
+      {
+       "name": "Pikes",
+       "points": 1.5,
+       "perModel": true,
+       "replaces": "spears"
+      },
+      {
+       "name": "Polearms",
+       "points": 1.5,
+       "perModel": true,
+       "replaces": "spears"
+      }
+     ],
+     "raw": "May replace spears with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ashigaru to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ashigaru to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ashigaru to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3.5
+  },
+  {
+   "name": "ASHIGARU ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Ashigaru",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, longbow, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "longbows",
+     "choices": [
+      {
+       "name": "handguns",
+       "points": 1,
+       "perModel": true,
+       "replaces": "longbows"
+      }
+     ],
+     "raw": "May replace longbows with handguns +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Mantlets",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ashigaru to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ashigaru to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ashigaru to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "ASHIGARU SLINGERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Ashigaru",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, sling, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ashigaru to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ashigaru to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "PEASANT LEVY",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Peasant",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 2
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take spears +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Peasant to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "WARRIOR MONKS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Warrior Monk",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "polearms",
+     "choices": [
+      {
+       "name": "Longbows",
+       "points": 4,
+       "perModel": true,
+       "replaces": "polearms"
+      },
+      {
+       "name": "Handguns",
+       "points": 5,
+       "perModel": true,
+       "replaces": "polearms"
+      }
+     ],
+     "raw": "May replace polearms with katanas and one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior Monk to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior Monk to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior Monk to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Magical Attacks, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "WARRIOR MONK CAVALRY",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Warrior Monk",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 17
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Polearm, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "polearms",
+     "choices": [
+      {
+       "name": "Longbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "polearms"
+      },
+      {
+       "name": "Handguns",
+       "points": 2,
+       "perModel": true,
+       "replaces": "polearms"
+      }
+     ],
+     "raw": "May replace polearms with katanas and one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior Monk to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior Monk to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior Monk to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Immunity (Psychology), Magical Attacks, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "SUMO WARRIORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sumo Warrior",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Great weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior Monk to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior Monk to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior Monk to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "ONNA BUSHI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Onna Bushi",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "polearms",
+     "choices": [
+      {
+       "name": "katanas & longbows",
+       "points": 4,
+       "perModel": true,
+       "replaces": "polearms"
+      }
+     ],
+     "raw": "May replace polearms with katanas & longbows +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "mantlets",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take mantlets +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Onna Bushi to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Onna Bushi to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Onna Bushi to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Stubborn, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "RONIN",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ronin",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "katanas",
+     "choices": [
+      {
+       "name": "dditional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "katanas"
+      }
+     ],
+     "raw": "May replace katanas with additional hand weapons free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "longbows",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take longbows +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ronin to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent, Stubborn, Skirmishers, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "YABUSAME",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Yabusame",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 17
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Katana, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Yabusame to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Yabusame to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Yabusame to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Fast Cavalry, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "KOMAINU RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Samurai",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 34
+    },
+    {
+     "name": "Komainu",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Katana, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Polearms",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Longbows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Horo cloaks",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take Horo cloaks +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Samurai to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Samurai to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Fear, Magic Resistance (1), Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Komainu (Chimeric)",
+   "drawnBy": null,
+   "pointsCost": 34
+  },
+  {
+   "name": "FIRE ROCKETS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Samurai",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, fire rocket, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 points/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Skirmishers, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "OZUTSU ASHIGARU",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ashigaru",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana, ozutsu, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "mantlets",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take mantlets +1.5 point/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "WAKO PIRATES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Wako Pirate",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Longbows",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Handguns",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Wako Pirate to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Wako Pirate to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Wako Pirate to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ambushers, Independent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "KABUKI DOLLS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Kabuki Doll",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 7,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, war fan",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Kabuki Doll to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent, Poisoned Attacks, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "NINJA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ninja",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Grappling hooks",
+     "points": 1,
+     "perModel": true,
+     "raw": "Grappling hooks +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Blowpipe",
+     "points": 2,
+     "perModel": true,
+     "raw": "Blowpipe +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Caltrops",
+     "points": 2,
+     "perModel": true,
+     "raw": "Caltrops +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 2,
+     "perModel": true,
+     "raw": "Poisoned Attacks +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Smoke bombs",
+     "points": 2,
+     "perModel": true,
+     "raw": "Smoke bombs +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ninja to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Dodge (6+), Loner, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "TENGU",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Tengu",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Beastman)",
+   "baseSize": "25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "polearms",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take polearms +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (10), Loner",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "ONI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Oni",
+     "M": 6,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 7,
+     "points": 52
+    }
+   ],
+   "troopType": "Monstrous Infantry (Daemon)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Oni to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Daemonic",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 52
+  },
+  {
+   "name": "GREAT GUARD",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Great Guard",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 40
+    },
+    {
+     "name": "Kirin",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50, 30x60, 40x40, 40x60",
+   "equipment": "Katana, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Polearms",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Horo cloaks",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take Horo cloaks +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 1,
+     "perModel": true,
+     "raw": "May take a Clan Mon +1 point/model"
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Great Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Great Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Great Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Devastating Charge, Fear, Fly (9), Impale, Magical",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": "Kirin (Chimeric)",
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "MIKOSHI SHRINE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Mikoshi Shrine",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 6,
+     "I": 4,
+     "A": 4,
+     "Ld": 8,
+     "points": 120
+    }
+   ],
+   "troopType": "Shrine (Human)",
+   "baseSize": "40x60 or 50x75 or 50x100 or 60x100",
+   "equipment": "Polearm, light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Magical Ward (4+), Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "TAIKO DRUM",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Taiko Drum",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 5,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 50
+    },
+    {
+     "name": "Drummer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "40x40 or 50x50 (Taiko Drum) 20x20 or 25x25 (Drummer)",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Drummer",
+     "points": 7,
+     "perModel": false,
+     "raw": "May take an additional Drummer +7 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "• Vigour Rhythms: At the start of any of your Movement phases, you may choose to have your Taiko Drum give out one of the following abilities to all friendly units within 18\" which lasts until the start of your next Movement phase:\n  - Bravery and Courage: The units gain the Cold-blooded special rule.\n  - Strategy and Discipline: The units gain the Disciplined special rule.\n  - Charge! The units may re-roll one of the dice that determines their charge distance.",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Drummer (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "MANGONEL",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Mangonel",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 90
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Mangonel), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, stone thrower, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 15,
+     "perModel": false,
+     "raw": "May take a Clan Mon +15 points"
+    }
+   ],
+   "specialRules": "Flaming Ammunition",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "CANNON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine (Cannon)",
+   "baseSize": "50x75 (Cannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, cannon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 15,
+     "perModel": false,
+     "raw": "May take a Clan Mon +15 points"
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "FLAMING ARROW",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Flaming Arrow",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 65
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Flaming Arrow), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, flaming arrow, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "clan_mon",
+     "pointsLimit": null,
+     "points": 15,
+     "perModel": false,
+     "raw": "May take a Clan Mon +15 points"
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "KITSUNE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Kitsune",
+     "M": 9,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 2,
+     "Ld": 9,
+     "points": 80
+    }
+   ],
+   "troopType": "War Beast (Spirit)",
+   "baseSize": "25x25 or 25x50 or 40x40",
+   "equipment": null,
+   "magic": "A Kitsune is Level 1 Wizard that uses spells from the Lore of Shadow.",
+   "options": null,
+   "specialRules": "Forest Strider, Magical Attacks, Magical Ward (5+), Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "MIZUCHI",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Mizuchi",
+     "M": 6,
+     "WS": 6,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 8,
+     "points": 300
+    }
+   ],
+   "troopType": "Monster (Draconid)",
+   "baseSize": "50x75 or 50x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Aquatic, Fly (7), Natural Armour (3+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "TOKUDAIRA IEYASU",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Tokudaira Ieyasu",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 5,
+     "Ld": 10,
+     "points": 280
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Mizuchi",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 280
+  },
+  {
+   "name": "ODARI NOBUHIDE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Odari Nobuhide",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 200
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Mizuchi",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "TAKAI KATSUYORI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Takai Katsuyori",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 225
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Katana",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Mizuchi",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Mon of the Takai Clan, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 225
+  },
+  {
+   "name": "DAWATE TADAMUNE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Dawate Tadamune",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 180
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Mizuchi",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Mon of the Dawate Clan, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "UESIGO NORIMASA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Uesigo Norimasa",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 170
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Komainu",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Kirin",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Mizuchi",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Immunity (Psychology), Magic Resistance (2), Stubborn, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 170
+  },
+  {
+   "name": "SANADA NAOMASA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sanada Naomasa",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 185
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Death Before Dishonour, Frenzy, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "HITOMI GOZEN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Hitomi Gozen",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 90
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +12 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Death Before Dishonour, Stalwart Defence, Stubborn, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "EMPRESS HIMIKO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Empress Himiko",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 3,
+     "A": 1,
+     "Ld": 9,
+     "points": 370
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Empress Himiko is a Level 4 Wizard who can use spells from the Lore of Heavens or Light.",
+   "options": null,
+   "specialRules": "Death Before Dishonour, Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 370
+  },
+  {
+   "name": "AKASHI SHO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Akashi Sho",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 200
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Death Before Dishonour, Sworn Bodyguard (see Hatamoto), Way of the Warrior",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "MINAMOTO KENSHIN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Minamoto Kenshin",
+     "M": 4,
+     "WS": 8,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 8,
+     "points": 210
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Iaijutsu, Killing Blow, Parry (5+), Way of the Warrior",
+   "upgrades": null,
+   "notes": "Minamoto Kenshin may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "SARUTORI HANZO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sarutori Hanzo",
+     "M": 5,
+     "WS": 8,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 8,
+     "A": 3,
+     "Ld": 9,
+     "points": 200
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (4+), Fauntei Shi (see Shinobi), Hidden, Independent, Poisoned Attacks, Scouts, Mon",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "O-SAYUMI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "O-Sayumi",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, war fan",
+   "magic": null,
+   "options": null,
+   "specialRules": "Poisoned Attacks, Kabuki Dance (see Kabuki Dolls)",
+   "upgrades": null,
+   "notes": "O-Sayumi may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  }
+ ]
+}

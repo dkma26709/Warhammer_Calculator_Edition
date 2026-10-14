@@ -1,0 +1,748 @@
+{
+ "factionName": "Dark Elves",
+ "armySpecialRules": [
+  {
+   "name": "ELVEN GRACE",
+   "description": "Models with this special rule have the Dodge (6+) special rule in close combat. However, this cannot be used against enemies that attack before the model with Elven Grace."
+  },
+  {
+   "name": "ETERNAL HATRED",
+   "description": "Models with this special rule have the Hatred special rule in addition to Hatred (High Elves)."
+  },
+  {
+   "name": "HEKARTI'S BLESSING",
+   "description": "A Wizard with this special rule gains a +1 casting bonus."
+  },
+  {
+   "name": "MURDEROUS PROWESS",
+   "description": "Models with this special rule may re-roll all To Wound rolls of 1 when making close combat attacks."
+  },
+  {
+   "name": "KHAINITE",
+   "description": "Models who are Khainites (except models deploying using the Hidden special rule) may only join units which are also Khainites, and models who are not Khainites may not join Khainite units."
+  },
+  {
+   "name": "SEA DRAGON CLOAK",
+   "description": "A Sea Dragon Cloak gives the wearer the Natural Armour (5+) special rule against missile attacks."
+  },
+  {
+   "name": "DEATHRAIN CROSSBOW",
+   "description": "Deathrain crossbows have the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n16/24\" | 2 | Multiple Shots (3), Rapid Fire"
+  },
+  {
+   "name": "REPEATER HANDBOW",
+   "description": "Repeater handbows have the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n8/12\" | 2 | Multiple Shots (3), Quick Shot, Rapid Fire"
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "DOOMSINGER",
+   "points": "65",
+   "category": "magic_weapon",
+   "description": "At the beginning of each round of close combat, roll a D3; the result is the number you may increase the wielder's Weapon Skill, Strength and Attacks by.",
+   "restriction": null
+  },
+  {
+   "name": "CHILLBLADE",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "Attacks made with the Chillblade wound automatically and have the Ice Attacks special rule. For each unsaved Wound suffered from the Chillblade, the target suffers -1 to its Attacks characteristic until the end of this Close Combat phase.",
+   "restriction": null
+  },
+  {
+   "name": "VENOMFANG BLADE",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "Any model that suffers an unsaved Wound from this weapon must pass a Toughness test on a 2D6 or automatically lose all remaining wounds.",
+   "restriction": "Khainite Assassin"
+  },
+  {
+   "name": "EXECUTIONER'S AXE",
+   "points": "45",
+   "category": "magic_weapon",
+   "description": "In close combat, the wielder of the Executioner's Axe counts as having a Strength value equal to double that of their target's Toughness. In addition, any attacks made with the Executioner's Axe have the Multiple Wounds (D3) special rule. Furthermore, the wielder gains the Khainite special rule.",
+   "restriction": "Infantry"
+  },
+  {
+   "name": "BLOOD BLADES",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "These weapon gives the wielder +1 Strength and the Multiple Wounds (D3) special rule.",
+   "restriction": "Hag Queen or Death Hag"
+  },
+  {
+   "name": "SHADE CLAW",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains the Ignores Armour saves special rule. In addition, no Parry saves may be taken against it.",
+   "restriction": null
+  },
+  {
+   "name": "DRAICH OF DARK POWER",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The wielder of the Draich of Dark Power ignores the normal Initiative penalties from great weapons as well as gaining the Khainite and Killing Blow special rules.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "LIFETAKER",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Lifetaker fires using the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n30\" | 4 | Armour Piercing (1), Multiple Shots (3)\nLifetaker ignores all To Hit modifiers.",
+   "restriction": null
+  },
+  {
+   "name": "WEB OF SHADOWS",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The model can choose to use the Web of Shadows in addition to their normal attacks. When used, one model in base contact with the character automatically takes 2D6 Strength 3 hits.",
+   "restriction": null
+  },
+  {
+   "name": "BLADE OF SPITE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Any To Hit roll of 5+ with the Blade of Spite automatically Wounds. Armour saves apply as normal. This has no effect on models with Immunity (Poisoned Attacks).",
+   "restriction": null
+  },
+  {
+   "name": "CRONE BLADE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Roll a D6 each time the wielder of this weapon (excluding mounts) causes an unsaved Wound in close combat. On the roll of a 4+, they regain 1 Wound suffered earlier during the game.",
+   "restriction": "Hag Queen or Death Hag"
+  },
+  {
+   "name": "DEATHPIERCER",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Attacks made with Deathpiercer have the Killing Blow special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SHADESLIVER",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "After every round of close combat in which the bearer of this item inflicts one or more Unsaved Wounds, this weapon gains +1 Strength for the remainder of the battle. This effect is cumulative.",
+   "restriction": null
+  },
+  {
+   "name": "THE MIRROR GLAIVE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Each time an enemy spell cast at the bearer of this weapon or the unit they are with is dispelled, you may attempt to cast the same spell back as if it was a Bound Spell, using your Dispel dice as if they were Power dice. The enemy may then attempt to dispel it using their Power dice.",
+   "restriction": null
+  },
+  {
+   "name": "SHADRACAR'S FANG",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains +1 To Hit and the Killing Blow special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SOULRENDER",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Attacks made with Soulrender have the Armour Piercing (1) special rule. In addition, the wielder gains the Khainite special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SWORD OF RUIN",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Attacks made with the Sword of Ruin have the Ignores Armour Saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "CALEDOR'S BANE",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "Caledor's Bane gives the wielder the Devastating Charge special rule, and attacks made with it ignore Natural Armour.",
+   "restriction": null
+  },
+  {
+   "name": "HEARTSEEKER",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "The model wielding Heartseeker may re-roll all failed rolls To Hit and To Wound in close combat.",
+   "restriction": null
+  },
+  {
+   "name": "HYDRA BLADE",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "The wielder of the Hydra Blade has the Random Attacks (D6) special rule in addition to their normal attacks.",
+   "restriction": null
+  },
+  {
+   "name": "DAGGER OF HOTEK",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The Dagger of Hotek gives the wielder the Always Strikes First special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF ETERNAL SERVITUDE",
+   "points": "50",
+   "category": "magic_armour",
+   "description": "The wearer of the Armour of Eternal Servitude gains the Regeneration (4+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF LIVING DEATH",
+   "points": "40",
+   "category": "magic_armour",
+   "description": "The wearer gains +1 Toughness and +1 Wound. However, they also become subject to Stupidity.",
+   "restriction": null
+  },
+  {
+   "name": "BLOOD ARMOUR",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "For every unsaved wound the wearer of the Blood Armour inflicts in close combat, their armour save is improved by one point to a maximum total of 2+ for the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF DARKNESS",
+   "points": "35",
+   "category": "magic_armour",
+   "description": "The Armour of Darkness gives the wearer a 3+ armour save and the Immunity (Armour Piercing) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "CLOAK OF HAG GRAEF",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "Any missile attack on a model wearing the Cloak of Hag Graef has its Strength halved (rounding up) before rolling To Wound.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF GHROND",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "The Shield of Ghrond causes all Hits on the model to be resolved with -1 Strength.",
+   "restriction": null
+  },
+  {
+   "name": "THE BLACK AMULET",
+   "points": "55",
+   "category": "talisman",
+   "description": "The wearer of the Black Amulet has the Magical Ward (4+) special rule. In addition, each time the bearer of the Black Amulet makes a successful Magical Ward save in close combat, the Black Amulet inflicts one Wound which Ignores Armour saves on the opponent that struck the blow.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF HOTEK",
+   "points": "50",
+   "category": "talisman",
+   "description": "The bearer and any unit they join have the Magic Resistance (3) special rule. Any enemy Wizard that attempts to cast or target a spell on a unit within 12\" of the bearer will suffer a miscast on a roll of double 6, as well as double 1.",
+   "restriction": null
+  },
+  {
+   "name": "PENDANT OF KHAELETH",
+   "points": "45",
+   "category": "talisman",
+   "description": "Roll a D6 for every wound suffered by the wearer; on a roll lower than the Strength of the Attack, the Wound is ignored. Rolls of 6 always fail.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "CROWN OF BLACK IRON",
+   "points": "40",
+   "category": "talisman",
+   "description": "The Crown of Black Iron gives the bearer +1 Leadership as well as the Magical Ward (5+) and Magic Resistance (1) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF DARKNESS",
+   "points": "40",
+   "category": "talisman",
+   "description": "The Ring of Darkness causes all close combat attacks directed against the bearer to be resolved at half their normal Weapon Skill (rounding up). Any missile attacks directed at the model or their unit resolved at half their normal Ballistic Skill (rounding up).",
+   "restriction": null
+  },
+  {
+   "name": "HEART-STONE OF DARKNESS",
+   "points": "30",
+   "category": "talisman",
+   "description": "The Heart-stone of Darkness gives the bearer the Magical Ward (4+) special rule against close combat attacks.",
+   "restriction": null
+  },
+  {
+   "name": "CLOAK OF TWILIGHT",
+   "points": "30",
+   "category": "talisman",
+   "description": "Enemy units cannot charge or target the bearer with missile attacks or spells if they are more than 12\" away from them. Within 12\", they can only be charged or targeted by first rolling a 4+ on a D6. If the test is failed, the unit may choose a new target as normal.",
+   "restriction": "Infantry or Cavalry"
+  },
+  {
+   "name": "SHADOWSHROUD RING",
+   "points": "30",
+   "category": "talisman",
+   "description": "This ring may be used at the start of any of your turns. Until the start of your next turn, no enemy units can declare a charge or target the unit with spells or missile attacks unless they are within 6\" of the bearer of this item.",
+   "restriction": null
+  },
+  {
+   "name": "SEAL OF GHROND",
+   "points": "25",
+   "category": "talisman",
+   "description": "The Seal of Ghrond adds +1 Dispel dice to your dispel pool at the start of every enemy Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "AMBER AMULET",
+   "points": "20",
+   "category": "talisman",
+   "description": "The wearer of the Amber Amulet gains the Regeneration (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "INCORPOREAL RETAINER",
+   "points": "20",
+   "category": "talisman",
+   "description": "All enemy models attacking the bearer of this item must re-roll successful rolls To Hit.",
+   "restriction": "Wizard"
+  },
+  {
+   "name": "CHARM OF HOTEK",
+   "points": "10",
+   "category": "talisman",
+   "description": "The model wearing the Charm of Hotek gains a 6+ Armour Save and the Immunity (Flaming Attacks) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "NULL TALISMAN",
+   "points": "10",
+   "category": "talisman",
+   "description": "Any dispel attempt made against enemy spells targeting the model carrying this item, or any unit they are with, gains a +3 dispel bonus.",
+   "restriction": null
+  },
+  {
+   "name": "BLACK STAFF",
+   "points": "55",
+   "category": "arcane_item",
+   "description": "Whenever the bearer casts a spell, they may add an additional free power dice to the result after rolling the dice. However, if this extra dice rolls a 1, the Wizard suffers 1 Wound which Ignores Armour Saves.",
+   "restriction": null
+  },
+  {
+   "name": "SHADOW STONE",
+   "points": "55",
+   "category": "arcane_item",
+   "description": "When casting spells from the Lore of Shadow, the Wizard gains a +1 casting bonus and may re-roll a single roll of a natural 1 per casting attempt.",
+   "restriction": null
+  },
+  {
+   "name": "DARKSTAR CLOAK",
+   "points": "50",
+   "category": "arcane_item",
+   "description": "The Darkstar Cloak gives the Wizard +D3 Power dice in each of your Magic phases. Only they may use these extra dice.",
+   "restriction": null
+  },
+  {
+   "name": "THE SACRIFICIAL DAGGER",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "Once per casting attempt, after the casting dice are rolled but before a dispel attempt is made, the bearer of this magic item can sacrifice one model in her unit. Choose which model is sacrificed – it is immediately removed as a casualty with no saves of any kind allowed – then roll a D6. On a 2+, the Sorceress gains an extra power dice that must be rolled and added to the casting result; dispel attempts can now be made and the spell resolved. This can be used to allow the Wizard to use more dice than is normally allowed by their Wizard level. On a roll of a 1, the sacrifice has not generated enough power – you can either immediately sacrifice another model from the unit and roll again, following the procedure above, or accept the original casting result (if the bearer is the only model remaining in the unit, no further sacrifices can be attempted).",
+   "restriction": null
+  },
+  {
+   "name": "SOULSTONE",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The Soulstone makes the Sorceress immune to the effects of her first Miscast.",
+   "restriction": null
+  },
+  {
+   "name": "FOCUS FAMILIAR",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The Focus Familiar allows the wielder to cast spells from a different position on the battlefield. Place a marker no more than 1\" in diameter at the start of each Dark Elf Magic phase within 6\" of the Wizard and at least 1\" away from units or impassable terrain. They may use this position when determining range and line of sight (at 360°) for their spells for remainder of each Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "THE GEM OF SPITE",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "Whenever the bearer suffers a miscast, the Gem of Spite inflicts a single Strength 6 hit on every enemy Wizard within 18\".",
+   "restriction": null
+  },
+  {
+   "name": "ORB OF GHROND",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "The model carrying the Orb of Ghrond may consult it at the start of each of your turns as long as they are not in close combat. If they do so, they become subject to the Stupidity special rule for the remainder of the turn. However, the model may also re- roll one power or dispel dice when casting or dispelling until the start of your next turn.",
+   "restriction": null
+  },
+  {
+   "name": "TOME OF FURION",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "The bearer of the Tome of Furion gains the Loremaster (Lore of Dark Magic) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "WAND OF THE KHARAIDON",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "When casting the Doombolt spell from the Lore of Dark Magic, you may re-roll the number of Hits caused.",
+   "restriction": null
+  },
+  {
+   "name": "ANKLET OF EPIPHANY",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains +6\" to the range of their spells (except auras) if they are within 6\" of a terrain feature.",
+   "restriction": null
+  },
+  {
+   "name": "CRYSTAL HEART",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The bearer of this item may choose to attempt to cast one spell twice per Magic phase. However, every time they choose to do so, roll a D6 first. On the roll of a 1, the model suffers a Wound which Ignores Armour saves.",
+   "restriction": null
+  },
+  {
+   "name": "RUBRIC OF DARK DIMENSIONS",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The Rubric of Dark Dimensions contains a direct damage spell which targets all enemy models in base contact with the caster. The target models must pass a Strength test for each Wound on their profile or suffer a Wound which Ignores Armour Saves.",
+   "restriction": null
+  },
+  {
+   "name": "ASPHYXICA CENSER",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "At the start of each round of close combat, all enemy models in base contact with the bearer must take a Toughness test or suffer a Wound with no saves allowed.",
+   "restriction": "Disciple of Khaine"
+  },
+  {
+   "name": "CROWN OF WOE",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "Enemy units cannot use the Inspiring Presence special rule while they are within 6\" of the bearer of this item. After the bearer has slain one or more models in close combat, the range is increased to 12\" for the remainder of the game.",
+   "restriction": "Hag Queen or Death Hag"
+  },
+  {
+   "name": "DECANTER OF EGOS",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "All friendly units within 6\" of the bearer gain +1 to their Movement characteristic.",
+   "restriction": "Wizard"
+  },
+  {
+   "name": "PEARL OF INFINITE BLEAKNESS",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The model bearing the Pearl of Infinite Bleakness and any unit they are with gain the Immunity (Psychology) special rule. In addition, any enemy unit in base contact with the bearer suffers -1 to their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "BLACK DRAGON EGG",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer may consume this item at the start of any player turn. For the rest of that turn, the consumer has Strength and Toughness 6, and the Noxious Breath (see Black Dragons) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "DEATHMASK",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The wearer of the Deathmask causes Terror.",
+   "restriction": null
+  },
+  {
+   "name": "THE HYDRA'S TEETH",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The Hydra's Teeth can be used at the start of any close combat phase. Once used, they inflict 5D6 Weapon Skill 2, Strength 3 Attacks on one enemy unit in base contact.",
+   "restriction": null
+  },
+  {
+   "name": "THE GUIDING EYE",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer of the Guiding Eye and any unit they are with may re-roll 1's To Hit with missile weapons.",
+   "restriction": null
+  },
+  {
+   "name": "CRYSTAL OF MIDNIGHT",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "Nominate one enemy Wizard within 12\" at the start of any of their Magic phases. The Wizard must pass a Leadership test or lose one randomly determined spell for the rest of the battle.",
+   "restriction": null
+  },
+  {
+   "name": "THE CLOAK OF DARK SOULS",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The wearer of the Cloak of Dark Souls gains the Hidden and Scouts special rules.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "GEM OF NIGHTMARES",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The Gem of Nightmares can be used at the start of any turn. Until the end of that turn, the model and any unit it is with has the Terror special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SEVENFOLD SHADOW",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "Instead of moving normally in the Remaining Moves sub-phase, the model may be moved to anywhere on the battlefield, as long as they do not end their move within 6\" of any enemy unit or 1\" of impassable terrain.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "SEA SERPENT STANDARD",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The unit carrying this standard gains the Frenzy special rule.",
+   "restriction": "Corsairs"
+  },
+  {
+   "name": "SACRIFICIAL BANNER",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "All enemy Monstrous Creatures or Monsters with Line of Sight to the unit carrying this standard gain the Berserk Rage portion of the Frenzy special rule against it. In addition, they suffer a -3 Leadership modifier for any Berserk Rage tests against the unit bearing this standard.",
+   "restriction": null
+  },
+  {
+   "name": "DREAD BANNER",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The unit carrying this standard gains the Fear special rule.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF SLAUGHTER",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The unit carrying this standard gains +D3 to their combat resolution bonus on any turn the unit charges.",
+   "restriction": null
+  },
+  {
+   "name": "SOUL SHADOWS STANDARD",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "If the unit carrying this standard chooses Flee as a charge reaction it automatically rallies at the end of their Flee move (as long as the charging unit does not reach it).",
+   "restriction": null
+  },
+  {
+   "name": "TRAITOR'S BANNER",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "Enemy units attempting to target the unit carrying this standard with missile attacks or spells must pass a Leadership test. If failed, they must choose another target. If no other target is available, they cannot choose to cast that spell this turn.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF NAGARYTHE",
+   "points": "75",
+   "category": "magic_standard",
+   "description": "All friendly units of Dark Elves within 12\" of this standard gain the Eternal Hatred special rule.",
+   "restriction": null
+  },
+  {
+   "name": "HYDRA BANNER",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "All models in the unit carrying this standard gain +1 Attack in the first round of any close combat.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF HAG GRAEF",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Always Strikes First special rule.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF HAR GANETH",
+   "points": "40",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard causes Terror.",
+   "restriction": "Executioners"
+  },
+  {
+   "name": "BANNER OF COLD BLOOD",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Cold-Blooded special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF MURDER",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard adds an additional D6\" to their charge range.",
+   "restriction": null
+  },
+  {
+   "name": "THE BLOOD BANNER",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner are not subject to Stupidity caused by Cold Ones.",
+   "restriction": "Cold One Knights"
+  }
+ ],
+ "loresOfMagic": [
+  {
+   "name": "THE LORE OF DARK MAGIC",
+   "attribute": "When a Wizard successfully casts a hex, magic missile or direct damage spell from this lore, and the casting roll contains any double, the spell's target unit suffers 2D6 Strength 2 hits after the spell has been resolved. If the casting roll contains any treble, the spell's target unit instead suffers 3D6 hits instead.",
+   "spells": [
+    {
+     "name": "DOOMBOLT OF KHARAIDON",
+     "level": 0,
+     "castValue": 6,
+     "description": "Doombolt of Kharaidon is a magic missile with a range of 18\" that causes D6 Strength 5 hits.",
+     "type": null
+    },
+    {
+     "name": "DEATH SPASM",
+     "level": 1,
+     "castValue": 5,
+     "description": "Death Spasm is a direct damage spell with a range of 18\" that targets a single enemy model (even a character in a unit). The target must take D3 Toughness tests. Each failed Toughness test causes a Wound which Ignores Armour Saves. In addition, all models in base contact with the target suffer a Hit at the target's base Strength.",
+     "type": null
+    },
+    {
+     "name": "NAGAELYTHE THE CHILLWIND",
+     "level": 1,
+     "castValue": 5,
+     "description": "Nagaelythe the Chillwind is a magic missile with a range of 24\" that causes 2D6 Strength 2 hits. If the target suffers any unsaved Wounds, all models in the unit suffer a -1 penalty to their Ballistic Skill characteristic until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SHADOW DAGGERS",
+     "level": 1,
+     "castValue": 5,
+     "description": "Shadow Daggers is a magic missile with a range of 12\" that causes D6 Strength 3 Hits with the Armour Piercing (1) special rule on all enemy units in the caster's front arc.",
+     "type": null
+    },
+    {
+     "name": "SAP STRENGTH",
+     "level": 2,
+     "castValue": 6,
+     "description": "Sap Strength is a hex spell with a range of 24\". All models in the target unit suffer -1 to their Strength (to a minimum of 1) until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "BLADEWIND",
+     "level": 2,
+     "castValue": 7,
+     "description": "Bladewind is a direct damage area spell with a range of 18\" that uses the large round template. All models hit by the template must pass a Weapon Skill test or suffer a Strength 4 hit.",
+     "type": null
+    },
+    {
+     "name": "POWER OF DARKNESS",
+     "level": 2,
+     "castValue": 8,
+     "description": "Power of Darkness is an augment spell with a range of 18\". All models in the target unit gain +1 Strength until the start of the caster's next Magic phase. In addition, add D3 power dice to your power pool. If a natural 6 is rolled when generating these power dice, the caster suffers a Wound which Ignores Armour saves.",
+     "type": null
+    },
+    {
+     "name": "TENEBRAEL BLADES",
+     "level": 3,
+     "castValue": 8,
+     "description": "Tenebrael Blades is an augment spell with a range of 18\". The target gains the Armour Piercing (2) and Magical Attacks special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "CHROESH – WORD OF PAIN",
+     "level": 3,
+     "castValue": 9,
+     "description": "Chroesh – Word of Pain is a hex spell with a range of 24\". The target unit gains the Always Strikes Last special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SHROUD OF DESPAIR",
+     "level": 3,
+     "castValue": 10,
+     "description": "Remains in play. Shroud of Despair is a hex aura with a range of 12\". While the spell is in effect, the affected units cannot benefit from the Hold Your Ground or Inspiring Presence special rules. In addition, whenever an affected unit fails a Break, Panic or Terror test, all target units suffer -1 to their Leadership (this effect is cumulative).",
+     "type": null
+    },
+    {
+     "name": "OBLIVION",
+     "level": 4,
+     "castValue": 12,
+     "description": "Oblivion is a direct damage aura spell with a range of 6\". Each model (friend and foe, except the caster) within range (even if they are engaged in close combat) suffers a Strength 5 Hit.",
+     "type": null
+    },
+    {
+     "name": "ANCHAN-ROGAR THE SOUL STEALER",
+     "level": 4,
+     "castValue": 14,
+     "description": "Anchan-Rogar the Soul Stealer is a direct damage spell with a range of 24\". All models in the unit suffer a Wound on the roll of a 5+ which Ignores Armour Saves. Roll a D6 for each unsaved Wound inflicted by this spell. For each roll of 5+, the caster immediately gains a single Wound (to a maximum of 10).",
+     "type": null
+    },
+    {
+     "name": "ARNZIPAL'S BLACK HORROR",
+     "level": 4,
+     "castValue": 15,
+     "description": "Remains in play. Arnzipal's Black Horror is a magical vortex that uses the small round template. Any model touched by the template at any point during its move must pass a Strength test per Wound on their profile or suffer a Wound which Ignores Armour Saves and Regeneration.",
+     "type": null
+    }
+   ]
+  }
+ ],
+ "factionUpgrades": {
+  "gifts_of_khaine": [
+   {
+    "name": "DANCE OF DOOM",
+    "points": "30",
+    "description": "Enemies targeting the model must re-roll all successful To Hit rolls with missile weapons and in close combat."
+   },
+   {
+    "name": "CRY OF WAR",
+    "points": "25",
+    "description": "All enemy units in base contact with the wearer suffer -1 To Hit in the first round of close combat."
+   },
+   {
+    "name": "RENDING STARS",
+    "points": "25",
+    "description": "Rending Stars are missile weapons with the following profile.\nRANGE | STRENGTH | SPECIAL RULES\n6/9\" | As user +1 | Multiple Shots (3), Quick Shot"
+   },
+   {
+    "name": "WITCHBREW",
+    "points": "25",
+    "description": "This model, and all models in the same unit, gain the Frenzy special rule and can never lose their Frenzy."
+   },
+   {
+    "name": "BLACK LOTUS",
+    "points": "20",
+    "description": "Each unsaved Wound caused in Close Combat counts as two for the purpose of combat resolution. This has no effect against models with Immunity (Poisoned Attacks)."
+   },
+   {
+    "name": "HAND OF KHAINE",
+    "points": "20",
+    "description": "All enemy units in base contact suffer a -1 penalty to their Weapon Skill and Initiative."
+   },
+   {
+    "name": "RUNE OF KHAINE",
+    "points": "20",
+    "description": "The model gains the Random Attacks (D3) special rule in addition to its normal attacks."
+   },
+   {
+    "name": "BLOOD SIGIL",
+    "points": "15",
+    "description": "The model may re-roll failed Leadership tests when using Blood Rites. However, if they roll any doubles on the second roll, they will suffer a Wound which Ignores Armour Saves."
+   },
+   {
+    "name": "DARK VENOM",
+    "points": "15",
+    "description": "A model with Dark Venom gains the Multiple Wounds (D3) special rule (including missile attacks). This has no effect against models with Immunity (Poisoned Attacks)."
+   },
+   {
+    "name": "MANBANE",
+    "points": "15",
+    "description": "A model with Manbane will automatically Wound on the roll of a 2+ (including missile attacks). This has no effect against models with Immunity (Poisoned Attacks)."
+   },
+   {
+    "name": "TOUCH OF DEATH",
+    "points": "15",
+    "description": "The model gains the Killing Blow special rule."
+   },
+   {
+    "name": "KHAINITE PENDANT",
+    "points": "10",
+    "description": "The model may attempt to use two Blood Rites this turn."
+   }
+  ]
+ }
+}

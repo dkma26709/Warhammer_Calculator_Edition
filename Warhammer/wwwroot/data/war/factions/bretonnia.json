@@ -1,0 +1,3354 @@
+{
+ "factionName": "Bretonnia",
+ "units": [
+  {
+   "name": "Baron",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Baron",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May take heavy armour +18 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Royal Pegasus",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Royal Hippogryph",
+       "points": 150,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May replace the Knights Vow with one of the following",
+     "raw": "May replace the Knights Vow with one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "The Crusader's Vow",
+       "choices": [
+        {
+         "name": "The Crusader's Vow",
+         "points": 15,
+         "perModel": false,
+         "replaces": "Knights Vow"
+        }
+       ],
+       "raw": "The Crusader's Vow +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "The Questing Vow",
+       "choices": [
+        {
+         "name": "The Questing Vow",
+         "points": 15,
+         "perModel": false,
+         "replaces": "Knights Vow"
+        }
+       ],
+       "raw": "The Questing Vow +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "The Grail Vow",
+       "choices": [
+        {
+         "name": "The Grail Vow",
+         "points": 45,
+         "perModel": false,
+         "replaces": "Knights Vow"
+        }
+       ],
+       "raw": "The Grail Vow +45 points"
+      }
+     ]
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Baron",
+     "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "virtues_of_the_chivalric_knight",
+     "raw": "A Baron may take one Virtue and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "Paladin",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Paladin",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May take heavy armour +18 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Royal Pegasus",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May replace the Knights Vow with one of the following",
+     "raw": "May replace the Knights Vow with one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "The Crusader's Vow",
+       "choices": [
+        {
+         "name": "The Crusader's Vow",
+         "points": 15,
+         "perModel": false,
+         "replaces": "Knights Vow"
+        }
+       ],
+       "raw": "The Crusader's Vow +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "The Questing Vow",
+       "choices": [
+        {
+         "name": "The Questing Vow",
+         "points": 15,
+         "perModel": false,
+         "replaces": "Knights Vow"
+        }
+       ],
+       "raw": "The Questing Vow +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "The Grail Vow",
+       "choices": [
+        {
+         "name": "The Grail Vow",
+         "points": 45,
+         "perModel": false,
+         "replaces": "Knights Vow"
+        }
+       ],
+       "raw": "The Grail Vow +45 points"
+      }
+     ]
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Paladin may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Paladin",
+     "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "virtues_of_the_chivalric_knight",
+     "raw": "A Paladin may take one Virtue and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "Prophetess",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Prophetess",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 170
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Unicorn",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Prophetess",
+     "raw": "A Prophetess may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 170
+  },
+  {
+   "name": "Grail Damsel",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Grail Damsel",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 75
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Grail Damsel",
+     "raw": "A Grail Damsel may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 75
+  },
+  {
+   "name": "SERGEANTS-AT-ARMS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Sergeant-at-Arms",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 40
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Horse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Horse +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": null,
+   "notes": "A Sergeant-at-Arms may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "FACELESS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Faceless",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 40
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapon",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take an additional hand weapon +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent, Scouts, Sniper",
+   "upgrades": null,
+   "notes": "A Faceless may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "PRIESTESSES OF SHALLYA",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Priestess of Shallya",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 0,
+     "Ld": 7,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Magic Resistance (1)",
+   "upgrades": null,
+   "notes": "A Priestess of Shallya may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "HORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Horse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Purebred Warhorse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "UNICORN",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Unicorn",
+     "M": 10,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Impale, Magical Attacks, Magic Resistance (2)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "PEGASUS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Pegasus",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Iron-hard Hooves",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Iron-hard Hooves +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Swift as the Wind",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Swift as the Wind +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (9)",
+   "upgrades": "Iron-hard Hooves: A Pegasus with this upgrade re-roils failed To Wound rolls.\nSwift as the Wind: A Pegasus with this upgrade re-rolls any dice results of a 1 when determining its charge range.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "ROYAL PEGASUS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Royal Pegasus",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Equine)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Iron-hard Hooves",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Iron-hard Hooves +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Swift as the Wind",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Swift as the Wind +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (9)",
+   "upgrades": "Iron-hard Hooves: A Pegasus with this upgrade re-roils failed To Wound rolls.\nSwift as the Wind: A Pegasus with this upgrade re-rolls any dice results of a 1 when determining its charge range.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "ROYAL HIPPOGRYPH",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Royal Hippogryph",
+     "M": 8,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Avian-Equine)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Shredding Talons",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Shredding Talons +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Serrated Maw",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Serrated Maw +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Swooping Strike",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Swooping Strike +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Bloodrage",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Bloodrage +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8)",
+   "upgrades": "Bloodrage: The Hippogryph is subject to Frenzy and Hatred.\nSerrated Maw: The Hippogryph gains the Multiple Wounds (2) special rule.\nShredding Talons: The Hippogryph gains the Armour Piercing (1) rule.\nSwooping Strike: The Hippogryph gains the Devastating Charge and Mighty Blow (1) special rules when charging.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "KNIGHTS ERRANT",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Knight Errant",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 21
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Crusader's Vow",
+     "points": 1,
+     "perModel": true,
+     "raw": "May replace the Knight's Vow with the Crusader's Vow +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Knight Errant to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Knight Errant to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Knight Errant to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation, Purebred Warhorse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 21
+  },
+  {
+   "name": "KNIGHT OF THE REALM",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Knight of the Realm",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 25
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Crusader's Vow",
+     "points": 1,
+     "perModel": true,
+     "raw": "May replace the Knight's Vow with the Crusader's Vow +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Knight of the Realm to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Knight of the Realm to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Knight of the Realm to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation, Purebred Warhorse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 25
+  },
+  {
+   "name": "MEN-AT-ARMS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Man-at-Arms",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Grail Monk",
+     "points": 5,
+     "perModel": false,
+     "raw": "May upgrade one Man-at-Arms to a Grail Monk +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Man-at-Arms to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Man-at-Arms to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Man-at-Arms to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": "Grail Monk: A Grail Monk counts as being part of the unit's Command Group. A unit with a Grail Monk counts as having one more rank than they actually do for the purpose of determining if the unit is Steadfast.",
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "LONGBOWMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Longbowman",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bucklers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bucklers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "braziers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take braziers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "defensive stakes",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take defensive stakes +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Longbowman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Longbowman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Longbowman to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": "• Braziers: A unit with this upgrade gains the Flaming Attack special rule for their longbows.\n• Defensive Stakes: Set up the stakes at the start of the game when the unit is deployed. Every model in the front rank has a stake base placed in front of it (these stakes must also be set up within the army's deployment zone).\nDefensive Stakes are treated as Defended Obstacles and remain on the table during the game. All Troop Types apart from Infantry and Swarms suffer D6 Strength 4 hits on the turn that they charge a unit behind Defensive stakes. In addition, enemy models in base contact with the Defensive Stakes suffer -1 to Hit in the first round of close combat. These rules only apply when fighting the unit’s front.",
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "PEASANT MOB",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Peasant",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 4,
+     "points": 2
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Flails",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (if armed with spears) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Peasant to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Peasant to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Peasant to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "BIDOWERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Bidower",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelin",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "javelins",
+     "choices": [
+      {
+       "name": "slings",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May replace javelins with slings free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bucklers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bucklers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bidower to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bidower to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "QUESTING KNIGHTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Questing Knight",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 26
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Great weapon, heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Questing Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Questing Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Questing Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Questing Vow, Lance Formation, Purebred Warhorse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 26
+  },
+  {
+   "name": "PEGASUS KNIGHTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Pegasus Knight",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 50
+    },
+    {
+     "name": "Pegasus",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "40x40 or 40x60",
+   "equipment": "Heavy lance, heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Crusader's Vow",
+     "points": 2,
+     "perModel": true,
+     "raw": "May replace the Knight's Vow with the Crusader's Vow +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Pegasus Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Pegasus Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Pegasus Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Fly (9), The Knight's Vow",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": "Pegasus (Equine)",
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "FOOT KNIGHTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Foot Knight",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Crusader's Vow",
+     "points": 1,
+     "perModel": true,
+     "raw": "May replace the Knight's Vow with the Crusader's Vow +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Foot Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Foot Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Foot Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Knight's Vow",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "SQUIRES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Squire",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 7
+    },
+    {
+     "name": "Hunting Hound",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25 (Squire), 20x20, 25x25 (Hunting Hound)",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bucklers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bucklers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Squire to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Squire to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Squire to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "YEOMEN",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Yeoman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 10
+    },
+    {
+     "name": "Horse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Yeoman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Yeoman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Yeoman to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fast Cavalry, The Peasant's Duty",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Horse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "BATTLE PILGRIMS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Battle Pilgrim",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 7
+    },
+    {
+     "name": "Grail Reliquae",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 6,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Battle Pilgrim to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Battle Pilgrim to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Battle Pilgrim to a Standard Bearer +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Grail Reliquae",
+     "points": 30,
+     "perModel": false,
+     "raw": "May upgrade six Battle Pilgrim to a Grail Reliquae +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Hatred, Loner, The Peasant's Duty, Stubborn",
+   "upgrades": "Grail Reliquae: Grail Reliquae follow all the rules for Shrines. Only once all the Grail Pilgrims in the unit (except the Command Group) are removed does the Reliquae itself start taking wounds. In addition, the presence of the Grail Reliquae means that the entire unit will be affected by the Blessing of the Lady.",
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "HERRIMAULTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Herrimault",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Herrimault to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Herrimault to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "BRIGANDS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Brigand",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Ambushers (unless armed with missile weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "great weapons",
+     "choices": [
+      {
+       "name": "Crossbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "great weapons"
+      },
+      {
+       "name": "Handguns",
+       "points": 2,
+       "perModel": true,
+       "replaces": "great weapons"
+      }
+     ],
+     "raw": "May replace great weapons with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Brigand to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Brigand to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Brigand to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "GRAIL KNIGHTS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Grail Knight",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 9,
+     "points": 38
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Grail Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Grail Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Grail Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 75,
+       "raw": "May take a Magic Standard worth up to 75 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Grail Vow, Lance Formation, Purebred Warhorse",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 38
+  },
+  {
+   "name": "HIPPOGRYPH KNIGHTS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Hippogryph Knight",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 75
+    },
+    {
+     "name": "Hippogryph",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Human)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Heavy lance, heavy armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Crusader's Vow",
+     "points": 3,
+     "perModel": true,
+     "raw": "May replace the Knight's Vow with the Crusader's Vow +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hippogryph Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hippogryph Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Hippogryph Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Fly (8), The Knight's Vow",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Hippogryph (Avian-Equine)",
+   "drawnBy": null,
+   "pointsCost": 75
+  },
+  {
+   "name": "BALLISTA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Ballista",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 30
+    },
+    {
+     "name": "Peasant Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "Wall Warden",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Ballista), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Peasant Crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional Peasant Crew +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Wall Warden",
+     "points": 10,
+     "perModel": false,
+     "raw": "May upgrade one Peasant Crew to a Wall Warden +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": "Wall Warden: A Ballista with a Wall Warden may re-roll one failed To Hit roll once per game.",
+   "notes": "You may take 1-2 Ballistas as a single Rare choice.",
+   "unitSize": null,
+   "crew": "3 Peasant Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "FIELD TREBUCHET",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Field Trebuchet",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Peasant Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "Wall Warden",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x100 (Field Trebuchet), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, field trebuchet",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Peasant Crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional Peasant Crew +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Wall Warden",
+     "points": 10,
+     "perModel": false,
+     "raw": "May upgrade one Peasant Crew to a Wall Warden +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": "Wall Warden: A Field Trebuchet with a Wall Warden may re-roll one Artillery dice once per game.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Peasant Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "BOMBARD",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Bombard",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 90
+    },
+    {
+     "name": "Peasant Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    },
+    {
+     "name": "Wall Warden",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Bombard), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Peasant Crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional Peasant Crew +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Wall Warden",
+     "points": 10,
+     "perModel": false,
+     "raw": "May upgrade one Peasant Crew to a Wall Warden +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "The Peasant's Duty",
+   "upgrades": "Wall Warden: A Bombard with a Wall Warden may re-roll one Artillery dice once per game.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Peasant Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "LOUEN LEONCOEUR",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Louen Leoncoeur",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 385
+    },
+    {
+     "name": "Beaquis (Royal Hippogryph)",
+     "M": 8,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 6,
+     "A": 4,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Pegasus",
+       "points": 30,
+       "perModel": false
+      },
+      {
+       "name": "Royal Pegasus",
+       "points": 45,
+       "perModel": false
+      },
+      {
+       "name": "Beaquis",
+       "points": 155,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Grail Vow, Lance Formation",
+   "upgrades": null,
+   "notes": "Louen Leoncoeur must be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 385
+  },
+  {
+   "name": "BOHEMUND THE BEASTSLAYER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Bohemond the Beastslayer",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 5,
+     "Ld": 10,
+     "points": 300
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, barding",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blessing of the Lady, The Grail Vow, Hatred (Beastmen, Goblins, Orcs, Skaven), Lance",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "TANCRED II",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Tancred II",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 5,
+     "Ld": 10,
+     "points": 250
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, barding",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blessing of the Lady, The Grail Vow, Lance Formation, Purebred Warhorse, Virtue of Purity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "ALBERIC OF BORDELEAUX",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Alberic of Bordeleaux",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 175
+    },
+    {
+     "name": "Tempete (Royal Hippogryph)",
+     "M": 8,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Tempete",
+       "points": 150,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, The Knight's Vow, Lance Formation, Purebred Warhorse, Virtue of Discipline",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "CECIL GASTONNE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Cecil Gastonne",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blessing of the Lady, The Knight's Vow",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "REPANSE OF LYONESSE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Repanse of Lyonesse",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 185
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy lance",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a heavy lance +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +12 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Lance Formation, Magic Resistance (3), The Knight’s Vow, Purebred",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "TRISTAN THE TROBADOUR",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Tristan the Trobadour",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 145
+    },
+    {
+     "name": "Jules the Jester",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 6,
+     "points": 30
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60 (Tristan), 20x20 or 25x25 (Jules)",
+   "equipment": "Heavy lance, heavy armour, shield, barding (Tristan)",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Lance Formation, The Questing Vow, Purebred Warhorse, Virtue of Noble Disdain",
+   "upgrades": null,
+   "notes": "Tristan the Trobadour may use a heavy lance despite having the Questing Vow.",
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 145
+  },
+  {
+   "name": "ODO OF OUTREMER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Odo of Outremer",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 130
+    },
+    {
+     "name": "Suliman the Saracen",
+     "M": 5,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 85
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Blessing of the Lady, Lance Formation, The Crusader's Vow, Purebred Warhorse, Virtue of Confidence",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "THE HERMIT KNIGHT OF MALMONT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "The Hermit Knight",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 170
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blessing of the Lady, The Grail Vow (included in profile), Virtue of the Penitent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 170
+  },
+  {
+   "name": "MORGIANA THE FAY",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Morgiana the Fay",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 5,
+     "A": 2,
+     "Ld": 9,
+     "points": 420
+    },
+    {
+     "name": "Silvaron (Unicorn)",
+     "M": 10,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Morgiana le Fay is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Silvaron (Unicorn)",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on Silvaron (Unicorn) +25 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 420
+  },
+  {
+   "name": "LADY ELISE DUCHARD",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Élise Duchard",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 295
+    },
+    {
+     "name": "Ariandir (Unicorn)",
+     "M": 10,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "40x60 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": "Élise Duchard is a Level 3 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Aura of the Lady, Impale (Ariandir only), Magical Attacks (Ariandir only), Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Ariandir (Equine)",
+   "drawnBy": null,
+   "pointsCost": 295
+  },
+  {
+   "name": "THE GREEN KNIGHT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "The Green Knight",
+     "M": 4,
+     "WS": 7,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 10,
+     "points": 240
+    },
+    {
+     "name": "The Shadow Steed",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Spirit)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ethereal, Terror, Unstable",
+   "upgrades": null,
+   "notes": "The Green Knight may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": "The Shadow Steed (Equine)",
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "BERTRAND THE BRIGAND",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Bertrand",
+     "M": 4,
+     "WS": 5,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 90
+    },
+    {
+     "name": "Little Hugo",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 5,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Gui the Great",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": null,
+   "specialRules": "Loner, Scouts, Skirmisher, Sniper",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  }
+ ]
+}

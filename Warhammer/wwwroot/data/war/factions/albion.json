@@ -1,0 +1,2657 @@
+{
+ "factionName": "Albion",
+ "units": [
+  {
+   "name": "Chieftain",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Chieftain",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 95
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 10,
+     "perModel": false,
+     "raw": "May have a Magical Ward (6+) +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take one Tribal Affiliation +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Elk",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Shieldbearers",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Chariot",
+       "points": 50,
+       "perModel": false
+      },
+      {
+       "name": "Mastodon",
+       "points": 200,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Chieftain",
+     "raw": "A Chieftain may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Battle Cry, War Fury",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  },
+  {
+   "name": "Champion",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Champion",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 55
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 10,
+     "perModel": false,
+     "raw": "May have a Magical Ward (6+) +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take one Tribal Affiliation +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Elk",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Champion may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Champion",
+     "raw": "A Champion may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Battle Cry, War Fury",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "Truthsayer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Truthsayer",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 170
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Wyrd Druid is a Level 1 Wizard. A Truthsayer is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Elk",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Truthsayer",
+     "raw": "A Truthsayer may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Magical Ward (6+), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 170
+  },
+  {
+   "name": "Wyrd Druid",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Wyrd Druid",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 75
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Wyrd Druid is a Level 1 Wizard. A Truthsayer is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Elk",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Wyrd Druid",
+     "raw": "A Wyrd Druid may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Magical Ward (6+), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 75
+  },
+  {
+   "name": "SHIELDBEARERS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Shieldbearers",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 4,
+     "A": 2,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x40, 25x50, 40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Inspiring Presence (6), War Fury",
+   "upgrades": null,
+   "notes": "Shieldbearers have a Unit Strength and Line of Sight value of 2.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "ELK",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Elk",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Cervine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Warrior",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take javelins +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "WOAD RAIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Woad Raider",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "dditional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take javelins +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Woad Raider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Woad Raider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Woad Raider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Frenzy, Magical Ward (6+), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "YOUNGBLOODS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Youngblood",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "javelins",
+     "choices": [
+      {
+       "name": "slings",
+       "points": 1,
+       "perModel": true,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May replace javelins with slings +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Youngblood to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Youngblood to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Skirmishers, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "WAR HOUNDS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "War Hound",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 5
+    },
+    {
+     "name": "Handler",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 10
+    }
+   ],
+   "troopType": "War Beast (Dog)",
+   "baseSize": "25x25 or 25x50",
+   "equipment": "Hand weapon (Handler only)",
+   "magic": null,
+   "options": null,
+   "specialRules": "Mixed Unit, War Fury (Handler only)",
+   "upgrades": null,
+   "notes": "One Handler must be included for every 5 War Hounds in the unit.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "AONBARR HORSE WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Aonbarr Horse Warrior",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 13
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take javelins +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Aonbarr Horse Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Aonbarr Horse Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Aonbarr Horse Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "CHARIOTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 55
+    },
+    {
+     "name": "Charioteer",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Warhorse",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Light lance, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take scythes +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 5,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 5,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Chariot to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Chariot to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Chariot to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": "2 Charioteers (Human)",
+   "mount": null,
+   "drawnBy": "2 Warhorses (Equine)",
+   "pointsCost": 55
+  },
+  {
+   "name": "HEARTHGUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Hearthguard",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with great weapons +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take javelins +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 1,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hearthguard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hearthguard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Hearthguard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Stubborn, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "SWORDMAIDENS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Swordmaiden",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Swordmaiden to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Swordmaiden to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Swordmaiden to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Devastating Charge, Magical Ward (6+), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "HUNTERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Hunter",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelin",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "javelins",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May replace javelins with shortbows free",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "War Hawks",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take War Hawks +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 1,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hunter to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hunter to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Scouts, Skirmishers, War Fury",
+   "upgrades": "● War Hawks: Models with this upgrade may use their War Hawk in addition to another missile weapon during the Shooting phase. War hawks use the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n24\" | 3 | -\nRather than rolling to Hit using Ballistic Skill, the target must pass a Weapon Skill test to avoid being Hit.",
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "WARRIORS OF DANU",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Warrior of Danu",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 5,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 22
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Great weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior of Danu to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Frenzy, Magical Ward (6+), Skirmishers, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 22
+  },
+  {
+   "name": "VIRIDIAN LORDS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Viridian Lord",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 9,
+     "points": 17
+    }
+   ],
+   "troopType": "Infantry (Animated Construct)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "hand weapons",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "hand weapons"
+      }
+     ],
+     "raw": "May replace hand weapons with great weapons +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Viridian Lord to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Flammable, Regeneration (4+), Skirmishers, Unstable, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "FENBEASTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Fenbeast",
+     "M": 5,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 1,
+     "A": 3,
+     "Ld": 8,
+     "points": 38
+    }
+   ],
+   "troopType": "Monstrous Infantry (Animated Construct)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Born of Bloodmarsh",
+       "choices": [
+        {
+         "name": "Born of Bloodmarsh",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Born of Bloodmarsh +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Leechloam",
+       "choices": [
+        {
+         "name": "Leechloam",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Leechloam +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Lifebloom Silt",
+       "choices": [
+        {
+         "name": "Lifebloom Silt",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Lifebloom Silt +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Fly-Infested Rotweed",
+       "choices": [
+        {
+         "name": "Fly-Infested Rotweed",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Fly-Infested Rotweed +3 points/model"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animated Construct, Marsh Strider, Regeneration (4+), Stupidity, Unstable",
+   "upgrades": "Born of Bloodmarsh: The model gains +1 Attack.\nFly-Infested Rotweed: All enemy units in base contact with the model suffer -1 to their Weapon Skill.\nLeechloam: During any turn in which one or more spells from the Lore of Life is successfully cast within 12\", the model gains +1 Strength.\nLifebloom Silt: The model may re-roll failed Regeneration results of 1.",
+   "notes": null,
+   "unitSize": "1-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 38
+  },
+  {
+   "name": "CENTAURS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Centaur",
+     "M": 8,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 19
+    }
+   ],
+   "troopType": "Cavalry (Centaur)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Tribal Affiliation",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take one Tribal Affiliation +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "dditional hand weapon",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "bows",
+       "points": 1,
+       "perModel": true,
+       "replaces": "shields"
+      },
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Centaur to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Centaur to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Centaur to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Independent, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 19
+  },
+  {
+   "name": "HALF GIANTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Half Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 2,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 7,
+     "points": 35
+    }
+   ],
+   "troopType": "Monstrous Infantry (Half Giant)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 6,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take javelins +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 3,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Half Giant to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Half Giant to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Half Giant to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Independent, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "PIXIE SWARMS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Pixie Swarm",
+     "M": 1,
+     "WS": 3,
+     "BS": 3,
+     "S": 1,
+     "T": 1,
+     "W": 8,
+     "I": 5,
+     "A": 10,
+     "Ld": 8,
+     "points": 40
+    }
+   ],
+   "troopType": "Swarm (Forest Spirit)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fear, Fly (6), Forest Strider, Immunity (Psychology), Magical Attacks, Magical Ward (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "DRUID NEOPHYTES",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Druid Neophyte",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A unit of Druid Neophytes is a Level 1 Wizard that uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 1,
+     "perModel": true,
+     "raw": "May have a Magical Ward (6+) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Druid Neophyte to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Skirmishers, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "STONE THROWER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Stone Thrower",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine (Stone Thrower)",
+   "baseSize": "20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Fire Pots",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Fire Pots +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "War Fury",
+   "upgrades": "• Fire Pots: A Stone Thrower with Fire Pots may choose to use the large round template with the following profile (this replaces their normal profile):\nRANGE | STRENGTH | SPECIAL RULES\n12-48\" | 3(6) | Flaming Attacks, Multiple Wounds (D3)",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "MASTODON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Mastodon",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 6,
+     "I": 1,
+     "A": 4,
+     "Ld": 6,
+     "points": 200
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Mastodon)",
+   "baseSize": "50x100 or 100x150",
+   "equipment": "Light lance, javelins (Crew only)",
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Impact Hits (D6+1), Natural Armour (4+), Stubborn, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "FENHULK",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Fenhulk",
+     "M": 5,
+     "WS": 3,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 8,
+     "points": 250
+    }
+   ],
+   "troopType": "Monster (Animated Construct)",
+   "baseSize": "50x50 or 100x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Lifebloom Silt",
+       "choices": [
+        {
+         "name": "Lifebloom Silt",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Lifebloom Silt +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Born of Bloodmarsh",
+       "choices": [
+        {
+         "name": "Born of Bloodmarsh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Born of Bloodmarsh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Leechloam",
+       "choices": [
+        {
+         "name": "Leechloam",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Leechloam +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Fly-Infested Rotweed",
+       "choices": [
+        {
+         "name": "Fly-Infested Rotweed",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Fly-Infested Rotweed +15 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animated Construct, Magic Resistance (1), Marsh Strider, Regeneration (4+), Stupidity, Unstable",
+   "upgrades": "Born of Bloodmarsh: The model gains +1 Attack.\nFly-Infested Rotweed: All enemy units in base contact with the model suffer -1 to their Weapon Skill.\nLeechloam: During any turn in which one or more spells from the Lore of Life is successfully cast within 12\", the model gains +1 Strength.\nLifebloom Silt: The model may re-roll failed Regeneration results of 1.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 20,
+     "perModel": false,
+     "raw": "May have a Magical Ward (6+) +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Throw Rocks",
+     "points": 30,
+     "perModel": false,
+     "raw": "May be upgraded to Throw Rocks +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": "Throw Rocks: A Giant with this upgrade gains a stone thrower with the following profile. If a misfire is rolled, the Giant suffers 1 Wound which Ignores Armour Saves.\nRANGE | STRENGTH | SPECIAL RULES\n6-18\" | 4(8) | Multiple Wounds (D3), Slow to Fire",
+   "notes": "You may take 1-2 Giants as a single Rare choice.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "BONEGRINDER GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Bonegrinder Giant",
+     "M": 10,
+     "WS": 3,
+     "BS": 3,
+     "S": 8,
+     "T": 8,
+     "W": 10,
+     "I": 1,
+     "A": "*",
+     "Ld": 10,
+     "points": 380
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x100, 60x100 or 100x150",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 35,
+     "perModel": false,
+     "raw": "May have a Magical Ward (6+) +35 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": "A Bonegrinder Giant has a Line of Sight value of 10.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 380
+  },
+  {
+   "name": "GWENLAEN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Gwenlaen",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 5,
+     "Ld": 9,
+     "points": 250
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May take javelins +6 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Elk",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Shieldbearers",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Magical Ward (6+), Sessair, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "CORMAC CHATH",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Cormac Chath",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 150
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Battle Cry, Fir Domain, Magical Ward (6+), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "CONOR MAC FEUD",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Conor Mac Feud",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 175
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Battle Cry, Finian, Hatred (Fimir), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "ROTH MAC LYR",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Roth Mac Lyr",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 8,
+     "points": 185
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Frenzy, Magical Ward (6+), Sessair, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "AMANTHAS",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Amanthas",
+     "M": 4,
+     "WS": 4,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 115
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Falian, Hatred (Dark Elves), Magical Ward (6+), Scouts, Sniper, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 115
+  },
+  {
+   "name": "AMANTHAS",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Amanthas",
+     "M": 4,
+     "WS": 4,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 115
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Falian, Hatred (Dark Elves), Magical Ward (6+), Scouts, Sniper, War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 115
+  },
+  {
+   "name": "DURAL DURAK",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Dural Durak",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 3,
+     "A": 1,
+     "Ld": 9,
+     "points": 285
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Dural Durak is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Elk",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Chariot",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Magical Ward (6+), War Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 285
+  },
+  {
+   "name": "MORRIGAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Morrigan",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 9,
+     "points": 295
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Morrigan is a Level 3 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Fear, Fly (10), Independent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 295
+  },
+  {
+   "name": "AGUM THE WATCHER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Agum the Watcher",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 250
+    }
+   ],
+   "troopType": "Monster (Special Character, Giant)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Fall Over (see Giants), Giant Special Attacks (see Giants), Immunity (Psychology), Loner, Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  }
+ ]
+}

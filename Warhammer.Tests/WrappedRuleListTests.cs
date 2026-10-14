@@ -93,6 +93,8 @@ public class WrappedRuleListTests
             "HighElves/Caradryan of the Flame",
             "Skaven/Nurglitch",
         ],
+        // The army book itself prints the trailing comma (Daemons of Chaos, p32).
+        [GameSystems.War] = ["DaemonsOfChaos/FLESH HOUNDS"],
     };
 
     /// <summary>
@@ -102,6 +104,7 @@ public class WrappedRuleListTests
     [Theory]
     [InlineData(GameSystems.WapV2)]
     [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public async Task NoUnitsRuleListEndsMidList(string system)
     {
         var repo = TestHelpers.RepoFor(system);
