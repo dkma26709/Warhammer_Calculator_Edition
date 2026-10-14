@@ -394,6 +394,8 @@
     protected override async Task OnInitializedAsync()
     {
         await Repo.EnsureLoadedAsync();
+        // The placeholder faction must be one the active system ships.
+        if (Repo.AllFactions.Count > 0) _armyList = _armyList with { Faction = Repo.AllFactions[0] };
         await Portraits.EnsureLoadedAsync();
         _commonMagicItems = await Repo.GetCommonMagicItemsAsync();
         _composition = await Repo.GetCompositionRulesAsync();

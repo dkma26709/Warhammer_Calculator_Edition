@@ -121,6 +121,11 @@ public class ArmyListSerializer
         if (!FactionKeyExtensions.TryFromJsonKey(dto.Faction, out var faction))
             return new ImportResult(null, warnings, [$"Unknown faction '{dto.Faction}'."]);
 
+        await _repo.EnsureLoadedAsync();
+        if (!_repo.AllFactions.Contains(faction))
+            return new ImportResult(null, warnings,
+                [$"Faction '{dto.Faction}' is not in the current system '{_system.CurrentSystem}'."]);
+
         var factionUnits = await _repo.GetUnitsAsync(faction);
         var unitsByName = factionUnits.ToDictionary(u => u.Name, StringComparer.OrdinalIgnoreCase);
         var upgradeCosts = await LoadFactionUpgradeCostsAsync(faction);

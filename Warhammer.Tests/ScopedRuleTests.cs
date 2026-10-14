@@ -294,17 +294,9 @@ public class ScopedRuleTests
         var repo = TestHelpers.RepoFor(system);
         var armed = new List<string>();
 
-        foreach (var faction in Enum.GetValues<FactionKey>())
+        foreach (var faction in repo.AllFactions)
         {
-            IReadOnlyList<Unit> units;
-            try
-            {
-                units = await repo.GetUnitsAsync(faction);
-            }
-            catch (Exception)
-            {
-                continue;
-            }
+            var units = await repo.GetUnitsAsync(faction);
 
             foreach (var unit in units)
             {

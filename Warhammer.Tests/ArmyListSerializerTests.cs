@@ -16,8 +16,11 @@ public class ArmyListSerializerTests
         /// <summary>Faction upgrade entries the serializer resolves pick costs from.</summary>
         public FactionExtrasData Extras { get; init; } = new();
 
+        /// <summary>The factions the stubbed system ships; every enum member unless a test narrows it.</summary>
+        public IReadOnlyList<FactionKey> Factions { get; init; } = FactionKeyExtensions.All;
+
         public Task EnsureLoadedAsync() => Task.CompletedTask;
-        public IReadOnlyList<FactionKey> AllFactions => [];
+        public IReadOnlyList<FactionKey> AllFactions => Factions;
         public string GetFactionDisplayName(FactionKey faction) => faction.ToString();
         public Task<IReadOnlyList<Unit>> GetUnitsAsync(FactionKey faction) => Task.FromResult(_units);
         public Task<FactionExtrasData> GetFactionExtrasAsync(FactionKey faction) =>
@@ -267,6 +270,19 @@ public class ArmyListSerializerTests
 
         Assert.False(result.Success);
         Assert.Contains(result.Errors, e => e.Contains("Unknown faction"));
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_FactionNotInCurrentSystem_ReturnsError()
+    {
+        var repo = new StubRepo { Factions = [FactionKey.Dwarfs] };
+        var serializer = new ArmyListSerializer(repo, new GameSystemService());
+        var json = """{"schema":"wap-army-list/v1","faction":"kislev","pointsTarget":2000,"name":"x","units":[]}""";
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.False(result.Success);
+        Assert.Contains(result.Errors, e => e.Contains("not in the current system"));
     }
 
     [Fact]
