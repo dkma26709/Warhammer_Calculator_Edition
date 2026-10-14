@@ -1,12 +1,22 @@
 # WAP Combat Rules Specification
 
+> **Partly historical.** Written against the WAP 9th Edition v2.32 rulebook, before the app
+> moved to Warhammer Armies Revamped (WAR) and stopped shipping any other system. The
+> [Troop Type Rules](#troop-type-rules-combat-relevant) section is current for WAR. The rest
+> records the WAP reading and has not been re-checked against the WAR rulebook, which differs
+> in places: the polearm, spear and pike Initiative bonuses apply only in the first round of
+> close combat, the spear and pike Mighty Blow exclusions no longer name Large Infantry, and
+> some to-wound cells hold two scores (S3 vs T7 is `6+/3+`). Where this document disagrees
+> with the data or the code, trust those.
+
 ## Rules Source Constraint
 
-**All rules in this document come EXCLUSIVELY from:**
-1. `core-rules-new.json` — extracted from "Warhammer: The Game of Fantasy Battles - 9th Edition v2.32" PDF
-2. `wap-rules.md` — user-verified rule interpretations
+**All rules come EXCLUSIVELY from the active system's rulebook:** the chapters in its bundle
+(`wwwroot/data/{system}/{system}.json`), and the hand-maintained `core-rules.json` and
+`troop-types.json` read off it. The citations of `core-rules-new.json` and `wap-rules.md` below
+date from the WAP version of this document; neither file is in the repository.
 
-**No rules from LLM knowledge, web searches, or non-WAP sources.** If a rule is ambiguous, it is flagged with `[VERIFY]` for user review.
+**No rules from LLM knowledge, web searches, or other editions.** If a rule is ambiguous, it is flagged with `[VERIFY]` for user review.
 
 ## Close Combat Sequence (Iteration 1 Scope)
 
@@ -222,65 +232,88 @@ All descriptions sourced from `core-rules-new.json commonSpecialRules` unless no
 
 ## Troop Type Rules (Combat-Relevant)
 
-**These figures are data, and they differ per system.** They live in the hand-maintained
+**These figures are data.** They live in the hand-maintained
 `wwwroot/data/{system}/troop-types.json`, resolved through `GameDataRepository` into
 `TroopTypeRules` and thence `TroopTypeInfo`. `core-rules.json`'s own `troopTypes` section is
-prose only — the Troop Types chapter is not a ruled table, so `extract_core_rules.py` cannot
-lift the numbers. A missing row throws on load rather than falling back to another edition.
+prose only — the Troop Types chapter is not a ruled table, so the figures are read off it by
+hand. A missing row throws on load rather than falling back.
 
-The tables below record what the two shipped files say (both books' Troop Types chapter,
-p71–76); the JSON is the source of truth, not this document.
+The tables below record what `war/troop-types.json` says, read off the WAR rulebook's Troop
+Types chapter (`rulebook.chapters` in `war.json`). The JSON is what the engine runs, not this
+document; [where it departs from the chapter](#where-the-file-departs-from-the-chapter) is
+listed below.
 
 ### Rank width, Unit Strength and supporting attacks
 
 `rider` is the figure for a split-profile model's rider, `mount` for its mount, and `no split`
-for a model of that type with no separate mount line — the books state that separately rather
-than as rider plus mount.
+for a model of that type with no separate mount line — the chapter states that separately
+rather than as rider plus mount. *"Mounts are not allowed to make supporting attacks"*, so
+`mount` is 0 wherever it applies.
 
 | Troop Type | Min width | US | rider | mount | no split |
 |------------|----------:|---:|------:|------:|---------:|
 | Infantry | 5 | 1 | 1 | – | 1 |
 | Large Infantry † | 4 | 1 | 2 | – | 2 |
-| Monstrous Infantry | 3 | 2 | **v2 2 / v3 3** | – | **v2 2 / v3 3** |
-| Cavalry | 5 | 2 | 1 | **v2 1 / v3 0** | **v2 2 / v3 1** |
-| Monstrous Cavalry | 3 | 3 | 1 | **v2 2 / v3 0** | 3 |
+| Monstrous Infantry | 3 | 2 | 3 | – | 3 |
+| Cavalry | 5 | 2 | 1 | 0 | 1 |
+| Monstrous Cavalry | 3 | 3 | 1 | 0 | 3 |
 | Swarms | 3 | 3 | 5 | – | 5 |
 | War Beasts | 5 | 1 | 1 | – | 1 |
-| Monstrous Beasts | 3 | 2 | **v2 2 / v3 3** | – | **v2 2 / v3 3** |
-| Chariots, Monsters, Shrines, War Machines | 1 (no rank bonus) | 3 | 0 | – | 0 |
+| Monstrous Beasts ‡ | 3 | 2 | 3 | – | 3 |
+| Chariots, Monsters, Shrines, War Machines | 1 | 3 | 0 | – | 0 |
 
-† wap-v3 drops Large Infantry as a troop type. One v3 entry still names it (Zoggrok
-Anvilsmasha), so the row is kept with the wap-v2 figures rather than letting a lookup throw.
+† Large Infantry is not a WAR troop type. One entry still names it (Zoggrok Anvilsmasha), so
+the row is kept with the old WAP figures rather than letting a lookup throw.
 
-wap-v3 bars mounts from supporting attacks outright: *"Mounts are not allowed to make
-supporting attacks."*
+‡ `TroopTypeInfo.Parse` reads WAR's Monstrous Creatures as Monstrous Beasts, so they take this
+row.
 
 ### Inherent rules by troop type
 
-Only the two the engine acts on are modelled — inherent Impact Hits (`InherentImpactHits`, per
-front-rank model, resolved at the mount's Strength) and Swiftstride (`HasInherentSwiftstride`,
-which feeds flee and pursue). The rest are listed for reference and come from the unit's own
-`specialRules` where they matter.
+The engine models two rules that come from the troop type rather than the unit entry: Impact
+Hits (`InherentImpactHits`, per front-rank model, resolved at the mount's Strength) and
+Swiftstride (`HasInherentSwiftstride`, which feeds flee and pursue). `troop-types.json` sets
+both to zero for every WAR type. The chapter grants no Swiftstride; its Impact Hits for
+Chariots are covered under the departures below. The rest are listed for reference and come
+from the unit's own `specialRules` where they matter.
 
-| Troop Type | wap-v2 | wap-v3 |
-|------------|--------|--------|
-| Cavalry | **Impact Hits (1)**, **Swiftstride** | — |
-| Monstrous Cavalry | Fear, **Impact Hits (1)**, **Swiftstride** | Fear |
-| Monstrous Infantry | Fear, **Swiftstride** | Fear |
-| Monstrous Beasts | Fear, **Swiftstride** | Fear, Independent |
-| Monsters / Monstrous Creatures | Stomp, Terror, **Swiftstride** | Stomp, Terror, Independent |
-| Chariots | Impact Hits (D6), **Swiftstride** | Impact Hits (D6) |
-| Swarms | Expendable, Unstable, Skirmishers | Expendable, Unstable, Independent, Vanguard |
-| War Beasts | Expendable, Vanguard, **Swiftstride** | Expendable, Vanguard, Independent |
+| Troop Type | Special rules from the troop type |
+|------------|-----------------------------------|
+| Infantry, Cavalry, Shrines | — |
+| Monstrous Infantry, Monstrous Cavalry | Fear |
+| Monstrous Beasts | Fear, Independent |
+| Monstrous Creatures | Independent, Stomp (D3), Terror |
+| Monsters | Independent, Stomp (D6), Terror |
+| Chariots | Impact Hits (D6) |
+| Swarms | Expendable, Independent, Unstable, Vanguard |
+| War Beasts | Expendable, Independent, Vanguard |
+| War Machines | Cumbersome, Move or Fire |
 
-wap-v3 removed inherent Swiftstride from every troop type and put Independent in its place,
-which is a unit-joining rule with no combat effect here. Chariots keep their Impact Hits in
-both editions, carried on the unit entry rather than the troop type.
+Independent is a unit-joining rule with no combat effect here.
+
+### Where the file departs from the chapter
+
+Each of these changes simulated results:
+
+- **Chariot ranks.** The chapter needs Chariots three wide for a complete rank; the file says
+  1, so a column of chariots earns a rank bonus the book would not give it.
+- **Chariot Impact Hits.** The chapter gives every Chariot Impact Hits (D6), and Chariots in
+  the second rank add +D3 to those in the first. The file's `impactHits` is an integer and 0
+  for Chariots, and only 6 of the 70 chariot entries list Impact Hits in their own special
+  rules, so the rest charge without them.
+- **Unit Strength.** The chapter gives Monstrous Creatures 4, Monsters double their starting
+  Wounds, Chariots and Shrines their starting Wounds (Chariots plus any added crew or mounts)
+  and War Machines their current crew; ridden Monsters and Monstrous Creatures add their
+  riders. The file has a flat 3 for Monsters, Chariots, Shrines and War Machines, and Monstrous
+  Creatures take Monstrous Beasts' 2. Fear's double-Unit-Strength bonus reads these figures.
 
 ### Split Profile (Cavalry/Monstrous Cavalry)
 - Rider and mount attack independently (own WS, S, I, A)
 - When attacked: use highest WS, T, W from rider or mount
 - Equipment/magic items apply to rider only (unless specified)
+- Special rules apply to the rider only, except these, which either rider or mount gives the
+  whole model: Always Strikes Last, Ambushers, Berserk Rage (see Frenzy), Ethereal, Fast
+  Cavalry, Fear, Fly, Immunity, Regeneration, Scouts, Stupidity, Stubborn, Terror, Vanguard
 
 ## Combat Table Reference
 

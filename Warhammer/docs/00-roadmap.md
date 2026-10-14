@@ -1,5 +1,12 @@
 # WAP Combat Simulator — Project Roadmap
 
+> **Historical roadmap.** Written at the start of the rewrite and kept for intent. Since
+> 2026-09-15 the app reads one bundle per game system (formatVersion 2, exported from
+> `warhammer-armies-revamped`), and Warhammer Armies Revamped is now the only system it ships.
+> The extraction scripts and `core-rules-new.json` named below are gone, and the army builder
+> listed as out of scope has since been built. `AGENTS.md` describes the current shape; trust
+> the code over the specifics below.
+
 ## Project Goal
 
 A Blazor WASM application that simulates Warhammer Armies Project (WAP) combat matchups using Monte Carlo dice simulations. Users select two units, configure them, and see probabilistic combat outcomes.
