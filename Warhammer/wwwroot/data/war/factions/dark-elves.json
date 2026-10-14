@@ -1,0 +1,3570 @@
+{
+ "factionName": "Dark Elves",
+ "units": [
+  {
+   "name": "Dreadlord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Dreadlord",
+     "M": 5,
+     "WS": 7,
+     "BS": 7,
+     "S": 4,
+     "T": 3,
+     "W": 3,
+     "I": 8,
+     "A": 4,
+     "Ld": 10,
+     "points": 125
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Deathrain crossbow",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Deathrain crossbow +8 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Sea Dragon Cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Sea Dragon Cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dark Steed",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Dark Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Cold One Chariot",
+       "points": 100,
+       "perModel": false
+      },
+      {
+       "name": "Manticore",
+       "points": 150,
+       "perModel": false
+      },
+      {
+       "name": "Black Dragon",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Dreadlord",
+     "raw": "A Dreadlord may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "Dreadmaster",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Dreadmaster",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 55
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Heavy lance",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Deathrain crossbow",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Deathrain crossbow +8 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Sea Dragon Cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Sea Dragon Cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dark Steed",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Dark Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Cold One Chariot",
+       "points": 100,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Dreadmaster may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Dreadmaster",
+     "raw": "A Dreadmaster may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "Supreme Sorceress",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Supreme Sorceress",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 6,
+     "A": 2,
+     "Ld": 9,
+     "points": 195
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dark Steed",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Dark Pegasus",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Manticore",
+       "points": 150,
+       "perModel": false
+      },
+      {
+       "name": "Black Dragon",
+       "points": 300,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Supreme Sorceress",
+     "raw": "A Supreme Sorceress may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 195
+  },
+  {
+   "name": "Sorceress",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Sorceress",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 85
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dark Steed",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Dark Pegasus",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Sorceress",
+     "raw": "A Sorceress may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "Hag Queen",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hag Queen",
+     "M": 5,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 3,
+     "W": 3,
+     "I": 8,
+     "A": 4,
+     "Ld": 10,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Cauldron of Blood",
+       "points": 160,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Cauldron of Blood (Hag Queen only, replacing the Keeper of the Cauldron) +160 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Hag Queen",
+     "raw": "A Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "gifts_of_khaine",
+     "raw": "A Hag Queen may take Magic Items and/or Gifts of Khaine up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "Death Hag",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Death Hag",
+     "M": 5,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Death Hag may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Death Hag",
+     "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "gifts_of_khaine",
+     "raw": "A Death Hag may take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "BLACK ARK FLEETMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Fleetmaster",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Repeater handbow",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Sea Dragon Cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Sea Dragon Cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ambushers, Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "BEASTMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Beastmaster",
+     "M": 5,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 6,
+     "A": 2,
+     "Ld": 8,
+     "points": 45
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Sea Dragon Cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Sea Dragon Cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Scourgerunner Chariot",
+       "points": 50,
+       "perModel": false
+      },
+      {
+       "name": "Manticore",
+       "points": 150,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 45
+  },
+  {
+   "name": "DISCIPLE OF KHAINE",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Disciple of Khaine",
+     "M": 5,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 6,
+     "A": 2,
+     "Ld": 9,
+     "points": 105
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapon",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take an additional hand weapon +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "gifts_of_khaine",
+     "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Magical Attacks, Magic Resistance (1), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 105
+  },
+  {
+   "name": "KHAINITE ASSASSIN",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Khainite Assassin",
+     "M": 5,
+     "WS": 9,
+     "BS": 9,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 10,
+     "A": 3,
+     "Ld": 9,
+     "points": 105
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapon",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take an additional hand weapon +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Repeater handbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Throwing weapons",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "gifts_of_khaine",
+     "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 105
+  },
+  {
+   "name": "HIGH GLADIATRIX",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "High Gladiatrix",
+     "M": 5,
+     "WS": 8,
+     "BS": 5,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 4,
+     "Ld": 9,
+     "points": 145
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Buckler",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Hatred (High Elves), Immunity (Fear), Killing Blow, Murderous Prowess",
+   "upgrades": null,
+   "notes": "A High Gladiatrix may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 145
+  },
+  {
+   "name": "MELUSAI IRONSCALE",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Melusai Ironscale",
+     "M": 6,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 7,
+     "A": 4,
+     "Ld": 9,
+     "points": 180
+    }
+   ],
+   "troopType": "Infantry (Character, Dark Elf)",
+   "baseSize": "30x30 or 40x40",
+   "equipment": "Keldrisaíth",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "gifts_of_khaine",
+     "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Magic Resistance (1), Murderous Prowess, Natural Armour (6+), Swiftstride, Vanguard",
+   "upgrades": null,
+   "notes": "A Melusai Ironscale may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "DARK STEED",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Dark Steed",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "COLD ONE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Cold One",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Saurian)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear, Natural Armour (6+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "DARK PEGASUS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Dark Pegasus",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (9), Impale",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "MANTICORE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Manticore",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Chimeric)",
+   "baseSize": "50x50, 50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Rending Fangs",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Rending Fangs +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Bloodrage",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Bloodrage +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Iron-hard Skin",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Iron-hard Skin +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Venom Tail",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Venom Tail +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8), Frenzy, Killing Blow",
+   "upgrades": "Bloodrage: The Manticore gains the Hatred special rule.\nIron-hard Skin: The Manticore gains the Natural Armour (5+) special rule.\nRending Fangs: The Manticore gains the Armour Piercing (1) special rule.\nVenom Tail: The Manticore gains an additional Attack that has the Poisoned Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "BLACK DRAGON",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Black Dragon",
+     "M": 6,
+     "WS": 6,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Draconid)",
+   "baseSize": "50x50, 50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (7), Natural Armour (3+).",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "DREADSPEARS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Dreadspear",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Spear, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Dreadspear to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Dreadspear to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Dreadspear to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "BLEAKSWORDS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Bleaksword",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bleaksword to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bleaksword to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bleaksword to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "DARKSHARDS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Darkshard",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 13
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, Deathrain crossbow, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Darkshard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Darkshard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Darkshard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "BLACK ARK CORSAIRS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Corsair",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, light armour, Sea Dragon Cloak",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "one hand weapon",
+     "choices": [
+      {
+       "name": "repeater handbows",
+       "points": 1,
+       "perModel": true,
+       "replaces": "one hand weapon"
+      }
+     ],
+     "raw": "May replace one hand weapon with repeater handbows +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Ambushers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Corsair to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Corsair to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Corsair to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "WITCH ELVES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Witch Elf",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 1,
+     "Ld": 8,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Witch Elf to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Witch Elf to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Witch Elf to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "DARK RIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Dark Rider",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    },
+    {
+     "name": "Dark Steed",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Dark Elf)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Light lance, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Deathrain crossbows",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take Deathrain crossbows +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 0,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding free",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Dark Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Dark Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Dark Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Fast Cavalry, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Dark Steed (Equine)",
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "SLAVES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Slave",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 4,
+     "points": 2
+    },
+    {
+     "name": "Slavemaster",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 25
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapons",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace (Slave Master only), Expendable, Hatred (High Elves) (Slave Master only), Mixed Unit, Murderous Prowess (Slave Master only), Vanguard",
+   "upgrades": null,
+   "notes": "You must include one Slave Master for every 20 Slaves in the unit.",
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "HARPIES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Harpy",
+     "M": 5,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 6,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Harpy)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Harpy to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Independent, Fly (10)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "HAR GANETH EXECUTIONERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Executioner",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Executioner to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Executioner to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Executioner to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Killing Blow, Khainite, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "BLOOD HAGS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Blood Hag",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm, throwing weapons, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Blood Hag to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Blood Hag to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Blood Hag to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "SISTERS OF SLAUGHTER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sister of Slaughter",
+     "M": 5,
+     "WS": 6,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 2,
+     "Ld": 9,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Sister of Slaughter to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Sister of Slaughter to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Sister of Slaughter to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Hatred (High Elves), Immunity (Fear), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "SHADES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Shade",
+     "M": 5,
+     "WS": 5,
+     "BS": 5,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, Deathrain crossbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take additional hand weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Shade to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Independent, Murderous Prowess, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "COLD ONE KNIGHTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Cold One Knight",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 1,
+     "Ld": 9,
+     "points": 32
+    },
+    {
+     "name": "Cold One",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Dark Elf)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy lance, heavy armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Cold One Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Cold One Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Cold One Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Cold One (Saurian)",
+   "drawnBy": null,
+   "pointsCost": 32
+  },
+  {
+   "name": "COLD ONE CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Cold One Chariot",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Charioteer",
+     "M": "-",
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 6,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    },
+    {
+     "name": "Cold One",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 2,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Light lance, Deathrain crossbow, heavy armour, scythes",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May be upgraded to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Fear, Hatred (High Elves), Murderous Prowess, Natural Armour (6+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Charioteers (Dark Elf)",
+   "mount": null,
+   "drawnBy": "2 Cold Ones (Saurian)",
+   "pointsCost": 100
+  },
+  {
+   "name": "SCOURGERUNNER CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Scourgerunner Chariot",
+     "M": 8,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 70
+    },
+    {
+     "name": "Beastmaster Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Dark Steed",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 4,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Light lance, Deathrain crossbow, Ravager Harpoon, Sea Dragon Cloak",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Beastmaster Crew (Dark Elf)",
+   "mount": null,
+   "drawnBy": "2 Dark Steeds (Equine)",
+   "pointsCost": 70
+  },
+  {
+   "name": "REAPER BOLT THROWER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Reaper Bolt Thrower",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 60
+    },
+    {
+     "name": "Crew",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Reaper Bolt Thrower), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, repeater bolt thrower, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew 10 points",
+     "points": null,
+     "perModel": false,
+     "raw": "May take an additional Crew 10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 (Dark Elf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "MELUSAI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Melusai",
+     "M": 6,
+     "WS": 5,
+     "BS": 5,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 26
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "30x30 or 40x40",
+   "equipment": "Heartshard Glaive, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "Heartshard Glaives",
+     "choices": [
+      {
+       "name": "Heartseeker Bows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "Heartshard Glaives"
+      }
+     ],
+     "raw": "May replace Heartshard Glaives with Heartseeker Bows free",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Melusai to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Murderous Prowess, Natural Armour (6+), Swiftstride, Vanguard",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 26
+  },
+  {
+   "name": "KHINERAI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Khinerai",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 2,
+     "Ld": 8,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take javelins +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Khinerai to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ambushers, Elven Grace, Fly (10), Hatred (High Elves), Khainite, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "BLOODWRACK MEDUSA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bloodwrack Medusa",
+     "M": 6,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 7,
+     "points": 55
+    }
+   ],
+   "troopType": "Monstrous Beast (Dark Elf)",
+   "baseSize": "40x40",
+   "equipment": "Polearm",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Frenzy, Hatred (High Elves), Independent, Murderous Prowess, Natural",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "BLACK GUARD OF NAGGAROND",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Black Guard",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 2,
+     "Ld": 9,
+     "points": 18
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Black Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Black Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Black Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 75,
+       "raw": "May take a Magic Standard worth up to 75 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace, Eternal Hatred, Immunity (Psychology), Murderous Prowess, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 18
+  },
+  {
+   "name": "SHADOWSTALKERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Shadowstalker",
+     "M": 5,
+     "WS": 5,
+     "BS": 5,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 6,
+     "A": 2,
+     "Ld": 8,
+     "points": 16
+    }
+   ],
+   "troopType": "Infantry (Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "throwing weapons",
+     "choices": [
+      {
+       "name": "repeater handbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "throwing weapons"
+      }
+     ],
+     "raw": "May replace throwing weapons with repeater handbows +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Shadowstalker to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Khainite, Murderous Prowess, Poisoned Attacks, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 16
+  },
+  {
+   "name": "DOOMFIRE WARLOCKS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Doomfire Warlock",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": 25
+    },
+    {
+     "name": "Dark Steed",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Dark Elf)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon",
+   "magic": "A unit of Doomfire Warlocks is a Level 1 Wizard who chooses spells from one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 0,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding free",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Doomfire Warlock to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Fast Cavalry, Hatred (High Elves), Hekarti's Blessing, Magical Ward (4+), Murderous Prowess, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Dark Steed (Equine)",
+   "drawnBy": null,
+   "pointsCost": 25
+  },
+  {
+   "name": "CAULDRON OF BLOOD",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Cauldron of Blood",
+     "M": 5,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 165
+    },
+    {
+     "name": "Keeper of the Cauldron",
+     "M": "-",
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 6,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Guardian",
+     "M": "-",
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 6,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Shrine (Armour Save 6+)",
+   "baseSize": "60x100",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Impact Hits (D3), Khainite, Murderous",
+   "upgrades": null,
+   "notes": "A Cauldron of Blood has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": "1 Keeper of the Cauldron and 2 Guardians (Dark Elf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 165
+  },
+  {
+   "name": "BLOODWRACK SHRINE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Bloodwrack Shrine",
+     "M": 5,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 135
+    },
+    {
+     "name": "Shrinekeeper",
+     "M": "-",
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Bloodwrack Medusa",
+     "M": "-",
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 5,
+     "A": 3,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Shrine (Armour Save 6+)",
+   "baseSize": "60x100",
+   "equipment": "Polearm",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Hatred (High Elves), Impact Hits (D3), Murderous Prowess, Natural Armour",
+   "upgrades": null,
+   "notes": "A Bloodwrack Shrine has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": "1 Bloodwrack Medusa and 2 Shrinekeepers (Dark Elf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 135
+  },
+  {
+   "name": "WAR HYDRA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "War Hydra",
+     "M": 6,
+     "WS": 4,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 2,
+     "A": 8,
+     "Ld": 6,
+     "points": 200
+    },
+    {
+     "name": "Beastmaster Apprentice",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Hydra)",
+   "baseSize": "50x100",
+   "equipment": "Two hand weapons (Beastmaster Apprentices only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Spit Fire",
+       "choices": [
+        {
+         "name": "Spit Fire",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Spit Fire +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Fiery Breath",
+       "choices": [
+        {
+         "name": "Fiery Breath",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Fiery Breath +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Acid Breath",
+       "choices": [
+        {
+         "name": "Acid Breath",
+         "points": 30,
+         "perModel": false
+        }
+       ],
+       "raw": "Acid Breath +30 points"
+      }
+     ]
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Bloodthirsty",
+       "choices": [
+        {
+         "name": "Bloodthirsty",
+         "points": 5,
+         "perModel": false
+        }
+       ],
+       "raw": "Bloodthirsty +5 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Daerlythe's Aura",
+       "choices": [
+        {
+         "name": "Daerlythe's Aura",
+         "points": 5,
+         "perModel": false
+        }
+       ],
+       "raw": "Daerlythe's Aura +5 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Battle Lover",
+       "choices": [
+        {
+         "name": "Battle Lover",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Battle Lover +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Chameleon Skin",
+       "choices": [
+        {
+         "name": "Chameleon Skin",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Chameleon Skin +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Armour Plates",
+       "choices": [
+        {
+         "name": "Armour Plates",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Armour Plates +15 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice",
+   "upgrades": "• Acid Breath: The model gains a Strength 2 Breath Weapon with the Ignores Armour Saves special rule.\n• Armour Plates: The model gains the Natural Armour (6+) special rule.\n• Battle Lover: The model gains the Vanguard special rule.\n• Bloodthirsty: The model gains the Devastating Charge special rule.\n• Chameleon Skin: All enemy missile attacks targeting the model suffer -1 To Hit.\n• Daerlythe's Aura: The model gains the Magic Resistance (2) special rule.\n• Fiery Breath: The model gains a Breath Weapon with the Flaming Attacks special rule. The Strength of this attack is equal to the War Hydra's remaining Wounds.\n• Spit Fire: The model gains a shooting attack with the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n8/12\" | * | Flaming Attacks, Multiple Shots (*), Quick Shot, Rapid Fire\n*The Strength and Multiple Shots value of this attack is equal to the War Hydra's remaining number of Wounds.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "KHARIBDYSS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Kharibdyss",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 5,
+     "I": 4,
+     "A": 5,
+     "Ld": 6,
+     "points": 210
+    },
+    {
+     "name": "Beastmaster Apprentice",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Sea Creature)",
+   "baseSize": "50x100",
+   "equipment": "Two hand weapons (Beastmaster Apprentices only)",
+   "magic": null,
+   "options": null,
+   "specialRules": "Aquatic, Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "AVATAR OF KHAINE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Avatar of Khaine",
+     "M": 6,
+     "WS": 6,
+     "BS": 0,
+     "S": 6,
+     "T": 7,
+     "W": 5,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": 265
+    }
+   ],
+   "troopType": "Monster (Animated Construct)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Animated Construct, Hatred, Killing Blow, Magical Ward (5+), Unstable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 265
+  },
+  {
+   "name": "MALEKITH",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Malekith",
+     "M": 5,
+     "WS": 8,
+     "BS": 7,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 8,
+     "A": 4,
+     "Ld": 10,
+     "points": 495
+    },
+    {
+     "name": "Seraphon (Black Dragon)",
+     "M": 6,
+     "WS": 7,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 6,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "Malekith is a Level 4 Wizard who chooses spells from the Lore of Dark Magic.",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Cold One",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Cold One Chariot",
+       "points": 100,
+       "perModel": false
+      },
+      {
+       "name": "Seraphon (Black Dragon)",
+       "points": 320,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Fear, Eternal Hatred, Hekarti's Blessing, Immunity (Psychology), Murderous",
+   "upgrades": null,
+   "notes": "At the start of each close combat, you must choose whether Malekith uses the Hand of Khaine or the Supreme Spellshield.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 495
+  },
+  {
+   "name": "MORATHI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Morathi",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 6,
+     "A": 3,
+     "Ld": 10,
+     "points": 335
+    },
+    {
+     "name": "Sulephet (Dark Pegasus)",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": "Morathi is a Level 4 Wizard who uses the following Lores of Magic:",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Sulephet (Dark Pegasus)",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on Sulephet (Dark Pegasus) +40 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Hekarti's Blessing, Khainite, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 335
+  },
+  {
+   "name": "MALUS DARKBLADE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Malus Darkblade",
+     "M": 5,
+     "WS": 7,
+     "BS": 7,
+     "S": 4,
+     "T": 3,
+     "W": 3,
+     "I": 8,
+     "A": 4,
+     "Ld": 10,
+     "points": 210
+    },
+    {
+     "name": "Spite",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour, Sea Dragon Cloak",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spite (Cold One)",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on Spite (Cold One) +50 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Eternal Hatred, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "CRONE HELLEBRON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Crone Hellebron",
+     "M": 5,
+     "WS": 7,
+     "BS": 7,
+     "S": 4,
+     "T": 3,
+     "W": 3,
+     "I": 9,
+     "A": 4,
+     "Ld": 10,
+     "points": 280
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Manticore",
+       "points": 150,
+       "perModel": false
+      },
+      {
+       "name": "Cauldron of Blood",
+       "points": 160,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Khainite, Murderous Prowess, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 280
+  },
+  {
+   "name": "RAKARTH",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Rakarth",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 3,
+     "I": 6,
+     "A": 3,
+     "Ld": 10,
+     "points": 445
+    },
+    {
+     "name": "Bracchus (Black Dragon)",
+     "M": 6,
+     "WS": 6,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Special Character, Dark Elf)",
+   "baseSize": "50x50, 50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Beastslaver (see Beastmaster), Hatred (High Elves), Fly (7), Murderous Prowess, Natural",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Bracchus (Dragon)",
+   "drawnBy": null,
+   "pointsCost": 445
+  },
+  {
+   "name": "KRETHUSA THE CRONESEER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Krethusa",
+     "M": 5,
+     "WS": 5,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 6,
+     "A": 2,
+     "Ld": 9,
+     "points": 295
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": "Krethusa is a Level 3 Wizard who uses the Lore of Shadow. In addition, she knows the knows the Flock of Doom spell from the Lore of Beasts.",
+   "options": null,
+   "specialRules": "Elven Grace, Fly (10), Hatred (High Elves), Hekarti's Blessing, Murderous Prowess",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 295
+  },
+  {
+   "name": "KOURAN DARKHAND",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Kouran Darkhand",
+     "M": 5,
+     "WS": 8,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Eternal Hatred, Immunity (Psychology), Murderous Prowess, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "TULLARIS DREADBRINGER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Tullaris Dreadbringer",
+     "M": 5,
+     "WS": 7,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 130
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Elven Grace, Hatred (High Elves), Fear, Frenzy, Khainite, Killing Blow, Murderous",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "LOKHIR FELLHEART",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Lokhir Fellheart",
+     "M": 5,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 150
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour, Sea Dragon Cloak",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ambushers, At them, you Curs! (see Black Ark Fleetmaster), Elven Grace, Hatred (High",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "SHADOWBLADE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Shadowblade",
+     "M": 6,
+     "WS": 10,
+     "BS": 10,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 10,
+     "A": 3,
+     "Ld": 9,
+     "points": 220
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dark Elf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 220
+  }
+ ]
+}

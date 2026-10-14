@@ -1,0 +1,2232 @@
+{
+ "factionName": "Hobgoblins",
+ "units": [
+  {
+   "name": "Khan",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Khan",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Khan",
+     "raw": "A Khan may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Hiiyaaarrghh!, Quell Treachery",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "Orlok",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Orlok",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 40
+    }
+   ],
+   "troopType": "Infantry (Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Orlok may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Orlok",
+     "raw": "An Orlok may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Hiiyaaarrghh!, Quell Treachery",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "Great Shaman",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Great Shaman",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 155
+    }
+   ],
+   "troopType": "Infantry (Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Shaman is a Level 1 Wizard. A Great Shaman is a Level 3 Wizard. They use the Lore of da Hiiyaaarrghh!",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Corpseripper Vulture",
+       "points": 175,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Great Shaman",
+     "raw": "A Great Shaman may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 155
+  },
+  {
+   "name": "Shaman",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Shaman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Shaman is a Level 1 Wizard. A Great Shaman is a Level 3 Wizard. They use the Lore of da Hiiyaaarrghh!",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Shaman",
+     "raw": "A Shaman may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "THROAT-SLASHER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Throat-Slasher",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 7,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Character, Hobgoblin)",
+   "baseSize": null,
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Dodge (5+), Hidden, Poisoned Attacks, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "GIANT WOLF",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Canine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "SNARLFANG",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Snarlfang",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Canine)",
+   "baseSize": "50x75",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "CUTTHROATS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Cutthroat",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 3.5
+    }
+   ],
+   "troopType": "Infantry (Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take spears +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Cutthroat to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Cutthroat to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Cutthroat to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3.5
+  },
+  {
+   "name": "ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Archer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 4.5
+    }
+   ],
+   "troopType": "Infantry (Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Archer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4.5
+  },
+  {
+   "name": "WOLF RAIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Wolf Raider",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 9
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shortbows +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Ambushers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Wolf Raider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Wolf Raider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Wolf Raider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Cunning Retreat, Ded Shooty, Fast Cavalry, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "KHARASH",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Kharash",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": 2
+    },
+    {
+     "name": "Slavedriver",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 6,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +0.5 point/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Mixed Unit",
+   "upgrades": null,
+   "notes": "You must include one Slavedriver for every 10 Kharash in the unit.",
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "HOBHOUNDS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Hobhound",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": 6
+    },
+    {
+     "name": "Packmaster",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 10
+    }
+   ],
+   "troopType": "War Beast (Canine)",
+   "baseSize": "25x50 (Hobhound), 20x20 or 25x25 (Packmaster)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Frenzy, Mixed Unit",
+   "upgrades": null,
+   "notes": "You must include one Packmaster for every 5 Hobhounds in the unit.",
+   "unitSize": "10+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "KHESHIG WOLF RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Kheshig",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 17
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Light lance, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Poisoned Attacks (close combat only) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shortbows +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Kheshig to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Kheshig to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Kheshig to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Cunning Retreat, Ded Shooty, Fast Cavalry, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "RAVAGERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ravager",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 11
+    },
+    {
+     "name": "Hobhound",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Poisoned Attacks +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ravager to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ravager to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ravager to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Fast Cavalry, Frenzy (Ravagers & Hobhounds), Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Hobhound (Canine)",
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "MANGUDAI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Mangudai",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 13
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Poisoned Attacks +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Mangudai to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Mangudai to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Mangudai to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Cunning Retreat, Ded Shooty, Fast Cavalry, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "SNEAKY GITS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sneaky Git",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Scouts",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Scouts +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Sneaky Git to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Poisoned Attacks, Treacherous Gits, Cunning Retreat",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "WOLF CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Wolf Chariot",
+     "M": 8,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 60
+    },
+    {
+     "name": "Hobgoblin",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    },
+    {
+     "name": "Giant Wolf",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Giant Wolf",
+     "points": 3,
+     "perModel": false,
+     "raw": "May take an additional Giant Wolf +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light lances +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Bows",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May be upgraded to a standard bearer ´ +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 (Hobgoblin)",
+   "mount": null,
+   "drawnBy": "2 Giant Wolves (Canine)",
+   "pointsCost": 60
+  },
+  {
+   "name": "BOLT THROWA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bolt Throwa",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 35
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Bolt Throwa), 20x20 or 25x25 (Hobgoblin)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": null,
+   "specialRules": "Slipshod",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Hobgoblins (Hobgoblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "ALMASLAR",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Almas",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 4,
+     "Ld": 6,
+     "points": 43
+    }
+   ],
+   "troopType": "Monstrous Infantry (Primate)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Armour Piercing (1), Frenzy, Regeneration (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 43
+  },
+  {
+   "name": "GIANT SCORPIONS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Giant Scorpion",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 4,
+     "points": 42
+    },
+    {
+     "name": "Scorpion Herder",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Arachnid)",
+   "baseSize": "50x50 or 50x75 (Giant Scorpion), 20x20 or 25x25 (Packmaster)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Killing Blow, Natural Armour (5+), Mixed Unit, Poisoned Attacks",
+   "upgrades": null,
+   "notes": "You must include one Scorpion Herder for every 3 Giant Scorpions in the unit.",
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 42
+  },
+  {
+   "name": "KHESHIG SNARLFANG RIDERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Kheshig",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 48
+    },
+    {
+     "name": "Snarlfang",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Hobgoblin)",
+   "baseSize": "50x75",
+   "equipment": "Light lance, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Poisoned Attacks (close combat only) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shortbows +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Kheshig to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Kheshig to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Kheshig to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Treacherous Gits",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Snarlfang (Canine)",
+   "drawnBy": null,
+   "pointsCost": 48
+  },
+  {
+   "name": "WAR WAGON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "War Wagon",
+     "M": 8,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Hobgoblin",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    },
+    {
+     "name": "Giant Wolf",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 3+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon, giant bow",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Giant Wolf",
+     "points": 3,
+     "perModel": false,
+     "raw": "May take an additional Giant Wolf +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Bows",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 (Hobgoblin)",
+   "mount": null,
+   "drawnBy": "2 Giant Wolves (Canine)",
+   "pointsCost": 85
+  },
+  {
+   "name": "ROKKIT LAUNCHA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Rokkit Launcha",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 80
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Rokkit Launcha), 20x20 or 25x25 (Hobgoblin)",
+   "equipment": "Hand weapon, rocket launcher",
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Hobgoblins (Hobgoblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "WIND DAEMONS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Wind Daemon",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 7,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Infantry (Elemental)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ethereal, Fly (7), Unstable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "CORPSERIPPER VULTURE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Corpseripper Vulture",
+     "M": 4,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 4,
+     "A": 5,
+     "Ld": 7,
+     "points": 175
+    }
+   ],
+   "troopType": "Monster (Avian)",
+   "baseSize": "50x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (8)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "DREAD MAW",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Dread Maw",
+     "M": "*",
+     "WS": 2,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 1,
+     "A": 5,
+     "Ld": 7,
+     "points": 225
+    }
+   ],
+   "troopType": "Monster (Vermian)",
+   "baseSize": "50x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Clawed Mandibles",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Clawed Mandibles +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Hooked Spines",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Hooked Spines +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Poisonous Blood",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take Poisonous Blood +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Slime Spray",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take Slime Spray +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Impact Hits (D6), Multiple Wounds (D3), Random Movement (2D6), Stubborn, Natural",
+   "upgrades": "Clawed Mandibles: The Dread Maw gains the Armour Piercing (1) special rule.\nHooked Spines: The Dread Maw gains the Devastating Charge special rule.\nPoisonous Blood: Any model that inflicts a wound on the Dread Maw in close combat immediately suffer a single Strength 4 hit.\nSlime Spray: The Dread Maw gains a Breath weapon that forces any unit under the flame template to pass an Initiative test or suffer -2\" to their move for the next turn.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 225
+  },
+  {
+   "name": "GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "HOBGOBLA KHAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Hobgobla Khan",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 5,
+     "Ld": 9,
+     "points": 225
+    }
+   ],
+   "troopType": "Infantry (Special Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 45,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Hiiyaaarrghh!",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 225
+  },
+  {
+   "name": "GHAZAK KHAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ghazak Khan",
+     "M": 4,
+     "WS": 7,
+     "BS": 6,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 205
+    },
+    {
+     "name": "Warghan (Giant Wolf)",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Hobgoblin)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Bow, medium armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Fear, Quell Treachery, Hiiyaaarrghh!",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Warghan (Canine)",
+   "drawnBy": null,
+   "pointsCost": 205
+  },
+  {
+   "name": "MAGLAH KHAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Maglah Khan",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 110
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": "Light lance, shortbow, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Sniper, Hiiyaaarrghh!, Inspiring Presence",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 110
+  },
+  {
+   "name": "SOBUTAI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sobutai",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 100
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Hobgoblin)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "Giant Wolf",
+     "choices": [
+      {
+       "name": "Snarlfang",
+       "points": 25,
+       "perModel": false,
+       "replaces": "Giant Wolf"
+      }
+     ],
+     "raw": "May replace Giant Wolf with Snarlfang +25 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Hiiyaaarrghh!",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "NERGUI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Nergui",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 300
+    }
+   ],
+   "troopType": "Infantry (Special Character, Hobgoblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Nergui is a Level 4 Wizard who uses the Lore of da Hiiyaaarrghh! In addition, he knows the following spell:",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Corpseripper Vulture",
+       "points": 175,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Backstabbers, Cowardly Despoilers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  }
+ ]
+}

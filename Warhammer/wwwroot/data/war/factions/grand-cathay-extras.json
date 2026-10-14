@@ -1,0 +1,650 @@
+{
+ "factionName": "Grand Cathay",
+ "armySpecialRules": [
+  {
+   "name": "CELESTIAL FORGED ARMOUR",
+   "description": "Models with this special rule gain a Magical Ward (6+)."
+  },
+  {
+   "name": "HARMONY",
+   "description": "Most of Grand Cathay's units are divided into two categories, Yin and/or Yang as described in the army list. Unless specified, models armed with missile weapons counts as Yin, and models armed with only close combat weapons counts as Yang.\nWhen a Yin unit is within 3\" of non-fleeing Yang units with a combined Unit Strength 5 or more, they may re- roll 1's To Hit with missile weapons. When a Yang unit is within 3\" of non-fleeing Yin units with a combined Unit Strength 5 or more, the Yang unit may re-roll 1's To Wound in close combat."
+  },
+  {
+   "name": "MASTERY OF THE ELEMENTAL WINDS",
+   "description": "Models with this special rule gain a +1 casting bonus if there is one or more friendly non-fleeing models with this special rule within 12\"."
+  },
+  {
+   "name": "WILL OF THE DRAGONS",
+   "description": "A unit with this special rule may re-roll failed Panic tests caused by friendly units breaking from combat or getting destroyed within 6\" of them, or when it is fled through by a friendly unit."
+  },
+  {
+   "name": "CELESTIAL BLADE",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\nCombat | As user | Parry (6+)\nA Celestial Blade gives the wielder +1 To Wound."
+  },
+  {
+   "name": "CRANE GUN",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n18/36\" | 6 | Move or Fire*, Ponderous,\n*Does not apply if mounted on a Chariot."
+  },
+  {
+   "name": "DRAGON FIRE PISTOLS",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n8/12\" | 5 | Armour Piercing (1), Flaming Attacks, Quick Shot"
+  },
+  {
+   "name": "DRAGON FIRE BOMBS",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/9\" | 5 | Armour Piercing (1), Flaming Attacks (non- physical), March & Shoot, Quick Shot\nEach Hit from a dragon fire bomb is multiplied into D3 Hits."
+  },
+  {
+   "name": "REPEATER CROSSBOW",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n12/18\" | 2 | Multiple Shots (3), Rapid Fire"
+  },
+  {
+   "name": "THREE-EYED GUN",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n9/18\" | 5 | Multiple Shots (3), Ponderous, Rapid Fire"
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "JADE BLADE OF THE GREAT FLEET",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains +1 Strength and the Regeneration (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "NUKU CHO'S CROSSBOW",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "This weapon has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n18/24\" | 3 | Multiple Shots (6), Rapid Fire",
+   "restriction": null
+  },
+  {
+   "name": "SILVER MOON BOW",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "This weapon has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n24/36\" | 4 | Armour Piercing (3), Multiple Shots (3)",
+   "restriction": null
+  },
+  {
+   "name": "SPIRIT LONGMA SPEAR",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains the Ignores Armour saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "VORPAL SHARD",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon always Wounds on a 2+.",
+   "restriction": null
+  },
+  {
+   "name": "THE BRAZEN BLADE",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "This weapon has the Multiple Wounds (2) special rule. In addition, Ward saves (except Dodge and Parry) cannot be taken against Wounds caused by it.",
+   "restriction": null
+  },
+  {
+   "name": "DAWN GLAIVE",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "All enemy attacks against the wielder of this weapon suffer -1 To Hit in close combat.",
+   "restriction": null
+  },
+  {
+   "name": "THE SWORD OF REASON",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "This weapon has the Killing Blow special rules, which takes effect on a 5+ rather than a 6.",
+   "restriction": null
+  },
+  {
+   "name": "ASCENDANT CELESTIAL BLADE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains +1 Strength.",
+   "restriction": null
+  },
+  {
+   "name": "BLADE OF XEN WU",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains +1 Strength and +1 Attack. However, any unit joined by them cannot use their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "SERPENT FANG",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains the Armour Piercing (2) and Poisoned Attacks special rules.",
+   "restriction": null
+  },
+  {
+   "name": "SWORD OF NAN-GAU",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains the Armour Piercing (3) and Hatred (Chaos) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "VERMILLION BLADE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains +1 To Hit and the Flaming Attacks special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SUN & MOON BLADES",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "These weapons have the Armour Piercing (1) and Immunity (Killing Blow) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "WRATH OF XEN YANG",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains the Flaming Attacks special rule.",
+   "restriction": null
+  },
+  {
+   "name": "JADE ARMOUR OF BEICHAI",
+   "points": "55",
+   "category": "magic_armour",
+   "description": "The wearer of this armour gains a Magical Ward (5+) and the Magic Resistance (2) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "QUICKSILVER ARMOUR",
+   "points": "35",
+   "category": "magic_armour",
+   "description": "The wearer of this armour gains the Always Strikes First special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SCALES OF THE CELESTIAL COURT",
+   "points": "35",
+   "category": "magic_armour",
+   "description": "The wearer of this armour gains the Natural Armour (5+) and Strider special rules.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF THE WARBIRD",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "The wearer of this armour gains the Fly (10) and Independent special rules.",
+   "restriction": "Infantry"
+  },
+  {
+   "name": "ASCENDANT CELESTIAL ARMOUR",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "The wearer of this armour is immune to penalties to any of their characteristics and automatically passes all characteristics tests.",
+   "restriction": null
+  },
+  {
+   "name": "LAMINATE SHIELD",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "Every time the bearer of this shield makes a successful Parry save, they may immediately make an additional Attack back against the model that struck the blow.",
+   "restriction": null
+  },
+  {
+   "name": "MANTLE OF HEAVEN",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "The wearer of this armour gains a 5+ armour save against non-magical missile attacks.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF NAN-GAU",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "The bearer gains +2 armour save against all attacks to their front in the first round of close combat.",
+   "restriction": null
+  },
+  {
+   "name": "GUARDIAN FENG SHI BO",
+   "points": "40",
+   "category": "talisman",
+   "description": "All close combat and missile attacks targeting the bearer of this item must re-roll successful To Hit rolls.",
+   "restriction": null
+  },
+  {
+   "name": "ROBES OF SHANG YANG",
+   "points": "40",
+   "category": "talisman",
+   "description": "This item contains the Wall of Wind & Fire spell from the Lore of Yang. In addition, the bearer gains a Magical Ward (6+) against missile attacks.",
+   "restriction": null
+  },
+  {
+   "name": "CRYSTAL OF KUNLAN",
+   "points": "30",
+   "category": "talisman",
+   "description": "The bearer of this item gains a Magical Ward (5+). In addition, for each successful Ward save they make in close combat, the enemy that struck the blow immediately suffers a Strength 3 Hit with the Flaming Attacks special rule.",
+   "restriction": null
+  },
+  {
+   "name": "JET AMULET",
+   "points": "25",
+   "category": "talisman",
+   "description": "The bearer of this item and any unit they join gain the Magic Resistance (2) special rule. In addition, they may re-roll any failed dispel attempts against spells directly targeting them or their unit.",
+   "restriction": null
+  },
+  {
+   "name": "SIGIL OF SMOKE & POWDER",
+   "points": "25",
+   "category": "talisman",
+   "description": "All missile attacks targeting the bearer of this item or any unit they are with suffer -1 To Hit.",
+   "restriction": null
+  },
+  {
+   "name": "JADE BLOOD PENDANT",
+   "points": "20",
+   "category": "talisman",
+   "description": "Whenever the bearer kills one or more enemy models in close combat, roll a D6 at the end of the Close Combat phase. On the roll of a 5+, the bearer recovers a single Wound lost earlier in the battle.",
+   "restriction": null
+  },
+  {
+   "name": "JAR OF ALL SOULS",
+   "points": "20",
+   "category": "talisman",
+   "description": "If the bearer of this item is killed, immediately roll a D6. On a 2+, they come back to life with 1 Wound remaining.",
+   "restriction": null
+  },
+  {
+   "name": "CELESTIAL SILK ROBE",
+   "points": "15",
+   "category": "talisman",
+   "description": "The wearer of this item gains the Magical Ward (6+) and Magic Resistance (1) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "CROWN OF JADE",
+   "points": "10",
+   "category": "talisman",
+   "description": "The bearer of this item gains a 4+ invulnerable save against all enemy spells.",
+   "restriction": null
+  },
+  {
+   "name": "CLOAK OF PO MEI",
+   "points": "40",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains a +1 casting and dispelling bonus.",
+   "restriction": null
+  },
+  {
+   "name": "CLOCKWORK COMPASS",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "This item can be used at the start of any of your Magic phases. Once used, all Remains in Play spells within 24\" of the bearer that are currently in play are automatically dispelled, and the effects of all other spells within 24\" of the bearer immediately come to an end.",
+   "restriction": null
+  },
+  {
+   "name": "JADE AMULET",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "The bearer of this item may re-roll failed channelling attempts.",
+   "restriction": null
+  },
+  {
+   "name": "SCROLLS OF ASTROMANCY",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "Astromancer only. The bearer can re-roll all of the dice rolled to cast or dispel a spell once per Magic phase. This can effectively cancel a miscast result, and cause Ultimate Power or a miscast.",
+   "restriction": null
+  },
+  {
+   "name": "STAFF OF WU XING",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The bearer of this staff can choose to re-roll all the Winds of Magic dice each Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "SCROLLS OF WEI-JIN",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains the Loremaster special rule. However, they may only attempt to cast a number of spells equal to their Wizard Level.",
+   "restriction": null
+  },
+  {
+   "name": "MAW SHARD",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "The Maw Shard may be used in any of your Magic phases. Once used, any double (except double 1's) rolled when the bearer casts spells counts towards Ultimate Power this turn.",
+   "restriction": null
+  },
+  {
+   "name": "SEAL OF XING PO",
+   "points": "5",
+   "category": "arcane_item",
+   "description": "The bearer of this item may choose spells from both the Lore of Yin and Yang in addition to the spells from their other lore.",
+   "restriction": "Dragon-Blooded Shugengan or Dragon Descendant"
+  },
+  {
+   "name": "ALCHEMIST'S MASK",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains the Transmutation of Lead spell from the Lore of Metal.",
+   "restriction": null
+  },
+  {
+   "name": "ICON OF THE SPIRIT DRAGON",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains the Ancestral Warriors spell from the Lore of Yin.",
+   "restriction": null
+  },
+  {
+   "name": "KITE OF THE UTTERMOST AIRS",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The bearer can use this item in the Shooting phase. Choose one enemy unit with the Fly special rule within 12\" that is not in close combat; they suffer D6 Strength 4 automatic Hits.",
+   "restriction": null
+  },
+  {
+   "name": "CLEANSING WATER",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The bearer of this item and unit they join gains the Mighty Blow (1) special rule in turns that they charge.",
+   "restriction": null
+  },
+  {
+   "name": "CRACKLEBLAZE",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item can be used in the Shooting phase. Place the small 3\" template with the hole anywhere within 6\". It scatters D3\". Any model under the template suffer a Strength 4 hits with the Flaming Attacks and Ignores Armour saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SPIRIT LANTERN",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The bearer of this item gains the Terror special rule. In addition, they may re-roll To Wound rolls of 1 against Daemons, Undead and Vampires.",
+   "restriction": null
+  },
+  {
+   "name": "CATALYTIC KILN",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "All enemy models in base contact with the bearer of this item suffer a Strength 3 Hit with the Flaming Attacks special rule at the start of each close combat phase. Models with Immunity (Flaming Attacks) suffer a Strength 2 Hit.",
+   "restriction": null
+  },
+  {
+   "name": "ASTROMANCER'S SPYGLASS",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer of this item gives you +1 to choose which side of the table to deploy on, choosing the first turn and rolling for Ambushers to arrive. In addition, all enemy units within 30\" must reveal all Hidden models and magic items they might have.",
+   "restriction": null
+  },
+  {
+   "name": "FAN OF THE MAGISTER",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer of this item allows friendly units to re-roll failed Leadership tests when attempting to use the Tactician special rule. In addition, enemy units within 12\" must re-roll successful tests to march, counter-charge, redirect charges, restrain from pursuit and reform.",
+   "restriction": "Lord Magistrate or Magistrate"
+  },
+  {
+   "name": "FIRES OF NAN-GAU",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The bearer of this item gains a Breath Weapon with Strength 4 and the Flaming Attacks special rule.",
+   "restriction": null
+  },
+  {
+   "name": "GOLDEN LION",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The bearer of this item and any unit they are with may re-roll failed Psychology tests.",
+   "restriction": null
+  },
+  {
+   "name": "VERMILLION QUILLS",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of close combat. The bearer of this item can re-roll all failed To Hit and To Wound rolls this turn.",
+   "restriction": null
+  },
+  {
+   "name": "ALCHEMIST'S ELIXIR OF IRON SKIN",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any phase. The character gains the Natural Armour save (3+) special rule until the end of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "ALCHEMIST'S ELIXIR OF PUISSANCE",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any phase. The character gains +1 Strength and Attacks until the end of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "CLOAK OF THE MOON WIND",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The bearer of this item gains the Scouts special rule.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "ALCHEMIST'S ELIXIR OF VENOM",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any phase. The character gains the Poisoned Attacks special rule until the end of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "FLAG OF GRAND CATHAY",
+   "points": "55",
+   "category": "magic_standard",
+   "description": "The bearer gains the Hold Your Ground (6) special rule. In addition, friendly units within 18\" count as being in Harmony if within 6\" of eligible Yin/Yang units rather than 3\".",
+   "restriction": null
+  },
+  {
+   "name": "THE GREAT CELESTIAL BANNER",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains the Magical Ward (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "JADE BANNER",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains +2 combat resolution bonus.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF WEI JIN",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains +1 to their Leadership, and enemy units in base contact suffer -1 to their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF FENG SHI",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains the Immunity (Psychology) and Magical Attacks special rules.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE EMPRESS' EYE",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains +1 to Hit with missile weapons.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE MOON EMPRESS",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains the Scouts special rule.",
+   "restriction": "Infantry"
+  },
+  {
+   "name": "REVERED BANNER OF THE ANCESTORS",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains +1 Weapon Skill.",
+   "restriction": null
+  },
+  {
+   "name": "SERENE CLOUD PRAYER FLAG",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains the Cold-blooded special rule.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF HEAVENLY FURY",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "This item can be used at the start of any enemy Movement phase. Until the start of your next turn, no enemy unit within 24\" of this banner can use the Fly special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE DRAGON'S WRATH",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains the Flaming Attacks and Impact Hits (1) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF SHANG-YANG",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner may re-roll 1's when taking armour saves.",
+   "restriction": null
+  },
+  {
+   "name": "DRAGON'S EYE BANNER",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "Whenever the unit carrying this standard is the target of an enemy spell, roll a D6. On a 3+, the enemy Wizard must choose another target. If no other target is available, the spell cannot be cast.",
+   "restriction": null
+  },
+  {
+   "name": "BASTION STANDARD",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner only suffer half (rounding up) their normal Leadership penalty when taking Break tests and may re-roll failed Break tests.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF NAN-GAU",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains 6\" to the effective range of their missile weapons.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF XEN WUN",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "Enemy units cannot choose to Stand & Shoot against the unit carrying this banner.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [
+  {
+   "name": "THE LORE OF YIN",
+   "attribute": "Whenever a spell from the Lore of Yin is successfully cast, all enemy units within 6\" of the caster suffer -1 to their armour saves until the start of the caster's next magic phase.",
+   "spells": [
+    {
+     "name": "STORM OF SHADOWS",
+     "level": 1,
+     "castValue": 6,
+     "description": "Storm of Shadows is a hex spell with a range of 24\". The target unit suffer -1 to their Movement and have their Line of Sight limited to 12\" until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "CLOAK OF JET",
+     "level": 1,
+     "castValue": 6,
+     "description": "Cloak of Jet is an augment spell with a range of 18\". Until the start of the caster's next Magic phase, no enemy spells can target the unit.",
+     "type": null
+    },
+    {
+     "name": "MISSILE MIRROR",
+     "level": 2,
+     "castValue": 7,
+     "description": "Missile Mirror is a hex spell with a range of 24\". Until the start of the caster's next Magic phase, roll a D6 for every shot the target unit fires in the Shooting phase. On a 4+, that shot is instead resolved against the target unit. Attacks that use templates are not affected.",
+     "type": null
+    },
+    {
+     "name": "BLOSSOM WIND",
+     "level": 3,
+     "castValue": 10,
+     "description": "Blossom Wind is a direct damage spell with a range of 24\" that causes 2D6 Strength 2 Hits with the Armour Piercing (1) special rule. In addition, the target unit suffer -1 to its Weapon Skill and Ballistics skill until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "TALONS OF NIGHT",
+     "level": 3,
+     "castValue": 12,
+     "description": "Remains in play. Talons of Night is a magical vortex that uses the small round template. Any model touched by the template suffer a Strength 4 Hit with the Armour Piercing (1) special rule.",
+     "type": null
+    },
+    {
+     "name": "ANCESTRAL WARRIORS",
+     "level": 4,
+     "castValue": 13,
+     "description": "Ancestral Warriors is a direct damage spell with a range of 18\". The target unit suffers 5D6 Attacks with Weapon Skill 4 and Strength Hits 4, resolved as close combat attacks.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "THE LORE OF YANG",
+   "attribute": "Whenever a spell from the Lore of Yang is successfully cast, all friendly units within 6\" of the caster gain the Armour Piercing (1) special rule until the start of the caster's next magic phase.",
+   "spells": [
+    {
+     "name": "JADE SHIELD",
+     "level": 1,
+     "castValue": 6,
+     "description": "Jade Shield is an augment spell with a range of 12\". The target unit gains a Magical Ward (6+) until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "STONE GROUND STANCE",
+     "level": 1,
+     "castValue": 6,
+     "description": "Stone Ground Stance is an augment spell with a range of 24\". Until the start of the caster's next Magic phase, the target unit gains the Stubborn special rule (if they are already Stubborn, they instead become Unbreakable) and enemies charging them lose all charge bonuses.",
+     "type": null
+    },
+    {
+     "name": "DRAGON'S BREATH",
+     "level": 2,
+     "castValue": 7,
+     "description": "Dragon's Breath is a direct damage spell. The caster makes a Breath Weapon Attack. This may be cast in close combat, following the normal rules for Breath Weapons. All models Hit suffer a Strength 5 Hit with the Flaming Attacks special rule.",
+     "type": null
+    },
+    {
+     "name": "WALL OF WIND & FIRE",
+     "level": 3,
+     "castValue": 10,
+     "description": "Wall of Wind & Fire is a direct damage spell with a range of 24\" that causes 2D6 Strength 3 Hits with the Flaming Attacks special rule. In addition, the target unit suffer -1 to Leadership until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "MIGHT OF HEAVEN & EARTH",
+     "level": 3,
+     "castValue": 11,
+     "description": "Might of Heaven & Earth is an augment spell with a range of 18\". The target unit gains +1 Weapon Skill, +1 Strength, Flaming Attacks and Magical Attacks special rules until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "CONSTELLATION OF THE DRAGON",
+     "level": 4,
+     "castValue": 13,
+     "description": "Constellation of the Dragon is a direct damage area spell with a range of 24\" that uses the small round template. All models underneath the template suffer a Strength 5 Hit with the Multiple Wounds (D3) special rule.",
+     "type": null
+    }
+   ]
+  }
+ ],
+ "factionUpgrades": {}
+}

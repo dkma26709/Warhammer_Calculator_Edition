@@ -1,0 +1,5426 @@
+{
+ "factionName": "Orcs & Goblins",
+ "units": [
+  {
+   "name": "Orc Warboss",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Orc Warboss",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 9,
+     "points": 115
+    }
+   ],
+   "troopType": "Infantry (Character, Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Black Orc",
+       "choices": [
+        {
+         "name": "Black Orc",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Black Orc +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Savage Orc",
+       "choices": [
+        {
+         "name": "Savage Orc",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Savage Orc +20 points"
+      }
+     ]
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "War Boar",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Grunta",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Boar Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Wyvern",
+       "points": 160,
+       "perModel": false
+      },
+      {
+       "name": "Maw-grunta",
+       "points": 235,
+       "perModel": false
+      },
+      {
+       "name": "Maw-krusha",
+       "points": 250,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Orc Warboss",
+     "raw": "An Orc Warboss may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Size Matters, Waaagh!",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Character, Savage Orc).\nBlack Orc: The model gains +1 Weapon Skill, Armed to da Teef, Immunity (Psychology) and Quell Animosity special rules. This changes their Troop Type to Infantry (Character, Black Orc).",
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 115
+  },
+  {
+   "name": "Orc Big Boss",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Orc Big Boss",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Black Orc",
+       "choices": [
+        {
+         "name": "Black Orc",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Black Orc +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Savage Orc",
+       "choices": [
+        {
+         "name": "Savage Orc",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Savage Orc +20 points"
+      }
+     ]
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "War Boar",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Grunta",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Boar Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Wyvern",
+       "points": 160,
+       "perModel": false
+      },
+      {
+       "name": "Maw-krusha",
+       "points": 250,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Orc Big Boss may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Orc Big Boss",
+     "raw": "An Orc Big Boss may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Size Matters, Waaagh!",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Character, Savage Orc).\nBlack Orc: The model gains +1 Weapon Skill, Armed to da Teef, Immunity (Psychology) and Quell Animosity special rules. This changes their Troop Type to Infantry (Character, Black Orc).",
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "Weirdnob",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Weirdnob",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Character, Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "A Weirdboy is a Level 1 Wizard. A Weirdnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orc",
+     "points": 15,
+     "perModel": false,
+     "raw": "May be upgraded to a Savage Orc +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "War Boar",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Boar Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Wyvern",
+       "points": 160,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Weirdnob",
+     "raw": "A Weirdnob may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Size Matters",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Character, Savage Orc). A Savage Orc Shaman can use spells from the Lore of da Big Waaagh! or da Savage Waaagh!",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "Weirdboy",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Weirdboy",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 80
+    }
+   ],
+   "troopType": "Infantry (Character, Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "A Weirdboy is a Level 1 Wizard. A Weirdnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orc",
+     "points": 15,
+     "perModel": false,
+     "raw": "May be upgraded to a Savage Orc +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "War Boar",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Boar Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Weirdboy",
+     "raw": "A Weirdboy may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Size Matters",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Character, Savage Orc). A Savage Orc Shaman can use spells from the Lore of da Big Waaagh! or da Savage Waaagh!",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "Goblin Warboss",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Goblin Warboss",
+     "M": 4,
+     "WS": 5,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 8,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Common Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Night Goblin",
+       "choices": [
+        {
+         "name": "Night Goblin",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Night Goblin free"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Forest Goblin",
+       "choices": [
+        {
+         "name": "Forest Goblin",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Forest Goblin free"
+      }
+     ]
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Giant Spider",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Gigantic Spider",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Great Cave Squig",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      },
+      {
+       "name": "Arachnarok Spider",
+       "points": 255,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Goblin Warboss",
+     "raw": "A Goblin Warboss may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Night Goblin: The model gains the Hatred (Dwarfs) special rule. This changes their Troop Type to Infantry (Character, Night Goblin).\nForest Goblin: The model gains the Forest Strider special rule. This changes their Troop Type to Infantry (Character, Forest Goblin).",
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "Goblin Big Boss",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Goblin Big Boss",
+     "M": 4,
+     "WS": 4,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 7,
+     "points": 35
+    }
+   ],
+   "troopType": "Infantry (Character, Common Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Night Goblin",
+       "choices": [
+        {
+         "name": "Night Goblin",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Night Goblin free"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Forest Goblin",
+       "choices": [
+        {
+         "name": "Forest Goblin",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Forest Goblin free"
+      }
+     ]
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Giant Spider",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Snarlfang",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Gigantic Spider",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Great Cave Squig",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Goblin Big Boss may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Goblin Big Boss",
+     "raw": "A Goblin Big Boss may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Night Goblin: The model gains the Hatred (Dwarfs) special rule. This changes their Troop Type to Infantry (Character, Night Goblin).\nForest Goblin: The model gains the Forest Strider special rule. This changes their Troop Type to Infantry (Character, Forest Goblin).",
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "Oddnob",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Oddnob",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Common Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Oddgit is a Level 1 Wizard. An Oddnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Night Goblin",
+       "choices": [
+        {
+         "name": "Night Goblin",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Night Goblin +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Forest Goblin",
+       "choices": [
+        {
+         "name": "Forest Goblin",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Forest Goblin +15 points"
+      }
+     ]
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Giant Spider",
+       "points": 21,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      },
+      {
+       "name": "Gigantic Spider",
+       "points": 48,
+       "perModel": false
+      },
+      {
+       "name": "Arachnarok Spider",
+       "points": 255,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Oddnob",
+     "raw": "An Oddnob may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Night Goblin: The model gains the Hatred (Dwarfs) and Magic Mushrooms special rules. This changes their Troop Type to Infantry (Character, Night Goblin). A Night Goblin Shaman can use spells from the Lore of da Little Waaagh! or da Bad Moon.\nForest Goblin: The model gains the Forest Strider and Spider Venom special rules. This changes their Troop Type to Infantry (Character, Forest Goblin). A Forest Goblin Shaman can use spells from the Lore of da Little Waaagh! or da Spider God.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Oddgit",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Oddgit",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Common Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Oddgit is a Level 1 Wizard. An Oddnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Night Goblin",
+       "choices": [
+        {
+         "name": "Night Goblin",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Night Goblin +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Forest Goblin",
+       "choices": [
+        {
+         "name": "Forest Goblin",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Forest Goblin +15 points"
+      }
+     ]
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant Wolf",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Giant Spider",
+       "points": 21,
+       "perModel": false
+      },
+      {
+       "name": "Wolf Chariot",
+       "points": 45,
+       "perModel": false
+      },
+      {
+       "name": "Gigantic Spider",
+       "points": 48,
+       "perModel": false
+      },
+      {
+       "name": "Arachnarok Spider",
+       "points": 255,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Oddgit",
+     "raw": "An Oddgit may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Night Goblin: The model gains the Hatred (Dwarfs) and Magic Mushrooms special rules. This changes their Troop Type to Infantry (Character, Night Goblin). A Night Goblin Shaman can use spells from the Lore of da Little Waaagh! or da Bad Moon.\nForest Goblin: The model gains the Forest Strider and Spider Venom special rules. This changes their Troop Type to Infantry (Character, Forest Goblin). A Forest Goblin Shaman can use spells from the Lore of da Little Waaagh! or da Spider God.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "GIANT RIVER TROLL HAG",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Giant River Troll Hag",
+     "M": 5,
+     "WS": 3,
+     "BS": 1,
+     "S": 6,
+     "T": 5,
+     "W": 6,
+     "I": 1,
+     "A": "*",
+     "Ld": 6,
+     "points": 270
+    }
+   ],
+   "troopType": "Monster (Character, Troll)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Hand weapon",
+   "magic": "A Giant River Troll Hag is a Level 2 Wizard who choose spells from the Lore of Troll Magic.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Loner, Marsh Strider, Regeneration (4+), River Strider",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 270
+  },
+  {
+   "name": "WARCHANTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Warchanter",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Character, Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orc",
+     "points": 20,
+     "perModel": false,
+     "raw": "May be upgraded to a Savage Orc +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 2,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Size Matters",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Character, Savage Orc).",
+   "notes": "A Warchanter may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "SQUIGBOSS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Squigboss",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 6,
+     "points": 50
+    },
+    {
+     "name": "Gnasha-Squig",
+     "M": "*",
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Character, Night Goblin/Squig)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Great Cave Squig",
+       "points": 30,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Great Cave Squig (replacing the Gnasha-Squig) +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Fear Elves, Hatred (Dwarfs), Loner",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "DANKHOLD TROLLBOSS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Dankhold Trollboss",
+     "M": 6,
+     "WS": 4,
+     "BS": 1,
+     "S": 6,
+     "T": 5,
+     "W": 5,
+     "I": 1,
+     "A": 5,
+     "Ld": 7,
+     "points": 200
+    }
+   ],
+   "troopType": "Monstrous Creature (Character, Troll)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Magic Resistance (3), Regeneration (4+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "WAR BOAR",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "War Boar",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Porcine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 0,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding (Common or Black orc Only) free",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Natural Armour (6+), Tusker Charge",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GRUNTA",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Grunta",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Porcine)",
+   "baseSize": "50x75",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 0,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding free",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Natural Armour (6+), Tusker Charge",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WYVERN",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Wyvern",
+     "M": 4,
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": 5,
+     "W": 5,
+     "I": 3,
+     "A": 3,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Draconid)",
+   "baseSize": "50x50 or 50x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (8), Natural Armour (4+), Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "MAW-KRUSHA",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Maw-krusha",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 2,
+     "A": 4,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Draconid)",
+   "baseSize": "100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (5), Impact Hits (D6), Natural Armour (3+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GIANT WOLF",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Canine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "SNARLFANG",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Snarlfang",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Canine)",
+   "baseSize": "50x75",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GREAT CAVE SQUIG",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Great Cave Squig",
+     "M": "*",
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Fungoid)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Random Movement (3D6), Vanguard",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GIANT SPIDER",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Giant Spider",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 2,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Arachnid)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Poisoned Attacks, Natural Armour (6+), Wall-crawler",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GIGANTIC SPIDER",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Gigantic Spider",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Arachnid)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Natural Armour (5+), Poisoned Attacks, Wall-crawler",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "ORC BOYZ",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Orc",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orcs",
+     "points": 3,
+     "perModel": true,
+     "raw": "May be upgraded to Savage Orcs +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with great weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Big Stabba for every 10 models in the unit +10 points/Big Stabba",
+     "points": null,
+     "perModel": false,
+     "raw": "May upgrade two Savage Orcs to a Big Stabba for every 10 models in the unit +10 points/Big Stabba",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Orc Boy to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Orc Boy to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Orc Boy to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Size Matters",
+   "upgrades": "Big Stabbas: A unit of Savage Orc Boyz may be upgraded to include Big Stabbas. This is represented by including one or more Big Stabba models in the unit. A Big Stabba is mounted on two Infantry bases and must be placed to cover both the first and second rank of the unit, but is otherwise equipped like the rest of the unit. Each Big Stabba model causes D3 Impact Hits with the Multiple Wounds (D3) special rule. Big Stabbas are always the last models to be removed as casualties (excluding any Command Group models); the weapons are picked up by other Savage Orcs in the unit should they be slain.\nSavage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Savage Orc).",
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "BOAR BOYZ",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Orc",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 15
+    },
+    {
+     "name": "War Boar",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Common Orc)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orcs",
+     "points": 3,
+     "perModel": true,
+     "raw": "May be upgraded to Savage Orcs +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Light lances",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with additional hand weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Boar Boy to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Boar Boy to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Boar Boy to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Natural Armour (6+), Size Matters, Tusker Charge (War Boar only)",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Cavalry (Savage Orc).",
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "War Boar (Porcine)",
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "ARRER BOYZ",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Orc",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orcs",
+     "points": 2,
+     "perModel": true,
+     "raw": "May be upgraded to Savage Orcs +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour (Common Orcs only) +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Arrer Boy to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Arrer Boy to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Arrer Boy to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Size Matters",
+   "upgrades": "Savage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Savage Orc).",
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "GOBLIN GITZ",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 2
+    },
+    {
+     "name": "Nasty Skulker",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Common Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Night Goblin",
+       "choices": [
+        {
+         "name": "Night Goblin",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Night Goblin free"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Forest Goblin",
+       "choices": [
+        {
+         "name": "Forest Goblin",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Forest Goblin free"
+      }
+     ]
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Little Big 'Uns",
+     "points": 2,
+     "perModel": true,
+     "raw": "May be upgraded to Little Big 'Uns +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with great weapons, bows or shortbows) +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour (Common and Night Goblins only) +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Nasty Skulker for every 10 models in the unit",
+     "points": 6,
+     "perModel": true,
+     "raw": "May include one Nasty Skulker for every 10 models in the unit (Common Goblins only) +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Jester",
+     "points": 20,
+     "perModel": false,
+     "raw": "May upgrade one Goblin Git to a Jester (Common Goblins only) +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Netter for every 5 models in the unit",
+     "points": 2,
+     "perModel": false,
+     "raw": "May upgrade one Goblin Git to a Netter for every 5 models in the unit (Night Goblins only) +2 points/Netter",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Fanatic for every 10 models in the unit",
+     "points": 25,
+     "perModel": true,
+     "raw": "May include one Fanatic for every 10 models in the unit (Night Goblins only) +25 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Goblin Git to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Goblin Git to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Goblin Git to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Fear Elves",
+   "upgrades": "• Night Goblin: The model gains the Hatred (Dwarfs) special rule. This changes their Troop Type to Infantry (Night Goblin).\n• Forest Goblin: The model gains the Forest Strider special rule. This changes their Troop Type to Infantry (Forest Goblin).\n• Jester: A Jester counts as being part of the unit's command group. A unit joined by a Jester gains +1 Leadership and may re-roll failed Animosity tests. At the start of each round of close combat in which a Goblin Jester is involved, roll a dice and consult the table below:\nD6 | Result:\n1 | Oh Dear! The unit the jester is attached to suffers -1 To Hit in close combat this turn.\n2-3 | Nothing Happens: The Jester has no effect this turn.\n4-6 | You Annoying Little…! All enemy units in base contact with the Jester's unit suffer -1 To Hit in close combat this turn. This has no effect on units with Immunity (Psychology).\n• Little Big 'Uns: For each Goblin Warboss in your army, you may upgrade one unit of Goblin Gitz of the same sub-species to Little Big 'Uns. Little Big 'Uns gain +1 Weapon Skill and the Mighty Blow (1) special rule. In addition, they count as Special Units.\n• Nasty Skulkers: Nasty Skulkers are equipped with two hand weapons and have the Hidden special rule. They may be targeted separately from the rest of the unit, just like characters. In addition, they have the Always Strikes First and Armour Piercing (1) special rules in any turn they are revealed or the unit they are with successfully charges an enemy in the flank or rear.\n• Netters: At the start of each round of close combat, a unit containing Netters must attempt to entangle one of the units they are fighting in their front arc. Roll a D6 for each Netter in your unit; for every 4+, an enemy model has become entangled (distributed as hits from shooting, but only affecting models that are allowed to strike). However, for each natural 1 rolled on these dice, the Netters entangle a member of their own unit instead. A model that has been entangled suffers a -1 penalty to their Attacks (this does not apply to mounts) until the end of the close combat round. Netters are always the last models to be removed as casualties (excluding any Command Group models); the nets are picked up by other Night Goblins in the unit should they be slain.",
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "FANATICS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Fanatic",
+     "M": "*",
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 25
+    }
+   ],
+   "troopType": "Infantry (Night Goblin)",
+   "baseSize": "25 or 30 (round)",
+   "equipment": "Giant ball and chain",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "replace giant ball and chain with Twackwheezer Puffshrooms",
+     "points": 0,
+     "perModel": false,
+     "raw": "Each individual Fanatic may replace giant ball and chain with Twackwheezer Puffshrooms free",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Random Movement (2D6)",
+   "upgrades": "Thwackwheezer Puffshrooms: Twackwheezer Puffshrooms replace the Fanatic's normal Strength 5 Hits. All models Hit must pass a Toughness test or suffer a Wound which Ignores Armour Saves. In addition, all units where the majority of the models are within 6\" of a Fanatic with this upgrade count as being in soft cover.",
+   "notes": "Fanatics may only be taken as upgrades in units of Night Goblin Gitz, not as stand-alone units. Victory Points are rewarded for each slain Fanatic individually.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 25
+  },
+  {
+   "name": "WOLF RIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 8
+    },
+    {
+     "name": "Giant Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Common Goblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose at least one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Wolf Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Wolf Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Wolf Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Fast Cavalry, Fear Elves",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Wolf (Canine)",
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "SPIDER RIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 8
+    },
+    {
+     "name": "Giant Spider",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 2,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Forest Goblin)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose at least one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Spider Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Spider Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Spider Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Fast Cavalry, Fear Elves, Natural Armour (6+), Poisoned Attacks (Giant Spiders",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Giant Spider (Arachnid)",
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "SPIDER SWARMS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Spider Swarm",
+     "M": 4,
+     "WS": 3,
+     "BS": 0,
+     "S": 1,
+     "T": 1,
+     "W": 8,
+     "I": 1,
+     "A": 8,
+     "Ld": 2,
+     "points": 40
+    }
+   ],
+   "troopType": "Swarm (Arachnid)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Poisoned Attacks, Wall-crawler",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "SNOTLINGS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Snotlings",
+     "M": 4,
+     "WS": 2,
+     "BS": 0,
+     "S": 2,
+     "T": 2,
+     "W": 6,
+     "I": 3,
+     "A": 6,
+     "Ld": 4,
+     "points": 20
+    }
+   ],
+   "troopType": "Swarm (Snotling)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Explodin' Spores",
+     "points": 5,
+     "perModel": true,
+     "raw": "May take Explodin' Spores +5 points/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Mimic",
+   "upgrades": "• Explodin' Spores: Explodin' Spores automatically hit and have the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n6\" | 3 | Ignores Armour Saves, Quick to Fire",
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 20
+  },
+  {
+   "name": "BIG 'UNS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Big 'Un",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 8.5
+    }
+   ],
+   "troopType": "Infantry (Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orcs",
+     "points": 3,
+     "perModel": true,
+     "raw": "May be upgraded to Savage Orcs +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with great weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Big Stabba for every 10 models in the unit +10 points/Big Stabba",
+     "points": null,
+     "perModel": false,
+     "raw": "May upgrade two Savage Orcs to a Big Stabba for every 10 models in the unit +10 points/Big Stabba",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Big 'Un to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Big 'Un to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Big 'Un to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Size Matters, Mighty Blow (1)",
+   "upgrades": "Big Stabbas: A unit of Savage Orc Boyz may be upgraded to include Big Stabbas. This is represented by including one or more Big Stabba models in the unit. A Big Stabba is mounted on two Infantry bases and must be placed to cover both the first and second rank of the unit, but is otherwise equipped like the rest of the unit. Each Big Stabba model causes D3 Impact Hits with the Multiple Wounds (D3) special rule. Big Stabbas are always the last models to be removed as casualties (excluding any Command Group models); the weapons are picked up by other Savage Orcs in the unit should they be slain.\nBig 'Uns: For each Orc Warboss in your army, you may take one unit of Big 'Uns or Boar Boy Big 'Uns as a core choice\nSavage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Infantry (Savage Orc).",
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8.5
+  },
+  {
+   "name": "BOAR BOY BIG 'UNS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Big 'Un",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 17
+    },
+    {
+     "name": "War Boar",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Common Orc)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Savage Orcs",
+     "points": 3,
+     "perModel": true,
+     "raw": "May be upgraded to Savage Orcs +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Light lances",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with additional hand weapons) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Boar Boy Big 'Un to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Boar Boy Big 'Un to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Boar Boy Big 'Uns to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Natural Armour (6+), Size Matters, Mighty Blow (1), Tusker Charge (War Boar only)",
+   "upgrades": "Big 'Uns: For each Orc Warboss in your army, you may take one unit of Big 'Uns or Boar Boy Big 'Uns as a core choice\nSavage Orc: The model gains the Frenzy and Magical Ward (6+) special rules. This changes their Troop Type to Cavalry (Savage Orc).",
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "War Boar (Porcine)",
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "BRUTES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Brute",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 7,
+     "points": 26
+    }
+   ],
+   "troopType": "Infantry (Common Orc)",
+   "baseSize": "30x30 or 40x40",
+   "equipment": "Two hand weapons, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "hand weapons",
+     "choices": [
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true,
+       "replaces": "hand weapons"
+      },
+      {
+       "name": "Great weapons",
+       "points": 4,
+       "perModel": true,
+       "replaces": "hand weapons"
+      }
+     ],
+     "raw": "May replace hand weapons with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Brute to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animosity, Immunity (Fear), Mighty Blow (1), Size Matters",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 26
+  },
+  {
+   "name": "BOAR CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Boar Chariot",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 75
+    },
+    {
+     "name": "Orc",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "War Boar",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Orc",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional Orc +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light lances +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May be upgraded to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Mighty Blow (1) (Orc only), Natural Armour (6+), Size Matters, Tusker Charge (War Boar",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 (Common Orc)",
+   "mount": null,
+   "drawnBy": "2 War Boars (Porcine)",
+   "pointsCost": 75
+  },
+  {
+   "name": "BLACK ORCS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Black Orc",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 8,
+     "points": 14
+    }
+   ],
+   "troopType": "Infantry (Black Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shields",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Spears",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "Must take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Black Orc to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Black Orc to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Black Orc to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Armed to da Teef, Immunity (Psychology), Mighty Blow (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 14
+  },
+  {
+   "name": "NASTY SKULKERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Nasty Skulker",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Common Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +1 point/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animosity, Fear Elves, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "SNARLFANG RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Goblins",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 6,
+     "points": 44
+    },
+    {
+     "name": "Snarlfang",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Common Goblin)",
+   "baseSize": "50x75",
+   "equipment": "Light lance, light armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Snarlfang Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Snarlfang Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Snarlfang Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Fear Elves",
+   "upgrades": null,
+   "notes": "Snarlfang Riders have a Unit Strength of 4.",
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": "Snarlfang (Canine)",
+   "drawnBy": null,
+   "pointsCost": 44
+  },
+  {
+   "name": "WOLF CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Wolf Chariot",
+     "M": 8,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 60
+    },
+    {
+     "name": "Goblin",
+     "M": "-",
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    },
+    {
+     "name": "Giant Wolf",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Goblin",
+     "points": 3,
+     "perModel": false,
+     "raw": "May take an additional Goblin +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional Giant Wolf",
+     "points": 3,
+     "perModel": false,
+     "raw": "May take an additional Giant Wolf +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light lances +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take shortbows +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Wolf Chariot to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "1-3",
+   "crew": "2 (Common Goblin)",
+   "mount": null,
+   "drawnBy": "2 Giant Wolves (Canine)",
+   "pointsCost": 60
+  },
+  {
+   "name": "SPEAR CHUKKA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Spear Chukka",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 30
+    },
+    {
+     "name": "Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    },
+    {
+     "name": "Orc Bully",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Spear Chukka), 20x20 or 25x25 (Goblin Crew), 25x25 or 30x30 (Orc Bully)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Orc Bully",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take an Orc Bully +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Orc Bully: An Orc Bully counts as an extra crew member for the war machine, and is always the last model to be removed. Orc Bullies have the Mighty Blow (1) special rule. In addition, while the Bully is still alive, their unit gains the Size Matters special rule and ignores the Fear Elves special rule.",
+   "notes": "You may take 1-2 Spear Chukkas as a single Special choice.",
+   "unitSize": null,
+   "crew": "3 Goblins (Common Goblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "ROCK LOBBA",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Rock Lobba",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 80
+    },
+    {
+     "name": "Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    },
+    {
+     "name": "Orc Bully",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Rock Lobba), 20x20 or 25x25 (Goblin Crew), 25x25 or 30x30 (Orc Bully)",
+   "equipment": "Hand weapon, stone thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Orc Bully",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take an Orc Bully +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Orc Bully: An Orc Bully (Common Orc) counts as an extra crew member for the war machine, and is always the last model to be removed. Orc Bullies have the Mighty Blow (1) special rule. In addition, while the Bully is still alive, their unit gains the Size Matters special rule and ignores the Fear Elves special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Goblins (Common Goblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "SQUIG HUNTERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Squig Hunter",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Night Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Clubs",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Nets",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Prodders",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose at least one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Squig Hunter to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animosity, Hatred (Dwarfs), Immunity (Psychology), Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "SNEAKY SNUFFLERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sneaky Snuffler",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 6
+    },
+    {
+     "name": "Snufflesquig",
+     "M": 4,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Night Goblin/Squig)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Animosity, Immunity (Psychology), Hatred (Dwarfs), Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "SQUIG HERD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Cave Squig",
+     "M": "*",
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 3,
+     "points": 7
+    },
+    {
+     "name": "Herder",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 8
+    }
+   ],
+   "troopType": "War Beast (Fungoid)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Hatred (Dwarfs) (Herder only), Immunity (Psychology), Mixed Unit, Random Movement",
+   "upgrades": null,
+   "notes": "One Herder must be included for every five Cave Squigs in the unit.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "SQUIG HOPPERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Squig Hopper",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 12
+    },
+    {
+     "name": "Cave Squig",
+     "M": "*",
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Night Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Squig Hopper to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Hatred (Dwarfs), Immunity (Psychology), Random Movement (3D6), Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Cave Squig (Fungoid)",
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "GIGANTIC SPIDER RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Forest Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": 35
+    },
+    {
+     "name": "Gigantic Spider",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Forest Goblin)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose at least one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Forest Goblin Gigantic Spider Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Forest Goblin Gigantic Spider Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Forest Goblin Gigantic Spider Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Fear Elves, Natural Armour (5+), Poisoned Attacks (Gigantic Spiders only), Wall-crawler",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": "Gigantic Spider (Arachnid)",
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "TROLLS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Troll",
+     "M": 6,
+     "WS": 3,
+     "BS": 1,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 1,
+     "A": 3,
+     "Ld": 6,
+     "points": 44
+    }
+   ],
+   "troopType": "Monstrous Infantry (Troll)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "River Trolls",
+       "choices": [
+        {
+         "name": "River Trolls",
+         "points": 8,
+         "perModel": true
+        }
+       ],
+       "raw": "River Trolls +8 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Stone Trolls",
+       "choices": [
+        {
+         "name": "Stone Trolls",
+         "points": 8,
+         "perModel": true
+        }
+       ],
+       "raw": "Stone Trolls +8 points/model"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Loner, Regeneration (4+), Stupidity",
+   "upgrades": "River Trolls: River Trolls have the Marsh Strider and River Strider special rules. Additionally, enemies attempting to attack a River Troll in close combat suffer a -1 penalty on their To Hit rolls due to the stench and slime.\nStone Trolls: Stone Trolls have the Magic Resistance (2) and Natural Armour (5+) special rules.",
+   "notes": null,
+   "unitSize": "3+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 44
+  },
+  {
+   "name": "OGRES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ogre",
+     "M": 6,
+     "WS": 3,
+     "BS": 2,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": 27
+    }
+   ],
+   "troopType": "Monstrous Infantry (Ogre)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 4.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ogre to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ogre to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Loner, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 27
+  },
+  {
+   "name": "BRUTE RAGERZ",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Brute Rager",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 7,
+     "points": 26
+    }
+   ],
+   "troopType": "Infantry (Common Orc)",
+   "baseSize": "30x30 or 40x40",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Flails",
+       "points": 4,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Weirdbrute Wrekkaz",
+     "points": 5,
+     "perModel": true,
+     "raw": "May be upgraded to Weirdbrute Wrekkaz +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Brute Rager to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animosity, Frenzy, Mighty Blow (1), Size Matters, Skirmishers",
+   "upgrades": "Weirdbrute Wrekkaz: Models with this upgrade gain the Magical Ward (5+) special rule.",
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 26
+  },
+  {
+   "name": "GORE-GRUNTAS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Brute",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 7,
+     "points": 53
+    },
+    {
+     "name": "Grunta",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Common Orc)",
+   "baseSize": "50x75",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 0,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding free",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Gore-grunta to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Gore-grunta to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Gore-grunta to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animosity, Mighty Blow (1), Natural Armour (6+), Size Matters, Tusker Charge (Grunta",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Grunta (Porcine)",
+   "drawnBy": null,
+   "pointsCost": 53
+  },
+  {
+   "name": "MAW-GRUNTA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Maw-grunta",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": 3,
+     "A": 5,
+     "Ld": 4,
+     "points": 225
+    },
+    {
+     "name": "Brute",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Porcine)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Two hand weapons (Brute only), medium armour, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "two additional crew armed with great weapons",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take two additional crew armed with great weapons +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Mighty Blow (1) (Orc brute only), Impact Hits (D6), Natural Armour (5+), Size Matters, Tusker Charge (Maw-grunta only)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Brute (Common Orc)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 225
+  },
+  {
+   "name": "DOOM DIVER CATAPULT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Doom Diver Catapult",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 80
+    },
+    {
+     "name": "Goblin Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Doom Diver Catapult), 20x20 or 25x25 (Goblin Crew), 25x25 or 30x30 (Orc Bully)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Orc Bully",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take an Orc Bully +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": "Orc Bully: An Orc Bully counts as an extra crew member for the war machine, and is always the last model to be removed. Orc Bullies have the Mighty Blow (1) special rule. In addition, while the Bully is still alive, their unit gains the Size Matters special rule and ignores the Fear Elves special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Goblins (Common Goblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "MANGLER SQUIGS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Mangler Squigs",
+     "M": "*",
+     "WS": "-",
+     "BS": "-",
+     "S": 6,
+     "T": 4,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 3,
+     "points": 100
+    }
+   ],
+   "troopType": "Monstrous Beast (Fungoid)",
+   "baseSize": "50 or 80 (round)",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Random Movement (3D6).",
+   "upgrades": null,
+   "notes": "Mangler Squigs have a Unit Strength of 6.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "SQUIG GOBBA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Squig Gobba",
+     "M": "-",
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 3,
+     "points": 75
+    },
+    {
+     "name": "Tender",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Fungoid)",
+   "baseSize": "50x75, 50x100 or 60x100 (Squig Gobba), 20x20 or 25x25 (Tenders)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Hatred (Dwarfs) (Tenders only), Immunity (Psychology), Mixed Unit.",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 75
+  },
+  {
+   "name": "COLOSSAL SQUIG",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Colossal Squig",
+     "M": "*",
+     "WS": 4,
+     "BS": 0,
+     "S": 7,
+     "T": 5,
+     "W": 6,
+     "I": 3,
+     "A": 6,
+     "Ld": 3,
+     "points": 150
+    }
+   ],
+   "troopType": "Monster (Fungoid)",
+   "baseSize": "60x100, 100x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Random Movement (4D6).",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "ARACHNAROK SPIDER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Arachnarok Spider",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 8,
+     "I": 4,
+     "A": 8,
+     "Ld": 3,
+     "points": 260
+    },
+    {
+     "name": "Forest Goblin",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Arachnid)",
+   "baseSize": "100x150",
+   "equipment": "Spear, shortbow (Forest Goblins only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Flinger",
+       "choices": [
+        {
+         "name": "Flinger",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Flinger +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Catchweb Spidershrine",
+       "choices": [
+        {
+         "name": "Catchweb Spidershrine",
+         "points": 40,
+         "perModel": false
+        }
+       ],
+       "raw": "Catchweb Spidershrine +40 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (4+), Poisoned Attacks, Stubborn, Wall-crawler",
+   "upgrades": "• Catchweb Spidershrine: A Forest Goblin Oddnob mounted on an Arachnarok Spider with a Catchweb Spidershrine has the Loremaster (Spells of da Spider God) special rule and adds +1 to his channelling attempts.\n• Flinger: The Flinger is a stone thrower with the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n12-48\" | 1(3) | Multiple Wounds (D3)\nAny unit hit by a Flinger suffer -1 to its Movement, Weapon Skill, Ballistic Skill, Strength and Initiative until the end of its next turn. If a Misfire is rolled, Flinger does not use the Stone Thrower Misfire table – a misfire result simply means that the Flinger may not shoot this turn.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "8 (Forest Goblin)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 260
+  },
+  {
+   "name": "PUMP WAGON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Pump Wagon",
+     "M": "*",
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 45
+    },
+    {
+     "name": "Snotling",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 2,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 4,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x50, 50x75 or 50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Snotlings",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take up to 6 additional Snotlings +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Flappas",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Flappas +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Out-rigga",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Out-rigga +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Spiky Roller",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Spiky Roller +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Giant Explodin' Spores",
+     "points": 20,
+     "perModel": false,
+     "raw": "May take Giant Explodin' Spores +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Impact Hits (2D6), Random Movement (2D6), Unstable",
+   "upgrades": "Flappas: The Pump Wagon only has to take Dangerous Terrain tests if they end their move in Dangerous Terrain.\nGiant Explodin' Spores: The Pump Wagon's Impact Hits has the Ignores Armour Saves special rule.\nSpiky Roller: The Pump Wagon's Impact Hits have +1 Strength.\nOut-rigga: The Pump Wagon's Random Movement is increased by D6.",
+   "notes": "You may take 1-2 Snotling Pump Wagons as a single Rare choice.\nFor every 3 additional Snotling Crew, the model's Unit Strength is increased by 1.",
+   "unitSize": null,
+   "crew": "4 Snotlings (Snotlings)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 45
+  },
+  {
+   "name": "DANKHOLD TROLL",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Dankhold Troll",
+     "M": 6,
+     "WS": 3,
+     "BS": 1,
+     "S": 6,
+     "T": 5,
+     "W": 4,
+     "I": 1,
+     "A": 4,
+     "Ld": 6,
+     "points": 170
+    }
+   ],
+   "troopType": "Monstrous Creature (Troll)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Magic Resistance (3), Regeneration (4+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 170
+  },
+  {
+   "name": "ROGUE IDOL OF GORK",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Rogue Idol",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 7,
+     "T": 7,
+     "W": 10,
+     "I": 1,
+     "A": 4,
+     "Ld": 8,
+     "points": 240
+    }
+   ],
+   "troopType": "Monster (Animated Construct)",
+   "baseSize": "100x50, 100x60, 100x100 or 150x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Animated Construct, Impact Hits (D6), Magical Ward (6+), Unstable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Giant).",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 20,
+     "perModel": false,
+     "raw": "May have a Magical Ward (6+) (if Savage Orc Wizard is included in your army) +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "BONEGRINDER GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Bonegrinder Giant",
+     "M": 10,
+     "WS": 3,
+     "BS": 3,
+     "S": 8,
+     "T": 8,
+     "W": 10,
+     "I": 1,
+     "A": "*",
+     "Ld": 10,
+     "points": 385
+    }
+   ],
+   "troopType": "Monster (Giant).",
+   "baseSize": "50x100, 60x100 or 100x150",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Magical Ward (6+)",
+     "points": 35,
+     "perModel": false,
+     "raw": "May have a Magical Ward (6+) (if Savage Orc Wizard is included in your army) +35 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": "A Bonegrinder Giant has a Line of Sight value of 10.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 385
+  },
+  {
+   "name": "GORBAD IRONCLAW",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Gorbad Ironclaw",
+     "M": 4,
+     "WS": 7,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 10,
+     "points": 340
+    },
+    {
+     "name": "Gnarla (War Boar)",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Common Orc, Warboss)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Mighty Blow (1), Natural Armour (6+), Size Matters, Tusker Charge (Gnarla only), Waaagh!",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Gnarla (Animal)",
+   "drawnBy": null,
+   "pointsCost": 340
+  },
+  {
+   "name": "AZHAG THE SLAUGHTERER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Azhag the Slaughterer",
+     "M": 4,
+     "WS": 7,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 460
+    },
+    {
+     "name": "Skullmuncha (Wyvern)",
+     "M": 4,
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": 5,
+     "W": 5,
+     "I": 3,
+     "A": 3,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Special Character, Common Orc, Warboss)",
+   "baseSize": "50x50, 50x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Skullmuncha (Draconid)",
+   "drawnBy": null,
+   "pointsCost": 460
+  },
+  {
+   "name": "GRUMLOK & GAZBAG",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Grumlok",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 300
+    },
+    {
+     "name": "Gazbag",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Common Orc/Night Goblin, Warboss)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Medium armour",
+   "magic": "Gazbag is a Level 2 Wizard who uses the Lore of da Bad Moon.",
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "GRIMGOR IRONHIDE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Grimgor Ironhide",
+     "M": 4,
+     "WS": 8,
+     "BS": 1,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 5,
+     "Ld": 9,
+     "points": 310
+    }
+   ],
+   "troopType": "Infantry (Special Character, Black Orc, Warboss)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Hatred, Immunity (Psychology), Mighty Blow (1), Quell Animosity, Waaagh!",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 310
+  },
+  {
+   "name": "BORGUT FACEBEATER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Borgut Facebeater",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 9,
+     "points": 175
+    }
+   ],
+   "troopType": "Infantry (Special Character, Black Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Mighty Blow (1), Quell Animosity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "BADRUK 'EADSPLITTA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Badruk 'Eadsplitta",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Special Character, Black Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Great weapon, heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Mighty Blow (1), Quell Animosity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "ZOGGROK ANVILSMASHA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Zoggrok Anvilsmasha",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 100
+    },
+    {
+     "name": "Klonk (Squig)",
+     "M": 4,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Large Infantry (Special Character, Common Orc)",
+   "baseSize": "30x30 or 40x40 (Zoggrok Anvilsmasha), 20x20 or 25x25 (Klonk)",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Mighty Blow (1), Size Matters",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "OGDRUZ SWAMPDIGGA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ogdruz Swampdigga",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 235
+    }
+   ],
+   "troopType": "Infantry (Special Character, Common Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "Ogdruz Swampdigga is a Level 3 Wizard who uses the Lore of Troll Magic.",
+   "options": null,
+   "specialRules": "Size Matters",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 235
+  },
+  {
+   "name": "WURRZAG UD URA ZAHUBU",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Wurrzag",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 310
+    },
+    {
+     "name": "Spleenrippa (War Boar)",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Savage Orc)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "Wurrzag is a Level 4 Wizard who uses the Lore of da Savage Waaagh!",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spleenrippa (War Boar)",
+       "points": 20,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on Spleenrippa (War Boar) +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Frenzy, Magical Ward (5+), Size Matters",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 310
+  },
+  {
+   "name": "GROM THE PAUNCH",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Grom",
+     "M": "-",
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 8,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Special Character, Common Goblin, Warboss)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Wolf Chariot",
+       "points": 100,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Wolf Chariot (replacing one of the crew) +100 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Regeneration (4+)",
+   "upgrades": null,
+   "notes": "Grom's Chariot includes an additional Giant Wolf, and may take no additional equipment or crew except scythes.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "KIKNIK TOOFSNATCHA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Kiknik Toofsnatcha",
+     "M": 4,
+     "WS": 5,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 8,
+     "points": 145
+    },
+    {
+     "name": "Chompa (Giant Wolf)",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Common Goblin, Warboss)",
+   "baseSize": "25x50",
+   "equipment": "Light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Fear Elves",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Chompa (Animal)",
+   "drawnBy": null,
+   "pointsCost": 145
+  },
+  {
+   "name": "GITILLA DA HUNTER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Gitilla da Hunter",
+     "M": 4,
+     "WS": 4,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 65
+    },
+    {
+     "name": "Ulda (Giant Wolf)",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Common Goblin)",
+   "baseSize": "25x50",
+   "equipment": "Spear",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Fear Elves, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Ulda (Animal)",
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "SKARSNIK",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Skarsnik",
+     "M": 4,
+     "WS": 5,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": 200
+    },
+    {
+     "name": "Gobbla (Great Cave Squig)",
+     "M": "-",
+     "WS": 5,
+     "BS": 0,
+     "S": 6,
+     "T": "-",
+     "W": "-",
+     "I": 4,
+     "A": 4,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Night Goblin/Squig)",
+   "baseSize": "60x40 or 75x50",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Hatred (Dwarfs), Fear Elves, Killing Blow (Gobbla only)",
+   "upgrades": null,
+   "notes": "Skarsnik & Gobbla have a combined Unit Strength of 4.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "SKITGIT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Skitgit",
+     "M": 4,
+     "WS": 6,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": 145
+    }
+   ],
+   "troopType": "Infantry (Special Character, Night Goblin)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Shield",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fear Elves, Surprise! (see Nasty Skulkers)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 145
+  },
+  {
+   "name": "SKRAGROTT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Skragrott",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 2,
+     "A": 2,
+     "Ld": 7,
+     "points": 310
+    }
+   ],
+   "troopType": "Infantry (Special Character, Night Goblin)",
+   "baseSize": "40x60 or 50x75",
+   "equipment": null,
+   "magic": "Skragrott is a Level 4 Wizard who chooses spells from the Lore of da Bad Moon.",
+   "options": null,
+   "specialRules": "Fear Elves, Hatred (Dwarfs), Magic Mushrooms",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 310
+  },
+  {
+   "name": "SNAGLA GROBSPIT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Snagla Grobspit",
+     "M": 4,
+     "WS": 4,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 80
+    },
+    {
+     "name": "Giant Spider",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 2,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Forest Goblin)",
+   "baseSize": "25x50",
+   "equipment": "Light lance",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Ambushers, Fear Elves, Hatred (The Empire), Poisoned Attacks (Giant Spider only), Wall-",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Giant Spider (Animal)",
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "TRUGG THE TROLL KING",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Trugg the Troll King",
+     "M": 6,
+     "WS": 5,
+     "BS": 1,
+     "S": 7,
+     "T": 6,
+     "W": 6,
+     "I": 1,
+     "A": 6,
+     "Ld": 7,
+     "points": 375
+    }
+   ],
+   "troopType": "Monster (Special Character, Troll)",
+   "baseSize": "100x50 or 100x60",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Magic Resistance (3), Regeneration (4+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 375
+  }
+ ]
+}

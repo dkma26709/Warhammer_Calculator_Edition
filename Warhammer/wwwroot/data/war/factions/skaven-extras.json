@@ -1,0 +1,854 @@
+{
+ "factionName": "Skaven",
+ "armySpecialRules": [
+  {
+   "name": "CLAN ENMITY",
+   "description": "Units belonging to each of the Greater Clans (Pestilens, Eshin, Moulder, Skryre) may only be joined by characters from the same Clan. Characters from one of these Clans may not join a unit containing models from another Clan."
+  },
+  {
+   "name": "GAS MASK",
+   "description": "When a model with a gas mask is forced to take a Toughness test caused by any weapon or Magic Item in this army book, they get a +2 bonus for the test."
+  },
+  {
+   "name": "LIFE IS CHEAP",
+   "description": "All Skaven models can voluntarily target missile attacks at enemy units engaged in close combat with other friendly units even if they are further than 4\" away. However, if they do so, they will hit their own troops on To Hit rolls of both 1's and 2's rather than just 1's. In addition, the normal limitation of templates not being allowed to be placed over friendly troops does not apply."
+  },
+  {
+   "name": "PLAGUE CENSER",
+   "description": "Flail. At the start of each round of close combat, all enemy models in base contact with one or more models bearing a plague censer, as well the Censer Bearers themselves that are allowed to fight this round, must pass a Toughness test or suffer a single wound with the Ignores Armour Saves and Magical Attacks special rules. All Clan Pestilens models gain a +1 bonus for these tests."
+  },
+  {
+   "name": "RAT HOUND BODYGUARD",
+   "description": "A model with a Rat Hound upgrade can make an additional Weapon Skill 3, Strength 3, Initiative 3 Attack. However, on a To Hit roll of 1 from this attack, the Rat Hound will instead inflict an automatic hit on its owner."
+  },
+  {
+   "name": "RATLING PISTOL",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/12\" | 5 | Magical Attacks, Multiple Shots (3), Quick Shot, Rapid Fire, Unstable Ammunition"
+  },
+  {
+   "name": "SCURRY AWAY",
+   "description": "All models in the Skaven army roll an additional D6 and discard the lowest result when determining their flee distance."
+  },
+  {
+   "name": "STRENGTH IN NUMBERS",
+   "description": "Units with this special rule add +1 to its Leadership if it has Unit Strength 10 or more, +2 Leadership if it has Unit Strength 15 or more, and +3 Leadership if it has Unit Strength 20 or more. To calculate the Leadership of a unit with the Strength in Numbers rule, first determine the unit's Leadership as normal and then add the Leadership bonus of the unit to this value, up to a maximum Leadership of 10.\nNote that the Army General confers their basic Leadership and then units modify it with their own Unit Strength. Any bonus from the Unit Strength of the Army General's unit is not passed on to units within their Inspiring Presence range."
+  },
+  {
+   "name": "TAIL WEAPON",
+   "description": "The model gains +1 Attack. Note that this attack does not gain any of the rules of other weapons the model might carry."
+  },
+  {
+   "name": "UNSTABLE AMMUNITION",
+   "description": "Anytime a weapon that uses Unstable Ammunition scores a result of 1 on its roll To Hit, roll another dice. On a following roll of 1-2 the gun misfires and the shooter suffer the hit themselves."
+  },
+  {
+   "name": "VERMINOUS VALOUR",
+   "description": "If a Skaven player refuses a challenge, the unit may still use the model’s Leadership value, Inspiring Presence or Hold Your Ground special rules."
+  },
+  {
+   "name": "SMOKE BOMBS",
+   "description": "A unit with Smoke Bombs may use them at the end of any Close Combat phase in which they take part. If they do so, the unit may disengage from combat by making a flee move. If they do so, the enemy cannot pursue them and they will rally automatically in their next turn."
+  },
+  {
+   "name": "WARPLOCK PISTOL",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/12\" | 5 | Armour Piercing (1), Magical Attacks, Quick Shot, Unstable Ammunition"
+  },
+  {
+   "name": "WHIP",
+   "description": "A whip gives the wielder +1 Attack and the Fight in Extra Ranks (2) special rule. In addition, they may make supporting attacks equal to their Attack characteristic."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "FELLBLADE",
+   "points": "85",
+   "category": "magic_weapon",
+   "description": "This foul sword gives the bearer Strength 10 and the Multiple Wounds (D6) special rule, and successful Magical Ward saves taken against Wounds inflicted by the bearer in close combat must be re-rolled. Roll a D6 at the end of each of the wielder's turns; on a 3+ there is no effect. On a roll of 1-2 the wielder suffers 1 wound which Ignores Armour Saves.",
+   "restriction": "Clawlord"
+  },
+  {
+   "name": "ELECTRO-WHIP",
+   "points": "40",
+   "category": "magic_weapon",
+   "description": "Whip. An Electro-whip gives the wielder +D3 Attacks rather than 1 as well as the Lightning Attacks special rule.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "DWARF SLAYER",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "All attacks made with this weapon are resolved at +1 Strength and have the Multiple Wounds (2) special rule. Against all models from Warhammer: Dwarfs, all hits have the Armour Piercing (1) special rule and the wielder may re-roll all failed rolls To Wound.",
+   "restriction": null
+  },
+  {
+   "name": "DESOLATE BLADE",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The Desolate Blade gives the wielder +1 Strength and allows them to re-roll all failed rolls To Wound.",
+   "restriction": null
+  },
+  {
+   "name": "THE FUMIGATOUS",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "Plague Censer. All Toughness tests taken from this weapon suffer a +1 modifier.",
+   "restriction": "Clan Pestilens"
+  },
+  {
+   "name": "LANGUISHER SWORD",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The Languisher Sword causes all enemy models in base contact with the wielder to be subject to the Always Strikes Last special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SHOCK-PROD",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "A Shock-Prod gives the wielder the Lightning Attacks special rule.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "THE THREE FANGS",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "If the wielder of these weapons scores 3 or more Hits against a single model, all those hits automatically Wound with the Ignores Armour Saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "CURSED BLADE OF DELIRIUM",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The Cursed Blade of Delirium causes all enemy models attempting to strike the wielder in close combat to suffer -1 To Hit.",
+   "restriction": null
+  },
+  {
+   "name": "HEADSPLITTER",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Against models with Toughness 5+, Headsplitter automatically Wounds on the roll of a 2+ with the Ignores Armour Saves special rule.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "SNAP-SNAP SNAREPOLE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "One enemy model in base contact of your choice suffer a -1 penalty to their Attacks.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "THINGS-CATCHER",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "A Things-catcher gives the wielder the Killing Blow special rule.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "BLADE OF BLACK FURY",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "The Blade of Black Fury gives the wielder +2 Initiative and +1 Attack.",
+   "restriction": null
+  },
+  {
+   "name": "GNAWSHARD",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "Any character, Monstrous Creature or Monster that suffers one or more unsaved Wounds from this weapon must pass a Toughness test at the start of each subsequent close combat phase for the rest of the game or suffer one Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "THINGS-BANE",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "This weapon gives the bearer the Multiple Wounds (2) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "WEEPING BLADES",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "All attacks made by Weeping Blades have the Armour Piercing (1), Magical Attacks and Multiple Wounds (D3) special rules.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "WARPSTONE STARS",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/9\" | As user | Armour Piercing (1), Magical Attacks, Multiple Shots (2), Multiple Wounds (D3), Quick Shot",
+   "restriction": null
+  },
+  {
+   "name": "BROODING BLADE",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "Any model that suffers one or more unsaved Wounds from this weapon suffers 2D6 Strength 1 Hits with no saves allowed at the end of that round of close combat.",
+   "restriction": null
+  },
+  {
+   "name": "LASH OF FANGS",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "Whip. Any character, Monstrous Creature or Monster that suffers one or more unsaved Wounds from this weapon are subject to the Stupidity special rule for the remainder of the game.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "WARPFORGED BLADE",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "A Warpforged Blade gives the wielder the Ignores Armour Saves special rule.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "FOULHIDE",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "This armour gives the wearer the Regeneration (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF DISTRACTION",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "The Shield of Distraction causes all enemies in base contact with the bearer to suffer -1 Attack.",
+   "restriction": null
+  },
+  {
+   "name": "RUST ARMOUR",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "The first time the wearer is wounded by a Strength high enough to completely cancel his armour save, or is not permitted an armour save for any reason, the Wound is discounted, but the armour is completely destroyed.",
+   "restriction": null
+  },
+  {
+   "name": "TENEBROUS CLOAK",
+   "points": "30",
+   "category": "talisman",
+   "description": "The Tenebrous Cloak gives the wearer a Magical Ward (3+) against all missile attacks and spells.",
+   "restriction": null
+  },
+  {
+   "name": "TWISTED CROWN OF THE HORNED RAT",
+   "points": "30",
+   "category": "talisman",
+   "description": "The Twisted Crown of the Horned Rat gives the wearer the Regeneration (4+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "RIVAL HIDE TALISMAN",
+   "points": "25",
+   "category": "talisman",
+   "description": "The Rival Hide Talisman forces all enemies attempting to strike the wearer in close combat to re-roll successful rolls To Hit.",
+   "restriction": null
+  },
+  {
+   "name": "SHADOW MAGNET TRINKET",
+   "points": "25",
+   "category": "talisman",
+   "description": "All missile attacks targeted at the bearer or the unit they are with suffer -1 To Hit.",
+   "restriction": null
+  },
+  {
+   "name": "WARPSTONE AMULET",
+   "points": "25",
+   "category": "talisman",
+   "description": "The Amulet confers to the bearer a Magical Ward (4+). At the end of each of your turns, roll a D6. On the result of 1, the character suffers a Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "AMULET OF DARKNESS",
+   "points": "15",
+   "category": "talisman",
+   "description": "The Amulet of Darkness gives the wearer and any unit they join the Magical Resistance (1) special rule. In addition, if a spell or magic item that would normally force the wearer and any unit they are with to reveal any Magic Items or Hidden models, they only need to reveal the Amulet of Darkness.",
+   "restriction": null
+  },
+  {
+   "name": "SUSPICIOUS STONE",
+   "points": "15",
+   "category": "talisman",
+   "description": "This item gives the wearer a Magical Ward (6+) which may be re-rolled.",
+   "restriction": null
+  },
+  {
+   "name": "WARPSCALE PENDANT",
+   "points": "10",
+   "category": "talisman",
+   "description": "The Warpscale Pendant gives the bearer the Immunity (Flaming Attacks, Lightning Attacks) and Magic Resistance (2) special rules. However, at the beginning of the game, the bearer must pass a Toughness test or suffer a Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "WARPSCROLL",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "Bound spell (Level 3, cast on 9+). The Warpscroll contains a direct damage spell with a range of 24\". All models in the target unit suffer a Strength 3 Hit. If the unit suffers any casualties from the spell, they must also take a Panic test.",
+   "restriction": null
+  },
+  {
+   "name": "WARPSTORM SCROLL",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The Warpstorm Scroll contains a direct damage spell that targets all units with the Fly special rule within 24\". The target units suffer D6 Strength 6 Hits with the Lightning Attacks special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ESOTERIC WARP RESONATOR",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The bearer of this item adds a free Power dice to their casting attempt whenever they attempt to cast the Warp Lightning spell from the Lore of Ruin.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "STAFF OF RIGHTFUL SUPREMACY",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "All enemy Wizards within 12\" of the bearer of this item suffer a -1 casting penalty. In addition, if the bearer's dispel roll result is 13, the spell is automatically dispelled.",
+   "restriction": null
+  },
+  {
+   "name": "EYE OF THE HORNED RAT",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "The Eye of the Horned Rat may be used at the start of your Magic Phase. Roll a D6, on a 2+, add one dice to your power dice pool. On 1, remove one dice from your power dice pool.",
+   "restriction": null
+  },
+  {
+   "name": "SCRYING STONE",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The bearer of the Scrying Stone gains a Magical Ward (2+) against their first wounding Hit suffered. However, if this Wound is saved the model gains the Stupidity rule for the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "WARPSTONE TOKEN",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "Multiples of this item may be taken by a single model. The model can choose to use one or more tokens whenever they cast a spell. For each token consumed, they add add an additional power dice to their casting attempt. This allows them to roll more dice than is normally allowed by their level. A spell may be cast entirely with Warpstone Tokens if you wish. However, for every Warpstone generated dice that rolls a 1 the Wizard suffers a Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "BRASS ORB",
+   "points": "40",
+   "category": "enchanted_item",
+   "description": "The bearer can throw the Brass Orb in the Shooting phase. Place the small round template with its centre anywhere within 6\" of the character and in his line of sight. The template then scatters D3\". Models touched by the template must roll a D6 per Wound on their profile – for each roll of a 4+ they suffer a Wound with the Ignores Armour Saves and Magical Attacks special rules.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "BILIOUS BELL",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any of your turns. When used, all enemy units within 18\" of the bearer of this item suffer a Strength 3 Hit, enemy units within 12\" suffer D3 Strength 4 Hits and enemy units within 6\" suffer D6 Strength 5 Hits.",
+   "restriction": "Clan Pestilens"
+  },
+  {
+   "name": "THE CUBE OF MISTS",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any round of close combat. Once used, no enemy units in base contact with the bearer can make Supporting Attacks this round. In addition, all enemy models in the unit suffer -1 To Hit.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "DOOMROCKET",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "A Doomrocket is a rocket launcher that uses the small template with the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n12-36\" | 5 | Slow to Fire\nIn case a Misfire is rolled, roll a D6 and consult the Doomrocket Misfire chart.\nDOOMROCKET MISFIRE CHART\nD6 | Result:\n1 | Thoooooom: Place the template over the model that fired the rocket and resolve the blast as normal.\n2-5 | Stabilising Fin Lost: The template scatters 3D6\" from its original position. Resolve any hits as normal.\n6 | It's a Dud: Resolve the shot as normal, but do not place the template. Any model directly below the impact spot suffers a single Strength 5 hit.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "FLESHGIFT VIAL",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any Close Combat phase. Roll a D6 and consult the table below:\nD6 | Result\n1 | The bearer suffers 1 Wound with no saves allowed.\n2-4 | One enemy unit in base contact suffer D3 Wounds with no saves allowed.\n5-6 | One enemy unit in base contact suffer D6 Wounds with no saves allowed.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "INFERNAL BOMB",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "As long as they are not Hidden, the bearer can place an Infernal Bomb anywhere along their Movement path during the Remaining Movement phase. Place a marker where the bomb is placed. You may choose to detonate the bomb at the start of any Movement sub-phase by rolling a D6. On a roll of 1, nothing happens. On a 2+, the bomb will explode; place the large round template centred on the marker. Any model at the template's centre takes a single Strength 10 Hit with the Multiple Wounds (D6) special rule. Any models touched by the template suffer a Strength 3 hit with the Armour Piercing (1) special rule.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "SKALM",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "Skalm can be used at the beginning of any phase in either player’s turn. The bearer recovers all Wounds suffered up to that point in the battle.",
+   "restriction": null
+  },
+  {
+   "name": "SCREECHSKULL TROPHIES",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "All enemy units within 6\" of the bearer of this item must roll an additional D6 when taking Leadership tests and discard the lowest result.",
+   "restriction": null
+  },
+  {
+   "name": "SKAVENBREW",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of the game. Skavenbrew affects all rank-and-file models in the unit. Roll a D6 and consult the table below:\nD6 | Result\n1 | Gone Bad: The unit takes D6 Strength 3 automatic hits with the Ignores Armour save special rule. The Skavenbrew has no additional effect.\n2-3 | Inspired Hatred: The unit gains the Hatred special rule.\n4-5 | Frenzied: The unit gains the Frenzy special rule.\n6 | Rabid: The unit gains the Frenzy and Hatred special rules. At the start of each of your subsequent turns, the unit suffers D6 automatic Wounds.",
+   "restriction": null
+  },
+  {
+   "name": "DEATH GLOBE",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "Place the small round template with its centre anywhere within 6\" of the character and in his line of sight. The template then scatters D3\". All models touched by the template must pass a Toughness test or suffer a Wound with the Ignores Armour Saves and Magical Attacks special rules. If a 1 is rolled, centre the template on the model throwing the globe.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "PIPES OF PIEBALD",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "All enemy units within 12\" of the bearer of the Pipes of Piebald are subject to the Stupidity special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SKRYRE'S-BREATH BELLOWS",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "This is a Breath Weapon Attack. Any model Hit must take a Toughness test or suffer a Wound which Ignores Armour saves.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "BLISTREVOUS, THE LIVING CYST",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer of this item gains the Frenzy and Hatred special rules. At the start of your second turn and onward, if you have any friendly Clan Pestilens character within 12\" of the bearer, this item gets transferred to them instead.",
+   "restriction": "Clan Pestilens"
+  },
+  {
+   "name": "FLAYPELT CLOAK",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer of this item may re-roll 1's To Hit and To Wound in Close Combat.",
+   "restriction": null
+  },
+  {
+   "name": "GNAWBOMB",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any of your turns. When used, remove the bearer of this item and any unit they are with, but place a marker where the bearer was. In the Remaining Moves sub-phase of this turn, place the unit anywhere within 3D6\" of the marker, just like a summoning spell.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "PORTENTS OF VERMINOUS DOOM",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The Portents of Verminous Doom give the bearer the Fear special rule.",
+   "restriction": null
+  },
+  {
+   "name": "RABID CROWN",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "All friendly Clan Moulder units (except characters) within 6\" of the bearer of this item may re-roll failed rolls To Wound.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "SNOUTGROVEL ROBES",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "All friendly units within 12\" of the bearer of this item gain the Immunity (Fear) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "FARSKITTER CLOAK",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item contains a conveyance spell that targets the bearer. The bearer is immediately picked up and may be moved to any position on the battlefield within 24\" of their original position, just like a summoning spell.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "WARPSTONE INNARDS",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The bearer's mount gains +1 Strength and the Frenzy special rule. However, it must take a Toughness test at the start of each of your turns or suffer a Wound with no saves allowed.",
+   "restriction": "Mounted Clan Moulder model"
+  },
+  {
+   "name": "ASSASSINS-BANE RIGGING",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "All enemy models that Attack this bearer of this item in close combat suffer a Strength 3 Hit for each Hit they inflict on the bearer.",
+   "restriction": "Clan Eshin"
+  },
+  {
+   "name": "RAT-TAIL SNAKE",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "If an enemy model rolls a 6's To Hit against the bearer of this item, they immediately suffer a Strength 4 Hit.",
+   "restriction": "Clan Moulder"
+  },
+  {
+   "name": "WARPSTONE CHARM",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The Warpstone Charm allows the bearer to re-roll any one single dice roll that directly affects them.",
+   "restriction": null
+  },
+  {
+   "name": "VIAL OF THE FULMINATOR",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "At the start of each of your Remaining Moves sub-phases, you may pick one friendly War Machine within 12\" of the bearer. This War Machine may march this turn or move and shoot. However, if they do so, all remaining crew must pass a Toughness test or suffer a Wound with no saves allowed.",
+   "restriction": "Clan Skryre"
+  },
+  {
+   "name": "SACRED STANDARD OF THE HORNED RAT",
+   "points": "75",
+   "category": "magic_standard",
+   "description": "All enemy units within 12\" of this standard suffer a -1 penalty to their Leadership and enemy units in base contact with the bearer of this banner must re-roll any successful Leadership tests.",
+   "restriction": null
+  },
+  {
+   "name": "STORM BANNER",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "This standard can be activated at the beginning of any player's turn. Within 24\" of this standard, no model may use the Fly special rule and units are at -2 to be Hit with non-magical missile attacks. All non-magical missile attacks that do not use Ballistics Skill to hit need to roll a 4+ on a D6 before they can attempt to fire if they are within 24\" of the banner. Roll a D6 at the beginning of each following player turn – the effects of the banner will end on a D6 roll of 4+.",
+   "restriction": null
+  },
+  {
+   "name": "ICON OF GREAT-TOTAL SUPREMACY",
+   "points": "35",
+   "category": "magic_standard",
+   "description": "At the start of each of your turns, the unit carrying this standard regains D3 Infantry models slain previously during the game, just like a summoning spell.",
+   "restriction": null
+  },
+  {
+   "name": "UMBRANNER",
+   "points": "35",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains a Magical Ward (4+) against non-magical missiles with Strength 4 or less.",
+   "restriction": null
+  },
+  {
+   "name": "GRAND BANNER OF CLAN SUPERIORITY",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains +D3 combat resolution bonus if they have more ranks than each enemy unit in base contact.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF BURNING HATRED",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Hatred special rule.",
+   "restriction": null
+  },
+  {
+   "name": "PLAGUE BANNER",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "This standard may be activated at the start of any Close Combat phase. For the remainder of the phase all Plague Monk models in the unit may re-roll failed To Hit rolls and failed To Wound rolls.",
+   "restriction": "Plague Monks"
+  },
+  {
+   "name": "SHROUD OF DRIPPING DEATH",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "This standard causes all enemy models in base contact with the unit carrying it to suffer a Strength 2 Hit which Ignores Armour Saves at the start of every Close Combat phase.",
+   "restriction": "Clan Pestilens"
+  },
+  {
+   "name": "BANNER OF THE UNDER-EMPIRE",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "This standard causes all enemy units in base contact with the unit carrying it to suffer 3D6 Strength 1 Hits at the start of every Close Combat phase.",
+   "restriction": null
+  },
+  {
+   "name": "DWARF-HIDE BANNER",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Hatred special rule against all Dwarfs.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE SWARM",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains +2 to their combat resolution bonus from outnumbering their enemies, rather than +1.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE FOUR BLACK WINDS",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "Enemies cannot use the Fly special rule to charge the unit carrying this standard.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF VERMINOUS SCURRYING",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard can march three times their Movement value. However, if they do so, the unit suffers 2D6 Strength 3 Hits with no saves allowed after making their March move.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [
+  {
+   "name": "THE LORE OF RUIN",
+   "attribute": "If one or more spells from the Lore of Ruin affects an enemy unit, the target suffers -1 to their Leadership (to a minimum of 1) until the start of the caster's next magic phase.",
+   "spells": [
+    {
+     "name": "WARP LIGHTNING",
+     "level": 0,
+     "castValue": 5,
+     "description": "Warp Lightning is a magic missile with a range of 24\" that causes D3 Strength 5 hits with the Lightning Attacks special rule. If the number of hits rolled is a natural 1 (using a D6), then the caster suffers a Strength 5 hit instead of the target.",
+     "type": null
+    },
+    {
+     "name": "DEATH FRENZY",
+     "level": 1,
+     "castValue": 6,
+     "description": "Death Frenzy is an augment spell with a range of 18\". The target unit gains the Frenzy special rule for the remainder of the game, though it can be lost as normal. This spell can be cast multiple times on the same target. If the unit already has the Frenzy special rule, it also suffers D3 Wounds with the Ignores Armour save special rule at the end of each Magic phase.",
+     "type": null
+    },
+    {
+     "name": "WARP POWER",
+     "level": 1,
+     "castValue": 6,
+     "description": "Warp Power is an augment spell with a range of 18\". The target unit may re-roll failed rolls To Hit and To Wound until the start of the caster's next Magic phase. However, the target unit suffer D3 Wounds with the Ignores Armour save special rule when the spell ends.",
+     "type": null
+    },
+    {
+     "name": "WARP SHIELD",
+     "level": 1,
+     "castValue": 6,
+     "description": "Warp Shield is an augment spell with a range of 18\". Until the start of the caster's next Magic phase, the target unit ignores a number of Hits from missile attacks equal to the casting result (to a maximum of 10). However, if the unit suffer more Hits than that, the spell ends after resolving the Hits and the unit suffers D6 Strength 3 Hits.",
+     "type": null
+    },
+    {
+     "name": "HOWLING WARPGALE",
+     "level": 2,
+     "castValue": 7,
+     "description": "Howling Warpgale is a hex aura spell with a range of 18\". Until the start of the caster's next Magic phase, no units within range may use the Fly special rule, and all non-magical missile attacks suffer -1 To Hit.",
+     "type": null
+    },
+    {
+     "name": "SPLINTER",
+     "level": 2,
+     "castValue": 7,
+     "description": "Splinter is a direct damage aura spell with a range of 6\". All target units within range must pass a Leadership test or suffer one Wound that Ignores Armour Saves for every point they failed the Leadership test by.",
+     "type": null
+    },
+    {
+     "name": "PIT OF THE UNDERWORLD",
+     "level": 2,
+     "castValue": 9,
+     "description": "Pit of the Underworld is a summoning spell with a range of 36\". Place a suitable marker over the exact spot affected. Once cast, the Pit cannot be dispelled. For as long as the spell lasts, the player rolls a D6 at the start of each player's following Magic phase. On a 4+, the Pit opens. Place the large round template over the centre of the marker. All models under the template must roll a D6 per Wound on their profile – for each roll of a 4+ they suffer a Wound which Ignores Armour Saves and Regeneration. After any casualties have been resolved the spell ends.",
+     "type": null
+    },
+    {
+     "name": "FLENSING RUIN",
+     "level": 3,
+     "castValue": 10,
+     "description": "Flensing Ruin is a direct damage spell with a range of 12\" that targets a single model (even a character in a unit). The target suffers D3 Strength 6 Hits with the Lightning Attacks special rule.",
+     "type": null
+    },
+    {
+     "name": "MADNESS",
+     "level": 3,
+     "castValue": 10,
+     "description": "Madness is a hex spell with a range of 24\" that can be cast on an unengaged unit. The target unit will immediately turn on the spot and move 2D6\" in a random direction as determined by the scatter dice. They will stop within 1\" of any unit or impassable terrain.",
+     "type": null
+    },
+    {
+     "name": "WARPSTORM",
+     "level": 3,
+     "castValue": 10,
+     "description": "Warpstorm is a direct damage aura spell with a range of 12\". Roll a D6 for each unit within range; enemy units are affected on a 3+, friendly units are affected on a 6. Each unit that is affected suffers D6 Strength 5 hits with the Lightning Attacks special rule. Roll separately for each unit.",
+     "type": null
+    },
+    {
+     "name": "CRACKS CALL",
+     "level": 4,
+     "castValue": 13,
+     "description": "Cracks Call is a direct damage area spell that uses the line template. Place it 24\" in length, directly away from the caster's front arc. Each model in the way must roll a D6 per Wound on their profile – for each roll of a 4+ they suffer a Wound which Ignores armour saves and Regeneration.",
+     "type": null
+    },
+    {
+     "name": "SCORCH",
+     "level": 4,
+     "castValue": 15,
+     "description": "Scorch is a direct damage area spell with a range of 24\" that uses the large round template. All models under the template suffer a Strength 4 hit with the Flaming Attacks special rule. A unit that suffers one or more casualties from Scorch must take a Panic test.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "THE LORE OF PLAGUE",
+   "attribute": "If one or more spells from the Lore of Plague affects an enemy unit, the target suffers -1 to their Weapon Skill and Initiative (to a minimum of 1) until the start of the caster's next magic phase.",
+   "spells": [
+    {
+     "name": "PESTILENT BREATH",
+     "level": 0,
+     "castValue": 5,
+     "description": "Pestilent Breath is a direct damage spell. The caster makes a Strength 2 Breath Weapon Attack with the Ignores Armour Saves special rule. This may be cast in close combat, following the normal rules for Breath Weapons.",
+     "type": null
+    },
+    {
+     "name": "BLESS WITH FILTH",
+     "level": 1,
+     "castValue": 5,
+     "description": "Bless with Filth is an augment spell with a range of 18\". The target gets the Poisoned Attacks special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "MANTLE OF CONTAGION",
+     "level": 1,
+     "castValue": 5,
+     "description": "Mantle of Contagion is an augment spell with a range of 18\". The target unit and any units in base contact with it suffer 2D6 Strength 3 hits with the Ignores Armour Saves special rule.",
+     "type": null
+    },
+    {
+     "name": "VEIL OF FLIES",
+     "level": 1,
+     "castValue": 5,
+     "description": "Veil of Flies is an augment spell with a range of 18\". All enemy units in base contact with the target unit suffer -1 To Hit until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "VERMINTIDE",
+     "level": 2,
+     "castValue": 7,
+     "description": "Remains in play. Vermintide is a magical vortex that uses the large round template. Any model touched by the template suffers a Strength 1 hit.",
+     "type": null
+    },
+    {
+     "name": "WEEPING WOUNDS",
+     "level": 2,
+     "castValue": 8,
+     "description": "Remains in play. Weeping Wounds is a hex spell with a range of 24\". The target unit suffer D6 Strength 2 hits with the Ignores Armour Saves special rule. While the spell is in effect, the target unit suffers an additional D6 Strength 2 hits with the Ignores Armour Saves special rule at the start of each subsequent Magic phase.",
+     "type": null
+    },
+    {
+     "name": "PURULENT WORLD SORES",
+     "level": 2,
+     "castValue": 9,
+     "description": "Purulent World Sores is a summoning spell with a range of 18\". This summons a normal marshland no more than 6\" in diameter. In addition, all models within the marsh when it is summoned or who enter later suffer a Strength 1 Hit with the Ignores Armour Saves special rule.",
+     "type": null
+    },
+    {
+     "name": "PUTREFY",
+     "level": 3,
+     "castValue": 11,
+     "description": "Putrefy is a hex spell with a range of 18\". The target suffers -1 to their Strength for the remainder of the game. This can be cast multiple times on the same target and the effects are cumulative.",
+     "type": null
+    },
+    {
+     "name": "WITHER",
+     "level": 3,
+     "castValue": 11,
+     "description": "Wither is a hex spell with a range of 18\". The target suffers -1 to their Toughness for the remainder of the game. This can be cast multiple times on the same target and the effects are cumulative.",
+     "type": null
+    },
+    {
+     "name": "AIR OF PESTILENCE",
+     "level": 3,
+     "castValue": 12,
+     "description": "Air of Pestilence is a direct damage aura spell with a range of 12\". Roll a D6 for each unit within range; enemy units are affected on a 2+, friendly units are affected on a 4+, and models from Clan Pestilens (friend or foe) are affected on a roll of 5+. Each unit that is affected suffers 2D6 Strength 3 hits with the Ignores Armour save special rule. Roll separately for each unit.",
+     "type": null
+    },
+    {
+     "name": "CLOUD OF CORRUPTION",
+     "level": 4,
+     "castValue": 12,
+     "description": "Cloud of Corruption is a direct damage area spell with a range of 24\" that uses the large template. All models touched by the template suffer a Strength 2 Hit with the Ignores Armour Saves special rule.",
+     "type": null
+    },
+    {
+     "name": "PLAGUE",
+     "level": 4,
+     "castValue": 15,
+     "description": "Plague is a direct damage spell with a range of 18\" that may be cast on units in close combat. All models in the target unit must pass a Toughness test or suffer a Wound with the Ignores Armour save special rule. If cast on a unit engaged in close combat, all units in base contact (friend and foe) will be affected. After working out the effects of the spell and removing casualties, roll a D6 and consult the chart below and continue to apply the results until the spell ends or there are no more viable targets. A unit can only be the target of Plague once per Magic phase.\nD6 | Result\n1 | Your opponent can decide to end the spell or choose any one unit within 6\" of a previous target to be affected by Plague.\n2-4 | The spell ends.\n5-6 | The casting player can decide to end the spell or choose any one unit within 6\" of a previous target to be affected by Plague.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "THE LORE OF STEALTH",
+   "attribute": "If one or more spells from the Lore of Stealth affects an enemy unit, the target suffers a -1 penalty to their armour saves until the start of the caster's next magic phase.",
+   "spells": [
+    {
+     "name": "WARP STARS",
+     "level": 0,
+     "castValue": 6,
+     "description": "Warp Stars is a magic missile with a range of 18\" that causes D6 Strength 4 hits with the Armour Piercing (1) and Poisoned Attacks special rule.",
+     "type": null
+    },
+    {
+     "name": "STICKYPAWS",
+     "level": 1,
+     "castValue": 5,
+     "description": "Stickypaws is an augment spell with a range of 18\" that can be cast on an Infantry unit. The target unit treats cliffs and buildings as open ground (note that it may not end its move within 1\" of it as normal) until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "ARMOUR OF DARKNESS",
+     "level": 1,
+     "castValue": 6,
+     "description": "Armour of Darkness is an augment spell that is cast on the Wizard itself. Until the start of the caster's next turn, the caster and their unit gain a 6+ armour save and all missile fire directed at them suffer -1 To Hit.",
+     "type": null
+    },
+    {
+     "name": "MARKED FOR DEATH",
+     "level": 1,
+     "castValue": 6,
+     "description": "Marked for Death is a hex spell with a range of 24\". All attacks against the target gain +1 To Hit until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "BRITTLE BONE",
+     "level": 2,
+     "castValue": 7,
+     "description": "Brittle Bone is a hex spell with a range of 24\". Until the start of the caster's next Magic phase, all models in the target unit must take a Dangerous Terrain test every time they attempt to charge, march, flee or pursue. Tests in terrain that is already Dangerous Terrain will fail the tests on a 1 or 2, rather than a 1.",
+     "type": null
+    },
+    {
+     "name": "PELT OF THE ASSASSIN",
+     "level": 2,
+     "castValue": 7,
+     "description": "Remains in play. Pelt of the Assassin is an augment spell with a range of 18\". While the spell is in effect, no units can draw line of sight to this unit unless they are within 12\" of it. However, if the target unit moves for any reason, the spell is immediately dispelled.",
+     "type": null
+    },
+    {
+     "name": "SHADOW STRIKE",
+     "level": 2,
+     "castValue": 7,
+     "description": "Shadow Strike is a direct damage spell with a range of 24\". The target unit must take 3D6 Weapon Skill tests. For every test that is failed, the unit suffers a Strength 4 Hit.",
+     "type": null
+    },
+    {
+     "name": "SWIFTSCAMPER",
+     "level": 3,
+     "castValue": 9,
+     "description": "Swiftscamper is an augment spell with a range of 18\". The target unit doubles its Movement rate (to a maximum of 10) and can re-roll their Charge, Flee and Pursuit results until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SKITTERLEAP",
+     "level": 3,
+     "castValue": 10,
+     "description": "Skitterleap is a conveyance spell with a range of 12\". The target is immediately picked up and may be moved to any position on the battlefield within 24\" of their original position, just like a summoning spell.",
+     "type": null
+    },
+    {
+     "name": "BLACK WHIRLWIND",
+     "level": 3,
+     "castValue": 10,
+     "description": "Black Whirlwind is a direct damage area spell with a range of 24\" that uses the small round template. All models underneath the template suffer a Strength 3 hit. The unit then suffers -1 to its Weapon Skill, Ballistic Skill and Initiative until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "VEIL OF SHADOWS",
+     "level": 4,
+     "castValue": 15,
+     "description": "Remains in Play. Veil of Shadows is a magical vortex that uses the large round template. Any model touched by the template takes a Strength 4 hit, and the unit will count as being Disrupted for the remainder of the turn.",
+     "type": null
+    }
+   ]
+  }
+ ],
+ "factionUpgrades": {}
+}

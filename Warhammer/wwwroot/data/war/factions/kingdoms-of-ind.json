@@ -1,0 +1,3367 @@
+{
+ "factionName": "Kingdoms of Ind",
+ "units": [
+  {
+   "name": "Maharajah",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Maharajah",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 90
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Throwing weapons",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Thronebearers",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Royal Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Vimana Chariot",
+       "points": 100,
+       "perModel": false
+      },
+      {
+       "name": "Royal Elephant",
+       "points": 115,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Maharajah",
+     "raw": "A Maharajah may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "Rajah",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Rajah",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Throwing weapons",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Thronebearers",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Royal Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Vimana Chariot",
+       "points": 100,
+       "perModel": false
+      },
+      {
+       "name": "Royal Elephant",
+       "points": 115,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Rajah may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Rajah",
+     "raw": "A Rajah may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "Mantrik Lord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Mantrik Lord",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Mantrik is a Level 1 Wizard. A Mantrik Lord is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Mantrik Lord",
+     "raw": "A Mantrik Lord may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Mantrik",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Mantrik",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Mantrik is a Level 1 Wizard. A Mantrik Lord is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Mantrik",
+     "raw": "A Mantrik may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "SADHU",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Sadhu",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 0,
+     "Ld": 7,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Karma, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "VISHKANYA",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Vishkanya",
+     "M": 5,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 7,
+     "A": 3,
+     "Ld": 9,
+     "points": 95
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Dodge (5+), Hidden, Karma, Natural Armour (6+), Poisoned Attacks, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  },
+  {
+   "name": "BEASTMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Beastmaster",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 30
+    },
+    {
+     "name": "Tiger",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": 20
+    }
+   ],
+   "troopType": "Infantry (Character, Human), War Beast (Feline)",
+   "baseSize": "20x20 or 25x25 (Beastmaster), 25x50 or 30x60 (Tiger)",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapon",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take an additional hand weapon +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Throwing weapons",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bengal Tiger",
+       "points": 50,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Bengal Tiger +50 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Karma, Independent, Mixed Unit, Mighty Blow (1) (Tiger only), Forest Strider",
+   "upgrades": null,
+   "notes": "A Beastmaster may be accompanied by up to a total of 5 Tigers.\nA Beastmaster may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "AVATAR OF BRAHAMBHU",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Avatar of Brahambhu",
+     "M": 6,
+     "WS": 5,
+     "BS": 5,
+     "S": 6,
+     "T": 6,
+     "W": 5,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 350
+    }
+   ],
+   "troopType": "Monster (Character, Deva)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": "An Avatar of Brahambhu is a Level 2 Wizard who uses the Lore of Life.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 3 Wizard",
+     "points": 35,
+     "perModel": false,
+     "raw": "Level 3 Wizard +35 points"
+    },
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "Level 4 Wizard",
+     "points": 70,
+     "perModel": false,
+     "raw": "Level 4 Wizard +70 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 350
+  },
+  {
+   "name": "AVATAR OF VISHYANA",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Avatar of Vishyana",
+     "M": 6,
+     "WS": 7,
+     "BS": 6,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 6,
+     "A": 5,
+     "Ld": 9,
+     "points": 365
+    }
+   ],
+   "troopType": "Monster (Character, Deva)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": "An Avatar of Vishyana is a Level 1 Wizard who uses the Lore of Light.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 365
+  },
+  {
+   "name": "AVATAR OF SHIDRA",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Avatar of Shidra",
+     "M": 8,
+     "WS": 9,
+     "BS": 6,
+     "S": 6,
+     "T": 6,
+     "W": 5,
+     "I": 9,
+     "A": 6,
+     "Ld": 9,
+     "points": 365
+    }
+   ],
+   "troopType": "Monster (Character, Deva)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": "An Avatar of Shidra is a Level 1 Wizard who uses the Lore of Fire.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 365
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "THRONEBEARERS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Thronebearers",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 4,
+     "A": 4,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Inspiring Presence (6)",
+   "upgrades": null,
+   "notes": "Thronebearers have a Line of Sight value of 2 and add +4 to the model's Unit Strength.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "BENGAL TIGER",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Bengal Tiger",
+     "M": 9,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Feline)",
+   "baseSize": "50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Mighty Blow (1), Forest Strider",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "ROYAL ELEPHANT",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Royal Elephant",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 2,
+     "A": 4,
+     "Ld": 6,
+     "points": null
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Elephantine)",
+   "baseSize": "50x75 or 50x100",
+   "equipment": "Light lance (Crew only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Longbows",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "extra Crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take up to two extra Crew +5 points/Crew",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Mahout Expert",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Mahout Expert +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Spike Chains",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Spike Chains +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Spiked Tusks",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Spiked Tusks +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Impact Hits (D3+1), Natural Armour (5+), Karma (Crew only)",
+   "upgrades": "Mahout Expert: The War Elephant may re-roll failed Stampede tests.\nSpike Chain: The War Elephant gains the Impact Hits (D6+1) special rule.\nSpiked Tusks: The War Elephant gains +1 Strength to its Attacks.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Warrior",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 3.5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "dditional hand weapons",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      },
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "great weapons",
+       "points": 2.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bucklers",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May replace bucklers with shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3.5
+  },
+  {
+   "name": "ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Archer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, longbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bucklers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bucklers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Archer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "SEPOYS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Sepoy",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, handgun",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Sepoy to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Sepoy to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Sepoy to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "URUMI SWORDSMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Urumi Swordsman",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Urumi sword",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bucklers",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bucklers +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Urumi Swordsman to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Karma, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "SKIRMISHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skirmisher",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, throwing weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Slings",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May replace throwing weapons one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following (javelins only):",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skirmisher to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skirmisher to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Karma, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "PINDARIS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Pindari",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 11
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "buckler"
+      },
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bucklers",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May replace bucklers with shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Pindari to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Pindari to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Pindari to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "SOWARS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Sowar",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 12
+    },
+    {
+     "name": "Camel",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bucklers",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May replace bucklers with shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Sowar to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Sowar to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Sowar to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Camel (Camelid)",
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "RAJPUTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Rajput",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 15
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, medium armour, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "flails",
+       "points": 1.5,
+       "perModel": true,
+       "replaces": "buckler"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bucklers",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May replace bucklers with shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Rajput to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Rajput to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Rajput to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "SNAKE SWARMS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Snake Swarm",
+     "M": 4,
+     "WS": 3,
+     "BS": 0,
+     "S": 2,
+     "T": 2,
+     "W": 6,
+     "I": 1,
+     "A": 6,
+     "Ld": 3,
+     "points": 35
+    },
+    {
+     "name": "Snake Charmer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Swarm (Ophidian)",
+   "baseSize": null,
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Cold-blooded, Poisoned Attacks, Mixed Unit",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "MAIDEN GUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Maiden Guard",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "polearms",
+       "points": 1.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bucklers",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      }
+     ],
+     "raw": "May replace bucklers with shields +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Maiden Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Maiden Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Maiden Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Karma, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "ETERNALS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Eternals",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 13
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Eternal to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Eternal to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Eternal to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Karma, Magical Attacks, Magic Resistance (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "ZAMBURAKS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Zamburak",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 15
+    },
+    {
+     "name": "Camel",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, shaturnal",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Zamburak to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Zamburak to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Zamburak to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Camel (Camelid)",
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "ROYAL CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Royal Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 70
+    },
+    {
+     "name": "Charioteer",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Warhorse",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Light lance, bow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bows",
+     "choices": [
+      {
+       "name": "javelins +free",
+       "points": null,
+       "perModel": false,
+       "replaces": "bows"
+      }
+     ],
+     "raw": "May replace bows with javelins +free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew",
+     "points": 6,
+     "perModel": false,
+     "raw": "May take up to three additional Crew +6 points/Crew",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "two additional Warhorses",
+     "points": 6,
+     "perModel": false,
+     "raw": "May take two additional Warhorses +6 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Royal Chariot to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "1-3",
+   "crew": "2 (Human)",
+   "mount": null,
+   "drawnBy": "2 Warhorses (Equine)",
+   "pointsCost": 70
+  },
+  {
+   "name": "BENGAL RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bengal Rider",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 36
+    },
+    {
+     "name": "Bengal Tiger",
+     "M": 9,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Human)",
+   "baseSize": "50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bengal Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bengal Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bengal Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Karma, Loner, Mighty Blow (1) (Bengal Tiger only)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Bengal Tiger (Feline)",
+   "drawnBy": null,
+   "pointsCost": 36
+  },
+  {
+   "name": "WAR ELEPHANT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "War Elephant",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 2,
+     "A": 4,
+     "Ld": 6,
+     "points": 100
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Creature (Elephantine)",
+   "baseSize": "50x75 or 50x100",
+   "equipment": "Light lance (Crew only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Longbows",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew",
+     "points": 5,
+     "perModel": true,
+     "raw": "May take one additional Crew +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Giant bow",
+       "points": 20,
+       "perModel": true
+      },
+      {
+       "name": "Jingal",
+       "points": 30,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 10,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +10 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Mahout Expert",
+     "points": 10,
+     "perModel": true,
+     "raw": "May take Mahout Expert +10 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Spike Chains",
+     "points": 15,
+     "perModel": true,
+     "raw": "May take Spike Chains +15 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Spiked Tusks",
+     "points": 15,
+     "perModel": true,
+     "raw": "May take Spiked Tusks +15 points/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Impact Hits (D3), Karma, Natural Armour (5+)",
+   "upgrades": "Mahout Expert: The War Elephant may re-roll failed Stampede tests.\nSpike Chain: The War Elephant gains the Impact Hits (D6) special rule.\nSpiked Tusks: The War Elephant gains +1 Strength to its Attacks.",
+   "notes": null,
+   "unitSize": "1-3",
+   "crew": "3 (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "RAKSHASHAS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Rakshasa",
+     "M": 6,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Beastman)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "hand weapons",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "hand weapons"
+      }
+     ],
+     "raw": "May replace hand weapons with great weapons +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Rakshasa to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Rakshasa to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ambushers, Forest Striders, Hatred, Independent, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "VANARAS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Vanara",
+     "M": 5,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Beastman)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Blowpipes",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Vanara to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Vanara to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Dodge (6+), Forest Strider, Independent, Obstacle Strider, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "GARUDAS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Garuda",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Beastman)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "bows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take bows +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Garuda to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (10), Independent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "GANESHAS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ganesha",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 8,
+     "points": 36
+    }
+   ],
+   "troopType": "Monstrous Infantry (Beastman)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 9,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ganesha to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ganesha to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ganesha to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Impact Hits (1), Independent, Natural Armour (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 36
+  },
+  {
+   "name": "NAGAS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Naga",
+     "M": 7,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": 40
+    }
+   ],
+   "troopType": "Monstrous Beast (Beastman)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great bows",
+       "points": 10,
+       "perModel": true
+      }
+     ],
+     "raw": "May take great bows +10 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Naga to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Aquatic, Loner, Poisoned Attacks, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "KALARATRIS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Kalaratri",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Deva)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Kalaratri to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Kalaratri to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Kalaratri to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "MARUTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Marut",
+     "M": 4,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 1,
+     "A": 1,
+     "Ld": 7,
+     "points": 14
+    }
+   ],
+   "troopType": "Infantry (Deva)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Marut to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Marut to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Marut to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Deva, Lightning Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 14
+  },
+  {
+   "name": "GREAT CANNON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Great Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Great Cannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, great cannon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional Crew +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "WAR ROCKET",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "War Rocket",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (War Rocket), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, rocket launcher",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take an additional Crew +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "TEMPLE CHARIOT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Temple Chariot",
+     "M": 4,
+     "WS": "-",
+     "BS": "-",
+     "S": 6,
+     "T": 6,
+     "W": 10,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 200
+    }
+   ],
+   "troopType": "Shrine (Armour Save 5+)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Totem of the Devas, Unstoppable Force",
+   "upgrades": null,
+   "notes": "A Temple Chariot has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "VIMANA CHARIOT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Vimana Chariot",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Charioteer",
+     "M": "-",
+     "WS": 4,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 5+)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Light lance, bow, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "giant bow",
+       "points": 20,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a giant bow +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (7), Karma",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "YAKSHAS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Yaksha",
+     "M": 6,
+     "WS": 4,
+     "BS": 2,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Infantry (Deva)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Great weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Yaksha to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Yaksha to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Yaksha to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "MAKARA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Makara",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 5,
+     "W": 5,
+     "I": 3,
+     "A": 5,
+     "Ld": 7,
+     "points": 175
+    }
+   ],
+   "troopType": "Monster (Chimeric)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Aquatic, Multiple Wounds (D3), Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "YALI",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Yali",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 4,
+     "A": 4,
+     "Ld": 7,
+     "points": 185
+    }
+   ],
+   "troopType": "Monster (Chimeric)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Impact Hits (D6), Natural Armour (5+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "SHESHA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Shesha",
+     "M": 6,
+     "WS": 4,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 4,
+     "A": 7,
+     "Ld": 7,
+     "points": 210
+    }
+   ],
+   "troopType": "Monster (Ophidian)",
+   "baseSize": "50x100, 60x100, 100x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Cold-Blooded, Natural Armour (4+), Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "DARAHMA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Darahma",
+     "M": 4,
+     "WS": 6,
+     "BS": 6,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 300
+    }
+   ],
+   "troopType": "Infantry (Special Character, Deva)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Royal Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Royal Chariot (replacing one of the crew) +70 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "KARISHNA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Karishna",
+     "M": 4,
+     "WS": 7,
+     "BS": 6,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 4,
+     "Ld": 9,
+     "points": 290
+    }
+   ],
+   "troopType": "Infantry (Special Character, Deva)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": "Karishna is a Level 2 Wizard who uses spells from the Lore of Light.",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Royal Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Royal Chariot (replacing one of the crew) +70 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Deva",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 290
+  },
+  {
+   "name": "URJANA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Urjana",
+     "M": 4,
+     "WS": 5,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Royal Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Royal Chariot (replacing one of the crew) +70 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Karma, Sniper",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "PARASHURUMA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Parashuruma",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Hatred, Immunity (Psychology), Karma, Regeneration (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "MHOGLI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Mhogli",
+     "M": 5,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 220
+    },
+    {
+     "name": "Sher Khana",
+     "M": 8,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Special Character, Human)",
+   "baseSize": "50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Beastmaster (see Beastmasters), Karma, Independent, Terror",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 220
+  }
+ ]
+}
