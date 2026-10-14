@@ -70,6 +70,7 @@ public class NamedCharacterCategoryTests
     [Theory]
     [InlineData(GameSystems.WapV2)]
     [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public async Task EveryFactionResolvesEveryUnitInItsData(string system)
     {
         var repo = TestHelpers.RepoFor(system);

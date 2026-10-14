@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Warhammer.Models.Domain;
 using Warhammer.Models.Json;
 
 namespace Warhammer.Tests;
@@ -12,14 +13,12 @@ namespace Warhammer.Tests;
 /// </summary>
 public class WarDataTests
 {
-    private const string SystemKey = "war";
-
     /// <summary>The army books the edition has. Update when a book is added.</summary>
     private const int FactionCount = 30;
 
     private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 
-    private static string DataDir => TestPaths.SystemDataDir(SystemKey);
+    private static string DataDir => TestPaths.SystemDataDir(GameSystems.War);
 
     private static SystemManifest Manifest() =>
         JsonSerializer.Deserialize<SystemManifest>(
@@ -29,7 +28,7 @@ public class WarDataTests
     public void Manifest_ListsEveryArmy()
     {
         var manifest = Manifest();
-        Assert.Equal(SystemKey, manifest.System);
+        Assert.Equal(GameSystems.War, manifest.System);
         Assert.Equal(FactionCount, manifest.Factions.Count);
     }
 
