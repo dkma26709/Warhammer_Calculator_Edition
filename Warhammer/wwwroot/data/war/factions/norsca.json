@@ -1078,7 +1078,7 @@
      "action": "replace",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -1209,7 +1209,7 @@
      "replaces": "shields",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -2606,7 +2606,7 @@
    "equipment": "Shield, medium armour",
    "magic": null,
    "options": null,
-   "specialRules": "Blood Rage, Saga of the Eternal Warrior (see Sagas), Saga of the Fearless Leader (see",
+   "specialRules": "Blood Rage, Saga of the Eternal Warrior (see Sagas), Saga of the Fearless Leader (see Sagas)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2819,7 +2819,7 @@
      "points": 160
     }
    ],
-   "troopType": "Infantry (Special Character, Human – Jora), Monstrous Infantry (Special Character, Werecreature –",
+   "troopType": "Infantry (Special Character, Human – Jora), Monstrous Infantry (Special Character, Werecreature – Bjorn)",
    "baseSize": "20x20 or 25x25 (Jora), 40x40 or 50x50 (Bjorn)",
    "equipment": "Light armour",
    "magic": null,

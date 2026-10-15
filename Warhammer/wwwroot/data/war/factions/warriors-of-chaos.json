@@ -1833,7 +1833,7 @@
      "action": "replace",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -5083,7 +5083,7 @@
      ]
     }
    ],
-   "specialRules": "Daemon of Slaanesh (Steed of Slaanesh only), Fast Cavalry, Mark of Slaanesh, Poisoned",
+   "specialRules": "Daemon of Slaanesh (Steed of Slaanesh only), Fast Cavalry, Mark of Slaanesh, Poisoned Attacks (Steed of Slaanesh only)",
    "upgrades": null,
    "notes": null,
    "unitSize": "5-15",
@@ -5264,7 +5264,7 @@
      ]
     }
    ],
-   "specialRules": null,
+   "specialRules": "Chaos Armour, Daemon of Khorne (Juggernaut only), Mark of Khorne, Natural Armour (6+), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-6",
@@ -5414,7 +5414,7 @@
      ]
     }
    ],
-   "specialRules": "Chaos Armour, Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks (Rot",
+   "specialRules": "Chaos Armour, Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks (Rot Beast only), Regeneration (5+), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-6",
@@ -5475,7 +5475,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Chaos Armour, Daemon of Nurgle (Rot Fly only), Fly (6), Mark of Nurgle (included in",
+   "specialRules": "Chaos Armour, Daemon of Nurgle (Rot Fly only), Fly (6), Mark of Nurgle (included in profile), Poisoned Attacks (Rot Fly only), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-6",
@@ -5628,7 +5628,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Chaos Armour, Daemon of Tzeentch (Disc of Tzeentch only), Fly (9), Mark of Tzeentch, Will",
+   "specialRules": "Chaos Armour, Daemon of Tzeentch (Disc of Tzeentch only), Fly (9), Mark of Tzeentch, Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-6",
@@ -6144,7 +6144,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Immunity (Psychology), Impact Hits (D6), Natural Armour (4+), Storm Call (see Dragon",
+   "specialRules": "Immunity (Psychology), Impact Hits (D6), Natural Armour (4+), Storm Call (see Dragon Ogre Shaggoth), Storm Rage (see Dragon Ogres)",
    "upgrades": null,
    "notes": "If Kholek Suneater in in your army, you may take units of Dragon Ogres as Special Units instead of Rare Units.",
    "unitSize": null,
@@ -6208,7 +6208,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Chaos Armour, Eye of the Gods, Fear, Fly (10), Mark of Khorne, Magical Ward (5+), Will",
+   "specialRules": "Chaos Armour, Eye of the Gods, Fear, Fly (10), Mark of Khorne, Magical Ward (5+), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -6666,7 +6666,7 @@
    "equipment": "Great weapon, medium armour (Bloab & Morbidex only), Heavy armour (Orghotts only)",
    "magic": "Bloab is a Level 3 Wizard who uses spells from the Lore of Nurgle.",
    "options": null,
-   "specialRules": "Chaos Armour, Eye of the Gods, Mark of Nurgle (included in profile), Magical Ward (6+)",
+   "specialRules": "Chaos Armour, Eye of the Gods, Mark of Nurgle (included in profile), Magical Ward (6+) (Orghotts Daemonspew only), Will of Chaos",
    "upgrades": null,
    "notes": "You may field each Maggoth Lord separately in your army.",
    "unitSize": null,
@@ -6750,7 +6750,7 @@
    "equipment": "Heavy armour",
    "magic": null,
    "options": null,
-   "specialRules": "Chaos Armour, Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks",
+   "specialRules": "Chaos Armour, Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks (Rotbeast only), Regeneration (5+), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -6782,7 +6782,7 @@
    "equipment": "Heavy armour",
    "magic": null,
    "options": null,
-   "specialRules": "Chaos Armour, Eye of the Gods, Fear, Hatred, Immunity (Psychology), Mark of Nurgle",
+   "specialRules": "Chaos Armour, Eye of the Gods, Fear, Hatred, Immunity (Psychology), Mark of Nurgle (included in profile), Regeneration (4+), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -6841,7 +6841,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks (including",
+   "specialRules": "Eye of the Gods, Mark of Nurgle (included in profile), Poisoned Attacks (including Gathoblyt), Regeneration (4+), Will of Chaos",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

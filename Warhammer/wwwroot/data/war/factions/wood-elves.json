@@ -396,7 +396,7 @@
    "troopType": "Infantry (Character, Wood Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Spellsinger is a Level 1 Wizard. A Spellweaver is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Spellsinger is a Level 1 Wizard. A Spellweaver is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -470,7 +470,7 @@
    "troopType": "Infantry (Character, Wood Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Spellsinger is a Level 1 Wizard. A Spellweaver is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Spellsinger is a Level 1 Wizard. A Spellweaver is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -583,7 +583,7 @@
      "raw": "May take one Spite and/or Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magical Ward (6+), Magic",
+   "specialRules": "Blessings of the Ancients, Elven Grace, Forest Strider, Magical Ward (6+), Magic Resistance (1), Shadow Dances of Loec",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -933,7 +933,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree",
+   "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (3+), Stubborn, Tree Whack",
    "upgrades": "• Strangleroots: Strangleroots have the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n6/12\" | 5 | Multiple Shots (D6+1), Quick Shot, Rapid Fire",
    "notes": null,
    "unitSize": null,
@@ -1035,7 +1035,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree",
+   "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Hatred, Natural Armour (6+), Tree Aspects",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2970,7 +2970,7 @@
      ]
     }
    ],
-   "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural",
+   "specialRules": "Devastating Charge, Fast Cavalry, Fly (9), Forest Spirit, Martial Memories, Natural Armour (5+), Regeneration (5+)",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-6",
@@ -3169,7 +3169,7 @@
    "equipment": null,
    "magic": "Ariel is a level 4 Wizard who uses spells from the Lore of Athel Loren.",
    "options": null,
-   "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic",
+   "specialRules": "Blessings of the Ancients, Fly (9), Forest Spirit, Loremaster (Lore of Athel Loren), Magic Resistance (3)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3529,7 +3529,7 @@
    "equipment": "Hand weapon",
    "magic": null,
    "options": null,
-   "specialRules": "Animal Form (Gruarth only, see Alters), Elven Grace (Gruarth only), Forest Strider, Mixed",
+   "specialRules": "Animal Form (Gruarth only, see Alters), Elven Grace (Gruarth only), Forest Strider, Mixed Unit, Natural Armour (6+), Skirmishers",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3686,7 +3686,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk (see",
+   "specialRules": "Blessings of the Ancients, Flammable, Forest Spirit, Natural Armour (6+), Spirit-walk (see Tree-Revenants), Tree Aspects",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

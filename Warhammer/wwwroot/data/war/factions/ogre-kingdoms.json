@@ -373,7 +373,7 @@
    "troopType": "Monstrous Infantry (Character, Ogre)",
    "baseSize": "40x40",
    "equipment": "Hand weapon",
-   "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -469,7 +469,7 @@
    "troopType": "Monstrous Infantry (Character, Ogre)",
    "baseSize": "40x40",
    "equipment": "Hand weapon",
-   "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Butcher is a Level 1 Wizard. A Slaughtermaster is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -2979,7 +2979,7 @@
      "raw": "May take Magic Items up to a total of 75 points"
     }
    ],
-   "specialRules": "Immunity (Poisoned Attacks), Loremaster (Lore of the Great Maw), Mawseeker (see Big",
+   "specialRules": "Immunity (Poisoned Attacks), Loremaster (Lore of the Great Maw), Mawseeker (see Big Names), Natural Armour (6+), Ogre Charge, Terror",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3011,7 +3011,7 @@
    "equipment": "Gut-plate",
    "magic": "Morg Magmaborn is a Level 3 Wizard who uses the Lore of Fire.",
    "options": null,
-   "specialRules": "Fire Breath (see Firebellies), Flaming Attacks, Immunity (Flaming Attacks), Natural",
+   "specialRules": "Fire Breath (see Firebellies), Flaming Attacks, Immunity (Flaming Attacks), Natural Armour (6+), Ogre Charge",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3134,7 +3134,7 @@
      "raw": "May take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Independent, Ogre Charge, Natural Armour (6+), Scouts, Their Master's Voice (see",
+   "specialRules": "Independent, Ogre Charge, Natural Armour (6+), Scouts, Their Master's Voice (see Huntmaster)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

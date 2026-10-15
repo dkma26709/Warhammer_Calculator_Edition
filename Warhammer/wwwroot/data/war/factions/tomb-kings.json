@@ -971,15 +971,17 @@
    "options": [
     {
      "type": "equipment",
-     "action": "add",
+     "action": "replace",
+     "replaces": "javelins",
      "choices": [
       {
-       "name": "replace javelins with slings",
+       "name": "slings",
        "points": 0,
-       "perModel": false
+       "perModel": false,
+       "replaces": "javelins"
       }
      ],
-     "raw": "May take replace javelins with slings free",
+     "raw": "May replace javelins with slings free",
      "subOptions": null
     },
     {
@@ -1729,7 +1731,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Entombed Beneath the Sands, Indomitable, Killing Blow, Magic Resistance (1), Natural",
+   "specialRules": "Entombed Beneath the Sands, Indomitable, Killing Blow, Magic Resistance (1), Natural Armour (5+), Poisoned Attacks, Undead",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2162,7 +2164,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Indomitable, Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew",
+   "specialRules": "Indomitable, Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew only), Undead",
    "upgrades": "Envenomed Sting: All normal Attacks made by a Khemrian Warsphinx with this upgrade have the Poisoned Attacks special rule.\nFiery Roar: A Khemrian Warsphinx with this upgrade has a Strength 4 Breath Weapon with the Flaming Attacks special rule.",
    "notes": null,
    "unitSize": null,
@@ -2690,7 +2692,7 @@
      "raw": "May take Magic Items up to a total of 25 points"
     }
    ],
-   "specialRules": "Flammable, Indomitable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb",
+   "specialRules": "Flammable, Indomitable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb Herald), Undead",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2761,7 +2763,7 @@
      "raw": "May take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator",
+   "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator (see Necrotect)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

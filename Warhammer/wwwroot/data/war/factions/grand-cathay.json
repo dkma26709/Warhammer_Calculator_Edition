@@ -379,7 +379,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Dragon-Blooded Shugengan is a Level 3 Wizard. They must be chosen to be aligned with either Yin or Yang.",
+   "magic": "A Dragon-Blooded Shugengan is a Level 3 Wizard. They must be chosen to be aligned with either Yin or Yang. A Yin Wizard uses one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -540,7 +540,7 @@
    "troopType": "Infantry (Character, Human/Dragon)",
    "baseSize": "20x20 or 25x25 (Dragon Descendant), 50x100, 60x100 or 100x150 (Dragon Form)",
    "equipment": "Hand weapon, light armour",
-   "magic": "A Dragon Descendant is a Level 3 Wizard. They must be chosen to be aligned with either Yin or Yang.",
+   "magic": "A Dragon Descendant is a Level 3 Wizard. They must be chosen to be aligned with either Yin or Yang. A Yin Wizard uses one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -3136,7 +3136,7 @@
        "perModel": true
       },
       {
-       "name": "Addditional hand weapons",
+       "name": "Additional hand weapons",
        "points": 3,
        "perModel": true
       },
@@ -4187,7 +4187,7 @@
    "troopType": "Infantry (Special Character, Human)",
    "baseSize": "40x40 or 50x50 (Miao Ying), 50x100, 60x100 or 100x150 (Dragon Form)",
    "equipment": "Hand weapon, light armour",
-   "magic": "Miao Ying is a Level 4 Wizard who uses spells from the Lore of Life. In addition, she may also replace any",
+   "magic": "Miao Ying is a Level 4 Wizard who uses spells from the Lore of Life. In addition, she may also replace any number of spells from those lores with spells from the Lore of Yin. In addition, she knows the following spells:",
    "options": null,
    "specialRules": "Celestial Forged Armour, Hatred (Daemons of Chaos, Warriors of Chaos), Mastery of the Elemental Winds, Stubborn, Transformation of the Dragon (see Dragon Descendant), Will of the Dragons, Yin",
    "upgrades": null,
@@ -4232,9 +4232,9 @@
    "troopType": "Infantry (Special Character, Human)",
    "baseSize": "20x20 or 25x25 (Zhao Ming), 50x100, 60x100 or 100x150 (Dragon Form)",
    "equipment": "Hand weapon, light armour",
-   "magic": "Zhao Ming is a Level 4 Wizard who uses spells from Lore of Metal. In addition, he may also replace any",
+   "magic": "Zhao Ming is a Level 4 Wizard who uses spells from Lore of Metal. In addition, he may also replace any number of spells from those lores with spells from the Lore of Yang. In addition, he knows the following spell:",
    "options": null,
-   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Transformation of the Dragon",
+   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Transformation of the Dragon (see Dragon Descendant), Will of the Dragons, Yang",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -4277,9 +4277,9 @@
    "troopType": "Infantry (Special Character, Human)",
    "baseSize": "20x20 or 25x25 (Yuan Bo), 50x100, 60x100 or 100x150 (Dragon Form)",
    "equipment": null,
-   "magic": "Yuan Bo is a Level 4 Wizard who uses spells from the Lore of Heavens and the Lore of Light. In addition, he",
+   "magic": "Yuan Bo is a Level 4 Wizard who uses spells from the Lore of Heavens and the Lore of Light. In addition, he may also replace any number of spells from those lores with spells from the Lore of Yin and/or Yang.",
    "options": null,
-   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Transformation of the Dragon",
+   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Transformation of the Dragon (see Dragon Descendant), Will of the Dragons, Yin & Yang",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

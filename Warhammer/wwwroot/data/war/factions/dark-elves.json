@@ -371,7 +371,7 @@
    "troopType": "Infantry (Character, Dark Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following",
+   "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -463,7 +463,7 @@
    "troopType": "Infantry (Character, Dark Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following",
+   "magic": "A Sorceress is a Level 1 Wizard. A Supreme Sorceress is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -1035,7 +1035,7 @@
      "raw": "May take Magic Items and/or Gifts of Khaine up to a total of 50 points"
     }
    ],
-   "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous",
+   "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous Prowess, Poisoned Attacks, Scouts",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2584,7 +2584,7 @@
    "equipment": "Polearm",
    "magic": null,
    "options": null,
-   "specialRules": "Elven Grace, Frenzy, Hatred (High Elves), Independent, Murderous Prowess, Natural",
+   "specialRules": "Elven Grace, Frenzy, Hatred (High Elves), Independent, Murderous Prowess, Natural Armour (6+)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2823,7 +2823,7 @@
    "equipment": "Two hand weapons",
    "magic": null,
    "options": null,
-   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Impact Hits (D3), Khainite, Murderous",
+   "specialRules": "Elven Grace, Hatred (High Elves), Frenzy, Impact Hits (D3), Khainite, Murderous Prowess, Poisoned Attacks, Terror",
    "upgrades": null,
    "notes": "A Cauldron of Blood has a Line of Sight value of 5.",
    "unitSize": null,
@@ -2881,7 +2881,7 @@
    "equipment": "Polearm",
    "magic": null,
    "options": null,
-   "specialRules": "Elven Grace, Hatred (High Elves), Impact Hits (D3), Murderous Prowess, Natural Armour",
+   "specialRules": "Elven Grace, Hatred (High Elves), Impact Hits (D3), Murderous Prowess, Natural Armour (6+), Terror",
    "upgrades": null,
    "notes": "A Bloodwrack Shrine has a Line of Sight value of 5.",
    "unitSize": null,
@@ -3037,7 +3037,7 @@
      ]
     }
    ],
-   "specialRules": "Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice",
+   "specialRules": "Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Natural Armour (4+), Regeneration (4+)",
    "upgrades": "• Acid Breath: The model gains a Strength 2 Breath Weapon with the Ignores Armour Saves special rule.\n• Armour Plates: The model gains the Natural Armour (6+) special rule.\n• Battle Lover: The model gains the Vanguard special rule.\n• Bloodthirsty: The model gains the Devastating Charge special rule.\n• Chameleon Skin: All enemy missile attacks targeting the model suffer -1 To Hit.\n• Daerlythe's Aura: The model gains the Magic Resistance (2) special rule.\n• Fiery Breath: The model gains a Breath Weapon with the Flaming Attacks special rule. The Strength of this attack is equal to the War Hydra's remaining Wounds.\n• Spit Fire: The model gains a shooting attack with the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n8/12\" | * | Flaming Attacks, Multiple Shots (*), Quick Shot, Rapid Fire\n*The Strength and Multiple Shots value of this attack is equal to the War Hydra's remaining number of Wounds.",
    "notes": null,
    "unitSize": null,
@@ -3082,7 +3082,7 @@
    "equipment": "Two hand weapons (Beastmaster Apprentices only)",
    "magic": null,
    "options": null,
-   "specialRules": "Aquatic, Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster",
+   "specialRules": "Aquatic, Elven Grace (Beastmaster Apprentice only), Hatred (High Elves) (Beastmaster Apprentice only), Mixed Unit, Murderous Prowess (Beastmaster Apprentice only), Multiple Wounds (D3), Natural Armour (4+), Poisoned Attacks",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3183,7 +3183,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Elven Grace, Fear, Eternal Hatred, Hekarti's Blessing, Immunity (Psychology), Murderous",
+   "specialRules": "Elven Grace, Fear, Eternal Hatred, Hekarti's Blessing, Immunity (Psychology), Murderous Prowess",
    "upgrades": null,
    "notes": "At the start of each close combat, you must choose whether Malekith uses the Hand of Khaine or the Supreme Spellshield.",
    "unitSize": null,
@@ -3397,7 +3397,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Beastslaver (see Beastmaster), Hatred (High Elves), Fly (7), Murderous Prowess, Natural",
+   "specialRules": "Beastslaver (see Beastmaster), Hatred (High Elves), Fly (7), Murderous Prowess, Natural Armour (3+), Noxious Breath (see Black Dragon)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3493,7 +3493,7 @@
    "equipment": "Heavy armour",
    "magic": null,
    "options": null,
-   "specialRules": "Elven Grace, Hatred (High Elves), Fear, Frenzy, Khainite, Killing Blow, Murderous",
+   "specialRules": "Elven Grace, Hatred (High Elves), Fear, Frenzy, Khainite, Killing Blow, Murderous Prowess",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3525,7 +3525,7 @@
    "equipment": "Medium armour, Sea Dragon Cloak",
    "magic": null,
    "options": null,
-   "specialRules": "Ambushers, At them, you Curs! (see Black Ark Fleetmaster), Elven Grace, Hatred (High",
+   "specialRules": "Ambushers, At them, you Curs! (see Black Ark Fleetmaster), Elven Grace, Hatred (High Elves), Murderous Prowess, Show no Weakness (see Black Ark Fleetmaster)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3557,7 +3557,7 @@
    "equipment": "Two hand weapons, throwing weapons",
    "magic": null,
    "options": null,
-   "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous",
+   "specialRules": "Dodge (5+), Hatred (High Elves), Hidden, Immunity (Psychology), Khainite, Murderous Prowess, Poisoned Attacks, Scouts",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

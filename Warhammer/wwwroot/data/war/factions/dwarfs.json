@@ -584,7 +584,7 @@
      "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
     }
    ],
-   "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic",
+   "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
    "upgrades": "Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution (excluding Wounds from Overkill in a challenge).\nKilling Blow: The model gains the Killing Blow special rule.\nSkaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact with him.\nVampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
    "notes": "For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.",
    "unitSize": null,
@@ -709,7 +709,7 @@
      "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic",
+   "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
    "upgrades": "Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution (excluding Wounds from Overkill in a challenge).\nKilling Blow: The model gains the Killing Blow special rule.\nSkaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact with him.\nVampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
    "notes": "For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.",
    "unitSize": null,
@@ -2816,7 +2816,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute, Royal",
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute, Royal Clansmen (see Kings)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2893,7 +2893,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Resolute, Relentless, Royal",
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Resolute, Relentless, Royal Clansmen (see Kings)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2925,7 +2925,7 @@
    "equipment": "Heavy armour",
    "magic": null,
    "options": null,
-   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Royal Clansmen (see",
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Royal Clansmen (see Kings), Stubborn",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3202,7 +3202,7 @@
      ]
     }
    ],
-   "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master",
+   "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master Engineers), Magic Resistance (1), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
    "upgrades": "• Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm: Burlok's artificial arm gives him +1 Attack with Strength 6 in close combat.\n• Range Finding Optics: Burlok gains the Sniper special rule.\n• Rivet Gun: The rivet gun has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n9/12\" | 5 | Dwarf-crafted, Quick Shot, Multiple Shots (3), Rapid Fire",
    "notes": null,
    "unitSize": null,

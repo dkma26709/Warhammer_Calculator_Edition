@@ -359,7 +359,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "An Onmyoji is a Level 1 Wizard. A Master Onmyoji is a Level 3 Wizard. They use one of the following",
+   "magic": "An Onmyoji is a Level 1 Wizard. A Master Onmyoji is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -423,7 +423,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "An Onmyoji is a Level 1 Wizard. A Master Onmyoji is a Level 3 Wizard. They use one of the following",
+   "magic": "An Onmyoji is a Level 1 Wizard. A Master Onmyoji is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -2139,7 +2139,7 @@
      "replaces": "katanas",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "katanas"
@@ -2974,7 +2974,7 @@
      ]
     }
    ],
-   "specialRules": "Death Before Dishonour, Devastating Charge, Fear, Fly (9), Impale, Magical",
+   "specialRules": "Death Before Dishonour, Devastating Charge, Fear, Fly (9), Impale, Magical Attacks (Kirin only), Natural Armour (6+), Stubborn, Way of the Warrior",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-9",
@@ -3810,7 +3810,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Dodge (4+), Fauntei Shi (see Shinobi), Hidden, Independent, Poisoned Attacks, Scouts, Mon",
+   "specialRules": "Dodge (4+), Fauntei Shi (see Shinobi), Hidden, Independent, Poisoned Attacks, Scouts, Mon of the Hattiga Clan",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

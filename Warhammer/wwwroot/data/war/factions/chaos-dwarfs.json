@@ -22,7 +22,7 @@
    "troopType": "Infantry (Character, Chaos Dwarf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Sorcerer-Priest is a Level 1 Wizard. A Sorcerer-Prophet is a Level 3 Wizard. They use one of the following",
+   "magic": "A Sorcerer-Priest is a Level 1 Wizard. A Sorcerer-Prophet is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -137,7 +137,7 @@
    "troopType": "Infantry (Character, Chaos Dwarf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Sorcerer-Priest is a Level 1 Wizard. A Sorcerer-Prophet is a Level 3 Wizard. They use one of the following",
+   "magic": "A Sorcerer-Priest is a Level 1 Wizard. A Sorcerer-Prophet is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -984,7 +984,7 @@
    "equipment": "Great weapon, heavy armour",
    "magic": null,
    "options": null,
-   "specialRules": "Altar of Hashut: A Sorcerer-Prophet with an Altar of Hashut gains the Magical Ward (4+) and Unbreakable special rules. In addition, their troop type changes to War Machine and they count as being part of the crew. Randomise any missile hits between the Sorcerer-Prophet and the crew. The Sorcerer-Prophet can never choose to leave the Altar during the game. If the Sorcerer-Prophet is killed, the whole Altar is also removed as a casualty.\nBlessing of Hashut: A Sorcerer-Prophet on an Altar of Hashut add +12\" to the range of their spells.\nSacrifices to Hashut: Once per Magic phase, the Sorcerer-Prophet may sacrifice one of the slaves chained to the Altar to Hashut before they attempt to cast a spell. Roll a D6 and add the result to the casting result of the spell. However, if a 1 is rolled, the Sorcerer-Prophet instead suffers a Wound with no saves of any kind possible.",
+   "specialRules": "Altar of Hashut, Blessing of Hashut, Sacrifices to Hashut",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3235,7 +3235,7 @@
    "equipment": "Heavy armour",
    "magic": "Drazhoath the Ashen is a Level 4 Wizard who uses spells from the Lore of Hashut.",
    "options": null,
-   "specialRules": "Blackshard Armour, Blazing Body, Contempt, Flaming Attacks, Flaming Breath (see Bale",
+   "specialRules": "Blackshard Armour, Blazing Body, Contempt, Flaming Attacks, Flaming Breath (see Bale Taurus), Fly (8), Fuelled by Fire (see Bale Taurus), Immunity (Flaming Attacks), Relentless, Resolute",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

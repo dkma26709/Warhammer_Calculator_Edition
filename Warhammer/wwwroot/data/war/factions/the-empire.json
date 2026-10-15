@@ -4444,7 +4444,7 @@
    "equipment": "Barding",
    "magic": null,
    "options": null,
-   "specialRules": "Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders), Reiksguard",
+   "specialRules": "Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders), Reiksguard Knight",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5037,7 +5037,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Fly (7) (Carmine Dragon only), Loremaster (Lore of Death), Natural Armour (3+) (Carmine",
+   "specialRules": "Fly (7) (Carmine Dragon only), Loremaster (Lore of Death), Natural Armour (3+) (Carmine Dragon only)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5083,7 +5083,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magic Resistance (1), Righteous",
+   "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magic Resistance (1), Righteous Fury (see Warrior Priests of Sigmar)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5128,7 +5128,7 @@
    "equipment": "Heavy armour, barding",
    "magic": null,
    "options": null,
-   "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magical Ward (4+), Magic",
+   "specialRules": "Battle Prayers of Sigmar (see Warrior Priests of Sigmar), Magical Ward (4+), Magic Resistance (1), Righteous Fury (see Warrior Priests of Sigmar)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5180,7 +5180,7 @@
      "raw": "May take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Hold the Line (see Commanders), Immunity (Psychology), Inspiring Presence (6), Magical",
+   "specialRules": "Hold the Line (see Commanders), Immunity (Psychology), Inspiring Presence (6), Magical Ward (5+), Magic Resistance (2), Righteous Fury (see Warrior Priests of Sigmar)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5317,7 +5317,7 @@
      "raw": "May take Magic Items up to a total of 75 points"
     }
    ],
-   "specialRules": "Hatred (Beastmen, Daemons of Chaos, Warriors of Chaos), Immunity (Psychology), Master",
+   "specialRules": "Hatred (Beastmen, Daemons of Chaos, Warriors of Chaos), Immunity (Psychology), Master of Battle (see Masters of the Knightly Orders)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5441,7 +5441,7 @@
      "raw": "May take Magic Items up to a total of 25 points"
     }
    ],
-   "specialRules": "Battle Prayers of Sigmar (see Warrior Priest of Sigmar), Immunity (Fear), Magic Resistance",
+   "specialRules": "Battle Prayers of Sigmar (see Warrior Priest of Sigmar), Immunity (Fear), Magic Resistance (2), Righteous Fury (see Warrior Priest of Sigmar)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

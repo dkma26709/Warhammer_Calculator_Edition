@@ -1904,7 +1904,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Impact Hits (D6), Multiple Wounds (D3), Random Movement (2D6), Stubborn, Natural",
+   "specialRules": "Impact Hits (D6), Multiple Wounds (D3), Random Movement (2D6), Stubborn, Natural Armour (4+).",
    "upgrades": "Clawed Mandibles: The Dread Maw gains the Armour Piercing (1) special rule.\nHooked Spines: The Dread Maw gains the Devastating Charge special rule.\nPoisonous Blood: Any model that inflicts a wound on the Dread Maw in close combat immediately suffer a single Strength 4 hit.\nSlime Spray: The Dread Maw gains a Breath weapon that forces any unit under the flame template to pass an Initiative test or suffer -2\" to their move for the next turn.",
    "notes": null,
    "unitSize": null,
@@ -2089,7 +2089,7 @@
      "raw": "May take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Sniper, Hiiyaaarrghh!, Inspiring Presence",
+   "specialRules": "Backstabbers, Cowardly Despoilers, Ded Shooty, Sniper, Hiiyaaarrghh!, Inspiring Presence (6), Quell Treachery",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

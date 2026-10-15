@@ -727,7 +727,7 @@
      "action": "replace",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -1681,7 +1681,7 @@
      "action": "replace",
      "choices": [
       {
-       "name": "dditional hand weapon",
+       "name": "additional hand weapon",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -2093,7 +2093,7 @@
    "equipment": "Light lance, javelins (Crew only)",
    "magic": null,
    "options": null,
-   "specialRules": "Immunity (Psychology), Impact Hits (D6+1), Natural Armour (4+), Stubborn, War Fury",
+   "specialRules": "Immunity (Psychology), Impact Hits (D6+1), Natural Armour (4+), Stubborn, War Fury (Crew only)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

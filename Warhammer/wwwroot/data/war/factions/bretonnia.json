@@ -356,7 +356,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -425,7 +425,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Grail Damsel is a Level 1 Wizard. A Prophetess is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -2753,7 +2753,7 @@
    "equipment": "Heavy lance, heavy armour, barding",
    "magic": null,
    "options": null,
-   "specialRules": "Blessing of the Lady, The Grail Vow, Hatred (Beastmen, Goblins, Orcs, Skaven), Lance",
+   "specialRules": "Blessing of the Lady, The Grail Vow, Hatred (Beastmen, Goblins, Orcs, Skaven), Lance Formation, Purebred Warhorse, Virtue of Heroism",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2972,7 +2972,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Blessing of the Lady, Lance Formation, Magic Resistance (3), The Knight’s Vow, Purebred",
+   "specialRules": "Blessing of the Lady, Lance Formation, Magic Resistance (3), The Knight’s Vow, Purebred Warhorse, Terror",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

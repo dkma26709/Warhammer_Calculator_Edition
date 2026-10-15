@@ -2596,7 +2596,7 @@
      "action": "replace",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -4436,7 +4436,7 @@
      "raw": "Ulli may take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Devastating Charge (Ulli only), Dodge (6+) (Marquand only), Mercenaries, Parry (6+)",
+   "specialRules": "Devastating Charge (Ulli only), Dodge (6+) (Marquand only), Mercenaries, Parry (6+) (Marquand only)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

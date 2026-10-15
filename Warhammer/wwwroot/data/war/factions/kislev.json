@@ -335,7 +335,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Frost Maiden is a Level 1 Wizard. An Ice Witch is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Frost Maiden is a Level 1 Wizard. An Ice Witch is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -404,7 +404,7 @@
    "troopType": "Infantry (Character, Human)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "A Frost Maiden is a Level 1 Wizard. An Ice Witch is a Level 3 Wizard. They use one of the following Lores",
+   "magic": "A Frost Maiden is a Level 1 Wizard. An Ice Witch is a Level 3 Wizard. They use one of the following Lores of Magic:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -2199,7 +2199,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "By Our Blood, Fury of Ursun, Hatred (Chaos) (Bear Tamer only), Mixed Unit, Natural",
+   "specialRules": "By Our Blood, Fury of Ursun, Hatred (Chaos) (Bear Tamer only), Mixed Unit, Natural Armour (6+)",
    "upgrades": null,
    "notes": "One Bear Tamer must be included for every three War Bears in the unit.",
    "unitSize": "3-9",
@@ -2846,7 +2846,7 @@
      "raw": "May take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Battle Prayers of Ursun (see Patriarchs), By Our Blood, The Courage of Sacrifice (see",
+   "specialRules": "Battle Prayers of Ursun (see Patriarchs), By Our Blood, The Courage of Sacrifice (see Patriarchs), Frenzy, Magic Resistance (1), Hatred (Chaos)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2997,7 +2997,7 @@
    "troopType": "Infantry (Special Character, Human)",
    "baseSize": "20x20 or 25x25 (Mother Ostankya), 50x100 or 60x100 or 100x150 (Chicken-Legged Hut)",
    "equipment": "Hand weapon",
-   "magic": "Mother Ostankya is a Level 4 Wizard who uses the Lore of the Hags. In addition to her other spells, she",
+   "magic": "Mother Ostankya is a Level 4 Wizard who uses the Lore of the Hags. In addition to her other spells, she knows the following:",
    "options": [
     {
      "type": "mount",
@@ -3292,7 +3292,7 @@
    "equipment": "Great weapon, longbow, throwing axes",
    "magic": null,
    "options": null,
-   "specialRules": "By Our Blood, Hatred (Chaos), Heart Strike (see Ranger), Scouts, Trapper (see Sibyrian",
+   "specialRules": "By Our Blood, Hatred (Chaos), Heart Strike (see Ranger), Scouts, Trapper (see Sibyrian Hunters)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

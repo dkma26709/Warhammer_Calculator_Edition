@@ -989,7 +989,7 @@
    "troopType": "Infantry (Character, Daemon)",
    "baseSize": "25x25 or 30x30",
    "equipment": "Hand weapon",
-   "magic": "A Gaunt Summoner is a Level 3 Wizard who chooses spells from the Lore of Tzeentch. In addition, they",
+   "magic": "A Gaunt Summoner is a Level 3 Wizard who chooses spells from the Lore of Tzeentch. In addition, they know the following spell:",
    "options": [
     {
      "type": "wizard_upgrade",
@@ -1674,7 +1674,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Daemon of Khorne, Magic Resistance (2), Natural Armour (6+),",
+   "specialRules": "Daemon of Khorne, Magic Resistance (2), Natural Armour (6+)",
    "upgrades": null,
    "notes": null,
    "unitSize": "5-15",
@@ -3441,7 +3441,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2)",
+   "specialRules": "Daemon of Tzeentch, Fly (8), Flaming Attacks (Exalted Flamer only), Multiple Wounds (2) (Screamers only)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -4099,7 +4099,7 @@
    "troopType": "Monster (Special Character, Daemon)",
    "baseSize": "50x50 or 100x100",
    "equipment": "Hand weapon",
-   "magic": "Kairos Fateweaver is a Level 4 Wizard who uses spells from the Lore of Tzeentch. In addition, his left head",
+   "magic": "Kairos Fateweaver is a Level 4 Wizard who uses spells from the Lore of Tzeentch. In addition, his left head may choose a total of four spells from the following Lores of Magic:",
    "options": null,
    "specialRules": "Daemon of Tzeentch, Fly (8), Loremaster (Lore of Tzeentch)",
    "upgrades": null,

@@ -2545,7 +2545,7 @@
        "perModel": true
       },
       {
-       "name": "Addditional hand weapons",
+       "name": "Additional hand weapons",
        "points": 3,
        "perModel": true
       },
@@ -2952,7 +2952,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Battle Prayers of Myrmidia (see High Priest of Myrmidia), Blessing of Myrmidia (see High",
+   "specialRules": "Battle Prayers of Myrmidia (see High Priest of Myrmidia), Blessing of Myrmidia (see High Priest of Myrmidia), Magical Attacks, Magic Resistance (1), Tactical Supremacy",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3120,7 +3120,7 @@
    "equipment": "Pistol",
    "magic": null,
    "options": null,
-   "specialRules": "Duelling Techniques (see Maestro), Face Me, You Coward! (see Maestro), Tactical",
+   "specialRules": "Duelling Techniques (see Maestro), Face Me, You Coward! (see Maestro), Tactical Supremacy",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

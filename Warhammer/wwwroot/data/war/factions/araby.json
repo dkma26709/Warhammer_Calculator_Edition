@@ -1147,7 +1147,7 @@
      "replaces": "bucklers",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0.5,
        "perModel": true,
        "replaces": "bucklers"

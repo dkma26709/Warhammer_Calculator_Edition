@@ -838,7 +838,7 @@
      "action": "replace",
      "choices": [
       {
-       "name": "dditional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
        "perModel": false,
        "replaces": "shields"
@@ -1132,7 +1132,7 @@
      ]
     }
    ],
-   "specialRules": "Fast Cavalry, Forest Strider, Guerrilla Warfare, Mighty Blow (1) (Jaguar only), Sacrificial",
+   "specialRules": "Fast Cavalry, Forest Strider, Guerrilla Warfare, Mighty Blow (1) (Jaguar only), Sacrificial Hunt",
    "upgrades": null,
    "notes": null,
    "unitSize": "5-15",
@@ -2295,7 +2295,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Cold-Blooded, Sacrificial Hunt, Immunity (Psychology), Impact Hits (D6+1), Natural",
+   "specialRules": "Cold-Blooded, Sacrificial Hunt, Immunity (Psychology), Impact Hits (D6+1), Natural Armour (4+), Stubborn",
    "upgrades": "Gyroscope of Eternal Radiance: Arcane Item. Bound spell (Level 3, cast on 9+). This is an augment spell with a range of 12\". The target unit immediately makes a move with the Fly (10) special rule as if it were the Remaining Moves sub-phase.\nSharpened Horns: The Stegadon's its Impact Hits gains the Multiple Wounds (D3) special rule.\nUnstoppable Stampede: The Stegadon gains the Devastating Charge special rule.",
    "notes": null,
    "unitSize": null,
@@ -2559,7 +2559,7 @@
    "equipment": "Hand weapon, light armour",
    "magic": null,
    "options": null,
-   "specialRules": "Fast Cavalry, Forest Strider, Guerrilla Warfare, Hatred (Lizardmen), Mighty Blow (1)",
+   "specialRules": "Fast Cavalry, Forest Strider, Guerrilla Warfare, Hatred (Lizardmen), Mighty Blow (1) (Blackfang only), Sacrificial Hunt",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

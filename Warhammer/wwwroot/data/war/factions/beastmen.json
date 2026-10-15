@@ -1261,15 +1261,17 @@
    "options": [
     {
      "type": "equipment",
-     "action": "add",
+     "action": "replace",
+     "replaces": "shields",
      "choices": [
       {
-       "name": "replace shields with additional hand weapons",
+       "name": "additional hand weapons",
        "points": 0,
-       "perModel": false
+       "perModel": false,
+       "replaces": "shields"
       }
      ],
-     "raw": "May take replace shields with additional hand weapons free",
+     "raw": "May replace shields with additional hand weapons free",
      "subOptions": null
     },
     {
@@ -2941,7 +2943,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Flammable, Forest Strider, Immunity (Psychology), Random Attacks (D6+2), Natural",
+   "specialRules": "Flammable, Forest Strider, Immunity (Psychology), Random Attacks (D6+2), Natural Armour (3+), Stubborn",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

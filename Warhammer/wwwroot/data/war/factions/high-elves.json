@@ -670,7 +670,7 @@
    "troopType": "Infantry (Character, High Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Great weapon",
-   "magic": "A Loremaster of Hoeth is a Level 3 Wizard. Instead of choosing spells normally, they always know the eight",
+   "magic": "A Loremaster of Hoeth is a Level 3 Wizard. Instead of choosing spells normally, they always know the eight Signature Spells from the Winds of Magic.",
    "options": [
     {
      "type": "equipment",
@@ -852,7 +852,7 @@
      "raw": "May take Magic Items up to a total of 50 points"
     }
    ],
-   "specialRules": "Elven Grace, Fiery Breath, Fly (7), Lileath's Blessing, Martial Prowess, Natural Armour",
+   "specialRules": "Elven Grace, Fiery Breath, Fly (7), Lileath's Blessing, Martial Prowess, Natural Armour (3+), Valour of Ages",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2472,7 +2472,7 @@
      "replaces": "one Sea Guard crew",
      "choices": [
       {
-       "name": "n Eagle Eye Bolt Thrower",
+       "name": "Eagle Eye Bolt Thrower",
        "points": 25,
        "perModel": false,
        "replaces": "one Sea Guard crew"
@@ -2576,7 +2576,7 @@
    "equipment": "Heavy lance, dragon armour, shield",
    "magic": null,
    "options": null,
-   "specialRules": "Devastating Charge, Elven Grace, Fiery Breath, Fly (8), Martial Prowess, Natural Armour",
+   "specialRules": "Devastating Charge, Elven Grace, Fiery Breath, Fly (8), Martial Prowess, Natural Armour (4+), Valour of Ages",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -2769,7 +2769,7 @@
    "troopType": "Infantry (Special Character, High Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Light armour",
-   "magic": "Teclis is a Level 4 Wizard. He can either choose all of the spells in the Lore of High Magic, or one spell from",
+   "magic": "Teclis is a Level 4 Wizard. He can either choose all of the spells in the Lore of High Magic, or one spell from each of the eight Winds of Magic.",
    "options": null,
    "specialRules": "Curse of Aenarion (see Lord of Aenarion), Elven Grace, Lileath's Blessing, Martial Prowess, Valour of Ages",
    "upgrades": null,
@@ -2926,7 +2926,7 @@
    "equipment": "Light armour",
    "magic": null,
    "options": null,
-   "specialRules": "Bladelord (see Elven Honours), Hatred (Dark Elves, Orcs & Goblins), Immunity",
+   "specialRules": "Bladelord (see Elven Honours), Hatred (Dark Elves, Orcs & Goblins), Immunity (Psychology), Martial Prowess, Valour of Ages",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3003,7 +3003,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Blood of Caledor (see Elven Honours), Fiery Breath, Fly (7), Martial Prowess, Natural",
+   "specialRules": "Blood of Caledor (see Elven Honours), Fiery Breath, Fly (7), Martial Prowess, Natural Armour (2+), Valour of Ages",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3150,7 +3150,7 @@
    "troopType": "Infantry (Special Character, High Elf)",
    "baseSize": "20x20 or 25x25",
    "equipment": null,
-   "magic": "Belannaer is a Level 3 Wizard. Instead of choosing spells normally, he always knows the eight Signature",
+   "magic": "Belannaer is a Level 3 Wizard. Instead of choosing spells normally, he always knows the eight Signature Spells from the Winds of Magic.",
    "options": [
     {
      "type": "equipment",
@@ -3271,7 +3271,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Anointed of Asuryan (see Elven Honours), Elven Grace, Immunity (Psychology), Magic",
+   "specialRules": "Anointed of Asuryan (see Elven Honours), Elven Grace, Immunity (Psychology), Magic Resistance (1), Martial Prowess, Valour of Ages",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3303,7 +3303,7 @@
    "equipment": "Elven shortbow, medium armour, shield",
    "magic": null,
    "options": null,
-   "specialRules": "Elven Grace, Inspiring Presence (6), Lothern Sea Helm (see Elven Honours), Martial",
+   "specialRules": "Elven Grace, Inspiring Presence (6), Lothern Sea Helm (see Elven Honours), Martial Prowess, Valour of Ages",
    "upgrades": null,
    "notes": null,
    "unitSize": null,

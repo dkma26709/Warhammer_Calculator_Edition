@@ -376,7 +376,7 @@
    "troopType": "Infantry (Character, Common Orc)",
    "baseSize": "25x25 or 30x30",
    "equipment": "Hand weapon",
-   "magic": "A Weirdboy is a Level 1 Wizard. A Weirdnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "magic": "A Weirdboy is a Level 1 Wizard. A Weirdnob is a Level 3 Wizard. They choose spells from the Lore of da Big Waaagh!",
    "options": [
     {
      "type": "upgrade",
@@ -453,7 +453,7 @@
    "troopType": "Infantry (Character, Common Orc)",
    "baseSize": "25x25 or 30x30",
    "equipment": "Hand weapon",
-   "magic": "A Weirdboy is a Level 1 Wizard. A Weirdnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "magic": "A Weirdboy is a Level 1 Wizard. A Weirdnob is a Level 3 Wizard. They choose spells from the Lore of da Big Waaagh!",
    "options": [
     {
      "type": "upgrade",
@@ -905,7 +905,7 @@
    "troopType": "Infantry (Character, Common Goblin)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "An Oddgit is a Level 1 Wizard. An Oddnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "magic": "An Oddgit is a Level 1 Wizard. An Oddnob is a Level 3 Wizard. They choose spells from the Lore of da Little Waaagh!",
    "options": [
     {
      "type": "upgrade",
@@ -1015,7 +1015,7 @@
    "troopType": "Infantry (Character, Common Goblin)",
    "baseSize": "20x20 or 25x25",
    "equipment": "Hand weapon",
-   "magic": "An Oddgit is a Level 1 Wizard. An Oddnob is a Level 3 Wizard. They choose spells from the Lore of da",
+   "magic": "An Oddgit is a Level 1 Wizard. An Oddnob is a Level 3 Wizard. They choose spells from the Lore of da Little Waaagh!",
    "options": [
     {
      "type": "upgrade",
@@ -2442,7 +2442,7 @@
      ]
     }
    ],
-   "specialRules": "Animosity, Fast Cavalry, Fear Elves, Natural Armour (6+), Poisoned Attacks (Giant Spiders",
+   "specialRules": "Animosity, Fast Cavalry, Fear Elves, Natural Armour (6+), Poisoned Attacks (Giant Spiders only), Wall-crawler",
    "upgrades": null,
    "notes": null,
    "unitSize": "5-15",
@@ -2941,7 +2941,7 @@
      "subOptions": null
     }
    ],
-   "specialRules": "Mighty Blow (1) (Orc only), Natural Armour (6+), Size Matters, Tusker Charge (War Boar",
+   "specialRules": "Mighty Blow (1) (Orc only), Natural Armour (6+), Size Matters, Tusker Charge (War Boar only)",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -3584,7 +3584,7 @@
    "equipment": "Hand weapon",
    "magic": null,
    "options": null,
-   "specialRules": "Hatred (Dwarfs) (Herder only), Immunity (Psychology), Mixed Unit, Random Movement",
+   "specialRules": "Hatred (Dwarfs) (Herder only), Immunity (Psychology), Mixed Unit, Random Movement (3D6)",
    "upgrades": null,
    "notes": "One Herder must be included for every five Cave Squigs in the unit.",
    "unitSize": "10-30",
@@ -4107,7 +4107,7 @@
      ]
     }
    ],
-   "specialRules": "Animosity, Mighty Blow (1), Natural Armour (6+), Size Matters, Tusker Charge (Grunta",
+   "specialRules": "Animosity, Mighty Blow (1), Natural Armour (6+), Size Matters, Tusker Charge (Grunta only)",
    "upgrades": null,
    "notes": null,
    "unitSize": "3-6",
@@ -4760,7 +4760,7 @@
    "equipment": null,
    "magic": null,
    "options": null,
-   "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size",
+   "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (4+), Poisoned Attacks (Skullmuncha only), Size Matters, Waaagh!",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -4812,7 +4812,7 @@
      "raw": "May take Magic Items up to a total of 100 points"
     }
    ],
-   "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty",
+   "specialRules": "Hatred (Dwarfs) (Gazbag only), Magic Mushrooms (see Night Goblin Oddnobs), Mighty Blow (1) (Grumlok only), Size Matters, Waaagh!",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
@@ -5381,7 +5381,7 @@
      "raw": "May take Magic Items up to a total of 25 points"
     }
    ],
-   "specialRules": "Ambushers, Fear Elves, Hatred (The Empire), Poisoned Attacks (Giant Spider only), Wall-",
+   "specialRules": "Ambushers, Fear Elves, Hatred (The Empire), Poisoned Attacks (Giant Spider only), Wall-crawler",
    "upgrades": null,
    "notes": null,
    "unitSize": null,
