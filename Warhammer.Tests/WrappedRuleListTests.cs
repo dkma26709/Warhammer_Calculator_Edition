@@ -93,8 +93,9 @@ public class WrappedRuleListTests
             "HighElves/Caradryan of the Flame",
             "Skaven/Nurglitch",
         ],
-        // The army book itself prints the trailing comma (Daemons of Chaos, p32).
-        [GameSystems.War] = ["DaemonsOfChaos/FLESH HOUNDS"],
+        // The export drops the trailing comma three army books print (Flesh Hounds among them,
+        // Daemons of Chaos p32), so WAR needs no exception.
+        [GameSystems.War] = [],
     };
 
     /// <summary>
