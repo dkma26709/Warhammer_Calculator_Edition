@@ -32,7 +32,21 @@ public class GameDataRepository : IGameDataRepository
 
     // ─── Initialisation ──────────────────────────────────────────
 
-    public async Task EnsureLoadedAsync()
+    private Task? _loading;
+
+    /// <summary>
+    /// One load however many callers ask at once: a page and the faction pickers on it all
+    /// await it as they render, and would otherwise each fetch the files. A failed load is not
+    /// kept, so the next call tries again.
+    /// </summary>
+    public Task EnsureLoadedAsync()
+    {
+        if (_loading is null || _loading.IsFaulted || _loading.IsCanceled)
+            _loading = LoadAsync();
+        return _loading;
+    }
+
+    private async Task LoadAsync()
     {
         await _coreRules.EnsureLoadedAsync();
         ResolveWeapons();
