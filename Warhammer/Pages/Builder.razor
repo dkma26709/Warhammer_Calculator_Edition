@@ -15,346 +15,364 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 
-<div class="container-fluid py-3">
-
-    @* ─── Header: faction + points target ─────────────────────────── *@
-    <div class="row g-3 mb-3">
-        <div class="col-md-4">
-            <label class="form-label small text-body-secondary">Faction</label>
-            <select class="form-select form-select-sm" value="@_factionKey"
-                    @onchange="OnFactionChanged">
-                <option value="">-- Select Faction --</option>
-                @foreach (var f in Repo.AllFactions)
-                {
-                    <option value="@f.ToJsonKey()">@f.ToDisplayName()</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label class="form-label small text-body-secondary">Points</label>
-            <input type="text" class="form-control form-control-sm"
-                   inputmode="numeric" pattern="[0-9]*"
-                   value="@_pointsText"
-                   @oninput="OnPointsInput" />
-        </div>
-        <div class="col">
-            <label class="form-label small text-body-secondary">Name</label>
-            <input type="text" class="form-control form-control-sm"
+@* ─── List details: faction, points, name, total, file actions ─── *@
+<section class="wr-band" aria-label="List details">
+    <div class="wr-listhead">
+        <div class="d-flex flex-column gap-2 min-w-0">
+            <div class="row g-2">
+                <div class="col-sm-7">
+                    <label class="form-label small text-body-secondary" for="builder-faction">Faction</label>
+                    <select id="builder-faction" class="form-select form-select-sm" value="@_factionKey"
+                            @onchange="OnFactionChanged">
+                        <option value="">-- Select Faction --</option>
+                        @foreach (var f in Repo.AllFactions)
+                        {
+                            <option value="@f.ToJsonKey()">@f.ToDisplayName()</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-5">
+                    <label class="form-label small text-body-secondary" for="builder-points">Points</label>
+                    <input id="builder-points" type="text" class="form-control form-control-sm"
+                           inputmode="numeric" pattern="[0-9]*"
+                           value="@_pointsText"
+                           @oninput="OnPointsInput" />
+                </div>
+            </div>
+            <label class="visually-hidden" for="builder-name">List name</label>
+            <input id="builder-name" type="text" class="wr-listname" placeholder="Name this list"
                    value="@_armyList.Name" @onchange="OnNameChanged" />
         </div>
-        <div class="col-auto d-flex align-items-end gap-1">
-            <button type="button" class="btn btn-sm btn-outline-light"
-                    disabled="@(_factionKey == null)"
-                    @onclick="ExportList">Export</button>
-            <button type="button" class="btn btn-sm btn-outline-light"
-                    disabled="@(_factionKey == null)"
-                    title="Open the printable battle roster"
-                    @onclick="OpenRoster">Print</button>
-            <label class="btn btn-sm btn-outline-light mb-0">
-                Import
-                <InputFile OnChange="OnImportFileSelected" accept=".json" style="display:none;" />
-            </label>
-            <button type="button" class="btn btn-sm btn-outline-secondary"
-                    @onclick="NewList">New</button>
+
+        <div class="d-flex flex-column gap-2">
+            @if (_factionKey != null && _factionUnits != null)
+            {
+                var total = _armyList.TotalPoints;
+                var target = _armyList.PointsTarget;
+                var totalPct = target > 0 ? Math.Min(100.0, total / target * 100.0) : 0;
+                var totalOver = total > target;
+                var totalClass = totalOver ? "bg-danger" : (total == target ? "bg-success" : "bg-info");
+                <div class="wr-total @(totalOver ? "text-danger" : "")">
+                    @if (totalOver) { <StatusIcon Severity="ValidationSeverity.Error" Size="18" /> }
+                    <span class="wr-total-big">@total.ToString("N0")</span>
+                    <span class="text-body-secondary">/ @target.ToString("N0") pts</span>
+                    <span class="ms-auto small @(totalOver ? "" : "text-body-secondary")">
+                        @(totalOver ? $"{total - target:N0} pts over" : $"{target - total:N0} pts left")
+                    </span>
+                </div>
+                <div class="progress @(totalOver ? "wr-failing" : "")" style="height: 8px;">
+                    <div class="progress-bar @totalClass" role="progressbar" style="width: @totalPct.ToString("F0")%"></div>
+                </div>
+            }
+            <div class="d-flex flex-wrap gap-1 justify-content-lg-end">
+                <button type="button" class="btn btn-sm btn-outline-light"
+                        disabled="@(_factionKey == null)"
+                        @onclick="ExportList">Export</button>
+                <button type="button" class="btn btn-sm btn-outline-light"
+                        disabled="@(_factionKey == null)"
+                        title="Open the printable battle roster"
+                        @onclick="OpenRoster">Print</button>
+                <label class="btn btn-sm btn-outline-light mb-0 wr-file-btn">
+                    Import
+                    <InputFile OnChange="OnImportFileSelected" accept=".json" class="visually-hidden" />
+                </label>
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                        @onclick="NewList">New</button>
+            </div>
         </div>
     </div>
 
     @if (!string.IsNullOrEmpty(_statusMessage))
     {
-        <div class="alert @(_statusIsError ? "alert-danger" : "alert-info") py-1 px-2 small" role="alert">
+        <div class="alert @(_statusIsError ? "alert-danger" : "alert-info") py-1 px-2 small mt-3 mb-0" role="alert">
             @_statusMessage
         </div>
     }
+</section>
 
-    @if (_factionKey == null)
-    {
-        <div class="alert alert-secondary">Select a faction to begin.</div>
-    }
-    else if (_factionUnits == null)
-    {
-        <div class="alert alert-secondary">Loading…</div>
-    }
-    else
-    {
-        @* ─── Top: Army overview (total + per-category bars) ──────── *@
-        <div class="card bg-dark text-light border-secondary mb-3">
-            <div class="card-body p-2">
-                @{
-                    var total = _armyList.TotalPoints;
-                    var target = _armyList.PointsTarget;
-                    var totalPct = target > 0 ? Math.Min(100.0, total / target * 100.0) : 0;
-                    var totalOver = total > target;
-                    var totalClass = totalOver ? "bg-danger" : (total == target ? "bg-success" : "bg-info");
+@if (_factionKey == null)
+{
+    <div class="wr-page-pad">
+        <p class="wr-empty mb-0">Select a faction to begin.</p>
+    </div>
+}
+else if (_factionUnits == null)
+{
+    <div class="wr-page-pad">
+        <p class="wr-empty mb-0">Loading…</p>
+    </div>
+}
+else
+{
+    var errorCount = _issues.Count(i => i.Severity == ValidationSeverity.Error);
+    var warningCount = _issues.Count - errorCount;
+
+    @* ─── Validation, across the page ─────────────────────────────── *@
+    <section class="wr-validation @(errorCount > 0 ? "is-error" : warningCount > 0 ? "is-warning" : "is-valid")"
+             aria-label="Validation">
+        @if (_issues.Count == 0)
+        {
+            <div class="text-success">✓ List is valid.</div>
+        }
+        else
+        {
+            <div class="wr-validation-issues">
+                @foreach (var issue in _issues)
+                {
+                    var isError = issue.Severity == ValidationSeverity.Error;
+                    <div class="d-flex align-items-start gap-2 fw-bold @(isError ? "text-danger" : "text-warning")">
+                        <StatusIcon Severity="issue.Severity" Size="16" />
+                        <span><span class="visually-hidden">@(isError ? "Error: " : "Warning: ")</span>@issue.Message</span>
+                    </div>
                 }
-                <div class="d-flex justify-content-between align-items-baseline mb-1">
-                    <strong>@_armyList.Name</strong>
-                    <span class="@(totalOver ? "text-danger" : "")">
-                        @if (totalOver) { <StatusIcon Severity="ValidationSeverity.Error" /> }
-                        <strong>@total.ToString("F0")</strong>
-                        <span class="text-body-secondary"> / @target pts</span>
-                    </span>
-                </div>
-                <div class="progress mb-2 @(totalOver ? "wr-failing" : "")" style="height: 8px;">
-                    <div class="progress-bar @totalClass" role="progressbar" style="width: @totalPct.ToString("F0")%"></div>
-                </div>
+            </div>
+            <div class="wr-validation-count small">
+                @IssueCount(errorCount, "error") @(errorCount > 0 && warningCount > 0 ? "·" : "") @IssueCount(warningCount, "warning")
+            </div>
+        }
+    </section>
 
-                <div class="row g-2">
-                    @foreach (var (cat, used, cap, isMin) in CategoryBars)
+    <div class="wr-builder-body">
+
+        @* ─── Add units ───────────────────────────────────────────── *@
+        <section class="wr-builder-add" aria-labelledby="builder-add">
+            <h2 id="builder-add" class="wr-section-title mb-3">Add units</h2>
+            <div class="wr-browse">
+                @foreach (var cat in BrowseCategories)
+                {
+                    var units = UnitsInCategory(cat);
+                    if (units.Count == 0) continue;
+
+                    <h3 class="wr-cat-title mt-2 mb-1">@cat.ToJsonKey()</h3>
+                    @foreach (var unit in units)
                     {
-                        var pct = cap > 0 ? Math.Min(100.0, used / cap * 100.0) : 0;
-                        var over = isMin ? used < cap : used > cap;
-                        var barClass = over ? "bg-danger" : "bg-success";
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <div class="d-flex justify-content-between @(over ? "text-danger fw-bold" : "")" style="font-size: 0.75rem;">
-                                <span>@if (over) { <StatusIcon Severity="ValidationSeverity.Error" Size="12" /> } @cat @(isMin ? "(min)" : "")</span>
-                                <span>@used.ToString("F0")/@cap.ToString("F0")</span>
-                            </div>
-                            <div class="progress @(over ? "wr-failing" : "")" style="height: 5px;">
-                                <div class="progress-bar @barClass" role="progressbar" style="width: @pct.ToString("F0")%"></div>
-                            </div>
-                        </div>
+                        <button type="button"
+                                class="btn btn-sm btn-outline-light w-100 text-start d-flex align-items-center gap-2 mb-1"
+                                @onclick="() => AddUnit(unit)">
+                            <UnitPortrait Unit="unit" Height="32" ShowBorder="false" />
+                            <span class="flex-grow-1"><span class="visually-hidden">Add </span>@unit.Name</span>
+                            <span class="text-body-secondary">@unit.BaseModelCost pts</span>
+                            <span aria-hidden="true" class="text-body-secondary">+</span>
+                        </button>
                     }
-                </div>
+                }
+            </div>
+        </section>
 
-                @* ─── Composition limits (house rules) ───────────────── *@
-                <div class="mt-2 pt-2 border-top border-secondary">
-                    <button type="button" class="btn btn-sm btn-link p-0 text-decoration-none text-info"
-                            @onclick="() => _showOverrides = !_showOverrides">
-                        @(_showOverrides ? "▾" : "▸") Composition limits
-                    </button>
-                    @if (!_armyList.Overrides.IsEmpty)
-                    {
-                        <span class="badge bg-warning text-dark ms-2">House rules</span>
-                    }
-                    <span class="text-body-secondary ms-2" style="font-size: 0.75rem;">
-                        @SystemService.CurrentSystem defaults unless changed
-                    </span>
+        @* ─── Army list ───────────────────────────────────────────── *@
+        <section class="wr-builder-list" aria-labelledby="builder-list">
+            <div class="d-flex justify-content-between align-items-baseline mb-2">
+                <h2 id="builder-list" class="wr-section-title">Army list</h2>
+                <span class="small text-body-secondary">
+                    @_armyList.Units.Count unit@(_armyList.Units.Count == 1 ? "" : "s")
+                </span>
+            </div>
+            @if (_armyList.Units.Count == 0)
+            {
+                <p class="wr-empty mb-0">No units yet. Pick from Add units to start building.</p>
+            }
+            else
+            {
+                @foreach (var cat in BrowseCategories)
+                {
+                    var entries = _armyList.Units
+                        .Where(u => u.ResolvedUnit.Category == cat)
+                        .ToList();
+                    if (entries.Count == 0) continue;
 
-                    @if (_showOverrides)
+                    var catPoints = _armyList.PointsInCategory(cat);
+                    <div class="wr-cat-head">
+                        <h3 class="wr-cat-title mb-0">@cat.ToJsonKey()</h3>
+                        <span class="small text-body-secondary">
+                            @catPoints.ToString("F0") pts@(_armyList.PointsTarget > 0 ? $" · {catPoints / _armyList.PointsTarget * 100:F1}%" : "")
+                        </span>
+                    </div>
+                    @foreach (var entry in entries)
                     {
-                        <div class="row g-2 mt-2">
-                            @foreach (var field in OverrideFields)
-                            {
-                                <div class="col-6 col-md-4 col-xl-3">
-                                    <label class="form-label mb-0" style="font-size: 0.75rem;">
-                                        @field.Label
-                                        @if (field.IsOverridden)
+                        <div class="wr-entry" @key="entry">
+                            <div class="wr-entry-row">
+                                <UnitPortrait Unit="entry.ResolvedUnit" Height="44" ShowBorder="false" />
+                                <div class="wr-entry-main">
+                                    <div class="d-flex flex-wrap align-items-center gap-1">
+                                        @if (!string.IsNullOrWhiteSpace(entry.Loadout.CustomName))
                                         {
-                                            <span class="text-warning">*</span>
-                                        }
-                                    </label>
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control form-control-sm"
-                                               inputmode="numeric"
-                                               placeholder="@field.Placeholder"
-                                               value="@field.Value"
-                                               @onchange="field.OnValueChange" />
-                                        @if (!field.HasUnitChoice)
-                                        {
-                                            <span class="input-group-text">#</span>
+                                            <strong>@entry.Loadout.CustomName</strong>
+                                            <span class="text-body-secondary">· @entry.ResolvedUnit.Name</span>
                                         }
                                         else
                                         {
-                                            <select class="form-select form-select-sm flex-grow-0 w-auto"
-                                                    value="@field.Unit" @onchange="field.OnUnitChange">
-                                                <option value="@nameof(LimitUnit.Percent)">%</option>
-                                                <option value="@nameof(LimitUnit.Points)">pts</option>
-                                            </select>
+                                            <strong>@entry.ResolvedUnit.Name</strong>
                                         }
+                                        @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark">General</span> }
+                                        @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark">BSB</span> }
                                     </div>
-                                    @if (field.Effective is not null)
+                                    <small class="text-body-secondary">
+                                        @entry.ModelCount model@(entry.ModelCount == 1 ? "" : "s")
+                                    </small>
+                                </div>
+                                <span class="wr-entry-pts">@entry.TotalPointsCost.ToString("F0") <span class="small fw-normal text-body-secondary">pts</span></span>
+                                <div class="wr-entry-actions">
+                                    @if (cat.IsCharacterCategory())
                                     {
-                                        <div class="text-body-secondary" style="font-size: 0.7rem;">
-                                            = @field.Effective
-                                        </div>
+                                        <button class="btn btn-sm btn-outline-light"
+                                                aria-pressed="@(entry.Loadout.IsGeneral ? "true" : "false")"
+                                                title="Designate General"
+                                                @onclick="() => ToggleGeneral(entry)">General</button>
                                     }
+                                    @if (entry.IsBattleStandardEligible)
+                                    {
+                                        <button class="btn btn-sm btn-outline-light"
+                                                aria-pressed="@(entry.Loadout.IsBattleStandardBearer ? "true" : "false")"
+                                                title="Battle Standard Bearer"
+                                                @onclick="() => ToggleBsb(entry)">BSB</button>
+                                    }
+                                    @if (entry.CanHaveChampion && entry.CanHaveMusician && entry.CanHaveStandardBearer)
+                                    {
+                                        <button class="btn btn-sm btn-outline-light"
+                                                aria-pressed="@(HasFullCommand(entry) ? "true" : "false")"
+                                                title="Full Command (Leader + Musician + Standard)"
+                                                @onclick="() => ToggleFullCommand(entry)">F/C</button>
+                                    }
+                                    <button class="btn btn-sm btn-outline-secondary"
+                                            title="Edit"
+                                            aria-expanded="@(_expanded.Contains(entry) ? "true" : "false")"
+                                            @onclick="() => ToggleExpand(entry)">
+                                        @(_expanded.Contains(entry) ? "Collapse" : "Edit")
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary"
+                                            title="Duplicate"
+                                            @onclick="() => DuplicateUnit(entry)">
+                                        Duplicate
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                            title="Remove"
+                                            aria-label="Remove @(entry.Loadout.CustomName ?? entry.ResolvedUnit.Name)"
+                                            @onclick="() => RemoveUnit(entry)">
+                                        ✕
+                                    </button>
+                                </div>
+                            </div>
+
+                            @if (_expanded.Contains(entry))
+                            {
+                                <div class="wr-entry-config">
+                                    <UnitConfigurator @key="@($"cfg-{entry.GetHashCode()}")"
+                                                      Unit="entry.ResolvedUnit"
+                                                      Configuration="entry"
+                                                      ConfigurationChanged="OnEntryChanged"
+                                                      FactionExtras="_factionExtras"
+                                                      CommonMagicItems="_commonMagicItems"
+                                                      ShowCustomNameField="true" />
                                 </div>
                             }
                         </div>
-                        <div class="d-flex align-items-center gap-2 mt-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    disabled="@_armyList.Overrides.IsEmpty"
-                                    @onclick="ResetOverrides">Reset to @SystemService.CurrentSystem</button>
-                            <span class="text-body-secondary" style="font-size: 0.75rem;">
-                                Blank uses the system value. Saved and exported with this list.
-                            </span>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-
-        @* ─── Validation ──────────────────────────────────────────── *@
-        <div class="card bg-dark text-light border-secondary mb-3">
-            <div class="card-header py-2"><strong class="card-title mb-0">Validation</strong></div>
-            <div class="card-body p-2">
-                @if (_issues.Count == 0)
-                {
-                    <div class="text-success small">✓ List is valid.</div>
-                }
-                else
-                {
-                    @foreach (var issue in _issues)
-                    {
-                        var isError = issue.Severity == ValidationSeverity.Error;
-                        <div class="small d-flex align-items-start gap-2 @(isError ? "text-danger" : "text-warning")">
-                            <StatusIcon Severity="issue.Severity" />
-                            <span><span class="visually-hidden">@(isError ? "Error: " : "Warning: ")</span>@issue.Message</span>
-                        </div>
                     }
                 }
-            </div>
-        </div>
+            }
+        </section>
 
-        <div class="row g-3">
+        @* ─── Composition ─────────────────────────────────────────── *@
+        <section class="wr-builder-comp" aria-labelledby="builder-comp">
+            <h2 id="builder-comp" class="wr-section-title mb-3">Composition</h2>
 
-            @* ─── Left: Unit browser ────────────────────────────── *@
-            <div class="col-lg-4">
-                <div class="card bg-dark text-light border-secondary">
-                    <div class="card-header py-2">
-                        <strong class="card-title mb-0">Add units</strong>
+            <div class="d-flex flex-column gap-3">
+                @foreach (var (cat, used, cap, isMin) in CategoryBars)
+                {
+                    var pct = cap > 0 ? Math.Min(100.0, used / cap * 100.0) : 0;
+                    var over = isMin ? used < cap : used > cap;
+                    var barClass = over ? "bg-danger" : "bg-success";
+                    <div>
+                        <div class="d-flex justify-content-between gap-2 small mb-1 @(over ? "text-danger" : "")">
+                            <span class="fw-bold">@if (over) { <StatusIcon Severity="ValidationSeverity.Error" Size="13" /> } @cat</span>
+                            <span class="@(over ? "fw-bold" : "text-body-secondary")">@used.ToString("F0") / @cap.ToString("F0") @(isMin ? "min" : "max")</span>
+                        </div>
+                        <div class="progress @(over ? "wr-failing" : "")" style="height: 8px;">
+                            <div class="progress-bar @barClass" role="progressbar" style="width: @pct.ToString("F0")%"></div>
+                        </div>
                     </div>
-                    <div class="card-body p-2" style="max-height: 70vh; overflow-y: auto;">
-                        @foreach (var cat in BrowseCategories)
-                        {
-                            var units = UnitsInCategory(cat);
-                            if (units.Count == 0) continue;
+                }
+            </div>
 
-                            <div class="mb-2">
-                                <div class="small text-body-secondary fw-bold mb-1">@cat.ToJsonKey()</div>
-                                @foreach (var unit in units)
+            @* ─── Composition limits (house rules) ───────────────── *@
+            <div class="mt-3 pt-3 border-top border-secondary">
+                <button type="button" class="btn btn-sm btn-link p-0 text-decoration-none text-info"
+                        aria-expanded="@(_showOverrides ? "true" : "false")"
+                        @onclick="() => _showOverrides = !_showOverrides">
+                    @(_showOverrides ? "▾" : "▸") Composition limits
+                </button>
+                @if (!_armyList.Overrides.IsEmpty)
+                {
+                    <span class="badge bg-warning text-dark ms-2">House rules</span>
+                }
+                <div class="text-body-secondary mt-1" style="font-size: 0.75rem;">
+                    @SystemService.CurrentSystem defaults unless changed
+                </div>
+
+                @if (_showOverrides)
+                {
+                    <div class="row g-2 mt-2">
+                        @foreach (var field in OverrideFields)
+                        {
+                            <div class="col-6">
+                                <label class="form-label mb-0" style="font-size: 0.75rem;">
+                                    @field.Label
+                                    @if (field.IsOverridden)
+                                    {
+                                        <span class="text-warning">*</span>
+                                    }
+                                </label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control form-control-sm"
+                                           inputmode="numeric"
+                                           aria-label="@field.Label"
+                                           placeholder="@field.Placeholder"
+                                           value="@field.Value"
+                                           @onchange="field.OnValueChange" />
+                                    @if (!field.HasUnitChoice)
+                                    {
+                                        <span class="input-group-text">#</span>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-select form-select-sm flex-grow-0 w-auto"
+                                                aria-label="@field.Label unit"
+                                                value="@field.Unit" @onchange="field.OnUnitChange">
+                                            <option value="@nameof(LimitUnit.Percent)">%</option>
+                                            <option value="@nameof(LimitUnit.Points)">pts</option>
+                                        </select>
+                                    }
+                                </div>
+                                @if (field.Effective is not null)
                                 {
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-light w-100 text-start d-flex align-items-center gap-2 mb-1"
-                                            @onclick="() => AddUnit(unit)">
-                                        <UnitPortrait Unit="unit" Height="32" ShowBorder="false" />
-                                        <span class="flex-grow-1">@unit.Name</span>
-                                        <span class="text-body-secondary">@unit.BaseModelCost pts</span>
-                                    </button>
+                                    <div class="text-body-secondary" style="font-size: 0.7rem;">
+                                        = @field.Effective
+                                    </div>
                                 }
                             </div>
                         }
                     </div>
-                </div>
-            </div>
-
-            @* ─── Right: Active list ─────────────────────────────── *@
-            <div class="col-lg-8">
-                <div class="card bg-dark text-light border-secondary">
-                    <div class="card-header py-2 d-flex justify-content-between">
-                        <strong class="card-title mb-0">Army List</strong>
-                        <span class="text-body-secondary">
-                            @_armyList.TotalPoints.ToString("F0") / @_armyList.PointsTarget pts
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                disabled="@_armyList.Overrides.IsEmpty"
+                                @onclick="ResetOverrides">Reset to @SystemService.CurrentSystem</button>
+                        <span class="text-body-secondary" style="font-size: 0.75rem;">
+                            Blank uses the system value. Saved and exported with this list.
                         </span>
                     </div>
-                    <div class="card-body p-2">
-                        @if (_armyList.Units.Count == 0)
-                        {
-                            <div class="text-center text-body-secondary py-4">
-                                <em>No units — pick from the left to start building.</em>
-                            </div>
-                        }
-                        else
-                        {
-                            @foreach (var cat in BrowseCategories)
-                            {
-                                var entries = _armyList.Units
-                                    .Where(u => u.ResolvedUnit.Category == cat)
-                                    .ToList();
-                                if (entries.Count == 0) continue;
-
-                                <div class="mb-3">
-                                    <div class="small text-body-secondary fw-bold mb-1">@cat.ToJsonKey()</div>
-                                    @foreach (var entry in entries)
-                                    {
-                                        <div class="border border-secondary rounded mb-2" @key="entry">
-                                            <div class="d-flex align-items-center p-2 gap-2">
-                                                <UnitPortrait Unit="entry.ResolvedUnit" Height="56" />
-                                                <div class="flex-grow-1">
-                                                    @if (!string.IsNullOrWhiteSpace(entry.Loadout.CustomName))
-                                                    {
-                                                        <div>
-                                                            <strong>@entry.Loadout.CustomName</strong>
-                                                            <span class="text-body-secondary"> · @entry.ResolvedUnit.Name</span>
-                                                            @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
-                                                            @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div>
-                                                            @entry.ResolvedUnit.Name
-                                                            @if (entry.Loadout.IsGeneral) { <span class="badge bg-warning text-dark ms-1">General</span> }
-                                                            @if (entry.Loadout.IsBattleStandardBearer) { <span class="badge bg-info text-dark ms-1">BSB</span> }
-                                                        </div>
-                                                    }
-                                                    <small class="text-body-secondary">
-                                                        @entry.ModelCount model@(entry.ModelCount == 1 ? "" : "s") ·
-                                                        @entry.TotalPointsCost.ToString("F0") pts
-                                                    </small>
-                                                </div>
-                                                @if (cat.IsCharacterCategory())
-                                                {
-                                                    <button class="btn btn-sm me-1 @(entry.Loadout.IsGeneral ? "btn-warning" : "btn-outline-warning")"
-                                                            aria-pressed="@(entry.Loadout.IsGeneral ? "true" : "false")"
-                                                            title="Designate General"
-                                                            @onclick="() => ToggleGeneral(entry)">General</button>
-                                                }
-                                                @if (entry.IsBattleStandardEligible)
-                                                {
-                                                    <button class="btn btn-sm me-1 @(entry.Loadout.IsBattleStandardBearer ? "btn-info" : "btn-outline-info")"
-                                                            aria-pressed="@(entry.Loadout.IsBattleStandardBearer ? "true" : "false")"
-                                                            title="Battle Standard Bearer"
-                                                            @onclick="() => ToggleBsb(entry)">BSB</button>
-                                                }
-                                                @if (entry.CanHaveChampion && entry.CanHaveMusician && entry.CanHaveStandardBearer)
-                                                {
-                                                    <button class="btn btn-sm me-1 @(HasFullCommand(entry) ? "btn-success" : "btn-outline-success")"
-                                                            aria-pressed="@(HasFullCommand(entry) ? "true" : "false")"
-                                                            title="Full Command (Leader + Musician + Standard)"
-                                                            @onclick="() => ToggleFullCommand(entry)">F/C</button>
-                                                }
-                                                <button class="btn btn-sm btn-outline-secondary me-1"
-                                                        title="Edit"
-                                                        @onclick="() => ToggleExpand(entry)">
-                                                    @(_expanded.Contains(entry) ? "Collapse" : "Edit")
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary me-1"
-                                                        title="Duplicate"
-                                                        @onclick="() => DuplicateUnit(entry)">
-                                                    Duplicate
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-danger"
-                                                        title="Remove"
-                                                        @onclick="() => RemoveUnit(entry)">
-                                                    ✕
-                                                </button>
-                                            </div>
-
-                                            @if (_expanded.Contains(entry))
-                                            {
-                                                <div class="border-top border-secondary p-2">
-                                                    <UnitConfigurator @key="@($"cfg-{entry.GetHashCode()}")"
-                                                                      Unit="entry.ResolvedUnit"
-                                                                      Configuration="entry"
-                                                                      ConfigurationChanged="OnEntryChanged"
-                                                                      FactionExtras="_factionExtras"
-                                                                      CommonMagicItems="_commonMagicItems"
-                                                                      ShowCustomNameField="true" />
-                                                </div>
-                                            }
-                                        </div>
-                                    }
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
+                }
             </div>
-        </div>
 
-    }
-</div>
+            @* ─── Command ─────────────────────────────────────────── *@
+            <div class="mt-3 pt-3 border-top border-secondary">
+                <h3 class="wr-cat-title mb-2">Command</h3>
+                <dl class="wr-command mb-0">
+                    <div><dt>General</dt><dd>@CommandName(e => e.Loadout.IsGeneral)</dd></div>
+                    <div><dt>Battle Standard</dt><dd>@CommandName(e => e.Loadout.IsBattleStandardBearer)</dd></div>
+                </dl>
+            </div>
+        </section>
+    </div>
+}
 
 @code {
     private static readonly UnitCategory[] BrowseCategories =
@@ -896,6 +914,15 @@
         _limitUnitChoice.Clear();
         Revalidate();
     }
+
+    private static string IssueCount(int count, string noun) =>
+        count == 0 ? "" : $"{count} {noun}{(count == 1 ? "" : "s")}";
+
+    // Who holds a command role, by custom name when the list gives one.
+    private string CommandName(Func<UnitConfiguration, bool> holds) =>
+        _armyList.Units.FirstOrDefault(holds) is { } e
+            ? e.Loadout.CustomName ?? e.ResolvedUnit.Name
+            : "—";
 
     private IEnumerable<(string Label, double Used, double Cap, bool IsMin)> CategoryBars
     {

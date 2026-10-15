@@ -1,15 +1,11 @@
 @using Warhammer.Calculator.Models
 
-<div class="card bg-dark text-light border-secondary">
-    <div class="card-header">
-        <h5 class="card-title mb-0">
-            Multi-Round Results
-            <span class="text-body-secondary small fw-normal">
-                (@Result.Iterations.ToString("N0") iterations, up to @Result.MaxRounds rounds in @FormatElapsed(Result.ElapsedMs))
-            </span>
-        </h5>
+<section class="wr-results" aria-labelledby="@_headingId">
+    <div class="wr-results-head">
+        <h3 id="@_headingId" class="wr-section-title">Up to @Result.MaxRounds rounds</h3>
+        <span class="small text-body-secondary">@Result.Iterations.ToString("N0") fights · @FormatElapsed(Result.ElapsedMs)</span>
     </div>
-    <div class="card-body">
+    <div>
 
         @* Section A: Outcome Distribution *@
         <h6 class="small mb-2">Combat Outcomes</h6>
@@ -62,33 +58,35 @@
         @if (Result.RoundSummaries.Count > 1)
         {
             <h6 class="small mb-2">Round Overview</h6>
-            <table class="table table-sm table-dark mb-4">
-                <thead>
-                    <tr>
-                        <th>Rnd</th>
-                        <th class="text-end text-attacker">@AttackerName left</th>
-                        <th class="text-end text-defender">@DefenderName left</th>
-                        <th class="text-end text-attacker">Avg wounds</th>
-                        <th class="text-end text-defender">Avg wounds</th>
-                        <th class="text-end text-attacker">Fled</th>
-                        <th class="text-end text-defender">Fled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var round in Result.RoundSummaries)
-                    {
+            <div class="table-responsive mb-4">
+                <table class="table table-sm table-dark mb-0">
+                    <thead>
                         <tr>
-                            <td>@round.Round</td>
-                            <td class="text-end text-attacker">@($"{round.AvgAttackerModelsRemaining:F1}")</td>
-                            <td class="text-end text-defender">@($"{round.AvgDefenderModelsRemaining:F1}")</td>
-                            <td class="text-end text-attacker">@($"{round.AvgAttackerWounds:F1}")</td>
-                            <td class="text-end text-defender">@($"{round.AvgDefenderWounds:F1}")</td>
-                            <td class="text-end text-attacker">@(round.AttackerFledPct > 0 ? $"{round.AttackerFledPct:F1}%" : "—")</td>
-                            <td class="text-end text-defender">@(round.DefenderFledPct > 0 ? $"{round.DefenderFledPct:F1}%" : "—")</td>
+                            <th>Rnd</th>
+                            <th class="text-end text-attacker">@AttackerName left</th>
+                            <th class="text-end text-defender">@DefenderName left</th>
+                            <th class="text-end text-attacker">Avg wounds</th>
+                            <th class="text-end text-defender">Avg wounds</th>
+                            <th class="text-end text-attacker">Fled</th>
+                            <th class="text-end text-defender">Fled</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var round in Result.RoundSummaries)
+                        {
+                            <tr>
+                                <td>@round.Round</td>
+                                <td class="text-end text-attacker">@($"{round.AvgAttackerModelsRemaining:F1}")</td>
+                                <td class="text-end text-defender">@($"{round.AvgDefenderModelsRemaining:F1}")</td>
+                                <td class="text-end text-attacker">@($"{round.AvgAttackerWounds:F1}")</td>
+                                <td class="text-end text-defender">@($"{round.AvgDefenderWounds:F1}")</td>
+                                <td class="text-end text-attacker">@(round.AttackerFledPct > 0 ? $"{round.AttackerFledPct:F1}%" : "—")</td>
+                                <td class="text-end text-defender">@(round.DefenderFledPct > 0 ? $"{round.DefenderFledPct:F1}%" : "—")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
 
         @* Section D: Individual Round Details *@
@@ -304,12 +302,14 @@
             </div>
         }
     </div>
-</div>
+</section>
 
 @code {
     [Parameter] public MultiRoundSimulationResult Result { get; set; } = null!;
     [Parameter] public string AttackerName { get; set; } = "Attacker";
     [Parameter] public string DefenderName { get; set; } = "Defender";
+
+    private readonly string _headingId = $"multiround-{Guid.NewGuid():N}";
 
     private HashSet<int> _expandedRounds = new() { 1 };
 

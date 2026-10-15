@@ -11,197 +11,182 @@
 @inject CombatEngine CombatEngine
 @inject PortraitService Portraits
 
-<div class="container-fluid py-3">
-    <div class="row g-3">
+<section class="wr-hero" aria-label="The gauntlet">
+    <UnitHero Label="Subject" Side="attacker"
+              Unit="_subjectUnit" Config="_subjectConfig" FactionKey="@_subjectFactionKey" />
 
-        @* ── Subject Unit (left) ── *@
-        <div class="col-md-4">
-            <UnitPanel Label="Subject Unit"
-                       SelectedFactionKey="@_subjectFactionKey"
-                       OnFactionSelected="OnSubjectFactionSelected"
-                       FactionUnits="@_subjectFactionUnits"
-                       FactionExtras="@_subjectExtras"
-                       CommonMagicItems="@_commonMagicItems"
-                       SelectedUnit="@_subjectUnit"
-                       OnUnitSelected="OnSubjectUnitSelected"
-                       Configuration="@_subjectConfig"
-                       ConfigurationChanged="OnSubjectConfigChanged" />
+    <CombatControls ChargeState="@_chargeState"
+                    ChargeStateChanged="OnChargeStateChanged"
+                    MaxRounds="@_maxRounds"
+                    MaxRoundsChanged="OnMaxRoundsChanged"
+                    Iterations="@_iterations"
+                    IterationsChanged="OnIterationsChanged"
+                    CanSimulate="@(_subjectConfig != null && _opponents.Count > 0 && !_isSimulating)"
+                    IsSimulating="@_isSimulating"
+                    OnSimulate="RunGauntlet" />
 
-            @* Combat settings *@
-            <div class="card bg-dark text-light border-secondary mt-3">
-                <div class="card-header"><h6 class="card-title mb-0">Combat Settings</h6></div>
-                <div class="card-body">
-                    <CombatControls ChargeState="@_chargeState"
-                                    ChargeStateChanged="OnChargeStateChanged"
-                                    MaxRounds="@_maxRounds"
-                                    MaxRoundsChanged="OnMaxRoundsChanged"
-                                    Iterations="@_iterations"
-                                    IterationsChanged="OnIterationsChanged"
-                                    CanSimulate="@(_subjectConfig != null && _opponents.Count > 0 && !_isSimulating)"
-                                    IsSimulating="@_isSimulating"
-                                    OnSimulate="RunGauntlet" />
+    @* The opponents' side of the band: how many, from how far afield. *@
+    <div class="wr-hero-side is-defender">
+        <div class="wr-hero-body">
+            <div class="wr-eyebrow text-defender">Opponents</div>
+            @if (_opponents.Count == 0)
+            {
+                <h2 class="wr-hero-name is-empty">No opponents yet</h2>
+                <div class="wr-hero-meta">Load a preset or add units in the opponents column.</div>
+            }
+            else
+            {
+                <h2 class="wr-hero-name">@_opponents.Count unit@(_opponents.Count == 1 ? "" : "s")</h2>
+                <div class="wr-hero-meta">
+                    from @OpponentFactionCount faction@(OpponentFactionCount == 1 ? "" : "s") ·
+                    <strong>@($"{_opponents.Average(o => o.Config.TotalPointsCost):F0}") pts</strong> on average
                 </div>
-            </div>
-        </div>
-
-        @* ── Opponent Roster (right) ── *@
-        <div class="col-md-8">
-            @* Preset loader *@
-            <div class="card bg-dark text-light border-secondary mb-3">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="card-title mb-0">Opponent Roster (@_opponents.Count)</h6>
-                    <div class="d-flex gap-2 align-items-center">
-                        <select class="form-select form-select-sm" style="width: auto"
-                                @onchange="OnPresetChanged">
-                            <option value="">Load preset...</option>
-                            <option value="Infantry">Infantry</option>
-                            <option value="Cavalry">Cavalry</option>
-                            <option value="MonstrousInfantry">Monstrous Infantry</option>
-                            <option value="LargeInfantry">Large Infantry</option>
-                            <option value="MonstrousCavalry">Monstrous Cavalry</option>
-                        </select>
-                        @if (_opponents.Count > 0)
-                        {
-                            <button class="btn btn-outline-secondary btn-sm" @onclick="ClearRoster">Clear All</button>
-                        }
-                    </div>
-                </div>
-
-                @* Batch controls *@
-                @if (_opponents.Count > 0)
-                {
-                    <div class="card-body py-2 border-bottom border-secondary">
-                        <div class="d-flex align-items-center gap-2 flex-wrap">
-                            <span class="small text-body-secondary">Model count:</span>
-                            <input type="number" class="form-control form-control-sm" style="width: 80px"
-                                   min="1" max="100" value="@_batchModelCount"
-                                   @onchange="OnBatchModelCountChanged" />
-                            <button class="btn btn-outline-secondary btn-sm" @onclick="ApplyBatchModelCount">
-                                Apply
-                            </button>
-                            @if (_subjectConfig != null)
-                            {
-                                <button class="btn btn-outline-info btn-sm"
-                                        @onclick="MatchSubjectModelCount"
-                                        title="Set all opponents to match the subject unit's model count">
-                                    Match Count (@_subjectConfig.ModelCount)
-                                </button>
-                                <span class="border-start border-secondary mx-1" style="height: 1.5rem"></span>
-                                <button class="btn btn-outline-info btn-sm"
-                                        @onclick="MatchSubjectPoints"
-                                        title="Adjust each opponent's model count to approximate the subject unit's total points">
-                                    Match Points (@($"{_subjectConfig.TotalPointsCost:F0}") pts)
-                                </button>
-                            }
-                        </div>
-                    </div>
-                }
-
-                @* Opponent list *@
-                @if (_opponents.Count > 0)
-                {
-                    <div class="card-body p-0">
-                        <table class="table table-dark table-sm table-hover mb-0">
-                            <thead>
-                                <tr>
-                                    <th>Unit</th>
-                                    <th>Faction</th>
-                                    <th class="text-end">Models</th>
-                                    <th>Weapon</th>
-                                    <th class="text-end">Pts</th>
-                                    <th style="width: 80px"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < _opponents.Count; i++)
-                                {
-                                    var idx = i;
-                                    var opp = _opponents[i];
-                                    <tr>
-                                        <td>@opp.Unit.Name</td>
-                                        <td class="text-body-secondary">@opp.FactionKey</td>
-                                        <td class="text-end">@opp.Config.ModelCount</td>
-                                        <td class="text-body-secondary small">@opp.Config.SelectedWeapon.ToJsonKey()</td>
-                                        <td class="text-end">@($"{opp.Config.TotalPointsCost:F0}")</td>
-                                        <td class="text-end">
-                                            <button class="btn btn-outline-secondary btn-sm py-0 px-1 me-1"
-                                                    title="Duplicate"
-                                                    @onclick="() => DuplicateOpponent(idx)">
-                                                <small>&#x2398;</small>
-                                            </button>
-                                            <button class="btn btn-outline-danger btn-sm py-0 px-1"
-                                                    title="Remove"
-                                                    @onclick="() => RemoveOpponent(idx)">
-                                                &times;
-                                            </button>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-            </div>
-
-            @* Add opponent staging area *@
-            <div class="card bg-dark text-light border-secondary">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="card-title mb-0">Add Opponent</h6>
-                    @if (_stagingUnit != null && _stagingConfig != null)
-                    {
-                        <button class="btn btn-success btn-sm" @onclick="AddStagedOpponent">
-                            + Add to Roster
-                        </button>
-                    }
-                </div>
-                <div class="card-body">
-                    <UnitSelector SelectedFactionKey="@_stagingFactionKey"
-                                  OnFactionSelected="OnStagingFactionSelected"
-                                  FactionUnits="@_stagingFactionUnits"
-                                  SelectedUnitName="@_stagingUnit?.Name"
-                                  OnUnitSelected="OnStagingUnitSelected" />
-
-                    @if (_stagingUnit != null && _stagingConfig != null)
-                    {
-                        <hr class="border-secondary" />
-                        <UnitConfigurator @key="_stagingKey"
-                                          Unit="_stagingUnit"
-                                          Configuration="_stagingConfig"
-                                          ConfigurationChanged="OnStagingConfigChanged"
-                                          FactionExtras="_stagingExtras"
-                                          CommonMagicItems="_commonMagicItems" />
-                    }
-                </div>
-            </div>
+            }
         </div>
     </div>
+</section>
 
-    @* ── Progress ── *@
-    @if (_isSimulating)
-    {
-        <div class="row mt-3">
-            <div class="col-12">
-                <div class="progress" style="height: 24px">
-                    <div class="progress-bar" role="progressbar"
-                         style="width: @(_progressPct)%">
-                        @_progressCurrent / @_opponents.Count
-                    </div>
+<div class="wr-matchup-body">
+    <LoadoutPanel Side="attacker" Title="Subject loadout"
+                  SelectedFactionKey="@_subjectFactionKey"
+                  OnFactionSelected="OnSubjectFactionSelected"
+                  FactionUnits="@_subjectFactionUnits"
+                  FactionExtras="@_subjectExtras"
+                  CommonMagicItems="@_commonMagicItems"
+                  SelectedUnit="@_subjectUnit"
+                  OnUnitSelected="OnSubjectUnitSelected"
+                  Configuration="@_subjectConfig"
+                  ConfigurationChanged="OnSubjectConfigChanged" />
+
+    <div class="wr-results wr-area-results">
+        @if (_isSimulating)
+        {
+            <div class="wr-figure">
+                <div class="wr-figcaption">
+                    <span class="wr-caption-label">Simulating</span>
+                    <span class="small text-body-secondary">@_progressCurrent / @_opponents.Count</span>
+                </div>
+                <div class="progress" style="height: 10px;" role="progressbar" aria-label="Gauntlet progress"
+                     aria-valuemin="0" aria-valuemax="@_opponents.Count" aria-valuenow="@_progressCurrent">
+                    <div class="progress-bar" style="width: @(_progressPct)%"></div>
                 </div>
             </div>
-        </div>
-    }
+        }
+        else if (_results.Count > 0)
+        {
+            <GauntletResultsPanel Results="_results"
+                                  SubjectName="@(_subjectUnit?.Name ?? "Subject")"
+                                  SubjectConfig="_subjectConfig" />
+        }
+        else
+        {
+            <p class="wr-empty mb-0">
+                @(_subjectConfig != null && _opponents.Count > 0
+                    ? "Subject and opponents are set. Simulate to run the gauntlet."
+                    : "Choose a subject and add opponents, then simulate.")
+            </p>
+        }
+    </div>
 
-    @* ── Results ── *@
-    @if (_results.Count > 0 && !_isSimulating)
-    {
-        <div class="row mt-4">
-            <div class="col-12">
-                <GauntletResultsPanel Results="_results"
-                                       SubjectName="@(_subjectUnit?.Name ?? "Subject")"
-                                       SubjectConfig="_subjectConfig" />
-            </div>
+    @* ── Opponents: roster and staging ── *@
+    <section class="wr-loadout wr-area-defender" aria-labelledby="gauntlet-opponents">
+        <h2 id="gauntlet-opponents" class="wr-section-title text-defender">Opponents</h2>
+
+        <div class="d-flex gap-2 align-items-center mb-2">
+            <select class="form-select form-select-sm" aria-label="Load a preset roster"
+                    @onchange="OnPresetChanged">
+                <option value="">Load preset...</option>
+                <option value="Infantry">Infantry</option>
+                <option value="Cavalry">Cavalry</option>
+                <option value="MonstrousInfantry">Monstrous Infantry</option>
+                <option value="LargeInfantry">Large Infantry</option>
+                <option value="MonstrousCavalry">Monstrous Cavalry</option>
+            </select>
+            @if (_opponents.Count > 0)
+            {
+                <button class="btn btn-outline-secondary btn-sm text-nowrap" @onclick="ClearRoster">Clear all</button>
+            }
         </div>
-    }
+
+        @if (_opponents.Count > 0)
+        {
+            @* Batch controls *@
+            <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
+                <label class="small text-body-secondary" for="gauntlet-batch-models">Model count</label>
+                <input id="gauntlet-batch-models" type="number" class="form-control form-control-sm" style="width: 80px"
+                       min="1" max="100" value="@_batchModelCount"
+                       @onchange="OnBatchModelCountChanged" />
+                <button class="btn btn-outline-secondary btn-sm" @onclick="ApplyBatchModelCount">
+                    Apply
+                </button>
+            </div>
+            @if (_subjectConfig != null)
+            {
+                <div class="d-flex gap-2 flex-wrap mb-2">
+                    <button class="btn btn-outline-info btn-sm"
+                            @onclick="MatchSubjectModelCount"
+                            title="Set all opponents to match the subject unit's model count">
+                        Match count (@_subjectConfig.ModelCount)
+                    </button>
+                    <button class="btn btn-outline-info btn-sm"
+                            @onclick="MatchSubjectPoints"
+                            title="Adjust each opponent's model count to approximate the subject unit's total points">
+                        Match points (@($"{_subjectConfig.TotalPointsCost:F0}") pts)
+                    </button>
+                </div>
+            }
+
+            @* Opponent list *@
+            <div class="wr-roster">
+                @for (int i = 0; i < _opponents.Count; i++)
+                {
+                    var idx = i;
+                    var opp = _opponents[i];
+                    <div class="wr-roster-row">
+                        <div class="min-w-0 flex-grow-1">
+                            <div class="fw-bold text-truncate">@opp.Unit.Name</div>
+                            <div class="small text-body-secondary text-truncate">
+                                @FactionKeyExtensions.DisplayNameForJsonKey(opp.FactionKey) · @opp.Config.ModelCount model@(opp.Config.ModelCount == 1 ? "" : "s") ·
+                                @opp.Config.SelectedWeapon.ToJsonKey()
+                            </div>
+                        </div>
+                        <span class="wr-entry-pts">@($"{opp.Config.TotalPointsCost:F0}") <span class="small fw-normal text-body-secondary">pts</span></span>
+                        <button class="btn btn-outline-secondary btn-sm py-0 px-1"
+                                title="Duplicate" aria-label="Duplicate @opp.Unit.Name"
+                                @onclick="() => DuplicateOpponent(idx)">
+                            <span aria-hidden="true">&#x2398;</span>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm py-0 px-1"
+                                title="Remove" aria-label="Remove @opp.Unit.Name"
+                                @onclick="() => RemoveOpponent(idx)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+
+        @* Add opponent staging area *@
+        <h3 class="wr-cat-title mt-3 mb-2">Add opponent</h3>
+        <UnitSelector SelectedFactionKey="@_stagingFactionKey"
+                      OnFactionSelected="OnStagingFactionSelected"
+                      FactionUnits="@_stagingFactionUnits"
+                      SelectedUnitName="@_stagingUnit?.Name"
+                      OnUnitSelected="OnStagingUnitSelected" />
+
+        @if (_stagingUnit != null && _stagingConfig != null)
+        {
+            <UnitConfigurator @key="_stagingKey"
+                              Unit="_stagingUnit"
+                              Configuration="_stagingConfig"
+                              ConfigurationChanged="OnStagingConfigChanged"
+                              FactionExtras="_stagingExtras"
+                              CommonMagicItems="_commonMagicItems" />
+            <button class="btn btn-primary w-100 mt-2" @onclick="AddStagedOpponent">
+                Add @_stagingUnit.Name to roster
+            </button>
+        }
+    </section>
 </div>
 
 @code {
@@ -492,6 +477,8 @@
     private void ClearResults() => _results.Clear();
 
     // ── Helpers ──
+
+    private int OpponentFactionCount => _opponents.Select(o => o.FactionKey).Distinct().Count();
 
     private static UnitConfiguration CloneConfig(Unit unit, UnitConfiguration source)
     {

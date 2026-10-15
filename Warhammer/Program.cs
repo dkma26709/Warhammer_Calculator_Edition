@@ -21,6 +21,7 @@ builder.Services.AddSingleton<ArmyListValidator>();
 builder.Services.AddScoped<ArmyListSerializer>();
 builder.Services.AddScoped<ArmyRosterBuilder>();
 builder.Services.AddScoped<PortraitService>();
+builder.Services.AddScoped<EffectiveStatsCalculator>();
 
 var host = builder.Build();
 

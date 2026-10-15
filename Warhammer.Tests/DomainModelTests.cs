@@ -50,6 +50,16 @@ public class DomainModelTests
         Assert.Equal(key, parsed);
     }
 
+    [Theory]
+    [InlineData("vampire-counts", "Vampire Counts")]
+    [InlineData("orcs-and-goblins", "Orcs & Goblins")]
+    [InlineData("no-such-faction", "no-such-faction")]
+    [InlineData(null, "—")]
+    public void FactionKey_DisplayNameForJsonKey(string? jsonKey, string expected)
+    {
+        Assert.Equal(expected, FactionKeyExtensions.DisplayNameForJsonKey(jsonKey));
+    }
+
     [Fact]
     public void FactionKey_AllFactions_Returns30()
     {

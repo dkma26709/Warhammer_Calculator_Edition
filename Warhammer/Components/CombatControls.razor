@@ -1,43 +1,45 @@
 @using Warhammer.Calculator.Models
 
-<div class="text-center">
-    <div class="mb-3">
-        <label class="form-label small text-body-secondary">Charge</label>
-        <select class="form-select form-select-sm" value="@((int)ChargeState)"
-                @onchange="OnChargeChanged">
-            <option value="0">Neither</option>
-            <option value="1">Attacker charged</option>
-            <option value="2">Defender charged</option>
-            <option value="3" title="Counter-charge (a wap-v3 charge reaction): both units count as having charged, so both take the charge bonus, impact hits and any charge-only weapon bonus. The Leadership test to declare it, and the D6 inch move that can fail to connect, are outside the combat model — pick this for a counter-charge that landed.">Both charged (counter-charge)</option>
-        </select>
+<div class="wr-controls">
+    <fieldset class="m-0 p-0 border-0">
+        <legend class="form-label small text-body-secondary mb-2">Charge</legend>
+        <div class="wr-segmented">
+            @foreach (var option in ChargeOptions)
+            {
+                var o = option;
+                <button type="button" class="btn btn-sm" aria-pressed="@(ChargeState == o.State ? "true" : "false")"
+                        title="@o.Title" @onclick="() => SetCharge(o.State)">@o.Label</button>
+            }
+        </div>
+    </fieldset>
+
+    <div class="row g-2">
+        <div class="col-6">
+            <label class="form-label small text-body-secondary" for="@($"{_id}-rounds")">Rounds</label>
+            <select id="@($"{_id}-rounds")" class="form-select form-select-sm" value="@MaxRounds"
+                    @onchange="OnMaxRoundsChanged">
+                <option value="1">1 (single)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label class="form-label small text-body-secondary" for="@($"{_id}-iterations")">Iterations</label>
+            <select id="@($"{_id}-iterations")" class="form-select form-select-sm" value="@Iterations"
+                    @onchange="OnIterationsChanged">
+                <option value="1000">1,000</option>
+                <option value="5000">5,000</option>
+                <option value="10000">10,000</option>
+                <option value="25000">25,000</option>
+                <option value="50000">50,000</option>
+                <option value="100000">100,000</option>
+            </select>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label small text-body-secondary">Rounds</label>
-        <select class="form-select form-select-sm" value="@MaxRounds"
-                @onchange="OnMaxRoundsChanged">
-            <option value="1">1 (single)</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="6">6</option>
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label small text-body-secondary">Iterations</label>
-        <select class="form-select form-select-sm" value="@Iterations"
-                @onchange="OnIterationsChanged">
-            <option value="1000">1,000</option>
-            <option value="5000">5,000</option>
-            <option value="10000">10,000</option>
-            <option value="25000">25,000</option>
-            <option value="50000">50,000</option>
-            <option value="100000">100,000</option>
-        </select>
-    </div>
-
-    <button class="btn btn-primary btn-sm w-100"
+    <button class="btn btn-primary w-100 wr-simulate"
             disabled="@(!CanSimulate || IsSimulating)"
             @onclick="OnSimulate">
         @if (IsSimulating)
@@ -63,10 +65,22 @@
     [Parameter] public bool IsSimulating { get; set; }
     [Parameter] public EventCallback OnSimulate { get; set; }
 
-    private async Task OnChargeChanged(ChangeEventArgs e)
+    private readonly string _id = $"combat-controls-{Guid.NewGuid():N}";
+
+    private sealed record ChargeOption(ChargeState State, string Label, string? Title);
+
+    private static readonly ChargeOption[] ChargeOptions =
+    [
+        new(ChargeState.Neither, "Neither", "Neither unit charged"),
+        new(ChargeState.AttackerCharged, "Attacker", "The attacker charged"),
+        new(ChargeState.DefenderCharged, "Defender", "The defender charged"),
+        new(ChargeState.BothCharged, "Both", "Counter-charge (a wap-v3 charge reaction): both units count as having charged, so both take the charge bonus, impact hits and any charge-only weapon bonus. The Leadership test to declare it, and the D6 inch move that can fail to connect, are outside the combat model — pick this for a counter-charge that landed."),
+    ];
+
+    private async Task SetCharge(ChargeState state)
     {
-        if (int.TryParse(e.Value?.ToString(), out var val))
-            await ChargeStateChanged.InvokeAsync((ChargeState)val);
+        if (state != ChargeState)
+            await ChargeStateChanged.InvokeAsync(state);
     }
 
     private async Task OnMaxRoundsChanged(ChangeEventArgs e)
