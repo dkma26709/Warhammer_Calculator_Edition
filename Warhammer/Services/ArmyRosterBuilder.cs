@@ -111,9 +111,7 @@ public class ArmyRosterBuilder
     }
 
     private static string ModelLine(UnitConfiguration cfg) =>
-        cfg.ModelCount <= 1
-            ? "1 model"
-            : $"{cfg.ModelCount} models · {cfg.Frontage} wide";
+        cfg.ModelCount <= 1 ? "1 model" : $"{cfg.ModelCount} models";
 
     /// <summary>
     /// The rider's line, then the mount's. Printed whenever the book gives the entry a second

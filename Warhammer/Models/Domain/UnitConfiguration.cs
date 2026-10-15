@@ -393,6 +393,57 @@ public class UnitConfiguration
     }
 
     /// <summary>
+    /// The weapon an army-list entry fights with when nobody picks one: the one it paid for if
+    /// it took any, since nobody buys a great weapon to fight with the hand weapon beside it.
+    /// </summary>
+    public CloseCombatWeaponKey ListedWeapon
+    {
+        get
+        {
+            var weapons = EffectiveWeapons;
+            foreach (var key in weapons)
+                if (!BaseWeaponKeys.Contains(key))
+                    return key;
+
+            return weapons.Count > 0 ? weapons[0] : CloseCombatWeaponKey.HandWeapon;
+        }
+    }
+
+    /// <summary>
+    /// Fight with <paramref name="key"/>, and make each close combat weapon group agree: pick
+    /// the choice that brings it, or drop a weapon pick that doesn't. A non-weapon pick in a
+    /// mixed group (Shields beside Great weapons) stays, as do checkbox-owned "choose any" picks.
+    /// </summary>
+    public void FightWith(CloseCombatWeaponKey key)
+    {
+        SelectedWeapon = key;
+        if (UnitEntry.Options == null) return;
+
+        var wanted = key.ToJsonKey();
+        for (int i = 0; i < UnitEntry.Options.Count; i++)
+        {
+            var option = UnitEntry.Options[i];
+            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
+            if (SelectedMultiUpgrades.ContainsKey(i)) continue;
+            if (!option.Choices.Any(HasCloseCombatWeapon)) continue;
+
+            int match = option.Choices.FindIndex(c => c.Name.Any(n =>
+                EquipmentParser.TryNormalize(n, out var k, out _) && k == wanted));
+
+            if (match >= 0)
+                SelectedUpgrades[i] = match;
+            else if (SelectedUpgrades.TryGetValue(i, out var current)
+                     && current >= 0 && current < option.Choices.Count
+                     && HasCloseCombatWeapon(option.Choices[current]))
+                SelectedUpgrades.Remove(i);
+        }
+    }
+
+    /// <summary>True when a choice brings at least one close combat weapon.</summary>
+    private static bool HasCloseCombatWeapon(OptionChoice choice) =>
+        choice.Name.Any(n => OptionLayout.KindOf(n) == GearKind.CloseCombatWeapon);
+
+    /// <summary>
     /// All armour keys the unit currently has, considering base equipment and selected upgrades.
     /// </summary>
     public List<ArmourKey> EffectiveArmour

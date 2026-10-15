@@ -103,4 +103,39 @@ public class EquipmentParserTests
         Assert.Contains("spear", weapons);
         Assert.Contains("shields", armour);
     }
+
+    // The WAR export writes unit-level gear in the plural; the table only lists some plurals.
+    [Theory]
+    [InlineData("Light lances", "lightLance")]
+    [InlineData("Heavy lances", "heavyLance")]
+    [InlineData("Additional hand weapons", "two_additionalHandWeapons")]
+    [InlineData("Shortbows", "shortbow")]
+    [InlineData("Longbows", "longbow")]
+    [InlineData("Pistols", "pistol")]
+    [InlineData("Slings", "sling")]
+    [InlineData("Blunderbusses", "blunderbuss")]
+    public void TryNormalize_PluralFallsBackToTheSingular(string name, string expected)
+    {
+        Assert.True(EquipmentParser.TryNormalize(name, out var key, out bool isWeapon));
+        Assert.Equal(expected, key);
+        Assert.True(isWeapon);
+    }
+
+    [Theory]
+    [InlineData("Dditional hand weapons")]
+    [InlineData("Addditional hand weapons")]
+    [InlineData("Elven longbows")]
+    [InlineData("Repeater pistol")]
+    public void TryNormalize_TyposAndFactionGearStayUnrecognised(string name)
+    {
+        Assert.False(EquipmentParser.TryNormalize(name, out _, out _));
+    }
+
+    [Fact]
+    public void Parse_PluralUnitGear()
+    {
+        var (weapons, armour) = EquipmentParser.Parse("Hand weapons, light lances, shields");
+        Assert.Equal(["handWeapon", "lightLance"], weapons);
+        Assert.Equal(["shields"], armour);
+    }
 }

@@ -37,22 +37,36 @@
                        value="@Configuration.ModelCount" min="1" max="100"
                        @onchange="OnModelCountChangedEvent" />
             </div>
-            <div class="col-6">
-                <label class="form-label small text-body-secondary">Frontage</label>
-                <input type="number" class="form-control form-control-sm"
-                       value="@Configuration.Frontage" min="1" max="50"
-                       @onchange="OnFrontageChangedEvent" />
-            </div>
+            @if (!ForArmyList)
+            {
+                <div class="col-6">
+                    <label class="form-label small text-body-secondary">Frontage</label>
+                    <input type="number" class="form-control form-control-sm"
+                           value="@Configuration.Frontage" min="1" max="50"
+                           @onchange="OnFrontageChangedEvent" />
+                </div>
+            }
+        </div>
+    }
+
+    @if (ForArmyList && Unit.RawEntry.Equipment != null)
+    {
+        <div class="mb-2">
+            <small class="text-body-secondary">Comes with: @(Unit.RawEntry.Equipment.Split('\n')[0])</small>
         </div>
     }
 
     <UnitOptionsEditor Unit="Unit"
                        Configuration="Configuration"
                        ConfigurationChanged="ConfigurationChanged"
-                       FactionExtras="FactionExtras" />
+                       FactionExtras="FactionExtras"
+                       ForArmyList="ForArmyList" />
 
-    <FactionAbilityPanel Configuration="Configuration"
-                         ConfigurationChanged="ConfigurationChanged" />
+    @if (!ForArmyList)
+    {
+        <FactionAbilityPanel Configuration="Configuration"
+                             ConfigurationChanged="ConfigurationChanged" />
+    }
 
     <CommandGroupPanel Configuration="Configuration"
                        ConfigurationChanged="ConfigurationChanged" />
@@ -72,10 +86,13 @@
                            ConfigurationChanged="ConfigurationChanged" />
     }
 
-    <CustomModifierList Configuration="Configuration"
-                        ConfigurationChanged="ConfigurationChanged" />
+    @if (!ForArmyList)
+    {
+        <CustomModifierList Configuration="Configuration"
+                            ConfigurationChanged="ConfigurationChanged" />
+    }
 
-    @if (Unit.RawEntry.Equipment != null)
+    @if (!ForArmyList && Unit.RawEntry.Equipment != null)
     {
         <div class="mb-2">
             <small class="text-body-secondary">Equipment: @(Unit.RawEntry.Equipment.Split('\n')[0])</small>
@@ -100,6 +117,13 @@
     /// not in ad-hoc matchup configuration. Defaults to false to preserve existing behaviour.
     /// </summary>
     [Parameter] public bool ShowCustomNameField { get; set; }
+
+    /// <summary>
+    /// True in the Army Builder, which buys a unit's gear rather than simulating a fight with it:
+    /// weapons and armour get pickers of their own, and the calculator's frontage, "Fight with",
+    /// faction abilities and custom modifiers are left out.
+    /// </summary>
+    [Parameter] public bool ForArmyList { get; set; }
 
     /// <summary>False where the page shows the stat line elsewhere (the Matchup hero).</summary>
     [Parameter] public bool ShowStats { get; set; } = true;
