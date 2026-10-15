@@ -1,0 +1,3247 @@
+{
+ "factionName": "Dwarfs",
+ "units": [
+  {
+   "name": "King",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "King",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 125
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dwarfen pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen handgun",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 27,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Oathstone",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Shieldbearers",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "King",
+     "raw": "A King may take Magic Items and/or Runic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "A King may take Magic Items and/or Runic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "Thane",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Thane",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 9,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dwarfen pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen handgun",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Medium armour",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 27,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Oathstone",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Thane may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Thane",
+     "raw": "A Thane may take Magic Items and/or Runic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "A Thane may take Magic Items and/or Runic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "Runelord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Runelord",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 9,
+     "points": 150
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a great weapon +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 27,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Anvil of Doom",
+       "points": 120,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on an Anvil of Doom (Runelord only) +120 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Runelord",
+     "raw": "A Runelord may take Magic Items and/or Runic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "A Runelord may take Magic Items and/or Runic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (2), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "Runesmith",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Runesmith",
+     "M": 3,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 90
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a great weapon +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 27,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Runesmith",
+     "raw": "A Runesmith may take Magic Items and/or Runic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "A Runesmith may take Magic Items and/or Runic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (2), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "Daemon Slayer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Daemon Slayer",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 10,
+     "points": 140
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Killing Blow",
+       "choices": [
+        {
+         "name": "Killing Blow",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Killing Blow +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Vampire Slayer",
+       "choices": [
+        {
+         "name": "Vampire Slayer",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Vampire Slayer +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Beast Slayer",
+       "choices": [
+        {
+         "name": "Beast Slayer",
+         "points": 25,
+         "perModel": false
+        }
+       ],
+       "raw": "Beast Slayer +25 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Skaven Slayer",
+       "choices": [
+        {
+         "name": "Skaven Slayer",
+         "points": 25,
+         "perModel": false
+        }
+       ],
+       "raw": "Skaven Slayer +25 points"
+      }
+     ]
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Wards of Grimnir",
+     "points": 20,
+     "perModel": false,
+     "raw": "May have Wards of Grimnir +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Daemon Slayer",
+     "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "A Daemon Slayer may take Magic Items and/or Runic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
+   "upgrades": "Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution (excluding Wounds from Overkill in a challenge).\nKilling Blow: The model gains the Killing Blow special rule.\nSkaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact with him.\nVampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
+   "notes": "For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "Dragon Slayer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Dragon Slayer",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 10,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Killing Blow",
+       "choices": [
+        {
+         "name": "Killing Blow",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Killing Blow +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Vampire Slayer",
+       "choices": [
+        {
+         "name": "Vampire Slayer",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Vampire Slayer +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Beast Slayer",
+       "choices": [
+        {
+         "name": "Beast Slayer",
+         "points": 25,
+         "perModel": false
+        }
+       ],
+       "raw": "Beast Slayer +25 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Skaven Slayer",
+       "choices": [
+        {
+         "name": "Skaven Slayer",
+         "points": 25,
+         "perModel": false
+        }
+       ],
+       "raw": "Skaven Slayer +25 points"
+      }
+     ]
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Wards of Grimnir",
+     "points": 20,
+     "perModel": false,
+     "raw": "May have Wards of Grimnir +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Dragon Slayer",
+     "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "A Dragon Slayer may take Magic Items and/or Runic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Daemon Slayer (Daemon Slayer only), Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
+   "upgrades": "Beast Slayer: Each wound inflicted by the model counts double towards that round's Combat Resolution (excluding Wounds from Overkill in a challenge).\nKilling Blow: The model gains the Killing Blow special rule.\nSkaven Slayer: The model gains a number of Attacks equal to the number of enemy models in base contact with him.\nVampire Slayer: The model may re-roll failed rolls To Wound against enemies with Toughness 5 or higher.",
+   "notes": "For each Daemon Slayer in your army, you may take one unit of Troll Slayers as a Core Unit.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "BREWMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Brewmaster",
+     "M": 3,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 1,
+     "A": 2,
+     "Ld": 9,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a great weapon +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Beer Cart",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Beer Cart +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items and/or Runic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "May take Magic Items and/or Runic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "MASTER ENGINEER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Master Engineer",
+     "M": 3,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a great weapon +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Dwarfen pistol",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen brace of pistols",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Dwarfen handgun",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items and/or Runic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "raw": "May take Magic Items and/or Runic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "SHIELDBEARERS",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Shieldbearers",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x40, 25x50, 40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "additional shieldbearer",
+     "points": 3,
+     "perModel": false,
+     "raw": "May take an additional shieldbearer +3 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Inspiring Presence (6), Relentless, Resolute",
+   "upgrades": null,
+   "notes": "Shieldbearers have a Unit Strength and Line of Sight value of 2. An additional shieldbearer adds +1 Attack and +1 Unit Strength.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "BEER CART",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Beer Cart",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Draft Pony",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Dwarf)",
+   "baseSize": "40x60 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": "Draft Pony (Equine)",
+   "pointsCost": null
+  },
+  {
+   "name": "ANVIL OF DOOM",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Anvil of Doom",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 10,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Anvil Guard",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "75x75 (Anvil of Doom) 20x20 or 25x25 (Anvil Guard)",
+   "equipment": "Hand weapon, heavy armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Anvil Guards (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Warrior",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose at least one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "QUARRELLERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Quarreller",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, Dwarfen crossbow, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take great weapons +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Quarreller to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Quarreller to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Quarreller to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "THUNDERERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Thunderer",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, Dwarfen handgun, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Thunderer to a Leader +5 points",
+     "subOptions": [
+      {
+       "type": "equipment",
+       "action": "replace",
+       "replaces": "Dwarfen handgun",
+       "choices": [
+        {
+         "name": "brace of Dwarfen pistols",
+         "points": 0,
+         "perModel": false,
+         "replaces": "Dwarfen handgun"
+        }
+       ],
+       "raw": "May replace Dwarfen handgun with brace of Dwarfen pistols free",
+       "subOptions": null
+      }
+     ]
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Thunderer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Thunderer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "MINERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Miner",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 11
+    },
+    {
+     "name": "Miner's Cart",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Draft Pony",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25 (Miner), 40x60 or 50x75 (Miner's Cart)",
+   "equipment": "Great weapon, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "blasting charges",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take blasting charges +15 points",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Miner's Cart",
+       "points": 20,
+       "perModel": false,
+       "raw": "May take a Miner's Cart +20 points",
+       "subOptions": null
+      }
+     ]
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Miner to a Leader +5 points",
+     "subOptions": [
+      {
+       "type": "equipment",
+       "action": "replace",
+       "replaces": "great weapon",
+       "choices": [
+        {
+         "name": "steam drill",
+         "points": 10,
+         "perModel": false,
+         "replaces": "great weapon"
+        }
+       ],
+       "raw": "May replace great weapon with steam drill +10 points",
+       "subOptions": null
+      }
+     ]
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Miner to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Miner to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": "Miner's Cart: A Miner's Cart is a Shrine drawn by a Draft Pony. It may not choose to leave the unit. A unit with a Miner's Cart can use Blasting Charges every turn rather than just once. However, if the Miner's Cart is destroyed from a close combat or missile attack, place the centre of the large round template on top of it before removing it. All models under the template suffer a Strength 4 Hit with the Armour Piercing (1) and Flaming Attacks special rules.",
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "LONGBEARDS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Longbeard",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 14
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shields",
+       "points": 1.5,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose at least one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Longbeard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Longbeard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Longbeard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Hatred, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 14
+  },
+  {
+   "name": "IRONBREAKERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ironbreaker",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 14
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, heavy armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ironbreaker to a Leader +5 points",
+     "subOptions": [
+      {
+       "type": "equipment",
+       "action": "add",
+       "choices": [
+        {
+         "name": "cinderblast bombs",
+         "points": 5,
+         "perModel": false
+        }
+       ],
+       "raw": "May take cinderblast bombs +5 points",
+       "subOptions": null
+      }
+     ]
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ironbreaker to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ironbreaker to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 14
+  },
+  {
+   "name": "TROLL SLAYERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Troll Slayer",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 10,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Troll Slayer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Troll Slayer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Troll Slayer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Deathblow, Slayer, Magic Resistance (1), Relentless, Unbreakable, Vanguard",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "RANGERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ranger",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Throwing axes",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Dwarfen crossbows",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ranger to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ranger to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ranger to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Hill Strider, Magic Resistance (1), Relentless, Resolute, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "DEATHROLLER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Deathroller",
+     "M": "*",
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 80
+    },
+    {
+     "name": "Driver",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 5+)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Random Movement (2D6), Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Driver (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 80
+  },
+  {
+   "name": "FIRE THROWER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Fire Thrower",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 45
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x40 or 25x50",
+   "equipment": "Hand weapon, fire thrower, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +2 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless, Resolute, Weapon Team",
+   "upgrades": null,
+   "notes": "Firethrowers have a Unit Strength of 2.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 45
+  },
+  {
+   "name": "BOLT THROWER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bolt Thrower",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 45
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Bolt Thrower), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +1 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "pointsLimit": 50,
+     "points": null,
+     "perModel": null,
+     "raw": "May take engineering runes up to 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 45
+  },
+  {
+   "name": "GRUDGE THROWER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Grudge Thrower",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 90
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Grudge Thrower), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, stone thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +1 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "pointsLimit": 50,
+     "points": null,
+     "perModel": null,
+     "raw": "May take engineering runes up to 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "CANNON",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 90
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Cannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, cannon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +1 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "pointsLimit": 50,
+     "points": null,
+     "perModel": null,
+     "raw": "May take engineering runes up to 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "GYROCOPTER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Gyrocopter",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Pilot",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 4+)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon, steam gun",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "steam gun",
+     "choices": [
+      {
+       "name": "Brimstone gun",
+       "points": 0,
+       "perModel": false,
+       "replaces": "steam gun"
+      },
+      {
+       "name": "Clattergun",
+       "points": 0,
+       "perModel": false,
+       "replaces": "steam gun"
+      }
+     ],
+     "raw": "May replace steam gun with one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Fly (9), Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Pilot (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "HAMMERERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Hammerer",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 18
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Great weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hammerer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hammerer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Hammerer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 75,
+       "raw": "May take a Magic Standard worth up to 75 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Armour Piercing (1), Magic Resistance (1), Relentless, Resolute, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 18
+  },
+  {
+   "name": "IRONDRAKES",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Irondrake",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, drakegun, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Irondrake to a Leader +5 points",
+     "subOptions": [
+      {
+       "type": "equipment",
+       "action": "add",
+       "choices": [
+        {
+         "name": "cinderblast bombs",
+         "points": 5,
+         "perModel": false
+        }
+       ],
+       "raw": "May take cinderblast bombs (see Ironbreakers) +5 points",
+       "subOptions": null
+      },
+      {
+       "type": "equipment",
+       "action": "replace",
+       "replaces": "drakegun",
+       "choices": [
+        {
+         "name": "Brace of drakefire pistols",
+         "points": 0,
+         "perModel": false,
+         "replaces": "drakegun"
+        },
+        {
+         "name": "Trollhammer torpedo",
+         "points": 15,
+         "perModel": false,
+         "replaces": "drakegun"
+        }
+       ],
+       "raw": "May replace drakegun with one of the following:",
+       "subOptions": null
+      }
+     ]
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Irondrake to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Irondrake to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Immunity (Flaming Attacks), Gromril Armour, Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "GIANT SLAYERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant Slayer",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 10,
+     "points": 13
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose any of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Giant Slayer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Giant Slayer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Giant Slayer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Deathblow, Giant Slayer, Magic Resistance (1), Relentless, Unbreakable, Vanguard",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "DOOMSEEKERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Doomseeker",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 35
+    }
+   ],
+   "troopType": "Infantry (Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Doomseeker axes",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Deathblow, Magic Resistance (1), Slayer, Relentless, Skirmishers, Unbreakable, Wards of Grimnir",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "RUNE GUARDIANS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Rune Guardian",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 1,
+     "A": 3,
+     "Ld": 10,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Infantry (Animated Construct)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 9,
+       "perModel": true
+      }
+     ],
+     "raw": "Must choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "pointsLimit": null,
+     "points": null,
+     "perModel": null,
+     "raw": "May choose up to two of the following:"
+    }
+   ],
+   "specialRules": "Animated Construct, Immunity (Poisoned Attacks)",
+   "upgrades": "Rune of Cleaving: The Rune Guardian gains the Armour Piercing (1) and Magical Attacks special rule.\nRune of Fury: The Rune Guardian gains +1 Attack and the Magical Attacks special rule.\nRune of Striking: The Rune Guardian gains +1 Weapon Skill and the Magical Attacks special rule.\nRune of Stone: The Rune Guardian gains +1 to its armour save.\nRune of Warding: The Rune Guardian gains the Magical Ward (6+) special rule.",
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "ORGAN GUN",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Organ Gun",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Organ Gun), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, organ gun",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +1 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "pointsLimit": 50,
+     "points": null,
+     "perModel": null,
+     "raw": "May take engineering runes up to 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "FLAME CANNON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Flame Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Crew",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Flame Cannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, flame cannon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +1 point/crew",
+     "subOptions": null
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "runic_items",
+     "pointsLimit": 50,
+     "points": null,
+     "perModel": null,
+     "raw": "May take engineering runes up to 50 points"
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "GYROBOMBER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Gyrocopter",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 140
+    },
+    {
+     "name": "Pilot",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 4+)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon, steam gun (see Gyrocopters)",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "steam gun",
+     "choices": [
+      {
+       "name": "Brimstone gun",
+       "points": 0,
+       "perModel": false,
+       "replaces": "steam gun"
+      },
+      {
+       "name": "Clattergun",
+       "points": 0,
+       "perModel": false,
+       "replaces": "steam gun"
+      }
+     ],
+     "raw": "May replace steam gun with one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Fly (9), Magic Resistance (1), Relentless, Resolute",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Pilot (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "THUNDERBARGE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Thunderbarge",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 6,
+     "T": 6,
+     "W": 8,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 275
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 4+)",
+   "baseSize": "50x100, 60x100 or 100x150",
+   "equipment": "Hand weapon, Dwarfen handgun",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Bombing Run (see Gyrobombers), Fly (6), Magic Resistance (1), Unbreakable",
+   "upgrades": null,
+   "notes": "A Thunderbarge has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": "6 Crew (Dwarf)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 275
+  },
+  {
+   "name": "GRUDGEBREAKER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Grudgebreaker",
+     "M": "*",
+     "WS": 3,
+     "BS": 0,
+     "S": 6,
+     "T": 7,
+     "W": 8,
+     "I": 1,
+     "A": "*",
+     "Ld": 10,
+     "points": 200
+    }
+   ],
+   "troopType": "Chariot (Armour Save 2+)",
+   "baseSize": "50x50, 50x75 or 50x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Animated Construct, Immunity (Poisoned Attacks), Magic Resistance (1), Terror",
+   "upgrades": null,
+   "notes": "A Grudgebreaker has a Line of Sight value of 5.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "THORGRIM GRUDGEBEARER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Thorgrim",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 7,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 500
+    },
+    {
+     "name": "Thronebearers",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 4,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "40x60 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute, Royal Clansmen (see Kings)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Thronebearers",
+   "drawnBy": null,
+   "pointsCost": 500
+  },
+  {
+   "name": "ALRIK RANULFSSON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Alrik Ranulfsson",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 345
+    },
+    {
+     "name": "Shieldbearers",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x40 or 25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Gromril Armour, Inspiring Presence (6), Magic Resistance (1), Resolute, Relentless, Royal Clansmen (see Kings)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Shieldbearers",
+   "drawnBy": null,
+   "pointsCost": 345
+  },
+  {
+   "name": "KAZADOR THUNDERHORN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Kazador",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 280
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Resolute, Relentless, Royal Clansmen (see Kings)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 280
+  },
+  {
+   "name": "BELEGAR IRONHAMMER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Belegar Ironhammer",
+     "M": 3,
+     "WS": 8,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 290
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Royal Clansmen (see Kings), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 290
+  },
+  {
+   "name": "THOREK IRONBROW",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Thorek Ironbrow",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 10,
+     "points": 310
+    },
+    {
+     "name": "Anvil of Doom",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 10,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Anvil Guard",
+     "M": 3,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    },
+    {
+     "name": "Kraggi",
+     "M": 3,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 9,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine (Special Character)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Anvil of Doom (see Anvil of Doom), Forgefire (see Runelords), Locus of Power (see Anvil of Doom), Magic Resistance (2), Rune Lore (see Runelords), Strike the Runes (see Anvil of Doom)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "Thorek Ironbrow, 2 Anvil Guards, Kraggi (Dwarf)",
+   "mount": "Anvil of Doom",
+   "drawnBy": null,
+   "pointsCost": 310
+  },
+  {
+   "name": "GROMBRINDAL",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Grombrindal",
+     "M": 3,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 4,
+     "Ld": 10,
+     "points": 450
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Magic Resistance (1), Relentless",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 450
+  },
+  {
+   "name": "UNGRIM IRONFIST",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ungrim Ironfist",
+     "M": 3,
+     "WS": 8,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 10,
+     "points": 325
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Daemon Slayer, Deathblow, Gromril Armour, Magic Resistance (1), Relentless, Unbreakable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 325
+  },
+  {
+   "name": "GARAGRIM IRONFIST",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Garagrim Ironfist",
+     "M": 3,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 10,
+     "points": 185
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Deathblow, Dragon Slayer, Magic Resistance (1), Relentless, Unbreakable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "JOSEF BUGMAN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Josef Bugman",
+     "M": 3,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 9,
+     "points": 185
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Dwarfen crossbow",
+       "points": 7,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a Dwarfen crossbow +7 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Gromril Armour, Magic Resistance (1), Relentless, Resolute, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "BURLOK DAMMINSON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Burlok Damminson",
+     "M": 3,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 120
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Must take one of the following",
+     "raw": "Must take one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm",
+       "choices": [
+        {
+         "name": "Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm",
+         "points": 0,
+         "perModel": false
+        }
+       ],
+       "raw": "Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm free"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Range Finding Optics & Rivet Gun",
+       "choices": [
+        {
+         "name": "Range Finding Optics & Rivet Gun",
+         "points": 5,
+         "perModel": false
+        }
+       ],
+       "raw": "Range Finding Optics & Rivet Gun +5 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ancestral Grudge, Artillery Master (see Master Engineers), Entrenchment (see Master Engineers), Magic Resistance (1), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
+   "upgrades": "• Burlok's Ingenious Offensive New-matic Integrated Constrictor Arm: Burlok's artificial arm gives him +1 Attack with Strength 6 in close combat.\n• Range Finding Optics: Burlok gains the Sniper special rule.\n• Rivet Gun: The rivet gun has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n9/12\" | 5 | Dwarf-crafted, Quick Shot, Multiple Shots (3), Rapid Fire",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "GRIMM BURLOKSSON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Grimm Burloksson",
+     "M": 3,
+     "WS": 4,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 2,
+     "A": 2,
+     "Ld": 9,
+     "points": 95
+    }
+   ],
+   "troopType": "Infantry (Special Character, Dwarf)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "• Grudge-raker: The Grudge-raker has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n15/30\" | 5 | Armour Piercing (1), Dwarf-crafted, Multiple Shots (2D3)\n• Cog Axe: Hand weapon. This weapon has the Armour Piercing (1) special rule. If Grimm scores one or more hits in close combat against a model using a magic weapon, roll a D6; on a 5+, that weapon is immediately destroyed and cannot be used further in this game.",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ancestral Grudge, Entrenchment (see Master Engineers), Magic Resistance (1), Relentless, Resolute, \"Stand Back Sir!\" (see Master Engineers)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  }
+ ]
+}

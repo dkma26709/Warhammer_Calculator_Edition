@@ -1,0 +1,1382 @@
+{
+ "factionName": "Orcs & Goblins",
+ "armySpecialRules": [
+  {
+   "name": "ANIMOSITY",
+   "description": "Units with this special rule must test for Animosity in the Charge sub-phase after all normal charges have been declared during each of your turns, unless any of the following applies:\n• The unit has fewer than 5 models.\n• The unit has declared a charge this turn.\n• The unit is engaged in close combat.\n• The unit is garrisoning a building.\n• The unit is fleeing or currently off the battlefield.\nRoll a D6 for each eligible unit. If the dice roll is a 2 or more, the unit behaves normally this turn. If the roll is a 1, however, the unit has failed its Animosity test and must roll on the Animosity table below:\nD6 | Result\n1 | Get 'Em: For every complete rank the unit has, it suffers D3 hits at the Strength characteristic of the majority of the models in the unit. The unit may not voluntarily move or shoot this turn. Wounds caused by the Get 'Em result never cause Panic tests.\n2-4 | Squabble: If it is possible to do so, the unit must declare a charge against the closest viable enemy unit. If the unit is unable to declare a charge, the unit may not move in the Movement phase or shoot this turn.\n5-6 | We'll Show 'Em: Pivot the unit on the spot to face the nearest visible enemy unit, and then make a full normal move in a straight line towards it. If there is no visible enemy, the unit must move straight ahead instead. If it is impossible for the unit to pivot to face the closest enemy, it will pivot towards it as far as it can, and will then move as far forward as it can while still keeping the enemy within its forward arc. After the move is complete the unit must declare a charge against the closest visible enemy unit, if it is possible to do so. If the unit cannot declare a charge then it may carry on with the rest of its turn normally, as if it had not yet moved this turn."
+  },
+  {
+   "name": "ARMED TO DA TEEF",
+   "description": "If a model with this special rule has more than one weapon and/or a shield, they may choose which weapon combination they want to use at the start of each round of close combat."
+  },
+  {
+   "name": "GREENSKIN RACES",
+   "description": "Characters may only join units of the same race or sub- species (such as Common Orc, Savage Orc, Black Orc, Common Goblin, Forest Goblin, Night Goblin or Snotling). Black Orc characters may still join units of Common Orcs, however."
+  },
+  {
+   "name": "FEAR ELVES",
+   "description": "Models with this special rule treat all Elves as causing Fear against them."
+  },
+  {
+   "name": "MAGIC MUSHROOMS",
+   "description": "A Wizard with this special rule may eat a Magic Mushroom once per Magic phase, before casting a spell. This adds another D6 to the casting result. This dice does not count as a power dice, and cannot contribute to Ultimate Power. However, if you roll a 1 on this dice you must roll a further D6. On a roll of 4+ nothing else happens, but on a roll of 1-3 the Wizard suffers a Wound which Ignores Armour Saves, and the spell automatically fails."
+  },
+  {
+   "name": "QUELL ANIMOSITY",
+   "description": "If a model with this special rule is in a unit that fails an Animosity test, they immediately inflict D6 hits at their base Strength on their unit, distributed as shooting attacks. After removing casualties, the unit is treated as if the Animosity test was passed. These hits cannot be allocated to characters with this special rule, and do not cause a Panic test."
+  },
+  {
+   "name": "SIZE MATTERS",
+   "description": "Models with this special rule treat Goblins and Snotlings of all types as Expendable."
+  },
+  {
+   "name": "SPIDER VENOM",
+   "description": "A Wizard with this special rule may re-roll one dice per Magic phase when casting spells. However, any time they Miscast, they will also count as having failed a Stupidity test (if they survive)."
+  },
+  {
+   "name": "TUSKER CHARGE",
+   "description": "Models with this special rule have the Mighty Blow (1) special rule in any turn that they charge."
+  },
+  {
+   "name": "WAAAGH!",
+   "description": "If a model with this special rule is your Army General, then once per game he may call a Waaagh! The Waaagh! may only be called if the model first declares a charge, and must be announced immediately after making the charge declaration, before any charge reaction takes place. In the turn a Waaagh! is called, every combat involving friendly Orc units within 12\" of the Army General adds +1 to its combat resolution for the rest of the player turn. The Army General himself, and any unit he joins, adds +D3 to their combat resolution instead. In addition, every friendly unit within 12\" of the Army General add their rank bonus to the result rolled on the Animosity table (to a maximum of 6)."
+  },
+  {
+   "name": "WALL-CRAWLER",
+   "description": "Models with this rule have the Forest Strider and Obstacle Strider special rules. In addition, they treat ungarrisoned buildings as open terrain for the purposes of movement. They may not finish their movement inside or on top of an ungarrisoned building."
+  },
+  {
+   "name": "WAAAGH! MISCAST",
+   "description": "If an Orc or Goblin Wizard rolls a Miscast, they roll on the following table instead of the normal Miscast Table used by other wizards:\nD6 | Result\n1-3 | FZZZZZZAP! Resolve the effects as if the Wizard had cast the Gaze of Mork spell and then deduct D3 dice from the power pool.\n4-5 | \"Yuuurgh!\" The Wizard is subject to the Frenzy and Stupidity special rules for the rest of the game, although he may never lose his Frenzy. He may cast no further spells this turn.\n6-7 | \"I've Forgot!\" The Wizard permanently reduces his Wizard Level by 1 and may not cast any further spells this phase.\n8-9 | \"Me 'Ead 'Urts!\" All Orcs and Goblins (friend or foe) within 12\" that are capable of channelling power or dispel dice suffer a Strength 4 hit which Ignores Armour saves. In addition, D3 dice are lost from the pool.\n10-11 | \"I Fink I'm Gonna…\": The Wizard suffers a Strength 10 hit and all Orc and Goblin units (friend or foe) within 12\" suffer D6 Strength 5 hits which Ignores Armour saves. In addition, D3 dice are lost from the pool.\n12+ | 'EADBANG! Place the large round template over the Wizard. Any model under the template must pass a Toughness test or also be killed outright with no armour saves allowed. After resolving hits from this template, removing the Wizard as casualty with no saves allowed. In addition, D3 dice are lost from the power pool."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "BATTLEAXE OF THE LAST BIG WAAAGH!",
+   "points": "85",
+   "category": "magic_weapon",
+   "description": "Roll a D6 at the start of each round of combat – the wielder of this weapon adds that number to both his Attacks and Strength in that round. However, the bearer's Weapon Skill is lowered by an amount equal to half the dice roll (i.e. 1-2 = -1 Weapon Skill, 3-4 = -2 Weapon Skill, and 5-6 = -3 Weapon Skill).",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "WARBOSS IRONCLAW'S WAAAGH! CLEAVA",
+   "points": "60",
+   "category": "magic_weapon",
+   "description": "All hits from Warboss Ironclaw's Waaagh! Cleava Wound automatically with the Ignores Armour Saves special rule.",
+   "restriction": "Common Orcs"
+  },
+  {
+   "name": "BASHAS AXE OF STUNTY SMASHIN'",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon has the Armour Piercing (1) special rule, and adds +1 to both his Attacks and Strength in close combat. This bonus is doubled if the wielder is in base contact with a Dwarf. In addition, the wielder causes Fear in all Dwarfs.",
+   "restriction": null
+  },
+  {
+   "name": "BASHA'S BLOODAXE",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "The wielder of Basha's Bloodaxe gains the Frenzy rule. However, they get +D6 Attacks (rolled before making their Attacks) rather than +1 and can never lose their Frenzy.",
+   "restriction": "Common Orcs on foot"
+  },
+  {
+   "name": "BONEHEAD'S WHACKER",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "The Whacker gives the wielder the Always Strikes First special rule and allows them to re-roll failed To Wound rolls.",
+   "restriction": "Savage Orcs"
+  },
+  {
+   "name": "SHAGA'S SCREAMING SWORD",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "Shaga's Screaming Sword gives the wielder the Fear special rule. In addition, they also gain +1 Strength and +1 Attack for each enemy character model within 12\".",
+   "restriction": null
+  },
+  {
+   "name": "BASHA'S BIG AXE OF BASHIN'",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "Basha's Big Axe of Bashin' gives wielder +1 Strength and Attacks.",
+   "restriction": null
+  },
+  {
+   "name": "DA CHOPPIEST CHOPPA",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder +1 Strength and the Armour Piercing (3) special rule.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "KLEEVA'S CLEAVER OF CLEAVAGE",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "All hits with Kleeva's Cleaver of Cleavage Wound automatically. Armour saves are modified by the Strength of the bearer.",
+   "restriction": null
+  },
+  {
+   "name": "MARTOG'S BEST BASHA",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "Martog's Best Basha gives the wielder +1 Weapon Skill, +1 Strength and +1 Initiative.",
+   "restriction": null
+  },
+  {
+   "name": "THE RED FANG",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The Red Fang gives the wielder +1 Attack and +1 To Hit in close combat.",
+   "restriction": "Common Orcs"
+  },
+  {
+   "name": "SNEAKY SKEWERER",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The Sneaky Skewerer gives the wielder +1 To Hit and the Killing Blow special rule.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "DUFFFA'S CLUB OF DUFFIN'",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Duffa's Club of Duffin' gives the wielder +3 Attacks in the first round of close combat.",
+   "restriction": null
+  },
+  {
+   "name": "FUMPA'S CLUB OF FUMPIN'",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Fumpa's Club of Fumpin' gives the wielder +1 Strength and the Quell Animosity special rule.",
+   "restriction": null
+  },
+  {
+   "name": "HACKA'S SWORD OF HACKIN'",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Hacka's Sword of Hackin' makes the wielder always hit any opponent on roll of a 2+.",
+   "restriction": null
+  },
+  {
+   "name": "THE HUMIE HEWERS",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Whenever the wielder's To Hit roll on a D6 is higher than his target's Weapon Skill, the attack will not only hit regardless of the score normally needed to hit, but will also be multiplied into 2 Hits.",
+   "restriction": null
+  },
+  {
+   "name": "KRUMPA'S CLUB OF CRUMPIN'",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Krumpa's Club of Crumpin' gives the wielder the Ignores Armour Saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "PORKO'S PIGSTIKKA",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "On any turn that they charge, Porko's Pigstikka gives the wielder +1 Attack for each rank that the unit they are attacking has.",
+   "restriction": "Mounted Orcs"
+  },
+  {
+   "name": "ULAG'S AK'RIT AXE",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Ulag's Ak'rit Axe allows the wielder to re-roll any failed To Hit rolls.",
+   "restriction": null
+  },
+  {
+   "name": "BIGGER, CHOPPIER AXE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder the Killing Blow special rule.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "KURBOG'S CURMUDGEONLY CLOBBERA",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Any model Wounded (but not slain) by Kurbog's Curmudgeonly Clobbera may not attack this close combat phase. If they have already attacked this close combat phase, they may not attack in the next close combat phase.",
+   "restriction": null
+  },
+  {
+   "name": "SMASHA AND KUNNIN'",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "When targeting a Wizard in close combat, the wielder may re-roll failed rolls To Hit and gains the Multiple Wounds (D3) special rule. When targeting a Character that is not a Wizard in close combat, the wielder may re-roll failed rolls To Wound and gains the Killing Blow special rule.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "BACKSTABBER'S BLADE",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "The Backstabber's Blade gives the wielder the Poisoned Attacks special rule. In addition, they get +1 Strength if they attack the enemy to their flank, or +2 Strength if they attack the enemy in their rear.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "WEEPWOOD BIG SHIV",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "The Strength of this weapon is increased by 1 for the remainder of the game for each unsaved Wound it inflicts on a Monstrous Creature or Monster. Roll to Wound individually against these Troop Types.",
+   "restriction": "Savage Orc"
+  },
+  {
+   "name": "THE BLACK FANG",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "If the bearer rolls a natural 6 To Hit, that Attack automatically Wounds with the Multiple Wounds (D3) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "CLUB WIV A NAIL IN'",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder gains the Random Attacks (D6) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "GREATDRAKE TOOF",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "If the bearer rolls a natural 6 To Wound, that Attack has the Multiple Wounds (D6) special rule.",
+   "restriction": "Savage Orc"
+  },
+  {
+   "name": "LUCKY'S DIRK",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "Lucky's Dirk gives the wielder +1 Strength for each enemy Magic Item in base contact.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "METALRIPPA'S KLAW",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder gains the Armour Piercing (1) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "MOONHONED SHIV",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder gains +1 Attack. In addition, they gain the Feigned Flight ability from the Skirmishers special rule. Each time they use this ability, they gain +1 Attack for the duration of the battle.",
+   "restriction": "Night Goblin"
+  },
+  {
+   "name": "STABBY'S RUSTY STIKKA",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder will automatically Wound on a To Hit roll of a natural 6.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "SWORD OF BORK",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "Any unit joined by the bearer of the Sword of Bork that fails their Animosity test may roll 2D6 on the Animosity table and discard the lowest result.",
+   "restriction": null
+  },
+  {
+   "name": "WOLLOPA'S ONE HIT WUNDA",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "Wollopa's One Hit Wunda may be used at the start of any close combat phase when it is the wielder's turn to attack. The wielder may replace all their normal Attacks with a special attack that is resolved at +3 Strength with the Heroic Killing Blow special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BIG SPIRIT STIKK",
+   "points": "5",
+   "category": "magic_weapon",
+   "description": "The wielder of this item gains the Multiple Wounds (D3) special rule. Against Monstrous Creatures and Monsters, they gain the Multiple Wounds (D6) special rule.",
+   "restriction": "Savage Orc Wizards"
+  },
+  {
+   "name": "OWZAT'S CLUB OF SMACKIN'",
+   "points": "5",
+   "category": "magic_weapon",
+   "description": "An Infantry Character model which suffers an unsaved Wound (but is not slain) by Owzat's Club of Smackin' is immediately knocked clean out of combat and suffers a Strength 4 Hit. Move the model D6\" backwards (measure from the back of any unit it is in), stopping at least 1\" away from other units or impassable terrain.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF GORK",
+   "points": "70",
+   "category": "magic_armour",
+   "description": "The wearer has +D3 Toughness. Roll to determine the armour's effectiveness the first time the wearer is hit each turn, and use the result for the rest of the turn. In addition, the wearer has the Impact Hits (D6) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BULAK'S BLOODY ARMOUR",
+   "points": "45",
+   "category": "magic_armour",
+   "description": "This armour gives the wearer the Magical Ward (4+) special rule. However, if they roll a 1 for their Ward save, the number of Wounds suffered is doubled.",
+   "restriction": "Black Orcs"
+  },
+  {
+   "name": "ARMOUR OF MORK",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "The Armour of Mork gives the wearer and any unit they join the Magic Resistance (2) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF PROTECTYNESS",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "The Armour of Protectyness gives the wearer the Regeneration (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "IRONSKIN SHIELD",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "The Ironskin Shield gives the bearer the Magical Ward (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "TROLLHIDE TROUSERS",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "This armour gives the wearer the Natural Armour (6+) and Regeneration (5+) special rules.",
+   "restriction": "Common Orcs or Common Goblins"
+  },
+  {
+   "name": "UGBRAG'S LUCKY SHIELD",
+   "points": "20",
+   "category": "magic_armour",
+   "description": "Ugbrag's Lucky Shield enables the wearer to ignore the first Wounding Hit (after saves) suffered in the game.",
+   "restriction": null
+  },
+  {
+   "name": "NOBBLA'S 'ELMET",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "Nobbla's Helmet gives the wearer a 6+ armour save and the Magical Ward (6+) special rule.",
+   "restriction": "Common Goblins"
+  },
+  {
+   "name": "THE SPIKY SHOULDER PLATES",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "The bearer gains a 6+ armour save and the Impact Hits (1) special rule.",
+   "restriction": "Common Orcs on foot"
+  },
+  {
+   "name": "SPITEFUL SHIELD",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "For each To Hit roll of a 1 against the bearer in close combat, the Spiteful Shield inflicts a Strength 5 Hit against the model that struck the blow.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "HEADDRESS OF MANY EYES",
+   "points": "30",
+   "category": "talisman",
+   "description": "The wearer can only be hit in close combat on To Hit rolls of a natural 6.",
+   "restriction": "Forest Goblin on foot"
+  },
+  {
+   "name": "AMULET OF PROTECTYNESS",
+   "points": "25",
+   "category": "talisman",
+   "description": "Whenever the bearer of the Amulet of Protectyness suffers a Wound, they count as having the same armour and Ward save as the model that caused the Wound.",
+   "restriction": null
+  },
+  {
+   "name": "THE CLAMMY COWL",
+   "points": "25",
+   "category": "talisman",
+   "description": "All Close Combat attacks targeting the wearer of this item must re-roll successful rolls To Hit.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "LUCKY SHRUNKEN HEAD",
+   "points": "25",
+   "category": "talisman",
+   "description": "Any unit joined by the bearer of the Lucky Shrunken head may re-roll 1's when taking Magical Ward saves.",
+   "restriction": "Savage Orc Wizards"
+  },
+  {
+   "name": "MOONSTONE MEDALLION",
+   "points": "25",
+   "category": "talisman",
+   "description": "This item gives the bearer the Magical Ward (6+) special rule and may re-roll failed Magical Ward saves.",
+   "restriction": "Night Goblin"
+  },
+  {
+   "name": "SIZZLA'S SHINY BAUBLES",
+   "points": "25",
+   "category": "talisman",
+   "description": "Sizzla's Shiny Baubles can be used against any successfully cast enemy spell that targets the bearer or the unit they are with. Roll a D6; on 1-3 nothing happens; on a 4+ the spell is reflected back at the caster and their unit and affects them instead, following all the normal rules for the spell. The original caster may then attempt to dispel their own spell using any remaining power dice.",
+   "restriction": null
+  },
+  {
+   "name": "THE COLLAR OF ZORGA",
+   "points": "20",
+   "category": "talisman",
+   "description": "War Beasts, Monstrous Beasts, Monstrous Creatures, Monsters and all mounts require 6's to hit the bearer. In addition, the wearer can attempt to take control of any creatures in base contact mentioned above at the start of each round of Close Combat. Each player rolls a D6 for each beast and add the unmodified Leadership of the wearer of the Collar and each beast he is trying to control. If the Orc player scores equal or higher, he takes control of that beast who will now attack any friendly models in base contact for the remainder of the close combat phase (including Stomps, but not Impact Hits). If there are no friendly models for the beast to attack, it simply makes no attacks this round. If the Orc player scores lower, the beast may act normally this turn.",
+   "restriction": null
+  },
+  {
+   "name": "EFFIGY OF MORK",
+   "points": "20",
+   "category": "talisman",
+   "description": "All close combat attacks made against the bearer of the Effigy of Mork suffer -1 To Hit.",
+   "restriction": "Savage Orcs"
+  },
+  {
+   "name": "MORK'S EYE PEBBLE",
+   "points": "20",
+   "category": "talisman",
+   "description": "This item may be used at the start of any enemy shooting phase. If they do so, the bearer and all friendly units within 12\" gain the Magical Ward (5+) special rule against missile attacks for the duration of this phase.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "WARBOSS UMM'S BEST BIG BOSS'S 'AT",
+   "points": "20",
+   "category": "talisman",
+   "description": "Warboss Umm's Best Big Boss's 'At gives the wearer the Magical Ward (4+) special rule. However, if the wearer fails its Magical Ward save at any point, it will no longer have any effect from the start of the next player turn.",
+   "restriction": null
+  },
+  {
+   "name": "DAUBING OF MORK",
+   "points": "15",
+   "category": "talisman",
+   "description": "Enemy models must re-roll 6's To Wound against the bearer of this item.",
+   "restriction": "Orcs on foot"
+  },
+  {
+   "name": "NECKLACE OF BLESSED TEEF",
+   "points": "15",
+   "category": "talisman",
+   "description": "The bearer of the Necklace of Blessed Teef may re-roll any armour or Ward Save rolls of 1.",
+   "restriction": null
+  },
+  {
+   "name": "SPARKLY WIZARD FINDA",
+   "points": "15",
+   "category": "talisman",
+   "description": "The bearer of the Sparkly Wizard Finda has the Hatred (Wizards) and Magic Resistance (3) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "DOKK JUICE",
+   "points": "10",
+   "category": "talisman",
+   "description": "This item may be used at the start of any turn. Once used, the imbiber gains the Regeneration (4+) special rule for the remainder of the turn.",
+   "restriction": "Savage Orc Wizards"
+  },
+  {
+   "name": "GLOWIN' TATTOOZ",
+   "points": "10",
+   "category": "talisman",
+   "description": "The bearer of this item may re-roll failed Magical Ward save rolls.",
+   "restriction": "Savage Orc"
+  },
+  {
+   "name": "GLOWY GREEN AMULET",
+   "points": "10",
+   "category": "talisman",
+   "description": "Instead of making a normal dispel attempt, the wearer of the Glowy Green Amulet may attempt to nullify any enemy spell cast at the bearer or the unit they are with by a rolling a number of dice equal to the number of dice used to cast the spell. As long as no 1's are rolled, the spell is dispelled. However, if two or more 1's are rolled, the spell gets through automatically and the wearer is killed outright (with no saves allowed).",
+   "restriction": null
+  },
+  {
+   "name": "GLOWY HOWZIT",
+   "points": "10",
+   "category": "talisman",
+   "description": "This item gives the bearer the Magical Ward (5+) special rule. At the end of each phase in which the model suffered 1 or more Wounds, roll a D6 for each failed Ward save roll they made. On the roll a 1, the Glowy Howzit cannot be used for the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "STAFF OF SNEAKY STEALIN'",
+   "points": "60",
+   "category": "arcane_item",
+   "description": "At the start of each of your Magic phases, the Staff of Sneaky Stealin' allows you to remove one dice from the opponent's Dispel dice pool and add it to your own Power dice pool.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "SKULL WAND OF KALOTH",
+   "points": "50",
+   "category": "arcane_item",
+   "description": "The Skull Wand unleashes a curse on a single enemy model that is in base contact with the bearer at the start of the Close Combat phase. The victim must pass a Leadership test (using its own, unmodified, Leadership) or be slain instantly, with no save of any kind allowed. In addition, the bearer of the Skull Wand causes Terror.",
+   "restriction": null
+  },
+  {
+   "name": "GREAT GREEN VISIONS",
+   "points": "45",
+   "category": "arcane_item",
+   "description": "The bearer of this item may re-roll failed channelling rolls.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "SPEAKY-SKULL FETISH",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "Every time the bearer of this item rolls a 6 on their channelling roll, they gain an extra dice to the pool.",
+   "restriction": null
+  },
+  {
+   "name": "BEAST-LURE GLYPHS",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "The caster may cast one of their spells (with a casting value of 10 maximum) without using any power dice. The spell counts as having been cast on their minimum casting value and may be dispelled as normal.",
+   "restriction": "Savage Orcs"
+  },
+  {
+   "name": "IDOL OF MORK",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "At the start of your magic phase, the Idol of Mork adds one power dice to your power pool for every friendly Orc unit (any type) with 10 or more Unit Strength in combat within 24\" if the bearer. However, it removes one power dice from your power pool for every friendly fleeing Orc (any type) with 10 or more Unit Strength unit within 24\" of the bearer.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "SCUTTLEPOT",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains a +D3 casting bonus. Roll for each casting attempt.",
+   "restriction": "Forest Goblins"
+  },
+  {
+   "name": "DITTO'S DOUBLE DOIN' DOODAHS",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The bearer of Ditto's Double Doin' Doodahs may choose to attempt to cast one of their spells twice per Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "LOONSTONE TALISMAN",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "Night Goblin Wizard only. This item may be used at the start of any enemy Magic phase. Each time a Wizard with this item dispels an enemy spell this turn, they gain +1 Power Dice that they can use in their next Magic phase (up to a maximum of +3 dice).",
+   "restriction": null
+  },
+  {
+   "name": "BUZGOB'S KNOBBLY STAFF",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "Buzgob's Knobbly Staff allows the wielder to re- roll all power dice used to cast a spell once per Magic phase (before rolling any Ultimate Power dice). This cannot be used if a miscast is rolled.",
+   "restriction": null
+  },
+  {
+   "name": "MORK'S BONEY BITZ",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains +1 to cast for every Monster within 18\".",
+   "restriction": "Savage Orcs"
+  },
+  {
+   "name": "SHAMANIC SKULLCAPE",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains a +1 casting bonus. In addition, if they successfully kill an enemy Wizard in close combat or with a spell, you may choose one of the spells they knew at that time. The model may then cast that spell themselves for the remainder of the game.",
+   "restriction": "Common Orcs"
+  },
+  {
+   "name": "STAFF OF BADUUM",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains a +2 casting bonus to one of their spells, chosen at the start of the battle. However, in case a Miscast is rolled when casting that spell, add 1 to the result rolled on the Waaagh! Miscast chart.",
+   "restriction": null
+  },
+  {
+   "name": "WAAAGH! PAINT",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "If the wearer of the Waaagh! Paint is in close combat at the start of your Magic phase, they gain a +2 to casting bonus.",
+   "restriction": "Savage Orcs"
+  },
+  {
+   "name": "AMBERBONE HOARD",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains +1 Strength and +1 Attack.",
+   "restriction": "Orc Wizard"
+  },
+  {
+   "name": "DA HAG'S BREW",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "In addition to the Lores of Magic they may normally know spells from, the bearer of Da Hag's Brew knows the Signature spell from the Lore of Troll Magic.",
+   "restriction": null
+  },
+  {
+   "name": "DANGLY WOTNOTZ",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "When casting a spell, the bearer of the Dangly Wotnotz may use it to add +1 to the result of one of the dice rolled. This may cause Ultimate Power or prevent a Miscast.",
+   "restriction": null
+  },
+  {
+   "name": "DA GREAT ZAPPA SQUIG",
+   "points": "5",
+   "category": "arcane_item",
+   "description": "This item can be used at the start of any of your Magic phases. Roll a D6 and consult the table below:\nD6 | Result:\n1 | The bearer suffers a Strength 5 Hit.\n2-4 | The bearer gains +1 Power dice.\n5-6 | The bearer gains +D3 Power dice.",
+   "restriction": "Savage Orcs"
+  },
+  {
+   "name": "THE CROWN OF GORK",
+   "points": "40",
+   "category": "enchanted_item",
+   "description": "All friendly units within 12\" of the bearer may re-roll failed Animosity tests.",
+   "restriction": "Common Orc"
+  },
+  {
+   "name": "SQUIGRILER PIPES",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item may be used in your Remaining Moves sub-phase. When used, all Squig units within 18\" will immediately make a Random Move (using their normal Random Movement) directly towards the bearer of this item. If they get into base contact with the bearer, it is immediately removed as a casualty.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "BIGGED'S 'ED KICKIN' BOOTS",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The wearer of Bigged's 'Ed Kickin' Boots gains the Stomp (D3) special rule.",
+   "restriction": "Common Orcs and Black Orcs on foot"
+  },
+  {
+   "name": "IRONBACK BOAR",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "War Boar. The Ironback Boar has Strength 4 and the Impact Hits (D3) special rule.",
+   "restriction": "Common Orcs and Black Orcs"
+  },
+  {
+   "name": "MOONFACE MOMMET",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item can be used against an enemy character (even within a unit) within 12\" and Line of Sight during your Shooting phase. The target must take a Panic test. If passed, the model may not voluntarily move in their next turn.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "THE PIPES OF DOOM",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The Pipes of Doom can be used at the start of the Shooting Phase. All enemy War Beasts (including Mixed Units), Cavalry, Monstrous Beasts, Monstrous Cavalry, Chariots (except those that do not have any mounts pulling them) and Monsters within 12\" must take a Panic test.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "TRICKSY TRINKET",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "No units in base contact with the wearer of the Tricksy Trinket may take Magical Ward saves.",
+   "restriction": "Goblins (of any type)"
+  },
+  {
+   "name": "DA THINKIN' ORC'S 'AT",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The wearer of Da Thinkin' Orc's 'At gains +1 Initiative. In addition, the wearer and any unit they have joined is not subject to the Animosity special rule.",
+   "restriction": "Common Orc"
+  },
+  {
+   "name": "GLAREFACE'S GRIN",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "This item may be used the start of any of your shooting phases. Pick a point on the battlefield within 6\" of the bearer. All enemy units within 12\" and with Line of Sight to that point suffers D6 Strength 5 Hits.",
+   "restriction": "Common Goblins"
+  },
+  {
+   "name": "THE HORN OF URGOK",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The horn can be used at the start of any of your turns. When this horn is sounded, all friendly units within 24\" receive +1 Leadership and all enemy units within 24\" suffer a -1 penalty to their Leadership until the end of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "SAVAGE TROPHY",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "Army General only. The bearer of this item and any friendly units of Savage Orcs within 12\" gain +1 to their Leadership.",
+   "restriction": "Savage Orc"
+  },
+  {
+   "name": "EL GROBIS' MASK OF THE FEARSOME RENOWN",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer gains the Fear and Hidden special rules. In addition, it gains the Always Strikes First and Armour Piercing (1) special rules on the turn that it is revealed or charges into an enemy unit's flank or rear.",
+   "restriction": "Goblin Bosses"
+  },
+  {
+   "name": "GRISLY TROPHY RACK",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "All enemy units within 6\" of the bearer of the Grisly Trophy Rack suffer -1 modifier to their Leadership.",
+   "restriction": "Warboss or Big Boss"
+  },
+  {
+   "name": "MAD CAP MUSHROOMS",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "If the model bearing the Mad Cap Mushrooms is in a unit containing one or more Night Goblin Fanatics, each Fanatic from this unit inflicts an additional D6 Hits on any unit they move into base contact with this turn.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "NIBBLA'S 'ITTY RING",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "Nibbla's 'Itty Ring contains the Vindictive Glare spell from the Lore of the Little Waaagh! Roll a D6 each time it has successfully been cast; on the roll of a 1, the caster suffers a Strength 5 Hit.",
+   "restriction": null
+  },
+  {
+   "name": "SPIKER SEEDS",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "This item can be used if the bearer is charged and chooses to Hold or Stand & Shoot. All models in the enemy unit must take a Dangerous Terrain test before they begin their charge move (at the same time as any Stand & Shoot reaction is resolved).",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "WARBOSS IMBAD'S IRON GNASHAS",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The model wearing Imbad's Iron Gnashas gains +1 Attack with the Killing Blow special rule. This attack does not benefit from any other weapon rules the wearer might have.",
+   "restriction": "Common Orcs and Black Orcs"
+  },
+  {
+   "name": "BEASTKILLA SLOP",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any close combat phase. One enemy monster in base contact with the bearer of this item must take a number of Toughness tests equal to their starting number of Wounds. Each failed Toughness test causes D3 Wounds with no saves allowed. This has no effect against Daemons or Animated Constructs.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "BRIMSTONE BAUBLE",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "If the bearer of the Brimstone Bauble is slain in close combat (not including pursuit), all units (friends and foe) in base contact suffer D6 Strength 6 Hits, distributed as Hits from shooting. Any Wounds caused count towards combat resolution.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "EYE-BITER ASH",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any close combat phase. When used, roll a D6 and consult the table below:\nD6 | Result:\n1 | The bearer and their unit suffer -1 To Hit in close combat this phase.\n2 | No effect\n3-6 | All enemy units in base contact with the bearer suffer -1 To Hit in close combat this phase.",
+   "restriction": "Goblins"
+  },
+  {
+   "name": "GUZZLA'S BATTLE BREW",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "Roll a D6 for the bearer of Guzzla's Battle Brew at the start of the game and consult the table below to see what effect it has:\nD6 | Result:\n1 | The model gains the Stupidity special rule.\n2-4 | The model gains the Hatred special rule.\n5-6 | The model gains the Hatred and Frenzy special rule.",
+   "restriction": null
+  },
+  {
+   "name": "THE GOLDEN TOOF",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The bearer of this item and any unit that they join may roll an additional dice and discard the highest result when taking Break tests. This has no effect if the bearer is a Lone Character.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "MAAD'S MAP",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "Before deployment, roll a D6. On 4+, the bearer of Maad's Map and one unit they must join gains the Scouts special rule. On a 1-3, the unit has gotten lost and gains the Ambushers special rule instead.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "ROTTING DANKHOLD SPORES",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any round of Close Combat. All enemy units must pass D6 Toughness tests or suffer a Wound which Ignores Armour Saves for each failed test.",
+   "restriction": "Dankhold Trollboss"
+  },
+  {
+   "name": "'EADBUTTIN' 'AT",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The 'Eadbuttin' 'At gives the wearer a special attack in challenges. This attack causes a hit at the wearer Strength with the Multiple Wounds (D3) special rule. This attack does not benefit from any other weapon rules the wearer might have.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "LOONSTONE TEEFCAPS",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The close combat attacks of the bearer's mount have the Armour Piercing (2) special rule.",
+   "restriction": "Mounted Night Goblins"
+  },
+  {
+   "name": "PET GRIBBLY",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "Every time the bearer of this item suffers an unsaved Wound, roll a D6. On a 1, the Pet Gribbly is squished and removed from the game. When the Pet Gribbly is squished, the bearer gains the Hatred and Frenzy special rule for the remainder of the game.",
+   "restriction": "Dankhold Trollboss"
+  },
+  {
+   "name": "LUCKY BONE",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The bearer of this item may re-roll a single To Hit or To Wound roll of 1 each close combat phase.",
+   "restriction": "Savage Orc"
+  },
+  {
+   "name": "CRUNCHY SHINIES",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any of your Movement phases. For the duration of this turn, the bearer gains +2 Movement and +2 Initiative.",
+   "restriction": "Dankhold Trollboss"
+  },
+  {
+   "name": "FUNGUS WINE",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any of your turns. Until the start of your next turns, the model and any unit they are with have the Immunity (Psychology) special rule.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "WEB-STRUNG CLOAK",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "Enemy units in base contact with the bearer of this item roll one dice less for their flee moves.",
+   "restriction": "Forest Goblins"
+  },
+  {
+   "name": "MORK'S SPIRIT TOTEM",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Magic Resistance (D6) special rule. Roll to determine the effectiveness of the banner every time a spell is cast on the unit carrying it. For example, if a 5 is rolled, the unit with have Magic Resistance (5) against that spell. In addition, all magic items belonging to enemy units that are in base contact with the bearer of Mork's Spirit Totem do not work and will count as mundane versions of the same type.",
+   "restriction": null
+  },
+  {
+   "name": "THE BAD MOON BANNER",
+   "points": "40",
+   "category": "magic_standard",
+   "description": "The model carrying this standard and any unit they join gains the Stubborn special rule, and enemies suffer -1 To Hit with missile weapons against them. In addition, any enemy model that charges into base contact with the bearer or their unit must take a Dangerous Terrain test.",
+   "restriction": "Night Goblins"
+  },
+  {
+   "name": "ROWDY GROTT'S BIG RED RAGGEDY BANNER",
+   "points": "35",
+   "category": "magic_standard",
+   "description": "All Goblins within 12\" of this standard have the Cold-blooded special rule.",
+   "restriction": "Common Goblins"
+  },
+  {
+   "name": "DA ANGRY LADZ FLAG",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Frenzy special rule.",
+   "restriction": null
+  },
+  {
+   "name": "GORK'S WAAAGH! BANNER",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains D6\" to its charge distance. This does not affect the unit's maximum charge range for the purpose of determining mandatory charge declarations. If the charge is failed, the unit will move forward its normal failed charge distance.",
+   "restriction": "Orcs"
+  },
+  {
+   "name": "SPIDER BANNER",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gain the Poisoned Attacks special rule.",
+   "restriction": "Forest Goblins"
+  },
+  {
+   "name": "TOTEM OF THE SPIDER GOD",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Multiple Wounds (2) special rule (including mounts).",
+   "restriction": "Forest Goblins"
+  },
+  {
+   "name": "THE EVIL SUN BANNER",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard may re-roll any failed Animosity tests.",
+   "restriction": null
+  },
+  {
+   "name": "DA BANNER OF DA NOMADZ",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard may re-roll 1's for their charge, flee or pursuit rolls.",
+   "restriction": "Goblin Wolf Riders or Snarlfang Riders"
+  },
+  {
+   "name": "THE BASHIN' FLAG OF BORK",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard ignores their first failed Animosity roll of the game – it passes the test instead.",
+   "restriction": null
+  },
+  {
+   "name": "GUFF'S WINDY BANNER",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard may re-roll failed Panic tests.",
+   "restriction": null
+  },
+  {
+   "name": "NOGG'S BANNER OF BUTCHERY",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "This standard may be used at the start of any close combat phase. All models in the unit (except mounts) gain +1 Attack for the remainder of the close combat phase.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE WILDZ",
+   "points": "5",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard may re-roll failed Dangerous Terrain tests.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [
+  {
+   "name": "LORE OF DA BIG WAAAGH!",
+   "attribute": "A Wizard using this lore gains +1 to cast spells for each friendly Orc unit within 24\" that is in close combat and has a Unit Strength of 10 of more. Conversely, a Wizard using this lore suffers -1 to cast spells for each friendly Orc unit within 24\" that is fleeing and has a Unit Strength of 10 or more.",
+   "spells": [
+    {
+     "name": "WRATH OF GORK",
+     "level": 0,
+     "castValue": 5,
+     "description": "Wrath of Gork is a magic missile with a range of 24\" that inflicts D3+1 Strength 4 hits for every friendly unit of 10 or more Orc models within 6\" of the caster.",
+     "type": null
+    },
+    {
+     "name": "BASH 'EM LADZ",
+     "level": 1,
+     "castValue": 6,
+     "description": "Bash 'em Ladz is an augment spell with a range of 18\". The target unit may re-roll To Hit rolls in close combat until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "FISTS OF GORK",
+     "level": 1,
+     "castValue": 6,
+     "description": "Remains in play. Fists of Gork is an augment spell that is cast on the Wizard itself. While the spell is in effect, the Wizard gains +2 Strength and +3 Attacks.",
+     "type": null
+    },
+    {
+     "name": "'ARD AS NAILS",
+     "level": 1,
+     "castValue": 7,
+     "description": "'Ard as Nails is an augment spell with a range of 18\". All successful To Wound rolls against the target must be re-rolled until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "BIG GREEN CHOPPA",
+     "level": 2,
+     "castValue": 7,
+     "description": "Big Green Choppa is an augment spell with a range of 18\". The target unit gains +1 Strength until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "'ERE WE GO!",
+     "level": 2,
+     "castValue": 7,
+     "description": "'Ere We Go! is a conveyance aura spell with a range of 12\" that targets Orc units. The targets add +D6\" to their charge distance until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "GREEN PUKE",
+     "level": 2,
+     "castValue": 7,
+     "description": "Green Puke is a direct damage spell. The caster makes a Breath Weapon attack. This may be cast in close combat, following the normal rules for Breath Weapons. All models hit suffer a Strength 3 hit with the Armour Piercing (2) special rule.",
+     "type": null
+    },
+    {
+     "name": "GAZE OF MORK",
+     "level": 3,
+     "castValue": 8,
+     "description": "Gaze of Mork is a direct damage area spell that uses the line template. Place it 30\" in length, directly away from the caster's front arc. Any model whose base falls under the line suffers a Strength 5 hit.",
+     "type": null
+    },
+    {
+     "name": "'EADBUTT",
+     "level": 3,
+     "castValue": 9,
+     "description": "'Eadbutt is a direct damage spell with a range of 12\". Choose a single enemy model, even a character in a unit (\"Look Out, Sir!\" cannot be used). The target suffers a Strength 4 hit with the Ignores Armour Saves and Multiple Wounds (D3) special rules.",
+     "type": null
+    },
+    {
+     "name": "RAISE GREAT IDOL",
+     "level": 3,
+     "castValue": 10,
+     "description": "Raise Great Idol is summoning spell with a range of 18\". This spell summons an Idol of Gork (or possibly Mork). Units that start the turn within 6\" of the Idol can re-roll failed charge distance rolls. In addition, friendly units of Orcs within 6\" may reroll failed To Hit rolls.",
+     "type": null
+    },
+    {
+     "name": "WAAAGH!",
+     "level": 4,
+     "castValue": 13,
+     "description": "WAAAGH! is a conveyance spell that targets all Orc units within 12\". The target units will immediately make a move using the Random Movement (2D6) special rule towards the nearest enemy unit within each unit's Line of Sight. If no enemy units are within Line of Sight, they will move directly forward instead.",
+     "type": null
+    },
+    {
+     "name": "WALLOPIN' KRUNCH",
+     "level": 4,
+     "castValue": 14,
+     "description": "Wallopin' Krunch is a direct damage area spell with a range of 18\" that uses the small round template. All models hit by the template suffer a Strength 6 hit with the Multiple Wounds (D3) special rule. In addition, all units within 3\" of the template suffer D6 Strength 3 hits.",
+     "type": null
+    },
+    {
+     "name": "FOOT OF GORK",
+     "level": 4,
+     "castValue": 15,
+     "description": "Foot of Gork is a direct damage area spell with a range of 24\" that uses the small round template. All models hit by the template suffer a Strength 5 hit with the Multiple Wounds (D3) special rule. After resolving the effects of the spell, roll a D6 and consult the following table:\nD6 | Result\n1 | Your opponent places the template anywhere on the table and resolves the effect of the spell again. The spell then ends.\n2-3 | The spell ends without further effect.\n4-6 | Place the template and resolve the effect of the spell again. After resolving the effects of this stomp, roll again on this table.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "LORE OF DA SAVAGE WAAAGH!",
+   "attribute": "A Wizard using this lore gains +1 to cast spells for each friendly Orc unit within 24\" that is in close combat and has a Unit Strength of 10 of more. Conversely, a Wizard using this lore suffers -1 to cast spells for each friendly Orc unit within 24\" that is fleeing and has a Unit Strength of 10 or more.",
+   "spells": [
+    {
+     "name": "BRUTAL BEAST SPIRITS",
+     "level": 0,
+     "castValue": 6,
+     "description": "Brutal Beast Spirits is an augment spell with a range of 18\" that targets Orcs. The unit gains +1 To Hit in close combat and may re-roll their pursuit distance until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "KUNNIN' BEAST SPIRITS",
+     "level": 1,
+     "castValue": 5,
+     "description": "Kunnin' Beast Spirits is an augment spell with a range of 18\" that targets Orcs. Your opponent must re-roll all To Hit rolls of 6 that target the unit with missile attacks and in close combat until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "GLOWY GREEN TUSKS",
+     "level": 1,
+     "castValue": 6,
+     "description": "Glowy Green Tusks is an augment spell with a range of 18\" that targets Orcs and their mounts. The target gains the Frenzy and Magical Attacks special rules until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "BREATH OF MORK",
+     "level": 2,
+     "castValue": 7,
+     "description": "Breath of Mork is a conveyance spell with a range of 18\". The target immediately makes a normal Fly (10) move (not march) as if it was the Remaining Moves phase.",
+     "type": null
+    },
+    {
+     "name": "FALLIN' FISTS",
+     "level": 2,
+     "castValue": 7,
+     "description": "Fallin' Fists is a direct damage spell with a range of 24\". The target unit suffers 3D6 Attacks with Weapon Skill 3 and Strength 4, resolved as close combat attacks.",
+     "type": null
+    },
+    {
+     "name": "BONE KRUSHA",
+     "level": 3,
+     "castValue": 8,
+     "description": "Bone Krusha is a magic missile with a range of 24\". The closer the target is to the caster, the more powerful the attack will be: if the target is within 12\" of the caster, it suffers 2D6 Strength 5 Hits; if the target is between 12\" and 18\" away, it instead suffers D6 Strength 5 Hits; if the target is more than 18\" away, it only suffers D3 Strength 5 Hits.",
+     "type": null
+    },
+    {
+     "name": "SQUIGGLY CURSE",
+     "level": 3,
+     "castValue": 9,
+     "description": "Squiggly Curse is a direct damage spell with a range of 12\" and targets a single enemy model (even a character in a unit). Roll a D6; on a 1 it has no effect, on a 2 to 3 that model suffers one Wound, on a 4 to 5 it suffers D3 Wounds and on a 6 it suffers D6 Wounds. These Wounds have the Ignores Armour Saves special rule. Each time a model is slain by Squiggly Curse, you can add +2 to any further casting attempts made by the caster this Magic Phase.",
+     "type": null
+    },
+    {
+     "name": "GORK'S WAR CRY",
+     "level": 4,
+     "castValue": 11,
+     "description": "Gork's War Cry is a direct damage spell with a range of 18\". The target suffers D6 Strength 5 which Ignores Armour Saves. In addition, the target halves all their Movement and is subject to the Always Strikes Last special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "THE EVIL SUN",
+     "level": 4,
+     "castValue": 15,
+     "description": "Remains in play. The Evil Sun is a magical vortex that uses the small round template. Any model touched by the template at any point during its move suffers a Strength 5 hit. In addition, friendly units of Savage Orcs within 6\" of the Evil Sun template may re-roll To Hit rolls of 1.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "LORE OF DA LITTLE WAAAGH!",
+   "attribute": "When a Spell of da Little Waaagh! is successfully cast, and after its effects have been resolved, roll a D6. On a 6 you may take one dispel dice from the opponent's dispel pool and add it to your power pool. If there are no dice left in the opponent's dispel pool, then this lore attribute has no effect.",
+   "spells": [
+    {
+     "name": "VINDICTIVE GLARE",
+     "level": 0,
+     "castValue": 6,
+     "description": "Vindictive Glare is a magic missile with a range of 24\" and causes 2D6 Strength 3 hits.",
+     "type": null
+    },
+    {
+     "name": "OI! GERROFF!",
+     "level": 1,
+     "castValue": 5,
+     "description": "Oi! Gerroff! is a magic missile with a range of 18\". The target is 'pushed' 2D3\" directly away from the caster (it does not change facing). If the target comes into contact with impassable terrain or another unit it stops 1\" away and both units suffer D6 Strength 3 hits. Targets that cannot move are not pushed back at all, but still suffer D6 Strength 3 hits.",
+     "type": null
+    },
+    {
+     "name": "SNEAKY STABBIN'",
+     "level": 1,
+     "castValue": 5,
+     "description": "Sneaky Stabbin' is an augment spell with a range of 24\" that targets Goblins. The target unit's close combat attacks have the Armour Piercing (1) special rule until the start of the caster's next Magic phase. In addition, while the spell is in effect, they can re-roll all failed To Hit and To Wound rolls when attacking in close combat against an enemy's flank or rear.",
+     "type": null
+    },
+    {
+     "name": "BRAIN BURSTA",
+     "level": 1,
+     "castValue": 6,
+     "description": "Brain Bursta is a direct damage spell with a range of 18\" that targets a single enemy model (even a character in a unit). The target suffers a Strength 5 hit.",
+     "type": null
+    },
+    {
+     "name": "MORK SAVE UZ!",
+     "level": 2,
+     "castValue": 6,
+     "description": "Mork Save Uz! is an augment spell with a range of 24\" that targets Orcs or Goblins. The target unit gains the Magic Resistance (5) special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "GAZE OF GORK",
+     "level": 2,
+     "castValue": 8,
+     "description": "Gaze of Gork is a direct damage area spell that uses the line template. Place it 24\" in length, directly away from the caster's front arc. Any model whose base falls under the line suffers a Strength 3 hit with the Ignores Armour Saves special rule.",
+     "type": null
+    },
+    {
+     "name": "GORK'LL FIX IT",
+     "level": 2,
+     "castValue": 8,
+     "description": "Gork'll Fix It is a hex spell with a range of 24\". The target unit must re-roll any of its To Hit, To Wound and armour save rolls of 6 (in shooting and close combat) until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "THE HAND OF GORK",
+     "level": 3,
+     "castValue": 8,
+     "description": "The Hand of Gork is a conveyance spell with a range of 24\". The target is immediately picked up and may be moved to any point on the battlefield within 4D6\" of its original position, just like a summoning spell.",
+     "type": null
+    },
+    {
+     "name": "ITCHY NUISANCE",
+     "level": 3,
+     "castValue": 8,
+     "description": "Itchy Nuisance is a hex spell with a range of 24\". Roll a D6. The target unit immediately reduces its Movement and Initiative by this number (to a minimum of 1), until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SNEAKY DISTRACTION",
+     "level": 3,
+     "castValue": 8,
+     "description": "Sneaky Distraction is a hex aura with a range of 12\". The targets suffer -1 To Hit with missile attacks and in close combat until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "NIKKIT! NIKKIT!",
+     "level": 4,
+     "castValue": 11,
+     "description": "Nikkit! Nikkit! is a direct damage spell with a range of 12\" that targets a single enemy character (even a character in a unit). If the target has one or more magic items, randomly select one of them and roll a D6 – that item is stolen on a 3+. If the caster does not already have a magic item of this type they can now use it, otherwise it is destroyed. In addition, the target suffers D3 Strength 4 Hits which Ignores Armour Saves.",
+     "type": null
+    },
+    {
+     "name": "THE GREAT GREEN SPITE",
+     "level": 4,
+     "castValue": 12,
+     "description": "The Great Green Spite is a direct damage spell with a range of 24\". The target enemy unit suffers D6 Strength 4 hits with the Armour Piercing (1) special rule for every 10 points of Unit Strength the Wizard and any unit they are with have, up to a maximum of 4D6.",
+     "type": null
+    },
+    {
+     "name": "MORK WANTS YA!",
+     "level": 4,
+     "castValue": 13,
+     "description": "Mork Wants Ya! is a direct damage spell with a range of 12\" that targets a single enemy model (even a character in a unit). The target suffers D3 Strength 10 hits.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "LORE OF DA BAD MOON",
+   "attribute": "When a Spell of da Bad Moon is successfully cast, and after its effects have been resolved, roll a D6. On a 6 you may take one dispel dice from the opponent's dispel pool and add it to your power pool. If there are no dice left in the opponent's dispel pool, then this lore attribute has no effect.",
+   "spells": [
+    {
+     "name": "SPORE MAWS",
+     "level": 0,
+     "castValue": 5,
+     "description": "Remains in play. Spore Maws is an augment spell with a range of 18\". Each enemy unit in base contact with the target unit immediately suffers 3D6 Strength 3 hits at the end of each Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SQUIG LURE",
+     "level": 1,
+     "castValue": 5,
+     "description": "Squig Lure is a conveyance spell with a range of 24\" that targets Squigs. The target immediately makes a Random Move (2D6) straight forward.",
+     "type": null
+    },
+    {
+     "name": "MESMERISE",
+     "level": 1,
+     "castValue": 6,
+     "description": "Mesmerise is a magic missile with a range of 24\". The target cannot choose to charge, cast spells or shoot at the Wizard or any unit they are with until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "NIK MAGIC",
+     "level": 2,
+     "castValue": 6,
+     "description": "Nik Magic is a hex spell with a range of 24\" that targets a single Wizard, even if in a unit. Choose one spell the target knows and roll a D6; on 1-4 they cannot use that spell in their next Magic Phase, on a 5-6 they cannot attempt to cast this spell for the remainder of the game.",
+     "type": null
+    },
+    {
+     "name": "FACE OF DA BAD MOON",
+     "level": 2,
+     "castValue": 7,
+     "description": "Remains in play. Face of da Bad Moon is an augment spell that is cast on the Wizard itself. While the spell is in effect, the Wizard gains the Terror special rule and all enemy units with Line of Sight to it suffer -1 Leadership.",
+     "type": null
+    },
+    {
+     "name": "BAD MOON RIZIN'",
+     "level": 3,
+     "castValue": 8,
+     "description": "Bad Moon Rizin' is a hex spell with a range of 24\". The target unit is subject to the Always Strikes Last special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "CALL DA MOON",
+     "level": 3,
+     "castValue": 10,
+     "description": "Call da Moon is a direct damage area spell with a range of 36\" that uses the small round template; it scatters and inflicts damage like a Stone Thrower. If a misfire is rolled, centre the template over the caster instead.",
+     "type": null
+    },
+    {
+     "name": "NIGHT SHROUD",
+     "level": 4,
+     "castValue": 12,
+     "description": "Night Shroud is an augment aura spell with a range of 12\". All missile attacks targeted against friendly units within range suffer a -1 penalty To Hit until the start of the caster's next Magic phase. In addition, all models in any enemy unit that charges into base contact with the Wizard or the unit they are with while the spell is in effect must take a Dangerous Terrain test.",
+     "type": null
+    },
+    {
+     "name": "CURSE OF DA BAD MOON",
+     "level": 4,
+     "castValue": 15,
+     "description": "Remains in Play. Curse of da Bad Moon is a magical vortex that uses the small round template. Any model touched by the template at any point during its move must pass a Characteristic test or suffer a Wound which Ignores Armour Saves. The type of Characteristic test is determined by rolling on the following chart. Roll once each Magic phase, just before moving the template, and apply the result to all models affected by the curse in that Magic phase.\nD6 | Characteristic\n1-2 | Initiative\n3-4 | Strength\n5-6 | Toughness",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "LORE OF DA SPIDER GOD",
+   "attribute": "When a Spell of da Spider God is successfully cast, and after its effects have been resolved, roll a D6. On a 6 you may take one dispel dice from the opponent's dispel pool and add it to your power pool. If there are no dice left in the opponent's dispel pool, then this lore attribute has no effect.",
+   "spells": [
+    {
+     "name": "VENOMOUS SPIDERLINGS",
+     "level": 0,
+     "castValue": 5,
+     "description": "Venomous Spiderlings is a direct damage spell with a range of 24\". The target suffers 2D6 Strength 1 Hits with the Poisoned Attacks special rule.",
+     "type": null
+    },
+    {
+     "name": "CHITINOUS ARMOUR",
+     "level": 1,
+     "castValue": 5,
+     "description": "Chitinous Armour is an augment spell with a range of 18\". The target gains the Natural Armour (6+) special rule until the start of the caster's next magic phase. If the target is a Forest Goblin, they gain Natural Armour (5+) instead.",
+     "type": null
+    },
+    {
+     "name": "SPEED OF DA SPIDER GOD",
+     "level": 1,
+     "castValue": 6,
+     "description": "Speed of da Spider God is an augment spell with a range of 18\" that targets Goblins. The target gains the Always Strikes First and Wall-crawler special rules until the start of the caster's next Magic phase. If the target already has the Wall-crawler special rule, they gain +1 Movement instead.",
+     "type": null
+    },
+    {
+     "name": "DEADLY WEBBING",
+     "level": 2,
+     "castValue": 7,
+     "description": "Deadly Webbing is a hex spell with a range of 24\". The target treats all terrain as Dangerous Terrain for all Movement and cannot march until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SCUTTLING TERRORS",
+     "level": 3,
+     "castValue": 7,
+     "description": "Scuttling Terrors is a conveyance spell with a range of 18\" that targets Goblins. The target unit may immediately make a Move as if it were the Remaining Moves phase.",
+     "type": null
+    },
+    {
+     "name": "WEB OF FEAR",
+     "level": 3,
+     "castValue": 7,
+     "description": "Web of Fear is a hex aura spell with a range of 18\". Until the start of the caster's next Magic phase, the targets treats all Ararchnids as causing Fear, and must re-roll successful Terror tests from Arachnarok Spiders.",
+     "type": null
+    },
+    {
+     "name": "GIFT OF DA SPIDER GOD",
+     "level": 3,
+     "castValue": 10,
+     "description": "Gift of da Spider God is an augment spell with a range of 18\" that targets Goblins and their mounts. The target gains the Poisoned Attacks and Regeneration (6+) special rules until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "CURSE OF DA SPIDER GOD",
+     "level": 4,
+     "castValue": 11,
+     "description": "Curse of da Spider God is a hex spell with a range of 24\". The target must re-roll successful To Hit rolls (in shooting and close combat) and armour saves until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "SCUTTLETIDE",
+     "level": 4,
+     "castValue": 12,
+     "description": "Remains in Play. Scuttletide is a magical vortex that uses the large round template. Any model touched by the template at any point during its move suffers a Strength 2 Hit with the Poisoned Attacks special rule.",
+     "type": null
+    }
+   ]
+  },
+  {
+   "name": "LORE OF TROLL MAGIC",
+   "attribute": null,
+   "spells": [
+    {
+     "name": "BIG SMARTZ",
+     "level": 0,
+     "castValue": 5,
+     "description": "Remains in play. Big Smartz is an augment aura spell with a range of 12\". While the spell is in effect, all friendly units of Trolls within range may re-roll failed Stupidity tests.",
+     "type": null
+    },
+    {
+     "name": "TROLL BRAINZ",
+     "level": 1,
+     "castValue": 6,
+     "description": "Remains in play. Troll Brainz is a hex spell with a range of 24\". While the spell is in effect, the target unit gains the Stupidity special rule and suffers -1 to its Leadership.",
+     "type": null
+    },
+    {
+     "name": "FOETID WHIRLPOOL",
+     "level": 1,
+     "castValue": 7,
+     "description": "Remains in play. Foetid Whirlpool is a magical vortex that uses the small round template. Any model touched by the template at any point during its move must take a Dangerous Terrain test.",
+     "type": null
+    },
+    {
+     "name": "RAVENOUS RECOURSE",
+     "level": 2,
+     "castValue": 7,
+     "description": "Ravenous Recourse is an augment aura spell with a range of 12\". All friendly units of Trolls within range gain +2 to their Movement until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "RAPID REGENERATION",
+     "level": 2,
+     "castValue": 10,
+     "description": "Rapid Regeneration is an augment spell with a range of 18\". The target unit gains the Regeneration (5+) special rule until the start of the caster's next Magic phase. Models that already have Regeneration (4+) or better may instead re-roll failed Regeneration saves.",
+     "type": null
+    },
+    {
+     "name": "TORRENT OF FILTH",
+     "level": 3,
+     "castValue": 10,
+     "description": "Torrent of Filth is a direct damage spell. The caster makes a Breath Weapon attack. This may be cast in close combat, following the normal rules for Breath Weapons. All models Hit suffer a Strength 4 hit with the Ignores Armour Saves special rule.",
+     "type": null
+    },
+    {
+     "name": "ACIDIC BILE",
+     "level": 3,
+     "castValue": 11,
+     "description": "Acidic Bile is a direct damage area with a range of 18\" that uses the small round template. All models under the template suffer a Strength 4 hit with the Ignores Armour Saves special rule.",
+     "type": null
+    }
+   ]
+  }
+ ],
+ "factionUpgrades": {}
+}

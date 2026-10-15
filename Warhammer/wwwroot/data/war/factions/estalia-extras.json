@@ -1,0 +1,340 @@
+{
+ "factionName": "Estalia",
+ "armySpecialRules": [
+  {
+   "name": "COUNTERMARCH FIRE",
+   "description": "Models with this rule in the front rank of a unit ignore the Ponderous special rule (or treat Move and Fire as Ponderous instead) if they have another friendly model with the same special rule in base contact behind them."
+  },
+  {
+   "name": "TACTICAL SUPREMACY",
+   "description": "All models with this rule have the Disciplined special rule.\nIf the unit is charged during the Movement phase and chooses Hold as a charge reaction, it can attempt to change formation immediately before your opponent has moved any of their charging units, as long as it is not already engaged in close combat. To do so, the unit must take pass Leadership test – if successful, the unit can immediately make a swift reform as described in the Warhammer Rulebook."
+  },
+  {
+   "name": "TERCIO FORMATION",
+   "description": "A Tercio Formation consists of a mix of models armed with pikes/polearms, handguns/crossbows and bucklers. All models are treated as having the same equipment, though you should attempt to model the unit with appropriate equipment as much as possible.\nAll models in the front rank, both flanks and rear may fire in the Shooting phase, even if they have moved this turn. This means that models in the front arc can fire forward, models in the left flank fire to the left, models in the right flank fire to right and models in the rear rank fire to the rear. Each arc may choose to fire at different targets if they wish.\nAll models in the unit's front rank fight using hand weapons and bucklers. The remaining models fight using pikes/polearms. All attacks against the unit's front are resolved against the models armed with hand weapon and bucklers.\nIf the unit has not moved in the last turn it counts as having no flanks or rear for the purpose of Disruption and combat resolution. However, for every flank or rear arc they are engaged in, they suffer -1 to their rank bonus."
+  },
+  {
+   "name": "Support Fire",
+   "description": "Units of Crossbowmen, Arquebusiers and Musketeers within 3\" of a unit of Tercios may lend them support fire if the Tercio is charged by passing a Leadership test (which may be re-rolled with a Leader). This works out like a normal Stand and Shoot reaction, except that they do not suffer -1 To Hit for shooting at a charging enemy. In addition; if they choose to Flee as a charge reaction this does not cause Panic to friendly units."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "SPEAR OF RIGHTEOUSNESS",
+   "points": "55",
+   "category": "magic_weapon",
+   "description": "At the start of each round of close combat, roll a D3; the wielder adds this number to their Weapon Skill, Strength, Attacks and Initiative characteristics until the end of the turn.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "STAFF OF TOMAS THE PURE",
+   "points": "50",
+   "category": "magic_weapon",
+   "description": "The Staff of Tomas the Pure has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n24\" | 5 | Lightning Attacks, Multiple Shots (D3), Quick to Fire, Rapid Fire",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "WOLFSLAYER",
+   "points": "40",
+   "category": "magic_weapon",
+   "description": "All attacks made with Wolfslayer have the Heroic Killing Blow special rule. In addition, enemy models who are Hit by this sword must pass a Leadership test or suffer an additional automatic Wound. However, if the wielder of this sword flees for any reason, they suffer one Wound themself instead, with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "BASILISK BLADE",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "Hits from this weapon automatically Wound with the Armour Piercing (1) special rule. However, if the wielder rolls a natural 1 To Hit, they suffer a Wound with the Armour Piercing (1) special rule themselves.",
+   "restriction": null
+  },
+  {
+   "name": "FENCER'S BLADES",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "The wielder has Weapon Skill 10.",
+   "restriction": null
+  },
+  {
+   "name": "LANCE OF RECTITUDE",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon can re-roll all failed rolls To Hit in close combat.",
+   "restriction": null
+  },
+  {
+   "name": "SWORD OF THE VENDETTA",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "After deployment, but before the game starts, the wielder of the Sword of the Vendetta may choose one enemy character on the table. The wielder must always issue and accept challenges against this character if possible. The wielder of the sword Hits and Wounds the chosen enemy on a 2+ with the Ignores Armour saves special rule. If the target is killed by this weapon, the wielder suffers -D3 to their Strength and Toughness and the sword counts as a normal magical hand weapon for the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "FIGUERA'S RAPIER",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "All attacks made with this weapon gain +1 To Hit and the Armour Piercing (1) special rule. In addition, no Parry saves can be taken against it.",
+   "restriction": "Maestro"
+  },
+  {
+   "name": "MACE OF SACRIFICE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder gains +2 Strength. At the end of each close combat phase of which the wielder takes part, roll a D6; on a 6 the wielder suffers a wound which cannot be saved by any means.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "SWORD OF FORTITUDE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The character, and any unit they are with, gains the Immunity (Psychology) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SWORD OF TALABARO",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder of this sword gains +1 to their Leadership and Attacks characteristics. However, if the wielder ever fails a Leadership test, these bonuses are lost.",
+   "restriction": null
+  },
+  {
+   "name": "PISTOLS OF THE DUEL",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "These pistols use the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n6/12\" | 5 | Armour Piercing (1), Multiple Shots (4), Quick Shot",
+   "restriction": null
+  },
+  {
+   "name": "RELIC SWORD",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The wielder will always wound on a 3+, unless they would normally need a lower result.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF HONOUR",
+   "points": "45",
+   "category": "magic_armour",
+   "description": "The bearer of this shield gains the Parry (5+) special rule. In addition, all enemy units in base contact suffer -1 Weapon Skill.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "CUIRASS OF THE BLAZING SUN",
+   "points": "40",
+   "category": "magic_armour",
+   "description": "All attacks targeting the wearer of this suffer -1 to Wound. In addition, the wearer gains the Immunity (Flaming Attacks) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SCINTILLATING SHIELD",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "All attacks targeted at the bearer suffer -1 To Hit. For every armour or Parry save that the bearer saves in close combat, one enemy Character or Lone Model (chosen by the bearer) in base contact suffers -1 to their Weapon Skill until the end of the next combat phase. This effect is cumulative.",
+   "restriction": null
+  },
+  {
+   "name": "MORION OF THE EAGLE",
+   "points": "20",
+   "category": "magic_armour",
+   "description": "This helmet gives the wielder a 6+ armour. In addition, they gain the Always Strikes First and Devastating Charge special rules in any turn that they charge.",
+   "restriction": "Grand Commander or Captain"
+  },
+  {
+   "name": "SACRED ARMOUR OF PURITY",
+   "points": "20",
+   "category": "magic_armour",
+   "description": "This armour cannot be reduced below a 5+ save.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF THE WOLF RAMPANT",
+   "points": "20",
+   "category": "magic_armour",
+   "description": "The wielder has the Fear special rule. In addition, if the wielder rolls a natural 6 when making a Parry save, they inflict an extra Hit using their Strength characteristic back onto the model or unit that struck the blow.",
+   "restriction": null
+  },
+  {
+   "name": "AMULET OF DAWN",
+   "points": "45",
+   "category": "talisman",
+   "description": "The bearer gains a Magical Ward save equal to the game turn +1. So, in the first turn of the game, they have a Magical Ward (2+), in the second turn a Magical Ward (3+) and so on. On turn 6, the item has no effect.",
+   "restriction": null
+  },
+  {
+   "name": "CUSTODIA OF SANCTUARY",
+   "points": "35",
+   "category": "talisman",
+   "description": "This item may be used at the start of your turn as long as no enemy units are within 1\". Until the start of your next turn, enemy units cannot move within 1\" of the bearer or their unit – they are treated as impassable terrain. If the bearer or their unit moves within 1\" of an enemy unit, the effect is lost.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "AEGIS OF THE MAIDEN",
+   "points": "20",
+   "category": "talisman",
+   "description": "Whenever the wielder of this item is removed as a casualty, they are immediately brought back to life in the same location with 1 Wound remaining.",
+   "restriction": null
+  },
+  {
+   "name": "CAPE OF VELACRUZ",
+   "points": "20",
+   "category": "talisman",
+   "description": "War Beasts, Monstrous Infantry, Monstrous Beasts, Monstrous Creatures and Monsters must re-roll all successful rolls To Hit against the wearer of this cape. In addition, the wearer gains the Immunity (Impact Hits, Stomp) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "RAT CATCHER'S CHARM",
+   "points": "15",
+   "category": "talisman",
+   "description": "The bearer has the Immunity (Poisoned Attacks) and Regeneration (6+) special rules. In addition, the wearer causes Fear against Skaven.",
+   "restriction": null
+  },
+  {
+   "name": "LIVING DEADWOOD STAFF",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "This item contains a special type of aura spell with a range of 18\". Each wood within range may be moved up to 6\" in any direction, as long as they stop within 1\" of other terrain. In addition, any unit touched by a moving wood suffer D6 Strength 4 Hits.",
+   "restriction": null
+  },
+  {
+   "name": "STAFF OF ARCANE DRAINING",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "The bearer gains +1 bonus when channelling Dispel Dice. Additionally, for each natural 6 rolled when channelling Dispel Dice with the bearer, you may remove one Power Dice from the enemy’s Power Pool.",
+   "restriction": null
+  },
+  {
+   "name": "TEMPERANCE CRYSTAL",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The bearer of this item may re-roll one Power Dice when casting spells once per Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF THE SANCTIONED THAUMATURGE",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The Wizard may choose their spells from a combination of Lores of Magic available to them, but may only choose Level 1 spells.",
+   "restriction": null
+  },
+  {
+   "name": "THE GEM OF TARANTO",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The Gem of Taranto can be used whenever you successfully dispel an enemy spell (except Summoning Spells). The bearer of the Gem will be able to cast the spell themselves (limited by their Wizard level as normal) for the remainder of the game, even if it is from a lore not normally available to them.",
+   "restriction": null
+  },
+  {
+   "name": "CORONET OF THE CONQUEROR",
+   "points": "50",
+   "category": "enchanted_item",
+   "description": "This item gives the wearer the Inspiring Presence (6) special rule. In addition, all friendly units within 6\" of them gains +1 to their Combat Resolution.",
+   "restriction": "Grand Commander"
+  },
+  {
+   "name": "TOME OF WISDOM",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains a direct damage spell that may be cast while in combat. Place the small round template anywhere in base contact with the bearer. All models, covered by the template suffer a Strength 4 hit with the Magical Attacks special rule. Against models with the Daemonic, Undead and Vampiric special rules, as well as Wizards, the Strength is increased to 5.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "MONSTRANCE OF DIVINE PRONOUNCEMENT",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains a hex spell with a range of 24\". The target must immediately take a Panic test with a negative modifier equal to the difference of the Leadership between the caster and the target.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "BLESSED GRENADE OF AQUILIA",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "This item has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n6/9\" | 4 | Armour Piercing (1), Magical Attacks\nPlace the small round template with its centre anywhere within range. If the attacks hits, resolve the damage as normal. If the attack misses, the template scatters D6\".",
+   "restriction": null
+  },
+  {
+   "name": "SANCTIFIED RELIQUARY OF MYRMIDIA",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer and any unit they are with gain +1 Weapon Skill.",
+   "restriction": null
+  },
+  {
+   "name": "SCRIPTURE OF TRUE INSIGHT",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "This item allows you to reroll the dice when determining which side to deploy on and who takes the first turn.",
+   "restriction": null
+  },
+  {
+   "name": "AMPULLA OF MYRMIDIA'S WRATH",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any close combat the bearer is involved in by passing a Leadership test. If successful, the bearer's Attacks are doubled until the start of the next close combat phase.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "ROSARY OF THE MAIDEN",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "Every unsaved wound inflicted by the bearer's normal Attacks in Close Combat counts as two for the purposes of combat resolution.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "MISSAL OF MYRMIDIA'S WORD",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "All enemy units attempting to charge the bearer or their unit must pass a Psychology test. If they fail, they may not charge that turn.",
+   "restriction": "Priest of Myrmidia"
+  },
+  {
+   "name": "STANDARD OF MYRMIDIA",
+   "points": "45",
+   "category": "magic_standard",
+   "description": "Each time the unit carrying this standard destroys or breaks an enemy unit, all models in it gain one of the following bonuses for as long as the banner remains in the unit. Each bonus is cumulative.\nUnits: | Result:\n1 | +1 Weapon Skill\n2 | +1 Strength\n3 | +1 Attack",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF SUPERIOR FORM",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard may make a Swift Reform at the start of their Movement phase. The unit may then move as normal (including declaring charges). However, they have all their movement halved the rest of the Movement phase.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF SANTIAGO",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard automatically passes its first Break Test.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE BULL",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "All models in the unit carrying this standard gain the Impact Hits (1) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "COLOURS OF CONQUEST",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains +1 Combat Resolution for each subsequent round of close combat they remain in after the first. This bonus resets once leaving combat.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF PROWESS",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Fight in Extra Ranks (1) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF COURAGE",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard may re-roll failed Break tests.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [],
+ "factionUpgrades": {}
+}

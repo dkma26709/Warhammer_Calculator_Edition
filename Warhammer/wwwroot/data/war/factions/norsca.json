@@ -1,0 +1,2997 @@
+{
+ "factionName": "Norsca",
+ "units": [
+  {
+   "name": "Jarl",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Jarl",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 95
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Flail",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Throwing axes",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "War Wolf Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "War Mammoth",
+       "points": 325,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Jarl",
+     "raw": "A Jarl may take one Saga and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "sagas",
+     "raw": "A Jarl may take one Saga and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 95
+  },
+  {
+   "name": "Hersir",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Hersir",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 55
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Flail",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Throwing axes",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "War Wolf Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Hersir may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Hersir",
+     "raw": "A Hersir may take one Saga and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "sagas",
+     "raw": "A Hersir may take one Saga and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "Vitki",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Vitki",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Seer is a Level 1 Wizard. A Vitki is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "War Wolf Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Vitki",
+     "raw": "A Vitki may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Seer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Seer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Seer is a Level 1 Wizard. A Vitki is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "War Wolf Chariot",
+       "points": 70,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Seer",
+     "raw": "A Seer may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "SKALD",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Skald",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Throwing axes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Skald may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +12 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take one Saga and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "sagas",
+     "raw": "May take one Saga and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": "A Skald may never be the Army General.\nThe Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "BEASTMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Beastmaster",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 40
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Throwing axes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": "A Beastmaster may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "VALKYRIE",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Valkyrie",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 55
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spear",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a spear +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloak",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a fur cloak +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Blood Rage, Fly (10), Immunity (Psychology), Independent, Inspiring Presence (6)",
+   "upgrades": null,
+   "notes": "A Valkyrie may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "ULFJARL",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Ulfjarl",
+     "M": 7,
+     "WS": 6,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": 165
+    }
+   ],
+   "troopType": "Monstrous Infantry (Character, Werecreature)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Talismans up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Counter-charge, Frenzy, Hidden, Regeneration (5+)",
+   "upgrades": null,
+   "notes": "An Ulfjarl may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 165
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "BONDSMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Bondsman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take spears +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bondsman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bondsman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bondsman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "BOWMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Bowman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bowman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bowman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bowman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": "You may not take more units of Bowmen than you have units of Bondsmen and/or Marauders.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "MARAUDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Marauder",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "flails",
+       "points": 1,
+       "perModel": true,
+       "replaces": "shields"
+      },
+      {
+       "name": "great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing axes +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Marauder to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Marauder to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Marauder to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "REAVERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Reaver",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with additional hand weapons free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing axes +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Reaver to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Reaver to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Reaver to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ambushers, Blood Rage, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "WHALERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Whaler",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Whaler to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Whaler to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blood Rage, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HORSEMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Horseman",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 13
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "flails",
+       "points": 1,
+       "perModel": true,
+       "replaces": "shields"
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Horseman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Horseman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Horseman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blood Rage, Fast Cavalry",
+   "upgrades": null,
+   "notes": "You may not take more units of Horsemen than you have units of Bondsmen or Marauders.",
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Animal)",
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "THRALLS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Thrall",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 2
+    },
+    {
+     "name": "Slaver",
+     "M": 4,
+     "WS": 3,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Slings",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Slaver",
+     "points": 20,
+     "perModel": false,
+     "raw": "May include a Slaver +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable",
+   "upgrades": "Slaver: A Slaver follows the rules for Handlers from the Mixed Unit special rule.",
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "WAR WOLVES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "War Wolf",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 6
+    }
+   ],
+   "troopType": "War Beast (Canine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HUSCARLS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Huscarl",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take great weapons +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing axes +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Huscarl to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Huscarl to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Huscarl to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blood Rage, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "BERSERKERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Berserker",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield, fur cloak",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Great weapons",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Berserker to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Berserker to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Berserker to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Counter-charge, Devastating Charge, Frenzy",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "SHIELDMAIDENS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Shieldmaiden",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Shieldmaiden to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Shieldmaiden to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Shieldmaiden to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Blood Rage, Parry (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HUNTERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Hunter",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take additional hand weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fur cloaks +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hunter to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hunter to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blood Rage, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "WAR WOLF CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "War Wolf Chariot",
+     "M": 8,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 80
+    },
+    {
+     "name": "Marauder Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "War Wolf",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Light lance, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "javelins",
+     "choices": [
+      {
+       "name": "throwing axes",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May replace javelins with throwing axes free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fur cloaks",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take fur cloaks +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May be upgrade to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Marauder Crew (Human)",
+   "mount": null,
+   "drawnBy": "2 War Wolves (Canine)",
+   "pointsCost": 80
+  },
+  {
+   "name": "ULFWERENAR",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ulfwerenar",
+     "M": 7,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 7,
+     "points": 16
+    }
+   ],
+   "troopType": "Infantry (Werecreature)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ulfwerenar to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Counter-charge, Fear, Frenzy, Regeneration (5+), Swiftstride",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 16
+  },
+  {
+   "name": "SKIN WOLVES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Skin Wolf",
+     "M": 7,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 7,
+     "points": 38
+    }
+   ],
+   "troopType": "Monstrous Infantry (Werecreature)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skin Wolf to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Counter-charge, Frenzy, Regeneration (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 38
+  },
+  {
+   "name": "ICE WOLVES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ice Wolf",
+     "M": 9,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 6,
+     "points": 40
+    }
+   ],
+   "troopType": "Monstrous Beast (Canine)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ice Attacks, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "SNOW TROLLS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Snow Troll",
+     "M": 6,
+     "WS": 3,
+     "BS": 1,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 6,
+     "points": 47
+    }
+   ],
+   "troopType": "Monstrous Infantry (Troll)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Frenzy, Regeneration (4+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 47
+  },
+  {
+   "name": "WEREBEAST",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Werebeast",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 4,
+     "A": 4,
+     "Ld": 6,
+     "points": 150
+    }
+   ],
+   "troopType": "Monstrous Creature (Werecreature)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Scaly Hide",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Scaly Hide +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Steel-hard Claws",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Steel-hard Claws +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Knitting Flesh",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Knitting Flesh +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Snarling Fangs",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Snarling Fangs +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Frenzy, Hatred, Natural Armour (6+), Regeneration (5+), Unbreakable",
+   "upgrades": "Knitting Flesh: The Werebeast gains the Regeneration (4+) special rule.\nScaly Hide: The Werebeast gains the Natural Armour (6+) special rule.\nSnarling Fangs: The Werebeast gains the Multiple Wounds (D3) special rule.\nSteel-hard Claws: The Werebeast gains the Armour Piercing (1) special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "FROST GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Frost Giant",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x50, 50x75 or 100x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 10,
+       "perModel": true
+      },
+      {
+       "name": "Shield",
+       "points": 10,
+       "perModel": true
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 15,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 30,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ice Attacks, Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "CURSED ETTIN",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Cursed Ettin",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 2,
+     "A": 5,
+     "Ld": 7,
+     "points": 215
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x75 or 50x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Gibberer",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Gibberer +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Scaled Horror",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take Scaled Horror +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Man Scyther",
+       "choices": [
+        {
+         "name": "Man Scyther",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Man Scyther +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Rune Caller",
+       "choices": [
+        {
+         "name": "Rune Caller",
+         "points": 25,
+         "perModel": false
+        }
+       ],
+       "raw": "Rune Caller +25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Stubborn, Natural Armour (6+), Regeneration (5+)",
+   "upgrades": "Gibberer: All enemy units within 8\" of the Cursed Ettin suffer -1 to their Leadership. This has no effect on models with Immunity (Psychology).\nMan Scyther: The Cursed Ettin loses the Hammer Hand special rule but gains the Impact Hits (D6+1) special rule and +1 Attack.\nRune Caller: The Cursed Ettin loses the Hammer Hand special rule but becomes a Level 1 Wizard that uses spell from the Lore of Beasts, Shadows or Death. Should the Cursed Ettin miscast, their personality will automatically shift (with no Leadership test required).\nScaled Horror: The Cursed Ettin gains the Natural Armour (4+) special rule. In addition, whenever it suffers an unsaved Wound in close combat, the unit which inflicted the wound suffer D6 Strength 2 Hits with the Poisoned Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 215
+  },
+  {
+   "name": "ICE DRAKE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Ice Drake",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 4,
+     "A": 4,
+     "Ld": 7,
+     "points": 200
+    }
+   ],
+   "troopType": "Monster (Draconid)",
+   "baseSize": "50x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (8), Ice Attacks, Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 200
+  },
+  {
+   "name": "WAR MAMMOTH",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "War Mammoth",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 7,
+     "T": 6,
+     "W": 10,
+     "I": 1,
+     "A": "*",
+     "Ld": 5,
+     "points": 325
+    },
+    {
+     "name": "Marauder Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Elephantine)",
+   "baseSize": "100x150",
+   "equipment": "Hand weapon, javelins (Marauder Crew only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 30,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Immunity (Psychology), Impact Hits (D6+1), Large Target (10), Natural Armour (5+)",
+   "upgrades": null,
+   "notes": "A War Mammoth has a Line of Sight value of 10.",
+   "unitSize": null,
+   "crew": "5 Marauder Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 325
+  },
+  {
+   "name": "ERIK REDAXE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Erik Redaxe",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 5,
+     "Ld": 10,
+     "points": 265
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Shield, medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Saga of the Eternal Warrior (see Sagas), Saga of the Fearless Leader (see Sagas)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 265
+  },
+  {
+   "name": "KEORL THUNDERHAND",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Keorl Thunderhand",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 210
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Saga of the Beastslayer (see Sagas)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "FLOKI 'LOSTSON'",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Flóki 'Lostson'",
+     "M": 4,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 140
+    },
+    {
+     "name": "Cold One",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Light armour, shield",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Fear, Natural Armour (6+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Cold One (Saurian)",
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "DRENOK JOHANSEN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Drenok Johansen",
+     "M": 4,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 135
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Saga of the Relentless Warrior (see Sagas)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 135
+  },
+  {
+   "name": "SIGRUN THE PROUD",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sigrun the Proud",
+     "M": 4,
+     "WS": 6,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 175
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Saga of the Ever-Vigilant (see Sagas), Parry (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "NJAL TROELSON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Njal Troelson",
+     "M": 4,
+     "WS": 5,
+     "BS": 6,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 155
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, throwing axes",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Hatred (Empire), Saga of the Glorious Hunter (see Sagas), Scouts, Sniper",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 155
+  },
+  {
+   "name": "JORA AND BJORN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Jora",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 85
+    },
+    {
+     "name": "Bjorn",
+     "M": 6,
+     "WS": 6,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human – Jora), Monstrous Infantry (Special Character, Werecreature – Bjorn)",
+   "baseSize": "20x20 or 25x25 (Jora), 40x40 or 50x50 (Bjorn)",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Skirmishers, Regeneration (4+) (Bjorn only)",
+   "upgrades": null,
+   "notes": "Jora and Bjorn may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "STURMJARL",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sturmjarl",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 315
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Sturmjarl is a Level 4 Wizard who uses spells from the Lore of Heavens or Shadows.",
+   "options": null,
+   "specialRules": "Blood Rage",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 315
+  },
+  {
+   "name": "BRAGI STURLUSON",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Bragi Sturluson",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 130
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Blood Rage, Skald (see Skald)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "THE RAVENSWYRD",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ravenswyrd",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 10,
+     "points": 145
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Fur cloak",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ambushers, Blood Rage, Unbreakable",
+   "upgrades": null,
+   "notes": "The Ravenswyrd may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 145
+  },
+  {
+   "name": "FENRIR WOLFCLAW",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Fenrir Wolfclaw",
+     "M": 7,
+     "WS": 7,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 6,
+     "A": 5,
+     "Ld": 9,
+     "points": 235
+    }
+   ],
+   "troopType": "Monstrous Infantry (Special Character, Werecreature)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Counter-charge, Frenzy, Regeneration (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 235
+  },
+  {
+   "name": "STYRMIR RIMEFROST",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Styrmir Rimefrost",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 7,
+     "T": 6,
+     "W": 7,
+     "I": 3,
+     "A": 6,
+     "Ld": 10,
+     "points": 460
+    }
+   ],
+   "troopType": "Monster (Special Character, Giant)",
+   "baseSize": "50x50, 50x75 or 100x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Ice Breath, Immunity (Psychology), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 460
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+{
+  "source": "Warhammer Armies Revamped rulebook, Troop Types chapter",
+  "notes": [
+    "Hand-maintained. The Troop Types chapter is prose, not a ruled table, so the figures are read off the chapter text and kept here for the combat engine.",
+    "Read from the WAR rulebook: Infantry, Cavalry and War Beasts rank five wide with one supporting attack; Monstrous Infantry, Monstrous Cavalry, Monstrous Beasts, Swarms and Chariots rank three wide; Monstrous Infantry and Monstrous Beasts support three attacks, Swarms five; mounts make no supporting attacks; Cavalry without a split profile supports one, Monstrous Cavalry without one three; Chariots cannot support and take their Impact Hits from their own entry; no troop type grants Swiftstride.",
+    "large-infantry is not a WAR troop type. One entry in the corpus still names it, so the row is kept rather than letting a lookup throw."
+  ],
+  "types": {
+    "infantry": {
+      "minRankWidth": 5,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 1,
+      "impactHits": 0,
+      "unitStrength": 1,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "large-infantry": {
+      "minRankWidth": 4,
+      "supportingAttacks": 2,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 2,
+      "impactHits": 0,
+      "unitStrength": 1,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "monstrous-infantry": {
+      "minRankWidth": 3,
+      "supportingAttacks": 3,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 3,
+      "impactHits": 0,
+      "unitStrength": 2,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "cavalry": {
+      "minRankWidth": 5,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 1,
+      "impactHits": 0,
+      "unitStrength": 2,
+      "splitProfile": true,
+      "swiftstride": false
+    },
+    "monstrous-cavalry": {
+      "minRankWidth": 3,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 3,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": true,
+      "swiftstride": false
+    },
+    "war-beasts": {
+      "minRankWidth": 5,
+      "supportingAttacks": 1,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 1,
+      "impactHits": 0,
+      "unitStrength": 1,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "monstrous-beasts": {
+      "minRankWidth": 3,
+      "supportingAttacks": 3,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 3,
+      "impactHits": 0,
+      "unitStrength": 2,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "swarms": {
+      "minRankWidth": 3,
+      "supportingAttacks": 5,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 5,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "monster": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "chariot": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "war-machine": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    },
+    "shrine": {
+      "minRankWidth": 1,
+      "supportingAttacks": 0,
+      "mountSupportingAttacks": 0,
+      "nonSplitSupportingAttacks": 0,
+      "impactHits": 0,
+      "unitStrength": 3,
+      "splitProfile": false,
+      "swiftstride": false
+    }
+  }
+}

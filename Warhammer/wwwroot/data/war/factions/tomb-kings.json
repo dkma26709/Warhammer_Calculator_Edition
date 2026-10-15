@@ -1,0 +1,2776 @@
+{
+ "factionName": "Tomb Kings",
+ "units": [
+  {
+   "name": "Tomb King",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Tomb King",
+     "M": 4,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 3,
+     "A": 4,
+     "Ld": 10,
+     "points": 155
+    }
+   ],
+   "troopType": "Infantry (Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Flail",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Necroserpent",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Skeleton Chariot",
+       "points": 45,
+       "perModel": false
+      },
+      {
+       "name": "Khemrian Warsphinx",
+       "points": 225,
+       "perModel": false
+      },
+      {
+       "name": "Necrolith Bone Dragon",
+       "points": 235,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Tomb King",
+     "raw": "A Tomb King may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Curse of the Necropolis, Flammable, Indomitable, My Will Be Done, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 155
+  },
+  {
+   "name": "Tomb Prince",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Tomb Prince",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 9,
+     "points": 105
+    }
+   ],
+   "troopType": "Infantry (Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Flail",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Necroserpent",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Skeleton Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Tomb Prince",
+     "raw": "A Tomb Prince may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Curse of the Necropolis, Flammable, Indomitable, My Will Be Done, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 105
+  },
+  {
+   "name": "Liche High Priest",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Liche High Priest",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Liche High Priest is a Level 3 Wizard who chooses spells from one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Tomb Barque",
+       "points": 120,
+       "perModel": false
+      },
+      {
+       "name": "Casket of Souls",
+       "points": 130,
+       "perModel": false
+      },
+      {
+       "name": "Necrolith Bone Dragon",
+       "points": 235,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Liche High Priest",
+     "raw": "A Liche High Priest may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Indomitable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Liche Priest",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Liche Priest",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Liche High Priest is a Level 3 Wizard who chooses spells from one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Liche Priest",
+     "raw": "A Liche Priest may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Indomitable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "TOMB HERALDS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Tomb Herald",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Infantry (Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 0,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Flail",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Necroserpent",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Skeleton Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Tomb Herald may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Flammable, Indomitable, Killing Blow, Magical Attacks, Undead",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "NECROTECTS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Necrotect",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Flammable, Hatred, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "SKELETAL STEED",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Skeletal Steed",
+     "M": 8,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Undead)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "SKELETON CHARIOT",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Skeleton Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take scythes +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": "2 Skeletal Steeds (Undead)",
+   "pointsCost": null
+  },
+  {
+   "name": "NECROSERPENT",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Necroserpent",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Undead)",
+   "baseSize": "50x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Natural Armour (5+), Poisoned Attacks, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "NECROLITH BONE DRAGON",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Necrolith Bone Dragon",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 2,
+     "A": 5,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Undead, Draconid)",
+   "baseSize": "100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (7), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "SKELETON WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Warrior",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0,
+       "perModel": false
+      }
+     ],
+     "raw": "May take spears free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "SKELETON ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Archer",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "SKELETON SKIRMISHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Skirmisher",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "javelins",
+     "choices": [
+      {
+       "name": "slings",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May replace javelins with slings free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Skirmisher to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Skirmisher to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Skirmishers, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "SKELETON HORSEMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Horseman",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": 9
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": 8,
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Undead)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "shortbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Horseman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Horseman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Horseman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Fast Cavalry, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Skeletal Steed (Undead)",
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "SKELETON CHARIOTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skeleton Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 50
+    },
+    {
+     "name": "Skeleton Charioteer",
+     "M": "-",
+     "WS": 3,
+     "BS": 2,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Light lance, shortbow, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take scythes +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Chariot to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Chariot to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Chariot to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": "2 Skeleton Charioteers (Undead)",
+   "mount": null,
+   "drawnBy": "2 Skeletal Steeds (Undead)",
+   "pointsCost": 50
+  },
+  {
+   "name": "TOMB SWARMS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Tomb Swarm",
+     "M": 4,
+     "WS": 3,
+     "BS": 0,
+     "S": 1,
+     "T": 1,
+     "W": 8,
+     "I": 1,
+     "A": 8,
+     "Ld": 2,
+     "points": 40
+    }
+   ],
+   "troopType": "Swarm (Undead)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Entombed Beneath the Sands, Poisoned Attacks, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "TOMB GUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Tomb Guard",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take polearms +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Tomb Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Tomb Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Tomb Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "TOMB GUARD CHARIOTS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Skeleton Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 60
+    },
+    {
+     "name": "Tomb Guard Charioteer",
+     "M": "-",
+     "WS": 3,
+     "BS": 2,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 2,
+       "perModel": false
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take scythes +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Chariot to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skeleton Chariot to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Skeleton Chariot to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": "2 Tomb Guard Charioteer (Undead)",
+   "mount": null,
+   "drawnBy": "2 Skeletal Steeds (Undead)",
+   "pointsCost": 60
+  },
+  {
+   "name": "MUMMIES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Mummy",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 17
+    }
+   ],
+   "troopType": "Infantry (Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Curse of the Necropolis, Flammable, Indomitable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "USHABTI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ushabti",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 42
+    }
+   ],
+   "troopType": "Monstrous Infantry (Undead)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Two hand weapons, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "one hand weapon",
+     "choices": [
+      {
+       "name": "Greatbows",
+       "points": 3,
+       "perModel": true,
+       "replaces": "one hand weapon"
+      },
+      {
+       "name": "Polearms",
+       "points": 3,
+       "perModel": true,
+       "replaces": "one hand weapon"
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true,
+       "replaces": "one hand weapon"
+      }
+     ],
+     "raw": "May replace one hand weapon with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Aspect of Asaph",
+       "choices": [
+        {
+         "name": "Aspect of Asaph",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Aspect of Asaph +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Aspect of Djaf",
+       "choices": [
+        {
+         "name": "Aspect of Djaf",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Aspect of Djaf +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Aspect of Geheb",
+       "choices": [
+        {
+         "name": "Aspect of Geheb",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Aspect of Geheb +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Aspect of Phakth",
+       "choices": [
+        {
+         "name": "Aspect of Phakth",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Aspect of Phakth +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Aspect of Sobk",
+       "choices": [
+        {
+         "name": "Aspect of Sobk",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Aspect of Sobk +3 points/model"
+      }
+     ]
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ushabti to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Undead",
+   "upgrades": "Aspect of Asaph: The unit gains the Magic Resistance (2) special rule.\nAspect of Djaf: The unit gains the Killing Blow special rule.\nAspect of Geheb: The unit gains the Mighty Blow (1) special rule.\nAspect of Phakth: The unit gains +1 Movement.\nAspect of Sobk: The unit may re-roll To Hit rolls of 1 with shooting and close combat attacks.",
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 42
+  },
+  {
+   "name": "CARRION",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Carrion",
+     "M": 2,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 4,
+     "points": 20
+    }
+   ],
+   "troopType": "War Beast (Undead)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (9), Scouts, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 20
+  },
+  {
+   "name": "SEPULCHRAL STALKERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sepulchral Stalker",
+     "M": 7,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 48
+    }
+   ],
+   "troopType": "Monstrous Beast (Undead)",
+   "baseSize": "50x100",
+   "equipment": "Polearm, medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Entombed Beneath the Sands, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 48
+  },
+  {
+   "name": "TOMB SCORPION",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Tomb Scorpion",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": 100
+    }
+   ],
+   "troopType": "Monstrous Creature (Undead)",
+   "baseSize": "50x50 or 75x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Entombed Beneath the Sands, Indomitable, Killing Blow, Magic Resistance (1), Natural Armour (5+), Poisoned Attacks, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "BASTETHI",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bastethi",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": 20
+    }
+   ],
+   "troopType": "War Beast (Undead)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": "A unit of Bastethi is a Level 1 Wizard that can use spells from the Lore of Nehekhara.",
+   "options": null,
+   "specialRules": "Always Strikes First, Flammable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 20
+  },
+  {
+   "name": "AMMUT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ammut",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 8,
+     "points": 52
+    }
+   ],
+   "troopType": "Monstrous Beast (Undead)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Indomitable, Killing Blow, Magical Attacks, Natural Armour (6+), Scouts, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 52
+  },
+  {
+   "name": "BONE THROWER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bone Thrower",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 35
+    },
+    {
+     "name": "Skeleton Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Bone Thrower), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Skeleton Crew (Undead)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "SCREAMING SKULL CATAPULT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Screaming Skull Catapult",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 100
+    },
+    {
+     "name": "Skeleton Crew",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "60x100 (Screaming Skull Catapult), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, stone thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Skeleton Crew (Undead)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  },
+  {
+   "name": "NECROPOLIS KNIGHTS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Necropolis Knight",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": 50
+    },
+    {
+     "name": "Necroserpent",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Undead)",
+   "baseSize": "50x100",
+   "equipment": "Light lance, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Necropolis Knight to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Necropolis Knight to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Necropolis Knight to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Killing Blow, Magical Attacks, Natural Armour (5+), Poisoned Attacks (Necroserpent only), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Necroserpent (Undead)",
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "TOMB BARQUE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Tomb Barque",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 125
+    },
+    {
+     "name": "Skeleton Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Light lance, shortbow, light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Arrows of Asaph, Fly (5), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "5 Skeleton Crew (Undead)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "CASKET OF SOULS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Casket of Souls",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 10,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 125
+    },
+    {
+     "name": "Keeper of the Casket",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    },
+    {
+     "name": "Casket Guard",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Casket of Souls)",
+   "equipment": "Hand weapon, great weapon (Casket Guard only), light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Killing Blow (Casket Guard only), Magical Attacks (Casket Guard only), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Keeper of the Casket & 2 Casket Guard (Undead)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "KHEMRIAN WARSPHINX",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Khemrian Warsphinx",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 4,
+     "Ld": 8,
+     "points": 225
+    },
+    {
+     "name": "Tomb Guard Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Undead)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Light lance (Tomb Guard Crew only), medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Envenomed Sting",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Envenomed Sting +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Fiery Roar",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Fiery Roar +30 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Indomitable, Killing Blow (Tomb Guard Crew only), Magical Attacks (Tomb Guard Crew only), Undead",
+   "upgrades": "Envenomed Sting: All normal Attacks made by a Khemrian Warsphinx with this upgrade have the Poisoned Attacks special rule.\nFiery Roar: A Khemrian Warsphinx with this upgrade has a Strength 4 Breath Weapon with the Flaming Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "4 Tomb Guard Crew (Undead)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 225
+  },
+  {
+   "name": "NECROSPHINX",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Necrosphinx",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 4,
+     "Ld": 8,
+     "points": 250
+    }
+   ],
+   "troopType": "Monster (Undead)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Two hand weapons, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Envenomed Sting",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Envenomed Sting +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (7), Heroic Killing Blow, Indomitable, Undead",
+   "upgrades": "Envenomed Sting: All normal Attacks made by a Necrosphinx with this upgrade have the Poisoned Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "NECROLITH COLOSSUS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Necrolith Colossus",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 8,
+     "points": 210
+    }
+   ],
+   "troopType": "Monster (Undead)",
+   "baseSize": "50x50",
+   "equipment": "Two hand weapons, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "one hand weapon",
+     "choices": [
+      {
+       "name": "Shield",
+       "points": 0,
+       "perModel": false,
+       "replaces": "one hand weapon"
+      },
+      {
+       "name": "Great weapon",
+       "points": 0,
+       "perModel": false,
+       "replaces": "one hand weapon"
+      },
+      {
+       "name": "Bolt thrower",
+       "points": 0,
+       "perModel": false,
+       "replaces": "one hand weapon"
+      }
+     ],
+     "raw": "May replace one hand weapon with one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Indomitable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "HIEROTITAN",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Hierotitan",
+     "M": 6,
+     "WS": 3,
+     "BS": 2,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 3,
+     "Ld": 8,
+     "points": 205
+    }
+   ],
+   "troopType": "Monster (Undead)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Indomitable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 205
+  },
+  {
+   "name": "KHEMRIC TITAN",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Khemric Titan",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 6,
+     "T": 8,
+     "W": 10,
+     "I": 1,
+     "A": "*",
+     "Ld": 8,
+     "points": 320
+    }
+   ],
+   "troopType": "Monster (Undead)",
+   "baseSize": "100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (7), Impact Hits (D6), Indomitable, Natural Armour (5+), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 320
+  },
+  {
+   "name": "SETTRA THE IMPERISHABLE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Settra the Imperishable",
+     "M": 4,
+     "WS": 7,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": 535
+    },
+    {
+     "name": "Chariot of the Gods",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Skeletal Steed",
+     "M": "-",
+     "WS": 2,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Special Character, Undead, Tomb King)",
+   "baseSize": "100x100",
+   "equipment": "Scythes",
+   "magic": "Settra the Imperishable is a Level 2 Wizard who chooses spells from Lore of Nehekhara.",
+   "options": null,
+   "specialRules": "Flammable, Indomitable, Inspiring Presence (6), My Will Be Done, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": "4 Skeletal Steeds (Undead)",
+   "pointsCost": 535
+  },
+  {
+   "name": "HIGH QUEEN KHALIDA NEFERHER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "High Queen Khalida",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 9,
+     "A": 5,
+     "Ld": 10,
+     "points": 300
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead, Tomb King)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Necroserpent",
+       "points": 40,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Necroserpent +40 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Always Strikes First, Curse of the Necropolis, Flammable, Hatred (Vampire Counts), Indomitable, My Will be Done, Poisoned Attacks, Regeneration (4+), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "PRINCE TUTANKHANUT",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Tutankhanut",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 9,
+     "points": 115
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead, Tomb Prince)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeleton Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Skeleton Chariot +45 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Arrows of Asaph, Curse of the Necropolis, Flammable, Indomitable, My Will Be Done, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 115
+  },
+  {
+   "name": "PRINCE APOPHAS",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Prince Apophas",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 3,
+     "W": 4,
+     "I": 1,
+     "A": 5,
+     "Ld": 8,
+     "points": 130
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Entombed Beneath the Sands, Fly (10), Independent, Indomitable, Regeneration (4+), Strider, Terror, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "GRAND HIEROPHANT KHATEP",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Khatep",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 3,
+     "A": 2,
+     "Ld": 9,
+     "points": 330
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Khatep is a Level 4 Wizard who uses the Lore of Nehekhara.",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Tomb Barque",
+       "points": 120,
+       "perModel": false
+      },
+      {
+       "name": "Casket of Souls",
+       "points": 145,
+       "perModel": false
+      },
+      {
+       "name": "Necrolith Bone Dragon",
+       "points": 235,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Indomitable, Loremaster (Lore of Nehekhara), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 330
+  },
+  {
+   "name": "ARKHAN THE BLACK",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Arkhan the Black",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 9,
+     "points": 340
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead, Tomb King)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": "Arkhan the Black is a Level 4 Wizard who uses the following Lores of Magic:",
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Chariot of the Liche King",
+       "points": 85,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Chariot of the Liche King +85 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Curse of the Necropolis, Flammable, Indomitable, Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 340
+  },
+  {
+   "name": "THE HERALD NEKAPH",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "The Herald Nekaph",
+     "M": 4,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 8,
+     "points": 110
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Skeletal Steed",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Necroserpent",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Skeleton Chariot",
+       "points": 45,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Flammable, Indomitable, Killing Blow, Magical Attacks, Sworn Bodyguard (see Tomb Herald), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 110
+  },
+  {
+   "name": "SEHENESMET",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Sehenesmet",
+     "M": 6,
+     "WS": 3,
+     "BS": 2,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": 425
+    }
+   ],
+   "troopType": "Monster (Special Character, Undead)",
+   "baseSize": "50x50",
+   "equipment": "Hand weapon",
+   "magic": "Sehenesmet is a Level 2 Wizard who uses the Lore of Nehekhara.",
+   "options": null,
+   "specialRules": "Hatred, Indomitable, Magic Resistance (2), Undead",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 425
+  },
+  {
+   "name": "RAMHOTEP THE VISIONARY",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ramhotep the Visionary",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 100
+    }
+   ],
+   "troopType": "Infantry (Special Character, Undead)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Flammable, Frenzy, Hatred, Stone Shaper (see Necrotect), Undead, Wrath of the Creator (see Necrotect)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 100
+  }
+ ]
+}
