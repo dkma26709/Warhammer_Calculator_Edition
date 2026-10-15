@@ -545,6 +545,53 @@ public class ArmyRosterBuilderTests
         Assert.Contains("Command: Leader, Musician, Standard Bearer", Only(MakeBuilder().Build(list)).Notes);
     }
 
+    /// <summary>
+    /// The Leader's swapped weapon is his alone: it is noted beside him, while the unit's
+    /// equipment still lists the handgun the rest of it carries.
+    /// </summary>
+    [Fact]
+    public void A_CommandModelsUpgradeIsNotedBesideItAndLeavesTheUnitsGear()
+    {
+        var options = new List<UnitOption>
+        {
+            new()
+            {
+                Type = "command",
+                Role = "Leader",
+                Points = 5,
+                SubOptions =
+                [
+                    new UnitOption
+                    {
+                        Type = "equipment",
+                        Action = "replace",
+                        Replaces = "handgun",
+                        Choices =
+                        [
+                            new OptionChoice { Name = ["brace of pistols"], Points = 0 },
+                            new OptionChoice { Name = ["repeater handgun"], Points = 5 },
+                            new OptionChoice { Name = ["hochland long rifle"], Points = 10 },
+                        ],
+                    },
+                ],
+            },
+            new() { Type = "command", Role = "Musician", Points = 5 },
+        };
+        var unit = TestHelpers.MakeUnit(name: "Handgunners", equipment: "Hand weapon, handgun", options: options)
+            with { Category = UnitCategory.Core };
+
+        var entry = Only(MakeBuilder().Build(MakeList(Configure(unit, c =>
+        {
+            c.HasChampion = true;
+            c.HasMusician = true;
+            c.SelectCommandUpgrade(0, 0, 2);
+        }))));
+
+        Assert.Contains("Command: Leader (Hochland long rifle), Musician", entry.Notes);
+        Assert.Contains("Handgun", entry.Equipment);
+        Assert.DoesNotContain("Hochland long rifle", entry.Equipment);
+    }
+
     [Fact]
     public void Wizard_LevelLoreAndSpellsAreNoted()
     {
