@@ -35,7 +35,7 @@ public static class TestHelpers
     /// <summary>
     /// A fully-loaded repository for a specific game system, cached across tests. Use this in
     /// preference to hand-rolling the service stack — the wiring order matters, and a
-    /// <see cref="GameSystemService"/> left uninitialised silently serves wap-v2 data.
+    /// <see cref="GameSystemService"/> left uninitialised silently serves war data.
     /// </summary>
     public static GameDataRepository RepoFor(string systemKey)
     {
@@ -74,7 +74,10 @@ public static class TestHelpers
 
     public static CoreRulesService CreateCoreRules()
     {
-        var service = new CoreRulesService(null!, new GameSystemService());
+        // CoreData is the wap-v2 core rules, so the service is pinned to wap-v2 to match.
+        var system = new GameSystemService();
+        system.Initialize(GameSystems.WapV2);
+        var service = new CoreRulesService(null!, system);
         service.Initialize(CoreData);
         return service;
     }
@@ -83,7 +86,7 @@ public static class TestHelpers
     /// Create a fully-loaded GameDataRepository backed by the on-disk wwwroot data.
     /// Weapons, armour, troop type figures and the system manifest are all resolved.
     /// </summary>
-    public static GameDataRepository CreateRepository(string systemKey = GameSystems.Default)
+    public static GameDataRepository CreateRepository(string systemKey = GameSystems.WapV2)
     {
         var wwwroot = Path.Combine(FindProjectRoot(), "wwwroot");
         var handler = new FileBasedHttpHandler(wwwroot);
@@ -113,7 +116,7 @@ public static class TestHelpers
         string? baseSize = "25x25",
         ProfileEntry? mountProfile = null,
         List<UnitOption>? options = null,
-        string systemKey = GameSystems.Default)
+        string systemKey = GameSystems.WapV2)
     {
         // Everything — weapons, armour and the troop type figures — comes from the one system,
         // so a unit can't end up with one edition's troop type wearing another's weapon rules.
