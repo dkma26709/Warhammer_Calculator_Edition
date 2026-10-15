@@ -386,7 +386,7 @@ public class RuleNameParsingTests
         foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3 })
         {
             var repo = TestHelpers.RepoFor(system);
-            foreach (var faction in Enum.GetValues<FactionKey>())
+            foreach (var faction in repo.AllFactions)
             {
                 foreach (var unit in await repo.GetUnitsAsync(faction))
                 {

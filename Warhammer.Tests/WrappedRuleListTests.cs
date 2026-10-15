@@ -107,17 +107,9 @@ public class WrappedRuleListTests
         var repo = TestHelpers.RepoFor(system);
         var stranded = new List<string>();
 
-        foreach (var faction in Enum.GetValues<FactionKey>())
+        foreach (var faction in repo.AllFactions)
         {
-            IReadOnlyList<Unit> units;
-            try
-            {
-                units = await repo.GetUnitsAsync(faction);
-            }
-            catch (Exception)
-            {
-                continue;   // faction not present in this system's data
-            }
+            var units = await repo.GetUnitsAsync(faction);
 
             foreach (var unit in units)
             {

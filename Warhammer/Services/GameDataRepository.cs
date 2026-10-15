@@ -143,9 +143,9 @@ public class GameDataRepository : IGameDataRepository
 
     // ─── Factions ────────────────────────────────────────────────
 
-    // Falls back to the full enum list until EnsureLoadedAsync resolves the
-    // active system's manifest (components may render before initialisation).
-    public IReadOnlyList<FactionKey> AllFactions => _factions ?? FactionKeyExtensions.All;
+    // Empty until EnsureLoadedAsync resolves the manifest, since components may render before
+    // initialisation; the enum spans every system, so it is not a usable fallback.
+    public IReadOnlyList<FactionKey> AllFactions => _factions ?? [];
 
     public string GetFactionDisplayName(FactionKey faction) => faction.ToDisplayName();
 
