@@ -302,6 +302,46 @@ public class OptionLayoutTests
     }
 
     [Fact]
+    public void ChoiceName_DropsTheCostWrittenIntoIt()
+    {
+        Assert.Equal("Brace of Ogre Pistols",
+            OptionLayout.ChoiceName(new OptionChoice { Name = ["brace of Ogre Pistols 6 points"] }));
+    }
+
+    [Fact]
+    public void ChoicePoints_PrefersItsOwnThenItsNameThenALoneChoicesBookLine()
+    {
+        var pistols = new OptionChoice { Name = ["brace of Ogre Pistols 6 points"], Points = null };
+        Assert.Equal(6, OptionLayout.ChoicePoints(pistols, new UnitOption { Type = "equipment", Choices = [pistols] }));
+
+        var priced = new OptionChoice { Name = ["repeater handgun"], Points = 5 };
+        Assert.Equal(5, OptionLayout.ChoicePoints(priced, new UnitOption { Type = "equipment", Choices = [priced], Points = 9 }));
+
+        var pistol = new OptionChoice { Name = ["pistol"], Points = null };
+        var lone = new UnitOption { Type = "equipment", Choices = [pistol], Raw = "May take a pistol +3 points" };
+        Assert.Equal(3, OptionLayout.ChoicePoints(pistol, lone));
+    }
+
+    /// <summary>The Ogres' Look-out Gnoblar, as extracted: its cost left in its name.</summary>
+    private static readonly UnitOption Gnoblar = new() { Type = "upgrade", Upgrade = "Look-out Gnoblar 5 points" };
+
+    private static readonly UnitOption BloodVulture = new() { Type = "upgrade", Upgrade = "Blood Vulture", Points = 4 };
+
+    [Fact]
+    public void UpgradeName_DropsTheCostWrittenIntoIt()
+    {
+        Assert.Equal("Look-out Gnoblar", OptionLayout.UpgradeName(Gnoblar));
+        Assert.Equal("Blood Vulture", OptionLayout.UpgradeName(BloodVulture));
+    }
+
+    [Fact]
+    public void UpgradePoints_FallsBackToTheCostWrittenIntoIt()
+    {
+        Assert.Equal(5, OptionLayout.UpgradePoints(Gnoblar));
+        Assert.Equal(4, OptionLayout.UpgradePoints(BloodVulture));
+    }
+
+    [Fact]
     public void AChoiceBringingAShield_IsNotAPureCloseCombatGroup()
     {
         var option = Group("choose", [["Spears"], ["Light lances", "shields"]]);

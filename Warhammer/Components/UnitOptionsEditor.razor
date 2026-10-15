@@ -209,7 +209,7 @@
             // Single choice → checkbox, headed by the item itself
             var choice = option.Choices[0];
             var isSelected = Configuration!.SelectedUpgrades.TryGetValue(idx, out var selIdx) && selIdx == 0;
-            var costLabel = FormatCost(choice);
+            var costLabel = OptionLayout.CostLabel(choice);
             var capturedIdx = idx;
 
             builder.OpenElement(0, "div");
@@ -263,7 +263,7 @@
                 var choice = option.Choices[ci];
                 builder.OpenElement(12, "option");
                 builder.AddAttribute(13, "value", ci);
-                builder.AddContent(14, $"{OptionLayout.ChoiceName(choice)} {FormatCost(choice)}");
+                builder.AddContent(14, $"{OptionLayout.ChoiceName(choice)} {OptionLayout.CostLabel(choice)}");
                 builder.CloseElement();
             }
             builder.CloseElement();
@@ -306,7 +306,7 @@
             builder.OpenElement(seq++, "label");
             builder.AddAttribute(seq++, "class", "form-check-label small");
             builder.AddAttribute(seq++, "for", inputId);
-            builder.AddContent(seq++, $"{OptionLayout.ChoiceName(choice)} {FormatCost(choice)}");
+            builder.AddContent(seq++, $"{OptionLayout.ChoiceName(choice)} {OptionLayout.CostLabel(choice)}");
             builder.CloseElement();
             builder.CloseElement();
         }
@@ -339,7 +339,7 @@
             var choice = option.Choices[ci];
             builder.OpenElement(12, "option");
             builder.AddAttribute(13, "value", ci);
-            builder.AddContent(14, $"{OptionLayout.ChoiceName(choice)} {FormatCost(choice)}");
+            builder.AddContent(14, $"{OptionLayout.ChoiceName(choice)} {OptionLayout.CostLabel(choice)}");
             builder.CloseElement();
         }
         builder.CloseElement();
@@ -374,7 +374,7 @@
             var name = first != null ? OptionLayout.ChoiceName(first) : sub.Upgrade ?? "Option";
             var pts = first?.Points ?? sub.Points ?? 0;
             var perModel = first?.PerModel ?? sub.PerModel ?? false;
-            var costLabel = FormatFlatCost(pts, perModel);
+            var costLabel = OptionLayout.CostLabel(pts, perModel);
             builder.OpenElement(12, "option");
             builder.AddAttribute(13, "value", si);
             builder.AddContent(14, $"{name} {costLabel}");
@@ -387,7 +387,7 @@
     private void RenderFlatCheckbox(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option, string label)
     {
         var isSelected = Configuration!.SelectedUpgrades.TryGetValue(idx, out var selIdx) && selIdx == 0;
-        var costLabel = FormatFlatCost(option.Points ?? 0, option.PerModel ?? false);
+        var costLabel = OptionLayout.CostLabel(option.Points ?? 0, option.PerModel ?? false);
         var capturedIdx = idx;
 
         builder.OpenElement(0, "div");
@@ -409,23 +409,6 @@
         builder.CloseElement();
         builder.CloseElement();
         builder.CloseElement();
-    }
-
-    // ─── Formatting helpers ──────────────────────────────────────
-
-    private static string FormatCost(OptionChoice choice)
-    {
-        var cost = choice.Points ?? 0;
-        if (cost == 0) return "(free)";
-        var pts = cost % 1 == 0 ? cost.ToString("F0") : cost.ToString("G");
-        return choice.PerModel ? $"(+{pts} pts/model)" : $"(+{pts} pts)";
-    }
-
-    private static string FormatFlatCost(double points, bool perModel)
-    {
-        if (points == 0) return "(free)";
-        var pts = points % 1 == 0 ? points.ToString("F0") : points.ToString("G");
-        return perModel ? $"(+{pts} pts/model)" : $"(+{pts} pts)";
     }
 
     // ─── Available weapons (for weapon dropdown) ─────────────────
@@ -460,7 +443,7 @@
                                 && seen.Add(enumKey))
                             {
                                 var w = Repo.GetWeapon(enumKey);
-                                if (w != null) weapons.Add((enumKey, w.Name, FormatCost(choice)));
+                                if (w != null) weapons.Add((enumKey, w.Name, OptionLayout.CostLabel(choice)));
                             }
                         }
                     }

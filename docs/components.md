@@ -55,7 +55,7 @@ Displays and edits:
 - **Points display** (per-model cost and total)
 - **Model count & frontage** inputs (non-characters only)
 - **Weapon dropdown** — populated from equipment + options (only shown if >1 choice)
-- **Command group checkboxes** — Champion, Musician, Standard Bearer (only shown if unit has the option available)
+- **Command group checkboxes** — Champion, Musician, Standard Bearer (only shown if unit has the option available). Under each role taken, the panel also offers the sub-options the book attaches to that upgrade (a Leader's replacement handgun, a Standard Bearer's Look-out Gnoblar), costed once and listed on the roster beside the role
 - **Equipment summary** — first line of equipment text
 - **Special rule badges**
 
