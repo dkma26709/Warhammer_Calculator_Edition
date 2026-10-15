@@ -20,7 +20,10 @@ public static class GameSystems
     /// </summary>
     public const string War = "war";
 
-    public const string Default = WapV2;
+    public const string Default = War;
+
+    /// <summary>The system lists and autosaves from before multi-system support were saved under.</summary>
+    public const string Legacy = WapV2;
 
     public static readonly IReadOnlyList<GameSystem> All =
     [

@@ -411,7 +411,7 @@
             saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", StorageKey);
 
             // Autosaves from before multi-system support live under the unsuffixed key.
-            if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Default)
+            if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Legacy)
             {
                 saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", ArmyListStorage.LegacyActiveKey);
                 fromLegacyKey = !string.IsNullOrWhiteSpace(saved);
