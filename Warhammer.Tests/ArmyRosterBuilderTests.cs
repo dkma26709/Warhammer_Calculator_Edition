@@ -162,13 +162,13 @@ public class ArmyRosterBuilderTests
     }
 
     [Fact]
-    public void Model_LineStatesTheCountAndFrontage()
+    public void Model_LineStatesTheCountButNotTheFrontage()
     {
         var list = MakeList(Configure(
             InCategory(UnitCategory.Core, "Spearmen"),
             c => { c.ModelCount = 20; c.Frontage = 5; }));
 
-        Assert.Equal("20 models · 5 wide", Only(MakeBuilder().Build(list)).ModelLine);
+        Assert.Equal("20 models", Only(MakeBuilder().Build(list)).ModelLine);
     }
 
     [Fact]

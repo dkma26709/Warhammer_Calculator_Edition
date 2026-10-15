@@ -707,4 +707,90 @@ public class UnitConfigurationTests
         config.SelectedUpgrades[0] = 0;
         Assert.Equal(0, config.UpgradeCost);
     }
+
+    // ─── Listed weapon and "Fight with" ──────────────────────────
+
+    /// <summary>A Half Giant's group as WAR writes it: three weapons and a shield.</summary>
+    private static UnitOption MixedWeaponGroup() => MakeEquipmentOption("choose",
+    [
+        new OptionChoice { Name = ["Additional hand weapons"], Points = 3, PerModel = true },
+        new OptionChoice { Name = ["Shields"], Points = 3, PerModel = true },
+        new OptionChoice { Name = ["Polearms"], Points = 6, PerModel = true },
+        new OptionChoice { Name = ["Great weapons"], Points = 6, PerModel = true },
+    ]);
+
+    private static UnitOption PureWeaponGroup() => MakeEquipmentOption("choose",
+    [
+        new OptionChoice { Name = ["Additional hand weapons"], Points = 1, PerModel = true },
+        new OptionChoice { Name = ["Great weapons"], Points = 2, PerModel = true },
+    ]);
+
+    [Fact]
+    public void ListedWeapon_IsTheHandWeaponWithNoPicks()
+    {
+        var config = new UnitConfiguration(MakeUnit(options: [PureWeaponGroup()]));
+
+        Assert.Equal(CloseCombatWeaponKey.HandWeapon, config.ListedWeapon);
+    }
+
+    [Fact]
+    public void ListedWeapon_IsTheWeaponPaidFor()
+    {
+        var config = new UnitConfiguration(MakeUnit(options: [PureWeaponGroup()]));
+        config.SelectedUpgrades[0] = 1;
+
+        Assert.Equal(CloseCombatWeaponKey.GreatWeapon, config.ListedWeapon);
+    }
+
+    [Fact]
+    public void FightWith_HandWeapon_KeepsAShieldPickInAMixedGroup()
+    {
+        var config = new UnitConfiguration(MakeUnit(options: [MixedWeaponGroup()]));
+        config.SelectedUpgrades[0] = 1;
+
+        config.FightWith(CloseCombatWeaponKey.HandWeapon);
+
+        Assert.Equal(CloseCombatWeaponKey.HandWeapon, config.SelectedWeapon);
+        Assert.Equal(1, config.SelectedUpgrades[0]);
+        Assert.Contains(ArmourKey.Shields, config.EffectiveArmour);
+    }
+
+    [Fact]
+    public void FightWith_HandWeapon_ClearsAGreatWeaponPickInAPureGroup()
+    {
+        var config = new UnitConfiguration(MakeUnit(options: [PureWeaponGroup()]));
+        config.SelectedUpgrades[0] = 1;
+
+        config.FightWith(CloseCombatWeaponKey.HandWeapon);
+
+        Assert.False(config.SelectedUpgrades.ContainsKey(0));
+        Assert.DoesNotContain(CloseCombatWeaponKey.GreatWeapon, config.EffectiveWeapons);
+    }
+
+    [Fact]
+    public void FightWith_Polearm_PicksThePolearmsChoice()
+    {
+        var config = new UnitConfiguration(MakeUnit(options: [MixedWeaponGroup()]));
+        config.SelectedUpgrades[0] = 1;
+
+        config.FightWith(CloseCombatWeaponKey.Polearm);
+
+        Assert.Equal(CloseCombatWeaponKey.Polearm, config.SelectedWeapon);
+        Assert.Equal(2, config.SelectedUpgrades[0]);
+    }
+
+    [Fact]
+    public void FightWith_LeavesChooseAnyPicksToTheirCheckboxes()
+    {
+        var config = new UnitConfiguration(MakeUnit(options: [PureWeaponGroup() with
+        {
+            Raw = "May choose any of the following:",
+        }]));
+        config.SelectedMultiUpgrades[0] = [1];
+
+        config.FightWith(CloseCombatWeaponKey.TwoAdditionalHandWeapons);
+
+        Assert.Equal([1], config.SelectedMultiUpgrades[0]);
+        Assert.False(config.SelectedUpgrades.ContainsKey(0));
+    }
 }

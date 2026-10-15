@@ -5,13 +5,14 @@
 
 @inject IGameDataRepository Repo
 
-@* Weapon choice plus all unit options (armour, mounts, upgrades, faction upgrades).
-   Selections are written to Configuration.SelectedWeapon / SelectedUpgrades. *@
+@* A unit's options, in the sections OptionLayout puts them: weapons, armour, other equipment,
+   mount, upgrades. Selections are written to Configuration.SelectedWeapon / SelectedUpgrades.
+   The calculator picks the weapon a unit fights with; an army list buys weapons instead, so
+   ForArmyList gives every weapon group its own control and fights with what was bought. *@
 
 @if (Unit != null && Configuration != null)
 {
-    @* ── Weapons ── *@
-    @if (AvailableWeapons.Count > 1)
+    @if (!ForArmyList && AvailableWeapons.Count > 1)
     {
         <div class="mb-2">
             <label class="form-label small text-body-secondary">Fight with</label>
@@ -25,16 +26,16 @@
         </div>
     }
 
-    @* ── Armour ── *@
-    @foreach (var (idx, option) in _armourOptions)
+    @foreach (var section in _placements.GroupBy(p => p.Section))
     {
-        @RenderOptionControl(idx, option)
-    }
-
-    @* ── Other Upgrades ── *@
-    @foreach (var (idx, option) in _otherOptions)
-    {
-        @RenderOptionControl(idx, option)
+        @if (ForArmyList)
+        {
+            <h4 class="wr-cat-title mt-3 mb-2">@SectionTitle(section.Key)</h4>
+        }
+        @foreach (var placement in section)
+        {
+            @RenderOptionControl(placement)
+        }
     }
 }
 
@@ -44,115 +45,50 @@
     [Parameter] public EventCallback<UnitConfiguration> ConfigurationChanged { get; set; }
     [Parameter] public FactionExtrasData? FactionExtras { get; set; }
 
+    /// <summary>
+    /// True in the Army Builder: weapon groups get their own controls in place of the
+    /// calculator's "Fight with", and the sections are headed.
+    /// </summary>
+    [Parameter] public bool ForArmyList { get; set; }
+
     private string _id = Guid.NewGuid().ToString("N")[..8];
 
-    private List<(int Index, UnitOption Option)> _armourOptions = [];
-    private List<(int Index, UnitOption Option)> _otherOptions = [];
+    private List<OptionPlacement> _placements = [];
 
     protected override void OnParametersSet()
     {
-        ClassifyOptions();
+        // "Fight with" stands in for the groups that hold nothing but close combat weapons,
+        // and a faction upgrade with no entries in the extras has nothing to offer.
+        _placements = OptionLayout.Arrange(Unit?.Options)
+            .Where(p => ForArmyList || !OptionLayout.IsCloseCombatWeaponGroup(p.Option))
+            .Where(p => !p.Option.IsType(OptionType.FactionUpgrade) || HasFactionUpgradeCategory(p.Option))
+            .ToList();
     }
 
-    // ─── Option classification ───────────────────────────────────
-
-    private enum OptionSection { Weapon, Armour, Other, Skip }
-
-    private record ClassifiedChoice(string DisplayName, bool IsWeapon, bool IsCloseCombatWeapon, bool IsArmour);
-
-    private void ClassifyOptions()
+    private static string SectionTitle(OptionSection section) => section switch
     {
-        _armourOptions = [];
-        _otherOptions = [];
-
-        if (Unit?.Options == null) return;
-
-        for (int i = 0; i < Unit.Options.Count; i++)
-        {
-            var option = Unit.Options[i];
-            var section = GetOptionSection(option);
-
-            switch (section)
-            {
-                case OptionSection.Armour:
-                    _armourOptions.Add((i, option));
-                    break;
-                case OptionSection.Other:
-                    _otherOptions.Add((i, option));
-                    break;
-            }
-        }
-    }
-
-    private OptionSection GetOptionSection(UnitOption option)
-    {
-        switch (option.GetOptionType())
-        {
-            case OptionType.Equipment:
-                if (option.Choices == null || option.Choices.Count == 0) return OptionSection.Skip;
-                var classified = ClassifyChoices(option);
-                if (classified.Count == 0) return OptionSection.Skip;
-                if (classified.All(c => c.IsCloseCombatWeapon)) return OptionSection.Weapon;
-                if (classified.All(c => c.IsArmour)) return OptionSection.Armour;
-                return OptionSection.Other;
-
-            case OptionType.Mount:
-            case OptionType.Upgrade:
-            case OptionType.WizardUpgrade:
-            case OptionType.BlessedSpawning:
-            case OptionType.FactionUpgrade:
-                return OptionSection.Other;
-
-            default:
-                return OptionSection.Skip;
-        }
-    }
-
-    private List<ClassifiedChoice> ClassifyChoices(UnitOption option)
-    {
-        var result = new List<ClassifiedChoice>();
-        if (option.Choices == null) return result;
-
-        foreach (var choice in option.Choices)
-        {
-            bool anyWeapon = false, anyCCWeapon = false, anyArmour = false;
-            foreach (var name in choice.Name)
-            {
-                if (EquipmentParser.TryNormalize(name, out var key, out bool isWeapon))
-                {
-                    if (isWeapon)
-                    {
-                        anyWeapon = true;
-                        if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(key, out _))
-                            anyCCWeapon = true;
-                    }
-                    else
-                    {
-                        anyArmour = true;
-                    }
-                }
-            }
-
-            result.Add(new ClassifiedChoice(choice.DisplayName, anyWeapon, anyCCWeapon, anyArmour));
-        }
-
-        return result;
-    }
+        OptionSection.Weapons => "Weapons",
+        OptionSection.Armour => "Armour",
+        OptionSection.Equipment => "Equipment",
+        OptionSection.Mount => "Mount",
+        _ => "Upgrades",
+    };
 
     // ─── Unified option rendering ────────────────────────────────
 
-    private RenderFragment RenderOptionControl(int idx, UnitOption option) => builder =>
+    private RenderFragment RenderOptionControl(OptionPlacement placement) => builder =>
     {
+        var (idx, option, label) = (placement.Index, placement.Option, placement.Label);
         switch (option.GetOptionType())
         {
             case OptionType.Equipment:
-                RenderEquipmentOption(builder, idx, option);
+                RenderEquipmentOption(builder, idx, option, label);
                 break;
             case OptionType.Mount:
-                RenderChoicesDropdown(builder, idx, option, "Mount");
+                RenderChoicesDropdown(builder, idx, option, label);
                 break;
             case OptionType.Upgrade when option.SubOptions != null:
-                RenderSubOptionsDropdown(builder, idx, option);
+                RenderSubOptionsDropdown(builder, idx, option, label);
                 break;
             case OptionType.BlessedSpawning or OptionType.FactionUpgrade
                 when HasFactionUpgradeCategory(option):
@@ -162,7 +98,7 @@
                 // No data for the category — nothing meaningful to offer.
                 break;
             case OptionType.Upgrade or OptionType.WizardUpgrade or OptionType.BlessedSpawning:
-                RenderFlatCheckbox(builder, idx, option);
+                RenderFlatCheckbox(builder, idx, option, label);
                 break;
         }
     };
@@ -264,16 +200,14 @@
         _ => category.Replace('_', ' '),
     };
 
-    private void RenderEquipmentOption(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option)
+    private void RenderEquipmentOption(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option, string label)
     {
         if (option.Choices == null) return;
-        var classified = ClassifyChoices(option);
 
         if (option.Choices.Count == 1)
         {
-            // Single choice → checkbox
+            // Single choice → checkbox, headed by the item itself
             var choice = option.Choices[0];
-            var info = classified[0];
             var isSelected = Configuration!.SelectedUpgrades.TryGetValue(idx, out var selIdx) && selIdx == 0;
             var costLabel = FormatCost(choice);
             var capturedIdx = idx;
@@ -293,7 +227,7 @@
             builder.OpenElement(10, "label");
             builder.AddAttribute(11, "class", "form-check-label small");
             builder.AddAttribute(12, "for", $"{_id}-opt-{capturedIdx}");
-            builder.AddContent(13, $"{info.DisplayName} {costLabel}");
+            builder.AddContent(13, $"{label} {costLabel}");
             builder.CloseElement();
             builder.CloseElement();
             builder.CloseElement();
@@ -301,15 +235,12 @@
         else if (option.AllowsMultipleChoices)
         {
             // "Choose any" / "at least one" → one checkbox per choice
-            RenderMultiChoiceCheckboxes(builder, idx, option, classified);
+            RenderMultiChoiceCheckboxes(builder, idx, option, label);
         }
         else
         {
             // Multiple choices → dropdown
             var currentChoice = Configuration!.SelectedUpgrades.TryGetValue(idx, out var curIdx) ? curIdx : -1;
-            var label = option.Action == "replace" && option.Replaces != null
-                ? $"Replace {option.Replaces}"
-                : classified.Any(c => c.IsArmour) ? "Armour" : "Equipment";
             var capturedIdx = idx;
 
             builder.OpenElement(0, "div");
@@ -330,10 +261,9 @@
             for (int ci = 0; ci < option.Choices.Count; ci++)
             {
                 var choice = option.Choices[ci];
-                var info = classified[ci];
                 builder.OpenElement(12, "option");
                 builder.AddAttribute(13, "value", ci);
-                builder.AddContent(14, $"{info.DisplayName} {FormatCost(choice)}");
+                builder.AddContent(14, $"{OptionLayout.ChoiceName(choice)} {FormatCost(choice)}");
                 builder.CloseElement();
             }
             builder.CloseElement();
@@ -343,11 +273,10 @@
 
     private void RenderMultiChoiceCheckboxes(
         Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
-        int idx, UnitOption option, List<ClassifiedChoice> classified)
+        int idx, UnitOption option, string label)
     {
         if (option.Choices == null) return;
         var selectedNow = Configuration!.SelectedChoicesIn(idx).ToHashSet();
-        var label = option.Raw?.Split('\n')[0].TrimEnd(':').Trim() ?? "May choose any of the following";
         var capturedIdx = idx;
 
         builder.OpenElement(0, "div");
@@ -361,7 +290,6 @@
         for (int ci = 0; ci < option.Choices.Count; ci++)
         {
             var choice = option.Choices[ci];
-            var info = classified[ci];
             var capturedChoice = ci;
             var inputId = $"{_id}-opt-{capturedIdx}-{ci}";
 
@@ -378,7 +306,7 @@
             builder.OpenElement(seq++, "label");
             builder.AddAttribute(seq++, "class", "form-check-label small");
             builder.AddAttribute(seq++, "for", inputId);
-            builder.AddContent(seq++, $"{info.DisplayName} {FormatCost(choice)}");
+            builder.AddContent(seq++, $"{OptionLayout.ChoiceName(choice)} {FormatCost(choice)}");
             builder.CloseElement();
             builder.CloseElement();
         }
@@ -411,19 +339,18 @@
             var choice = option.Choices[ci];
             builder.OpenElement(12, "option");
             builder.AddAttribute(13, "value", ci);
-            builder.AddContent(14, $"{choice.DisplayName} {FormatCost(choice)}");
+            builder.AddContent(14, $"{OptionLayout.ChoiceName(choice)} {FormatCost(choice)}");
             builder.CloseElement();
         }
         builder.CloseElement();
         builder.CloseElement();
     }
 
-    private void RenderSubOptionsDropdown(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option)
+    private void RenderSubOptionsDropdown(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option, string label)
     {
         if (option.SubOptions == null || option.SubOptions.Count == 0) return;
         var currentChoice = Configuration!.SelectedUpgrades.TryGetValue(idx, out var curIdx) ? curIdx : -1;
         var capturedIdx = idx;
-        var label = option.Upgrade ?? "Upgrade";
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-2");
@@ -443,9 +370,10 @@
         for (int si = 0; si < option.SubOptions.Count; si++)
         {
             var sub = option.SubOptions[si];
-            var name = sub.Choices?.FirstOrDefault()?.DisplayName ?? sub.Upgrade ?? "Option";
-            var pts = sub.Choices?.FirstOrDefault()?.Points ?? sub.Points ?? 0;
-            var perModel = sub.Choices?.FirstOrDefault()?.PerModel ?? sub.PerModel ?? false;
+            var first = sub.Choices?.FirstOrDefault();
+            var name = first != null ? OptionLayout.ChoiceName(first) : sub.Upgrade ?? "Option";
+            var pts = first?.Points ?? sub.Points ?? 0;
+            var perModel = first?.PerModel ?? sub.PerModel ?? false;
             var costLabel = FormatFlatCost(pts, perModel);
             builder.OpenElement(12, "option");
             builder.AddAttribute(13, "value", si);
@@ -456,10 +384,9 @@
         builder.CloseElement();
     }
 
-    private void RenderFlatCheckbox(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option)
+    private void RenderFlatCheckbox(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder, int idx, UnitOption option, string label)
     {
         var isSelected = Configuration!.SelectedUpgrades.TryGetValue(idx, out var selIdx) && selIdx == 0;
-        var name = option.Upgrade ?? option.Type;
         var costLabel = FormatFlatCost(option.Points ?? 0, option.PerModel ?? false);
         var capturedIdx = idx;
 
@@ -478,7 +405,7 @@
         builder.OpenElement(10, "label");
         builder.AddAttribute(11, "class", "form-check-label small");
         builder.AddAttribute(12, "for", $"{_id}-opt-{capturedIdx}");
-        builder.AddContent(13, $"{name} {costLabel}");
+        builder.AddContent(13, $"{label} {costLabel}");
         builder.CloseElement();
         builder.CloseElement();
         builder.CloseElement();
@@ -551,42 +478,20 @@
 
     private async Task OnWeaponChanged(ChangeEventArgs e)
     {
-        if (Configuration == null || Unit?.Options == null) return;
-        var weaponKey = e.Value?.ToString() ?? "handWeapon";
-        Configuration.SelectedWeaponKey = weaponKey;
-
-        for (int i = 0; i < Unit.Options.Count; i++)
-        {
-            var option = Unit.Options[i];
-            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
-
-            bool groupHasCCWeapons = option.Choices.Any(c =>
-                c.Name.Any(n => EquipmentParser.TryNormalize(n, out var k, out bool isW)
-                    && isW && CloseCombatWeaponKeyExtensions.TryFromJsonKey(k, out _)));
-            if (!groupHasCCWeapons) continue;
-
-            int matchIdx = -1;
-            for (int ci = 0; ci < option.Choices.Count; ci++)
-            {
-                foreach (var name in option.Choices[ci].Name)
-                {
-                    if (EquipmentParser.TryNormalize(name, out var k, out _) && k == weaponKey)
-                    {
-                        matchIdx = ci;
-                        break;
-                    }
-                }
-
-                if (matchIdx >= 0) break;
-            }
-
-            if (matchIdx >= 0)
-                Configuration.SelectedUpgrades[i] = matchIdx;
-            else
-                Configuration.SelectedUpgrades.Remove(i);
-        }
-
+        if (Configuration == null) return;
+        if (CloseCombatWeaponKeyExtensions.TryFromJsonKey(e.Value?.ToString() ?? "", out var key))
+            Configuration.FightWith(key);
         await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    /// <summary>
+    /// Report a change. An army list has no "Fight with", so its entry fights with the weapon
+    /// it bought, which the roster then lists first.
+    /// </summary>
+    private Task NotifyChanged()
+    {
+        if (ForArmyList) Configuration!.SelectedWeapon = Configuration.ListedWeapon;
+        return ConfigurationChanged.InvokeAsync(Configuration);
     }
 
     private async Task OnUpgradeToggled(int optionIndex, bool selected)
@@ -596,7 +501,7 @@
             Configuration.SelectedUpgrades[optionIndex] = 0;
         else
             Configuration.SelectedUpgrades.Remove(optionIndex);
-        await ConfigurationChanged.InvokeAsync(Configuration);
+        await NotifyChanged();
     }
 
     private async Task OnMultiUpgradeToggled(int optionIndex, int choiceIndex, bool selected)
@@ -616,7 +521,7 @@
         if (selected && !picks.Contains(choiceIndex)) picks.Add(choiceIndex);
         else if (!selected) picks.Remove(choiceIndex);
 
-        await ConfigurationChanged.InvokeAsync(Configuration);
+        await NotifyChanged();
     }
 
     private async Task OnUpgradeSelected(int optionIndex, int choiceIndex)
@@ -626,6 +531,6 @@
             Configuration.SelectedUpgrades.Remove(optionIndex);
         else
             Configuration.SelectedUpgrades[optionIndex] = choiceIndex;
-        await ConfigurationChanged.InvokeAsync(Configuration);
+        await NotifyChanged();
     }
 }
