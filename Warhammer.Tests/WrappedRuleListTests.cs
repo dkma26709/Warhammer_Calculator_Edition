@@ -93,6 +93,9 @@ public class WrappedRuleListTests
             "HighElves/Caradryan of the Flame",
             "Skaven/Nurglitch",
         ],
+        // The export drops the trailing comma three army books print (Flesh Hounds among them,
+        // Daemons of Chaos p32), so WAR needs no exception.
+        [GameSystems.War] = [],
     };
 
     /// <summary>
@@ -102,6 +105,7 @@ public class WrappedRuleListTests
     [Theory]
     [InlineData(GameSystems.WapV2)]
     [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public async Task NoUnitsRuleListEndsMidList(string system)
     {
         var repo = TestHelpers.RepoFor(system);

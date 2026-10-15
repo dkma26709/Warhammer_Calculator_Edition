@@ -41,6 +41,7 @@ public class GameSystemTests
     [Theory]
     [InlineData("wap-v2")]
     [InlineData("wap-v3")]
+    [InlineData("war")]
     public void Initialize_EnabledKey_SetsCurrentSystem(string key)
     {
         var service = new GameSystemService();
@@ -101,6 +102,7 @@ public class GameSystemTests
     [Theory]
     [InlineData(GameSystems.WapV2)]
     [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public void Repository_AllFactions_ComesFromManifest(string systemKey)
     {
         var manifest = JsonSerializer.Deserialize<SystemManifest>(
