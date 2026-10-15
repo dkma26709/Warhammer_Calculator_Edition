@@ -757,6 +757,21 @@ body {
     flex-direction: column;
     gap: 1.25rem;
     min-width: 0;
+    container-type: inline-size;
+}
+
+/* Two figures side by side once the panel itself has room for both, whatever the
+   viewport: between the loadouts on a laptop, or in a gauntlet row's detail, they stack. */
+.wr-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+@container (min-width: 36rem) {
+    .wr-pair {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 .wr-empty {
@@ -1087,6 +1102,64 @@ body {
 .wr-command dd {
     margin: 0;
     text-align: right;
+}
+
+/* ─── Gauntlet ─── */
+
+/* Positioned so hidden text inside the scrolled rows is clipped with the list. */
+.wr-roster {
+    position: relative;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-top: 1px solid var(--wr-rule);
+}
+
+.wr-roster-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.25rem 0.45rem 0;
+    border-bottom: 1px solid var(--wr-surface-hover);
+}
+
+.wr-sort,
+.wr-row-toggle {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+}
+
+.wr-sort {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.wr-row-toggle:hover,
+.wr-sort:hover {
+    color: var(--wr-brass-hover);
+}
+
+.wr-clickable-row {
+    cursor: pointer;
+}
+
+/* A table that scrolls inside its frame: an opened row's detail spans every column, so
+   it takes the frame's width instead and stays at the frame's left edge as it scrolls. */
+.wr-table-frame {
+    container-type: inline-size;
+    /* A subpixel of table height would otherwise raise a vertical scrollbar, which
+       100cqi does not subtract. */
+    overflow-y: hidden;
+}
+
+.wr-row-detail {
+    position: sticky;
+    left: 0;
+    width: 100cqi;
+    padding: 1rem;
 }
 
 /* ─── Portrait fallback tiles (unit initials), by category ─── */

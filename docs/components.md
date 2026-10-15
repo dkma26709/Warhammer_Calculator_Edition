@@ -2,32 +2,35 @@
 
 ## Page Layout
 
-`Matchup.razor` (routes: `/`, `/matchup`) is the sole page. Layout:
+`Matchup.razor` (routes: `/`, `/matchup`), laid out as the War Room redesign
+(`Warhammer/docs/07-war-room-redesign.md`); the Gauntlet page follows the same shape
+with the subject on the left and the opponent roster on the right. Layout at 1200px and up
+(it stacks below that):
 
 ```
-┌─────────────────┬──────────────┬─────────────────┐
-│   Attacker      │   Controls   │   Defender       │
-│   UnitPanel     │  Charge +    │   UnitPanel      │
-│   (col-md-5)    │  Simulate    │   (col-md-5)     │
-│                 │  (col-md-2)  │                  │
-├─────────────────┴──────────────┴─────────────────┤
-│                 ResultsPanel                       │
-│          (shown after simulation runs)             │
-└──────────────────────────────────────────────────┘
+┌─────────────────┬──────────────────┬─────────────────┐
+│ UnitHero        │ CombatControls   │ UnitHero        │  hero band
+│ (attacker)      │ + WinSplit       │ (defender)      │
+├─────────────────┼──────────────────┼─────────────────┤
+│ LoadoutPanel    │ ResultsPanel /   │ LoadoutPanel    │
+│ (attacker)      │ MultiRoundResults│ (defender)      │
+└─────────────────┴──────────────────┴─────────────────┘
 ```
 
 ## Component Hierarchy
 
 ```
 Matchup.razor
-├── UnitPanel (attacker)
+├── UnitHero (attacker)     — portrait, stat line, "This fight" line (EffectiveStatsCalculator), rule chips
+├── CombatControls          — charge buttons, rounds, iterations, Simulate
+├── WinSplit                — headline win/draw (or prevail/neither) split
+├── UnitHero (defender)     — mirrored
+├── LoadoutPanel (attacker)
 │   ├── UnitSelector        — faction/category/unit dropdowns
-│   └── UnitConfigurator    — stats, config, command group
-│       ├── StatTable        — M/WS/BS/S/T/W/I/A/Ld row
-│       └── SpecialRuleBadges — colour-coded rule tags
-├── CombatControls          — charge dropdown + simulate button
-├── UnitPanel (defender)     — same structure
-└── ResultsPanel            — results, charts, breakdowns
+│   └── UnitConfigurator    — config, command group (stat table and rules shown in the hero)
+├── ResultsPanel            — wound distributions, CR margin, CR and points tables
+│   or MultiRoundResultsPanel
+└── LoadoutPanel (defender) — same structure
 ```
 
 ## Components
