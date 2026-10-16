@@ -77,11 +77,9 @@ public class NamedCharacterCategoryTests
             TestHelpers.FindProjectRoot(), "wwwroot", "data", system, "factions");
         var shortfalls = new List<string>();
 
-        foreach (var faction in Enum.GetValues<FactionKey>())
+        foreach (var faction in repo.AllFactions)
         {
             var path = Path.Combine(factionsDir, $"{faction.ToJsonKey()}.json");
-            if (!File.Exists(path))
-                continue;
 
             using var json = JsonDocument.Parse(File.ReadAllText(path));
             if (!json.RootElement.TryGetProperty("units", out var unitsNode))

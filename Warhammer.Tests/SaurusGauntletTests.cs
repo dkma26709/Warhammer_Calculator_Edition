@@ -45,7 +45,7 @@ public class SaurusGauntletTests
 
         // ── Collect all non-character Infantry from every faction ──
         var opponents = new List<(Unit Unit, FactionKey Faction)>();
-        foreach (var fk in FactionKeyExtensions.All)
+        foreach (var fk in repo.AllFactions)
         {
             var units = await repo.GetUnitsAsync(fk);
             foreach (var unit in units)
@@ -196,7 +196,7 @@ public class SaurusGauntletTests
 
         // ── Collect all non-character infantry opponents ──
         var opponents = new List<(Unit Unit, FactionKey Faction)>();
-        foreach (var fk in FactionKeyExtensions.All)
+        foreach (var fk in repo.AllFactions)
         {
             var units = await repo.GetUnitsAsync(fk);
             foreach (var unit in units)

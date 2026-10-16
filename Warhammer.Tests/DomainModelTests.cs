@@ -51,9 +51,10 @@ public class DomainModelTests
     }
 
     [Fact]
-    public void FactionKey_AllFactions_Returns15()
+    public void FactionKey_AllFactions_Returns30()
     {
-        Assert.Equal(15, FactionKeyExtensions.All.Count);
+        // Every army of every system: wap-v2 and wap-v3 list 15 of them, WAR all 30.
+        Assert.Equal(30, FactionKeyExtensions.All.Count);
     }
 
     [Theory]
