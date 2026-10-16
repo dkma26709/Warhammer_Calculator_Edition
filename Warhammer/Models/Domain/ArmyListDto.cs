@@ -9,8 +9,8 @@ public sealed record ArmyListDto
     public const string CurrentSchema = "wap-army-list/v1";
 
     public string Schema { get; init; } = CurrentSchema;
-    // Additive field: lists saved before multi-system support default to wap-v2.
-    public string System { get; init; } = GameSystems.Default;
+    // Additive field: lists saved before multi-system support default to the legacy system, wap-v2.
+    public string System { get; init; } = GameSystems.Legacy;
     public string Faction { get; init; } = "";
     public int PointsTarget { get; init; }
     public string Name { get; init; } = "Untitled List";
@@ -36,6 +36,10 @@ public sealed record ArmyListUnitDto
     // Additive field: selections in "choose any" option groups, several per group.
     // Omitted from the written JSON when no such group has a selection.
     public Dictionary<int, List<int>>? SelectedMultiUpgrades { get; init; }
+
+    // Additive field: sub-options the command models take (a Leader's long rifle).
+    // Omitted from the written JSON when none is picked.
+    public List<CommandUpgradeDto>? CommandUpgrades { get; init; }
     public List<MagicItemDto> MagicItems { get; init; } = new();
     public MagicItemDto? Banner { get; init; }
     public int WizardLevel { get; init; } = 2;
@@ -56,4 +60,12 @@ public sealed record MagicItemDto
     public string Category { get; init; } = "";
     public double PointsCost { get; init; }
     public UnitModifier Modifier { get; init; } = new();
+}
+
+/// <summary>Wire form of a <see cref="CommandUpgradePick"/>: indices into the unit's options as the book lists them.</summary>
+public sealed record CommandUpgradeDto
+{
+    public int OptionIndex { get; init; }
+    public int SubOptionIndex { get; init; }
+    public int ChoiceIndex { get; init; }
 }

@@ -113,6 +113,13 @@
 
     private IReadOnlyList<Unit>? _previousFactionUnits;
 
+    /// <summary>
+    /// The faction list is empty until the repository has loaded, and nothing this picker is
+    /// passed changes when it does, so a parent's re-render would skip it. It waits for the
+    /// load itself and redraws once it is done.
+    /// </summary>
+    protected override Task OnInitializedAsync() => Repo.EnsureLoadedAsync();
+
     protected override void OnParametersSet()
     {
         if (FactionUnits != _previousFactionUnits)

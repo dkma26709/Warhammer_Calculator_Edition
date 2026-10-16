@@ -65,6 +65,14 @@ public class ArmyListSerializer
         SelectedMultiUpgrades = u.SelectedMultiUpgrades.Count == 0
             ? null
             : u.SelectedMultiUpgrades.ToDictionary(kv => kv.Key, kv => kv.Value.ToList()),
+        CommandUpgrades = u.SelectedCommandUpgrades.Count == 0
+            ? null
+            : u.SelectedCommandUpgrades.Select(p => new CommandUpgradeDto
+            {
+                OptionIndex = p.OptionIndex,
+                SubOptionIndex = p.SubOptionIndex,
+                ChoiceIndex = p.ChoiceIndex,
+            }).ToList(),
         MagicItems = u.SelectedMagicItems.Select(m => new MagicItemDto
         {
             Name = m.Name,
@@ -127,7 +135,14 @@ public class ArmyListSerializer
                 [$"Faction '{dto.Faction}' is not in the current system '{_system.CurrentSystem}'."]);
 
         var factionUnits = await _repo.GetUnitsAsync(faction);
-        var unitsByName = factionUnits.ToDictionary(u => u.Name, StringComparer.OrdinalIgnoreCase);
+        // A mount and a unit can share a name (High Elves' Great Eagle), and exported data may
+        // repeat an entry outright. A list names a unit it holds, so a non-mount entry wins.
+        var unitsByName = factionUnits
+            .GroupBy(u => u.Name, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(
+                g => g.Key,
+                g => g.FirstOrDefault(u => u.Category != UnitCategory.CharacterMounts) ?? g.First(),
+                StringComparer.OrdinalIgnoreCase);
         var upgradeCosts = await LoadFactionUpgradeCostsAsync(faction);
 
         var list = new ArmyList
@@ -215,6 +230,10 @@ public class ArmyListSerializer
 
         foreach (var (k, v) in dto.SelectedMultiUpgrades ?? new())
             cfg.SelectedMultiUpgrades[k] = v.ToList();
+
+        // Copied as saved: TakenCommandUpgrades skips any pick the book no longer offers.
+        foreach (var p in dto.CommandUpgrades ?? [])
+            cfg.SelectedCommandUpgrades.Add(new CommandUpgradePick(p.OptionIndex, p.SubOptionIndex, p.ChoiceIndex));
 
         foreach (var (category, names) in dto.SelectedFactionUpgrades)
         {

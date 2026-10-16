@@ -1,4 +1,10 @@
 @using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
+@using Warhammer.Models.Json
+
+@* The command group: which of the three roles the unit takes, and under each role taken the
+   sub-options the book hangs on that upgrade — a Leader's pistol or replacement handgun, a
+   Standard Bearer's Look-out Gnoblar. The magic standard has its own selector. *@
 
 @if (Configuration != null &&
      (Configuration.CanHaveChampion || Configuration.CanHaveMusician || Configuration.CanHaveStandardBearer))
@@ -34,6 +40,14 @@
                 </div>
             }
         </div>
+
+        @foreach (var role in Roles.Where(Configuration.HasRole))
+        {
+            @foreach (var (optionIndex, subIndex, sub) in Configuration.CommandUpgradesOffered(role))
+            {
+                @RenderSubOption(role, optionIndex, subIndex, sub)
+            }
+        }
     </div>
 }
 
@@ -43,10 +57,112 @@
 
     private string _id = Guid.NewGuid().ToString("N")[..8];
 
+    private static readonly CommandRole[] Roles =
+        [CommandRole.Champion, CommandRole.Musician, CommandRole.StandardBearer];
+
+    private static string RoleName(CommandRole role) => role switch
+    {
+        CommandRole.Champion => "Leader",
+        CommandRole.Musician => "Musician",
+        _ => "Standard Bearer",
+    };
+
+    /// <summary>
+    /// One sub-option's control: a checkbox when there is one thing to take, a dropdown when the
+    /// book offers a choice ("May replace handgun with one of the following").
+    /// </summary>
+    private RenderFragment RenderSubOption(CommandRole role, int optionIndex, int subIndex, UnitOption sub) => builder =>
+    {
+        var selected = Configuration!.SelectedCommandChoice(optionIndex, subIndex);
+        var controlId = $"{_id}-cmd-{optionIndex}-{subIndex}";
+        var roleName = RoleName(role);
+
+        if (sub.IsType(OptionType.Equipment) && sub.Choices is { Count: > 1 } choices)
+        {
+            var replaces = sub.Replaces ?? choices[0].Replaces;
+            var label = sub.IsAction(OptionAction.Replace) && !string.IsNullOrWhiteSpace(replaces)
+                ? $"{roleName}: replace {replaces} with"
+                : $"{roleName}: equipment";
+
+            builder.OpenElement(0, "div");
+            builder.AddAttribute(1, "class", "mt-2");
+            builder.OpenElement(2, "label");
+            builder.AddAttribute(3, "class", "form-label small text-body-secondary");
+            builder.AddAttribute(4, "for", controlId);
+            builder.AddContent(5, label);
+            builder.CloseElement();
+            builder.OpenElement(6, "select");
+            builder.AddAttribute(7, "class", "form-select form-select-sm");
+            builder.AddAttribute(8, "id", controlId);
+            builder.AddAttribute(9, "value", selected ?? -1);
+            builder.AddAttribute(10, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this,
+                e => OnSubOptionSelected(optionIndex, subIndex,
+                    int.TryParse(e.Value?.ToString(), out var v) ? v : -1)));
+            builder.OpenElement(11, "option");
+            builder.AddAttribute(12, "value", -1);
+            builder.AddContent(13, "— None —");
+            builder.CloseElement();
+            for (int ci = 0; ci < choices.Count; ci++)
+            {
+                builder.OpenElement(14, "option");
+                builder.AddAttribute(15, "value", ci);
+                builder.AddContent(16, $"{OptionLayout.ChoiceName(choices[ci])} {OptionLayout.CostLabel(OptionLayout.ChoicePoints(choices[ci], sub), false)}");
+                builder.CloseElement();
+            }
+            builder.CloseElement();
+            builder.CloseElement();
+            return;
+        }
+
+        string text;
+        if (sub.IsType(OptionType.Equipment) && sub.Choices is { Count: 1 } single)
+        {
+            var choice = single[0];
+            var replaces = choice.Replaces ?? sub.Replaces;
+            var name = sub.IsAction(OptionAction.Replace) && !string.IsNullOrWhiteSpace(replaces)
+                ? $"{OptionLayout.ChoiceName(choice)} (replaces {replaces})"
+                : OptionLayout.ChoiceName(choice);
+            text = $"{roleName}: {name} {OptionLayout.CostLabel(OptionLayout.ChoicePoints(choice, sub), false)}";
+        }
+        else if (sub.IsType(OptionType.Upgrade))
+        {
+            text = $"{roleName}: {OptionLayout.UpgradeName(sub)} {OptionLayout.CostLabel(OptionLayout.UpgradePoints(sub), false)}";
+        }
+        else
+        {
+            return;
+        }
+
+        builder.OpenElement(20, "div");
+        builder.AddAttribute(21, "class", "form-check mt-1");
+        builder.OpenElement(22, "input");
+        builder.AddAttribute(23, "class", "form-check-input");
+        builder.AddAttribute(24, "type", "checkbox");
+        builder.AddAttribute(25, "id", controlId);
+        builder.AddAttribute(26, "checked", selected == 0);
+        builder.AddAttribute(27, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this,
+            e => OnSubOptionSelected(optionIndex, subIndex, (bool)(e.Value ?? false) ? 0 : -1)));
+        builder.CloseElement();
+        builder.OpenElement(28, "label");
+        builder.AddAttribute(29, "class", "form-check-label small");
+        builder.AddAttribute(30, "for", controlId);
+        builder.AddContent(31, text);
+        builder.CloseElement();
+        builder.CloseElement();
+    };
+
+    private async Task OnSubOptionSelected(int optionIndex, int subIndex, int choiceIndex)
+    {
+        if (Configuration == null) return;
+        Configuration.SelectCommandUpgrade(optionIndex, subIndex, choiceIndex < 0 ? null : choiceIndex);
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
     private async Task OnChampionChanged(bool value)
     {
         if (Configuration == null) return;
         Configuration.HasChampion = value;
+        if (!value) Configuration.ClearCommandUpgrades(CommandRole.Champion);
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
@@ -54,6 +170,7 @@
     {
         if (Configuration == null) return;
         Configuration.HasMusician = value;
+        if (!value) Configuration.ClearCommandUpgrades(CommandRole.Musician);
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
@@ -61,7 +178,11 @@
     {
         if (Configuration == null) return;
         Configuration.HasStandardBearer = value;
-        if (!value) Configuration.Loadout.SelectedBanner = null;
+        if (!value)
+        {
+            Configuration.Loadout.SelectedBanner = null;
+            Configuration.ClearCommandUpgrades(CommandRole.StandardBearer);
+        }
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 }

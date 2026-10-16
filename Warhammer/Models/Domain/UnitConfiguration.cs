@@ -80,6 +80,13 @@ public class UnitConfiguration
         }
     }
 
+    /// <summary>
+    /// Sub-options the command models take (the Leader's swapped handgun, the Standard Bearer's
+    /// Look-out Gnoblar), at most one per (option, sub-option). Change them through
+    /// <see cref="SelectCommandUpgrade"/>; <see cref="TakenCommandUpgrades"/> reads them.
+    /// </summary>
+    public List<CommandUpgradePick> SelectedCommandUpgrades { get; } = [];
+
     /// <summary>Selected magic items with their configured combat modifiers.</summary>
     public List<SelectedMagicItem> SelectedMagicItems { get; } = [];
 
@@ -391,6 +398,57 @@ public class UnitConfiguration
             return weapons;
         }
     }
+
+    /// <summary>
+    /// The weapon an army-list entry fights with when nobody picks one: the one it paid for if
+    /// it took any, since nobody buys a great weapon to fight with the hand weapon beside it.
+    /// </summary>
+    public CloseCombatWeaponKey ListedWeapon
+    {
+        get
+        {
+            var weapons = EffectiveWeapons;
+            foreach (var key in weapons)
+                if (!BaseWeaponKeys.Contains(key))
+                    return key;
+
+            return weapons.Count > 0 ? weapons[0] : CloseCombatWeaponKey.HandWeapon;
+        }
+    }
+
+    /// <summary>
+    /// Fight with <paramref name="key"/>, and make each close combat weapon group agree: pick
+    /// the choice that brings it, or drop a weapon pick that doesn't. A non-weapon pick in a
+    /// mixed group (Shields beside Great weapons) stays, as do checkbox-owned "choose any" picks.
+    /// </summary>
+    public void FightWith(CloseCombatWeaponKey key)
+    {
+        SelectedWeapon = key;
+        if (UnitEntry.Options == null) return;
+
+        var wanted = key.ToJsonKey();
+        for (int i = 0; i < UnitEntry.Options.Count; i++)
+        {
+            var option = UnitEntry.Options[i];
+            if (!option.IsType(OptionType.Equipment) || option.Choices == null) continue;
+            if (SelectedMultiUpgrades.ContainsKey(i)) continue;
+            if (!option.Choices.Any(HasCloseCombatWeapon)) continue;
+
+            int match = option.Choices.FindIndex(c => c.Name.Any(n =>
+                EquipmentParser.TryNormalize(n, out var k, out _) && k == wanted));
+
+            if (match >= 0)
+                SelectedUpgrades[i] = match;
+            else if (SelectedUpgrades.TryGetValue(i, out var current)
+                     && current >= 0 && current < option.Choices.Count
+                     && HasCloseCombatWeapon(option.Choices[current]))
+                SelectedUpgrades.Remove(i);
+        }
+    }
+
+    /// <summary>True when a choice brings at least one close combat weapon.</summary>
+    private static bool HasCloseCombatWeapon(OptionChoice choice) =>
+        choice.Name.Any(n => OptionLayout.KindOf(n) == GearKind.CloseCombatWeapon);
 
     /// <summary>
     /// All armour keys the unit currently has, considering base equipment and selected upgrades.
@@ -771,6 +829,110 @@ public class UnitConfiguration
         }
     }
 
+    /// <summary>True when the command model of <paramref name="role"/> is taken.</summary>
+    public bool HasRole(CommandRole role) => role switch
+    {
+        CommandRole.Champion => HasChampion,
+        CommandRole.Musician => HasMusician,
+        CommandRole.StandardBearer => HasStandardBearer,
+        _ => false,
+    };
+
+    /// <summary>
+    /// The sub-options the book attaches to <paramref name="role"/>'s upgrade, in book order.
+    /// Magic standards are left out: the banner selector and <see cref="BannerBudget"/> own them.
+    /// </summary>
+    public IEnumerable<(int OptionIndex, int SubOptionIndex, UnitOption SubOption)> CommandUpgradesOffered(CommandRole role)
+    {
+        if (UnitEntry.Options == null) yield break;
+
+        for (int i = 0; i < UnitEntry.Options.Count; i++)
+        {
+            var option = UnitEntry.Options[i];
+            if (!option.IsType(OptionType.Command) || !option.IsRole(role) || option.SubOptions == null) continue;
+
+            for (int s = 0; s < option.SubOptions.Count; s++)
+            {
+                if (!option.SubOptions[s].IsType(OptionType.MagicStandard))
+                    yield return (i, s, option.SubOptions[s]);
+            }
+        }
+    }
+
+    /// <summary>The choice picked in a command sub-option, or null when nothing is picked there.</summary>
+    public int? SelectedCommandChoice(int optionIndex, int subOptionIndex) =>
+        SelectedCommandUpgrades
+            .FirstOrDefault(p => p.OptionIndex == optionIndex && p.SubOptionIndex == subOptionIndex)?
+            .ChoiceIndex;
+
+    /// <summary>
+    /// Pick <paramref name="choiceIndex"/> in a command sub-option, replacing any earlier pick
+    /// there; null or negative takes the pick away.
+    /// </summary>
+    public void SelectCommandUpgrade(int optionIndex, int subOptionIndex, int? choiceIndex)
+    {
+        SelectedCommandUpgrades.RemoveAll(p => p.OptionIndex == optionIndex && p.SubOptionIndex == subOptionIndex);
+        if (choiceIndex is >= 0)
+            SelectedCommandUpgrades.Add(new CommandUpgradePick(optionIndex, subOptionIndex, choiceIndex.Value));
+    }
+
+    /// <summary>Drop every pick on <paramref name="role"/>'s upgrade, as when that model is no longer taken.</summary>
+    public void ClearCommandUpgrades(CommandRole role)
+    {
+        var options = UnitEntry.Options;
+        if (options == null) return;
+
+        SelectedCommandUpgrades.RemoveAll(p =>
+            p.OptionIndex >= 0 && p.OptionIndex < options.Count && options[p.OptionIndex].IsRole(role));
+    }
+
+    /// <summary>
+    /// The command upgrade picks that count, in book order: on a command model that is taken,
+    /// and still pointing at a choice the book offers. A pick that no longer resolves (a stale
+    /// save, a dropped model) is skipped rather than thrown on, as <see cref="UpgradeCost"/> does.
+    /// </summary>
+    public IReadOnlyList<TakenCommandUpgrade> TakenCommandUpgrades
+    {
+        get
+        {
+            var options = UnitEntry.Options;
+            if (options == null) return [];
+            var taken = new List<TakenCommandUpgrade>();
+
+            foreach (var pick in SelectedCommandUpgrades.OrderBy(p => p.OptionIndex).ThenBy(p => p.SubOptionIndex))
+            {
+                if (pick.OptionIndex < 0 || pick.OptionIndex >= options.Count) continue;
+                var option = options[pick.OptionIndex];
+                if (!option.IsType(OptionType.Command) || option.Role == null) continue;
+                if (!CommandRoleExtensions.TryFromRoleText(option.Role, out var role) || !HasRole(role)) continue;
+                if (option.SubOptions == null || pick.SubOptionIndex < 0 || pick.SubOptionIndex >= option.SubOptions.Count) continue;
+
+                var sub = option.SubOptions[pick.SubOptionIndex];
+                switch (sub.GetOptionType())
+                {
+                    case OptionType.Equipment:
+                        if (sub.Choices == null || pick.ChoiceIndex < 0 || pick.ChoiceIndex >= sub.Choices.Count) continue;
+                        var choice = sub.Choices[pick.ChoiceIndex];
+                        var replaces = sub.IsAction(OptionAction.Replace) ? choice.Replaces ?? sub.Replaces : null;
+                        taken.Add(new TakenCommandUpgrade(
+                            role, OptionLayout.ChoiceName(choice), replaces, OptionLayout.ChoicePoints(choice, sub)));
+                        break;
+
+                    case OptionType.Upgrade:
+                        if (pick.ChoiceIndex != 0) continue;
+                        taken.Add(new TakenCommandUpgrade(
+                            role, OptionLayout.UpgradeName(sub), null, OptionLayout.UpgradePoints(sub)));
+                        break;
+                }
+            }
+
+            return taken;
+        }
+    }
+
+    /// <summary>Points for the command models' upgrade picks; see <see cref="TakenCommandUpgrades"/>.</summary>
+    public double CommandUpgradeCost => TakenCommandUpgrades.Sum(t => t.Points);
+
     public double TotalPointsCost
     {
         get
@@ -780,7 +942,8 @@ public class UnitConfiguration
             var (champCost, musCost, stdCost) = CommandGroupCosts;
             double commandCost = (HasChampion ? champCost : 0)
                                + (HasMusician ? musCost : 0)
-                               + (HasStandardBearer ? stdCost : 0);
+                               + (HasStandardBearer ? stdCost : 0)
+                               + CommandUpgradeCost;
             double magicItemsCost = SelectedMagicItems.Sum(mi => mi.PointsCost);
             double bannerCost = Loadout.SelectedBanner?.PointsCost ?? 0;
             return baseCost + equipmentCost + commandCost + magicItemsCost + bannerCost

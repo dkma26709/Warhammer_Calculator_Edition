@@ -13,12 +13,23 @@ public static class GameSystems
     public const string Fantasy8th = "fantasy-8th";
     public const string OldWorld = "old-world";
 
-    public const string Default = WapV2;
+    /// <summary>
+    /// Warhammer Armies Revamped. Its data folder is exported by export.py in the
+    /// warhammer-armies-revamped repo and copied here on a release, all but core-rules.json
+    /// and troop-types.json, which are hand-maintained here as for every other system.
+    /// </summary>
+    public const string War = "war";
+
+    public const string Default = War;
+
+    /// <summary>The system lists and autosaves from before multi-system support were saved under.</summary>
+    public const string Legacy = WapV2;
 
     public static readonly IReadOnlyList<GameSystem> All =
     [
         new(WapV2, "WAP v2", Enabled: true),
         new(WapV3, "WAP v3", Enabled: true),
+        new(War, "WAR", Enabled: true),
         new(Fantasy8th, "Fantasy 8th", Enabled: false),
         new(OldWorld, "Old World", Enabled: false),
     ];

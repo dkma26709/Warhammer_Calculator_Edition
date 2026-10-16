@@ -1,0 +1,576 @@
+[
+ {
+  "name": "GIANT BLADE",
+  "points": "45",
+  "category": "magic_weapon",
+  "description": "The wielder gains +3 Strength.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF BLOODSHED",
+  "points": "45",
+  "category": "magic_weapon",
+  "description": "The wielder gains +3 Attacks.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF POWER",
+  "points": "30",
+  "category": "magic_weapon",
+  "description": "The wielder gains +2 Strength.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF STRIFE",
+  "points": "30",
+  "category": "magic_weapon",
+  "description": "The wielder gains +2 Attacks.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF SWIFT SLAYING",
+  "points": "25",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Always Strikes First special rule.",
+  "restriction": null
+ },
+ {
+  "name": "PARRYING BLADE",
+  "points": "20",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Parry (5+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BLADE OF SEA GOLD",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Armour Piercing (3) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "OGRE BLADE",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Multiple Wounds (D3) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "HEADSMAN'S AXE",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Killing Blow special rule.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF STRIKING",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains +1 To Hit.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF MIGHT",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains +1 Strength.",
+  "restriction": null
+ },
+ {
+  "name": "SWORD OF BATTLE",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains +1 Attack.",
+  "restriction": null
+ },
+ {
+  "name": "SHRIEKING BLADE",
+  "points": "15",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Fear special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BERSERKER SWORD",
+  "points": "10",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Frenzy special rule and can never lose their Frenzy.",
+  "restriction": null
+ },
+ {
+  "name": "BLADE OF SLICING",
+  "points": "10",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Armour Piercing (2) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "VENOM SWORD",
+  "points": "10",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Poisoned Attacks special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BITING BLADE",
+  "points": "5",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Armour Piercing (1) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BURNING BLADE",
+  "points": "5",
+  "category": "magic_weapon",
+  "description": "The wielder gains the Flaming Attacks special rule.",
+  "restriction": null
+ },
+ {
+  "name": "ARMOUR OF DESTINY",
+  "points": "60",
+  "category": "magic_armour",
+  "description": "The wearer gains the Magical Ward (4+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "ARMOUR OF RESILIENCE",
+  "points": "40",
+  "category": "magic_armour",
+  "description": "The wearer gains +1 Toughness.",
+  "restriction": null
+ },
+ {
+  "name": "ARMOUR OF SILVERED STEEL",
+  "points": "40",
+  "category": "magic_armour",
+  "description": "The wearer gains a 2+ armour save.",
+  "restriction": null
+ },
+ {
+  "name": "ARMOUR OF FORTUNE",
+  "points": "35",
+  "category": "magic_armour",
+  "description": "The wearer gains the Magical Ward (5+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "TRICKSTER'S HELM",
+  "points": "30",
+  "category": "magic_armour",
+  "description": "The helmet gives the wearer a 6+ armour save. Any successful roll To Wound made against the wearer of the Trickster's Helm must be re-rolled.",
+  "restriction": "Infantry, Monstrous Infantry or Cavalry"
+ },
+ {
+  "name": "GLITTERING SCALES",
+  "points": "25",
+  "category": "magic_armour",
+  "description": "Enemy models suffer -1 To Hit the wearer in close combat.",
+  "restriction": null
+ },
+ {
+  "name": "SEAMLESS ARMOUR",
+  "points": "25",
+  "category": "magic_armour",
+  "description": "This armour ignores negative modifiers to its save, meaning it cannot be reduced below 5+.",
+  "restriction": null
+ },
+ {
+  "name": "ALLEVIATING ARMOUR",
+  "points": "20",
+  "category": "magic_armour",
+  "description": "The bearer gains the Regeneration (6+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "GAMBLER'S ARMOUR",
+  "points": "20",
+  "category": "magic_armour",
+  "description": "The wearer gains the Magical Ward (6+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BEDAZZLING HELM",
+  "points": "20",
+  "category": "magic_armour",
+  "description": "The helmet gives the wearer a 6+ armour save. Enemy models targeting the wearer in close combat must re- roll 6's To Hit against them.",
+  "restriction": null
+ },
+ {
+  "name": "SHIELD OF THE WARRIOR TRUE",
+  "points": "15",
+  "category": "magic_armour",
+  "description": "The bearer gains the Magical Ward (5+) special rule against missile attacks.",
+  "restriction": null
+ },
+ {
+  "name": "DRAGONHELM",
+  "points": "10",
+  "category": "magic_armour",
+  "description": "The helmet gives the wearer a 6+ armour save and the Immunity (Flaming Attacks) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "ENCHANTED SHIELD",
+  "points": "10",
+  "category": "magic_armour",
+  "description": "The bearer gains an additional +1 to their armour save against attacks to the front arc.",
+  "restriction": null
+ },
+ {
+  "name": "CHARMED SHIELD",
+  "points": "5",
+  "category": "magic_armour",
+  "description": "The first hit suffered by the bearer is ignored on a roll of 2+.",
+  "restriction": null
+ },
+ {
+  "name": "TALISMAN OF PRESERVATION",
+  "points": "40",
+  "category": "talisman",
+  "description": "The bearer gains the Magical Ward (4+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "OBSIDIAN LODESTONE",
+  "points": "30",
+  "category": "talisman",
+  "description": "The bearer and any unit they join gain the Magic Resistance (3) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "TALISMAN OF ENDURANCE",
+  "points": "25",
+  "category": "talisman",
+  "description": "The bearer gains the Magical Ward (5+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "OBSIDIAN AMULET",
+  "points": "20",
+  "category": "talisman",
+  "description": "The bearer and any unit they join gain the Magic Resistance (2) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "DAWNSTONE",
+  "points": "15",
+  "category": "talisman",
+  "description": "The bearer may re-roll 1's when taking armour saves.",
+  "restriction": "Infantry, Monstrous Infantry or Cavalry"
+ },
+ {
+  "name": "OPAL AMULET",
+  "points": "15",
+  "category": "talisman",
+  "description": "The bearer gains the Magical Ward (2+) special rule against the first unsaved wound suffered by the bearer.",
+  "restriction": null
+ },
+ {
+  "name": "OBSIDIAN TRINKET",
+  "points": "10",
+  "category": "talisman",
+  "description": "The bearer and any unit they join gain the Magic Resistance (1) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "SEED OF REBIRTH",
+  "points": "10",
+  "category": "talisman",
+  "description": "The bearer gains the Regeneration (6+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "TALISMAN OF PROTECTION",
+  "points": "10",
+  "category": "talisman",
+  "description": "The bearer gains the Magical Ward (6+) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "LUCKY TRINKET",
+  "points": "5",
+  "category": "talisman",
+  "description": "The bearer may re-roll a single failed armour or invulnerable save.",
+  "restriction": null
+ },
+ {
+  "name": "WAND OF THE WINDS",
+  "points": "40",
+  "category": "arcane_item",
+  "description": "The bearer of this item may re-roll one D3 when determining the Winds of Magic in each Magic phase.",
+  "restriction": null
+ },
+ {
+  "name": "DESTROY MAGIC SCROLL",
+  "points": "35",
+  "category": "arcane_item",
+  "description": "When an enemy cast a spell, the bearer may immediately counter its effects by using this item instead of attempting to dispel the spell by using dispel dice. This gives them 6 free dispel dice to attempt to dispel the spell, which cannot be combined with any other dispel dice (Ultimate Power applies as normal). In addition, roll a D6. On a 4+, the spell is destroyed and the enemy caster loses access to the spell for the rest of the game.",
+  "restriction": null
+ },
+ {
+  "name": "FEEDBACK SCROLL",
+  "points": "35",
+  "category": "arcane_item",
+  "description": "When an enemy spell has been cast, the bearer can use this item instead of attempting to dispel the spell. The spell is cast as normal, but, after the spell has been resolved, roll a dice for every dice used to cast the spell. The casting Wizard suffer 1 Wound which Ignores Armour Saves for every result of 5+ rolled.",
+  "restriction": null
+ },
+ {
+  "name": "DISPEL SCROLL",
+  "points": "25",
+  "category": "arcane_item",
+  "description": "When an enemy spell has been cast, the bearer can use it instead of attempting to dispel the spell by using dispel dice. This gives them 6 free dispel dice to attempt to dispel the spell, which cannot be combined with any other dispel dice (Ultimate Power applies as normal). This may also be used to dispel spells that Remains in Play.",
+  "restriction": null
+ },
+ {
+  "name": "SCROLL OF LEACHING",
+  "points": "25",
+  "category": "arcane_item",
+  "description": "When an enemy spell has been cast, the bearer can use this item instead of attempting to dispel the spell. The spell is cast as normal, but, after the spell has been resolved, the bearer of the scroll adds a number of dispel dice to his pool equal to the number of dice used to cast the spell.",
+  "restriction": null
+ },
+ {
+  "name": "POWER FAMILIAR",
+  "points": "25",
+  "category": "arcane_item",
+  "description": "The Familiar adds one Power Dice in each of your Magic phases.",
+  "restriction": null
+ },
+ {
+  "name": "WAND OF JADE",
+  "points": "25",
+  "category": "arcane_item",
+  "description": "The bearer gains +6\" casting range to their spells (excluding auras).",
+  "restriction": null
+ },
+ {
+  "name": "WAND OF JET",
+  "points": "25",
+  "category": "arcane_item",
+  "description": "The bearer gains +6\" dispel range.",
+  "restriction": null
+ },
+ {
+  "name": "CHANNELLING STAFF",
+  "points": "20",
+  "category": "arcane_item",
+  "description": "The bearer rolls one additional dice whenever they attempt to channel power or dispel dice.",
+  "restriction": null
+ },
+ {
+  "name": "FORBIDDEN ROD",
+  "points": "20",
+  "category": "arcane_item",
+  "description": "The Forbidden Rod adds +D6 dice to the power pool at the start of the caster's own Magic phase. However, it also inflicts 1 Wound which Ignores Armour Saves on the bearer.",
+  "restriction": null
+ },
+ {
+  "name": "WAND OF ONYX",
+  "points": "20",
+  "category": "arcane_item",
+  "description": "The bearer gains a +1 casting bonus.",
+  "restriction": null
+ },
+ {
+  "name": "SCEPTRE OF STABILITY",
+  "points": "20",
+  "category": "arcane_item",
+  "description": "The bearer gains a +1 dispel bonus.",
+  "restriction": null
+ },
+ {
+  "name": "ARCANE FAMILIAR",
+  "points": "15",
+  "category": "arcane_item",
+  "description": "The bearer can choose one Signature spell as an additional spell from any of the eight Winds of Magic in this book, even if they normally cannot choose that lore.",
+  "restriction": null
+ },
+ {
+  "name": "EARTHING ROD",
+  "points": "15",
+  "category": "arcane_item",
+  "description": "If the bearer suffers a miscast, they do not add the number of power dice used to the result.",
+  "restriction": null
+ },
+ {
+  "name": "POWER SCROLL",
+  "points": "15",
+  "category": "arcane_item",
+  "description": "This item can be used before the bearer makes a casting attempt. During that casting attempt, any roll of a double (except 1's) counts as a 6 for the purpose of resolving Ultimate Power.",
+  "restriction": null
+ },
+ {
+  "name": "LUCKSTONE",
+  "points": "10",
+  "category": "arcane_item",
+  "description": "The bearer can re-roll all of the dice rolled to cast or dispel a spell. This can effectively cancel a miscast result, and cause Ultimate Power or a miscast.",
+  "restriction": null
+ },
+ {
+  "name": "POWER STONE",
+  "points": "10",
+  "category": "arcane_item",
+  "description": "The bearer can declare that they are using the power stone immediately before casting a spell. If they do so, +D3 dice are added to the power dice that they are going to roll (you still need to roll at least one dice from the power pool). This allows a Wizard to use more than they are normally allowed to.",
+  "restriction": null
+ },
+ {
+  "name": "SCROLL OF SHIELDING",
+  "points": "10",
+  "category": "arcane_item",
+  "description": "This item can be used when an enemy attempts to cast a spell targeting one of your units within dispel range. The target is granted Magic Resistance (3) against the spell.",
+  "restriction": null
+ },
+ {
+  "name": "SPELL FAMILIAR",
+  "points": "10",
+  "category": "arcane_item",
+  "description": "The bearer knows one additional spell from those normally allowed to them.",
+  "restriction": null
+ },
+ {
+  "name": "RUBY RING OF RUIN",
+  "points": "35",
+  "category": "enchanted_item",
+  "description": "The Ruby Ring of Ruin contains the Fireball spell from the Lore of Fire.",
+  "restriction": null
+ },
+ {
+  "name": "BOOTS OF FLIGHT",
+  "points": "20",
+  "category": "enchanted_item",
+  "description": "The Boots of Flight give the wearer the Movement 10 and the Strider special rule.",
+  "restriction": "Infantry"
+ },
+ {
+  "name": "CROWN OF COMMAND",
+  "points": "20",
+  "category": "enchanted_item",
+  "description": "The Crown of Command gives the bearer and any unit they join the Disciplined special rule for as long as the bearer remains with the unit.",
+  "restriction": null
+ },
+ {
+  "name": "HEALING POTION",
+  "points": "15",
+  "category": "enchanted_item",
+  "description": "The Healing Potion can be drunk at the start of the controlling player's turn. The model immediately recovers D3 Wounds (ignoring any additional Wounds from mounts) up to their starting value.",
+  "restriction": null
+ },
+ {
+  "name": "POTION OF STRENGTH",
+  "points": "10",
+  "category": "enchanted_item",
+  "description": "The Potion of Strength can be used at the start of any phase. The character gains +D3 Strength until the end of the turn.",
+  "restriction": null
+ },
+ {
+  "name": "POTION OF TOUGHNESS",
+  "points": "10",
+  "category": "enchanted_item",
+  "description": "The Potion of Toughness can be used at the start of any phase. The character gains +D3 Toughness until the end of the turn.",
+  "restriction": null
+ },
+ {
+  "name": "POTION OF SPEED",
+  "points": "10",
+  "category": "enchanted_item",
+  "description": "The Potion of Speed can be used at the start of any phase. The character gains +D3 Attacks until the end of the turn.",
+  "restriction": null
+ },
+ {
+  "name": "POTION OF FOOLHARDINESS",
+  "points": "5",
+  "category": "enchanted_item",
+  "description": "The Potion of Foolhardiness can be drunk at the start of any phase. The character gains the Frenzy special rule until the end of the turn.",
+  "restriction": null
+ },
+ {
+  "name": "WARRIOR FAMILIAR",
+  "points": "5",
+  "category": "enchanted_item",
+  "description": "The model gains an additional Strength 3 Attack. This does not benefit from any weapon, item or special rule used by the character. You may still take another Enchanted Item in addition to the Warrior Familiar, and it also does not count against the maximum points limit of magic items normally allowed for the character.",
+  "restriction": null
+ },
+ {
+  "name": "BANNER OF DEFIANCE",
+  "points": "25",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Stubborn special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BANNER OF IRON RESOLVE",
+  "points": "25",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Immunity (Psychology) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "RAMPAGER'S STANDARD",
+  "points": "25",
+  "category": "magic_standard",
+  "description": "A unit with this standard can re-roll its charge distance dice.",
+  "restriction": null
+ },
+ {
+  "name": "BANNER OF SWIFTNESS",
+  "points": "25",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Swiftstride special rule.",
+  "restriction": null
+ },
+ {
+  "name": "RAZOR STANDARD",
+  "points": "25",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Armour Piercing (1) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "RANGER'S STANDARD",
+  "points": "20",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Strider special rule.",
+  "restriction": null
+ },
+ {
+  "name": "BANNER OF ETERNAL FLAME",
+  "points": "15",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Magical Attacks and Flaming Attacks special rules.",
+  "restriction": null
+ },
+ {
+  "name": "STANDARD OF DISCIPLINE",
+  "points": "15",
+  "category": "magic_standard",
+  "description": "A unit with this standard has +1 Leadership, but cannot use the Inspiring Presence special rule. If a model with this special rule joins this unit, other units using their Inspiring Presence do not benefit from the +1 Leadership.",
+  "restriction": null
+ },
+ {
+  "name": "STANDARD OF SHIELDING",
+  "points": "15",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Magical Ward (6+) special rule against missile attacks.",
+  "restriction": null
+ },
+ {
+  "name": "WAR BANNER",
+  "points": "15",
+  "category": "magic_standard",
+  "description": "A unit with this standard adds +1 to combat resolution.",
+  "restriction": null
+ },
+ {
+  "name": "LICHBONE PENNANT",
+  "points": "10",
+  "category": "magic_standard",
+  "description": "A unit with this standard gains the Magic Resistance (1) special rule.",
+  "restriction": null
+ },
+ {
+  "name": "GLEAMING PENNANT",
+  "points": "5",
+  "category": "magic_standard",
+  "description": "A unit with this standard can re-roll one failed Leadership test.",
+  "restriction": null
+ }
+]

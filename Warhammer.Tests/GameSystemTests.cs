@@ -21,9 +21,18 @@ public class GameSystemTests
     }
 
     [Fact]
-    public void Service_DefaultsToWapV2()
+    public void Service_DefaultsToWar()
     {
-        Assert.Equal("wap-v2", new GameSystemService().CurrentSystem);
+        Assert.Equal("war", new GameSystemService().CurrentSystem);
+    }
+
+    [Fact]
+    public void Legacy_IsWapV2_AndListsWithoutASystemDefaultToIt()
+    {
+        // Lists and autosaves from before multi-system support were all wap-v2.
+        Assert.Equal("wap-v2", GameSystems.Legacy);
+        Assert.True(GameSystems.IsEnabled(GameSystems.Legacy));
+        Assert.Equal("wap-v2", new ArmyListDto().System);
     }
 
     [Theory]
@@ -41,6 +50,7 @@ public class GameSystemTests
     [Theory]
     [InlineData("wap-v2")]
     [InlineData("wap-v3")]
+    [InlineData("war")]
     public void Initialize_EnabledKey_SetsCurrentSystem(string key)
     {
         var service = new GameSystemService();
@@ -52,8 +62,8 @@ public class GameSystemTests
     public void DataPath_ResolvesInsideSystemFolder()
     {
         var service = new GameSystemService();
-        Assert.Equal("data/wap-v2/core-rules.json", service.DataPath("core-rules.json"));
-        Assert.Equal("data/wap-v2/factions/dwarfs.json", service.DataPath("factions/dwarfs.json"));
+        Assert.Equal("data/war/core-rules.json", service.DataPath("core-rules.json"));
+        Assert.Equal("data/war/factions/dwarfs.json", service.DataPath("factions/dwarfs.json"));
     }
 
     public static TheoryData<string> EnabledSystems()
@@ -101,6 +111,7 @@ public class GameSystemTests
     [Theory]
     [InlineData(GameSystems.WapV2)]
     [InlineData(GameSystems.WapV3)]
+    [InlineData(GameSystems.War)]
     public void Repository_AllFactions_ComesFromManifest(string systemKey)
     {
         var manifest = JsonSerializer.Deserialize<SystemManifest>(

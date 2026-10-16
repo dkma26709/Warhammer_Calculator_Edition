@@ -1,0 +1,2604 @@
+{
+ "factionName": "Amazons",
+ "units": [
+  {
+   "name": "Matriarch",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Matriarch",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 90
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Claw of the Old Ones",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Sun Gauntlet",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Sunstaff",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulet of the Moon",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take an Amulet of the Moon +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Enchanted Charms +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Koka +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Jaguar",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Culchan",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Terradon",
+       "points": 35,
+       "perModel": false
+      },
+      {
+       "name": "Stegadon",
+       "points": 215,
+       "perModel": false
+      },
+      {
+       "name": "Great Wyrm",
+       "points": 260,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Matriarch",
+     "raw": "A Matriarch may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "Mistress",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Mistress",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Claw of the Old Ones",
+       "points": 25,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Sun Gauntlet",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Sunstaff",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulet of the Moon",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take an Amulet of the Moon +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Enchanted Charms +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Koka +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Jaguar",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Culchan",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Terradon",
+       "points": 35,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Mistress may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Mistress",
+     "raw": "A Mistress may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "Serpent High Priestess",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Serpent High Priestess",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Serpent Priestess is a Level 1 Wizard. A Serpent High Priestess is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Claw of the Old Ones",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take a Claw of the Old Ones +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Sun Gauntlet",
+       "points": 8,
+       "perModel": false
+      },
+      {
+       "name": "Sunstaff",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulet of the Moon",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take an Amulet of the Moon +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Enchanted Charms +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Koka +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Jaguar",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Culchan",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Terradon",
+       "points": 35,
+       "perModel": false
+      },
+      {
+       "name": "Stegadon",
+       "points": 215,
+       "perModel": false
+      },
+      {
+       "name": "Great Wyrm",
+       "points": 260,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Serpent High Priestess",
+     "raw": "A Serpent High Priestess may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Serpent Priestess",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Serpent Priestess",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Serpent Priestess is a Level 1 Wizard. A Serpent High Priestess is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Claw of the Old Ones",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take a Claw of the Old Ones +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Sun Gauntlet",
+       "points": 8,
+       "perModel": false
+      },
+      {
+       "name": "Sunstaff",
+       "points": 8,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulet of the Moon",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take an Amulet of the Moon +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Enchanted Charms +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Koka +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Jaguar",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Culchan",
+       "points": 20,
+       "perModel": false
+      },
+      {
+       "name": "Cold One",
+       "points": 25,
+       "perModel": false
+      },
+      {
+       "name": "Terradon",
+       "points": 35,
+       "perModel": false
+      },
+      {
+       "name": "Stegadon",
+       "points": 215,
+       "perModel": false
+      },
+      {
+       "name": "Great Wyrm",
+       "points": 260,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Serpent Priestess",
+     "raw": "A Serpent Priestess may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "JAGUAR",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Jaguar",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Feline)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Forest Strider, Mighty Blow (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "CULCHAN",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Culchan",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Phorusrhacid)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Armour Piercing (1), Forest Strider",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "COLD ONE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Cold One",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Saurian)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fear, Forest Strider, Natural Armour (6+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "TERRADON",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Terradon",
+     "M": 2,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Saurian)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fear, Fly (9), Forest Strider",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GREAT WYRM",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Great Wyrm",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Ophidian)",
+   "baseSize": "50x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (7), Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Warrior",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Archer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Archer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Archer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "SKIRMISHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Skirmisher",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "slings",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      },
+      {
+       "name": "blowpipes",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      },
+      {
+       "name": "Upgrade javelins to have Poisoned Attacks",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with blowpipes) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Skirmisher to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Skirmisher to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HUNTRESSES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Huntress",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 13
+    },
+    {
+     "name": "Jaguar",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Light lance",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "light lances",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "light lances"
+      },
+      {
+       "name": "Javelins",
+       "points": 1,
+       "perModel": true,
+       "replaces": "light lances"
+      }
+     ],
+     "raw": "May replace light lances with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with shortbows) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Huntress to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Huntress to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Huntress to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Forest Strider, Guerrilla Warfare, Mighty Blow (1) (Jaguar only), Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Jaguar (Feline)",
+   "drawnBy": null,
+   "pointsCost": 13
+  },
+  {
+   "name": "JAGUAR HUNTING PACK",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Jaguar",
+     "M": 9,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": 7
+    },
+    {
+     "name": "Beastmistress",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 10
+    }
+   ],
+   "troopType": "War Beast (Feline)",
+   "baseSize": "25x25 or 25x50 (Jaguar), 20x20 or 25x25 (Beastmistress)",
+   "equipment": "Two hand weapons (Beastmistress only)",
+   "magic": null,
+   "options": null,
+   "specialRules": "Forest Strider, Guerrilla Warfare (Beastmistress only), Mighty Blow (1), Mixed Unit, Skirmishers",
+   "upgrades": null,
+   "notes": "One Beastmistress must be included for every five Jaguars in the unit.",
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "SNAKE SWARMS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Snake Swarm",
+     "M": 5,
+     "WS": 3,
+     "BS": 0,
+     "S": 2,
+     "T": 2,
+     "W": 6,
+     "I": 1,
+     "A": 6,
+     "Ld": 3,
+     "points": 30
+    }
+   ],
+   "troopType": "Swarm (Ophidian)",
+   "baseSize": "40x40",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Aquatic, Cold-Blooded, Poisoned Attacks",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "PIRANHA WARRIORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Piranha Warrior",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, javelins",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "Upgrade javelins to have Poisoned Attacks",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Sun Gauntlets",
+       "points": 2,
+       "perModel": true,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Piranha Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Piranha Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Piranha Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "EAGLE WARRIORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Eagle Warrior",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Spear, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "spears",
+     "choices": [
+      {
+       "name": "Sunstaffs",
+       "points": 6,
+       "perModel": true,
+       "replaces": "spears"
+      }
+     ],
+     "raw": "May replace spears with Sunstaffs +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Koka +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Eagle Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Eagle Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Eagle Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Immunity (Psychology), Sacrificial Hunt, Vanguard",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "JAGUAR WARRIORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Jaguar Warrior",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 7
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Claws of the Old Ones",
+       "choices": [
+        {
+         "name": "Claws of the Old Ones",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Claws of the Old Ones +3 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "paired Claws of the Old Ones",
+       "choices": [
+        {
+         "name": "paired Claws of the Old Ones",
+         "points": 3,
+         "perModel": true,
+         "replaces": "shields"
+        }
+       ],
+       "raw": "Replace shields with paired Claws of the Old Ones +3 points/model"
+      }
+     ]
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Koka +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Jaguar Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Jaguar Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Jaguar Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ambushers, Forest Strider, Guerrilla Warfare, Mighty Blow (1), Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 7
+  },
+  {
+   "name": "PYTHON WARRIORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Python Warrior",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take additional hand weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Python Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Python Warrior to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Poisoned Attacks, Rapid Fire, Sacrificial Hunt, Scouts, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "CULCHAN RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Culchan Rider",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 17
+    },
+    {
+     "name": "Culchan",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Light lance, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "shortbows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "light lances & shields"
+      },
+      {
+       "name": "javelins",
+       "points": 2,
+       "perModel": true,
+       "replaces": "light lances"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Culchan Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Culchan Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Culchan Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Armour Piercing (1) (Culchan only), Fast Cavalry, Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Culchan (Phorusrhacid)",
+   "drawnBy": null,
+   "pointsCost": 17
+  },
+  {
+   "name": "COLD ONE RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Noblewoman",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 20
+    },
+    {
+     "name": "Cold One",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light lances",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light lances +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Koka +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Noblewoman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Noblewoman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Noblewoman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fear, Forest Strider, Guerrilla Warfare, Natural Armour (6+), Sacrificial Hunt, Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Cold One (Saurian)",
+   "drawnBy": null,
+   "pointsCost": 20
+  },
+  {
+   "name": "TERRADON RIDERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Terradon Rider",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 7,
+     "points": 27
+    },
+    {
+     "name": "Terradon",
+     "M": 2,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 2,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Terradon Rider to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fast Cavalry, Fear, Fly (9), Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": "Terradon (Saurian)",
+   "drawnBy": null,
+   "pointsCost": 27
+  },
+  {
+   "name": "GOROLS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Gorol",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 6,
+     "points": 30
+    }
+   ],
+   "troopType": "Monstrous Infantry (Hominid)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May take great weapons +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Gorol to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Forest Strider",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "SERPENT GUARD",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Serpent Guard",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 12
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm, light armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "polearms",
+     "choices": [
+      {
+       "name": "Claws of the Old Ones",
+       "points": 2,
+       "perModel": true,
+       "replaces": "polearms"
+      }
+     ],
+     "raw": "May replace polearms with Claws of the Old Ones +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Sun Gauntlets",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Sunstaffs",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Enchanted Charms",
+     "points": 1.5,
+     "perModel": true,
+     "raw": "May take Enchanted Charms +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Amulets of the Moon",
+     "points": 2,
+     "perModel": true,
+     "raw": "May take Amulets of the Moon +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Koka",
+     "points": 1,
+     "perModel": true,
+     "raw": "May take Koka +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Serpent Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Serpent Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Serpent Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt, Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 12
+  },
+  {
+   "name": "BOLT THROWER",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Bolt Thrower",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 35
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x50 (Bolt Thrower), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, bolt thrower",
+   "magic": null,
+   "options": null,
+   "specialRules": null,
+   "upgrades": null,
+   "notes": "You may take 1-2 Bolt Throwers as a single Rare choice.",
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 35
+  },
+  {
+   "name": "ANCIENT SENTINELS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Ancient Sentinel",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 1,
+     "A": 3,
+     "Ld": 10,
+     "points": 50
+    }
+   ],
+   "troopType": "Monstrous Infantry (Animated Construct)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May take great weapons +6 points/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animated Construct, Magical Attacks, Magic Resistance (2), Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "STEGADON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Stegadon",
+     "M": 6,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": 2,
+     "A": 4,
+     "Ld": 6,
+     "points": 215
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Saurian)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": "Giant Bow (Stegadon only), javelins (Crew only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "javelins",
+     "choices": [
+      {
+       "name": "bows",
+       "points": 0,
+       "perModel": false,
+       "replaces": "javelins"
+      }
+     ],
+     "raw": "May replace javelins with bows free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "giant bow",
+     "choices": [
+      {
+       "name": "Gyroscope of Eternal Radiance",
+       "points": 20,
+       "perModel": false,
+       "replaces": "giant bow"
+      }
+     ],
+     "raw": "May replace giant bow with a Gyroscope of Eternal Radiance +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Unstoppable Stampede",
+     "points": 10,
+     "perModel": false,
+     "raw": "Unstoppable Stampede +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Sharpened Horns",
+     "points": 20,
+     "perModel": false,
+     "raw": "Sharpened Horns +20 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Cold-Blooded, Sacrificial Hunt, Immunity (Psychology), Impact Hits (D6+1), Natural Armour (4+), Stubborn",
+   "upgrades": "Gyroscope of Eternal Radiance: Arcane Item. Bound spell (Level 3, cast on 9+). This is an augment spell with a range of 12\". The target unit immediately makes a move with the Fly (10) special rule as if it were the Remaining Moves sub-phase.\nSharpened Horns: The Stegadon's its Impact Hits gains the Multiple Wounds (D3) special rule.\nUnstoppable Stampede: The Stegadon gains the Devastating Charge special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 215
+  },
+  {
+   "name": "AMAXON SWAMP PYTHON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Amaxon Swamp Python",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 4,
+     "A": 5,
+     "Ld": 7,
+     "points": 210
+    }
+   ],
+   "troopType": "Monster (Ophidian)",
+   "baseSize": "50x100, 60x100 or 100x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Aquatic, Cold-Blooded, Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "AVATAR OF RIGG",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Avatar of Rigg",
+     "M": 6,
+     "WS": 6,
+     "BS": 5,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 6,
+     "A": 5,
+     "Ld": 10,
+     "points": 260
+    }
+   ],
+   "troopType": "Monstrous Infantry (Deity)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Magical Attacks, Magical Ward (4+), Terror, Unstable",
+   "upgrades": null,
+   "notes": "You may only have one Avatar of Rigg included in your army.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 260
+  },
+  {
+   "name": "THALESTRIS",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Thalestris",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 5,
+     "Ld": 10,
+     "points": 300
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shortbow",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shortbow +4 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "AZURA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Azura",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 9,
+     "points": 185
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Forest Strider, Guerrilla Warfare, Immunity (Psychology), Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 185
+  },
+  {
+   "name": "MELANDRA HAWKEYE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Melandra Hawkeye",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 125
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Bow, Amulet of the Moon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (5+), Forest Strider, Guerrilla Warfare, Sacrificial Hunt, Scouts",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "PENTHESILEA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Penthesilea",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 150
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon.",
+   "magic": null,
+   "options": null,
+   "specialRules": "Forest Strider, Frenzy, Hatred, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "LYSIPPE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Lysippe",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 130
+    },
+    {
+     "name": "Blackfang",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Special Character, Human)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Fast Cavalry, Forest Strider, Guerrilla Warfare, Hatred (Lizardmen), Mighty Blow (1) (Blackfang only), Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "LWAXANA",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Lwaxana",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 305
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Lwaxana is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Forest Strider, Guerrilla Warfare, Sacrificial Hunt",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 305
+  }
+ ]
+}

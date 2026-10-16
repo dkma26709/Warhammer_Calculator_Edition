@@ -262,7 +262,8 @@ else
                                                       ConfigurationChanged="OnEntryChanged"
                                                       FactionExtras="_factionExtras"
                                                       CommonMagicItems="_commonMagicItems"
-                                                      ShowCustomNameField="true" />
+                                                      ShowCustomNameField="true"
+                                                      ForArmyList="true" />
                                 </div>
                             }
                         </div>
@@ -429,7 +430,7 @@ else
             saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", StorageKey);
 
             // Autosaves from before multi-system support live under the unsuffixed key.
-            if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Default)
+            if (string.IsNullOrWhiteSpace(saved) && SystemService.CurrentSystem == GameSystems.Legacy)
             {
                 saved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", ArmyListStorage.LegacyActiveKey);
                 fromLegacyKey = !string.IsNullOrWhiteSpace(saved);
@@ -549,6 +550,7 @@ else
         };
         foreach (var (k, v) in src.SelectedUpgrades) clone.SelectedUpgrades[k] = v;
         foreach (var (k, v) in src.SelectedMultiUpgrades) clone.SelectedMultiUpgrades[k] = v.ToList();
+        clone.SelectedCommandUpgrades.AddRange(src.SelectedCommandUpgrades);
         foreach (var (cat, picks) in src.Loadout.SelectedFactionUpgrades)
             clone.Loadout.SelectedFactionUpgrades[cat] = new List<SelectedFactionUpgrade>(picks);
         clone.SelectedMagicItems.AddRange(src.SelectedMagicItems);
@@ -602,7 +604,15 @@ else
         entry.HasChampion = enable;
         entry.HasMusician = enable;
         entry.HasStandardBearer = enable;
-        if (!enable) entry.Loadout.SelectedBanner = null;
+        if (!enable)
+        {
+            // Mirror CommandGroupPanel: a model that is no longer taken keeps no picks,
+            // or they would return unasked when F/C is turned back on.
+            entry.Loadout.SelectedBanner = null;
+            entry.ClearCommandUpgrades(CommandRole.Champion);
+            entry.ClearCommandUpgrades(CommandRole.Musician);
+            entry.ClearCommandUpgrades(CommandRole.StandardBearer);
+        }
         Revalidate();
     }
 

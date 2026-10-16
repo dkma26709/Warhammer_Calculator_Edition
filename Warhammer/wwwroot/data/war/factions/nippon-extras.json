@@ -1,0 +1,364 @@
+{
+ "factionName": "Nippon",
+ "armySpecialRules": [
+  {
+   "name": "DEATH BEFORE DISHONOUR",
+   "description": "Whenever a unit comprised wholly of models with this special rule is required to take a Break Test, they may choose to do so using the Cold-blooded special rule. However, if this test is failed, you must remove the entire unit as a casualty. The enemy then cannot pursue or overrun, but may reform as normal."
+  },
+  {
+   "name": "WAY OF THE WARRIOR",
+   "description": "Models with this rule must always accept challenges. In addition, they ignore Panic caused by friendly units with the Loner special rule and with a lower unmodified Leadership value (excluding any characters) than them."
+  },
+  {
+   "name": "CALTROPS",
+   "description": "Caltrops may be used as a Stand and Shoot reaction in addition to any other missile weapons the model might have. All models in the enemy unit charging them has to take a Dangerous Terrain test as soon as it comes within 4\" of the Ninja unit."
+  },
+  {
+   "name": "GRAPPLING HOOKS",
+   "description": "Models equipped with grappling hooks can move over impassable terrain like walls, rocks and buildings, but not water and the like. Note that they still may not end their move within impassable terrain."
+  },
+  {
+   "name": "HORO CLOAK",
+   "description": "Horo Cloaks have the following armour profile:\nCOMBAT | MISSILE | SPECIAL RULES\n- | +1/6+ | -"
+  },
+  {
+   "name": "KATANA",
+   "description": "Katanas have the following profile:\nRANGE | STRENGTH | SPECIAL RULES\nCombat | As user | Parry (6+), Requires Two Hands\nA katana gives the wielder +1 To Wound."
+  },
+  {
+   "name": "MANTLETS",
+   "description": "Units with mantlets must place them on separate bases in front of the unit. Every model in the front rank must have a mantlet base in front of it, which must also be set up within the army's deployment zone. A unit with mantlets gains a 4+ armour save against missile attacks to its front arc (except template attacks). However, if the unit moves or reforms during the game, the mantlets are removed from play."
+  },
+  {
+   "name": "SMOKE BOMBS",
+   "description": "A unit with Smoke Bombs may use them at the end of any Close Combat phase in which they take part. If they do so, the unit may disengage from combat by making a flee move. If they do so, the enemy cannot pursue them and they will rally automatically in their next turn."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "GRASS-CUTTING SWORD",
+   "points": "60",
+   "category": "magic_weapon",
+   "description": "Instead of attacking normally, this weapon may automatically inflict a single Hit on all enemy models in the front rank of any unit the wielder is in base contact with.",
+   "restriction": null
+  },
+  {
+   "name": "DRAGON CLAW KATANA",
+   "points": "45",
+   "category": "magic_weapon",
+   "description": "The wielder gains one additional Attack for every point of unmodified Leadership that exceeds that of any one enemy model in base contact. In addition, when fighting in challenges, the wielder gains the Killing Blow special rule and may re-roll all failed rolls To Hit and To Wound.",
+   "restriction": null
+  },
+  {
+   "name": "DIVINE SLASHING BLADE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "All hits with this weapon automatically Wound. Armour saves are taken as normal.",
+   "restriction": null
+  },
+  {
+   "name": "CRESENT MOON BLADE",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "The wielder always counts their Strength characteristic at least one higher than that of any enemy models in base contact. In addition, they have the Multiple Wounds (D3) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "HEAVENLY NAGINATA",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder +1 to Hit in close combat and Flaming Attacks. In addition, on a To Hit roll of a 6, that attack is multiplied into D3 hits.",
+   "restriction": null
+  },
+  {
+   "name": "MASAMUNE'S WAKIZASHI",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "The wielder gains the Always Strike First special rule. In addition, they may re-roll failed Parry saves.",
+   "restriction": null
+  },
+  {
+   "name": "AUTUMN RAIN",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder may fire as many shots as they have Attacks on their profile and ignore all shooting modifiers.",
+   "restriction": null
+  },
+  {
+   "name": "DAEMON CUTTER",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "No Magical Ward saves can be taken against attacks made by this weapon.",
+   "restriction": null
+  },
+  {
+   "name": "YARI OF RIGHTEOUSNESS",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "Only one enemy model in base contact may attack the wielder in Close Combat. The attacking player chooses which model may attack. In addition, no enemy unit can claim the Outnumber bonus against the wearer and any unit they are with.",
+   "restriction": null
+  },
+  {
+   "name": "YORITOMO'S ARMOUR",
+   "points": "55",
+   "category": "magic_armour",
+   "description": "The wearer gains a Magical Ward (5+). In addition, if there are one or more friendly characters within 12\" of the wearer, the wearer also gains +1 Strength.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF IMPERIAL RULE",
+   "points": "40",
+   "category": "magic_armour",
+   "description": "Enemies must re-roll 6’s when rolling To Wound against the wearer. Enemies who fail their rolls To Wound suffer a Strength 4 hit.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF OSANO-WO",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "The wearer is completely immune to all effects from spells.",
+   "restriction": null
+  },
+  {
+   "name": "IKOMA'S WARFAN",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "All enemies attacking the wielder in close combat suffer a -1 To Hit penalty.",
+   "restriction": null
+  },
+  {
+   "name": "MEMPO OF HONOUR",
+   "points": "20",
+   "category": "magic_armour",
+   "description": "This item gives the wearer a 6+ armour save. Enemies attacking the wearer in close combat must re-roll successful rolls To Hit. However, if the wearer flees for any reason, they are immediately removed as a casualty after making their flee move.",
+   "restriction": null
+  },
+  {
+   "name": "ISAWA'S HELM",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "This item gives the wearer a 6+ armour save. In addition, the wearer may re-roll 1's when taking armour saves.",
+   "restriction": null
+  },
+  {
+   "name": "BRONZE TOKEN",
+   "points": "35",
+   "category": "talisman",
+   "description": "The wearer gains a 4+ invulnerable save against Magical Attacks. In addition, the wearer may re-roll one failed armour save each turn.",
+   "restriction": null
+  },
+  {
+   "name": "HAKAMA OF THE IDE FAMILY",
+   "points": "25",
+   "category": "talisman",
+   "description": "Enemies attempting to strike the bearer in Close Combat must first pass a Leadership test. If failed, they may not attack this turn.",
+   "restriction": null
+  },
+  {
+   "name": "THE RAINBOW CLOAK",
+   "points": "25",
+   "category": "talisman",
+   "description": "Enemies shooting at the bearer or any unit they are with suffer -1 to hit.",
+   "restriction": null
+  },
+  {
+   "name": "HENSHIN'S AMULET",
+   "points": "20",
+   "category": "talisman",
+   "description": "This item gives the wearer a Magical Ward (6+). In addition, they may re-roll one dice to Hit, to Wound or a failed armour save each turn.",
+   "restriction": null
+  },
+  {
+   "name": "CANDLE OF THE VOID",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "The Candle of the Void may be placed within 12\" of the caster at the start of the game (use a small marker on a round 25mm base), but it may not be moved during the game and counts as impassable terrain.\nThe caster can choose to cast any spell through the candle rather than themselves. If they do so, measure the spell's range from the candle. The candle can draw Line of Sight in any direction and has a Line of Sight value of 1. The caster can use this to cast any spell type even if they are engaged in close combat. If a spell cast through the candle is miscast, the result of the miscast is applied to the caster as normal.",
+   "restriction": null
+  },
+  {
+   "name": "INCENSE OF CONCENTRATION",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The model carrying this item may adjust the dice roll of one power dice by 1 (either up or down) when casting spells once per turn.",
+   "restriction": null
+  },
+  {
+   "name": "CHIME OF HARMONY",
+   "points": "25",
+   "category": "arcane_item",
+   "description": "The bearer of this item may re-roll failed casting rolls, as long as they are not in Close Combat or have not moved earlier in that turn.",
+   "restriction": null
+  },
+  {
+   "name": "SACRED MAGATAMA",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "This item allows the bearer to attempt to cast the same spell twice in a single turn if the first attempt fails or is dispelled.",
+   "restriction": null
+  },
+  {
+   "name": "CURSE OF THE MIDNIGHT FLIES",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The character may use the Curse of the Midnight Flies in the Shooting phase. It has a range of 24\" and causes 3D6 automatic Strength 3 hits.",
+   "restriction": null
+  },
+  {
+   "name": "FAN OF COMMAND",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "Once per game, the bearer and any unit they are with may make a free reform in the beginning of the Movement phase. In addition, they automatically pass any test to reform, march and restrain from pursuit.",
+   "restriction": "Daimyo or Taisho"
+  },
+  {
+   "name": "DRAGON PEARL",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "At the start of the close combat phase, the bearer may transform this item into an exact copy of any enemy magic item in base contact, retaining all of its abilities for as long as it stays in base contact.",
+   "restriction": null
+  },
+  {
+   "name": "DRUM OF WATER",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer and any unit they are with gains the Devastating Charge special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SERENITY LANTERNS",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer and any unit in base contact with them gains the Immunity (Psychology) special rule. In addition, they lose any Hatred or Frenzy special rule they might have while they remain in base contact.",
+   "restriction": null
+  },
+  {
+   "name": "JADE MIRROR",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer gains the Inspiring Presence (6) special rule. However, if they flee for any reason, other friendly units may not use their Leadership at all for the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "MANTLE OF FIRE",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The wearer gains +1 To Wound with their Close Combat attacks.",
+   "restriction": null
+  },
+  {
+   "name": "MEISHODO AMULET",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "At the start of each of your turns, the bearer of this item may increase one characteristic of their choosing by +1 by passing a Leadership test. This bonus lasts until the start of your next turn.",
+   "restriction": null
+  },
+  {
+   "name": "BONSAI PINE OF IUCHI RAMATSU",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any of your turns. When activated, the bearer and any unit they are with halve their Line of Sight value (rounded down, to a minimum of 1). They may return to their normal Line of Sight value at the start of any of your turns.",
+   "restriction": null
+  },
+  {
+   "name": "BRASS GONG OF OTAKU MASERO",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "All friendly units within 12\" of the bearer gain +1 to their Leadership when taking Rally tests.",
+   "restriction": null
+  },
+  {
+   "name": "IMPERIAL STANDARD",
+   "points": "55",
+   "category": "magic_standard",
+   "description": "The bearer gains the Hold Your Ground (6) special rule. In addition, the unit carrying it gains +D3 to their combat resolution.",
+   "restriction": null
+  },
+  {
+   "name": "MIRUMOTO'S BATTLE STANDARD",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard adds +1 To Hit and To Wound in the first round of close combat.",
+   "restriction": null
+  },
+  {
+   "name": "ANCESTRAL WAR STANDARD",
+   "points": "40",
+   "category": "magic_standard",
+   "description": "All combats with at least one friendly unit involved within 6\" of the unit carrying the banner receive +1 to their combat resolution bonus.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF AMATERASU",
+   "points": "35",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard take all Break tests using a single D6. This cannot be combined with Death Before Dishonour.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF THE VERMILLION BIRD",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "All friendly Wizards within 12\" of this standard gain +1 to cast spells.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF THE IRON CRANE",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Dodge (6+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE ROARING TEMPEST",
+   "points": "15",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard counts as having one more rank than normal for the purposes of rank bonus. Note that the unit must have at least one complete rank.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [],
+ "factionUpgrades": {
+  "clan_mon": [
+   {
+    "name": "MON OF THE HATTIGA CLAN",
+    "points": "20",
+    "description": "Each Shinobi adds +1 to deciding which table side to deploy on and whether or not to deploy Scouts first or second. In addition, Ninja, Kabuki Dolls and Shinobi gain +1 Attack in the first round of combat."
+   },
+   {
+    "name": "MON OF THE DAWATE CLAN",
+    "points": "15",
+    "description": "Models with this Mon do not suffer any penalties to their Initiative if armed with great weapons."
+   },
+   {
+    "name": "MON OF THE UESIGO CLAN",
+    "points": "15",
+    "description": "Warrior Monks with this Clan Mon gain the Stubborn special rule. Yamabushi may re-roll failed Leadership tests when using Prayers of the Kami."
+   },
+   {
+    "name": "MON OF THE SHISUMA CLAN",
+    "points": "10",
+    "description": "Models with this Mon using katanas gain the Parry (6+) special rule."
+   },
+   {
+    "name": "MON OF THE TAKAI CLAN",
+    "points": "10",
+    "description": "Models with this Mon may re-roll one dice when determining their charge distance, and re- roll 1's when rolling To Wound on the charge."
+   },
+   {
+    "name": "MON OF THE CHOTOSA CLAN",
+    "points": "5",
+    "description": "Models with this Mon may re-roll 1's when rolling to Hit with longbows."
+   },
+   {
+    "name": "MON OF THE HOJIZU CLAN",
+    "points": "0",
+    "description": "War Machines with this Clan Mon may re-roll one failed To Hit roll or one Artillery Dice once per battle."
+   },
+   {
+    "name": "MON OF THE ODARI CLAN",
+    "points": "0",
+    "description": "Models with this Mon gain +1 to their Leadership."
+   }
+  ]
+ }
+}
