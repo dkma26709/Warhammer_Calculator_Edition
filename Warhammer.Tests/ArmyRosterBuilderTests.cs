@@ -11,7 +11,7 @@ namespace Warhammer.Tests;
 /// </summary>
 public class ArmyRosterBuilderTests
 {
-    private static ArmyRosterBuilder MakeBuilder(string systemKey = GameSystems.Default)
+    private static ArmyRosterBuilder MakeBuilder(string systemKey = GameSystems.WapV2)
     {
         var system = new GameSystemService();
         system.Initialize(systemKey);
