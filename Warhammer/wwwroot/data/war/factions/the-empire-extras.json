@@ -1,0 +1,800 @@
+{
+ "factionName": "The Empire",
+ "armySpecialRules": [
+  {
+   "name": "STATE TROOPS",
+   "description": "If an enemy unit declares a charge against a State Troop unit, and that unit chooses Hold or Stand & Shoot as a charge reaction, then all non-fleeing and unengaged State Troop units within 3\" can make either a Support Fire or a Support Charge action by passing a Leadership test (which can be re-rolled if the unit has a Leader). If the charged State Troops unit does not get a charge reaction for any reason, then the other State Troops units within range cannot make a Support Fire or a Support Charge action.\nAdditionally, a State Troop unit can only declare one Support Fire action, one Stand and Shoot reaction or one Support Charge action per turn.\n• Support Fire: A State Troop unit can only declare a Support Fire action if at least one model in the unit is armed with a missile weapon and the range between the charging unit and the charged State Troops unit is greater than the charging unit's Movement characteristic.\nIf a Support Fire action is declared, the unit makes an immediate, out of sequence shooting attack, resolved as if it had just declared a Stand & Shoot charge reaction against the charging unit. All unsaved Wounds from the units' Stand & Shoot charge reaction and/or Support Fire actions, are combined when determining if the charging unit is required to take a Heavy Casualties Panic test.\n• Support Charge: A State Troop unit can declare a Support Charge against an enemy unit's unengaged arc, after your opponent has moved all of their charging units, as long as one or more enemy units has successfully completed a charge against the charged State Troop unit. If a Support Charge action is declared, the unit makes an out of sequence move that is resolved as it had just declared a charge against the charging unit. The enemy does not get to make any charge reactions against a Support Charge, but otherwise all the normal charging rules and bonuses apply."
+  },
+  {
+   "name": "CAVALRY HAMMER",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\nCombat | +1 | Armour Piercing (1), Requires Two Hands"
+  },
+  {
+   "name": "GRENADE LAUNCHING BLUNDERBUSS",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n9/18\" | 4 | Armour Piercing (1)\nEach Hit from a grenade launching blunderbuss is multiplied into D6 Hits."
+  },
+  {
+   "name": "HOCHLAND LONG RIFLE",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n18/36\" | 5 | Move or Fire, Sniper"
+  },
+  {
+   "name": "REPEATER HANDGUN",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n12/24\" | 5 | Multiple Shots (3), Ponderous, Rapid Fire"
+  },
+  {
+   "name": "REPEATER PISTOL",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/12\" | 5 | Multiple Shots (3), Quick Shot, Rapid Fire\nA repeater pistol can be used in combination with a regular pistol as a brace of pistols, in which case they fire Multiple Shots (4), but do not have Rapid Fire."
+  },
+  {
+   "name": "FULL PLATE",
+   "description": "Models with heavy armor only. The model gains a +1 modifier to their armour save."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "BEAST SLAYER, THE DRAKWALD RUNEFANG",
+   "points": "60",
+   "category": "magic_weapon",
+   "description": "All hits from the Runefang wound automatically and Ignores Armour saves.",
+   "restriction": "General"
+  },
+  {
+   "name": "DAEMONSLAYER BLADE",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "Against Daemons, all attacks made with the Daemonslayer Blade gain +1 To Wound with the Multiple Wounds (D3) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SPEAR OF THE HIEROPHANT",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "Against Daemons, Undead and Vampires, all attacks made with the Spear of the Hierophant gain +1 Strength and any successful Magical Ward saves must be re-rolled.",
+   "restriction": null
+  },
+  {
+   "name": "SWORD OF FATE",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "At the beginning of the battle, nominate one enemy Character, Monstrous Creature or Monster on the battlefield. The Sword of Fate will Wound that model on a 2+ with the Ignores Armour Saves and Multiple Wounds (D3) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "BLADE OF SILVERED STEEL",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder the Hatred (Undead, Vampires) special rule. In addition, no Undead or Vampires may take armour or Regeneration saves against it.",
+   "restriction": null
+  },
+  {
+   "name": "VON TRICKSCHOTTE'S WONDROUS ARQUEBUS",
+   "points": "30",
+   "category": "magic_weapon",
+   "description": "This weapon has the following profile:\nRANGE | STRENGTH | SPECIAL RULES\n18/36\" | 6 | Multiple Wounds (D3), Ponderous, Sniper",
+   "restriction": null
+  },
+  {
+   "name": "BRONZE SIGIL SWORD",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder +1 Strength and Toughness. In addition, the wielder gains the Terror special rule against Goblins.",
+   "restriction": "Wizard"
+  },
+  {
+   "name": "THE MACE OF HELSTURM",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains the Flaming Attacks special rule. In addition, each natural roll of 6 to hit causes that attack to be resolved at Strength 10 and with the Multiple Wounds (D3) special rule.",
+   "restriction": "Arch Lector"
+  },
+  {
+   "name": "SWORD OF SIGISMUND",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The Sword of Sigismund gives the wielder +1 Strength and the Always Strikes First special rule.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "HAMMER OF JUDGEMENT",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Models hit by the Hammer of Judgement must take a Toughness test for every Hit suffered. If the test is failed, the Hit Wounds automatically with the Ignores Armour Saves special rule. If the test is passed, roll to Wound and take armour saves as normal.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "SWORD OF RIGHTEOUS STEEL",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "The Sword of Righteous Steel makes the wielder always Hit any opponent on roll of a 2+. In addition, models Hit must re-roll successful Parry saves.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "PEARL DAGGERS",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "This weapon gives the wielder the Random Attacks (D3) special rule in addition to their normal attacks.",
+   "restriction": null
+  },
+  {
+   "name": "WYRMSLAYER SWORD",
+   "points": "10",
+   "category": "magic_weapon",
+   "description": "The Wyrmslayer Sword makes the wielder Wound on a 4+ or better, and ignores Natural Armour.",
+   "restriction": null
+  },
+  {
+   "name": "THE ARMOUR OF METEORIC IRON",
+   "points": "50",
+   "category": "magic_armour",
+   "description": "The Armour of Meteoric Iron grants the wearer +2 armour save and the Magical Ward (6+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "TWICE-BLESSED ARMOUR",
+   "points": "50",
+   "category": "magic_armour",
+   "description": "This item contains a Bound Spell (Level 1, cast on 3+). This is a direct damage spell that causes 2D6 Strength 4 hits on one enemy unit in base contact with the caster.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF RIGHTEOUS FURY",
+   "points": "35",
+   "category": "magic_armour",
+   "description": "The wearer gains +1 Toughness and the Always Strikes First special rule.",
+   "restriction": "Witch Hunter"
+  },
+  {
+   "name": "THE GILDED ARMOUR",
+   "points": "35",
+   "category": "magic_armour",
+   "description": "Models attacking the wearer in close combat must pass a Strength test before rolling to hit for every Attack directed at the target. If the test is failed, the Attack is lost. Attacks that do not roll to Hit are unaffected.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF TARNUS",
+   "points": "30",
+   "category": "magic_armour",
+   "description": "The Armour of Tarnus gives the wearer the Magical Ward (5+) special rule. This item may be taken by Wizards despite them normally not being allowed to take armour.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF THE GORGON",
+   "points": "10",
+   "category": "magic_armour",
+   "description": "At the start of each round of close combat, the Shield of the Gorgon causes one enemy model in base contact of your choosing to suffer a -1 penalty to their Attack characteristic for the remainder of the close combat phase.",
+   "restriction": null
+  },
+  {
+   "name": "SHROUD OF MAGNUS",
+   "points": "60",
+   "category": "talisman",
+   "description": "This item gives the bearer the Magical Ward (5+) special rule. In addition, they and any unit they join gain the Immunity (Fear, Terror) and Magic Resistance (2) special rules.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "AMULET OF THRICE-BLESSED COPPER",
+   "points": "35",
+   "category": "talisman",
+   "description": "All enemy attacks targeting the model wearing the Amulet of Thrice-Blessed Copper suffer -1 To Wound. In addition, the bearer gains the Immunity (Poisoned Attacks) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ICON OF SIGMAR",
+   "points": "20",
+   "category": "talisman",
+   "description": "The Icon of Sigmar gives its bearer +1 Toughness.",
+   "restriction": "Arch Lector"
+  },
+  {
+   "name": "JADE AMULET",
+   "points": "20",
+   "category": "talisman",
+   "description": "The Jade Amulet allows the wearer to ignore the first wounding Hit they suffer (after saves).",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "MANTLE OF ILLUSIONS",
+   "points": "20",
+   "category": "talisman",
+   "description": "All successful rolls To Hit against the wearer must be re-rolled.",
+   "restriction": "Wizard with the Lore of Shadows"
+  },
+  {
+   "name": "WITCH HUNTER'S WARD",
+   "points": "20",
+   "category": "talisman",
+   "description": "This item gives the bearer and any unit they join the Magic Resistance (2) special rule. In addition, their armour save cannot be reduced below a 6+.",
+   "restriction": "Witch Hunter"
+  },
+  {
+   "name": "THE CRIMSON AMULET",
+   "points": "15",
+   "category": "talisman",
+   "description": "The Crimson Amulet gives the wearer a Magical Ward (6+). In addition, they automatically pass any Characteristic tests they have to take.",
+   "restriction": null
+  },
+  {
+   "name": "SIGIL OF SIGMAR",
+   "points": "10",
+   "category": "talisman",
+   "description": "The Sigil of Sigmar gives the bearer a 4+ invulnerable save against enemy spells.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "SLAYER'S HOURGLASS",
+   "points": "10",
+   "category": "talisman",
+   "description": "Any Monstrous Beast, Monstrous Creature or Monster (including mounts, but not riders) in base contact with the bearer of this item gains the Always Strikes Last special rule.",
+   "restriction": null
+  },
+  {
+   "name": "GREY WAND",
+   "points": "40",
+   "category": "arcane_item",
+   "description": "The Grey Wand gives the wielder a +D3 casting bonus. Roll for each spell casting attempt.",
+   "restriction": null
+  },
+  {
+   "name": "CHALICE OF FATE",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "The Chalice of Fate allows the Wizard to re-roll failed Channelling rolls.",
+   "restriction": null
+  },
+  {
+   "name": "ROD OF POWER",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "At the end of each magic phase (yours and enemy's), you can save up to three unused power/dispel dice from the pool and store them in the rod. At the beginning of each successive magic phase (yours and enemy's), roll a dice. If the result is equal or higher to the number of dice stored, add them to the power/dispel dice pool, if the result is lower than the number of dice stored, they are lost.",
+   "restriction": null
+  },
+  {
+   "name": "TOME OF MIDNIGHT",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The bearer of this item gains a +1 casting bonus when using the Lore of Shadow or Death. In addition, they know one more spell than normal. However, they also have the Independant special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SEAL OF DESTRUCTION",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "After the bearer of the Seal of Destruction manages to successfully dispel an enemy spell, they may choose to use the Seal. If they do so, roll a D6. On a 4+, the spell cannot be used by that Wizard for the rest of the game.",
+   "restriction": null
+  },
+  {
+   "name": "SHEMTEK'S GRIMOIRE",
+   "points": "15",
+   "category": "arcane_item",
+   "description": "This item can be used at the start of any enemy Magic Phase. Roll a D3, the result is the casting penalty all enemy Wizards suffer for the duration of this Magic Phase.",
+   "restriction": null
+  },
+  {
+   "name": "CRYSTAL BALL",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The Crystal Ball allows the wearer to pick one enemy unit anywhere on the table at the start of each of your turns. Your opponent must reveal all Magic Items, Hidden models and the like that unit might have.",
+   "restriction": null
+  },
+  {
+   "name": "TWIN-TAILED WAND",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "Once per turn, the bearer of this item may attempt to cast the same spell twice. However, any time they roll a miscast, they suffer a +1 modifier to the result on the Miscast table.",
+   "restriction": null
+  },
+  {
+   "name": "WIZARD'S STAFF",
+   "points": "10",
+   "category": "arcane_item",
+   "description": "The bearer can use one more Power dice than they are normally allowed to from their Wizard Level.",
+   "restriction": null
+  },
+  {
+   "name": "FOZZRIK'S FOLDING FORTRESS",
+   "points": "100",
+   "category": "enchanted_item",
+   "description": "After deployment zones have been agreed, but before the armies have been deployed, place a watchtower building no more than 10x10 cm in base size and a maximum of 3 floors in your deployment zone to represent the Folding Fortress. This is treated as a standard building. If you do not have a suitable building to place, you cannot use Fozzrik's Folding Fortress.",
+   "restriction": null
+  },
+  {
+   "name": "VAN HORSTMANN'S SPECULUM",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "When the wearer fights in a challenge, he must 'swap' the Weapon Skill, Strength, Toughness, Initiative and Attacks characteristics on his profile with his enemy (but not the enemy's mount, if he has one). So, the wearer fights with his enemy's Strength, Toughness, Initiative and Attacks whilst his enemy fights with the wearer's Strength, Toughness, Initiative and Attacks. Note that you cannot choose not to use Van Horstmann's Speculum and you must swap all of the listed characteristics for the duration of the challenge, not just some of them.",
+   "restriction": null
+  },
+  {
+   "name": "ALDRED'S CASKET OF SORCERY",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "At the start of each of your Magic phases, roll a D6. On the roll of a 4+, the bearer may remove and capture one randomly determined spell up to Level 2 (excluding Signature Spells) from an enemy Wizard within 12\". The bearer can then cast the captured spell in any of your Magic phases by releasing it from the casket just like from a Bound Spell. Any number of spells may be captured by the casket, and the bearer can successfully cast each one once, either over several magic phases or all at the same time if they prefer.",
+   "restriction": null
+  },
+  {
+   "name": "DOOMFIRE RING",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The Doomfire Ring contains the Burning Head spell from the Lore of Fire.",
+   "restriction": null
+  },
+  {
+   "name": "RANALD'S COIN",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The bearer of this item may re-roll 1's To Hit, To Wound, when taking armour saves and invulnerable saves.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF TAAL",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains the Shield of Thorns spell from the Lore of Life.",
+   "restriction": null
+  },
+  {
+   "name": "ORB OF THUNDER",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "Remains in play. The Orb of Thunder contains a hex aura spell with a range of 24\". While the spell is in effect, no models within range may use their Fly special rule and must move on the ground at their normal Movement rate.",
+   "restriction": null
+  },
+  {
+   "name": "THE SILVER HORN",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "The Silver Horn contains an augment aura spell with a range of 12\". All affected units gain the Immunity (Psychology) special rule until the start of your next Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "ANTLER OF THE BLUE STAG",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The bearer of this item and any unit they join gain +1 Weapon Skill and Ballistic Skill.",
+   "restriction": null
+  },
+  {
+   "name": "EICHELBAUM'S SCROLL",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "Once per turn, when an enemy spell has been cast, the bearer can use this item instead of attempting to dispel the spell by using dispel dice. This gives them 3 free dice to attempt to dispel the spell, which cannot be combined with any other dispel dice. This may also be used to dispel spells that Remains in Play. However, if the dispel attempt fails, the scroll is destroyed and cannot be used for the remainder of the battle.",
+   "restriction": "Witch Hunter"
+  },
+  {
+   "name": "HELSTURM'S STAFF",
+   "points": "30",
+   "category": "enchanted_item",
+   "description": "The model carrying Helsturm's Staff and any unit they join gain the Cold-blooded special rule.",
+   "restriction": "Arch Lector"
+  },
+  {
+   "name": "BALESTORM ORB",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "Enemy Wizards within 24\" of the bearer suffer a -1 penalty to cast spell.",
+   "restriction": "Witch Hunter"
+  },
+  {
+   "name": "BRAZIER OF HOLY FLAME",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer of this item gains the Hold Your Ground (6) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BLACK POMANDER",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "Any Undead unit in base contact with the bearer of this item suffer -1 to their Weapon Skill.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF ST. HORST",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The model carrying the Ring of St. Horst and any unit they join may re-roll any failed Leadership test.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "RING OF VOLANS",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "Bound Spell. At the beginning of the game, choose one spell from any of the eight Winds of Magic as if the bearer were a Level 1 Wizard. That spell is bound within the Ring of Volans and is automatically cast with a casting result equal to the normal casting value of the spell, no power dice are required.",
+   "restriction": null
+  },
+  {
+   "name": "BLESSED SILVER HAMMER",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any round of close combat. All enemy models in base contact with the bearer suffer a Strength 4 Hit with the Magical Attacks special rule. This is increased to Strength 5 for Daemons, Undead and Vampires.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "BOOK OF UNCOMMON PRAYER",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The bearer may re-roll one dice when taking Leadership tests to use Battle Prayers of Sigmar.",
+   "restriction": null
+  },
+  {
+   "name": "BOOTS OF BOVVA",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The model wearing the Boots of Boova gains the Stomp (D3) special rule.",
+   "restriction": "Model on foot"
+  },
+  {
+   "name": "ICON OF MAGNUS",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The Icon of Magnus gives the bearer and any unit they are with the Immunity (Terror) special rule.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "POWDERS OF THRICE-DAMNED OSSK",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The Powders may be used immediately when an enemy Wizard miscasts. The Wizard must roll twice on the Miscast table, and you pick which result is used.",
+   "restriction": "Witch Hunter"
+  },
+  {
+   "name": "RELIQUARY OF LECTOR OSTRANALD",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "Each time the bearer's unit suffers unsaved Wounds from a spell, the first D3 unsaved Wounds are absorbed by the Reliquary and have no effect (unsaved Wounds with the Multiple Wounds special rule still only count as one).",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "SANCTIFIED SHARD OF LICHEBONE",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "No Magical Wards may be used against close combat Attacks made by the bearer.",
+   "restriction": "Witch Hunter"
+  },
+  {
+   "name": "SKULL CHARM",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "At the start of the game, roll a D6 and consult the chart below to determine which effect the Skull Charm has on the wearer.\nD6 | Result\n1-2 | +1 Weapon Skill\n3-4 | +1 Leadership\n5-6 | +1 Weapon Skill & Leadership\nSQUINTSOFFEN'S MARVELLOUS",
+   "restriction": null
+  },
+  {
+   "name": "MAGNIFIER",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The bearer may re-roll failed rolls To Hit with missile weapons (excluding artillery).",
+   "restriction": "Master Engineer"
+  },
+  {
+   "name": "VON MECKLENBURG'S ENCHANTED SHOT",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "Any shots fired from the bearer's weapons have the Magical Attacks special rule and automatically Wounds.",
+   "restriction": "Witch Hunter with pistol(s) or handgun"
+  },
+  {
+   "name": "THE FANG OF ORSKA",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "Any War Beast, Monstrous Beast, Monstrous Creature or Monster (including mounts, but not riders) attempting to strike blows against the bearer must first pass a Leadership test or automatically forfeit any attacks directed against the bearer.",
+   "restriction": null
+  },
+  {
+   "name": "RING OF FORTUNE",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "The bearer (but not their mount) of this item can re-roll all failed To Wound rolls in close combat.",
+   "restriction": null
+  },
+  {
+   "name": "SHEEN OF TRUESILVER",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "At the end of any close combat in which a Monstrous Infantry, Monstrous Beast, Monstrous Cavalry, Monstrous Creature or Monster model suffers one or more unsaved Wounds from the bearer's close combat attacks, it must take a Toughness test for each such Wound inflicted, and loses a Wound (with no saves allowed) for each test failed.",
+   "restriction": null
+  },
+  {
+   "name": "SANCTIFIED SILVER BULLETS",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "Any shots fired from the bearer's weapons have the Multiple Wounds (D3) special rule against Daemons, Undead and Vampires.",
+   "restriction": "Witch Hunter with pistol(s) or handgun"
+  },
+  {
+   "name": "BANNER OF THE KNIGHTS PANTHER",
+   "points": "40",
+   "category": "enchanted_item",
+   "description": "A unit with this standard gains the Unbreakable special rule.",
+   "restriction": "Knights with the Knights Panther upgrade"
+  },
+  {
+   "name": "STANDARD OF ARCANE WARDING",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "A unit with this standard gains the Magic Resistance (2) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "STEEL STANDARD",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "A unit with this standard ignores the Movement penalties from barding.",
+   "restriction": "Knights or Demigryph Knights"
+  },
+  {
+   "name": "BANNER OF VALOUR",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "A unit with this standard gains the Immunity (Panic) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "TAPESTRY OF SIGMAR'S TRIUMPH",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "A unit with this standard may re-roll 1's To Wound in the first round of close combat.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "BANNER OF DUTY",
+   "points": "5",
+   "category": "enchanted_item",
+   "description": "A unit with this standard automatically pass any Rally tests.",
+   "restriction": null
+  },
+  {
+   "name": "THE IMPERIAL BANNER",
+   "points": "55",
+   "category": "magic_standard",
+   "description": "The bearer of this standard gains the Hold Your Ground (6) special rule. In addition, all friendly units within the bearers Hold Your Ground range gain the Disciplined special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF SIGISMUND",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "A unit with this standard gains the Inspiring Presence (6) and Stubborn special rules.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "GRIFFON STANDARD",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "A unit with this standard doubles any combat result bonus granted for having extra ranks. However, the unit carrying the Griffon Banner cannot pursue a fleeing enemy and must hold their ground instead.",
+   "restriction": "Sigmarite"
+  },
+  {
+   "name": "FLAG OF THE CONQUEROR",
+   "points": "40",
+   "category": "magic_standard",
+   "description": "All friendly units with the State Troops or Militia special rules within 12\" of this standard gain +1 to their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "STORM HAMMER",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "Models Hit in the turn the wielder charges may not attack that turn.",
+   "restriction": null
+  },
+  {
+   "name": "WINTER'S BITE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "On a to hit roll of 6, this weapon automatically Wounds with the Ignores Armour saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF THE KNIGHT ETERNAL",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "Attacks against the wearer in close combat suffer a -1 To Hit penalty.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF SKOLL",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "Attacks against the wearer in close combat suffer a -1 Strength penalty. In addition, the wearer gains Immunity (Lore of Light).",
+   "restriction": null
+  },
+  {
+   "name": "WOLF HELM OF THE TEUTOGENS",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "6+ armour save. The wearer can take a Leadership test at the start of every Close Combat phase. If passed, they gain +1 Strength for the duration of that phase.",
+   "restriction": null
+  },
+  {
+   "name": "HELM OF THE SKAVENSLAYER",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "6+ armour save. The wearer gains the Fear special rule. Against models from a Skaven army, the wearer causes Terror instead. However, all Skaven gain the Hatred special rule while attacking the wearer.",
+   "restriction": null
+  },
+  {
+   "name": "THE WHITE CLOAK OF ULRIC",
+   "points": "45",
+   "category": "talisman",
+   "description": "The wearer gains the Ice Attacks, Immunity (Flaming Attacks) and Magical Ward (5+) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "HEART OF MIDDENHEIM",
+   "points": "30",
+   "category": "talisman",
+   "description": "The bearer gains +1 Weapon Skill and the Magical Ward (5+) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "CLOAK OF ANRAHEIR",
+   "points": "20",
+   "category": "talisman",
+   "description": "The wearer gains the Magic Resistance (1) and Magical Ward (6+) special rules. All Beastmen treat the wearer as causing Fear.",
+   "restriction": null
+  },
+  {
+   "name": "SHARD OF SKOLL",
+   "points": "15",
+   "category": "talisman",
+   "description": "The Shard adds +1 to the score of every dice rolled when making a Dispel attempt. If the Dispel attempt was successful the Shard is destroyed, but otherwise it can be used again.",
+   "restriction": "Priest of Ulric"
+  },
+  {
+   "name": "WOLFSHEAD EMBLEM",
+   "points": "5",
+   "category": "talisman",
+   "description": "The Wolfshead Emblem may be used when attempting to dispel an enemy spell. This adds +1 Dispel dice to the attempt.",
+   "restriction": "Priest of Ulric"
+  },
+  {
+   "name": "BANE OF THE CRAVEN",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "Neither the bearer of this item nor any unit they charge may ever voluntarily flee as a charge reaction.",
+   "restriction": null
+  },
+  {
+   "name": "AMBER FANG",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "The bearer can use up to two Battle Prayers each turn. This overrides the normal limit of a unit not being able to be affected by two Battle Prayers at the same time.",
+   "restriction": "Priest of Ulric"
+  },
+  {
+   "name": "ICE DAGGER",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The bearer may add the current rank bonus of the unit they accompany to their Leadership when using Battle Prayers.",
+   "restriction": "Priest of Ulric"
+  },
+  {
+   "name": "HORN OF THE WHITE WOLF",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "Whenever the bearer of this item declares a charge, the target must take a Panic test before choosing their charge reaction.",
+   "restriction": null
+  },
+  {
+   "name": "FAUSCHLAG RING",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "The wearer gains +1 to Hit in close combat.",
+   "restriction": null
+  },
+  {
+   "name": "CLAW TOTEM",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The character and any unit they are with can roll one additional dice when pursuing fleeing enemies, and discard the lowest roll.",
+   "restriction": null
+  },
+  {
+   "name": "FANG OF THE WINTER WOLF",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "This item may be used at the start of any of your turns. The bearer's Battle Prayer automatically succeeds this turn.",
+   "restriction": "Priest of Ulric"
+  },
+  {
+   "name": "PELT OF HORROS",
+   "points": "10",
+   "category": "enchanted_item",
+   "description": "The wearer may re-roll one failed to wound roll in each Close Combat phase.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE WARRIOR TRUE",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "When the unit carrying this banner takes a Break test, they count as having lost the combat by D3 fewer points than they really did. If this reduces the margin of the loss to 0 or lower, they still count as having lost the combat but test on their unmodified Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "THE BANNER OF ULRIC",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard causes Fear. When charging, they cause Terror.",
+   "restriction": "Knights of the White Wolf, Inner Circle Knights of the White Wolf or Winter Wolf Knights"
+  },
+  {
+   "name": "STANDARD OF THE WHITE WOLF",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "All missile fire against the unit (including magic missiles) suffers a -1 penalty to its Strength. Other types of attack, including spells that are not magic missiles, are unaffected.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF MIDDENHEIM",
+   "points": "20",
+   "category": "magic_standard",
+   "description": "The unit carrying this banner gains the Immunity (Terror) special rule.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [],
+ "factionUpgrades": {
+  "knightly_orders": [
+   {
+    "name": "REIKSGUARD KNIGHTS",
+    "points": "Characters free\nCavalry/Infantry 1 point per model\nMonstrous Cavalry 3 points per model",
+    "description": "Must take heavy lances or polearms if mounted. The models have the Stubborn special rule. However, they may not take a regular Grand Master."
+   },
+   {
+    "name": "KNIGHTS OF THE BLAZING SUN",
+    "points": "Characters free\nCavalry 1 point per model\nMonstrous Cavalry 3 points per model",
+    "description": "Must take heavy lances or polearms, as well as shields. Whenever a unit where the majority of models have this upgrade declare a charge, the unit being charged suffer -1 Weapon Skill and Ballistic Skill for the duration of the turn."
+   },
+   {
+    "name": "KNIGHTS PANTHER",
+    "points": "Characters free\nCavalry 1 point per model",
+    "description": "Must take heavy lances or polearms. A unit where all models have this upgrade add an extra D3\" to their charge distance."
+   },
+   {
+    "name": "KNIGHTS OF THE WHITE WOLF",
+    "points": "Characters 10 points\nCavalry/Infantry 1 point per model\nMonstrous Cavalry free",
+    "description": "Must take cavalry hammers. The models have the Crush the Weak and White Wolf Cloak special rules. Monstrous Cavalry replace polearms and shields with cavalry hammers and may only be taken in a Cult of Ulric army."
+   },
+   {
+    "name": "BLACK GUARD OF MORR",
+    "points": "Characters free\nCavalry/Infantry free",
+    "description": "Must take polearms on foot. The models have the Fear and Independent special rules."
+   },
+   {
+    "name": "KNIGHTS GRIFFON",
+    "points": "Characters free\nCavalry 1 point per model\nMonstrous Cavalry 3 points per model",
+    "description": "Must take heavy lances or polearms. The models gain the Disciplined special rule. In addition, they may not choose Flee as a charge reaction, refuse a challenge and ignore Swiftstride when fleeing."
+   },
+   {
+    "name": "KNIGHTS OF THE EVERLASTING LIGHT",
+    "points": "Characters 10 points\nCavalry 1 point per model",
+    "description": "Must take heavy lances or great weapons. The models gain the Magical Attacks special rule and may re-roll failed armour saves in close combat. However, they must re-roll successful armour saves from missile attacks and successful Dangerous Terrain tests."
+   },
+   {
+    "name": "KNIGHTS OF SIGMAR'S BLOOD",
+    "points": "Characters free\nCavalry 1 point per model",
+    "description": "Must take heavy lances or polearms. The models have the Inspiring Presence (6) special rule. However, they may not be upgraded to Inner Circle Knights."
+   },
+   {
+    "name": "KNIGHTS OF THE BLACK BEAR",
+    "points": "Characters free\nCavalry free",
+    "description": "Must take heavy lances or polearms. This unit always counts as having one more rank than it actually has for the purpose of determining Steadfast, and enemy units cannot claim the Outnumber bonus against it. However, it must re-roll successful Leadership tests for Marching when within 6\" of enemy units, Redirecting a Charge, Reforming from Defeat after losing a round of close combat or Restraining from Pursuit."
+   },
+   {
+    "name": "KNIGHTS OF THE TWIN-TAILED ORB",
+    "points": "Characters 15 points\nCavalry 2 points per model",
+    "description": "The unit is armed with flails instead of heavy lances. The models have the Flaming Attacks and Frenzy special rules."
+   },
+   {
+    "name": "KNIGHTS ENCARMINE",
+    "points": "Characters 10 points\nCavalry free",
+    "description": "The unit is armed with two hand weapons instead of heavy lances. The models may re-roll 1's To Hit and failed Parry saves. However, they cannot gain any bonus from ranks (including Steadfast) or Disrupt enemy units."
+   },
+   {
+    "name": "SONS OF MANANN",
+    "points": "Characters 15 points\nCavalry 2 points per model",
+    "description": "The unit is armed with polearms & shields instead of heavy lances. The models (but not their mounts) gain +1 To Hit in the first round of close combat."
+   }
+  ]
+ }
+}

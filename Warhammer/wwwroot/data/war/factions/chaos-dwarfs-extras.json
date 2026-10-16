@@ -1,0 +1,496 @@
+{
+ "factionName": "Chaos Dwarfs",
+ "armySpecialRules": [
+  {
+   "name": "BACKSTABBERS",
+   "description": "A unit with this special rule that successfully restrains from pursuing after breaking an enemy unit in close combat causes D6 Strength 3 hits on the fleeing unit for every complete rank the Hobgoblin unit has (up to a maximum of 3). Resolve any casualties before moving the fleeing unit."
+  },
+  {
+   "name": "BLACKSHARD ARMOUR",
+   "description": "Models with this special rule have Immunity (Flaming Attacks) if they wear a light, medium or heavy armour."
+  },
+  {
+   "name": "BLAZING BODY",
+   "description": "All models with this special have Flaming Attacks and Immunity (Flaming Attacks). In addition, any model in base contact with a model with this special rule at the start of the Close Combat phase takes an automatic non-physical Strength 3 Hit with the Flaming Attacks special rule. In addition, any non-magical attacks suffer a -1 Strength penalty against them."
+  },
+  {
+   "name": "CONTEMPT",
+   "description": "Units with this special rule treat friendly Hobgoblins, Goblins, and Orcs as if they had the Expendable special rule."
+  },
+  {
+   "name": "COWARDLY DESPOILERS",
+   "description": "Models with this special rule gain +1 To Hit in the first round of combat if they successfully charge an enemy in the rear or flank."
+  },
+  {
+   "name": "DAEMONIC",
+   "description": "Models with this special rule have the Magical Attacks, Magical Ward (5+) and Unbreakable special rules.\nIf a unit of Daemons loses a round of close combat it must take a Daemonic Instability test. This works like a normal Break test, except that for every point they fail the test by, the Daemon suffers one additional Wound with no saves allowed. The Daemonic Instability test can use Inspiring Presence and/or Hold Your Ground as normal."
+  },
+  {
+   "name": "HELLBOUND",
+   "description": "Models with this special rule have the Fear, Magical Attacks and Magical Ward (6+) special rules. Additionally, once per game, an artillery weapon with this special rule may re-roll one scatter dice or one artillery dice. However, should a Hellbound model ever have to make a roll on a Misfire table, it suffers a -1 modifier to the result."
+  },
+  {
+   "name": "RELENTLESS",
+   "description": "Units entirely composed of models with this special rule do not need to pass a Leadership test in order to march, regardless of the proximity of enemy units."
+  },
+  {
+   "name": "RESOLUTE",
+   "description": "When taking Break tests, models with this special rule count as having lost the combat with 1 point less than they actually have."
+  },
+  {
+   "name": "SORCERER'S CURSE",
+   "description": "Whenever a model with this special rule suffers a Miscast during the game, after resolving the effects of the Miscast on them normally, they must pass a Toughness test or suffer a Wound with no saves allowed."
+  },
+  {
+   "name": "FIREGLAIVE",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\nCombat | +1 | Requires Two Hands\nRANGE | STRENGTH | SPECIAL RULES\n9/18\" | 5 | Ponderous"
+  },
+  {
+   "name": "FLAMEHURLER",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/12\" | 4 | Armour Piercing (2), Flaming Attacks, Quick Shot\nNote that this not a physical attack."
+  },
+  {
+   "name": "NAPTHA BOMBS",
+   "description": "RANGE | STRENGTH | SPECIAL RULES\n6/9\" | 4 | Flaming Attacks, Ignores Armour Saves, Magical Attacks, March & Shoot, Quick Shot\nNote that this not a physical attack."
+  },
+  {
+   "name": "TREACHEROUS GITS",
+   "description": "Units with this special rule must test for Treachery in the Charge sub-phase after all normal charges has been declared during each of your turns, by every unit that is subject to Treachery, unless any of the following applies:\n• The unit has less than 5 models.\n• The unit has declared a charge this turn.\n• The unit is engaged in close combat.\n• The unit is garrisoning a building.\n• The unit is fleeing or currently off the battlefield.\nRoll a D6 for each eligible unit. If the dice roll is a 2 or more, the unit behaves normally this turn. If the roll is a 1, however, the unit has failed its Treachery test and must roll on the Treachery table below:\nD6 | Result\n1 | Traitor! If the unit is armed with missile weapons, they will immediately resolve a round of shooting against the nearest friendly unit within Line of Sight. If the unit does not have any missile weapons or if there are no friendly units within Line of Sight, they will inflict D3 Strength 3 Hits for every complete rank the unit has on themselves instead (any Wounds suffered will not cause a Panic test). The unit may not move, shoot or cast spells this turn.\n2 | We'll get a better view from further back! The unit must immediately take a Panic test. If it's passed, the unit may not voluntarily move this turn.\n3-4 | We Stayz 'Ere! The unit may not voluntarily move this turn.\n5 | Bloody Murder! The unit suffers D3 Strength 3 Hits for every complete rank the unit has (any Wounds suffered will not cause a Panic test). The unit may move as normal afterwards.\n6 | Cut 'em good! Pivot the unit on the spot to face the nearest visible enemy unit, and then make a full normal move in a straight line towards it. If there is no visible enemy, the unit must move straight ahead instead. If it is impossible for the unit to pivot to face the closest enemy, it will pivot towards it as far as it can, and will then move as far forward as it can while still keeping the enemy within its forward arc. After the move is complete the unit must declare a charge against the closest visible enemy unit, if it is possible to do so. If the unit cannot declare a charge then it may carry on with the rest of its turn normally, as if it had not yet moved this turn."
+  },
+  {
+   "name": "ANIMOSITY",
+   "description": "Units with this special rule must test for Animosity in the Charge sub-phase after all normal charges has been declared during each of your turns, by every unit that is subject to Animosity, unless any of the following applies:\n• The unit has less than 5 models.\n• The unit has declared a charge this turn.\n• The unit is engaged in close combat.\n• The unit is garrisoning a building.\n• The unit is fleeing or currently off the battlefield.\nRoll a D6 for each eligible unit. If the dice roll is a 2 or more, the unit behaves normally this turn. If the roll is a 1, however, the unit has failed its Animosity test and must roll on the Animosity table below:\nD6 | Result\n1 | Get 'Em: For every complete rank the unit has, it suffers D3 hits at the Strength characteristic of the majority on the models in the unit. The unit may not voluntarily move or shoot this turn. Wounds caused by the Get 'Em result never cause Panic tests.\n2-4 | Squabble: If it is possible to do so, the unit must declare a charge against the closest enemy unit. If the unit is unable to declare a charge, the unit may not move in the Movement phase or shoot this turn.\n5-6 | We'll Show 'Em: Pivot the unit on the spot to face the nearest visible enemy unit, and then make a full normal move in a straight line towards it. If there is no visible enemy, the unit must move straight ahead instead. If it is impossible for the unit to pivot to face the closest enemy, it will pivot towards it as far as it can, and will then move as far forward as it can while still keeping the enemy within its forward arc. After the move is complete the unit must declare a charge against the closest visible enemy unit, if it is possible to do so. If the unit cannot declare a charge then it may carry on with the rest of its turn normally, as if it had not yet moved this turn."
+  }
+ ],
+ "magicItems": [
+  {
+   "name": "VOLCANIC HAMMER",
+   "points": "45",
+   "category": "magic_weapon",
+   "description": "All attacks made with this weapon have the Flaming Attacks special rule. In addition, the wielder may may exchange all of their Attacks to make a special attack. Roll To Hit against the highest enemy Weapon Skill in base contact. If this Attack hits, place the small template anywhere so that it is touching the wielder's base. Any models that lie underneath the template (friend or foe) suffer a single Strength 3 hit. The model under the template's central hole instead suffers a single Strength 9 hit with the Multiple Wounds (D3) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "DARK MACE OF DEATH",
+   "points": "40",
+   "category": "magic_weapon",
+   "description": "Close combat attacks made with this weapon have the Killing Blow special rule. In addition, once per game, at the start of the close combat round, the wielder can inflict an automatic Wound on every model in base contact with the Ignores Armour saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "LIFE BANE BLADE",
+   "points": "35",
+   "category": "magic_weapon",
+   "description": "The wielder gains the Multiple Wounds (D3) special rule. Whenever the wielder of this item causes one or more unsaved Wounds during a round of close combat, they regain 1 Wound lost earlier during the game.",
+   "restriction": null
+  },
+  {
+   "name": "HASHUT'S BLADE OF GREED",
+   "points": "25",
+   "category": "magic_weapon",
+   "description": "The wielder of this weapon gains a bonus for each different type of magic item in any enemy unit they are in base contact with. Additional magic items of the same type have no effect.\nItem Type: | Effect:\nMagic Weapon | Parry (6+)\nMagic Armour | Armour Piercing (1)\nTalisman | +1 To Wound\nArcane Item | Magic Resistance (1)\nEnchanted Item | +1 To Hit\nMagic Standard | +1 Combat Resolution\nZZHARG MADEYE'S BLUNDERBUSS 25 points Daemonsmith only. Blunderbuss. This weapon may be used in the Shooting phase like a Breath Weapon with the following profile:\nRANGE | STRENGTH | SPECIAL RULES\nn/a | 4 | Armour Piercing (1), Cumbersome",
+   "restriction": null
+  },
+  {
+   "name": "LASH OF SHURZZHAK",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "Instead of fighting normally, the wielder may make a special attack. If this attack hits, all models in one column in base contact with the wielder are automatically Hit.",
+   "restriction": null
+  },
+  {
+   "name": "OBSIDIAN BLADE",
+   "points": "20",
+   "category": "magic_weapon",
+   "description": "The wielder gains the Ignores Armour Saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "INFERNO GLAIVE OF HASHUT",
+   "points": "15",
+   "category": "magic_weapon",
+   "description": "Close combat attacks made with this weapon have the Armour Piercing (1) special rule. Missile attacks with this weapon have Strength 5.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF THE FORGE",
+   "points": "60",
+   "category": "magic_armour",
+   "description": "The wearer gains a Magical Ward (5+) which may be re-rolled.",
+   "restriction": null
+  },
+  {
+   "name": "ARMOUR OF BAZHERAK THE CRUEL",
+   "points": "50",
+   "category": "magic_armour",
+   "description": "This armour gives the wearer +2 to their armour save and the Magic Resistance (2) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "MAGMA ARMOUR",
+   "points": "50",
+   "category": "magic_armour",
+   "description": "For each failed To Wound roll against the bearer in close combat, the Magma Armour inflicts a Strength 4 Hit with the Flaming Attacks special rule against the model that struck the blow.",
+   "restriction": null
+  },
+  {
+   "name": "THE MASK OF THE FURNACE",
+   "points": "45",
+   "category": "magic_armour",
+   "description": "6+ armour save. The wearer gains the Fear, Immunity (Flaming Attacks) and Magical Ward (5+) special rules.",
+   "restriction": null
+  },
+  {
+   "name": "DAEMONBINDER ARMOUR",
+   "points": "35",
+   "category": "magic_armour",
+   "description": "The wearer gains the Hellbound special rule.",
+   "restriction": "Daemonsmith"
+  },
+  {
+   "name": "OBSIDIAN VAMBRACES",
+   "points": "25",
+   "category": "magic_armour",
+   "description": "The wearer gains a 6+ armour save, +1 Strength and the Magic Resistance (1) special rule. However, if they roll two or more natural 1's when making a roll To Hit in close combat, the item can no longer be used for the remainder of the game.",
+   "restriction": null
+  },
+  {
+   "name": "SHIELD OF CONTEMPT",
+   "points": "15",
+   "category": "magic_armour",
+   "description": "For each natural 6 rolled when making armour and Parry saves, the wearer causes an automatic Hit against the attacker with the same Strength and special rules as the attack.",
+   "restriction": null
+  },
+  {
+   "name": "INFERNAL CHARM",
+   "points": "40",
+   "category": "talisman",
+   "description": "The bearer gains a Magical Ward (5+). In addition, once per game at the start of any of your turns, the full power of this item can be activated. When it does, the wearer ignores all damage from magic, shooting and close combat attacks for the duration of the turn.",
+   "restriction": null
+  },
+  {
+   "name": "TALISMAN OF OBSIDIAN",
+   "points": "35",
+   "category": "talisman",
+   "description": "All Magic Items equipped by models in base contact with the bearer of this item lose their magical properties and counts as mundane version of their type.",
+   "restriction": null
+  },
+  {
+   "name": "HELLFORGED AMULET",
+   "points": "25",
+   "category": "talisman",
+   "description": "The wearer gains a Magical Ward (6+). In addition, they may re-roll failed armour save rolls of 1.",
+   "restriction": null
+  },
+  {
+   "name": "CROWN OF THE K'DAAI",
+   "points": "15",
+   "category": "talisman",
+   "description": "The wearer gains the Blazing Body and Magical Ward (6+) special rules. However, from the second game turn onwards, at the start of each of your turns they must pass a Toughness test or suffer one Wound with no saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "GIFT OF HASHUT",
+   "points": "15",
+   "category": "talisman",
+   "description": "The wearer gains the Magic Resistance (1) special rule, and any unit they are with gains a Magical Ward (4+) against non-physical Flaming Attacks.",
+   "restriction": null
+  },
+  {
+   "name": "CHALICE OF BLOOD AND DARKNESS",
+   "points": "50",
+   "category": "arcane_item",
+   "description": "In the beginning of any Magic phase the bearer may reduce the number of dice held in both sides' dice pools by D3 each. Roll these dice separately, declaring before rolling which dice applies to which side. If one of more natural 1's are rolled then the bearer suffers a Wound which Ignores Armour saves. If one of more natural 6's are rolled the bearer may recover a Wound previously lost in the game.",
+   "restriction": null
+  },
+  {
+   "name": "DWEOMER LEACH ORB",
+   "points": "40",
+   "category": "arcane_item",
+   "description": "Whenever the bearer of this item dispels an enemy spell, they add +1 Power Dice to their Power Pool in their next Magic phase, to a maximum of +3.",
+   "restriction": null
+  },
+  {
+   "name": "SPELL-WROUGHT SCEPTRE",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "The bearer of this item may re-roll failed channelling results.",
+   "restriction": null
+  },
+  {
+   "name": "VIAL OF LAMMASU BLOOD",
+   "points": "35",
+   "category": "arcane_item",
+   "description": "A Wizard may use this item instead of making a dispel attempt. If they do so, the spell is automatically dispelled with no Dispel roll required.",
+   "restriction": null
+  },
+  {
+   "name": "SCROLL OF BINDING",
+   "points": "30",
+   "category": "arcane_item",
+   "description": "A Wizard may use this scroll when attempting to cast a spell. If they do so, they may add +1 Power Dice to every casting roll they attempt this Magic Phase.",
+   "restriction": null
+  },
+  {
+   "name": "BLOOD OF HASHUT",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "The Blood of Hashut can be used in close combat instead of attacking normally that turn. It targets a single model in base contact. The attack works on a 2+. If a 1 is rolled, the Blood of Hashut is wasted. If the attack is successful, then D6 automatic hits are inflicted on the target. The To Wound score of these hits is always equal to the unmodified close combat armour save of the target (excluding Natural Armour). For example, a model with a 3+ save is wounded on a 3+ and so on. Attacks from the Blood of Hashut have the Ignores Armour Saves, Flaming Attacks and Magical Attacks special rules.",
+   "restriction": null
+  },
+  {
+   "name": "SCROLL OF PETRIFICATION",
+   "points": "20",
+   "category": "arcane_item",
+   "description": "This item can be used at the start of any of your Magic phases. Once used, one friendly unit within 12\" gains +1 Toughness for until the start of your next Magic phase.",
+   "restriction": null
+  },
+  {
+   "name": "DAEMON FLASK OF ASHAK",
+   "points": "100",
+   "category": "enchanted_item",
+   "description": "This effect takes place at the start of the player's Movement phase before charges are declared. All enemy units within 18\" suffer a Panic test. Buildings, Chariots and War Machines within this range suffer D6 automatic wounds.",
+   "restriction": null
+  },
+  {
+   "name": "MALIGNANT TOTEM",
+   "points": "45",
+   "category": "enchanted_item",
+   "description": "This item contains the Breath of Hatred spell from the Lore of Hashut. In addition, all enemy units in base contact with the bearer suffer -1 to their Leadership.",
+   "restriction": null
+  },
+  {
+   "name": "FURNACE BLAST GEM",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains the Hell Hammer spell from the Lore of Hashut.",
+   "restriction": null
+  },
+  {
+   "name": "GAUNTLETS OF PUNISHMENT",
+   "points": "35",
+   "category": "enchanted_item",
+   "description": "This item contains a magic missile with a range of 12\" that causes D6 Hits Strength 5 Hits with the Ignores Armour Saves special rule.",
+   "restriction": null
+  },
+  {
+   "name": "BLACK GEM OF GNAR",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "This item can be activated at the beginning of either player's Close Combat phase, after challenges are issued and accepted. The bearer and one model in base contact (bearer’s choice) may not attack or be attacked for the duration of that phase. Work out combat resolution as normal.",
+   "restriction": null
+  },
+  {
+   "name": "BREATH OF HASHUT",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "This is a Breath Weapon Attack with Strength 4, Flaming Attacks and Magical Attacks special rules.",
+   "restriction": null
+  },
+  {
+   "name": "CRUCIBLE OF SPITE",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "This item can be used at the start of any round of Close Combat. The bearer gains +D3 Weapon Skill, Strength, Initiative and Attacks for the duration of this round.",
+   "restriction": null
+  },
+  {
+   "name": "POSSESSED AMULET",
+   "points": "25",
+   "category": "enchanted_item",
+   "description": "In Close Combat, the bearer Wounds on a 2+ regardless of the target's Toughness. However, if a '1' is rolled on the To Wound dice, a further wound is inflicted on the bearer instead, with no armours saves allowed.",
+   "restriction": null
+  },
+  {
+   "name": "GAUNTLETS OF GAZRAKH",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The wearer gains +1 Strength. If the wearer rolls a 1 to hit, this blow strikes a random friendly model in base contact instead. If there are no friendly models in base contact, the Hit is resolved against the character itself.",
+   "restriction": null
+  },
+  {
+   "name": "VISAGE OF THE GREAT BULL",
+   "points": "20",
+   "category": "enchanted_item",
+   "description": "The bearer of this item and any unit that they join gain +D3\" to their charge distance.",
+   "restriction": null
+  },
+  {
+   "name": "DAEMONIC FAMILIAR",
+   "points": "15",
+   "category": "enchanted_item",
+   "description": "Enemy models suffer a -1 penalty to their armour saves and Magical Ward saves against Wounds caused by the bearer of this item in close combat.",
+   "restriction": null
+  },
+  {
+   "name": "STANDARD OF ZHARR",
+   "points": "75",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains +1 to their armour saves and the Unbreakable special rule.",
+   "restriction": null
+  },
+  {
+   "name": "EYE OF HASHUT",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Terror and Armour Piercing (1) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "HELLBOUND STANDARD",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Hellbound special rule.",
+   "restriction": null
+  },
+  {
+   "name": "THE LAMMASU'S BEARD",
+   "points": "50",
+   "category": "magic_standard",
+   "description": "All friendly units within 6\" of this standard gain a Magical Ward (6+) against missile attacks and the Magic Resistance (1) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "OATH OF CONTEMPT",
+   "points": "35",
+   "category": "magic_standard",
+   "description": "All close combat attacks against models in a unit carrying this Standard suffer -1 To Wound in the first round of close combat.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF SLAVERY",
+   "points": "30",
+   "category": "magic_standard",
+   "description": "All friendly models with the Animosity rule (as well as Spear Chukkas) within 12\" gain the Immunity (Panic) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "ASHEN BANNER",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "Any enemy model that targets a unit carrying the Ashen Banner during the Shooting phase suffers an additional -1 To Hit modifier.",
+   "restriction": null
+  },
+  {
+   "name": "BANNER OF THE KHANATE",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Frenzy special rule.",
+   "restriction": "Hobgoblins"
+  },
+  {
+   "name": "OVERSEER'S SIGIL",
+   "points": "25",
+   "category": "magic_standard",
+   "description": "All friendly Orc and Goblin units within 12\" of this standard treats it as having the Inspiring Presence (12) special rule.",
+   "restriction": null
+  },
+  {
+   "name": "SHROUD OF THE ANCESTOR",
+   "points": "10",
+   "category": "magic_standard",
+   "description": "The unit carrying this standard gains the Hatred (Dwarfs) special rule.",
+   "restriction": null
+  }
+ ],
+ "loresOfMagic": [
+  {
+   "name": "THE LORE OF HASHUT",
+   "attribute": "Each time a spell from the Lore of Hashut is successfully cast, all enemy units within 6\" of the Wizard suffer D6 Strength 3 Hits with the Flaming Attacks special rule.",
+   "spells": [
+    {
+     "name": "BREATH OF HATRED",
+     "level": 0,
+     "castValue": 5,
+     "description": "Breath of Hatred is an augment spell with a range of 18\". The target unit gains the Hatred special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "BURNING WRATH",
+     "level": 1,
+     "castValue": 6,
+     "description": "Burning Wrath is a magic missile with a range of 12\" and causes D6 Strength 6 hits with the Flaming Attacks special rule.",
+     "type": null
+    },
+    {
+     "name": "DARK SUBJUGATION",
+     "level": 1,
+     "castValue": 7,
+     "description": "Dark Subjugation is a hex spell with a range of 24\". The target unit must pass a Leadership test with a -3 penalty or suffer a permanent reduction of -1 to their Leadership for the rest of the game (to a minimum of 2).",
+     "type": null
+    },
+    {
+     "name": "FISTS OF FIRE",
+     "level": 1,
+     "castValue": 7,
+     "description": "Fists of Fire is an augment spell with a range of 18\". The target gains +1 Strength and the Flaming Attacks special rule until the start of the caster's next Magic phase.",
+     "type": null
+    },
+    {
+     "name": "FLAMING HIDE",
+     "level": 2,
+     "castValue": 8,
+     "description": "Remains in play. Flaming Hide is an augment spell with a range of 18\". While the spell is in effect, the target has the Blazing Body special rule.",
+     "type": null
+    },
+    {
+     "name": "SEARING DETONATION",
+     "level": 2,
+     "castValue": 8,
+     "description": "Searing Detonation is a direct damage aura spell with a range of 12\". All enemy units within the caster's front arc suffer D6 Strength 4 Hits with the Flaming Attacks special rule.",
+     "type": null
+    },
+    {
+     "name": "MAGMA POOL",
+     "level": 2,
+     "castValue": 9,
+     "description": "Magma Pool is a conveyance spell with a range of 12\". The target is immediately picked up and may be moved to any point on the battlefield within 12\" of its original position, just like a summoning spell.",
+     "type": null
+    },
+    {
+     "name": "CURSE OF HASHUT",
+     "level": 3,
+     "castValue": 10,
+     "description": "Curse of Hashut is a direct damage spell with a range of 12\". It targets a single enemy model of the caster's choice (even a character in a unit). The target suffers a number of hits equal to 2D6 minus their Toughness value. Hits from this spell Wound on a 4+ with the Ignores Armour saves special rule.",
+     "type": null
+    },
+    {
+     "name": "DOOMROAR",
+     "level": 3,
+     "castValue": 10,
+     "description": "Doomroar is an augment/hex aura spell with a range of 12\". Until the start of the caster's next Magic phase, all friendly units within range roll an additional D6 for their Leadership test and discard the highest result, and all enemy units within range roll an additional D6 for their Leadership test and discard the lowest result.",
+     "type": null
+    },
+    {
+     "name": "ASH CLOUD",
+     "level": 3,
+     "castValue": 13,
+     "description": "Ash Cloud is a hex aura spell with a range of 18\". Until the start of the caster's next Magic phase, all affected units within range suffer -1 To Hit in close combat and with missile attacks, may not march or fly, and must re-roll successful dangerous terrain tests.",
+     "type": null
+    },
+    {
+     "name": "HELL HAMMER",
+     "level": 4,
+     "castValue": 13,
+     "description": "Hell Hammer is a direct damage area spell that uses the line template. Place it 18\" in length, directly away from the caster's front arc. Each model in the way (determined using the line template) suffer a Strength 6 hit with the Flaming Attacks and Multiple Wounds (D3) special rules. Any unit suffering casualties from this spell must immediately take a Panic test.",
+     "type": null
+    },
+    {
+     "name": "LAVA STORM",
+     "level": 4,
+     "castValue": 14,
+     "description": "Lava Storm is a direct damage area spell with a range of 12\". Place D3 small round templates anywhere within range. All models touched by each template suffer a Strength 5 hit with the Flaming Attacks and the Multiple Wounds (D3) special rules.",
+     "type": null
+    },
+    {
+     "name": "FLAMES OF AZGORH",
+     "level": 4,
+     "castValue": 15,
+     "description": "Flames of Azgorh is a direct damage area spell with a range of 12\" that uses the large round template. All models touched by the template suffer a Strength 5 hit with the Flaming Attacks and the Multiple Wounds (D3) special rules.",
+     "type": null
+    }
+   ]
+  }
+ ],
+ "factionUpgrades": {}
+}

@@ -31,6 +31,10 @@ ALLOWANCE_TYPES = {"magic_items", "magic_standard"}
 # allowance and produce a duplicate, so companions are left alone.
 COMPANION_TYPE = "faction_upgrade"
 
+# Systems whose faction files are exported from another repo and copied here;
+# fixes belong upstream, so the replay never rewrites them.
+EXPORTED_SYSTEMS = {"war"}
+
 
 def read_json(path):
     """Load a JSON file, remembering its newline style so it can be written back as found."""
@@ -143,6 +147,8 @@ def main():
     total = 0
     for path in sorted(Path(args.data_dir).glob("*/factions/*.json")):
         if path.name.endswith("-extras.json"):
+            continue
+        if path.parent.parent.name in EXPORTED_SYSTEMS:
             continue
 
         data, newline = read_json(path)

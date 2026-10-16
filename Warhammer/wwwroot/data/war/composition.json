@@ -1,0 +1,16 @@
+{
+ "system": "war",
+ "charactersCombinedMaxPercent": 0.35,
+ "singleUnitMaxPercent": 0.25,
+ "categories": {
+  "core": {
+   "minPercent": 0.25
+  },
+  "special": {
+   "maxPercent": 0.5
+  },
+  "rare": {
+   "maxPercent": 0.25
+  }
+ }
+}
