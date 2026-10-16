@@ -602,7 +602,15 @@ else
         entry.HasChampion = enable;
         entry.HasMusician = enable;
         entry.HasStandardBearer = enable;
-        if (!enable) entry.Loadout.SelectedBanner = null;
+        if (!enable)
+        {
+            // Mirror CommandGroupPanel: a model that is no longer taken keeps no picks,
+            // or they would return unasked when F/C is turned back on.
+            entry.Loadout.SelectedBanner = null;
+            entry.ClearCommandUpgrades(CommandRole.Champion);
+            entry.ClearCommandUpgrades(CommandRole.Musician);
+            entry.ClearCommandUpgrades(CommandRole.StandardBearer);
+        }
         Revalidate();
     }
 
