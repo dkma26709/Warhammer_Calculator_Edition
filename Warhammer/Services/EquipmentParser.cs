@@ -67,7 +67,7 @@ public static class EquipmentParser
     /// </summary>
     public static bool TryNormalize(string name, out string key, out bool isWeapon)
     {
-        if (NormMap.TryGetValue(name.Trim().TrimEnd('.'), out var mapped))
+        if (TryLookup(name, out var mapped))
         {
             key = mapped.Key;
             isWeapon = mapped.IsWeapon;
@@ -77,6 +77,23 @@ public static class EquipmentParser
         key = "";
         isWeapon = false;
         return false;
+    }
+
+    /// <summary>
+    /// Look a name up as written, then without a plural "s" or "es", because the WAR export
+    /// writes unit-level gear in the plural ("Light lances", "Blunderbusses").
+    /// </summary>
+    private static bool TryLookup(string name, out (string Key, bool IsWeapon) mapped)
+    {
+        var trimmed = name.Trim().TrimEnd('.');
+        if (NormMap.TryGetValue(trimmed, out mapped)) return true;
+
+        if (trimmed.EndsWith("s", StringComparison.OrdinalIgnoreCase)
+            && NormMap.TryGetValue(trimmed[..^1], out mapped))
+            return true;
+
+        return trimmed.EndsWith("es", StringComparison.OrdinalIgnoreCase)
+            && NormMap.TryGetValue(trimmed[..^2], out mapped);
     }
 
     /// <summary>
@@ -109,7 +126,7 @@ public static class EquipmentParser
 
         foreach (var trimmed in SplitItems(equipment))
         {
-            if (NormMap.TryGetValue(trimmed, out var mapped))
+            if (TryLookup(trimmed, out var mapped))
             {
                 if (mapped.IsWeapon)
                     weapons.Add(mapped.Key);

@@ -111,9 +111,7 @@ public class ArmyRosterBuilder
     }
 
     private static string ModelLine(UnitConfiguration cfg) =>
-        cfg.ModelCount <= 1
-            ? "1 model"
-            : $"{cfg.ModelCount} models · {cfg.Frontage} wide";
+        cfg.ModelCount <= 1 ? "1 model" : $"{cfg.ModelCount} models";
 
     /// <summary>
     /// The rider's line, then the mount's. Printed whenever the book gives the entry a second
@@ -321,10 +319,17 @@ public class ArmyRosterBuilder
     {
         var notes = new List<string>();
 
+        // Each command model with what it took in brackets: "Leader (Hochland long rifle)".
+        (CommandRole Role, string Title)[] roles =
+            [(CommandRole.Champion, "Leader"), (CommandRole.Musician, "Musician"), (CommandRole.StandardBearer, "Standard Bearer")];
+        var taken = cfg.TakenCommandUpgrades;
         var command = new List<string>();
-        if (cfg.HasChampion) command.Add("Leader");
-        if (cfg.HasMusician) command.Add("Musician");
-        if (cfg.HasStandardBearer) command.Add("Standard Bearer");
+        foreach (var (role, title) in roles)
+        {
+            if (!cfg.HasRole(role)) continue;
+            var gear = taken.Where(t => t.Role == role).Select(t => t.Name).ToList();
+            command.Add(gear.Count == 0 ? title : $"{title} ({string.Join(", ", gear)})");
+        }
         if (command.Count > 0) notes.Add("Command: " + string.Join(", ", command));
 
         if (cfg.IsWizardCapable)

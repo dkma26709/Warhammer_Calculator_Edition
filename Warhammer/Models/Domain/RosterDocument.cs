@@ -38,7 +38,7 @@ public sealed record RosterEntry
     /// <summary>Army roles worth calling out on the table: General, Battle Standard Bearer.</summary>
     public required IReadOnlyList<string> Roles { get; init; }
 
-    /// <summary>Model count and frontage, e.g. "20 models · 5 wide".</summary>
+    /// <summary>Model count, e.g. "20 models"; frontage is a deployment choice, not the list's.</summary>
     public required string ModelLine { get; init; }
 
     /// <summary>The model's profile, followed by its mount's when it has one.</summary>

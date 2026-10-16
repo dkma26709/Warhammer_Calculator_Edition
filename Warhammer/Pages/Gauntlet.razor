@@ -372,6 +372,7 @@
                 probe.SelectedUpgrades[kvp.Key] = kvp.Value;
             foreach (var kvp in opp.Config.SelectedMultiUpgrades)
                 probe.SelectedMultiUpgrades[kvp.Key] = kvp.Value.ToList();
+            probe.SelectedCommandUpgrades.AddRange(opp.Config.SelectedCommandUpgrades);
 
             double fixedCost = probe.TotalPointsCost - costPerModel;
             double modelBudget = targetPts - fixedCost;
@@ -498,6 +499,7 @@
             clone.SelectedUpgrades[kvp.Key] = kvp.Value;
         foreach (var kvp in source.SelectedMultiUpgrades)
             clone.SelectedMultiUpgrades[kvp.Key] = kvp.Value.ToList();
+        clone.SelectedCommandUpgrades.AddRange(source.SelectedCommandUpgrades);
         foreach (var mi in source.SelectedMagicItems)
             clone.SelectedMagicItems.Add(mi);
         foreach (var mod in source.Modifiers)
