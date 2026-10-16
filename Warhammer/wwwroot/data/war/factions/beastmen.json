@@ -1,0 +1,3576 @@
+{
+ "factionName": "Beastmen",
+ "units": [
+  {
+   "name": "Beastlord",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Beastlord",
+     "M": 5,
+     "WS": 6,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 125
+    }
+   ],
+   "troopType": "Infantry (Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Throwing axes",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 5,
+     "perModel": false,
+     "raw": "May have the Ambushers special rule (model on foot only) +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Tuskgor Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Ramhorn",
+       "points": 250,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Beastlord",
+     "raw": "A Beastlord may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "A Beastlord may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "Wargor",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Wargor",
+     "M": 5,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 4,
+     "A": 3,
+     "Ld": 8,
+     "points": 85
+    }
+   ],
+   "troopType": "Infantry (Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Throwing axes",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 5,
+     "perModel": false,
+     "raw": "May have the Ambushers special rule (model on foot only) +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Tuskgor Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Ramhorn",
+       "points": 250,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Wargor may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Wargor",
+     "raw": "A Wargor may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "A Wargor may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "Great Bray-Shaman",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Great Bray-Shaman",
+     "M": 5,
+     "WS": 5,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 180
+    }
+   ],
+   "troopType": "Infantry (Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "A Bray-Shaman is a Level 1 Wizard. A Great Bray-Shaman is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 5,
+     "perModel": false,
+     "raw": "May have the Ambushers special rule (model on foot only) +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Tuskgor Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Ramhorn",
+       "points": 250,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Great Bray-Shaman",
+     "raw": "A Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "A Great Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "Bray-Shaman",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Bray-Shaman",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 75
+    }
+   ],
+   "troopType": "Infantry (Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "A Bray-Shaman is a Level 1 Wizard. A Great Bray-Shaman is a Level 3 Wizard. They use one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 5,
+     "perModel": false,
+     "raw": "May have the Ambushers special rule (model on foot only) +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Tuskgor Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Ramhorn",
+       "points": 250,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Bray-Shaman",
+     "raw": "A Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "A Bray-Shaman may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 75
+  },
+  {
+   "name": "Doombull",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Doombull",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 6,
+     "T": 5,
+     "W": 5,
+     "I": 5,
+     "A": 6,
+     "Ld": 8,
+     "points": 240
+    }
+   ],
+   "troopType": "Monstrous Infantry (Character, Beastman, Minotaur)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Doombull",
+     "raw": "A Doombull may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "A Doombull may take Mutations & Traits and/or Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Bloodgreed, Impact Hits (1)",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "Gorebull",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Gorebull",
+     "M": 6,
+     "WS": 5,
+     "BS": 3,
+     "S": 6,
+     "T": 5,
+     "W": 4,
+     "I": 4,
+     "A": 5,
+     "Ld": 7,
+     "points": 180
+    }
+   ],
+   "troopType": "Monstrous Infantry (Character, Beastman, Minotaur)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Gorebull may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Gorebull",
+     "raw": "A Gorebull may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "A Gorebull may take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Bloodgreed, Impact Hits (1)",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "WARHOOFS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Warhoof",
+     "M": 8,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": 120
+    }
+   ],
+   "troopType": "Cavalry (Character, Beastman, Centigor)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 2,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": false
+      },
+      {
+       "name": "Throwing axes",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 5,
+     "perModel": false,
+     "raw": "May have the Ambushers special rule +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Nurgle +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Mark of Tzeentch +20 points"
+      }
+     ]
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "May take Mutations & Traits and/or Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Drunken, Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": "A Warhoof may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "HALFHORNS",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Halfhorn",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 30
+    }
+   ],
+   "troopType": "Infantry (Character, Beastman, Ungor)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 2,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Javelins",
+       "points": 4,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 25,
+     "appliesTo": null,
+     "raw": "May take Mutations & Traits and/or Magic Items up to a total of 25 points"
+    },
+    {
+     "type": "faction_upgrade",
+     "factionUpgrade": "mutations_and_traits",
+     "raw": "May take Mutations & Traits and/or Magic Items up to a total of 25 points"
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": "A Halfhorn may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 30
+  },
+  {
+   "name": "GOR HERD",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Gor",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 8
+    }
+   ],
+   "troopType": "Infantry (Beastmen, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with additional hand weapons free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Gor to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Gor to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Gor to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury, Unruly",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 8
+  },
+  {
+   "name": "GOR RAIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Gor Raider",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Beastmen, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "one hand weapon",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0,
+       "perModel": false,
+       "replaces": "one hand weapon"
+      }
+     ],
+     "raw": "May replace one hand weapon with shields free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing axes +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Gor Raider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Gor Raider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Gor Raider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Ambushers, Forest Strider, Primal Fury, Skirmishers, Unruly",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "UNGOR HERD",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Ungor",
+     "M": 5,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Beastmen, Ungor)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "spears",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take spears +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ungor to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ungor to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ungor to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury, Unruly",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "UNGOR RAIDERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Ungor Raider",
+     "M": 5,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Beastmen, Ungor)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "throwing weapons",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take throwing weapons +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ungor to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ungor to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ungor to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ambushers, Forest Strider, Primal Fury, Skirmishers, Unruly",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "UNGOR ARCHERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Ungor Archers",
+     "M": 5,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Beastmen, Ungor)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Scouts",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Scouts +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shortbows",
+     "choices": [
+      {
+       "name": "javelins & shields",
+       "points": 1,
+       "perModel": true,
+       "replaces": "shortbows"
+      }
+     ],
+     "raw": "May replace shortbows with javelins & shields +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ungor Raider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ungor Raider to a Musician +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ambushers, Forest Strider, Primal Fury, Skirmishers, Unruly",
+   "upgrades": null,
+   "notes": "You may not have more units of Ungor Archers than you have units of Ungor Herds or Ungor Raiders.",
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "MUTANTS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Mutant",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Beastmen)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Expendable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "WARHOUNDS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Warhound",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": 6
+    }
+   ],
+   "troopType": "War Beast (Canine)",
+   "baseSize": "25x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "Natural Armour (6+)",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May have Natural Armour (6+) +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Poisoned Attacks",
+     "points": 1,
+     "perModel": true,
+     "raw": "May have Poisoned Attacks +1 point/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "HARPIES",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Harpy",
+     "M": 5,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 6,
+     "points": 11
+    }
+   ],
+   "troopType": "Infantry (Harpy)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Harpy to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Independent, Fly (10)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "BESTIGORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Bestigor",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Beastmen, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 2,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Khorne +2 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 2,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Tzeentch +2 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 2,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Slaanesh +2 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 3,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Nurgle +3 points/model"
+      }
+     ]
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Medium armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (if armed with hand weapons or polearms) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Bestigor to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Bestigor to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Bestigor to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Devastating Charge, Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "MINOTAURS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Minotaur",
+     "M": 6,
+     "WS": 4,
+     "BS": 3,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 3,
+     "A": 3,
+     "Ld": 7,
+     "points": 39
+    }
+   ],
+   "troopType": "Monstrous Infantry (Beastmen, Minotaur)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Khorne",
+       "choices": [
+        {
+         "name": "Mark of Khorne",
+         "points": 4.5,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Khorne +4.5 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Tzeentch",
+       "choices": [
+        {
+         "name": "Mark of Tzeentch",
+         "points": 4.5,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Tzeentch +4.5 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Slaanesh",
+       "choices": [
+        {
+         "name": "Mark of Slaanesh",
+         "points": 4.5,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Slaanesh +4.5 points/model"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Mark of Nurgle",
+       "choices": [
+        {
+         "name": "Mark of Nurgle",
+         "points": 6,
+         "perModel": true
+        }
+       ],
+       "raw": "Mark of Nurgle +6 points/model"
+      }
+     ]
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shields",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 0,
+       "perModel": false,
+       "replaces": "shields"
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true,
+       "replaces": "shields"
+      }
+     ],
+     "raw": "May replace shields with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +3 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Minotaur to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Minotaur to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Minotaur to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Bloodgreed, Impact Hits (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 39
+  },
+  {
+   "name": "CENTIGORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Centigor",
+     "M": 8,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 2,
+     "A": 2,
+     "Ld": 7,
+     "points": 18
+    }
+   ],
+   "troopType": "Cavalry (Beastmen, Centigor)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Light lance, buckler",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true,
+       "replaces": "bucklers"
+      },
+      {
+       "name": "great weapons",
+       "points": 1,
+       "perModel": true,
+       "replaces": "light lance and bucklers"
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Throwing axes",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Centigor to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Centigor to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Centigor to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Drunken, Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": "If a Centigor character is included in your army, one unit of Centigors may deploy with the Ambushers special rule.",
+   "unitSize": "5+",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 18
+  },
+  {
+   "name": "TUSKGOR CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Tuskgor Chariot",
+     "M": 6,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 75
+    },
+    {
+     "name": "Bestigor",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Gor",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Tuskgor",
+     "M": "-",
+     "WS": 3,
+     "BS": "-",
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    },
+    {
+     "name": "Razorgor",
+     "M": "-",
+     "WS": 3,
+     "BS": "-",
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 2,
+     "A": 3,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100",
+   "equipment": "Light lance (Gor only), great weapon (Bestigor only), light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "Tuskgors",
+     "choices": [
+      {
+       "name": "Razorgor",
+       "points": 20,
+       "perModel": false,
+       "replaces": "Tuskgors"
+      }
+     ],
+     "raw": "May replace Tuskgors with Razorgor +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May be upgraded to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Natural Armour (6+), Primal Fury, Tusker Charge (Tuskgor only)",
+   "upgrades": "Razorgor: A Razorgor (Porcine) replaces the Tuskgors and uses the Razorgor profile above. A Razorgor has the Fear and Tusker Charge special rules.",
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Gor & 1 Bestigor (Beastmen, Gor)",
+   "mount": null,
+   "drawnBy": "2 Tuskgors (Porcine)",
+   "pointsCost": 75
+  },
+  {
+   "name": "RAZORGORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Razorgor",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 6,
+     "points": 42
+    }
+   ],
+   "troopType": "Monstrous Beast (Porcine)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Impact Hits (D3), Natural Armour (6+), Tusker Charge",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "1-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 42
+  },
+  {
+   "name": "BALEWOLVES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Balewolf",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 7,
+     "points": 60
+    }
+   ],
+   "troopType": "Monstrous Beast (Canine)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Killing Blow, Natural Armour (5+), Regeneration (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "1-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "TROLLS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Troll",
+     "M": 6,
+     "WS": 3,
+     "BS": 1,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 1,
+     "A": 3,
+     "Ld": 6,
+     "points": 46
+    }
+   ],
+   "troopType": "Monstrous Infantry (Troll)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +3 points/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent, Natural Armour (6+), Regeneration (4+), Stupidity",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 46
+  },
+  {
+   "name": "SPAWN OF CHAOS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Spawn of Chaos",
+     "M": "*",
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 2,
+     "A": "*",
+     "Ld": 10,
+     "points": 40
+    }
+   ],
+   "troopType": "Monstrous Beast (Chaos Beast)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Nurgle",
+       "choices": [
+        {
+         "name": "Spawn of Nurgle",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Nurgle +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Slaanesh",
+       "choices": [
+        {
+         "name": "Spawn of Slaanesh",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Slaanesh +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Khorne",
+       "choices": [
+        {
+         "name": "Spawn of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Tzeentch",
+       "choices": [
+        {
+         "name": "Spawn of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Tzeentch +20 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Random Attacks (D6+1), Random Movement (2D6), Unbreakable",
+   "upgrades": "Spawn of Khorne: A Spawn of Khorne has +1 Strength.\nSpawn of Nurgle: A Spawn of Nurgle has the Poisoned Attacks special rule.\nSpawn of Slaanesh: A Spawn of Slaanesh rolls an additional D6 for their Random Movement result.\nSpawn of Tzeentch: A Spawn of Tzeentch has a Strength 3 Breath Weapon that has the Flaming Attacks special rule.",
+   "notes": "You may take 1-2 lone Spawn of Chaos as a single Special choice.",
+   "unitSize": "1-3",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "PREYTON",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Preyton",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 6,
+     "points": 70
+    }
+   ],
+   "troopType": "Monstrous Beast (Cervine)",
+   "baseSize": "50x50 or 75x50",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Forest Stalker",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Forest Stalker +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Filth-Encrusted Scales",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Filth-Encrusted Scales +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Insane Bloodlust",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Insane Bloodlust +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8), Forest Strider, Impact Hits (D3)",
+   "upgrades": "Filth-Encrusted Scales: The Preyton gains the Natual Armour (5+) special rule.\nForest Stalker: The Preyton gains the Ambushers special rule.\nInsane Bloodlust: The Preyton gains the Frenzy special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "COCKATRICE",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Cockatrice",
+     "M": 4,
+     "WS": 4,
+     "BS": 5,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 6,
+     "A": 4,
+     "Ld": 6,
+     "points": 165
+    }
+   ],
+   "troopType": "Monstrous Creature (Chimeric)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (8), Natural Armour (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 165
+  },
+  {
+   "name": "MANTICORE",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Manticore",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 5,
+     "points": 150
+    }
+   ],
+   "troopType": "Monstrous Creature (Chimeric)",
+   "baseSize": "50x50, 50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Rending Fangs",
+     "points": 5,
+     "perModel": false,
+     "raw": "May take Rending Fangs +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Bloodrage",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Bloodrage +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Iron-hard Skin",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Iron-hard Skin +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Venom Tail",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Venom Tail +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8), Frenzy, Killing Blow",
+   "upgrades": "Bloodrage: The Manticore gains the Hatred special rule.\nIron-hard Skin: The Manticore gains the Natural Armour (5+) special rule.\nRending Fangs: The Manticore gains the Armour Piercing (1) special rule.\nVenom Tail: The Manticore gains an additional Attack that has the Poisoned Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "DRAGON OGRES",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Dragon Ogre",
+     "M": 7,
+     "WS": 4,
+     "BS": 2,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 2,
+     "A": 3,
+     "Ld": 8,
+     "points": 55
+    }
+   ],
+   "troopType": "Monstrous Cavalry (Dragon Ogre)",
+   "baseSize": "40x40, 50x50 or 50x75",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 4,
+       "perModel": true
+      },
+      {
+       "name": "Polearm",
+       "points": 6,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 9,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 8,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +8 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Dragon Ogre to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Independent, Natural Armour (5+)",
+   "upgrades": null,
+   "notes": "You may take one unit of Dragon Ogres as a Special Unit instead of a Rare Unit for every Dragon Ogre Shaggoth in your army.",
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 55
+  },
+  {
+   "name": "DRAGON OGRE SHAGGOTH",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Dragon Ogre Shaggoth",
+     "M": 7,
+     "WS": 6,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 4,
+     "A": 5,
+     "Ld": 9,
+     "points": 235
+    }
+   ],
+   "troopType": "Monster (Dragon Ogre)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Great weapons",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 12,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +12 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Impact Hits (D3), Natural Armour (5+), Storm Rage (see Dragon Ogres)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 235
+  },
+  {
+   "name": "GHORGON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Ghorgon",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 8,
+     "Ld": 10,
+     "points": 240
+    }
+   ],
+   "troopType": "Monster (Beastman)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Bloodgreed, Frenzy, Immunity (Psychology), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "CYGOR",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Cygor",
+     "M": 7,
+     "WS": 2,
+     "BS": 1,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Beastman)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Magic Resistance (2), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "JABBERSLYTHE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Jabberslythe",
+     "M": 8,
+     "WS": 4,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 3,
+     "A": 5,
+     "Ld": 9,
+     "points": 175
+    }
+   ],
+   "troopType": "Monster (Chimeric)",
+   "baseSize": "50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Lash Tail",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Lash Tail +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Sinisterly Skulking",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Sinisterly Skulking +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (5), Forest Strider, Immunity (Psychology), Natural Armour (4+), Poisoned Attacks",
+   "upgrades": "Lash Tail: The Jabberslythe gains +1 Attack.\nSinisterly Skulking: The Jabberslythe gains the Ambushers special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "HAG TREE",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Hag Tree",
+     "M": 5,
+     "WS": 3,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": 2,
+     "A": "*",
+     "Ld": 7,
+     "points": 190
+    }
+   ],
+   "troopType": "Monster (Chaos Beast)",
+   "baseSize": "50x50",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Flammable, Forest Strider, Immunity (Psychology), Random Attacks (D6+2), Natural Armour (3+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "GIANT SPAWN OF CHAOS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant Spawn of Chaos",
+     "M": "*",
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 6,
+     "W": 5,
+     "I": 2,
+     "A": "*",
+     "Ld": 10,
+     "points": 195
+    }
+   ],
+   "troopType": "Monster (Chaos Beast)",
+   "baseSize": "50x100, 60x100 or 100x150",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May choose one of the following",
+     "raw": "May choose one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Nurgle",
+       "choices": [
+        {
+         "name": "Spawn of Nurgle",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Nurgle +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Slaanesh",
+       "choices": [
+        {
+         "name": "Spawn of Slaanesh",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Slaanesh +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Khorne",
+       "choices": [
+        {
+         "name": "Spawn of Khorne",
+         "points": 15,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Khorne +15 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Spawn of Tzeentch",
+       "choices": [
+        {
+         "name": "Spawn of Tzeentch",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Spawn of Tzeentch +20 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Random Attacks (2D6), Random Movement (3D6), Unbreakable",
+   "upgrades": "Spawn of Khorne: A Spawn of Khorne has +1 Strength.\nSpawn of Nurgle: A Spawn of Nurgle has the Poisoned Attacks special rule.\nSpawn of Slaanesh: A Spawn of Slaanesh rolls an additional D6 for their Random Movement result.\nSpawn of Tzeentch: A Spawn of Tzeentch has a Strength 3 Breath Weapon that has the Flaming Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 195
+  },
+  {
+   "name": "CHIMERA",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Chimera",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": 2,
+     "A": 6,
+     "Ld": 5,
+     "points": 190
+    }
+   ],
+   "troopType": "Monster (Chimeric)",
+   "baseSize": "50x50, 50x100 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Venomous Ooze",
+     "points": 10,
+     "perModel": false,
+     "raw": "May take Venomous Ooze +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Fiend Tail",
+     "points": 15,
+     "perModel": false,
+     "raw": "May take Fiend Tail +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Iron-hard Skin",
+     "points": 25,
+     "perModel": false,
+     "raw": "May take Iron-hard Skin +25 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Flaming Breath",
+     "points": 30,
+     "perModel": false,
+     "raw": "May take Flaming Breath +30 points",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Regenerating Flesh",
+     "points": 40,
+     "perModel": false,
+     "raw": "May take Regenerating Flesh +40 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (8)",
+   "upgrades": "Fiend Tail: The Chimera gains +1 Attack.\nFlaming Breath: The Chimera gains a Strength 4 Breath Weapon which has the Flaming Attacks special rule.\nIron-hard Skin: The Chimera gains the Natural Armour (4+) special rule.\nRegenerating Flesh: The Chimera gains the Regeneration (4+) special rule.\nVenomous Ooze: The Chimera gains the Poisoned Attacks special rule.",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "RAMHORN",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Ramhorn",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 6,
+     "points": 240
+    },
+    {
+     "name": "Bestigor Crew",
+     "M": "-",
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monster (Porcine)",
+   "baseSize": "100x150",
+   "equipment": "Great weapon (Bestigor Crew only)",
+   "magic": null,
+   "options": null,
+   "specialRules": "Frenzy, Impact Hits (D6+2), Natural Armour (4+), Primal Fury (Bestigors only), Stubborn, Tusker Charge",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "4 Bestigor Crew (Beastmen, Gor)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "GIANT",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Giant",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": "*",
+     "Ld": 10,
+     "points": 180
+    }
+   ],
+   "troopType": "Monster (Giant)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Immunity (Psychology), Natural Armour (6+), Stubborn",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 180
+  },
+  {
+   "name": "GORTHOR THE CRUEL",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Gorthor the Cruel",
+     "M": 5,
+     "WS": 7,
+     "BS": 3,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 5,
+     "Ld": 9,
+     "points": 300
+    },
+    {
+     "name": "Bagrar the Tamer",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 4,
+     "T": "-",
+     "W": "-",
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Light lance (Bagrar only)",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Tuskgor Chariot",
+       "points": 75,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Tuskgor Chariot (replacing the Bestigor) +75 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 300
+  },
+  {
+   "name": "KHAZRAK ONE-EYE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Khazrak One-Eye",
+     "M": 5,
+     "WS": 7,
+     "BS": 1,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 5,
+     "A": 4,
+     "Ld": 9,
+     "points": 250
+    },
+    {
+     "name": "Redmaw (Chaos Warhound)",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Gor). Redmaw is a War Beast (Chaos Beast)",
+   "baseSize": "25x25 or 30x30 (Khazrak), 25x50 (Redmaw)",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Redmaw",
+     "points": 15,
+     "perModel": false,
+     "raw": "May be accompanied by Redmaw +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Ambushers, Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 250
+  },
+  {
+   "name": "MORGHUR THE SHADOWGAVE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Morghur",
+     "M": "*",
+     "WS": 6,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 3,
+     "I": 4,
+     "A": 3,
+     "Ld": 8,
+     "points": 335
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Gor)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ambushers, Forest Strider, Primal Fury, Random Movement (2D6), Unbreakable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 335
+  },
+  {
+   "name": "MALAGOR THE DARK OMEN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Malagor",
+     "M": 5,
+     "WS": 5,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 320
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "Malagor is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Forest Strider, Fly (10), Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 320
+  },
+  {
+   "name": "KRALMAW",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Kralmaw",
+     "M": 5,
+     "WS": 5,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 295
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "Kralmaw is a Level 4 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 295
+  },
+  {
+   "name": "MOLOKH SLUGTONGUE",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Molokh Slugtongue",
+     "M": 5,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Gor)",
+   "baseSize": "25x25 or 30x30",
+   "equipment": "Hand weapon",
+   "magic": "Molokh Slugtongue is a Level 2 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Forest Strider, Poisoned Attacks, Primal Fury, Regeneration (4+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "TAUROX THE BRASS BULL",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Taurox",
+     "M": 6,
+     "WS": 6,
+     "BS": 3,
+     "S": 6,
+     "T": 6,
+     "W": 5,
+     "I": 5,
+     "A": 6,
+     "Ld": 8,
+     "points": 325
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Minotaur)",
+   "baseSize": "40x40 or 50x50",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Bloodgreed, Frenzy, Impact Hits (1)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 325
+  },
+  {
+   "name": "GHORROS WARHOOF",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ghorros Warhoof",
+     "M": 8,
+     "WS": 5,
+     "BS": 3,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 4,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Cavalry (Character, Beastman, Centigor)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Drunken, Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "UNGROL FOUR-HORN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Ungrol Four-horn",
+     "M": 5,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman, Ungor)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Two hand weapons",
+   "magic": null,
+   "options": null,
+   "specialRules": "Ambushers, Forest Strider, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "MOONCLAW, SON OF MORRSLIEB",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Moonclaw",
+     "M": 5,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 3,
+     "A": 3,
+     "Ld": 7,
+     "points": 200
+    },
+    {
+     "name": "Umbralok",
+     "M": 7,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 3,
+     "A": 3,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Character, Beastman)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Hand weapon",
+   "magic": "Moonclaw is a Level 1 Wizard who uses one of the following Lores of Magic:",
+   "options": null,
+   "specialRules": "Forest Strider, Independent, Primal Fury",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": "Umbralok (Chaos Beast)",
+   "drawnBy": null,
+   "pointsCost": 200
+  }
+ ]
+}

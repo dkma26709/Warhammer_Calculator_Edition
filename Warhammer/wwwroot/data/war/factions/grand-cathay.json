@@ -1,0 +1,4641 @@
+{
+ "factionName": "Grand Cathay",
+ "units": [
+  {
+   "name": "Celestial General",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Celestial General",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 105
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Celestial blade",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Repeater crossbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Dragon fire pistol",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 14,
+       "perModel": false
+      },
+      {
+       "name": "Jade Longma",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Great Spirit Longma",
+       "points": 60,
+       "perModel": false
+      },
+      {
+       "name": "War Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Great Moon Bird",
+       "points": 140,
+       "perModel": false
+      },
+      {
+       "name": "Celestial Lion",
+       "points": 145,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Celestial General",
+     "raw": "A Celestial General may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 105
+  },
+  {
+   "name": "Celestial Captain",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Celestial Captain",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 60
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Celestial blade",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Repeater crossbow",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Handgun",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Dragon fire pistol",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      },
+      {
+       "name": "Heavy armour",
+       "points": 18,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 14,
+       "perModel": false
+      },
+      {
+       "name": "Jade Longma",
+       "points": 40,
+       "perModel": false
+      },
+      {
+       "name": "Great Spirit Longma",
+       "points": 60,
+       "perModel": false
+      },
+      {
+       "name": "War Chariot",
+       "points": 70,
+       "perModel": false
+      },
+      {
+       "name": "Great Moon Bird",
+       "points": 140,
+       "perModel": false
+      },
+      {
+       "name": "Celestial Lion",
+       "points": 145,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Celestial Captain may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Celestial Captain",
+     "raw": "A Celestial Captain may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 60
+  },
+  {
+   "name": "DRAGON-BLOODED SHUGENGAN",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Dragon-Blooded Shugengan",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 9,
+     "points": 240
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "A Dragon-Blooded Shugengan is a Level 3 Wizard. They must be chosen to be aligned with either Yin or Yang. A Yin Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Celestial blade",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "dragon fire pistol",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a dragon fire pistol +9 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 18,
+       "perModel": false
+      },
+      {
+       "name": "Jade Longma",
+       "points": 48,
+       "perModel": false
+      },
+      {
+       "name": "Great Spirit Longma",
+       "points": 60,
+       "perModel": false
+      },
+      {
+       "name": "Great Moon Bird",
+       "points": 140,
+       "perModel": false
+      },
+      {
+       "name": "Celestial Lion",
+       "points": 145,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "DRAGON DESCENDANT",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Human Form",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 340
+    },
+    {
+     "name": "Dragon Form",
+     "M": 6,
+     "WS": 7,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Character, Human/Dragon)",
+   "baseSize": "20x20 or 25x25 (Dragon Descendant), 50x100, 60x100 or 100x150 (Dragon Form)",
+   "equipment": "Hand weapon, light armour",
+   "magic": "A Dragon Descendant is a Level 3 Wizard. They must be chosen to be aligned with either Yin or Yang. A Yin Wizard uses one of the following Lores of Magic:",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Celestial blade",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 340
+  },
+  {
+   "name": "Grand Alchemist",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Grand Alchemist",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Alchemist is a Level 1 Wizard. A Grand Alchemist is a Level 3 Wizard. They use the Lore of Metal.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Grand Alchemist",
+     "raw": "A Grand Alchemist may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Mastery of the Elemental Winds, Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Alchemist",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Alchemist",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Alchemist is a Level 1 Wizard. A Grand Alchemist is a Level 3 Wizard. They use the Lore of Metal.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Alchemist",
+     "raw": "An Alchemist may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Mastery of the Elemental Winds, Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "Supreme Astromancer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Supreme Astromancer",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 160
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Astromancer is a Level 1 Wizard. A Supreme Astromancer is a Level 3 Wizard. They use the Lore of Heavens.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Wu Xing War Compass",
+       "points": 120,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Supreme Astromancer",
+     "raw": "A Supreme Astromancer may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Mastery of the Elemental Winds, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 160
+  },
+  {
+   "name": "Astromancer",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Astromancer",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 65
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "An Astromancer is a Level 1 Wizard. A Supreme Astromancer is a Level 3 Wizard. They use the Lore of Heavens.",
+   "options": [
+    {
+     "type": "wizard_upgrade",
+     "upgrade": "additional Wizard Level",
+     "points": 35,
+     "perModel": false,
+     "raw": "May take an additional Wizard Level +35 points"
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Astromancer",
+     "raw": "An Astromancer may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Mastery of the Elemental Winds, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 65
+  },
+  {
+   "name": "Gate Master",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Gate Master",
+     "M": 4,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 9,
+     "points": 70
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Repeater crossbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Gate Master",
+     "raw": "A Gate Master may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 70
+  },
+  {
+   "name": "Gate Keeper",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Gate Keeper",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 45
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Light lance",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbow",
+       "points": 4,
+       "perModel": false
+      },
+      {
+       "name": "Longbow",
+       "points": 6,
+       "perModel": false
+      },
+      {
+       "name": "Crossbow",
+       "points": 7,
+       "perModel": false
+      },
+      {
+       "name": "Repeater crossbow",
+       "points": 6,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 3,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 9,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shield",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take a shield +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    },
+    {
+     "type": "battle_standard",
+     "points": 25,
+     "raw": "One Gate Keeper may carry the Battle Standard +25 points"
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Gate Keeper",
+     "raw": "A Gate Keeper may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": "The Battle Standard Bearer can have a Magic Standard with no points limit in addition to any other Magic Items they might have.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 45
+  },
+  {
+   "name": "Lord Magistrate",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Lord Magistrate",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 9,
+     "points": 85
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "dragon fire bombs",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take dragon fire bombs +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Sky Lantern",
+       "points": 85,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 100,
+     "appliesTo": "Lord Magistrate",
+     "raw": "A Lord Magistrate may take Magic Items up to a total of 100 points"
+    }
+   ],
+   "specialRules": "Inspiring Presence (6), Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "Magistrate",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Magistrate",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 1,
+     "Ld": 8,
+     "points": 50
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "dragon fire bombs",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take dragon fire bombs +10 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Sky Lantern",
+       "points": 85,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": "Magistrate",
+     "raw": "A Magistrate may take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Inspiring Presence (6), Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 50
+  },
+  {
+   "name": "BLADEMASTER",
+   "category": "Characters",
+   "profiles": [
+    {
+     "name": "Blademaster",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 120
+    }
+   ],
+   "troopType": "Infantry (Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapon",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Celestial blade",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Spear",
+       "points": 5,
+       "perModel": false
+      },
+      {
+       "name": "Polearm",
+       "points": 10,
+       "perModel": false
+      },
+      {
+       "name": "Great weapon",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +2 points",
+     "subOptions": null
+    },
+    {
+     "type": "magic_items",
+     "pointsLimit": 50,
+     "appliesTo": null,
+     "raw": "May take Magic Items up to a total of 50 points"
+    }
+   ],
+   "specialRules": "Dodge (5+), Killing Blow, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": "A Blademaster may never be the Army General.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 120
+  },
+  {
+   "name": "WARHORSE",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Equine)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 5,
+       "perModel": false
+      }
+     ],
+     "raw": "May take barding +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": null,
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "JADE LONGMA",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Jade Longma",
+     "M": 8,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Beast (Chimeric)",
+   "baseSize": "25x50, 30x60, 40x40, 40x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fear, Fly (9), Impale, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "GREAT SPIRIT LONGMA",
+   "category": "Character Mounts",
+   "profiles": [
+    {
+     "name": "Great Spirit Longma",
+     "M": 8,
+     "WS": 5,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 5,
+     "A": 3,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Monstrous Beast (Chimeric)",
+   "baseSize": "50x75 or 60x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fear, Fly (9), Impale, Natural Armour (5+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": null
+  },
+  {
+   "name": "PEASANT MILITIA",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Peasant Militiaman",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 2
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Pikes",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with pikes) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Peasant Militiaman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Peasant Militiaman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Peasant Militiaman to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2
+  },
+  {
+   "name": "PEASANT BOWMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Peasant Bowmen",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 4
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bows",
+     "choices": [
+      {
+       "name": "Repeater crossbows",
+       "points": 1,
+       "perModel": true,
+       "replaces": "bows"
+      },
+      {
+       "name": "Longbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "bows"
+      },
+      {
+       "name": "Crossbows",
+       "points": 3,
+       "perModel": true,
+       "replaces": "bows"
+      }
+     ],
+     "raw": "May replace bows with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Peasant Bowmen to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Peasant Bowmen to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Peasant Bowmen to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 4
+  },
+  {
+   "name": "PEASANT HORSEMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Peasant Horseman",
+     "M": 4,
+     "WS": 2,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 9
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light lances",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 0.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with shortbows or crossbows) +0.5 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take light armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Peasant Horseman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Peasant Horseman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Peasant Horseman to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Fast Cavalry, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "JADE WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Jade Warrior",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 3.5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Pikes",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless they have pikes) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Jade Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Jade Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Jade Warrior to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "15-45",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3.5
+  },
+  {
+   "name": "JADE BOWMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Jade Bowman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 6
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, shortbow, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "shortbows",
+     "choices": [
+      {
+       "name": "Repeater crossbows",
+       "points": 1,
+       "perModel": true,
+       "replaces": "shortbows"
+      },
+      {
+       "name": "Longbows",
+       "points": 2,
+       "perModel": true,
+       "replaces": "shortbows"
+      },
+      {
+       "name": "Crossbows",
+       "points": 3,
+       "perModel": true,
+       "replaces": "shortbows"
+      }
+     ],
+     "raw": "May replace shortbows with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Jade Bowman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Jade Bowman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Jade Bowman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 6
+  },
+  {
+   "name": "JADE HORSEMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Jade Horseman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 11
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Light lances & shields",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Flails",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Three-eyed guns",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Jade Horseman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Jade Horseman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Jade Horseman to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Fast Cavalry, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 11
+  },
+  {
+   "name": "IRON HAIL GUNNERS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Iron Hail Gunner",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, blunderbuss, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "blunderbusses",
+     "choices": [
+      {
+       "name": "Handguns",
+       "points": 0,
+       "perModel": false,
+       "replaces": "blunderbusses"
+      },
+      {
+       "name": "Three-eyed guns",
+       "points": 3,
+       "perModel": true,
+       "replaces": "blunderbusses"
+      }
+     ],
+     "raw": "May replace blunderbusses with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Iron Hail Gunner to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Iron Hail Gunner to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Iron Hail Gunner to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "HILL TRIBESMEN",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Hill Tribesman",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 6,
+     "points": 2.5
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Spears",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Javelins",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless they have two hand weapon or shortbows) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Ambushers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Ambushers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "Skirmishers",
+     "points": 1,
+     "perModel": true,
+     "raw": "May be upgraded to Skirmishers +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Hill Tribesman to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Hill Tribesman to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Hill Tribesman to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Independent",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 2.5
+  },
+  {
+   "name": "MONKEY WARRIORS",
+   "category": "Core",
+   "profiles": [
+    {
+     "name": "Monkey Warrior",
+     "M": 5,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 6,
+     "points": 5
+    }
+   ],
+   "troopType": "Infantry (Beastman)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Blowpipes",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Monkey Warrior to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Dodge (6+), Expendable, Forest Strider, Independent, Obstacle Strider, Skirmishers",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 5
+  },
+  {
+   "name": "CELESTIAL DRAGON GUARD",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Celestial Dragon Guard",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 10
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Polearm, medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "polearms",
+     "choices": [
+      {
+       "name": "Great weapons",
+       "points": 1,
+       "perModel": true,
+       "replaces": "polearms"
+      },
+      {
+       "name": "Dragon crossbows",
+       "points": 4,
+       "perModel": true,
+       "replaces": "polearms"
+      }
+     ],
+     "raw": "May replace polearms with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (if armed with polearms) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 1.5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +1.5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Celestial Dragon Guard to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Celestial Dragon Guard to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Celestial Dragon Guard to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Stubborn, Will of the Dragons, Yin/Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "10-30",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 10
+  },
+  {
+   "name": "CELESTIAL DRAGON LANCERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Celestial Dragon Lancer",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 1,
+     "Ld": 8,
+     "points": 18
+    },
+    {
+     "name": "Warhorse",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": "Light lance, medium armour, shield, barding",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "light lances & shields",
+     "choices": [
+      {
+       "name": "Polearms",
+       "points": 0,
+       "perModel": false,
+       "replaces": "light lances & shields"
+      },
+      {
+       "name": "Flails",
+       "points": 0,
+       "perModel": false,
+       "replaces": "light lances & shields"
+      }
+     ],
+     "raw": "May replace light lances & shields with one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "fire lances",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take fire lances (if armed with light lances) +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Celestial Dragon Lancer to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Celestial Dragon Lancer to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Celestial Dragon Lancer to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Stubborn, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": "Warhorse (Equine)",
+   "drawnBy": null,
+   "pointsCost": 18
+  },
+  {
+   "name": "CELESTIAL DRAGON MONKS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Celestial Dragon Monk",
+     "M": 5,
+     "WS": 5,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Additional hand weapons",
+       "points": 1.5,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Celestial Dragon Monk to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Dodge (6+), Immunity (Psychology), Skirmishers, Strider, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "CRANE GUNNERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Crane Gunner",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 15
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x40 or 25x50",
+   "equipment": "Hand weapon, crane gun, light armour, tower shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May upgrade to medium armour +2 points/model",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": "Crane Gunners have a Unit Strength of 2.",
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 15
+  },
+  {
+   "name": "GRENADIERS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Grenadier",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": 9
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon, grenades, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "gunpowder bombs",
+     "choices": [
+      {
+       "name": "sky rockets",
+       "points": 2,
+       "perModel": true,
+       "replaces": "gunpowder bombs"
+      }
+     ],
+     "raw": "May replace gunpowder bombs with sky rockets +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Grenadier to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Skirmishers, Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 9
+  },
+  {
+   "name": "FLAMETHROWER",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Flamethrower",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 20
+    }
+   ],
+   "troopType": "Infantry (Human)",
+   "baseSize": "20x40 or 25x50",
+   "equipment": "Hand weapon, flamethrower, medium armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Weapon Team, Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": "You may take 1-2 Flamethrowers as a single Special choice.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 20
+  },
+  {
+   "name": "WAR CHARIOT",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "War Chariot",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 4,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 70
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Warhorse",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+)",
+   "baseSize": "50x100 or 100x100",
+   "equipment": "Light lance, bow, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "light lances",
+     "choices": [
+      {
+       "name": "polearms",
+       "points": 5,
+       "perModel": true,
+       "replaces": "light lances"
+      }
+     ],
+     "raw": "May replace light lances with polearms +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "bows",
+     "choices": [
+      {
+       "name": "crossbows",
+       "points": 5,
+       "perModel": true,
+       "replaces": "bows"
+      }
+     ],
+     "raw": "May replace bows with crossbows +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 8,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +8 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "scythes",
+       "points": 5,
+       "perModel": true
+      }
+     ],
+     "raw": "May take scythes +5 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "additional Crew",
+     "points": 6,
+     "perModel": false,
+     "raw": "May take up to two additional Crew +6 points/Crew",
+     "subOptions": null
+    },
+    {
+     "type": "upgrade",
+     "upgrade": "two additional Warhorses",
+     "points": 6,
+     "perModel": false,
+     "raw": "May take two additional Warhorses +6 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one War Chariot to a standard bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin & Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "1-3",
+   "crew": "2 Crew (Human)",
+   "mount": null,
+   "drawnBy": "2 Warhorses (Animal)",
+   "pointsCost": 70
+  },
+  {
+   "name": "SKY LANTERN",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Sky Lantern",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 90
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 5+)",
+   "baseSize": "100x100",
+   "equipment": "Hand weapon, crane gun, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "crane guns",
+     "choices": [
+      {
+       "name": "blunderbusses & gunpowder bombs",
+       "points": 0,
+       "perModel": false,
+       "replaces": "crane guns"
+      }
+     ],
+     "raw": "May replace crane guns with blunderbusses & gunpowder bombs free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "sky bombs",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May take sky bombs +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (6), Will of the Dragons, Yin",
+   "upgrades": "• Sky Bombs: During the Remaining Moves sub-phase, models with this upgrade may drop a bomb unless they are fleeing or have declared a charge that turn. To make a bombing run, select one unengaged enemy unit that the Sky-junk moved over in that turn and place the large round template anywhere over the target unit; it scatters D3\". If a natural 1 is rolled, use the Bomb Misfire chart below. Sky bombs have the following profile:\nRANGE | STRENGTH | SPECIAL RULES\nn/a | 4(6) | Multiple Wounds (D3)\nBOMB MISFIRE TABLE\nD6 | Result\n1 | Premature Detonation: The Sky Lantern suffers a Strength 6 hit with the and Multiple Wounds (D3) special rule.\n2-3 | Jammed Release. Centre the 3\" template over the Sky Lantern before scattering it and resolving damage as normal.\n4-6 | Dud. Only the model under the template's central hole is hit, suffering a single Strength 4 hit.",
+   "notes": "A Sky Lantern has a Line of Sight value of 10.",
+   "unitSize": null,
+   "crew": "5 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 90
+  },
+  {
+   "name": "MERCENARY OGRES",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Ogre",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": 27
+    }
+   ],
+   "troopType": "Monstrous Infantry (Ogre)",
+   "baseSize": "40x40",
+   "equipment": "Hand weapons, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Bucklers",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Additional hand weapons",
+       "points": 3,
+       "perModel": true
+      },
+      {
+       "name": "Great weapons",
+       "points": 9,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 6,
+       "perModel": true
+      }
+     ],
+     "raw": "May take medium armour +6 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Ogre to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Ogre to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Ogre to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 25,
+       "raw": "May take a Magic Standard worth up to 25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Independent, Natural Armour (6+)",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-9",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 27
+  },
+  {
+   "name": "TEMPLE DOGS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Temple Dog",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 4,
+     "T": 5,
+     "W": 2,
+     "I": 3,
+     "A": 2,
+     "Ld": 7,
+     "points": 25
+    }
+   ],
+   "troopType": "War Beast (Animated Construct)",
+   "baseSize": "25x50 or 30x60",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Animated Construct, Fear, Impact Hits (1), Unstable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 25
+  },
+  {
+   "name": "TERRACOTTA WARRIORS",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Terracotta Warrior",
+     "M": 4,
+     "WS": 2,
+     "BS": 2,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 2,
+     "A": 1,
+     "Ld": 3,
+     "points": 3
+    }
+   ],
+   "troopType": "Infantry (Animated Construct)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Spears",
+       "points": 0.5,
+       "perModel": true
+      },
+      {
+       "name": "Shortbows",
+       "points": 1,
+       "perModel": true
+      },
+      {
+       "name": "Polearms",
+       "points": 2,
+       "perModel": true
+      },
+      {
+       "name": "Crossbows",
+       "points": 3,
+       "perModel": true
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "shields",
+       "points": 1,
+       "perModel": true
+      }
+     ],
+     "raw": "May take shields (unless armed with bows or crossbows) +1 point/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Terracotta Warrior to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Terracotta Warrior to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Terracotta Warrior to a Standard Bearer +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Animated Construct, Unstable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "20-60",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 3
+  },
+  {
+   "name": "ONYX CROWMEN",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Onyx Crowman",
+     "M": 4,
+     "WS": 4,
+     "BS": 0,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 4,
+     "A": 2,
+     "Ld": 7,
+     "points": 16
+    }
+   ],
+   "troopType": "Infantry (Elemental)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Onyx Crowman to a Leader +5 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Expendable, Fear, Fly (10), Magical Attacks, Scouts, Yin, Unstable",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "5-15",
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 16
+  },
+  {
+   "name": "STORMHURLER CROSSBOW",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Stormhurler Crossbow",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 40
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Stormhurler Crossbow), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, repeater bolt thrower",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 40
+  },
+  {
+   "name": "DRAGON CANNON",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Dragon Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 (Dragon Cannon), 20x20 or 25x25 (Crew)",
+   "equipment": "Hand weapon, cannon",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "FIRE RAIN ROCKET",
+   "category": "Special",
+   "profiles": [
+    {
+     "name": "Fire Rain Rocket",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 85
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Ogre Loader",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 or 60x100 (Fire Rain Rocket), 20x20 or 25x25 (Crew), 40x40 (Ogre Loader)",
+   "equipment": "Hand weapon, rocket launcher, bastion rocket",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Ogre Loader",
+     "points": 20,
+     "perModel": false,
+     "raw": "May have an Ogre Loader +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": "Ogre Loader: An Ogre Loader has the Fear and Natural Armour (6+) special rule. In addition, it increases the Unit Strength of the war machine by 3 rather than 1 and gives it Line of Sight (2).",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 85
+  },
+  {
+   "name": "LONGMA RIDERS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Longma Rider",
+     "M": 4,
+     "WS": 5,
+     "BS": 4,
+     "S": 4,
+     "T": 3,
+     "W": 1,
+     "I": 5,
+     "A": 2,
+     "Ld": 8,
+     "points": 48
+    },
+    {
+     "name": "Longma",
+     "M": 8,
+     "WS": 3,
+     "BS": 0,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 4,
+     "A": 2,
+     "Ld": 6,
+     "points": null
+    }
+   ],
+   "troopType": "Cavalry (Human)",
+   "baseSize": "25x50, 30x60, 40x40, 40x60",
+   "equipment": "Light lance, medium armour, shield",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "light lances & shields",
+     "choices": [
+      {
+       "name": "polearms",
+       "points": 0,
+       "perModel": false,
+       "replaces": "light lances & shields"
+      }
+     ],
+     "raw": "May replace light lances & shields with polearms free",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "heavy armour",
+       "points": 4,
+       "perModel": true
+      }
+     ],
+     "raw": "May take heavy armour +4 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "barding",
+       "points": 2,
+       "perModel": true
+      }
+     ],
+     "raw": "May take barding +2 points/model",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Leader",
+     "points": 5,
+     "raw": "May upgrade one Longma Rider to a Leader +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Musician",
+     "points": 5,
+     "raw": "May upgrade one Longma Rider to a Musician +5 points",
+     "subOptions": null
+    },
+    {
+     "type": "command",
+     "role": "Standard Bearer",
+     "points": 10,
+     "raw": "May upgrade one Longma Rider to a Standard Bearer +10 points",
+     "subOptions": [
+      {
+       "type": "magic_standard",
+       "pointsLimit": 50,
+       "raw": "May take a Magic Standard worth up to 50 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Fear, Fly (9), Impale, Natural Armour (6+), Stubborn, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": "3-6",
+   "crew": null,
+   "mount": "Longma (Chimeric)",
+   "drawnBy": null,
+   "pointsCost": 48
+  },
+  {
+   "name": "GRAND CANNON",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Grand Cannon",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": "-",
+     "T": 7,
+     "W": "-",
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 125
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Ogre Loader",
+     "M": 6,
+     "WS": 3,
+     "BS": 3,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 2,
+     "A": 3,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "War Machine",
+   "baseSize": "50x75 or 60x100 (Grand Cannon), 20x20 or 25x25 (Crew), 40x40 (Ogre Loader)",
+   "equipment": "Hand weapon, great cannon",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "Ogre Loader",
+     "points": 20,
+     "perModel": false,
+     "raw": "May have an Ogre Loader +20 points",
+     "subOptions": null
+    },
+    {
+     "type": "equipment",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Light armour",
+       "points": 1,
+       "perModel": false
+      },
+      {
+       "name": "Medium armour",
+       "points": 2,
+       "perModel": false
+      }
+     ],
+     "raw": "May choose one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yin",
+   "upgrades": "Ogre Loader: An Ogre Loader has the Fear and Natural Armour (6+) special rule. In addition, it increases the Unit Strength of the war machine by 3 rather than 1 and gives it Line of Sight (2).",
+   "notes": null,
+   "unitSize": null,
+   "crew": "3 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 125
+  },
+  {
+   "name": "ZHANGU WAR DRUM",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Zhangu War Drum",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 4,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 120
+    },
+    {
+     "name": "Crew",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Warhorse",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 5,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 6+, Human)",
+   "baseSize": "50x100",
+   "equipment": "Hand weapon, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "medium armour",
+       "points": 10,
+       "perModel": false
+      }
+     ],
+     "raw": "May take medium armour +10 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "2 Crew (Human)",
+   "mount": null,
+   "drawnBy": "2 Warhorses (Equine)",
+   "pointsCost": 120
+  },
+  {
+   "name": "WU XING WAR COMPASS",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Wu Xing War Compass",
+     "M": 7,
+     "WS": "-",
+     "BS": "-",
+     "S": 4,
+     "T": 5,
+     "W": 5,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 125
+    },
+    {
+     "name": "Apprentice Astromancer",
+     "M": "-",
+     "WS": 3,
+     "BS": 3,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    },
+    {
+     "name": "Warhorse",
+     "M": "-",
+     "WS": 3,
+     "BS": 0,
+     "S": 3,
+     "T": "-",
+     "W": "-",
+     "I": 3,
+     "A": 1,
+     "Ld": "-",
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour save 6+)",
+   "baseSize": "100x100",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": "1 Apprentice Astromancer (Human)",
+   "mount": null,
+   "drawnBy": "4 Warhorses (Equine)",
+   "pointsCost": 125
+  },
+  {
+   "name": "SKY-JUNK",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Sky-junk",
+     "M": "-",
+     "WS": "-",
+     "BS": "-",
+     "S": 5,
+     "T": 5,
+     "W": 7,
+     "I": "-",
+     "A": "-",
+     "Ld": "-",
+     "points": 150
+    },
+    {
+     "name": "Crew",
+     "M": 4,
+     "WS": 3,
+     "BS": 4,
+     "S": 3,
+     "T": 3,
+     "W": 1,
+     "I": 3,
+     "A": 1,
+     "Ld": 7,
+     "points": null
+    }
+   ],
+   "troopType": "Chariot (Armour Save 4+, Human)",
+   "baseSize": "100x150",
+   "equipment": "Hand weapon, crane guns, rocket salvo, light armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "equipment",
+     "action": "replace",
+     "replaces": "crane guns",
+     "choices": [
+      {
+       "name": "blunderbusses & gunpowder bombs",
+       "points": 0,
+       "perModel": false,
+       "replaces": "crane guns"
+      }
+     ],
+     "raw": "May replace crane guns with blunderbusses & gunpowder bombs free",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Fly (6), Heavenly Beacon (see Sky Lantern), Sky Bombs (see Sky Lantern), Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": "A Sky-junk has a Line of Sight value of 10.",
+   "unitSize": null,
+   "crew": "5 Crew (Human)",
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 150
+  },
+  {
+   "name": "CELESTIAL LION",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Celestial Lion",
+     "M": 6,
+     "WS": 5,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 7,
+     "points": 145
+    }
+   ],
+   "troopType": "Monstrous Creature (Feline-avian)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (8), Mighty Blow (1), Natural Armour (6+), Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 145
+  },
+  {
+   "name": "GREAT MOON BIRD",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Great Moon Bird",
+     "M": 2,
+     "WS": 4,
+     "BS": 0,
+     "S": 5,
+     "T": 5,
+     "W": 4,
+     "I": 5,
+     "A": 4,
+     "Ld": 7,
+     "points": 140
+    }
+   ],
+   "troopType": "Monstrous Creature (Avian)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Fly (9), Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 140
+  },
+  {
+   "name": "TERRACOTTA SENTINEL",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Terracotta Sentinel",
+     "M": 6,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 10,
+     "points": 235
+    }
+   ],
+   "troopType": "Monster (Animated Construct)",
+   "baseSize": "50x75, 60x100 or 100x150",
+   "equipment": "Polearm, heavy armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "upgrade",
+     "upgrade": "May be upgraded to one of the following",
+     "raw": "May be upgraded to one of the following:",
+     "subOptions": [
+      {
+       "type": "upgrade",
+       "upgrade": "Jade Sentinel",
+       "choices": [
+        {
+         "name": "Jade Sentinel",
+         "points": 10,
+         "perModel": false
+        }
+       ],
+       "raw": "Jade Sentinel +10 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Obsidian Sentinel",
+       "choices": [
+        {
+         "name": "Obsidian Sentinel",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Obsidian Sentinel +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Warpstone Sentinel",
+       "choices": [
+        {
+         "name": "Warpstone Sentinel",
+         "points": 20,
+         "perModel": false
+        }
+       ],
+       "raw": "Warpstone Sentinel +20 points"
+      },
+      {
+       "type": "upgrade",
+       "upgrade": "Granite Sentinel",
+       "choices": [
+        {
+         "name": "Granite Sentinel",
+         "points": 25,
+         "perModel": false
+        }
+       ],
+       "raw": "Granite Sentinel +25 points"
+      }
+     ]
+    }
+   ],
+   "specialRules": "Animated Construct, Regeneration (6+), Unstable, Yang",
+   "upgrades": "Granite Sentinel: The Sentinel gains +1 armour and the Immunity (Multiple Wounds) special rule.\nJade Sentinel: The Sentinel gains the Earthblood spell from the Lore of Life as a Bound Spell.\nObsidian Sentinel: The Sentinel gains the Magic Resistance (2) special rule. In addition, enemy Wizards within 12\" suffer a -1 casting penalty.\nWarpstone Sentinel: The Sentinel gains the Magical Attacks special rule, and models in base contact with one or more Warpstone Sentinels suffer -1 to their Toughness (to a minimum of 1).",
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 235
+  },
+  {
+   "name": "GUARDIAN LION",
+   "category": "Rare",
+   "profiles": [
+    {
+     "name": "Guardian Lion",
+     "M": 7,
+     "WS": 4,
+     "BS": 0,
+     "S": 6,
+     "T": 7,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 10,
+     "points": 240
+    }
+   ],
+   "troopType": "Monster (Animated Construct)",
+   "baseSize": "50x100",
+   "equipment": null,
+   "magic": null,
+   "options": null,
+   "specialRules": "Animated Construct, Impact Hits (D6), Unstable",
+   "upgrades": null,
+   "notes": "Each Guardian Lion must either be a Jade Lion or Jet Lion.",
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 240
+  },
+  {
+   "name": "MIAO YING",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Human Form",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 525
+    },
+    {
+     "name": "Dragon Form",
+     "M": 6,
+     "WS": 7,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "40x40 or 50x50 (Miao Ying), 50x100, 60x100 or 100x150 (Dragon Form)",
+   "equipment": "Hand weapon, light armour",
+   "magic": "Miao Ying is a Level 4 Wizard who uses spells from the Lore of Life. In addition, she may also replace any number of spells from those lores with spells from the Lore of Yin. In addition, she knows the following spells:",
+   "options": null,
+   "specialRules": "Celestial Forged Armour, Hatred (Daemons of Chaos, Warriors of Chaos), Mastery of the Elemental Winds, Stubborn, Transformation of the Dragon (see Dragon Descendant), Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 525
+  },
+  {
+   "name": "ZHAO MING",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Human Form",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 480
+    },
+    {
+     "name": "Dragon Form",
+     "M": 6,
+     "WS": 7,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25 (Zhao Ming), 50x100, 60x100 or 100x150 (Dragon Form)",
+   "equipment": "Hand weapon, light armour",
+   "magic": "Zhao Ming is a Level 4 Wizard who uses spells from Lore of Metal. In addition, he may also replace any number of spells from those lores with spells from the Lore of Yang. In addition, he knows the following spell:",
+   "options": null,
+   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Transformation of the Dragon (see Dragon Descendant), Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 480
+  },
+  {
+   "name": "YUAN BO",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Human Form",
+     "M": 4,
+     "WS": 7,
+     "BS": 4,
+     "S": 5,
+     "T": 5,
+     "W": 3,
+     "I": 7,
+     "A": 5,
+     "Ld": 10,
+     "points": 455
+    },
+    {
+     "name": "Dragon Form",
+     "M": 6,
+     "WS": 7,
+     "BS": 0,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 3,
+     "A": 5,
+     "Ld": 10,
+     "points": null
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25 (Yuan Bo), 50x100, 60x100 or 100x150 (Dragon Form)",
+   "equipment": null,
+   "magic": "Yuan Bo is a Level 4 Wizard who uses spells from the Lore of Heavens and the Lore of Light. In addition, he may also replace any number of spells from those lores with spells from the Lore of Yin and/or Yang.",
+   "options": null,
+   "specialRules": "Celestial Forged Armour, Mastery of the Elemental Winds, Transformation of the Dragon (see Dragon Descendant), Will of the Dragons, Yin & Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 455
+  },
+  {
+   "name": "LUI YUN",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Liu Yun",
+     "M": 4,
+     "WS": 7,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": null,
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "HUA GONGZHU",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Hua Gongzhu",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 175
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 175
+  },
+  {
+   "name": "GUAN FEI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Guan Fei",
+     "M": 4,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 5,
+     "A": 3,
+     "Ld": 8,
+     "points": 130
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Medium armour",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on a Warhorse +15 points",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Celestial Forged Armour, Stubborn, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 130
+  },
+  {
+   "name": "TIAN SHI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Tian Shi",
+     "M": 4,
+     "WS": 4,
+     "BS": 3,
+     "S": 3,
+     "T": 3,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 8,
+     "points": 335
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": "Tian Shi is a Level 4 Wizard who uses spells from the Lore of Heavens.",
+   "options": [
+    {
+     "type": "equipment",
+     "action": "add",
+     "choices": [
+      {
+       "name": "light armour",
+       "points": 3,
+       "perModel": false
+      }
+     ],
+     "raw": "May take light armour +3 points",
+     "subOptions": null
+    },
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Wu Xing War Compass",
+       "points": 120,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following:",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Loremaster (Lore of Heavens), Mastery of the Elemental Winds, Will of the Dragons, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 335
+  },
+  {
+   "name": "ZHUGE YI",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Zhuge Yi",
+     "M": 4,
+     "WS": 4,
+     "BS": 4,
+     "S": 4,
+     "T": 4,
+     "W": 3,
+     "I": 4,
+     "A": 2,
+     "Ld": 9,
+     "points": 210
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": [
+    {
+     "type": "mount",
+     "action": "choose",
+     "choices": [
+      {
+       "name": "Warhorse",
+       "points": 15,
+       "perModel": false
+      },
+      {
+       "name": "Sky Lantern",
+       "points": 85,
+       "perModel": false
+      }
+     ],
+     "raw": "May be mounted on one of the following",
+     "subOptions": null
+    }
+   ],
+   "specialRules": "Inspiring Presence (6), Tactician (see Lord Magistrate), Will of the Dragons, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 210
+  },
+  {
+   "name": "CHENG LONG",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Cheng Long",
+     "M": 5,
+     "WS": 7,
+     "BS": 7,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 4,
+     "Ld": 9,
+     "points": 190
+    }
+   ],
+   "troopType": "Infantry (Special Character, Human)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Hand weapon",
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (5+), Immunity (Psychology), Strider, Yang",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 190
+  },
+  {
+   "name": "SAYTANG THE WATCHER",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "Saytang the Watcher",
+     "M": 6,
+     "WS": 4,
+     "BS": 4,
+     "S": 6,
+     "T": 6,
+     "W": 6,
+     "I": 1,
+     "A": 5,
+     "Ld": 10,
+     "points": 295
+    }
+   ],
+   "troopType": "Monster (Special Character, Animated Construct)",
+   "baseSize": "50x50 or 50x75",
+   "equipment": "Hand weapon, heavy armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Animated Construct, Loner, Fly (7), Regeneration (6+), Unstable, Yin",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 295
+  },
+  {
+   "name": "THE MONKEY KING",
+   "category": "Named Characters",
+   "profiles": [
+    {
+     "name": "The Monkey King",
+     "M": 5,
+     "WS": 6,
+     "BS": 5,
+     "S": 4,
+     "T": 4,
+     "W": 2,
+     "I": 6,
+     "A": 3,
+     "Ld": 8,
+     "points": 155
+    }
+   ],
+   "troopType": "Infantry (Special Character, Beastman)",
+   "baseSize": "20x20 or 25x25",
+   "equipment": "Light armour",
+   "magic": null,
+   "options": null,
+   "specialRules": "Dodge (6+), Independent, Martial Arts Fighting Styles (see Celestial Dragon Monks), Strider",
+   "upgrades": null,
+   "notes": null,
+   "unitSize": null,
+   "crew": null,
+   "mount": null,
+   "drawnBy": null,
+   "pointsCost": 155
+  }
+ ]
+}
