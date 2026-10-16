@@ -383,7 +383,7 @@ public class RuleNameParsingTests
 
         var complaints = new List<string>();
 
-        foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3 })
+        foreach (var system in new[] { GameSystems.WapV2, GameSystems.WapV3, GameSystems.War })
         {
             var repo = TestHelpers.RepoFor(system);
             foreach (var faction in repo.AllFactions)
