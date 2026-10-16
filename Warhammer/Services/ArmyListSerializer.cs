@@ -65,6 +65,14 @@ public class ArmyListSerializer
         SelectedMultiUpgrades = u.SelectedMultiUpgrades.Count == 0
             ? null
             : u.SelectedMultiUpgrades.ToDictionary(kv => kv.Key, kv => kv.Value.ToList()),
+        CommandUpgrades = u.SelectedCommandUpgrades.Count == 0
+            ? null
+            : u.SelectedCommandUpgrades.Select(p => new CommandUpgradeDto
+            {
+                OptionIndex = p.OptionIndex,
+                SubOptionIndex = p.SubOptionIndex,
+                ChoiceIndex = p.ChoiceIndex,
+            }).ToList(),
         MagicItems = u.SelectedMagicItems.Select(m => new MagicItemDto
         {
             Name = m.Name,
@@ -210,6 +218,10 @@ public class ArmyListSerializer
 
         foreach (var (k, v) in dto.SelectedMultiUpgrades ?? new())
             cfg.SelectedMultiUpgrades[k] = v.ToList();
+
+        // Copied as saved: TakenCommandUpgrades skips any pick the book no longer offers.
+        foreach (var p in dto.CommandUpgrades ?? [])
+            cfg.SelectedCommandUpgrades.Add(new CommandUpgradePick(p.OptionIndex, p.SubOptionIndex, p.ChoiceIndex));
 
         foreach (var (category, names) in dto.SelectedFactionUpgrades)
         {

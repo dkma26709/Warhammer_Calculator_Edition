@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Warhammer.Models.Enums;
 using Warhammer.Models.Json;
@@ -27,6 +28,16 @@ public static class OptionLayout
     /// </summary>
     private static readonly Regex ArmourWord = new(
         @"\b(armou?r|shields?|bucklers?|barding|cloaks?|plates?|mantlets?)\b",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>Cost text at the end of an upgrade's name — the " 5 points" of "Look-out Gnoblar 5 points".</summary>
+    private static readonly Regex TrailingCost = new(
+        @"\s*\+?\d+(\.\d+)?\s*(points?|pts)\s*$",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>The first "N points" or "N pts" anywhere in a line; group 1 is the number.</summary>
+    private static readonly Regex CostInText = new(
+        @"(\d+(\.\d+)?)\s*(points?|pts)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     /// <summary>
@@ -88,12 +99,60 @@ public static class OptionLayout
 
     /// <summary>
     /// A choice's name as a control shows it, capitalised because WAR writes single items in
-    /// lower case ("shield", "javelins").
+    /// lower case ("shield", "javelins"), and without any cost the extractor left in it
+    /// ("brace of Ogre Pistols 6 points" is "Brace of Ogre Pistols").
     /// </summary>
     public static string ChoiceName(OptionChoice choice)
     {
-        var name = choice.DisplayName;
+        var name = TrailingCost.Replace(choice.DisplayName, "").Trim();
         return name.Length == 0 ? name : char.ToUpperInvariant(name[0]) + name[1..];
+    }
+
+    /// <summary>
+    /// A choice's cost: its own points, else the cost written into its name, else — when it is
+    /// the group's only choice — the cost in the group's book line, else the group's points.
+    /// </summary>
+    public static double ChoicePoints(OptionChoice choice, UnitOption group) =>
+        choice.Points
+        ?? CostIn(choice.DisplayName)
+        ?? (group.Choices is { Count: 1 } ? CostIn(group.Raw) : null)
+        ?? group.Points
+        ?? 0;
+
+    /// <summary>A cost as a control shows it: "(free)", "(+5 pts)" or "(+0.5 pts/model)".</summary>
+    public static string CostLabel(double points, bool perModel)
+    {
+        if (points == 0) return "(free)";
+        var pts = points % 1 == 0 ? points.ToString("F0") : points.ToString("G");
+        return perModel ? $"(+{pts} pts/model)" : $"(+{pts} pts)";
+    }
+
+    /// <summary>A choice's cost as a control shows it; a choice the book gave no price is free.</summary>
+    public static string CostLabel(OptionChoice choice) => CostLabel(choice.Points ?? 0, choice.PerModel);
+
+    /// <summary>
+    /// An upgrade's name without the cost the book wrote into it ("Look-out Gnoblar 5 points"
+    /// is "Look-out Gnoblar"), or "Upgrade" when that leaves nothing.
+    /// </summary>
+    public static string UpgradeName(UnitOption subOption)
+    {
+        var name = TrailingCost.Replace(subOption.Upgrade ?? "", "").Trim();
+        return name.Length == 0 ? "Upgrade" : name;
+    }
+
+    /// <summary>
+    /// An upgrade's cost: its own points, else the first "N points" in its name, then in its
+    /// book line, else nothing — the extractor leaves the cost in the text when it misses it.
+    /// </summary>
+    public static double UpgradePoints(UnitOption subOption) =>
+        subOption.Points ?? CostIn(subOption.Upgrade) ?? CostIn(subOption.Raw) ?? 0;
+
+    /// <summary>The first cost written in <paramref name="text"/>, or null when it names none.</summary>
+    private static double? CostIn(string? text)
+    {
+        if (string.IsNullOrEmpty(text)) return null;
+        var match = CostInText.Match(text);
+        return match.Success ? double.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture) : null;
     }
 
     /// <summary>
