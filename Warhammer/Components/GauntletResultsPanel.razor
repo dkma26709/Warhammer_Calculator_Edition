@@ -1,111 +1,67 @@
 @using Warhammer.Calculator.Models
 @using Warhammer.Models.Domain
+@using Warhammer.Models.Enums
 
-<div class="card bg-dark text-light border-secondary">
-    <div class="card-header">
-        <h5 class="card-title mb-0">
-            Gauntlet Results
-            <span class="text-body-secondary small fw-normal">
-                (@Results.Count matchups, @FormatElapsed(TotalElapsedMs))
-            </span>
-        </h5>
-        <div class="small text-body-secondary mt-1">
-            Win / draw / loss is <strong>combat resolution</strong> in the first round, so it does
-            not move with the round cap. Click a row for the round-by-round detail.
-        </div>
+<section class="wr-results" aria-labelledby="@_headingId">
+    <div class="wr-results-head">
+        <h3 id="@_headingId" class="wr-section-title">Gauntlet results</h3>
+        <span class="small text-body-secondary">@Results.Count matchups · @FormatElapsed(TotalElapsedMs)</span>
     </div>
-    <div class="card-body">
+    <p class="small text-body-secondary mb-0">
+        Win / draw / loss is <strong>combat resolution</strong> in the first round, so it does
+        not move with the round cap. Open an opponent for the round-by-round detail.
+    </p>
 
-        @* ── Aggregate Summary ── *@
-        <div class="row mb-4 g-3">
-            <div class="col-md-2">
-                <div class="text-center">
-                    <div class="small text-body-secondary">Overall CR Win Rate</div>
-                    <div class="display-6 fw-bold @WinColour(AvgWinPct)">@($"{AvgWinPct:F1}")%</div>
+    @* ── Aggregate split ── *@
+    <WinSplit AttackerName="@SubjectName" DefenderName="Opponents"
+              AttackerPct="AvgWinPct" MiddlePct="AvgDrawPct" DefenderPct="AvgLossPct" />
+
+    <div class="row g-3">
+        <div class="col-sm-6">
+            <div class="wr-figure h-100">
+                <div class="wr-figcaption"><span class="wr-caption-label">Avg wounds dealt / taken</span></div>
+                <div class="wr-caption-value">
+                    <span class="text-attacker">@($"{AvgWoundsDealt:F1}")</span>
+                    <span class="text-body-secondary mx-1">/</span>
+                    <span class="text-defender">@($"{AvgWoundsTaken:F1}")</span>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="text-center">
-                    <div class="small text-body-secondary">Draw</div>
-                    <div class="h4 fw-bold text-body-secondary">@($"{AvgDrawPct:F1}")%</div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="text-center">
-                    <div class="small text-body-secondary">Overall Loss Rate</div>
-                    <div class="h4 fw-bold text-defender">@($"{AvgLossPct:F1}")%</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="text-center">
-                    <div class="small text-body-secondary">Avg Wounds Dealt / Taken</div>
-                    <div class="h5">
-                        <span class="text-attacker fw-bold">@($"{AvgWoundsDealt:F1}")</span>
-                        <span class="text-body-secondary mx-1">/</span>
-                        <span class="text-defender fw-bold">@($"{AvgWoundsTaken:F1}")</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
+        </div>
+        <div class="col-sm-6">
+            <div class="wr-figure h-100 small">
                 @if (BestMatchup != null && WorstMatchup != null)
                 {
-                    <div class="small">
-                        <div>
-                            <span class="text-body-secondary">Best:</span>
-                            <span class="fw-bold">@BestMatchup.Opponent.Name</span>
-                            <span class="text-body-secondary">(CR @($"{BestMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
-                        </div>
-                        <div>
-                            <span class="text-body-secondary">Worst:</span>
-                            <span class="fw-bold">@WorstMatchup.Opponent.Name</span>
-                            <span class="text-body-secondary">(CR @($"{WorstMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
-                        </div>
+                    <div>
+                        <span class="text-body-secondary">Best:</span>
+                        <span class="fw-bold">@BestMatchup.Opponent.Name</span>
+                        <span class="text-body-secondary">(CR @($"{BestMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
+                    </div>
+                    <div>
+                        <span class="text-body-secondary">Worst:</span>
+                        <span class="fw-bold">@WorstMatchup.Opponent.Name</span>
+                        <span class="text-body-secondary">(CR @($"{WorstMatchup.CombatResMargin:+0.0;-0.0;0.0}"))</span>
                     </div>
                 }
             </div>
         </div>
+    </div>
 
-        @* ── Aggregate Win/Draw/Loss Bar ── *@
-        <div class="d-flex mb-4 rounded overflow-hidden" style="height: 1.5rem;">
-            @if (AvgWinPct > 0)
-            {
-                <div class="bg-attacker d-flex align-items-center justify-content-center fw-bold small"
-                     style="width: @Pct(AvgWinPct);">
-                    @if (AvgWinPct >= 10) { @($"{AvgWinPct:F0}%") }
-                </div>
-            }
-            @if (AvgDrawPct > 0)
-            {
-                <div class="bg-draw d-flex align-items-center justify-content-center fw-bold small"
-                     style="width: @Pct(AvgDrawPct);">
-                    @if (AvgDrawPct >= 10) { @($"{AvgDrawPct:F0}%") }
-                </div>
-            }
-            @if (AvgLossPct > 0)
-            {
-                <div class="bg-defender d-flex align-items-center justify-content-center fw-bold small"
-                     style="width: @Pct(AvgLossPct);">
-                    @if (AvgLossPct >= 10) { @($"{AvgLossPct:F0}%") }
-                </div>
-            }
-        </div>
-
-        @* ── Per-Matchup Table ── *@
+    @* ── Per-matchup table ── *@
+    <div class="table-responsive wr-figure p-0 wr-table-frame">
         <table class="table table-dark table-sm table-hover mb-0">
+            <caption class="visually-hidden">Every matchup; sort by any column, open an opponent for the detail</caption>
             <thead>
                 <tr>
-                    <th @onclick='() => SortBy("name")' role="button">Opponent @SortIndicator("name")</th>
-                    <th @onclick='() => SortBy("faction")' role="button">Faction @SortIndicator("faction")</th>
-                    <th class="text-end" @onclick='() => SortBy("pts")' role="button">Pts @SortIndicator("pts")</th>
-                    <th class="text-end" @onclick='() => SortBy("win")' role="button"
-                        title="Share of iterations the subject won combat resolution">Win% @SortIndicator("win")</th>
-                    <th class="text-end" @onclick='() => SortBy("draw")' role="button">Draw% @SortIndicator("draw")</th>
-                    <th class="text-end" @onclick='() => SortBy("loss")' role="button">Loss% @SortIndicator("loss")</th>
-                    <th class="text-end" @onclick='() => SortBy("cr")' role="button"
-                        title="Average combat resolution, subject vs opponent">CR @SortIndicator("cr")</th>
-                    <th class="text-end" @onclick='() => SortBy("dealt")' role="button">Dealt @SortIndicator("dealt")</th>
-                    <th class="text-end" @onclick='() => SortBy("taken")' role="button">Taken @SortIndicator("taken")</th>
-                    <th class="text-end" @onclick='() => SortBy("ptseff")' role="button">Pts Eff @SortIndicator("ptseff")</th>
+                    @SortHeader("name", "Opponent")
+                    @SortHeader("faction", "Faction", secondary: true)
+                    @SortHeader("pts", "Pts", end: true)
+                    @SortHeader("win", "Win%", "Share of iterations the subject won combat resolution", end: true)
+                    @SortHeader("draw", "Draw%", end: true, secondary: true)
+                    @SortHeader("loss", "Loss%", end: true)
+                    @SortHeader("cr", "CR", "Average combat resolution, subject vs opponent", end: true, secondary: true)
+                    @SortHeader("dealt", "Dealt", end: true, secondary: true)
+                    @SortHeader("taken", "Taken", end: true, secondary: true)
+                    @SortHeader("ptseff", "Pts Eff", end: true, secondary: true)
                 </tr>
             </thead>
             <tbody>
@@ -113,41 +69,52 @@
                 {
                     var m = matchup;
                     var ptsEff = ComputePtsEfficiency(m);
-                    <tr @onclick="() => ToggleDetail(m)" role="button"
-                        class="@(m == _expandedMatchup ? "table-active" : "")">
-                        <td>@m.Opponent.Name</td>
-                        <td class="text-body-secondary">@m.OpponentFactionKey</td>
+                    var open = m == _expandedMatchup;
+                    <tr @onclick="() => ToggleDetail(m)"
+                        class="wr-clickable-row @(open ? "table-active" : "")">
+                        <td>
+                            <button type="button" class="wr-row-toggle"
+                                    aria-expanded="@(open ? "true" : "false")"
+                                    @onclick="() => ToggleDetail(m)" @onclick:stopPropagation="true">
+                                @m.Opponent.Name
+                            </button>
+                        </td>
+                        <td class="text-body-secondary @Secondary">@FactionKeyExtensions.DisplayNameForJsonKey(m.OpponentFactionKey)</td>
                         <td class="text-end">@($"{m.OpponentConfig.TotalPointsCost:F0}")</td>
                         <td class="text-end @WinColour(m.WinPct)">@($"{m.WinPct:F1}")</td>
-                        <td class="text-end text-body-secondary">@($"{m.DrawPct:F1}")</td>
+                        <td class="text-end text-body-secondary @Secondary">@($"{m.DrawPct:F1}")</td>
                         <td class="text-end text-defender">@($"{m.LossPct:F1}")</td>
-                        <td class="text-end">
+                        <td class="text-end text-nowrap @Secondary">
                             <span class="text-attacker">@($"{m.AvgCombatRes:F1}")</span>
                             <span class="text-body-secondary mx-1">v</span>
                             <span class="text-defender">@($"{m.AvgOpponentCombatRes:F1}")</span>
                         </td>
-                        <td class="text-end text-attacker">@($"{m.AvgWoundsDealt:F1}")</td>
-                        <td class="text-end text-defender">@($"{m.AvgWoundsTaken:F1}")</td>
-                        <td class="text-end @PtsEffColour(ptsEff)">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
+                        <td class="text-end text-attacker @Secondary">@($"{m.AvgWoundsDealt:F1}")</td>
+                        <td class="text-end text-defender @Secondary">@($"{m.AvgWoundsTaken:F1}")</td>
+                        <td class="text-end @PtsEffColour(ptsEff) @Secondary">@($"{ptsEff:+0.0;-0.0;0.0}")</td>
                     </tr>
-                    @if (m == _expandedMatchup)
+                    @if (open)
                     {
                         <tr>
                             <td colspan="10" class="p-0">
-                                @if (m.SingleRound != null)
-                                {
-                                    <ResultsPanel Result="m.SingleRound"
-                                                  AttackerName="@SubjectName"
-                                                  DefenderName="@m.Opponent.Name"
-                                                  AttackerConfig="SubjectConfig"
-                                                  DefenderConfig="m.OpponentConfig" />
-                                }
-                                else if (m.MultiRound != null)
-                                {
-                                    <MultiRoundResultsPanel Result="m.MultiRound"
-                                                            AttackerName="@SubjectName"
-                                                            DefenderName="@m.Opponent.Name" />
-                                }
+                                @* Sized to the frame, not the table, and pinned to its left edge:
+                                   the detail reads in place however far the table scrolls. *@
+                                <div class="wr-row-detail">
+                                    @if (m.SingleRound != null)
+                                    {
+                                        <ResultsPanel Result="m.SingleRound"
+                                                      AttackerName="@SubjectName"
+                                                      DefenderName="@m.Opponent.Name"
+                                                      AttackerConfig="SubjectConfig"
+                                                      DefenderConfig="m.OpponentConfig" />
+                                    }
+                                    else if (m.MultiRound != null)
+                                    {
+                                        <MultiRoundResultsPanel Result="m.MultiRound"
+                                                                AttackerName="@SubjectName"
+                                                                DefenderName="@m.Opponent.Name" />
+                                    }
+                                </div>
                             </td>
                         </tr>
                     }
@@ -155,7 +122,7 @@
             </tbody>
         </table>
     </div>
-</div>
+</section>
 
 @code {
     [Parameter, EditorRequired] public List<GauntletMatchup> Results { get; set; } = [];
@@ -163,6 +130,7 @@
     [Parameter] public UnitConfiguration? SubjectConfig { get; set; }
 
     private GauntletMatchup? _expandedMatchup;
+    private readonly string _headingId = $"gauntlet-{Guid.NewGuid():N}";
     private string _sortColumn = "win";
     private bool _sortDescending = true;
 
@@ -216,6 +184,22 @@
 
     private string SortIndicator(string column) =>
         _sortColumn == column ? (_sortDescending ? "\u25BC" : "\u25B2") : "";
+
+    private string AriaSort(string column) =>
+        _sortColumn != column ? "none" : _sortDescending ? "descending" : "ascending";
+
+    // Columns a phone drops so the table fits its frame.
+    private const string Secondary = "d-none d-md-table-cell";
+
+    // A real button in each header, so sorting works from the keyboard too.
+    private RenderFragment SortHeader(string column, string label, string? title = null, bool end = false, bool secondary = false) => __builder =>
+    {
+        <th scope="col" class="@(end ? "text-end" : "") @(secondary ? Secondary : "")" aria-sort="@AriaSort(column)" title="@title">
+            <button type="button" class="wr-sort" @onclick="() => SortBy(column)">
+                @label <span aria-hidden="true">@SortIndicator(column)</span>
+            </button>
+        </th>
+    };
 
     // ── Detail expand ──
 

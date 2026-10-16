@@ -12,86 +12,96 @@
 @inject IGameDataRepository Repo
 @inject CombatEngine CombatEngine
 @inject PortraitService Portraits
+@inject EffectiveStatsCalculator StatsCalculator
 
-<div class="container-fluid py-3">
-    <div class="row g-3">
-        @* Attacker Panel *@
-        <div class="col-md-5">
-            <UnitPanel Label="Attacker"
-                       SelectedFactionKey="@_attackerFactionKey"
-                       OnFactionSelected="OnAttackerFactionSelected"
-                       FactionUnits="@_attackerFactionUnits"
-                       FactionExtras="@_attackerExtras"
-                       CommonMagicItems="@_commonMagicItems"
-                       SelectedUnit="@_attackerUnit"
-                       OnUnitSelected="OnAttackerUnitSelected"
-                       Configuration="@_attackerConfig"
-                       ConfigurationChanged="OnAttackerConfigChanged" />
-        </div>
+@{
+    // Each read of these properties computes, so read them once per render.
+    var attackerStats = AttackerStats;
+    var defenderStats = DefenderStats;
+}
 
-        @* Combat Controls (center) *@
-        <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
-            <CombatControls ChargeState="@_chargeState"
-                            ChargeStateChanged="OnChargeStateChanged"
-                            MaxRounds="@_maxRounds"
-                            MaxRoundsChanged="OnMaxRoundsChanged"
-                            Iterations="@_iterations"
-                            IterationsChanged="OnIterationsChanged"
-                            CanSimulate="@(_attackerConfig != null && _defenderConfig != null)"
-                            IsSimulating="@_isSimulating"
-                            OnSimulate="RunSimulation" />
-        </div>
+<section class="wr-hero" aria-label="The matchup">
+    <UnitHero Label="Attacker" Side="attacker"
+              Unit="_attackerUnit" Config="_attackerConfig" FactionKey="@_attackerFactionKey"
+              Stats="attackerStats" OpponentStats="defenderStats" />
 
-        @* Defender Panel *@
-        <div class="col-md-5">
-            <UnitPanel Label="Defender"
-                       SelectedFactionKey="@_defenderFactionKey"
-                       OnFactionSelected="OnDefenderFactionSelected"
-                       FactionUnits="@_defenderFactionUnits"
-                       FactionExtras="@_defenderExtras"
-                       CommonMagicItems="@_commonMagicItems"
-                       SelectedUnit="@_defenderUnit"
-                       OnUnitSelected="OnDefenderUnitSelected"
-                       Configuration="@_defenderConfig"
-                       ConfigurationChanged="OnDefenderConfigChanged" />
-        </div>
+    <div class="d-flex flex-column gap-3">
+        <CombatControls ChargeState="@_chargeState"
+                        ChargeStateChanged="OnChargeStateChanged"
+                        MaxRounds="@_maxRounds"
+                        MaxRoundsChanged="OnMaxRoundsChanged"
+                        Iterations="@_iterations"
+                        IterationsChanged="OnIterationsChanged"
+                        CanSimulate="@(_attackerConfig != null && _defenderConfig != null)"
+                        IsSimulating="@_isSimulating"
+                        OnSimulate="RunSimulation" />
+
+        @if (_result != null)
+        {
+            <WinSplit AttackerName="@AttackerName" DefenderName="@DefenderName"
+                      AttackerPct="_result.AttackerWinPct" MiddlePct="_result.DrawPct" DefenderPct="_result.DefenderWinPct" />
+        }
+        else if (_multiRoundResult != null)
+        {
+            <WinSplit AttackerName="@AttackerName" DefenderName="@DefenderName" Verb="prevail" MiddleLabel="Neither prevails"
+                      AttackerPct="_multiRoundResult.AttackerPrevailsPct" MiddlePct="_multiRoundResult.NeitherPrevailsPct"
+                      DefenderPct="_multiRoundResult.DefenderPrevailsPct" />
+        }
     </div>
 
-    @* Effective Stats *@
-    @if (_attackerConfig != null && _defenderConfig != null)
-    {
-        <div class="row">
-            <div class="col-12">
-                <EffectiveStatsPanel Attacker="_attackerConfig"
-                                     Defender="_defenderConfig"
-                                     ChargeState="_chargeState" />
-            </div>
-        </div>
-    }
+    <UnitHero Label="Defender" Side="defender"
+              Unit="_defenderUnit" Config="_defenderConfig" FactionKey="@_defenderFactionKey"
+              Stats="defenderStats" OpponentStats="attackerStats" />
+</section>
 
-    @* Results *@
-    @if (_result != null)
-    {
-        <div class="row mt-4">
-            <div class="col-12">
-                <ResultsPanel Result="_result"
-                              AttackerName="@(_attackerUnit?.Name ?? "Attacker")"
-                              DefenderName="@(_defenderUnit?.Name ?? "Defender")"
-                              AttackerConfig="_attackerConfig"
-                              DefenderConfig="_defenderConfig" />
-            </div>
-        </div>
-    }
-    else if (_multiRoundResult != null)
-    {
-        <div class="row mt-4">
-            <div class="col-12">
-                <MultiRoundResultsPanel Result="_multiRoundResult"
-                                        AttackerName="@(_attackerUnit?.Name ?? "Attacker")"
-                                        DefenderName="@(_defenderUnit?.Name ?? "Defender")" />
-            </div>
-        </div>
-    }
+<div class="wr-matchup-body">
+    <LoadoutPanel Side="attacker" Title="Attacker loadout"
+                  SelectedFactionKey="@_attackerFactionKey"
+                  OnFactionSelected="OnAttackerFactionSelected"
+                  FactionUnits="@_attackerFactionUnits"
+                  FactionExtras="@_attackerExtras"
+                  CommonMagicItems="@_commonMagicItems"
+                  SelectedUnit="@_attackerUnit"
+                  OnUnitSelected="OnAttackerUnitSelected"
+                  Configuration="@_attackerConfig"
+                  ConfigurationChanged="OnAttackerConfigChanged" />
+
+    <div class="wr-results wr-area-results">
+        @if (_result != null)
+        {
+            <ResultsPanel Result="_result"
+                          AttackerName="@AttackerName"
+                          DefenderName="@DefenderName"
+                          AttackerConfig="_attackerConfig"
+                          DefenderConfig="_defenderConfig"
+                          ShowHeadline="false" />
+        }
+        else if (_multiRoundResult != null)
+        {
+            <MultiRoundResultsPanel Result="_multiRoundResult"
+                                    AttackerName="@AttackerName"
+                                    DefenderName="@DefenderName" />
+        }
+        else
+        {
+            <p class="wr-empty mb-0">
+                @(_attackerConfig != null && _defenderConfig != null
+                    ? "Both sides are set. Simulate to see how the fight goes."
+                    : "Choose a unit on each side, then simulate.")
+            </p>
+        }
+    </div>
+
+    <LoadoutPanel Side="defender" Title="Defender loadout"
+                  SelectedFactionKey="@_defenderFactionKey"
+                  OnFactionSelected="OnDefenderFactionSelected"
+                  FactionUnits="@_defenderFactionUnits"
+                  FactionExtras="@_defenderExtras"
+                  CommonMagicItems="@_commonMagicItems"
+                  SelectedUnit="@_defenderUnit"
+                  OnUnitSelected="OnDefenderUnitSelected"
+                  Configuration="@_defenderConfig"
+                  ConfigurationChanged="OnDefenderConfigChanged" />
 </div>
 
 @code {
@@ -116,6 +126,15 @@
     private CombatSimulationResult? _result;
     private MultiRoundSimulationResult? _multiRoundResult;
     private bool _isSimulating;
+
+    private string AttackerName => _attackerUnit?.Name ?? "Attacker";
+    private string DefenderName => _defenderUnit?.Name ?? "Defender";
+
+    // Each side's numbers against the other, for the hero band; null until both are chosen.
+    private EffectiveStats? AttackerStats => _attackerConfig != null && _defenderConfig != null
+        ? StatsCalculator.Compute(_attackerConfig, _defenderConfig, _chargeState, isAttackerSide: true) : null;
+    private EffectiveStats? DefenderStats => _attackerConfig != null && _defenderConfig != null
+        ? StatsCalculator.Compute(_defenderConfig, _attackerConfig, _chargeState, isAttackerSide: false) : null;
 
     // --- Common magic items (loaded once) ---
     private IReadOnlyList<MagicItemEntry>? _commonMagicItems;

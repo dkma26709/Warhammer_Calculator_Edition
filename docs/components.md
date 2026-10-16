@@ -2,36 +2,35 @@
 
 ## Page Layout
 
-`Matchup.razor` (routes: `/`, `/matchup`) is the sole page. Layout:
+`Matchup.razor` (routes: `/`, `/matchup`), laid out as the War Room redesign
+(`Warhammer/docs/07-war-room-redesign.md`); the Gauntlet page follows the same shape
+with the subject on the left and the opponent roster on the right. Layout at 1200px and up
+(it stacks below that):
 
 ```
-┌─────────────────┬──────────────┬─────────────────┐
-│   Attacker      │   Controls   │   Defender       │
-│   UnitPanel     │  Charge +    │   UnitPanel      │
-│   (col-md-5)    │  Simulate    │   (col-md-5)     │
-│                 │  (col-md-2)  │                  │
-├─────────────────┴──────────────┴─────────────────┤
-│              EffectiveStatsPanel                   │
-│         (shown when both units selected)           │
-├──────────────────────────────────────────────────┤
-│                 ResultsPanel                       │
-│          (shown after simulation runs)             │
-└──────────────────────────────────────────────────┘
+┌─────────────────┬──────────────────┬─────────────────┐
+│ UnitHero        │ CombatControls   │ UnitHero        │  hero band
+│ (attacker)      │ + WinSplit       │ (defender)      │
+├─────────────────┼──────────────────┼─────────────────┤
+│ LoadoutPanel    │ ResultsPanel /   │ LoadoutPanel    │
+│ (attacker)      │ MultiRoundResults│ (defender)      │
+└─────────────────┴──────────────────┴─────────────────┘
 ```
 
 ## Component Hierarchy
 
 ```
 Matchup.razor
-├── UnitPanel (attacker)
+├── UnitHero (attacker)     — portrait, stat line, "This fight" line (EffectiveStatsCalculator), rule chips
+├── CombatControls          — charge buttons, rounds, iterations, Simulate
+├── WinSplit                — headline win/draw (or prevail/neither) split
+├── UnitHero (defender)     — mirrored
+├── LoadoutPanel (attacker)
 │   ├── UnitSelector        — faction/category/unit dropdowns
-│   └── UnitConfigurator    — stats, config, command group
-│       ├── StatTable        — M/WS/BS/S/T/W/I/A/Ld row
-│       └── SpecialRuleBadges — colour-coded rule tags
-├── CombatControls          — charge dropdown + simulate button
-├── UnitPanel (defender)     — same structure
-├── EffectiveStatsPanel     — computed matchup stats
-└── ResultsPanel            — results, charts, breakdowns
+│   └── UnitConfigurator    — config, command group (stat table and rules shown in the hero)
+├── ResultsPanel            — wound distributions, CR margin, CR and points tables
+│   or MultiRoundResultsPanel
+└── LoadoutPanel (defender) — same structure
 ```
 
 ## Components
@@ -67,23 +66,23 @@ Displays and edits:
 - Charge dropdown: Neither / Attacker Charged / Defender Charged
 - Simulate button (disabled until both units selected, shows spinner during simulation)
 
-### EffectiveStatsPanel
+### UnitHero
 
-**Parameters:** `Attacker`, `Defender`, `ChargeState`, `CoreRules`
+**Parameters:** `Label`, `Side`, `Unit`, `Config`, `FactionKey`, `Stats`, `OpponentStats`
 
-Side-by-side comparison showing pre-combat computed stats:
+One side of the Matchup hero band: portrait, name, stat line and special rules, plus a
+"This fight" line once both units are chosen. The line is `EffectiveStats.FightSummary`, from
+`EffectiveStatsCalculator`, so it is tested C# rather than Razor:
 
-| Stat | Description |
+| Part | Description |
 |------|-------------|
-| Base Contact | Models in geometric contact |
-| Total Attacks | Including mount, Frenzy, weapon bonuses |
-| Effective Strength | With weapon + Mighty Blow |
-| Effective Initiative | With weapon modifier |
-| To Hit | Needed roll (WS vs WS table) |
-| To Wound | Needed roll (S vs T table, with Poison) |
-| Armour Save | Vs opponent's strength + AP |
-| Ward Save | Best of ward/regen/parry |
-| Impact Hits | If charging (count shown) |
+| Base contact | Models in geometric contact |
+| Attacks at S | Including mount, Frenzy, weapon bonuses; Strength with weapon + Mighty Blow |
+| Hits on | Needed roll (WS vs WS table) |
+| Wounds on | Needed roll (S vs T table), "(poison)" when poisoned; "cannot wound" when the chart says n/a |
+| Impact hits | If charging (count shown) |
+| Armour / ward | Vs opponent's strength + AP; best of ward/regen/parry; left out when there is none |
+| I, strike order | Initiative with weapon modifier; strike order left out when either side has a mount |
 
 ### ResultsPanel
 

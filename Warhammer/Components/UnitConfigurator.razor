@@ -14,7 +14,10 @@
         </div>
     }
 
-    <StatTable Profile="Configuration.PrimaryProfile" MountProfile="Configuration.MountProfile" />
+    @if (ShowStats)
+    {
+        <StatTable Profile="Configuration.PrimaryProfile" MountProfile="Configuration.MountProfile" />
+    }
 
     <div class="mb-2 d-flex justify-content-between align-items-center">
         <small class="text-body-secondary">
@@ -79,7 +82,10 @@
         </div>
     }
 
-    <SpecialRuleBadges Rules="Configuration.EffectiveSpecialRules" />
+    @if (ShowRuleBadges)
+    {
+        <SpecialRuleBadges Rules="Configuration.EffectiveSpecialRules" />
+    }
 }
 
 @code {
@@ -94,6 +100,12 @@
     /// not in ad-hoc matchup configuration. Defaults to false to preserve existing behaviour.
     /// </summary>
     [Parameter] public bool ShowCustomNameField { get; set; }
+
+    /// <summary>False where the page shows the stat line elsewhere (the Matchup hero).</summary>
+    [Parameter] public bool ShowStats { get; set; } = true;
+
+    /// <summary>False where the page shows the special-rule chips elsewhere (the Matchup hero).</summary>
+    [Parameter] public bool ShowRuleBadges { get; set; } = true;
 
     private string CustomNamePlaceholder =>
         Configuration?.TroopType.IsCharacter == true
