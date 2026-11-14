@@ -138,7 +138,15 @@ public class UnitConfiguration
     {
         var category = FactionUpgradeCategoryFor(option);
         if (category is null) return 0;
-        if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) return 0;
+        return Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks)
+            ? FactionUpgradeCostOf(option, picks)
+            : 0;
+    }
+
+    /// <summary>What <paramref name="picks"/> cost taken through <paramref name="option"/>, whether picked yet or not.</summary>
+    private double FactionUpgradeCostOf(UnitOption option, IReadOnlyCollection<SelectedFactionUpgrade> picks)
+    {
+        if (picks.Count == 0) return 0;
 
         if (option.Points is null)
             return picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
@@ -173,6 +181,34 @@ public class UnitConfiguration
     /// <summary>Everything charged to the magic item allowance: the items plus <see cref="AllowanceUpgradeCost"/>.</summary>
     public double MagicItemAllowanceSpent =>
         SelectedMagicItems.Sum(mi => mi.PointsCost) + AllowanceUpgradeCost;
+
+    /// <summary>The magic item allowance less <see cref="MagicItemAllowanceSpent"/>; null when the unit has no allowance.</summary>
+    public double? MagicItemAllowanceRemaining => ResolvedUnit.MagicItemAllowance - MagicItemAllowanceSpent;
+
+    /// <summary>
+    /// True when ticking <paramref name="candidate"/> in <paramref name="category"/> keeps the magic
+    /// item allowance within its limit, or when the category does not spend it. The picks are priced
+    /// as <see cref="ToggleFactionUpgrade"/> would leave them, so a pick the tick replaces is not counted.
+    /// </summary>
+    public bool UpgradeFitsAllowance(string category, SelectedFactionUpgrade candidate)
+    {
+        if (ResolvedUnit.MagicItemAllowance is not { } allowance) return true;
+        var sharing = ResolvedUnit.Options
+            .Where(o => SharesMagicItemAllowance(o) && FactionUpgradeCategoryFor(o) == category)
+            .ToList();
+        if (sharing.Count == 0) return true;
+
+        var current = Loadout.SelectedFactionUpgrades.GetValueOrDefault(category) ?? [];
+        // A single-choice tick replaces every pick; elsewhere a same-name pick is replaced, not doubled.
+        List<SelectedFactionUpgrade> after = IsSingleChoiceCategory(category)
+            ? [candidate]
+            : [.. current.Where(p => p.Name != candidate.Name), candidate];
+
+        var spend = MagicItemAllowanceSpent
+            - sharing.Sum(FactionUpgradeCostOf)
+            + sharing.Sum(o => FactionUpgradeCostOf(o, after));
+        return spend <= allowance;
+    }
 
     /// <summary>
     /// What an upgrade's points text from the faction's extras costs this unit, or null when

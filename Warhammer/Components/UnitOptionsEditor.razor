@@ -132,13 +132,21 @@
                 : $"+{option.Points:F0} pts each";
         // Still checkboxes, so the one pick can be unticked to none.
         var choiceHint = Configuration.IsSingleChoiceCategory(category) ? "choose one, " : "";
+        var allowance = Configuration.ResolvedUnit.MagicItemAllowance;
+        // These picks spend the magic item allowance, so the box says how much of it is left.
+        var allowanceLeft = UnitConfiguration.SharesMagicItemAllowance(option)
+                            && Configuration.MagicItemAllowanceRemaining is { } remaining
+            ? remaining >= 0
+                ? $" · {remaining:F0} of {allowance} pts left"
+                : $" · {-remaining:F0} pts over the {allowance} pt allowance"
+            : "";
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
 
         builder.OpenElement(2, "label");
         builder.AddAttribute(3, "class", "form-label small text-body-secondary");
-        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix})");
+        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix}{allowanceLeft})");
         builder.CloseElement();
 
         int seq = 10;
@@ -150,6 +158,9 @@
             if (resolved is null && !checkedNow) continue;
             var price = resolved ?? new UpgradePrice(0, false);
             var inputId = _id + "-fup-" + entry.Name.GetHashCode();
+            // A ticked pick always stays enabled so it can be unticked.
+            var fits = checkedNow || Configuration.UpgradeFitsAllowance(
+                category, new SelectedFactionUpgrade(entry.Name, price.Points, price.PerModel));
 
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "form-check small");
@@ -159,6 +170,9 @@
             builder.AddAttribute(seq++, "type", "checkbox");
             builder.AddAttribute(seq++, "id", inputId);
             builder.AddAttribute(seq++, "checked", checkedNow);
+            // false and null omit the attribute, so a change in fit does not shift the sequence numbers.
+            builder.AddAttribute(seq++, "disabled", !fits);
+            builder.AddAttribute(seq++, "title", fits ? null : $"Over the {allowance} pt allowance");
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
                     this, async e => await OnFactionUpgradeToggled(
@@ -166,7 +180,7 @@
             builder.CloseElement();
 
             builder.OpenElement(seq++, "label");
-            builder.AddAttribute(seq++, "class", "form-check-label");
+            builder.AddAttribute(seq++, "class", fits ? "form-check-label" : "form-check-label text-body-secondary");
             builder.AddAttribute(seq++, "for", inputId);
             builder.AddContent(seq++, entry.Name);
             if (UpgradePrice.IsTiered(entry.Points))

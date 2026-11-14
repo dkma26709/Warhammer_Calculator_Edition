@@ -37,21 +37,29 @@ public class MagicItemAllowanceSharingTests
     {
         var repo = TestHelpers.RepoFor(GameSystems.War);
         var cfg = new UnitConfiguration((await repo.GetUnitsAsync(faction)).Single(u => u.Name == unitName));
-        var entries = (await repo.GetFactionExtrasAsync(faction)).FactionUpgrades[category];
 
         foreach (var name in upgrades)
-        {
-            var entry = entries.Single(e => e.Name == name);
-            var price = cfg.ResolveUpgradePrice(entry.Points);
-            Assert.NotNull(price);
-            cfg.ToggleFactionUpgrade(category,
-                new SelectedFactionUpgrade(entry.Name, price.Value.Points, price.Value.PerModel), true);
-        }
+            cfg.ToggleFactionUpgrade(category, await PickFor(cfg, category, name), true);
         return cfg;
+    }
+
+    /// <summary>The pick the Builder makes for the upgrade <paramref name="name"/>: priced for <paramref name="unit"/>.</summary>
+    private static async Task<SelectedFactionUpgrade> PickFor(UnitConfiguration unit, string category, string name)
+    {
+        var extras = await TestHelpers.RepoFor(GameSystems.War).GetFactionExtrasAsync(unit.ResolvedUnit.Faction);
+        var entry = extras.FactionUpgrades[category].Single(e => e.Name == name);
+        var price = unit.ResolveUpgradePrice(entry.Points);
+        Assert.NotNull(price);
+        return new SelectedFactionUpgrade(entry.Name, price.Value.Points, price.Value.PerModel);
     }
 
     private static Task<UnitConfiguration> General(params string[] quirks) =>
         WarUnitWith(FactionKey.DogsOfWar, "Mercenary General", Quirks, quirks);
+
+    private const string Virtues = "virtues_of_the_chivalric_knight";
+
+    private static Task<UnitConfiguration> Paladin(params string[] virtues) =>
+        WarUnitWith(FactionKey.Bretonnia, "Paladin", Virtues, virtues);
 
     private static void GiveItem(UnitConfiguration unit, double points) =>
         unit.SelectedMagicItems.Add(new SelectedMagicItem
@@ -149,5 +157,87 @@ public class MagicItemAllowanceSharingTests
         Assert.Equal(0, pikemen.AllowanceUpgradeCost);
 
         Assert.Empty(AllowanceIssues(pikemen));
+    }
+
+    // ─── Picker: what still fits ─────────────────────────────────
+
+    [Fact]
+    public async Task Remaining_IsTheAllowanceLessItemsAndQuirks()
+    {
+        var general = await General();
+        GiveItem(general, 80);
+
+        Assert.Equal(20, general.MagicItemAllowanceRemaining);
+    }
+
+    [Fact]
+    public async Task Remaining_IsNull_WithoutAnAllowance()
+    {
+        var knights = await WarUnitWith(FactionKey.TheEmpire, "KNIGHTS", "knightly_orders");
+
+        Assert.Null(knights.ResolvedUnit.MagicItemAllowance);
+        Assert.Null(knights.MagicItemAllowanceRemaining);
+    }
+
+    [Fact]
+    public async Task Quirk_FitsOnlyWhatIsLeft()
+    {
+        var general = await General();
+        GiveItem(general, 80);
+
+        Assert.False(general.UpgradeFitsAllowance(Quirks, await PickFor(general, Quirks, "GRIZZLED WARRIOR")));
+        Assert.True(general.UpgradeFitsAllowance(Quirks, await PickFor(general, Quirks, "BERSERKER")));
+    }
+
+    [Fact]
+    public async Task Quirk_AlreadyPicked_IsNotCountedTwice()
+    {
+        var general = await General("BERSERKER");
+        GiveItem(general, 80);
+        Assert.Equal(10, general.MagicItemAllowanceRemaining);
+
+        Assert.True(general.UpgradeFitsAllowance(Quirks, await PickFor(general, Quirks, "BERSERKER")));
+    }
+
+    [Fact]
+    public async Task Virtue_ReplacesThePickedOne_SoOnlyTheNewPriceCounts()
+    {
+        var paladin = await Paladin("VIRTUE OF HEROISM");
+        GiveItem(paladin, 15);
+        Assert.Equal(0, paladin.MagicItemAllowanceRemaining);
+
+        // 15 + 30 fits the 50, because the Ideal replaces the Heroism.
+        Assert.True(paladin.UpgradeFitsAllowance(Virtues, await PickFor(paladin, Virtues, "VIRTUE OF THE IDEAL")));
+    }
+
+    [Fact]
+    public async Task Virtue_OverTheAllowance_OnlyACheaperOneFits()
+    {
+        var paladin = await Paladin("VIRTUE OF HEROISM");
+        GiveItem(paladin, 25);
+
+        Assert.False(paladin.UpgradeFitsAllowance(Virtues, await PickFor(paladin, Virtues, "VIRTUE OF THE IDEAL")));
+        Assert.True(paladin.UpgradeFitsAllowance(Virtues, await PickFor(paladin, Virtues, "VIRTUE OF DEVOTION")));
+    }
+
+    [Fact]
+    public async Task Knights_AnyKnightlyOrderFits()
+    {
+        var knights = await WarUnitWith(FactionKey.TheEmpire, "KNIGHTS", "knightly_orders", "KNIGHTS PANTHER");
+
+        Assert.True(knights.UpgradeFitsAllowance("knightly_orders",
+            await PickFor(knights, "knightly_orders", "KNIGHTS OF THE TWIN-TAILED ORB")));
+    }
+
+    [Fact]
+    public async Task GrandMaster_KnightlyOrderFits_EvenWithTheAllowanceSpent()
+    {
+        // The Grand Master has an allowance, but his Knightly Order line does not draw on it.
+        var master = await WarUnitWith(FactionKey.TheEmpire, "Grand Master", "knightly_orders");
+        Assert.NotNull(master.ResolvedUnit.MagicItemAllowance);
+        GiveItem(master, master.ResolvedUnit.MagicItemAllowance!.Value + 10);
+
+        Assert.True(master.UpgradeFitsAllowance("knightly_orders",
+            await PickFor(master, "knightly_orders", "SONS OF MANANN")));
     }
 }
