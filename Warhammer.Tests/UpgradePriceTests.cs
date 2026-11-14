@@ -113,7 +113,8 @@ public class UpgradePriceTests
     }
 
     [Theory]
-    [InlineData("25/50/100")]
+    [InlineData("25/50/")]
+    [InlineData("15/25 points")]
     [InlineData("Characters 10 points\nDragons 5 points")]
     [InlineData("Characters 10 points\nsee below")]
     public void UnrecognisedText_IsFree_AndNotRecognised(string text)
@@ -122,6 +123,66 @@ public class UpgradePriceTests
         Assert.Equal(new UpgradePrice(0, false), UpgradePrice.Resolve(text, Character, UnitCategory.Characters));
         Assert.False(UpgradePrice.IsRecognised(text));
         Assert.False(UpgradePrice.IsTiered(text));
+    }
+
+    // ─── Cumulative runes ("15/25/50") ───────────────────────────
+
+    [Theory]
+    [InlineData("15/25/50", 0, 0)]
+    [InlineData("15/25/50", 1, 15)]
+    [InlineData("15/25/50", 2, 40)]
+    [InlineData("15/25/50", 3, 90)]
+    [InlineData("25/35", 2, 60)]
+    [InlineData("25/35", 3, 60)]
+    [InlineData("25/35", -1, 0)]
+    [InlineData("2.5/7.5", 2, 10)]
+    public void CumulativeTotal_SumsTheFirstCopiesFigures_ClampedToTheFigureCount(string text, int copies, double expected)
+    {
+        Assert.Equal(expected, UpgradePrice.CumulativeTotal(text, copies));
+    }
+
+    [Fact]
+    public void Cumulative_IsRecognised_AndResolvesToOneCopysFlatPrice()
+    {
+        Assert.True(UpgradePrice.IsRecognised("5/35/55"));
+        Assert.True(UpgradePrice.IsCumulative("5/35/55"));
+        Assert.False(UpgradePrice.IsTiered("5/35/55"));
+        Assert.Equal(new UpgradePrice(15, false), UpgradePrice.Resolve("15/25/50", Character, UnitCategory.Characters));
+        Assert.Equal(new UpgradePrice(15, false), UpgradePrice.Resolve("15/25/50", Cavalry, UnitCategory.Core));
+    }
+
+    [Fact]
+    public void Cumulative_ParsesEveryFigure_IncludingDecimals()
+    {
+        Assert.True(UpgradePrice.TryParseCumulative("15/25/50", out var whole));
+        Assert.Equal([15d, 25d, 50d], whole);
+        Assert.True(UpgradePrice.TryParseCumulative("0.5/1.5", out var halves));
+        Assert.Equal([0.5, 1.5], halves);
+        Assert.Equal(3, UpgradePrice.MaxCopies("15/25/50"));
+        Assert.Equal(2, UpgradePrice.MaxCopies("0.5/1.5"));
+    }
+
+    [Theory]
+    [InlineData("15")]
+    [InlineData("2.5")]
+    [InlineData("")]
+    [InlineData(null)]
+    [InlineData("Characters 10 points")]
+    public void NonCumulativeText_IsNotCumulative_AndAllowsOneCopy(string? text)
+    {
+        Assert.False(UpgradePrice.IsCumulative(text));
+        Assert.False(UpgradePrice.TryParseCumulative(text, out var perCopy));
+        Assert.Empty(perCopy);
+        Assert.Equal(1, UpgradePrice.MaxCopies(text));
+    }
+
+    [Fact]
+    public void CumulativeTotal_PlainNumber_IsOneFigure_AndUnparsedTextIsFree()
+    {
+        Assert.Equal(35, UpgradePrice.CumulativeTotal("35", 1));
+        Assert.Equal(35, UpgradePrice.CumulativeTotal("35", 2));
+        Assert.Equal(0, UpgradePrice.CumulativeTotal("Characters 10 points", 1));
+        Assert.Equal(0, UpgradePrice.CumulativeTotal(null, 1));
     }
 
     [Fact]

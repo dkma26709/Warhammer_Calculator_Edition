@@ -144,6 +144,13 @@
         int seq = 10;
         foreach (var entry in entries)
         {
+            if (UpgradePrice.TryParseCumulative(entry.Points, out var perCopy))
+            {
+                RenderCumulativeUpgrade(builder, ref seq, category, entry, perCopy.Count,
+                    selected.FirstOrDefault(p => p.Name == entry.Name)?.Copies ?? 0);
+                continue;
+            }
+
             var checkedNow = selected.Any(p => p.Name == entry.Name);
             var resolved = Configuration.ResolveUpgradePrice(entry.Points);
             // Not offered to this troop type, but a pick already made stays listed so it can be unticked.
@@ -185,11 +192,63 @@
         builder.CloseElement();
     }
 
+    /// <summary>
+    /// A cumulative rune ("15/25/50") as a copies dropdown in place of a checkbox: none, then
+    /// one option per copy count, each labelled with the total those copies cost.
+    /// </summary>
+    private void RenderCumulativeUpgrade(
+        Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
+        ref int seq, string category, UpgradeEntry entry, int maxCopies, int copiesNow)
+    {
+        var inputId = _id + "-fup-" + entry.Name.GetHashCode();
+
+        builder.OpenElement(seq++, "div");
+        builder.AddAttribute(seq++, "class", "d-flex align-items-center gap-2 small mb-1");
+
+        builder.OpenElement(seq++, "select");
+        builder.AddAttribute(seq++, "class", "form-select form-select-sm w-auto");
+        builder.AddAttribute(seq++, "id", inputId);
+        builder.AddAttribute(seq++, "value", copiesNow);
+        builder.AddAttribute(seq++, "onchange",
+            Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
+                this, async e => await OnFactionUpgradeCopiesChanged(
+                    category, entry.Name, int.TryParse(e.Value?.ToString(), out var n) ? n : 0, entry.Points)));
+
+        builder.OpenElement(seq++, "option");
+        builder.AddAttribute(seq++, "value", 0);
+        builder.AddContent(seq++, "—");
+        builder.CloseElement();
+        for (var copies = 1; copies <= maxCopies; copies++)
+        {
+            var total = new UpgradePrice(UpgradePrice.CumulativeTotal(entry.Points, copies), false);
+            builder.OpenElement(seq++, "option");
+            builder.AddAttribute(seq++, "value", copies);
+            builder.AddContent(seq++, $"×{copies} ({total.Label})");
+            builder.CloseElement();
+        }
+        builder.CloseElement();
+
+        builder.OpenElement(seq++, "label");
+        builder.AddAttribute(seq++, "class", "form-check-label");
+        builder.AddAttribute(seq++, "for", inputId);
+        builder.AddContent(seq++, entry.Name);
+        builder.CloseElement();
+
+        builder.CloseElement();
+    }
+
     private async Task OnFactionUpgradeToggled(string category, string name, UpgradePrice price, bool isChecked)
     {
         if (Configuration is null) return;
         Configuration.ToggleFactionUpgrade(
             category, new SelectedFactionUpgrade(name, price.Points, price.PerModel), isChecked);
+        await ConfigurationChanged.InvokeAsync(Configuration);
+    }
+
+    private async Task OnFactionUpgradeCopiesChanged(string category, string name, int copies, string? pointsText)
+    {
+        if (Configuration is null) return;
+        Configuration.SetFactionUpgradeCopies(category, name, copies, pointsText);
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 

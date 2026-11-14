@@ -249,6 +249,7 @@ skips the file fails on load rather than silently inheriting another edition's n
 ### `points` Field in Magic Items
 - Stored as string, not integer (e.g., `"45"` not `45`)
 - Convert to int during deserialization
+- A points string (magic items and faction upgrades alike) is a plain number, cumulative `"15/25/50"` (each figure the price of one further copy, so at most that many copies: 15, 40, 90 in total), or tiered per troop type (`"Characters free\nCavalry 1 point per model"`)
 
 ### `description` Fields
 - May contain `\n` line breaks from PDF column extraction

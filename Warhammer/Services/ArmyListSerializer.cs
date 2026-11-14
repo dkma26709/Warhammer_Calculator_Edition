@@ -96,8 +96,11 @@ public class ArmyListSerializer
         UseTreeWhack = u.UseTreeWhack,
         IsGeneral = u.Loadout.IsGeneral,
         IsBattleStandardBearer = u.Loadout.IsBattleStandardBearer,
+        // A pick of n copies is its name n times, so the saved schema stays a list of names.
         SelectedFactionUpgrades = u.Loadout.SelectedFactionUpgrades
-            .ToDictionary(kv => kv.Key, kv => kv.Value.Select(p => p.Name).ToList()),
+            .ToDictionary(kv => kv.Key, kv => kv.Value
+                .SelectMany(p => Enumerable.Repeat(p.Name, Math.Max(1, p.Copies)))
+                .ToList()),
     };
 
     // ─── Import ──────────────────────────────────────────────────
@@ -249,16 +252,29 @@ public class ArmyListSerializer
             }
 
             upgradeCosts.TryGetValue(category, out var byName);
-            cfg.Loadout.SelectedFactionUpgrades[category] = names
-                .Select(name =>
+            var picks = new List<SelectedFactionUpgrade>();
+            foreach (var name in names)
+            {
+                var text = byName is not null && byName.TryGetValue(name, out var t) ? t : null;
+                if (UpgradePrice.TryParseCumulative(text, out var perCopy))
                 {
-                    // An unknown name, or one this troop type has no tier for, imports free.
-                    var price = byName is not null && byName.TryGetValue(name, out var text)
-                        ? cfg.ResolveUpgradePrice(text) ?? default
-                        : default;
-                    return new SelectedFactionUpgrade(name, price.Points, price.PerModel);
-                })
-                .ToList();
+                    // A cumulative rune saved n times is one pick of n copies; later copies were counted with the first.
+                    if (picks.Any(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase))) continue;
+                    var copies = names.Count(n => string.Equals(n, name, StringComparison.OrdinalIgnoreCase));
+                    if (copies > perCopy.Count)
+                    {
+                        warnings.Add($"Unit '{cfg.DisplayName}' may take at most {perCopy.Count} of '{name}' — kept {perCopy.Count}, dropped {copies - perCopy.Count}.");
+                        copies = perCopy.Count;
+                    }
+                    picks.Add(new SelectedFactionUpgrade(name, UpgradePrice.CumulativeTotal(text, copies), false, copies));
+                    continue;
+                }
+
+                // An unknown name, or one this troop type has no tier for, imports free.
+                var price = text is not null ? cfg.ResolveUpgradePrice(text) ?? default : default;
+                picks.Add(new SelectedFactionUpgrade(name, price.Points, price.PerModel));
+            }
+            cfg.Loadout.SelectedFactionUpgrades[category] = picks;
         }
 
         foreach (var mi in dto.MagicItems)

@@ -25,6 +25,15 @@ public readonly record struct UpgradePrice(double Points, bool PerModel)
         @"^(?<tiers>[A-Za-z ]+(?:/[A-Za-z ]+)*)\s+(?:(?<free>free)|(?<n>\d+(?:\.\d+)?)\s+points?(?<per>\s+per\s+model)?)$",
         RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
+    /// <summary>
+    /// A cumulative rune's price, "15/25/50": each figure is the price of one more copy, so the
+    /// figure count is the most copies a model may take.
+    /// </summary>
+    private static readonly Regex CumulativeText = new(
+        // [0-9], not \d, so double.Parse never meets a non-ASCII digit.
+        @"^[0-9]+(?:\.[0-9]+)?(?:/[0-9]+(?:\.[0-9]+)?)+$",
+        RegexOptions.CultureInvariant | RegexOptions.Compiled);
+
     /// <summary>The price as a picker shows it: "free", "10 pts", "1 pt/model".</summary>
     public string Label
     {
@@ -39,14 +48,17 @@ public readonly record struct UpgradePrice(double Points, bool PerModel)
 
     /// <summary>
     /// The price an upgrade's points text sets for one unit. Blank text is free and a plain
-    /// number is a flat price for every unit. Tiered text ("Characters free\nCavalry 1 point
-    /// per model") prices the line naming the unit's troop type, and is null — not offered —
-    /// when no line does. Any other text is free, as it always was.
+    /// number is a flat price for every unit, and cumulative text ("15/25/50") the flat price of
+    /// one copy. Tiered text ("Characters free\nCavalry 1 point per model") prices the line
+    /// naming the unit's troop type, and is null — not offered — when no line does. Any other
+    /// text is free, as it always was.
     /// </summary>
     public static UpgradePrice? Resolve(string? pointsText, TroopTypeInfo troopType, UnitCategory category)
     {
         if (string.IsNullOrWhiteSpace(pointsText)) return new UpgradePrice(0, false);
         if (TryParseNumber(pointsText, out var points)) return new UpgradePrice(points, false);
+        // A caller that knows nothing of copies still charges for one.
+        if (TryParseCumulative(pointsText, out var perCopy)) return new UpgradePrice(perCopy[0], false);
 
         var tiers = ParseTiers(pointsText);
         if (tiers is null) return new UpgradePrice(0, false);
@@ -65,9 +77,44 @@ public readonly record struct UpgradePrice(double Points, bool PerModel)
     /// <summary>True when the text is a price keyed by troop type rather than one figure.</summary>
     public static bool IsTiered(string? pointsText) => ParseTiers(pointsText) is not null;
 
-    /// <summary>True when the text is blank, a plain number or fully parsed tiered text.</summary>
+    /// <summary>True when the text is blank, a plain number, cumulative text or fully parsed tiered text.</summary>
     public static bool IsRecognised(string? pointsText) =>
-        string.IsNullOrWhiteSpace(pointsText) || TryParseNumber(pointsText, out _) || IsTiered(pointsText);
+        string.IsNullOrWhiteSpace(pointsText) || TryParseNumber(pointsText, out _)
+        || IsCumulative(pointsText) || IsTiered(pointsText);
+
+    /// <summary>
+    /// The per-copy prices of cumulative text — "15/25/50" is 15 for the first copy, 25 for the
+    /// second and 50 for the third. A plain number is not cumulative.
+    /// </summary>
+    public static bool TryParseCumulative(string? pointsText, out IReadOnlyList<double> perCopy)
+    {
+        perCopy = [];
+        var text = pointsText?.Trim();
+        if (string.IsNullOrEmpty(text) || !CumulativeText.IsMatch(text)) return false;
+
+        perCopy = text.Split('/').Select(n => double.Parse(n, CultureInfo.InvariantCulture)).ToArray();
+        return true;
+    }
+
+    /// <summary>True when the text prices each further copy of an upgrade, as "15/25/50" does.</summary>
+    public static bool IsCumulative(string? pointsText) => TryParseCumulative(pointsText, out _);
+
+    /// <summary>The most copies the text allows: its figure count when cumulative, otherwise one.</summary>
+    public static int MaxCopies(string? pointsText) =>
+        TryParseCumulative(pointsText, out var perCopy) ? perCopy.Count : 1;
+
+    /// <summary>
+    /// What <paramref name="copies"/> copies cost together: the sum of the first that many
+    /// figures, with copies clamped to 0..figures. A plain number is a single figure; any other
+    /// text has none and costs nothing.
+    /// </summary>
+    public static double CumulativeTotal(string? pointsText, int copies)
+    {
+        IReadOnlyList<double> figures = TryParseCumulative(pointsText, out var perCopy)
+            ? perCopy
+            : !string.IsNullOrWhiteSpace(pointsText) && TryParseNumber(pointsText, out var flat) ? [flat] : [];
+        return figures.Take(Math.Clamp(copies, 0, figures.Count)).Sum();
+    }
 
     /// <summary>
     /// The tier a unit buys at. A character takes the Characters line whatever its base type or

@@ -218,6 +218,45 @@ public class UnitConfiguration
         }
     }
 
+    /// <summary>
+    /// Set how many copies of an upgrade this unit takes. Zero removes the pick; more copies
+    /// than <see cref="UpgradePrice.MaxCopies"/> allows take the most it allows. A cumulative
+    /// rune ("15/25/50") is priced as the total for its copies, anything else as one pick.
+    /// </summary>
+    public void SetFactionUpgradeCopies(string category, string name, int copies, string? pointsText)
+    {
+        if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks))
+            Loadout.SelectedFactionUpgrades[category] = picks = [];
+
+        copies = Math.Clamp(copies, 0, UpgradePrice.MaxCopies(pointsText));
+        if (copies == 0)
+        {
+            picks.RemoveAll(p => p.Name == name);
+            return;
+        }
+
+        var price = ResolveUpgradePrice(pointsText) ?? default;
+        var points = UpgradePrice.IsCumulative(pointsText)
+            ? UpgradePrice.CumulativeTotal(pointsText, copies)
+            : price.Points;
+        var pick = new SelectedFactionUpgrade(name, points, price.PerModel, copies);
+
+        var at = picks.FindIndex(p => p.Name == name);
+        if (IsSingleChoiceCategory(category))
+        {
+            picks.Clear();
+            picks.Add(pick);
+        }
+        else if (at >= 0)
+        {
+            picks[at] = pick;
+        }
+        else
+        {
+            picks.Add(pick);
+        }
+    }
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }
