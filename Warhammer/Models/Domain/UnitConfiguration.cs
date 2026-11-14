@@ -128,8 +128,8 @@ public class UnitConfiguration
     /// <summary>
     /// Aggregate cost for faction upgrade selections. Rank-and-file units pay the rate on
     /// their own option (e.g. blessed_spawning at +2pts/model × spawnings × model count);
-    /// characters take theirs through a shared magic item allowance, so their option carries
-    /// no rate and each pick costs the points listed against it in the faction's extras.
+    /// an option with no rate charges each pick the points listed against it in the faction's
+    /// extras — flat, or per model where a tiered price (Knightly Orders) says so.
     /// </summary>
     public double FactionUpgradeCost
     {
@@ -144,7 +144,7 @@ public class UnitConfiguration
 
                 if (option.Points is null)
                 {
-                    total += picks.Sum(p => p.PointsCost);
+                    total += picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
                     continue;
                 }
 
@@ -154,6 +154,13 @@ public class UnitConfiguration
             return total;
         }
     }
+
+    /// <summary>
+    /// What an upgrade's points text from the faction's extras costs this unit, or null when
+    /// the text is tiered by troop type and names no tier for this one.
+    /// </summary>
+    public UpgradePrice? ResolveUpgradePrice(string? pointsText) =>
+        UpgradePrice.Resolve(pointsText, TroopType, ResolvedUnit.Category);
 
     /// <summary>
     /// Resolve the factionUpgrades category an option offers. Options name their own category;

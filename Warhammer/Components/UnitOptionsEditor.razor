@@ -110,10 +110,6 @@
         return FactionExtras.FactionUpgrades.TryGetValue(category, out var entries) && entries.Count > 0;
     }
 
-    /// <summary>Points listed against an upgrade entry; non-numeric text means no cost of its own.</summary>
-    private static double EntryPoints(UpgradeEntry entry) =>
-        double.TryParse(entry.Points, out var points) ? points : 0;
-
     private void RenderFactionUpgradeMultiSelect(
         Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
         UnitOption option)
@@ -147,8 +143,11 @@
         foreach (var entry in entries)
         {
             var checkedNow = selected.Any(p => p.Name == entry.Name);
+            var resolved = Configuration.ResolveUpgradePrice(entry.Points);
+            // Not offered to this troop type, but a pick already made stays listed so it can be unticked.
+            if (resolved is null && !checkedNow) continue;
+            var price = resolved ?? new UpgradePrice(0, false);
             var inputId = _id + "-fup-" + entry.Name.GetHashCode();
-            var entryPoints = EntryPoints(entry);
 
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "form-check small");
@@ -161,14 +160,19 @@
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
                     this, async e => await OnFactionUpgradeToggled(
-                        category, entry.Name, entryPoints, (bool)(e.Value ?? false))));
+                        category, entry.Name, price, (bool)(e.Value ?? false))));
             builder.CloseElement();
 
             builder.OpenElement(seq++, "label");
             builder.AddAttribute(seq++, "class", "form-check-label");
             builder.AddAttribute(seq++, "for", inputId);
             builder.AddContent(seq++, entry.Name);
-            if (!string.IsNullOrEmpty(entry.Points) && entry.Points.Any(char.IsDigit))
+            if (UpgradePrice.IsTiered(entry.Points))
+            {
+                // The price for this unit's tier, not the whole multi-line table.
+                if (resolved is not null) builder.AddContent(seq++, $" ({price.Label})");
+            }
+            else if (!string.IsNullOrEmpty(entry.Points) && entry.Points.Any(char.IsDigit))
             {
                 builder.AddContent(seq++, $" ({entry.Points} pts)");
             }
@@ -179,7 +183,7 @@
         builder.CloseElement();
     }
 
-    private async Task OnFactionUpgradeToggled(string category, string name, double points, bool isChecked)
+    private async Task OnFactionUpgradeToggled(string category, string name, UpgradePrice price, bool isChecked)
     {
         if (Configuration is null) return;
         if (!Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list))
@@ -188,7 +192,8 @@
             Configuration.Loadout.SelectedFactionUpgrades[category] = list;
         }
 
-        if (isChecked && list.All(p => p.Name != name)) list.Add(new SelectedFactionUpgrade(name, points));
+        if (isChecked && list.All(p => p.Name != name))
+            list.Add(new SelectedFactionUpgrade(name, price.Points, price.PerModel));
         else if (!isChecked) list.RemoveAll(p => p.Name == name);
 
         await ConfigurationChanged.InvokeAsync(Configuration);

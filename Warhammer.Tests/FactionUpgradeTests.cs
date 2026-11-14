@@ -124,6 +124,122 @@ public class FactionUpgradeTests
         Assert.Equal(10, config.FactionUpgradeCost);
     }
 
+    // ─── Tiered prices (WAR Knightly Orders, Quirks of Character) ─
+
+    private static async Task<UnitConfiguration> WarUnit(FactionKey faction, string unitName)
+    {
+        var units = await TestHelpers.RepoFor(GameSystems.War).GetUnitsAsync(faction);
+        return new UnitConfiguration(units.Single(u => u.Name == unitName));
+    }
+
+    private static async Task<UpgradeEntry> WarUpgrade(FactionKey faction, string category, string name)
+    {
+        var extras = await TestHelpers.RepoFor(GameSystems.War).GetFactionExtrasAsync(faction);
+        return extras.FactionUpgrades[category].Single(e => e.Name == name);
+    }
+
+    /// <summary>Pick an upgrade the way the Builder does: priced for the unit taking it.</summary>
+    private static async Task<UnitConfiguration> WarUnitWith(
+        FactionKey faction, string unitName, string category, string upgradeName)
+    {
+        var cfg = await WarUnit(faction, unitName);
+        var entry = await WarUpgrade(faction, category, upgradeName);
+        var price = cfg.ResolveUpgradePrice(entry.Points);
+        Assert.NotNull(price);
+        cfg.Loadout.SelectedFactionUpgrades[category] =
+            [new SelectedFactionUpgrade(entry.Name, price.Value.Points, price.Value.PerModel)];
+        return cfg;
+    }
+
+    [Fact]
+    public async Task KnightlyOrder_OnCavalry_ChargesPerModel_AndScalesWithModelCount()
+    {
+        var knights = await WarUnitWith(FactionKey.TheEmpire, "KNIGHTS", "knightly_orders", "KNIGHTS PANTHER");
+        Assert.Equal(5, knights.ModelCount);
+        Assert.Equal(5, knights.FactionUpgradeCost);
+
+        knights.ModelCount = 10;
+        Assert.Equal(10, knights.FactionUpgradeCost);
+    }
+
+    [Theory]
+    [InlineData("KNIGHTS OF THE WHITE WOLF", 10)]
+    [InlineData("KNIGHTS PANTHER", 0)]
+    public async Task KnightlyOrder_OnGrandMaster_ChargesTheCharactersLine(string order, double expected)
+    {
+        var grandMaster = await WarUnitWith(FactionKey.TheEmpire, "Grand Master", "knightly_orders", order);
+        Assert.Equal(expected, grandMaster.FactionUpgradeCost);
+    }
+
+    [Fact]
+    public async Task KnightlyOrder_OnMonstrousCavalry_ChargesItsOwnRate()
+    {
+        var demigryphs = await WarUnitWith(
+            FactionKey.TheEmpire, "DEMIGRYPH KNIGHTS", "knightly_orders", "KNIGHTS OF THE BLAZING SUN");
+        Assert.Equal(3 * demigryphs.ModelCount, demigryphs.FactionUpgradeCost);
+    }
+
+    [Fact]
+    public async Task KnightlyOrder_OnFootKnights_IsOfferedOnlyWhereInfantryHaveATier()
+    {
+        var footKnights = await WarUnit(FactionKey.TheEmpire, "FOOT KNIGHTS");
+        var panther = await WarUpgrade(FactionKey.TheEmpire, "knightly_orders", "KNIGHTS PANTHER");
+        Assert.Null(footKnights.ResolveUpgradePrice(panther.Points));
+
+        var reiksguard = await WarUnitWith(
+            FactionKey.TheEmpire, "FOOT KNIGHTS", "knightly_orders", "REIKSGUARD KNIGHTS");
+        Assert.Equal(1 * reiksguard.ModelCount, reiksguard.FactionUpgradeCost);
+    }
+
+    [Fact]
+    public async Task QuirkOfCharacter_OnOgres_ChargesTheMonstrousInfantryRate()
+    {
+        var ogres = await WarUnitWith(FactionKey.DogsOfWar, "OGRES", "quirks_of_character", "FEARLESS");
+        Assert.Equal(3 * ogres.ModelCount, ogres.FactionUpgradeCost);
+    }
+
+    [Fact]
+    public async Task QuirkOfCharacter_OnMercenaryGeneral_ChargesTheCharactersLine()
+    {
+        var general = await WarUnitWith(
+            FactionKey.DogsOfWar, "Mercenary General", "quirks_of_character", "GRIZZLED WARRIOR");
+        Assert.Equal(25, general.FactionUpgradeCost);
+    }
+
+    [Fact]
+    public async Task TotalPointsCost_IncludesTieredUpgradeCost()
+    {
+        var bare = await WarUnit(FactionKey.TheEmpire, "KNIGHTS");
+        var withOrder = await WarUnitWith(FactionKey.TheEmpire, "KNIGHTS", "knightly_orders", "KNIGHTS PANTHER");
+
+        Assert.Equal(bare.TotalPointsCost + 5, withOrder.TotalPointsCost);
+    }
+
+    [Theory]
+    [InlineData(FactionKey.TheEmpire, "knightly_orders")]
+    [InlineData(FactionKey.DogsOfWar, "quirks_of_character")]
+    public async Task TieredUpgradeEntries_AllParse_AndPriceSomeTier(FactionKey faction, string category)
+    {
+        var extras = await TestHelpers.RepoFor(GameSystems.War).GetFactionExtrasAsync(faction);
+        var buyers = new (TroopTypeInfo TroopType, UnitCategory Category)[]
+        {
+            (new TroopTypeInfo { BaseType = BaseTroopType.Infantry, IsCharacter = true }, UnitCategory.Characters),
+            (new TroopTypeInfo { BaseType = BaseTroopType.Infantry }, UnitCategory.Core),
+            (new TroopTypeInfo { BaseType = BaseTroopType.Cavalry }, UnitCategory.Core),
+            (new TroopTypeInfo { BaseType = BaseTroopType.MonstrousCavalry }, UnitCategory.Core),
+            (new TroopTypeInfo { BaseType = BaseTroopType.MonstrousInfantry }, UnitCategory.Core),
+        };
+
+        var entries = extras.FactionUpgrades[category];
+        Assert.NotEmpty(entries);
+        foreach (var entry in entries)
+        {
+            Assert.True(UpgradePrice.IsRecognised(entry.Points), $"'{entry.Name}' has unparsed points '{entry.Points}'");
+            Assert.True(buyers.Any(b => UpgradePrice.Resolve(entry.Points, b.TroopType, b.Category) is not null),
+                $"'{entry.Name}' prices no tier");
+        }
+    }
+
     // ─── Data consistency ────────────────────────────────────────
 
     [Theory]

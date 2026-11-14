@@ -503,6 +503,56 @@ public class ArmyListSerializerTests
     }
 
     [Fact]
+    public async Task DeserializeAsync_FactionUpgrades_TieredPoints_ResolveForTheUnitsTroopType()
+    {
+        // A Knightly Order's price depends on who takes it; cavalry pay the per-model line.
+        var knights = TestHelpers.MakeUnit(name: "Knights", troopType: "Cavalry", points: 20,
+            options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = "knightly_orders" }]);
+        var repo = new StubRepo(knights)
+        {
+            Extras = new FactionExtrasData
+            {
+                FactionUpgrades = new Dictionary<string, List<UpgradeEntry>>
+                {
+                    ["knightly_orders"] =
+                    [
+                        new UpgradeEntry
+                        {
+                            Name = "Knights Of The Twin-Tailed Orb",
+                            Points = "Characters 15 points\nCavalry 2 points per model",
+                        },
+                    ],
+                },
+            },
+        };
+        var serializer = new ArmyListSerializer(repo, WapV2System());
+        var json = """
+        {
+          "schema": "wap-army-list/v1",
+          "faction": "the-empire",
+          "pointsTarget": 2000,
+          "name": "Orb",
+          "units": [
+            {
+              "unitName": "Knights",
+              "modelCount": 5,
+              "selectedFactionUpgrades": { "knightly_orders": ["Knights Of The Twin-Tailed Orb"] }
+            }
+          ]
+        }
+        """;
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        var unit = result.List!.Units[0];
+        var pick = Assert.Single(unit.Loadout.SelectedFactionUpgrades["knightly_orders"]);
+        Assert.Equal(2, pick.PointsCost);
+        Assert.True(pick.PerModel);
+        Assert.Equal(10, unit.FactionUpgradeCost);
+    }
+
+    [Fact]
     public void Serialize_FactionUpgrades_WritesNamesOnly()
     {
         var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);
