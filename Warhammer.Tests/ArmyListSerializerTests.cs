@@ -552,6 +552,73 @@ public class ArmyListSerializerTests
         Assert.Equal(10, unit.FactionUpgradeCost);
     }
 
+    /// <summary>A unit offering <paramref name="category"/> through a book line worded <paramref name="raw"/>.</summary>
+    private static ArmyListSerializer SerializerForUpgradeLine(string category, string raw)
+    {
+        var unit = TestHelpers.MakeUnit(name: "Knights", troopType: "Cavalry", points: 20,
+            options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = category, Raw = raw }]);
+        var repo = new StubRepo(unit)
+        {
+            Extras = new FactionExtrasData
+            {
+                FactionUpgrades = new Dictionary<string, List<UpgradeEntry>>
+                {
+                    [category] =
+                    [
+                        new UpgradeEntry { Name = "First", Points = "5" },
+                        new UpgradeEntry { Name = "Second", Points = "10" },
+                    ],
+                },
+            },
+        };
+        return new ArmyListSerializer(repo, WapV2System());
+    }
+
+    private static string ListWithUpgrades(string category) => $$"""
+        {
+          "schema": "wap-army-list/v1",
+          "faction": "the-empire",
+          "pointsTarget": 2000,
+          "name": "Picks",
+          "units": [
+            {
+              "unitName": "Knights",
+              "modelCount": 5,
+              "selectedFactionUpgrades": { "{{category}}": ["First", "Second"] }
+            }
+          ]
+        }
+        """;
+
+    [Fact]
+    public async Task DeserializeAsync_SingleChoiceCategory_KeepsTheFirstPick_AndWarns()
+    {
+        var serializer = SerializerForUpgradeLine("knightly_orders", "May be upgraded to a Knightly Order no points limit");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("knightly_orders"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["knightly_orders"]);
+        Assert.Equal("First", pick.Name);
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("Knights", warning);
+        Assert.Contains("knightly orders", warning);
+        Assert.Contains("'Second'", warning);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_MultiPickCategory_KeepsEveryPick_WithoutWarning()
+    {
+        var serializer = SerializerForUpgradeLine("quirks_of_character", "May take Quirks of Character no points limit");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("quirks_of_character"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["quirks_of_character"].Select(p => p.Name));
+        Assert.Empty(result.Warnings);
+    }
+
     [Fact]
     public void Serialize_FactionUpgrades_WritesNamesOnly()
     {

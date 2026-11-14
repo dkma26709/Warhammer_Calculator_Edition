@@ -130,13 +130,15 @@
             : option.PerModel == true
                 ? $"+{option.Points:F0} pt/model each"
                 : $"+{option.Points:F0} pts each";
+        // Still checkboxes, so the one pick can be unticked to none.
+        var choiceHint = Configuration.IsSingleChoiceCategory(category) ? "choose one, " : "";
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
 
         builder.OpenElement(2, "label");
         builder.AddAttribute(3, "class", "form-label small text-body-secondary");
-        builder.AddContent(4, $"{label} ({costSuffix})");
+        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix})");
         builder.CloseElement();
 
         int seq = 10;
@@ -186,16 +188,8 @@
     private async Task OnFactionUpgradeToggled(string category, string name, UpgradePrice price, bool isChecked)
     {
         if (Configuration is null) return;
-        if (!Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list))
-        {
-            list = new List<SelectedFactionUpgrade>();
-            Configuration.Loadout.SelectedFactionUpgrades[category] = list;
-        }
-
-        if (isChecked && list.All(p => p.Name != name))
-            list.Add(new SelectedFactionUpgrade(name, price.Points, price.PerModel));
-        else if (!isChecked) list.RemoveAll(p => p.Name == name);
-
+        Configuration.ToggleFactionUpgrade(
+            category, new SelectedFactionUpgrade(name, price.Points, price.PerModel), isChecked);
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 

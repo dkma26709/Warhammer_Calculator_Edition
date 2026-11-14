@@ -161,7 +161,7 @@ public class ArmyListSerializer
                 continue;
             }
 
-            var cfg = ApplyUnitDto(unit, entry, upgradeCosts);
+            var cfg = ApplyUnitDto(unit, entry, upgradeCosts, warnings);
             list.Units.Add(cfg);
         }
 
@@ -200,7 +200,8 @@ public class ArmyListSerializer
     private static UnitConfiguration ApplyUnitDto(
         Unit unit,
         ArmyListUnitDto dto,
-        Dictionary<string, Dictionary<string, string>> upgradeCosts)
+        Dictionary<string, Dictionary<string, string>> upgradeCosts,
+        List<string> warnings)
     {
         var cfg = new UnitConfiguration(unit)
         {
@@ -236,8 +237,17 @@ public class ArmyListSerializer
         foreach (var p in dto.CommandUpgrades ?? [])
             cfg.SelectedCommandUpgrades.Add(new CommandUpgradePick(p.OptionIndex, p.SubOptionIndex, p.ChoiceIndex));
 
-        foreach (var (category, names) in dto.SelectedFactionUpgrades)
+        foreach (var (category, saved) in dto.SelectedFactionUpgrades)
         {
+            var names = saved;
+            // A hand-edited or older file can hold several picks where the book allows one.
+            if (names.Count > 1 && cfg.IsSingleChoiceCategory(category))
+            {
+                names = names.Take(1).ToList();
+                var dropped = string.Join(", ", saved.Skip(1).Select(n => $"'{n}'"));
+                warnings.Add($"Unit '{cfg.DisplayName}' may take only one {category.Replace('_', ' ')} — kept '{names[0]}', dropped {dropped}.");
+            }
+
             upgradeCosts.TryGetValue(category, out var byName);
             cfg.Loadout.SelectedFactionUpgrades[category] = names
                 .Select(name =>

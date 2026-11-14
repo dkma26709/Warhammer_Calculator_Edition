@@ -178,6 +178,46 @@ public class UnitConfiguration
         _ => null,
     };
 
+    // "take" or "upgraded to" must lead, so "up to a total of 100 points" does not count.
+    private static readonly Regex SingleChoiceWording =
+        new(@"\b(?:take|upgraded to)\s+(?:a|an|one)\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>
+    /// True when the option's own book line offers one upgrade of its family ("May be upgraded
+    /// to a Knightly Order", "may take one Saga") rather than any number of them ("may take
+    /// Gifts of Khaine and/or Magic Items").
+    /// </summary>
+    public static bool IsSingleChoice(UnitOption option) =>
+        option.Raw is not null && SingleChoiceWording.IsMatch(option.Raw);
+
+    /// <summary>True when any option of this unit offering <paramref name="category"/> allows only one pick.</summary>
+    public bool IsSingleChoiceCategory(string category) =>
+        ResolvedUnit.Options.Any(o => FactionUpgradeCategoryFor(o) == category && IsSingleChoice(o));
+
+    /// <summary>
+    /// Tick or untick a faction upgrade. In a single-choice category a tick replaces the
+    /// current pick; elsewhere picks accumulate. Unticking removes that pick either way.
+    /// </summary>
+    public void ToggleFactionUpgrade(string category, SelectedFactionUpgrade pick, bool isChecked)
+    {
+        if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks))
+            Loadout.SelectedFactionUpgrades[category] = picks = [];
+
+        if (!isChecked)
+        {
+            picks.RemoveAll(p => p.Name == pick.Name);
+        }
+        else if (IsSingleChoiceCategory(category))
+        {
+            picks.Clear();
+            picks.Add(pick);
+        }
+        else if (picks.All(p => p.Name != pick.Name))
+        {
+            picks.Add(pick);
+        }
+    }
+
     // ─── Parsed base data ────────────────────────────────────────
 
     public TroopTypeInfo TroopType { get; }
