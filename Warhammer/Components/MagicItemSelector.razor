@@ -7,6 +7,12 @@
         <label class="form-label small text-body-secondary">
             Magic Items (@PointsUsed.ToString("F0") / @PointsBudget pts)
         </label>
+        @if (Configuration.AllowanceUpgradeCost > 0)
+        {
+            <div class="small text-body-secondary mb-1">
+                Includes @Configuration.AllowanceUpgradeCost.ToString("F0") pts of @AllowanceUpgradeNames
+            </div>
+        }
 
         @* ── Selected items ── *@
         @foreach (var (item, index) in Configuration.SelectedMagicItems.Select((item, i) => (item, i)))
@@ -70,8 +76,11 @@
     private IEnumerable<IGrouping<string, MagicItemEntry>> _groupedItems = [];
 
     private double PointsBudget => Configuration?.ResolvedUnit.MagicItemAllowance ?? 0;
-    private double PointsUsed => Configuration?.SelectedMagicItems.Sum(i => i.PointsCost) ?? 0;
+    // Upgrades offered on the allowance's own line ("Quirks of Character and/or Magic Items") spend it too.
+    private double PointsUsed => Configuration?.MagicItemAllowanceSpent ?? 0;
     private double PointsRemaining => PointsBudget - PointsUsed;
+    private string AllowanceUpgradeNames => Configuration is null ? "" :
+        string.Join(" and ", Configuration.AllowanceUpgradeCategories.Select(c => c.Replace('_', ' ')));
 
     protected override void OnParametersSet()
     {
