@@ -178,6 +178,9 @@ neighbours' allowances as well as its own; `appliesTo` records the entry a line 
 A line offering upgrades with the items ("Quirks of Character and/or Magic Items up to a total
 of 100 points") is one shared budget: `UnitConfiguration.MagicItemAllowanceSpent` counts the
 faction upgrades picked under it as well as the items, for both the picker and the validator.
+A `faction_upgrade` option with its own `pointsLimit` ("May take engineering runes up to 50
+points") caps the picks taken through it at that limit, in the picker and as
+`FACTION_UPGRADES_OVER_LIMIT` in the validator.
 
 The picker itself only shows when an allowance resolved, so a mis-parsed allowance line is
 invisible in the UI rather than obviously broken — `MagicItemAllowanceTests` asserts against
@@ -193,6 +196,7 @@ Validated by `ArmyListValidator`:
 |---|---|---|
 | `MAGIC_ITEMS_NOT_ALLOWED` | Error | Items on an entry with no allowance |
 | `MAGIC_ITEMS_OVER_BUDGET` | Error | Spend above the entry's allowance |
+| `FACTION_UPGRADES_OVER_LIMIT` | Error | Upgrades above an option's own points limit (engineering runes) |
 | `MAGIC_ITEM_CATEGORY_REPEATED` | Error | Two items from one *printed* category on one model |
 | `BANNER_NOT_ALLOWED` | Error | Magic standard on an entry that can't carry one |
 | `BANNER_OVER_BUDGET` | Error | Standard above the unit's banner allowance |
