@@ -116,6 +116,7 @@ public class ArmyListValidator
         }
 
         CheckMagicItems(issues, list);
+        CheckFactionUpgradeLimits(issues, list);
 
         foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Name))
         {
@@ -238,6 +239,28 @@ public class ArmyListValidator
                 issues.Add(new(ValidationSeverity.Warning, "DUPLICATE_MAGIC_ITEM",
                     $"{repeated} — most magic items may only be taken once per army",
                     group.First().Unit));
+            }
+        }
+    }
+
+    /// <summary>
+    /// An option that prints its own limit ("May take engineering runes up to 50 points") caps what
+    /// the entry spends on that category through it, whether or not the entry has a magic item allowance.
+    /// </summary>
+    private static void CheckFactionUpgradeLimits(List<ValidationIssue> issues, ArmyList list)
+    {
+        foreach (var unit in list.Units)
+        {
+            foreach (var option in unit.ResolvedUnit.Options.Where(UnitConfiguration.HasOwnUpgradeLimit))
+            {
+                int limit = option.PointsLimit!.Value;
+                double spent = unit.FactionUpgradeCostOf(option);
+                if (spent <= limit) continue;
+
+                string category = UnitConfiguration.FactionUpgradeCategoryFor(option)!.Replace('_', ' ');
+                issues.Add(new(ValidationSeverity.Error, "FACTION_UPGRADES_OVER_LIMIT",
+                    $"{unit.DisplayName} spends {spent:F0} on {category}, over its {limit} pt limit",
+                    unit));
             }
         }
     }

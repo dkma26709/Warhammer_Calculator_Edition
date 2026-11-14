@@ -140,13 +140,23 @@
                 ? $" · {remaining:F0} of {allowance} pts left"
                 : $" · {-remaining:F0} pts over the {allowance} pt allowance"
             : "";
+        // An option with its own limit ("engineering runes up to 50 points") says how much of that is left.
+        var limitLeft = option.PointsLimit is { } limit
+                        && !UnitConfiguration.SharesMagicItemAllowance(option)
+                        && Configuration.FactionUpgradeLimitRemaining(category) is { } left
+            ? left >= 0
+                ? $" · {left:F0} of {limit} pts left"
+                : $" · {-left:F0} pts over the {limit} pt limit"
+            : "";
+        // A capped option names its own limit; a war machine has no magic item allowance to name.
+        var overBudget = limitLeft.Length > 0 ? $"Over the {option.PointsLimit} pt limit" : $"Over the {allowance} pt allowance";
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
 
         builder.OpenElement(2, "label");
         builder.AddAttribute(3, "class", "form-label small text-body-secondary");
-        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix}{allowanceLeft})");
+        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix}{allowanceLeft}{limitLeft})");
         builder.CloseElement();
 
         int seq = 10;
@@ -172,7 +182,7 @@
             builder.AddAttribute(seq++, "checked", checkedNow);
             // false and null omit the attribute, so a change in fit does not shift the sequence numbers.
             builder.AddAttribute(seq++, "disabled", !fits);
-            builder.AddAttribute(seq++, "title", fits ? null : $"Over the {allowance} pt allowance");
+            builder.AddAttribute(seq++, "title", fits ? null : overBudget);
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
                     this, async e => await OnFactionUpgradeToggled(

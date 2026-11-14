@@ -134,7 +134,7 @@ public class UnitConfiguration
     public double FactionUpgradeCost => ResolvedUnit.Options.Sum(FactionUpgradeCostOf);
 
     /// <summary>What the picks in the category <paramref name="option"/> offers cost; 0 when it offers none.</summary>
-    private double FactionUpgradeCostOf(UnitOption option)
+    public double FactionUpgradeCostOf(UnitOption option)
     {
         var category = FactionUpgradeCategoryFor(option);
         if (category is null) return 0;
@@ -186,23 +186,51 @@ public class UnitConfiguration
     public double? MagicItemAllowanceRemaining => ResolvedUnit.MagicItemAllowance - MagicItemAllowanceSpent;
 
     /// <summary>
+    /// True when the option caps its own upgrades with a points limit ("May take engineering runes
+    /// up to 50 points"), apart from any magic item allowance.
+    /// </summary>
+    public static bool HasOwnUpgradeLimit(UnitOption option) =>
+        option.PointsLimit is not null && FactionUpgradeCategoryFor(option) is not null;
+
+    /// <summary>The options offering <paramref name="category"/> that cap it; see <see cref="HasOwnUpgradeLimit"/>.</summary>
+    private List<UnitOption> CappedUpgradeOptions(string category) =>
+        ResolvedUnit.Options
+            .Where(o => HasOwnUpgradeLimit(o) && FactionUpgradeCategoryFor(o) == category)
+            .ToList();
+
+    /// <summary>
+    /// What is left under the tightest own limit of an option offering <paramref name="category"/>;
+    /// negative when overspent, null when no such option carries a limit.
+    /// </summary>
+    public double? FactionUpgradeLimitRemaining(string category)
+    {
+        var capped = CappedUpgradeOptions(category);
+        // Each option prices every pick of the category, so its limit is set against its own cost.
+        return capped.Count == 0 ? null : capped.Min(o => o.PointsLimit!.Value - FactionUpgradeCostOf(o));
+    }
+
+    /// <summary>
     /// True when ticking <paramref name="candidate"/> in <paramref name="category"/> keeps the magic
-    /// item allowance within its limit, or when the category does not spend it. The picks are priced
-    /// as <see cref="ToggleFactionUpgrade"/> would leave them, so a pick the tick replaces is not counted.
+    /// item allowance within its limit, or when the category does not spend it, and keeps every option
+    /// offering the category within its own points limit. The picks are priced as
+    /// <see cref="ToggleFactionUpgrade"/> would leave them, so a pick the tick replaces is not counted.
     /// </summary>
     public bool UpgradeFitsAllowance(string category, SelectedFactionUpgrade candidate)
     {
-        if (ResolvedUnit.MagicItemAllowance is not { } allowance) return true;
-        var sharing = ResolvedUnit.Options
-            .Where(o => SharesMagicItemAllowance(o) && FactionUpgradeCategoryFor(o) == category)
-            .ToList();
-        if (sharing.Count == 0) return true;
-
         var current = Loadout.SelectedFactionUpgrades.GetValueOrDefault(category) ?? [];
         // A single-choice tick replaces every pick; elsewhere a same-name pick is replaced, not doubled.
         List<SelectedFactionUpgrade> after = IsSingleChoiceCategory(category)
             ? [candidate]
             : [.. current.Where(p => p.Name != candidate.Name), candidate];
+
+        if (CappedUpgradeOptions(category).Any(o => FactionUpgradeCostOf(o, after) > o.PointsLimit!.Value))
+            return false;
+
+        if (ResolvedUnit.MagicItemAllowance is not { } allowance) return true;
+        var sharing = ResolvedUnit.Options
+            .Where(o => SharesMagicItemAllowance(o) && FactionUpgradeCategoryFor(o) == category)
+            .ToList();
+        if (sharing.Count == 0) return true;
 
         var spend = MagicItemAllowanceSpent
             - sharing.Sum(FactionUpgradeCostOf)
