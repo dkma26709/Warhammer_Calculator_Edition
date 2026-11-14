@@ -175,6 +175,9 @@ Allowances come from `options[]` entries of type `magic_items`, whose `pointsLim
 budget. An army book prints one options block for a page of entries, so an entry carries its
 neighbours' allowances as well as its own; `appliesTo` records the entry a line named, and
 `Unit.ResolveMagicItemAllowance` picks the right one (own name → unnamed → smallest).
+A line offering upgrades with the items ("Quirks of Character and/or Magic Items up to a total
+of 100 points") is one shared budget: `UnitConfiguration.MagicItemAllowanceSpent` counts the
+faction upgrades picked under it as well as the items, for both the picker and the validator.
 
 The picker itself only shows when an allowance resolved, so a mis-parsed allowance line is
 invisible in the UI rather than obviously broken — `MagicItemAllowanceTests` asserts against

@@ -131,29 +131,48 @@ public class UnitConfiguration
     /// an option with no rate charges each pick the points listed against it in the faction's
     /// extras — flat, or per model where a tiered price (Knightly Orders) says so.
     /// </summary>
-    public double FactionUpgradeCost
+    public double FactionUpgradeCost => ResolvedUnit.Options.Sum(FactionUpgradeCostOf);
+
+    /// <summary>What the picks in the category <paramref name="option"/> offers cost; 0 when it offers none.</summary>
+    private double FactionUpgradeCostOf(UnitOption option)
     {
-        get
-        {
-            double total = 0;
-            foreach (var option in ResolvedUnit.Options)
-            {
-                var category = FactionUpgradeCategoryFor(option);
-                if (category is null) continue;
-                if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
+        var category = FactionUpgradeCategoryFor(option);
+        if (category is null) return 0;
+        if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) return 0;
 
-                if (option.Points is null)
-                {
-                    total += picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
-                    continue;
-                }
+        if (option.Points is null)
+            return picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
 
-                double multiplier = option.PerModel == true ? ModelCount : 1;
-                total += option.Points.Value * multiplier * picks.Count;
-            }
-            return total;
-        }
+        double multiplier = option.PerModel == true ? ModelCount : 1;
+        return option.Points.Value * multiplier * picks.Count;
     }
+
+    private static readonly Regex MagicItemsWording =
+        new(@"\bmagic\s+items\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>
+    /// True when the option's book line spends the magic item allowance ("may take Quirks of
+    /// Character and/or Magic Items up to a total of 100 points"), so its upgrades and the
+    /// unit's magic items share one budget.
+    /// </summary>
+    public static bool SharesMagicItemAllowance(UnitOption option) =>
+        option.Raw is not null && MagicItemsWording.IsMatch(option.Raw);
+
+    /// <summary>Faction upgrade points spent out of the magic item allowance; see <see cref="SharesMagicItemAllowance"/>.</summary>
+    public double AllowanceUpgradeCost =>
+        ResolvedUnit.Options.Where(SharesMagicItemAllowance).Sum(FactionUpgradeCostOf);
+
+    /// <summary>The categories whose paid picks count against the magic item allowance, for messages.</summary>
+    public IReadOnlyList<string> AllowanceUpgradeCategories =>
+        ResolvedUnit.Options
+            .Where(o => SharesMagicItemAllowance(o) && FactionUpgradeCostOf(o) > 0)
+            .Select(o => FactionUpgradeCategoryFor(o)!)
+            .Distinct()
+            .ToList();
+
+    /// <summary>Everything charged to the magic item allowance: the items plus <see cref="AllowanceUpgradeCost"/>.</summary>
+    public double MagicItemAllowanceSpent =>
+        SelectedMagicItems.Sum(mi => mi.PointsCost) + AllowanceUpgradeCost;
 
     /// <summary>
     /// What an upgrade's points text from the faction's extras costs this unit, or null when
