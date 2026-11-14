@@ -504,9 +504,16 @@ else
         }
     }
 
+    /// <summary>
+    /// The name has no bearing on validation, so this saves without revalidating, but it must
+    /// save: the autosave is what the Builder reloads from, and a rename that is never written
+    /// out reverts the moment the page is left — on a reload, or on the way back from /roster,
+    /// which consumes its own print snapshot and so has nothing newer to hand back.
+    /// </summary>
     private void OnNameChanged(ChangeEventArgs e)
     {
         _armyList = _armyList with { Name = e.Value?.ToString() ?? "Untitled List" };
+        _ = AutosaveAsync();
     }
 
     // ─── Unit operations ──────────────────────────────────────────
@@ -673,8 +680,8 @@ else
 
     /// <summary>
     /// Hand the list to the print view. The current state is written out and awaited first —
-    /// the autosave is fire-and-forget, and renaming the list never triggers one at all, so the
-    /// roster would otherwise be able to print a version behind what is on screen.
+    /// the autosave is fire-and-forget, so the roster would otherwise be able to print a version
+    /// behind what is on screen.
     /// </summary>
     private async Task OpenRoster()
     {
