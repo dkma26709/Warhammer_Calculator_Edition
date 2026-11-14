@@ -149,6 +149,24 @@ public class CumulativeRuneTests
         Assert.True(thane.UpgradeFitsAllowance(RunicItems, new SelectedFactionUpgrade(fury.Name, 15, false, 1)));
     }
 
+    [Fact]
+    public async Task War_Cannon_RuneCopies_FitTheEngineeringRuneLimit()
+    {
+        // "May take engineering runes up to 50 points"; Rune of Penetrating is "30/50".
+        var units = await TestHelpers.RepoFor(GameSystems.War).GetUnitsAsync(FactionKey.Dwarfs);
+        var cannon = new UnitConfiguration(units.Single(u => u.Name == "CANNON"));
+        var penetrating = await WarRune("RUNE OF PENETRATING");
+        var rapidFire = await WarRune("RUNE OF RAPID FIRE");
+        SelectedFactionUpgrade Copies(int n) =>
+            new(penetrating.Name, UpgradePrice.CumulativeTotal(penetrating.Points, n), false, n);
+
+        Assert.True(cannon.UpgradeFitsAllowance(RunicItems, Copies(1)));   // 30
+        Assert.False(cannon.UpgradeFitsAllowance(RunicItems, Copies(2)));  // 80
+
+        cannon.SetFactionUpgradeCopies(RunicItems, rapidFire.Name, 1, rapidFire.Points);
+        Assert.False(cannon.UpgradeFitsAllowance(RunicItems, Copies(1)));  // 30 + 30
+    }
+
     // ─── wap-v2: runes as ordinary magic items ───────────────────
 
     private static async Task<List<MagicItemEntry>> WapV2DwarfItems() =>
