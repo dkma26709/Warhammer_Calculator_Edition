@@ -289,15 +289,17 @@ public class ArmyRosterBuilder
         }
 
         foreach (var (_, selections) in cfg.Loadout.SelectedFactionUpgrades)
-            picks.AddRange(selections.Select(s => s.Name));
+            picks.AddRange(selections.Select(s => WithCopies(s.Name, s.Copies)));
 
         return Unique(picks);
     }
 
     private static IReadOnlyList<RosterItem> MagicItems(UnitConfiguration cfg)
     {
+        // Each copy of a cumulative rune is its own item, priced by its figure; print one line with the total.
         var items = cfg.SelectedMagicItems
-            .Select(item => new RosterItem(item.Name, item.PointsCost))
+            .GroupBy(item => item.Name)
+            .Select(g => new RosterItem(WithCopies(g.Key, g.Count()), g.Sum(item => item.PointsCost)))
             .ToList();
 
         if (cfg.Loadout.SelectedBanner is { } banner)
@@ -305,6 +307,9 @@ public class ArmyRosterBuilder
 
         return items;
     }
+
+    /// <summary>"Rune of Fury ×3" for several copies of one pick; the bare name for one.</summary>
+    private static string WithCopies(string name, int copies) => copies > 1 ? $"{name} ×{copies}" : name;
 
     /// <summary>
     /// The book's rules for the entry, by name — the whole SPECIAL RULES line, including the
