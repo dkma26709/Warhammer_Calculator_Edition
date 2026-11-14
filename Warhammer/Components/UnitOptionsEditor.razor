@@ -235,8 +235,12 @@
         for (var copies = 1; copies <= maxCopies; copies++)
         {
             var total = new UpgradePrice(UpgradePrice.CumulativeTotal(entry.Points, copies), false);
+            // The count already taken stays selectable; any other must fit what is left of a shared allowance.
+            var fits = copies == copiesNow || Configuration!.UpgradeFitsAllowance(
+                category, new SelectedFactionUpgrade(entry.Name, total.Points, false, copies));
             builder.OpenElement(seq++, "option");
             builder.AddAttribute(seq++, "value", copies);
+            builder.AddAttribute(seq++, "disabled", !fits);
             builder.AddContent(seq++, $"×{copies} ({total.Label})");
             builder.CloseElement();
         }

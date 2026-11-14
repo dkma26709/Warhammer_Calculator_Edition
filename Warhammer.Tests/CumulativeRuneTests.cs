@@ -109,6 +109,46 @@ public class CumulativeRuneTests
         Assert.Equal(40 + 35, thane.FactionUpgradeCost);
     }
 
+    [Fact]
+    public async Task War_Thane_RuneCopies_SpendTheSharedAllowance()
+    {
+        // "A Thane may take Magic Items and/or Runic Items up to a total of 50 points".
+        var thane = await WarThane();
+        var fury = await WarRune("RUNE OF FURY");
+
+        thane.SetFactionUpgradeCopies(RunicItems, fury.Name, 2, fury.Points);
+
+        Assert.Equal(40, thane.AllowanceUpgradeCost);
+        Assert.Equal(10, thane.MagicItemAllowanceRemaining);
+    }
+
+    [Theory]
+    [InlineData(1, true)]   // 15
+    [InlineData(2, true)]   // 40
+    [InlineData(3, false)]  // 90 > 50
+    public async Task War_Thane_RuneCopies_FitTheAllowanceByTheirTotal(int copies, bool fits)
+    {
+        var thane = await WarThane();
+        var fury = await WarRune("RUNE OF FURY");
+        var candidate = new SelectedFactionUpgrade(
+            fury.Name, UpgradePrice.CumulativeTotal(fury.Points, copies), false, copies);
+
+        Assert.Equal(fits, thane.UpgradeFitsAllowance(RunicItems, candidate));
+    }
+
+    [Fact]
+    public async Task War_Thane_ChangingCopies_IsCheckedAgainstTheAllowance_WithoutCountingTheOldCopies()
+    {
+        var thane = await WarThane();
+        var fury = await WarRune("RUNE OF FURY");
+        var smiting = await WarRune("MASTER RUNE OF SMITING");
+        thane.SetFactionUpgradeCopies(RunicItems, fury.Name, 2, fury.Points);
+
+        // 40 + 35 is over 50, but cutting Fury to one copy replaces the two: 15.
+        Assert.False(thane.UpgradeFitsAllowance(RunicItems, new SelectedFactionUpgrade(smiting.Name, 35)));
+        Assert.True(thane.UpgradeFitsAllowance(RunicItems, new SelectedFactionUpgrade(fury.Name, 15, false, 1)));
+    }
+
     // ─── wap-v2: runes as ordinary magic items ───────────────────
 
     private static async Task<List<MagicItemEntry>> WapV2DwarfItems() =>
