@@ -3,12 +3,19 @@ name: Docker image
 # Pull requests: build the image only (checks the Dockerfile still builds).
 # main:          build and push ghcr.io/<owner>/<repo>:latest and :sha-<short>.
 # v* tags:       also push :<version> and :<major>.<minor> (e.g. v1.2.0 -> 1.2.0, 1.2).
+# Manual run:    as above for the branch it runs on, optionally exporting the WAR
+#                data from another warhammer-armies-revamped ref than the pin.
 on:
   push:
     branches: [main]
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      war_ref:
+        description: warhammer-armies-revamped branch, tag or full commit SHA to export the WAR data from (empty = the Dockerfile's pin)
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -57,6 +64,9 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
+          # Only a manual run with war_ref set overrides the pin; an empty
+          # WAR_REF would not fall back to it.
+          build-args: ${{ inputs.war_ref && format('WAR_REF={0}', inputs.war_ref) || '' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha

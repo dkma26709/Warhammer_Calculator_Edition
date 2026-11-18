@@ -1,11 +1,13 @@
-# The image is built from Warhammer/ (the app) and docker/ (nginx config)
-# only. Everything else is excluded so tests, tools, docs and local build
+# The image is built from Warhammer/ (the app), Warhammer.Tests/ (run against
+# the exported data before publishing) and docker/ (nginx config, export
+# helper) only. Everything else is excluded so tools, docs and local build
 # output never enter the build context or bust the layer cache.
 *
 !Warhammer/
+!Warhammer.Tests/
 !docker/
 
-Warhammer/bin/
-Warhammer/obj/
+**/bin/
+**/obj/
 Warhammer/docs/
 **/*.user
