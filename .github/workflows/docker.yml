@@ -1,10 +1,13 @@
 name: Docker image
 
-# Pull requests: build the image only (checks the Dockerfile still builds).
+# Pull requests: build and test the image only.
 # main:          build and push ghcr.io/<owner>/<repo>:latest and :sha-<short>.
-# v* tags:       also push :<version> and :<major>.<minor> (e.g. v1.2.0 -> 1.2.0, 1.2).
-# Manual run:    as above for the branch it runs on, optionally exporting the WAR
-#                data from another warhammer-armies-revamped ref than the pin.
+# v* tags:       push :<version> and :<major>.<minor> (e.g. v1.2.0 -> 1.2.0, 1.2);
+#                never :latest, which stays with main.
+# Manual run:    on main or a v* tag, rebuilds and pushes as above. With war_ref
+#                set, or on any other branch, it builds and tests only: an image
+#                whose data is not the pinned data is never pushed, so :latest and
+#                :sha-<short> always mean the repo's own data.
 on:
   push:
     branches: [main]
@@ -13,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       war_ref:
-        description: warhammer-armies-revamped branch, tag or full commit SHA to export the WAR data from (empty = the Dockerfile's pin)
+        description: Build and test only, exporting the WAR data from this warhammer-armies-revamped branch, tag or full commit SHA instead of the Dockerfile's pin
         required: false
         default: ''
 
@@ -21,36 +24,43 @@ permissions:
   contents: read
   packages: write
 
+# Pull requests drop superseded runs; pushes queue, so every merge's image is built.
 concurrency:
   group: docker-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  PUSH: ${{ github.event_name != 'pull_request' && !inputs.war_ref && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
 
 jobs:
   image:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Log in to GHCR
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        if: env.PUSH == 'true'
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Lowercases the image name (GHCR requires it) and derives the tags.
+      # latest=false: a version tag must not move :latest (say, a hotfix tag on
+      # an older commit); only the explicit main rule below sets it.
       - name: Image tags
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/${{ github.repository }}
+          flavor: latest=false
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha
@@ -59,13 +69,13 @@ jobs:
             type=ref,event=pr
 
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
-          # Only a manual run with war_ref set overrides the pin; an empty
-          # WAR_REF would not fall back to it.
+          push: ${{ env.PUSH == 'true' }}
+          # Only a manual run with war_ref set passes WAR_REF; otherwise the
+          # Dockerfile exports at its pin.
           build-args: ${{ inputs.war_ref && format('WAR_REF={0}', inputs.war_ref) || '' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

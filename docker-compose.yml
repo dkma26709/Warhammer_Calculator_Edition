@@ -4,11 +4,13 @@
 #          only this file is needed on the server, not the source)
 #
 # The WAR army data is exported from warhammer-armies-revamped during the
-# build, at the commit the Dockerfile pins. Build from another branch, tag or
-# full commit SHA with WAR_REF, e.g.
-#   WAR_REF=main docker compose up --build
-# The host port defaults to 8080; override it with WARHAMMER_PORT, e.g.
-#   WARHAMMER_PORT=80 docker compose up -d
+# build, at the commit the Dockerfile pins (WAR_PIN). To build from another
+# branch, tag or full commit SHA, set WAR_REF (PowerShell / bash):
+#   $env:WAR_REF = "<ref>"; docker compose up --build
+#   WAR_REF=<ref> docker compose up --build
+# The image's tests run against that data, so a ref this app does not support
+# yet fails the build.
+# The host port defaults to 8080; override it with WARHAMMER_PORT the same way.
 services:
   web:
     image: ghcr.io/dkma26709/warhammer_calculator_edition:latest
