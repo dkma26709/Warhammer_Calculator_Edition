@@ -1,0 +1,14 @@
+# Local:  docker compose up --build        -> http://localhost:8080
+# Server: docker compose pull && docker compose up -d
+#         (uses the image the "Docker image" workflow publishes to GHCR;
+#          only this file is needed on the server, not the source)
+#
+# The host port defaults to 8080; override it with WARHAMMER_PORT, e.g.
+#   WARHAMMER_PORT=80 docker compose up -d
+services:
+  web:
+    image: ghcr.io/dkma26709/warhammer_calculator_edition:latest
+    build: .
+    ports:
+      - "${WARHAMMER_PORT:-8080}:80"
+    restart: unless-stopped

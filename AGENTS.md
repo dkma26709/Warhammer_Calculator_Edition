@@ -33,6 +33,17 @@ dotnet build Warhammer/Warhammer.sln
 - CI: `.github/workflows/test.yml` builds and tests on pushes to `main` and PRs.
 - `CombatEngine.Simulate`/`SimulateMultiRound` accept an optional `seed` parameter for reproducible runs.
 
+### Docker
+
+```bash
+docker compose up --build           # build locally, then open http://localhost:8080/
+```
+
+- `Dockerfile` publishes `Warhammer/` with the .NET 10 SDK and serves the static output from `nginx:stable-alpine`; `docker/nginx.conf` sends extension-less paths (client-side routes) to `index.html`, 404s missing files, serves the precompressed `.gz` assets and marks every response `no-cache` so a new deploy is picked up at once.
+- `.dockerignore` whitelists `Warhammer/` and `docker/` only — tests, tools and docs are not in the build context.
+- `.github/workflows/docker.yml` builds the image (linux/amd64 + arm64) on every PR without pushing, and on `main` pushes `ghcr.io/<owner>/<repo>:latest` plus `:sha-<short>`; `v*` tags add `:<version>` and `:<major>.<minor>`.
+- On a server only `docker-compose.yml` is needed: `docker compose pull && docker compose up -d`. A private GHCR package needs `docker login ghcr.io` with a token that has `read:packages` first. `WARHAMMER_PORT` overrides the host port (default 8080).
+
 ## Repo Layout
 
 ```
