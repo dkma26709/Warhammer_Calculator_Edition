@@ -221,6 +221,22 @@ public class MagicItemAllowanceSharingTests
     }
 
     [Fact]
+    public async Task ScarVeteran_SpawningsSpendTheAllowance_AndStopAtTwo()
+    {
+        const string spawnings = "blessed_spawnings";
+        var veteran = await WarUnitWith(FactionKey.Lizardmen, "Scar-Veteran", spawnings,
+            "BLESSED SPAWNING OF CHOTEC", "BLESSED SPAWNING OF TEPOK");
+        Assert.Equal(30, veteran.MagicItemAllowanceRemaining);
+        var third = await PickFor(veteran, spawnings, "BLESSED SPAWNING OF ITZL");
+
+        // The limit refuses the third, not the allowance: it would fit the 30 left, and the picks stay as they are.
+        Assert.Null(veteran.PicksAfterTick(spawnings, third));
+        Assert.True(veteran.UpgradeFitsAllowance(spawnings, third));
+        Assert.False(veteran.ToggleFactionUpgrade(spawnings, third, true));
+        Assert.Equal(30, veteran.MagicItemAllowanceRemaining);
+    }
+
+    [Fact]
     public async Task Knights_AnyKnightlyOrderFits()
     {
         var knights = await WarUnitWith(FactionKey.TheEmpire, "KNIGHTS", "knightly_orders", "KNIGHTS PANTHER");

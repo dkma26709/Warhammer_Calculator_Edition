@@ -130,8 +130,9 @@
             : option.PerModel == true
                 ? $"+{option.Points:F0} pt/model each"
                 : $"+{option.Points:F0} pts each";
+        var max = Configuration.MaxPicks(category);
         // Still checkboxes, so the one pick can be unticked to none.
-        var choiceHint = Configuration.IsSingleChoiceCategory(category) ? "choose one, " : "";
+        var choiceHint = max switch { 1 => "choose one, ", > 1 => $"choose up to {max}, ", _ => "" };
         var allowance = Configuration.ResolvedUnit.MagicItemAllowance;
         // These picks spend the magic item allowance, so the box says how much of it is left.
         var allowanceLeft = UnitConfiguration.SharesMagicItemAllowance(option)
@@ -168,9 +169,10 @@
             if (resolved is null && !checkedNow) continue;
             var price = resolved ?? new UpgradePrice(0, false);
             var inputId = _id + "-fup-" + entry.Name.GetHashCode();
-            // A ticked pick always stays enabled so it can be unticked.
-            var fits = checkedNow || Configuration.UpgradeFitsAllowance(
-                category, new SelectedFactionUpgrade(entry.Name, price.Points, price.PerModel));
+            var pick = new SelectedFactionUpgrade(entry.Name, price.Points, price.PerModel);
+            // A ticked entry stays enabled so it can always be unticked.
+            var canTick = checkedNow || Configuration.PicksAfterTick(category, pick) is not null;
+            var fits = checkedNow || (canTick && Configuration.UpgradeFitsAllowance(category, pick));
 
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "form-check small");
@@ -182,7 +184,7 @@
             builder.AddAttribute(seq++, "checked", checkedNow);
             // false and null omit the attribute, so a change in fit does not shift the sequence numbers.
             builder.AddAttribute(seq++, "disabled", !fits);
-            builder.AddAttribute(seq++, "title", fits ? null : overBudget);
+            builder.AddAttribute(seq++, "title", !canTick ? $"Up to {max} {label}" : fits ? null : overBudget);
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
                     this, async e => await OnFactionUpgradeToggled(
