@@ -161,7 +161,7 @@ public class ArmyListSerializer
                 continue;
             }
 
-            var cfg = ApplyUnitDto(unit, entry, upgradeCosts);
+            var cfg = ApplyUnitDto(unit, entry, upgradeCosts, warnings);
             list.Units.Add(cfg);
         }
 
@@ -169,12 +169,13 @@ public class ArmyListSerializer
     }
 
     /// <summary>
-    /// Upgrade costs per category, keyed by upgrade name. Saved lists store only the names,
-    /// so costs are re-resolved from faction data on import.
+    /// Upgrade points text per category, keyed by upgrade name. Saved lists store only the names,
+    /// so costs are re-resolved from faction data on import — per unit, since a tiered price
+    /// depends on the troop type taking it.
     /// </summary>
-    private async Task<Dictionary<string, Dictionary<string, double>>> LoadFactionUpgradeCostsAsync(FactionKey faction)
+    private async Task<Dictionary<string, Dictionary<string, string>>> LoadFactionUpgradeCostsAsync(FactionKey faction)
     {
-        var costs = new Dictionary<string, Dictionary<string, double>>();
+        var costs = new Dictionary<string, Dictionary<string, string>>();
         FactionExtrasData extras;
         try
         {
@@ -187,9 +188,9 @@ public class ArmyListSerializer
 
         foreach (var (category, entries) in extras.FactionUpgrades)
         {
-            var byName = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);
+            var byName = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var entry in entries)
-                byName[entry.Name] = double.TryParse(entry.Points, out var points) ? points : 0;
+                byName[entry.Name] = entry.Points;
             costs[category] = byName;
         }
 
@@ -199,7 +200,8 @@ public class ArmyListSerializer
     private static UnitConfiguration ApplyUnitDto(
         Unit unit,
         ArmyListUnitDto dto,
-        Dictionary<string, Dictionary<string, double>> upgradeCosts)
+        Dictionary<string, Dictionary<string, string>> upgradeCosts,
+        List<string> warnings)
     {
         var cfg = new UnitConfiguration(unit)
         {
@@ -235,12 +237,28 @@ public class ArmyListSerializer
         foreach (var p in dto.CommandUpgrades ?? [])
             cfg.SelectedCommandUpgrades.Add(new CommandUpgradePick(p.OptionIndex, p.SubOptionIndex, p.ChoiceIndex));
 
-        foreach (var (category, names) in dto.SelectedFactionUpgrades)
+        foreach (var (category, saved) in dto.SelectedFactionUpgrades)
         {
+            var names = saved;
+            // A hand-edited or older file can hold more picks than the book allows.
+            if (cfg.MaxPicks(category) is { } max && names.Count > max)
+            {
+                names = names.Take(max).ToList();
+                var kept = string.Join(", ", names.Select(n => $"'{n}'"));
+                var dropped = string.Join(", ", saved.Skip(max).Select(n => $"'{n}'"));
+                warnings.Add($"Unit '{cfg.DisplayName}' may take only {(max == 1 ? "one" : max.ToString())} {category.Replace('_', ' ')} — kept {kept}, dropped {dropped}.");
+            }
+
             upgradeCosts.TryGetValue(category, out var byName);
             cfg.Loadout.SelectedFactionUpgrades[category] = names
-                .Select(name => new SelectedFactionUpgrade(
-                    name, byName is not null && byName.TryGetValue(name, out var points) ? points : 0))
+                .Select(name =>
+                {
+                    // An unknown name, or one this troop type has no tier for, imports free.
+                    var price = byName is not null && byName.TryGetValue(name, out var text)
+                        ? cfg.ResolveUpgradePrice(text) ?? default
+                        : default;
+                    return new SelectedFactionUpgrade(name, price.Points, price.PerModel);
+                })
                 .ToList();
         }
 

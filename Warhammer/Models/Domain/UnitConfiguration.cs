@@ -128,8 +128,8 @@ public class UnitConfiguration
     /// <summary>
     /// Aggregate cost for faction upgrade selections. Rank-and-file units pay the rate on
     /// their own option (e.g. blessed_spawning at +2pts/model × spawnings × model count);
-    /// characters take theirs through a shared magic item allowance, so their option carries
-    /// no rate and each pick costs the points listed against it in the faction's extras.
+    /// an option with no rate charges each pick the points listed against it in the faction's
+    /// extras — flat, or per model where a tiered price (Knightly Orders) says so.
     /// </summary>
     public double FactionUpgradeCost
     {
@@ -144,7 +144,7 @@ public class UnitConfiguration
 
                 if (option.Points is null)
                 {
-                    total += picks.Sum(p => p.PointsCost);
+                    total += picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
                     continue;
                 }
 
@@ -154,6 +154,13 @@ public class UnitConfiguration
             return total;
         }
     }
+
+    /// <summary>
+    /// What an upgrade's points text from the faction's extras costs this unit, or null when
+    /// the text is tiered by troop type and names no tier for this one.
+    /// </summary>
+    public UpgradePrice? ResolveUpgradePrice(string? pointsText) =>
+        UpgradePrice.Resolve(pointsText, TroopType, ResolvedUnit.Category);
 
     /// <summary>
     /// Resolve the factionUpgrades category an option offers. Options name their own category;
@@ -170,6 +177,83 @@ public class UnitConfiguration
         OptionType.BlessedSpawning => "blessed_spawnings",
         _ => null,
     };
+
+    // "take" or "upgraded to" must lead, so "up to a total of 100 points" does not count.
+    private static readonly Regex SingleChoiceWording =
+        new(@"\b(?:take|upgraded to)\s+(?:a|an|one)\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>
+    /// True when the option's own book line offers one upgrade of its family ("May be upgraded
+    /// to a Knightly Order", "may take one Saga") rather than any number of them ("may take
+    /// Gifts of Khaine and/or Magic Items").
+    /// </summary>
+    public static bool IsSingleChoice(UnitOption option) =>
+        option.Raw is not null && SingleChoiceWording.IsMatch(option.Raw);
+
+    /// <summary>
+    /// The most picks this unit may take from <paramref name="category"/>, or null when unlimited:
+    /// a limit the army book's chapter intro sets, else one when an option offering the category
+    /// reads as one of its family (<see cref="IsSingleChoice"/>).
+    /// </summary>
+    public int? MaxPicks(string category) =>
+        ChapterIntroLimit(category, ResolvedUnit)
+        ?? (ResolvedUnit.Options.Any(o => FactionUpgradeCategoryFor(o) == category && IsSingleChoice(o)) ? 1 : null);
+
+    // The export drops chapter intros, so these limits are hard-coded from the books.
+    private static int? ChapterIntroLimit(string category, Unit unit) => category switch
+    {
+        // "Lords may take up to 3 Blessed Spawnings. Heroes, Core and Special units may take up to 2."
+        "blessed_spawnings" => unit.Category switch
+        {
+            UnitCategory.Lords => 3,
+            // WAR and wap-v3 merge Lords and Heroes; the book's Lords carry 100 pts of magic items, its Heroes 50.
+            UnitCategory.Characters => unit.MagicItemAllowance >= 100 ? 3 : 2,
+            UnitCategory.Heroes or UnitCategory.Core or UnitCategory.Special => 2,
+            _ => null,
+        },
+        _ => null,
+    };
+
+    /// <summary>
+    /// The picks a tick of <paramref name="pick"/> would leave in <paramref name="category"/>, or
+    /// null when the tick is refused because a limit above one is already full. Re-ticking a
+    /// name already taken replaces it in place. Never changes the loadout.
+    /// </summary>
+    public IReadOnlyList<SelectedFactionUpgrade>? PicksAfterTick(string category, SelectedFactionUpgrade pick)
+    {
+        List<SelectedFactionUpgrade> current =
+            Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) ? picks : [];
+
+        if (current.Any(p => p.Name == pick.Name))
+            return current.Select(p => p.Name == pick.Name ? pick : p).ToList();
+
+        var max = MaxPicks(category);
+        if (max == 1) return [pick];
+        if (max is null || current.Count < max) return [.. current, pick];
+        return null;
+    }
+
+    /// <summary>
+    /// Tick or untick a faction upgrade, returning whether the loadout now matches the request.
+    /// At a limit of one a tick replaces the current pick; at a higher limit a tick on a full
+    /// category is refused and leaves the picks unchanged. Unticking removes that pick.
+    /// </summary>
+    public bool ToggleFactionUpgrade(string category, SelectedFactionUpgrade pick, bool isChecked)
+    {
+        if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks))
+            Loadout.SelectedFactionUpgrades[category] = picks = [];
+
+        if (!isChecked)
+        {
+            picks.RemoveAll(p => p.Name == pick.Name);
+            return true;
+        }
+
+        if (PicksAfterTick(category, pick) is not { } after) return false;
+        picks.Clear();
+        picks.AddRange(after);
+        return true;
+    }
 
     // ─── Parsed base data ────────────────────────────────────────
 

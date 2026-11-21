@@ -503,6 +503,153 @@ public class ArmyListSerializerTests
     }
 
     [Fact]
+    public async Task DeserializeAsync_FactionUpgrades_TieredPoints_ResolveForTheUnitsTroopType()
+    {
+        // A Knightly Order's price depends on who takes it; cavalry pay the per-model line.
+        var knights = TestHelpers.MakeUnit(name: "Knights", troopType: "Cavalry", points: 20,
+            options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = "knightly_orders" }]);
+        var repo = new StubRepo(knights)
+        {
+            Extras = new FactionExtrasData
+            {
+                FactionUpgrades = new Dictionary<string, List<UpgradeEntry>>
+                {
+                    ["knightly_orders"] =
+                    [
+                        new UpgradeEntry
+                        {
+                            Name = "Knights Of The Twin-Tailed Orb",
+                            Points = "Characters 15 points\nCavalry 2 points per model",
+                        },
+                    ],
+                },
+            },
+        };
+        var serializer = new ArmyListSerializer(repo, WapV2System());
+        var json = """
+        {
+          "schema": "wap-army-list/v1",
+          "faction": "the-empire",
+          "pointsTarget": 2000,
+          "name": "Orb",
+          "units": [
+            {
+              "unitName": "Knights",
+              "modelCount": 5,
+              "selectedFactionUpgrades": { "knightly_orders": ["Knights Of The Twin-Tailed Orb"] }
+            }
+          ]
+        }
+        """;
+
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.True(result.Success);
+        var unit = result.List!.Units[0];
+        var pick = Assert.Single(unit.Loadout.SelectedFactionUpgrades["knightly_orders"]);
+        Assert.Equal(2, pick.PointsCost);
+        Assert.True(pick.PerModel);
+        Assert.Equal(10, unit.FactionUpgradeCost);
+    }
+
+    /// <summary>A unit offering <paramref name="category"/> through a book line worded <paramref name="raw"/>.</summary>
+    private static ArmyListSerializer SerializerForUpgradeLine(string category, string raw)
+    {
+        var unit = TestHelpers.MakeUnit(name: "Knights", troopType: "Cavalry", points: 20,
+            options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = category, Raw = raw }]);
+        var repo = new StubRepo(unit)
+        {
+            Extras = new FactionExtrasData
+            {
+                FactionUpgrades = new Dictionary<string, List<UpgradeEntry>>
+                {
+                    [category] =
+                    [
+                        new UpgradeEntry { Name = "First", Points = "5" },
+                        new UpgradeEntry { Name = "Second", Points = "10" },
+                        new UpgradeEntry { Name = "Third", Points = "15" },
+                    ],
+                },
+            },
+        };
+        return new ArmyListSerializer(repo, WapV2System());
+    }
+
+    /// <summary>A list saving <paramref name="picks"/> (by default First and Second) on the stub unit.</summary>
+    private static string ListWithUpgrades(string category, params string[] picks) => $$"""
+        {
+          "schema": "wap-army-list/v1",
+          "faction": "the-empire",
+          "pointsTarget": 2000,
+          "name": "Picks",
+          "units": [
+            {
+              "unitName": "Knights",
+              "modelCount": 5,
+              "selectedFactionUpgrades": { "{{category}}": [{{string.Join(", ", (picks.Length > 0 ? picks : ["First", "Second"]).Select(p => $"\"{p}\""))}}] }
+            }
+          ]
+        }
+        """;
+
+    [Fact]
+    public async Task DeserializeAsync_SingleChoiceCategory_KeepsTheFirstPick_AndWarns()
+    {
+        var serializer = SerializerForUpgradeLine("knightly_orders", "May be upgraded to a Knightly Order no points limit");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("knightly_orders"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["knightly_orders"]);
+        Assert.Equal("First", pick.Name);
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("Knights", warning);
+        Assert.Contains("knightly orders", warning);
+        Assert.Contains("'Second'", warning);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_MultiPickCategory_KeepsEveryPick_WithoutWarning()
+    {
+        var serializer = SerializerForUpgradeLine("quirks_of_character", "May take Quirks of Character no points limit");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("quirks_of_character"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["quirks_of_character"].Select(p => p.Name));
+        Assert.Empty(result.Warnings);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_ThreeSpawningsOnACoreUnit_KeepsTheFirstTwo_AndWarns()
+    {
+        var serializer = SerializerForUpgradeLine("blessed_spawnings", "May take a Blessed Spawning +1 point/model");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("blessed_spawnings", "First", "Second", "Third"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"].Select(p => p.Name));
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("may take only 2 blessed spawnings", warning);
+        Assert.Contains("dropped 'Third'", warning);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_TwoSpawningsOnACoreUnit_KeepsBoth_WithoutWarning()
+    {
+        var serializer = SerializerForUpgradeLine("blessed_spawnings", "May take a Blessed Spawning +1 point/model");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("blessed_spawnings", "First", "Second"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"].Select(p => p.Name));
+        Assert.Empty(result.Warnings);
+    }
+
+    [Fact]
     public void Serialize_FactionUpgrades_WritesNamesOnly()
     {
         var unit = TestHelpers.MakeUnit(name: "Warriors", points: 8);

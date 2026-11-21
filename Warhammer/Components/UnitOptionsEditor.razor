@@ -110,10 +110,6 @@
         return FactionExtras.FactionUpgrades.TryGetValue(category, out var entries) && entries.Count > 0;
     }
 
-    /// <summary>Points listed against an upgrade entry; non-numeric text means no cost of its own.</summary>
-    private static double EntryPoints(UpgradeEntry entry) =>
-        double.TryParse(entry.Points, out var points) ? points : 0;
-
     private void RenderFactionUpgradeMultiSelect(
         Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder,
         UnitOption option)
@@ -134,21 +130,30 @@
             : option.PerModel == true
                 ? $"+{option.Points:F0} pt/model each"
                 : $"+{option.Points:F0} pts each";
+        var max = Configuration.MaxPicks(category);
+        // Still checkboxes, so the one pick can be unticked to none.
+        var choiceHint = max switch { 1 => "choose one, ", > 1 => $"choose up to {max}, ", _ => "" };
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
 
         builder.OpenElement(2, "label");
         builder.AddAttribute(3, "class", "form-label small text-body-secondary");
-        builder.AddContent(4, $"{label} ({costSuffix})");
+        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix})");
         builder.CloseElement();
 
         int seq = 10;
         foreach (var entry in entries)
         {
             var checkedNow = selected.Any(p => p.Name == entry.Name);
+            var resolved = Configuration.ResolveUpgradePrice(entry.Points);
+            // Not offered to this troop type, but a pick already made stays listed so it can be unticked.
+            if (resolved is null && !checkedNow) continue;
+            var price = resolved ?? new UpgradePrice(0, false);
+            // A ticked entry stays enabled so it can always be unticked.
+            var canTick = checkedNow || Configuration.PicksAfterTick(
+                category, new SelectedFactionUpgrade(entry.Name, price.Points, price.PerModel)) is not null;
             var inputId = _id + "-fup-" + entry.Name.GetHashCode();
-            var entryPoints = EntryPoints(entry);
 
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "form-check small");
@@ -158,17 +163,25 @@
             builder.AddAttribute(seq++, "type", "checkbox");
             builder.AddAttribute(seq++, "id", inputId);
             builder.AddAttribute(seq++, "checked", checkedNow);
+            // false and null omit the attribute, so a change in fit does not shift the sequence numbers.
+            builder.AddAttribute(seq++, "disabled", !canTick);
+            builder.AddAttribute(seq++, "title", canTick ? null : $"Up to {max} {label}");
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
                     this, async e => await OnFactionUpgradeToggled(
-                        category, entry.Name, entryPoints, (bool)(e.Value ?? false))));
+                        category, entry.Name, price, (bool)(e.Value ?? false))));
             builder.CloseElement();
 
             builder.OpenElement(seq++, "label");
-            builder.AddAttribute(seq++, "class", "form-check-label");
+            builder.AddAttribute(seq++, "class", canTick ? "form-check-label" : "form-check-label text-body-secondary");
             builder.AddAttribute(seq++, "for", inputId);
             builder.AddContent(seq++, entry.Name);
-            if (!string.IsNullOrEmpty(entry.Points) && entry.Points.Any(char.IsDigit))
+            if (UpgradePrice.IsTiered(entry.Points))
+            {
+                // The price for this unit's tier, not the whole multi-line table.
+                if (resolved is not null) builder.AddContent(seq++, $" ({price.Label})");
+            }
+            else if (!string.IsNullOrEmpty(entry.Points) && entry.Points.Any(char.IsDigit))
             {
                 builder.AddContent(seq++, $" ({entry.Points} pts)");
             }
@@ -179,18 +192,11 @@
         builder.CloseElement();
     }
 
-    private async Task OnFactionUpgradeToggled(string category, string name, double points, bool isChecked)
+    private async Task OnFactionUpgradeToggled(string category, string name, UpgradePrice price, bool isChecked)
     {
         if (Configuration is null) return;
-        if (!Configuration.Loadout.SelectedFactionUpgrades.TryGetValue(category, out var list))
-        {
-            list = new List<SelectedFactionUpgrade>();
-            Configuration.Loadout.SelectedFactionUpgrades[category] = list;
-        }
-
-        if (isChecked && list.All(p => p.Name != name)) list.Add(new SelectedFactionUpgrade(name, points));
-        else if (!isChecked) list.RemoveAll(p => p.Name == name);
-
+        Configuration.ToggleFactionUpgrade(
+            category, new SelectedFactionUpgrade(name, price.Points, price.PerModel), isChecked);
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
 
