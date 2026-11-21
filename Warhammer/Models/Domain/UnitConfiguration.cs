@@ -190,15 +190,55 @@ public class UnitConfiguration
     public static bool IsSingleChoice(UnitOption option) =>
         option.Raw is not null && SingleChoiceWording.IsMatch(option.Raw);
 
-    /// <summary>True when any option of this unit offering <paramref name="category"/> allows only one pick.</summary>
-    public bool IsSingleChoiceCategory(string category) =>
-        ResolvedUnit.Options.Any(o => FactionUpgradeCategoryFor(o) == category && IsSingleChoice(o));
+    /// <summary>
+    /// The most picks this unit may take from <paramref name="category"/>, or null when unlimited:
+    /// a limit the army book's chapter intro sets, else one when an option offering the category
+    /// reads as one of its family (<see cref="IsSingleChoice"/>).
+    /// </summary>
+    public int? MaxPicks(string category) =>
+        ChapterIntroLimit(category, ResolvedUnit)
+        ?? (ResolvedUnit.Options.Any(o => FactionUpgradeCategoryFor(o) == category && IsSingleChoice(o)) ? 1 : null);
+
+    // The export drops chapter intros, so these limits are hard-coded from the books.
+    private static int? ChapterIntroLimit(string category, Unit unit) => category switch
+    {
+        // "Lords may take up to 3 Blessed Spawnings. Heroes, Core and Special units may take up to 2."
+        "blessed_spawnings" => unit.Category switch
+        {
+            UnitCategory.Lords => 3,
+            // WAR and wap-v3 merge Lords and Heroes; the book's Lords carry 100 pts of magic items, its Heroes 50.
+            UnitCategory.Characters => unit.MagicItemAllowance >= 100 ? 3 : 2,
+            UnitCategory.Heroes or UnitCategory.Core or UnitCategory.Special => 2,
+            _ => null,
+        },
+        _ => null,
+    };
 
     /// <summary>
-    /// Tick or untick a faction upgrade. In a single-choice category a tick replaces the
-    /// current pick; elsewhere picks accumulate. Unticking removes that pick either way.
+    /// The picks a tick of <paramref name="pick"/> would leave in <paramref name="category"/>, or
+    /// null when the tick is refused because a limit above one is already full. Re-ticking a
+    /// name already taken replaces it in place. Never changes the loadout.
     /// </summary>
-    public void ToggleFactionUpgrade(string category, SelectedFactionUpgrade pick, bool isChecked)
+    public IReadOnlyList<SelectedFactionUpgrade>? PicksAfterTick(string category, SelectedFactionUpgrade pick)
+    {
+        List<SelectedFactionUpgrade> current =
+            Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) ? picks : [];
+
+        if (current.Any(p => p.Name == pick.Name))
+            return current.Select(p => p.Name == pick.Name ? pick : p).ToList();
+
+        var max = MaxPicks(category);
+        if (max == 1) return [pick];
+        if (max is null || current.Count < max) return [.. current, pick];
+        return null;
+    }
+
+    /// <summary>
+    /// Tick or untick a faction upgrade, returning whether the loadout now matches the request.
+    /// At a limit of one a tick replaces the current pick; at a higher limit a tick on a full
+    /// category is refused and leaves the picks unchanged. Unticking removes that pick.
+    /// </summary>
+    public bool ToggleFactionUpgrade(string category, SelectedFactionUpgrade pick, bool isChecked)
     {
         if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks))
             Loadout.SelectedFactionUpgrades[category] = picks = [];
@@ -206,16 +246,13 @@ public class UnitConfiguration
         if (!isChecked)
         {
             picks.RemoveAll(p => p.Name == pick.Name);
+            return true;
         }
-        else if (IsSingleChoiceCategory(category))
-        {
-            picks.Clear();
-            picks.Add(pick);
-        }
-        else if (picks.All(p => p.Name != pick.Name))
-        {
-            picks.Add(pick);
-        }
+
+        if (PicksAfterTick(category, pick) is not { } after) return false;
+        picks.Clear();
+        picks.AddRange(after);
+        return true;
     }
 
     // ─── Parsed base data ────────────────────────────────────────

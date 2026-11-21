@@ -567,6 +567,7 @@ public class ArmyListSerializerTests
                     [
                         new UpgradeEntry { Name = "First", Points = "5" },
                         new UpgradeEntry { Name = "Second", Points = "10" },
+                        new UpgradeEntry { Name = "Third", Points = "15" },
                     ],
                 },
             },
@@ -574,7 +575,8 @@ public class ArmyListSerializerTests
         return new ArmyListSerializer(repo, WapV2System());
     }
 
-    private static string ListWithUpgrades(string category) => $$"""
+    /// <summary>A list saving <paramref name="picks"/> (by default First and Second) on the stub unit.</summary>
+    private static string ListWithUpgrades(string category, params string[] picks) => $$"""
         {
           "schema": "wap-army-list/v1",
           "faction": "the-empire",
@@ -584,7 +586,7 @@ public class ArmyListSerializerTests
             {
               "unitName": "Knights",
               "modelCount": 5,
-              "selectedFactionUpgrades": { "{{category}}": ["First", "Second"] }
+              "selectedFactionUpgrades": { "{{category}}": [{{string.Join(", ", (picks.Length > 0 ? picks : ["First", "Second"]).Select(p => $"\"{p}\""))}}] }
             }
           ]
         }
@@ -616,6 +618,34 @@ public class ArmyListSerializerTests
         Assert.True(result.Success);
         Assert.Equal(["First", "Second"],
             result.List!.Units[0].Loadout.SelectedFactionUpgrades["quirks_of_character"].Select(p => p.Name));
+        Assert.Empty(result.Warnings);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_ThreeSpawningsOnACoreUnit_KeepsTheFirstTwo_AndWarns()
+    {
+        var serializer = SerializerForUpgradeLine("blessed_spawnings", "May take a Blessed Spawning +1 point/model");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("blessed_spawnings", "First", "Second", "Third"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"].Select(p => p.Name));
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("may take only 2 blessed spawnings", warning);
+        Assert.Contains("dropped 'Third'", warning);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_TwoSpawningsOnACoreUnit_KeepsBoth_WithoutWarning()
+    {
+        var serializer = SerializerForUpgradeLine("blessed_spawnings", "May take a Blessed Spawning +1 point/model");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("blessed_spawnings", "First", "Second"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"].Select(p => p.Name));
         Assert.Empty(result.Warnings);
     }
 

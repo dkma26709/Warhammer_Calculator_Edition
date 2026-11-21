@@ -240,12 +240,13 @@ public class ArmyListSerializer
         foreach (var (category, saved) in dto.SelectedFactionUpgrades)
         {
             var names = saved;
-            // A hand-edited or older file can hold several picks where the book allows one.
-            if (names.Count > 1 && cfg.IsSingleChoiceCategory(category))
+            // A hand-edited or older file can hold more picks than the book allows.
+            if (cfg.MaxPicks(category) is { } max && names.Count > max)
             {
-                names = names.Take(1).ToList();
-                var dropped = string.Join(", ", saved.Skip(1).Select(n => $"'{n}'"));
-                warnings.Add($"Unit '{cfg.DisplayName}' may take only one {category.Replace('_', ' ')} — kept '{names[0]}', dropped {dropped}.");
+                names = names.Take(max).ToList();
+                var kept = string.Join(", ", names.Select(n => $"'{n}'"));
+                var dropped = string.Join(", ", saved.Skip(max).Select(n => $"'{n}'"));
+                warnings.Add($"Unit '{cfg.DisplayName}' may take only {(max == 1 ? "one" : max.ToString())} {category.Replace('_', ' ')} — kept {kept}, dropped {dropped}.");
             }
 
             upgradeCosts.TryGetValue(category, out var byName);
