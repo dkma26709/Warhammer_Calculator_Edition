@@ -116,6 +116,7 @@ public class ArmyListValidator
         }
 
         CheckMagicItems(issues, list);
+        CheckFactionUpgradeLimits(issues, list);
 
         foreach (var group in list.Units.GroupBy(u => u.ResolvedUnit.Name))
         {
@@ -156,47 +157,49 @@ public class ArmyListValidator
     }
 
     /// <summary>
-    /// Magic item rules: an entry may spend up to the allowance its army book prints, and no
-    /// model may hold two items from one of the six printed categories. Dwarf runes are exempt
-    /// from that limit — up to three go on a single item — but no master rune may be repeated
-    /// across the army. Other duplicates are only a warning: the books exempt some items, and
-    /// the extracted item lists don't record which.
+    /// Magic item rules: an entry may spend up to the allowance its army book prints, on magic
+    /// items and on the upgrades the same line offers ("Quirks of Character and/or Magic Items
+    /// up to a total of 100 points"), and no model may hold two items from one of the six
+    /// printed categories. Dwarf runes are exempt from that limit — up to three go on a single
+    /// item — but no master rune may be repeated across the army. Other duplicates are only a
+    /// warning: the books exempt some items, and the extracted item lists don't record which.
     /// </summary>
     private static void CheckMagicItems(List<ValidationIssue> issues, ArmyList list)
     {
         foreach (var unit in list.Units)
         {
             string name = unit.DisplayName;
+            int? allowance = unit.ResolvedUnit.MagicItemAllowance;
 
-            if (unit.SelectedMagicItems.Count > 0)
+            if (unit.SelectedMagicItems.Count > 0 && allowance is null)
             {
-                double spent = unit.SelectedMagicItems.Sum(i => i.PointsCost);
-                if (unit.ResolvedUnit.MagicItemAllowance is not int allowance)
-                {
-                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_NOT_ALLOWED",
-                        $"{name} has no magic item allowance but carries " +
-                        $"{unit.SelectedMagicItems.Count} item(s)",
-                        unit));
-                }
-                else if (spent > allowance)
-                {
-                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_OVER_BUDGET",
-                        $"{name} spends {spent:F0} on magic items, over its {allowance} allowance",
-                        unit));
-                }
+                issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_NOT_ALLOWED",
+                    $"{name} has no magic item allowance but carries " +
+                    $"{unit.SelectedMagicItems.Count} item(s)",
+                    unit));
+            }
+            else if (allowance is int cap && unit.MagicItemAllowanceSpent > cap)
+            {
+                var spentOn = unit.AllowanceUpgradeCategories.Select(c => c.Replace('_', ' ')).ToList();
+                if (unit.SelectedMagicItems.Count > 0)
+                    spentOn.Insert(0, "magic items");
+                issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEMS_OVER_BUDGET",
+                    $"{name} spends {unit.MagicItemAllowanceSpent:F0} on {string.Join(" and ", spentOn)}, " +
+                    $"over its {cap} allowance",
+                    unit));
+            }
 
-                foreach (var category in unit.SelectedMagicItems
-                             .Where(i => MagicItemCategories.HasOnePerModelLimit(i.Category))
-                             .GroupBy(i => i.Category)
-                             .Where(g => g.Count() > 1))
-                {
-                    issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEM_CATEGORY_REPEATED",
-                        $"{name} carries {category.Count()} items from " +
-                        $"{MagicItemCategories.Plural(category.Key)} — a model may only have one " +
-                        $"{MagicItemCategories.Singular(category.Key)} " +
-                        $"({string.Join(", ", category.Select(i => i.Name))})",
-                        unit));
-                }
+            foreach (var category in unit.SelectedMagicItems
+                         .Where(i => MagicItemCategories.HasOnePerModelLimit(i.Category))
+                         .GroupBy(i => i.Category)
+                         .Where(g => g.Count() > 1))
+            {
+                issues.Add(new(ValidationSeverity.Error, "MAGIC_ITEM_CATEGORY_REPEATED",
+                    $"{name} carries {category.Count()} items from " +
+                    $"{MagicItemCategories.Plural(category.Key)} — a model may only have one " +
+                    $"{MagicItemCategories.Singular(category.Key)} " +
+                    $"({string.Join(", ", category.Select(i => i.Name))})",
+                    unit));
             }
 
             if (unit.Loadout.SelectedBanner is { } banner)
@@ -236,6 +239,28 @@ public class ArmyListValidator
                 issues.Add(new(ValidationSeverity.Warning, "DUPLICATE_MAGIC_ITEM",
                     $"{repeated} — most magic items may only be taken once per army",
                     group.First().Unit));
+            }
+        }
+    }
+
+    /// <summary>
+    /// An option that prints its own limit ("May take engineering runes up to 50 points") caps what
+    /// the entry spends on that category through it, whether or not the entry has a magic item allowance.
+    /// </summary>
+    private static void CheckFactionUpgradeLimits(List<ValidationIssue> issues, ArmyList list)
+    {
+        foreach (var unit in list.Units)
+        {
+            foreach (var option in unit.ResolvedUnit.Options.Where(UnitConfiguration.HasOwnUpgradeLimit))
+            {
+                int limit = option.PointsLimit!.Value;
+                double spent = unit.FactionUpgradeCostOf(option);
+                if (spent <= limit) continue;
+
+                string category = UnitConfiguration.FactionUpgradeCategoryFor(option)!.Replace('_', ' ');
+                issues.Add(new(ValidationSeverity.Error, "FACTION_UPGRADES_OVER_LIMIT",
+                    $"{unit.DisplayName} spends {spent:F0} on {category}, over its {limit} pt limit",
+                    unit));
             }
         }
     }

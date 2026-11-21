@@ -133,13 +133,31 @@
         var max = Configuration.MaxPicks(category);
         // Still checkboxes, so the one pick can be unticked to none.
         var choiceHint = max switch { 1 => "choose one, ", > 1 => $"choose up to {max}, ", _ => "" };
+        var allowance = Configuration.ResolvedUnit.MagicItemAllowance;
+        // These picks spend the magic item allowance, so the box says how much of it is left.
+        var allowanceLeft = UnitConfiguration.SharesMagicItemAllowance(option)
+                            && Configuration.MagicItemAllowanceRemaining is { } remaining
+            ? remaining >= 0
+                ? $" · {remaining:F0} of {allowance} pts left"
+                : $" · {-remaining:F0} pts over the {allowance} pt allowance"
+            : "";
+        // An option with its own limit ("engineering runes up to 50 points") says how much of that is left.
+        var limitLeft = option.PointsLimit is { } limit
+                        && !UnitConfiguration.SharesMagicItemAllowance(option)
+                        && Configuration.FactionUpgradeLimitRemaining(category) is { } left
+            ? left >= 0
+                ? $" · {left:F0} of {limit} pts left"
+                : $" · {-left:F0} pts over the {limit} pt limit"
+            : "";
+        // A capped option names its own limit; a war machine has no magic item allowance to name.
+        var overBudget = limitLeft.Length > 0 ? $"Over the {option.PointsLimit} pt limit" : $"Over the {allowance} pt allowance";
 
         builder.OpenElement(0, "div");
         builder.AddAttribute(1, "class", "mb-3 border border-secondary rounded p-2");
 
         builder.OpenElement(2, "label");
         builder.AddAttribute(3, "class", "form-label small text-body-secondary");
-        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix})");
+        builder.AddContent(4, $"{label} ({choiceHint}{costSuffix}{allowanceLeft}{limitLeft})");
         builder.CloseElement();
 
         int seq = 10;
@@ -150,10 +168,11 @@
             // Not offered to this troop type, but a pick already made stays listed so it can be unticked.
             if (resolved is null && !checkedNow) continue;
             var price = resolved ?? new UpgradePrice(0, false);
-            // A ticked entry stays enabled so it can always be unticked.
-            var canTick = checkedNow || Configuration.PicksAfterTick(
-                category, new SelectedFactionUpgrade(entry.Name, price.Points, price.PerModel)) is not null;
             var inputId = _id + "-fup-" + entry.Name.GetHashCode();
+            var pick = new SelectedFactionUpgrade(entry.Name, price.Points, price.PerModel);
+            // A ticked entry stays enabled so it can always be unticked.
+            var canTick = checkedNow || Configuration.PicksAfterTick(category, pick) is not null;
+            var fits = checkedNow || (canTick && Configuration.UpgradeFitsAllowance(category, pick));
 
             builder.OpenElement(seq++, "div");
             builder.AddAttribute(seq++, "class", "form-check small");
@@ -164,8 +183,8 @@
             builder.AddAttribute(seq++, "id", inputId);
             builder.AddAttribute(seq++, "checked", checkedNow);
             // false and null omit the attribute, so a change in fit does not shift the sequence numbers.
-            builder.AddAttribute(seq++, "disabled", !canTick);
-            builder.AddAttribute(seq++, "title", canTick ? null : $"Up to {max} {label}");
+            builder.AddAttribute(seq++, "disabled", !fits);
+            builder.AddAttribute(seq++, "title", !canTick ? $"Up to {max} {label}" : fits ? null : overBudget);
             builder.AddAttribute(seq++, "onchange",
                 Microsoft.AspNetCore.Components.EventCallback.Factory.Create<ChangeEventArgs>(
                     this, async e => await OnFactionUpgradeToggled(
@@ -173,7 +192,7 @@
             builder.CloseElement();
 
             builder.OpenElement(seq++, "label");
-            builder.AddAttribute(seq++, "class", canTick ? "form-check-label" : "form-check-label text-body-secondary");
+            builder.AddAttribute(seq++, "class", fits ? "form-check-label" : "form-check-label text-body-secondary");
             builder.AddAttribute(seq++, "for", inputId);
             builder.AddContent(seq++, entry.Name);
             if (UpgradePrice.IsTiered(entry.Points))

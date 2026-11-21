@@ -131,28 +131,109 @@ public class UnitConfiguration
     /// an option with no rate charges each pick the points listed against it in the faction's
     /// extras — flat, or per model where a tiered price (Knightly Orders) says so.
     /// </summary>
-    public double FactionUpgradeCost
+    public double FactionUpgradeCost => ResolvedUnit.Options.Sum(FactionUpgradeCostOf);
+
+    /// <summary>What the picks in the category <paramref name="option"/> offers cost; 0 when it offers none.</summary>
+    public double FactionUpgradeCostOf(UnitOption option)
     {
-        get
-        {
-            double total = 0;
-            foreach (var option in ResolvedUnit.Options)
-            {
-                var category = FactionUpgradeCategoryFor(option);
-                if (category is null) continue;
-                if (!Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks) || picks.Count == 0) continue;
+        var category = FactionUpgradeCategoryFor(option);
+        if (category is null) return 0;
+        return Loadout.SelectedFactionUpgrades.TryGetValue(category, out var picks)
+            ? FactionUpgradeCostOf(option, picks)
+            : 0;
+    }
 
-                if (option.Points is null)
-                {
-                    total += picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
-                    continue;
-                }
+    /// <summary>What <paramref name="picks"/> cost taken through <paramref name="option"/>, whether picked yet or not.</summary>
+    private double FactionUpgradeCostOf(UnitOption option, IReadOnlyCollection<SelectedFactionUpgrade> picks)
+    {
+        if (picks.Count == 0) return 0;
 
-                double multiplier = option.PerModel == true ? ModelCount : 1;
-                total += option.Points.Value * multiplier * picks.Count;
-            }
-            return total;
-        }
+        if (option.Points is null)
+            return picks.Sum(p => p.PerModel ? p.PointsCost * ModelCount : p.PointsCost);
+
+        double multiplier = option.PerModel == true ? ModelCount : 1;
+        return option.Points.Value * multiplier * picks.Count;
+    }
+
+    private static readonly Regex MagicItemsWording =
+        new(@"\bmagic\s+items\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    /// <summary>
+    /// True when the option's book line spends the magic item allowance ("may take Quirks of
+    /// Character and/or Magic Items up to a total of 100 points"), so its upgrades and the
+    /// unit's magic items share one budget.
+    /// </summary>
+    public static bool SharesMagicItemAllowance(UnitOption option) =>
+        option.Raw is not null && MagicItemsWording.IsMatch(option.Raw);
+
+    /// <summary>Faction upgrade points spent out of the magic item allowance; see <see cref="SharesMagicItemAllowance"/>.</summary>
+    public double AllowanceUpgradeCost =>
+        ResolvedUnit.Options.Where(SharesMagicItemAllowance).Sum(FactionUpgradeCostOf);
+
+    /// <summary>The categories whose paid picks count against the magic item allowance, for messages.</summary>
+    public IReadOnlyList<string> AllowanceUpgradeCategories =>
+        ResolvedUnit.Options
+            .Where(o => SharesMagicItemAllowance(o) && FactionUpgradeCostOf(o) > 0)
+            .Select(o => FactionUpgradeCategoryFor(o)!)
+            .Distinct()
+            .ToList();
+
+    /// <summary>Everything charged to the magic item allowance: the items plus <see cref="AllowanceUpgradeCost"/>.</summary>
+    public double MagicItemAllowanceSpent =>
+        SelectedMagicItems.Sum(mi => mi.PointsCost) + AllowanceUpgradeCost;
+
+    /// <summary>The magic item allowance less <see cref="MagicItemAllowanceSpent"/>; null when the unit has no allowance.</summary>
+    public double? MagicItemAllowanceRemaining => ResolvedUnit.MagicItemAllowance - MagicItemAllowanceSpent;
+
+    /// <summary>
+    /// True when the option caps its own upgrades with a points limit ("May take engineering runes
+    /// up to 50 points"), apart from any magic item allowance.
+    /// </summary>
+    public static bool HasOwnUpgradeLimit(UnitOption option) =>
+        option.PointsLimit is not null && FactionUpgradeCategoryFor(option) is not null;
+
+    /// <summary>The options offering <paramref name="category"/> that cap it; see <see cref="HasOwnUpgradeLimit"/>.</summary>
+    private List<UnitOption> CappedUpgradeOptions(string category) =>
+        ResolvedUnit.Options
+            .Where(o => HasOwnUpgradeLimit(o) && FactionUpgradeCategoryFor(o) == category)
+            .ToList();
+
+    /// <summary>
+    /// What is left under the tightest own limit of an option offering <paramref name="category"/>;
+    /// negative when overspent, null when no such option carries a limit.
+    /// </summary>
+    public double? FactionUpgradeLimitRemaining(string category)
+    {
+        var capped = CappedUpgradeOptions(category);
+        // Each option prices every pick of the category, so its limit is set against its own cost.
+        return capped.Count == 0 ? null : capped.Min(o => o.PointsLimit!.Value - FactionUpgradeCostOf(o));
+    }
+
+    /// <summary>
+    /// True when ticking <paramref name="candidate"/> in <paramref name="category"/> keeps the magic
+    /// item allowance within its limit, or when the category does not spend it, and keeps every option
+    /// offering the category within its own points limit. The picks are priced as
+    /// <see cref="PicksAfterTick"/> leaves them, so a pick the tick replaces is not counted, and a
+    /// tick the pick limit refuses is priced as the unchanged picks.
+    /// </summary>
+    public bool UpgradeFitsAllowance(string category, SelectedFactionUpgrade candidate)
+    {
+        var after = PicksAfterTick(category, candidate)
+                    ?? Loadout.SelectedFactionUpgrades.GetValueOrDefault(category) ?? [];
+
+        if (CappedUpgradeOptions(category).Any(o => FactionUpgradeCostOf(o, after) > o.PointsLimit!.Value))
+            return false;
+
+        if (ResolvedUnit.MagicItemAllowance is not { } allowance) return true;
+        var sharing = ResolvedUnit.Options
+            .Where(o => SharesMagicItemAllowance(o) && FactionUpgradeCategoryFor(o) == category)
+            .ToList();
+        if (sharing.Count == 0) return true;
+
+        var spend = MagicItemAllowanceSpent
+            - sharing.Sum(FactionUpgradeCostOf)
+            + sharing.Sum(o => FactionUpgradeCostOf(o, after));
+        return spend <= allowance;
     }
 
     /// <summary>
