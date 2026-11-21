@@ -499,6 +499,49 @@ public class ArmyRosterBuilderTests
         Assert.Equal(new RosterItem("War Banner", 25), items[1]);
     }
 
+    [Fact]
+    public void Faction_UpgradeCopiesPrintAsACount()
+    {
+        var unit = InCategory(UnitCategory.Heroes, "Thane", "Infantry (Character)");
+        var list = MakeList(Configure(unit, c =>
+            c.Loadout.SelectedFactionUpgrades["runic_items"] =
+            [
+                new SelectedFactionUpgrade("RUNE OF FURY", 90, false, 3),
+                new SelectedFactionUpgrade("MASTER RUNE OF SMITING", 35),
+            ]));
+
+        var upgrades = Only(MakeBuilder().Build(list)).Upgrades;
+
+        Assert.Contains("RUNE OF FURY ×3", upgrades);
+        Assert.Contains("MASTER RUNE OF SMITING", upgrades);
+    }
+
+    [Fact]
+    public void Magic_CopiesOfOneItemPrintAsOneLine_WithTheirTotal()
+    {
+        // wap-v2/v3 runes are magic items, one per copy, each priced by its own figure.
+        var list = MakeList(Configure(
+            InCategory(UnitCategory.Heroes, "Thane", "Infantry (Character)"),
+            c =>
+            {
+                foreach (var cost in new double[] { 15, 25, 50 })
+                    c.SelectedMagicItems.Add(new SelectedMagicItem
+                    {
+                        Name = "Rune Of Fury", Category = "magic_weapon", PointsCost = cost,
+                    });
+                c.SelectedMagicItems.Add(new SelectedMagicItem
+                {
+                    Name = "Master Rune Of Smiting", Category = "magic_weapon", PointsCost = 35,
+                });
+            }));
+
+        var items = Only(MakeBuilder().Build(list)).MagicItems;
+
+        Assert.Equal(
+            new[] { new RosterItem("Rune Of Fury ×3", 90), new RosterItem("Master Rune Of Smiting", 35) },
+            items);
+    }
+
     // ─── Rules and notes ─────────────────────────────────────────
 
     [Fact]

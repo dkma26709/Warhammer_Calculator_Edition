@@ -96,8 +96,11 @@ public class ArmyListSerializer
         UseTreeWhack = u.UseTreeWhack,
         IsGeneral = u.Loadout.IsGeneral,
         IsBattleStandardBearer = u.Loadout.IsBattleStandardBearer,
+        // A pick of n copies is its name n times, so the saved schema stays a list of names.
         SelectedFactionUpgrades = u.Loadout.SelectedFactionUpgrades
-            .ToDictionary(kv => kv.Key, kv => kv.Value.Select(p => p.Name).ToList()),
+            .ToDictionary(kv => kv.Key, kv => kv.Value
+                .SelectMany(p => Enumerable.Repeat(p.Name, Math.Max(1, p.Copies)))
+                .ToList()),
     };
 
     // ─── Import ──────────────────────────────────────────────────
@@ -237,29 +240,41 @@ public class ArmyListSerializer
         foreach (var p in dto.CommandUpgrades ?? [])
             cfg.SelectedCommandUpgrades.Add(new CommandUpgradePick(p.OptionIndex, p.SubOptionIndex, p.ChoiceIndex));
 
-        foreach (var (category, saved) in dto.SelectedFactionUpgrades)
+        foreach (var (category, names) in dto.SelectedFactionUpgrades)
         {
-            var names = saved;
-            // A hand-edited or older file can hold more picks than the book allows.
-            if (cfg.MaxPicks(category) is { } max && names.Count > max)
+            upgradeCosts.TryGetValue(category, out var byName);
+            var picks = new List<SelectedFactionUpgrade>();
+            foreach (var name in names)
             {
-                names = names.Take(max).ToList();
-                var kept = string.Join(", ", names.Select(n => $"'{n}'"));
-                var dropped = string.Join(", ", saved.Skip(max).Select(n => $"'{n}'"));
-                warnings.Add($"Unit '{cfg.DisplayName}' may take only {(max == 1 ? "one" : max.ToString())} {category.Replace('_', ' ')} — kept {kept}, dropped {dropped}.");
+                var text = byName is not null && byName.TryGetValue(name, out var t) ? t : null;
+                if (UpgradePrice.TryParseCumulative(text, out var perCopy))
+                {
+                    // A cumulative rune saved n times is one pick of n copies; later copies were counted with the first.
+                    if (picks.Any(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase))) continue;
+                    var copies = names.Count(n => string.Equals(n, name, StringComparison.OrdinalIgnoreCase));
+                    if (copies > perCopy.Count)
+                    {
+                        warnings.Add($"Unit '{cfg.DisplayName}' may take at most {perCopy.Count} of '{name}' — kept {perCopy.Count}, dropped {copies - perCopy.Count}.");
+                        copies = perCopy.Count;
+                    }
+                    picks.Add(new SelectedFactionUpgrade(name, UpgradePrice.CumulativeTotal(text, copies), false, copies));
+                    continue;
+                }
+
+                // An unknown name, or one this troop type has no tier for, imports free.
+                var price = text is not null ? cfg.ResolveUpgradePrice(text) ?? default : default;
+                picks.Add(new SelectedFactionUpgrade(name, price.Points, price.PerModel));
             }
 
-            upgradeCosts.TryGetValue(category, out var byName);
-            cfg.Loadout.SelectedFactionUpgrades[category] = names
-                .Select(name =>
-                {
-                    // An unknown name, or one this troop type has no tier for, imports free.
-                    var price = byName is not null && byName.TryGetValue(name, out var text)
-                        ? cfg.ResolveUpgradePrice(text) ?? default
-                        : default;
-                    return new SelectedFactionUpgrade(name, price.Points, price.PerModel);
-                })
-                .ToList();
+            // A hand-edited or older file can hold more picks than the book allows; a rune's copies are one pick.
+            if (cfg.MaxPicks(category) is { } max && picks.Count > max)
+            {
+                var kept = string.Join(", ", picks.Take(max).Select(p => $"'{p.Name}'"));
+                var dropped = string.Join(", ", picks.Skip(max).Select(p => $"'{p.Name}'"));
+                warnings.Add($"Unit '{cfg.DisplayName}' may take only {(max == 1 ? "one" : max.ToString())} {category.Replace('_', ' ')} — kept {kept}, dropped {dropped}.");
+                picks = picks.Take(max).ToList();
+            }
+            cfg.Loadout.SelectedFactionUpgrades[category] = picks;
         }
 
         foreach (var mi in dto.MagicItems)

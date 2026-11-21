@@ -621,6 +621,150 @@ public class ArmyListSerializerTests
         Assert.Empty(result.Warnings);
     }
 
+    // ─── Cumulative runes: n copies saved as the name n times ───────
+
+    private const string AnyRunes = "A Thane may take Magic Items and/or Runic Items up to a total of 50 points";
+
+    /// <summary>A Thane offering runic_items through the book line <paramref name="raw"/>.</summary>
+    private static Unit ThaneOffering(string raw) => TestHelpers.MakeUnit(name: "Thane", troopType: "Infantry (Character, Dwarf)",
+        points: 60, unitSize: "1",
+        options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = "runic_items", Raw = raw }]);
+
+    private static readonly Unit Thane = ThaneOffering(AnyRunes);
+
+    private static ArmyListSerializer RuneSerializer(string raw = AnyRunes) => new(new StubRepo(ThaneOffering(raw))
+    {
+        Extras = new FactionExtrasData
+        {
+            FactionUpgrades = new Dictionary<string, List<UpgradeEntry>>
+            {
+                ["runic_items"] =
+                [
+                    new UpgradeEntry { Name = "RUNE OF FURY", Points = "15/25/50" },
+                    new UpgradeEntry { Name = "MASTER RUNE OF SMITING", Points = "35" },
+                ],
+            },
+        },
+    }, WapV2System());
+
+    private static string ThaneWithRunes(params string[] names)
+    {
+        var saved = string.Join(", ", names.Select(n => $"\"{n}\""));
+        return $$"""
+            {
+              "schema": "wap-army-list/v1",
+              "faction": "dwarfs",
+              "pointsTarget": 2000,
+              "name": "Runes",
+              "units": [
+                {
+                  "unitName": "Thane",
+                  "modelCount": 1,
+                  "selectedFactionUpgrades": { "runic_items": [{{saved}}] }
+                }
+              ]
+            }
+            """;
+    }
+
+    [Fact]
+    public async Task CumulativeRune_RoundTrips_AsItsNameOncePerCopy()
+    {
+        var config = new UnitConfiguration(Thane);
+        config.SetFactionUpgradeCopies("runic_items", "RUNE OF FURY", 3, "15/25/50");
+        var list = new ArmyList { Faction = FactionKey.Dwarfs, PointsTarget = 2000, Units = { config } };
+        var serializer = RuneSerializer();
+
+        var json = serializer.Serialize(list);
+        var result = await serializer.DeserializeAsync(json);
+
+        Assert.Equal(3, json.Split("\"RUNE OF FURY\"").Length - 1);
+        Assert.True(result.Success);
+        Assert.Empty(result.Warnings);
+        var unit = result.List!.Units[0];
+        var pick = Assert.Single(unit.Loadout.SelectedFactionUpgrades["runic_items"]);
+        Assert.Equal(3, pick.Copies);
+        Assert.Equal(90, pick.PointsCost);
+        Assert.Equal(90, unit.FactionUpgradeCost);
+    }
+
+    [Fact]
+    public async Task CumulativeRune_SavedOnce_ImportsAsOneCopy()
+    {
+        var result = await RuneSerializer().DeserializeAsync(ThaneWithRunes("RUNE OF FURY", "MASTER RUNE OF SMITING"));
+
+        Assert.True(result.Success);
+        var picks = result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"];
+        Assert.Equal([("RUNE OF FURY", 1, 15d), ("MASTER RUNE OF SMITING", 1, 35d)],
+            picks.Select(p => (p.Name, p.Copies, p.PointsCost)));
+    }
+
+    [Fact]
+    public async Task CumulativeRune_RepeatedNames_GroupCaseInsensitively_InFirstSeenOrder()
+    {
+        var result = await RuneSerializer().DeserializeAsync(
+            ThaneWithRunes("MASTER RUNE OF SMITING", "Rune Of Fury", "RUNE OF FURY"));
+
+        Assert.True(result.Success);
+        Assert.Empty(result.Warnings);
+        var picks = result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"];
+        Assert.Equal([("MASTER RUNE OF SMITING", 1, 35d), ("Rune Of Fury", 2, 40d)],
+            picks.Select(p => (p.Name, p.Copies, p.PointsCost)));
+    }
+
+    [Fact]
+    public async Task CumulativeRune_MoreCopiesThanFigures_ClampsToTheMost_AndWarns()
+    {
+        var result = await RuneSerializer().DeserializeAsync(
+            ThaneWithRunes("RUNE OF FURY", "RUNE OF FURY", "RUNE OF FURY", "RUNE OF FURY"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"]);
+        Assert.Equal(3, pick.Copies);
+        Assert.Equal(90, pick.PointsCost);
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("Thane", warning);
+        Assert.Contains("'RUNE OF FURY'", warning);
+        Assert.Contains("3", warning);
+    }
+
+    [Fact]
+    public async Task CumulativeRune_Repeated_InAOnePickCategory_IsOnePick_WithoutWarning()
+    {
+        var result = await RuneSerializer("May take a Runic Item").DeserializeAsync(
+            ThaneWithRunes("RUNE OF FURY", "RUNE OF FURY"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"]);
+        Assert.Equal(("RUNE OF FURY", 2, 40d), (pick.Name, pick.Copies, pick.PointsCost));
+        Assert.Empty(result.Warnings);
+    }
+
+    [Fact]
+    public async Task OnePickCategory_ASecondRune_IsDropped_KeepingTheFirstRunesCopies()
+    {
+        var result = await RuneSerializer("May take a Runic Item").DeserializeAsync(
+            ThaneWithRunes("RUNE OF FURY", "RUNE OF FURY", "MASTER RUNE OF SMITING"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"]);
+        Assert.Equal(("RUNE OF FURY", 2), (pick.Name, pick.Copies));
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("kept 'RUNE OF FURY', dropped 'MASTER RUNE OF SMITING'", warning);
+    }
+
+    [Fact]
+    public async Task NonCumulativeName_Repeated_InAMultiPickCategory_KeepsEachPick()
+    {
+        var result = await RuneSerializer().DeserializeAsync(
+            ThaneWithRunes("MASTER RUNE OF SMITING", "MASTER RUNE OF SMITING"));
+
+        Assert.True(result.Success);
+        var picks = result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"];
+        Assert.Equal([("MASTER RUNE OF SMITING", 1, 35d), ("MASTER RUNE OF SMITING", 1, 35d)],
+            picks.Select(p => (p.Name, p.Copies, p.PointsCost)));
+    }
+
     [Fact]
     public async Task DeserializeAsync_ThreeSpawningsOnACoreUnit_KeepsTheFirstTwo_AndWarns()
     {

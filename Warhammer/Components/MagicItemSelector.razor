@@ -53,8 +53,9 @@
                     <optgroup label="@MagicItemCategories.Plural(category.Key)">
                         @foreach (var item in category)
                         {
-                            var cost = ParsePoints(item.Points);
-                            var disabled = cost > PointsRemaining;
+                            // A cumulative rune costs its next copy's figure, and is barred once every figure is taken.
+                            var cost = MagicItemPricing.NextCopyCost(Configuration.SelectedMagicItems, item);
+                            var disabled = cost is null || cost > PointsRemaining;
                             <option value="@item.Name" disabled="@disabled">
                                 @item.Name (@item.Points pts)@(item.Restriction != null ? $" [{item.Restriction}]" : "")
                             </option>
@@ -89,7 +90,7 @@
         _groupedItems = MagicItems
             .Where(i => i.Category != MagicItemCategories.MagicStandard)
             .OrderBy(i => i.Category)
-            .ThenBy(i => ParsePoints(i.Points))
+            .ThenBy(i => MagicItemPricing.FirstCopyCost(i.Points))
             .GroupBy(i => i.Category);
     }
 
@@ -102,14 +103,14 @@
         var entry = MagicItems.FirstOrDefault(i => i.Name == name);
         if (entry == null) return;
 
-        var cost = ParsePoints(entry.Points);
-        if (cost > PointsRemaining) return;
+        var cost = MagicItemPricing.NextCopyCost(Configuration.SelectedMagicItems, entry);
+        if (cost is null || cost > PointsRemaining) return;
 
         Configuration.SelectedMagicItems.Add(new SelectedMagicItem
         {
             Name = entry.Name,
             Category = entry.Category,
-            PointsCost = cost,
+            PointsCost = cost.Value,
         });
 
         _expandedIndex = Configuration.SelectedMagicItems.Count - 1;
@@ -119,7 +120,11 @@
     private async Task RemoveItem(int index)
     {
         if (Configuration == null || index < 0 || index >= Configuration.SelectedMagicItems.Count) return;
+        var removed = Configuration.SelectedMagicItems[index];
         Configuration.SelectedMagicItems.RemoveAt(index);
+        // The copies left of a cumulative rune cost the first figures again.
+        if (MagicItems.FirstOrDefault(i => i.Name == removed.Name) is { } entry)
+            MagicItemPricing.RepriceCopies(Configuration.SelectedMagicItems, entry);
         if (_expandedIndex >= Configuration.SelectedMagicItems.Count)
             _expandedIndex = -1;
         await ConfigurationChanged.InvokeAsync(Configuration);
@@ -132,9 +137,6 @@
         Configuration.SelectedMagicItems[index] = item with { Modifier = modifier };
         await ConfigurationChanged.InvokeAsync(Configuration);
     }
-
-    private static double ParsePoints(string points) =>
-        double.TryParse(points, out var v) ? v : 0;
 
     private static bool HasAnyEffect(UnitModifier m) =>
         m.StrengthBonus.HasValue || m.ToughnessBonus.HasValue || m.AttacksBonus.HasValue
