@@ -1,6 +1,6 @@
 name: Docker image
 
-# Pull requests: build and test the image only.
+# Pull requests: build the image only (the suite runs in test.yml).
 # main:          build and push ghcr.io/<owner>/<repo>:latest and :sha-<short>.
 # v* tags:       push :<version> and :<major>.<minor> (e.g. v1.2.0 -> 1.2.0, 1.2);
 #                never :latest, which stays with main.
@@ -75,8 +75,12 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ env.PUSH == 'true' }}
           # Only a manual run with war_ref set passes WAR_REF; otherwise the
-          # Dockerfile exports at its pin.
-          build-args: ${{ inputs.war_ref && format('WAR_REF={0}', inputs.war_ref) || '' }}
+          # Dockerfile exports at its pin. Pull requests skip the image's test
+          # run: test.yml already runs the suite on the same data, and nothing
+          # is pushed. Pushes keep it, so a failing suite never reaches GHCR.
+          build-args: |
+            ${{ inputs.war_ref && format('WAR_REF={0}', inputs.war_ref) || '' }}
+            ${{ github.event_name == 'pull_request' && 'RUN_TESTS=false' || '' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha

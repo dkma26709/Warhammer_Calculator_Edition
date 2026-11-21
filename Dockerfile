@@ -81,8 +81,14 @@ RUN if [ -z "$WAR_REF" ]; then \
  && cp -a /war-data/. Warhammer/wwwroot/data/war/
 
 # The data may come from WAR_REF, not from what CI tested, so the image only
-# ships data the app passes its tests with.
-RUN dotnet test Warhammer.Tests/Warhammer.Tests.csproj -c Release --no-restore
+# ships data the app passes its tests with. RUN_TESTS=false skips the suite,
+# but only for the pin's data, which the diff above proved is the committed
+# data that test.yml already tests; pull-request builds pass it, since they
+# never push. Data from WAR_REF is always tested.
+ARG RUN_TESTS=true
+RUN if [ "$RUN_TESTS" != false ] || [ -n "$WAR_REF" ]; then \
+        dotnet test Warhammer.Tests/Warhammer.Tests.csproj -c Release --no-restore; \
+    fi
 # nginx serves the .gz files; the .br ones (no brotli module) would only add size.
 RUN dotnet publish Warhammer/Warhammer.csproj -c Release --no-restore -o /app/publish \
  && find /app/publish/wwwroot -name '*.br' -delete

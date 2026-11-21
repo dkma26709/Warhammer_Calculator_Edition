@@ -36,22 +36,22 @@ dotnet build Warhammer/Warhammer.sln
 ### Docker
 
 ```bash
-docker compose up --build           # build locally, then open http://localhost:8080/
+docker compose up --build           # build locally (docker-compose.override.yml), then open http://localhost:8080/
 ```
 
 - `Dockerfile` has three stages:
   - **war-data** exports the WAR army files from warhammer-armies-revamped. It exports at `WAR_PIN` by default, or at the `WAR_REF` build arg (branch, tag or full commit SHA) when one is given. It uses `ADD <repo>#<ref>`, typst `TYPST_VERSION` (checksum-verified) and plain `python export.py --out` (no `--check`: that needs the rendered PDFs). BuildKit caches the export against the commit the ref resolves to, so rebuilding the same ref reuses it. A new base image, a pruned or evicted cache, or naming the same commit differently (`main` vs its SHA) runs it again; the export takes under a minute.
-  - **build** replaces every exported file in `data/war/` with that output (`core-rules.json` and `troop-types.json` stay), runs the **whole test suite** against it, then publishes `Warhammer/` with the .NET 10 SDK. A ref whose data this app fails on fails the build.
+  - **build** replaces every exported file in `data/war/` with that output (`core-rules.json` and `troop-types.json` stay), runs the **whole test suite** against it, then publishes `Warhammer/` with the .NET 10 SDK. A ref whose data this app fails on fails the build. The `RUN_TESTS=false` build arg skips the suite for the pin's data only (never with `WAR_REF`); pull-request builds pass it, since `test.yml` already tests that data.
   - **runtime** is `nginx:stable-alpine`. `docker/nginx.conf` sends extension-less paths (client-side routes) to `index.html`, returns 404 for missing files, serves the precompressed `.gz` assets (the unused `.br` files are dropped) and marks every response `no-cache`, so a new deploy is picked up at once.
 - **`WAR_PIN` is the commit `data/war/` was last exported from, and a build without `WAR_REF` enforces it.** If the export at the pin differs from the committed files (line endings aside), the build fails. So when you refresh the folder (`export.py --check --out …`), move `WAR_PIN` in the `Dockerfile` in the same change.
 - **Overriding the data:** set `WAR_REF` for a local build (`$env:WAR_REF = "<ref>"; docker compose up --build` in PowerShell), or use the `war_ref` input of a manual workflow run, which builds and tests only and never pushes.
 - `docker/stub_lfs_images.py` turns the checkout's Git LFS pointers (the cover art, which `ADD` does not fetch) into a 1×1 PNG before the export. The export reads only record metadata, so its output stays byte-identical to an export from a full checkout.
 - `.dockerignore` lets only `Warhammer/`, `Warhammer.Tests/` and `docker/` into the build context.
-- `.github/workflows/docker.yml` builds the image (linux/amd64 + arm64) on every PR without pushing.
+- `.github/workflows/docker.yml` builds the image (linux/amd64 + arm64) on every PR without pushing or testing it.
   - On `main` it pushes `ghcr.io/<owner>/<repo>:latest` plus `:sha-<short>`.
   - `v*` tags push `:<version>` and `:<major>.<minor>`, but never `:latest`.
   - Only builds from the pin are pushed, so a pushed tag always holds the repo's own data. The image's `warhammer.war-data.ref` label records the ref it was exported from.
-- On a server only `docker-compose.yml` is needed: `docker compose pull && docker compose up -d`. A private GHCR package needs `docker login ghcr.io` with a token that has `read:packages` first. `WARHAMMER_PORT` overrides the host port (default 8080).
+- Compose: `docker-compose.yml` runs the published GHCR image; `docker-compose.override.yml`, which compose merges in automatically next to it, builds from the source and tags the result `warhammer_calculator_edition:local`, so a local build never overwrites the pulled `:latest`. On a server only `docker-compose.yml` is needed: `docker compose pull && docker compose up -d` (in a checkout, add `-f docker-compose.yml` to skip the override). A private GHCR package needs `docker login ghcr.io` with a token that has `read:packages` first. `WARHAMMER_PORT` overrides the host port (default 8080).
 
 ## Repo Layout
 

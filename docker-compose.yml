@@ -1,24 +1,13 @@
-# Local:  docker compose up --build        -> http://localhost:8080
-# Server: docker compose pull && docker compose up -d
-#         (uses the image the "Docker image" workflow publishes to GHCR;
-#          only this file is needed on the server, not the source)
-#
-# The WAR army data is exported from warhammer-armies-revamped during the
-# build, at the commit the Dockerfile pins (WAR_PIN). To build from another
-# branch, tag or full commit SHA, set WAR_REF (PowerShell / bash):
-#   $env:WAR_REF = "<ref>"; docker compose up --build
-#   WAR_REF=<ref> docker compose up --build
-# The image's tests run against that data, so a ref this app does not support
-# yet fails the build.
-# The host port defaults to 8080; override it with WARHAMMER_PORT the same way.
+# Server: docker compose pull && docker compose up -d   -> http://<host>:8080
+#         Runs the image the "Docker image" workflow publishes to GHCR. Copy
+#         only this file to the server, not the source.
+# Local:  docker compose up --build                       -> http://localhost:8080
+#         Compose also loads docker-compose.override.yml from this folder,
+#         which builds the image from the source instead (see that file).
+# The host port defaults to 8080; override it with WARHAMMER_PORT.
 services:
   web:
     image: ghcr.io/dkma26709/warhammer_calculator_edition:latest
-    build:
-      context: .
-      args:
-        # No value: passed only when WAR_REF is set, else the Dockerfile's pin.
-        - WAR_REF
     ports:
       - "${WARHAMMER_PORT:-8080}:80"
     restart: unless-stopped
