@@ -15,8 +15,9 @@ public static class GameSystems
 
     /// <summary>
     /// Warhammer Armies Revamped. Its data folder is exported by export.py in the
-    /// warhammer-armies-revamped repo and copied here on a release, all but core-rules.json
-    /// and troop-types.json, which are hand-maintained here as for every other system.
+    /// warhammer-armies-revamped repo, at the commit in tools/war-data/pin, by
+    /// tools/war-data/fetch.py, all but core-rules.json and troop-types.json, which are
+    /// hand-maintained here as for every other system.
     /// </summary>
     public const string War = "war";
 

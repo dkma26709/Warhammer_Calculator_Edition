@@ -18,6 +18,9 @@ Four pages:
 ## Build / Run / Test
 
 ```bash
+# Fetch the WAR army data first (from repo root)
+python tools/war-data/fetch.py
+
 # Run the app (from repo root)
 cd Warhammer && dotnet run          # then open https://localhost:{port}/
 
@@ -28,6 +31,7 @@ cd Warhammer.Tests && dotnet test
 dotnet build Warhammer/Warhammer.sln
 ```
 
+- **The WAR army data is not committed.** `tools/war-data/fetch.py` (Python 3.10+, standard library only) exports it from warhammer-armies-revamped at the commit in `tools/war-data/pin` into `Warhammer/wwwroot/data/war/` and records that commit in `tools/war-data/.exported`. It downloads typst 0.15.1 itself if that version is not on PATH, and is a fast no-op when the data is already at the pin. `--ref <branch|tag|sha>` exports other upstream data instead. The build fails with a message telling you to rerun it when the data is missing or the pin has moved (and warns while the data comes from a `--ref`).
 - Tests are **xUnit** (`[Fact]`/`[Theory]`). (An older doc says MSTest — that is wrong.)
 - Test project: `Warhammer.Tests/`, references the main project directly. `TestHelpers.cs` has shared builders.
 - CI: `.github/workflows/test.yml` builds and tests on pushes to `main` and PRs.
@@ -40,17 +44,16 @@ docker compose up --build           # build locally (docker-compose.override.yml
 ```
 
 - `Dockerfile` has three stages:
-  - **war-data** exports the WAR army files from warhammer-armies-revamped. It exports at `WAR_PIN` by default, or at the `WAR_REF` build arg (branch, tag or full commit SHA) when one is given. It uses `ADD <repo>#<ref>`, typst `TYPST_VERSION` (checksum-verified) and plain `python export.py --out` (no `--check`: that needs the rendered PDFs). BuildKit caches the export against the commit the ref resolves to, so rebuilding the same ref reuses it. A new base image, a pruned or evicted cache, or naming the same commit differently (`main` vs its SHA) runs it again; the export takes under a minute.
-  - **build** replaces every exported file in `data/war/` with that output (`core-rules.json` and `troop-types.json` stay), runs the **whole test suite** against it, then publishes `Warhammer/` with the .NET 10 SDK. A ref whose data this app fails on fails the build. The `RUN_TESTS=false` build arg skips the suite for the pin's data only (never with `WAR_REF`); pull-request builds pass it, since `test.yml` already tests that data.
+  - **war-data** runs `python tools/war-data/fetch.py` in `python:3.13-slim`, exporting the WAR army files at `tools/war-data/pin`; the script downloads the upstream tarball and typst itself. BuildKit reruns the layer only when `tools/war-data/` (the pin or the script) changes; the export takes under a minute.
+  - **build** copies that export into `data/war/` beside `core-rules.json` and `troop-types.json`, plus the pin and the stamp the build's data guard checks, runs the **whole test suite** against it, then publishes `Warhammer/` with the .NET 10 SDK. The `RUN_TESTS=false` build arg skips the suite; pull-request builds pass it, since `test.yml` already tests the same data.
   - **runtime** is `nginx:stable-alpine`. `docker/nginx.conf` sends extension-less paths (client-side routes) to `index.html`, returns 404 for missing files, serves the precompressed `.gz` assets (the unused `.br` files are dropped) and marks every response `no-cache`, so a new deploy is picked up at once.
-- **`WAR_PIN` is the commit `data/war/` was last exported from, and a build without `WAR_REF` enforces it.** If the export at the pin differs from the committed files (line endings aside), the build fails. So when you refresh the folder (`export.py --check --out …`), move `WAR_PIN` in the `Dockerfile` in the same change.
-- **Overriding the data:** set `WAR_REF` for a local build (`$env:WAR_REF = "<ref>"; docker compose up --build` in PowerShell), or use the `war_ref` input of a manual workflow run, which builds and tests only and never pushes.
-- `docker/stub_lfs_images.py` turns the checkout's Git LFS pointers (the cover art, which `ADD` does not fetch) into a 1×1 PNG before the export. The export reads only record metadata, so its output stays byte-identical to an export from a full checkout.
-- `.dockerignore` lets only `Warhammer/`, `Warhammer.Tests/` and `docker/` into the build context.
+- **Refreshing the WAR data:** put the new warhammer-armies-revamped commit in `tools/war-data/pin`, run `python tools/war-data/fetch.py`, run the tests, and commit the pin. The image, CI and every local build then export at the new pin.
+- `tools/war-data/stub_lfs_images.py` turns the tarball's Git LFS pointers (the cover art) into a 1×1 PNG before the export. The export reads only record metadata, so its output stays byte-identical to an export from a full checkout.
+- `.dockerignore` lets only `Warhammer/`, `Warhammer.Tests/`, `docker/` and `tools/war-data/` into the build context, without the exported files in `data/war/`, the stamp or the typst cache, so a local export never enters an image.
 - `.github/workflows/docker.yml` builds the image (linux/amd64 + arm64) on every PR without pushing or testing it.
   - On `main` it pushes `ghcr.io/<owner>/<repo>:latest` plus `:sha-<short>`.
   - `v*` tags push `:<version>` and `:<major>.<minor>`, but never `:latest`.
-  - Only builds from the pin are pushed, so a pushed tag always holds the repo's own data. The image's `warhammer.war-data.ref` label records the ref it was exported from.
+  - Every image holds the data at the pin of the commit it was built from, which its `org.opencontainers.image.revision` label names.
 - Compose: `docker-compose.yml` runs the published GHCR image; `docker-compose.override.yml`, which compose merges in automatically next to it, builds from the source and tags the result `warhammer_calculator_edition:local`, so a local build never overwrites the pulled `:latest`. On a server only `docker-compose.yml` is needed: `docker compose pull && docker compose up -d` (in a checkout, add `-f docker-compose.yml` to skip the override). A private GHCR package needs `docker login ghcr.io` with a token that has `read:packages` first. `WARHAMMER_PORT` overrides the host port (default 8080).
 
 ## Repo Layout
@@ -91,11 +94,11 @@ Warhammer/                  # Main Blazor WASM project (also contains Warhammer.
     │   ├── common-magic-items.json
     │   ├── factions/{faction}.json          # Unit rosters (15 factions in wap-v2, 30 in war)
     │   └── factions/{faction}-extras.json   # Army rules, magic items, lores, upgrades
-    ├── data/war/                       # Warhammer Armies Revamped, laid out like any system. Everything but
-    │                                   #   core-rules.json and troop-types.json is exported by export.py
-    │                                   #   in warhammer-armies-revamped and copied here on a release;
-    │                                   #   WarDataTests guards the copy. The Docker image re-exports it
-    │                                   #   at the Dockerfile's WAR_PIN and fails if they differ (see Docker).
+    ├── data/war/                       # Warhammer Armies Revamped, laid out like any system. Only
+    │                                   #   core-rules.json and troop-types.json are in git; the rest is
+    │                                   #   exported by export.py in warhammer-armies-revamped, fetched at
+    │                                   #   tools/war-data/pin by tools/war-data/fetch.py (see Build / Run /
+    │                                   #   Test). WarDataTests guards the folder.
     ├── data/portrait-manifest.json     # Generated by tools/PortraitFetcher (shared across systems)
     ├── images/units/{faction}/{slug}.png     # Unit portraits (fetched from TW wiki, shared)
     └── js/army-builder.js              # JS interop: file download + localStorage
@@ -105,6 +108,8 @@ docs/                       # DESCRIPTIVE docs of the implementation (overview, 
                             #   combat-engine, data-models, components, limitations)
 tools/PortraitFetcher/      # Console app: fetches unit portraits from the Total War
                             #   Warhammer fandom wiki API, writes images + manifest
+tools/war-data/             # pin (the warhammer-armies-revamped commit the WAR data is
+                            #   exported at) and fetch.py, which exports it into data/war/
 ```
 
 ## Architecture
@@ -146,7 +151,7 @@ The Calculator layer is **stateless and UI-free** — it takes configured units 
 - **Character categories differ per system.** wap-v2 books split characters into `Lords`/`Heroes` (25% caps each); wap-v3 books have a single `Characters` category. All three count toward the combined 35% cap; `UnitCategoryExtensions.IsCharacterCategory()` is the check to use for "is this a character unit".
 - **Troop type figures are per-system data**, in the hand-maintained `wwwroot/data/{system}/troop-types.json`: minimum rank width, supporting attacks (rider, mount and no-split-profile), inherent Impact Hits, Unit Strength and inherent Swiftstride. The Troop Types chapter is prose rather than a ruled table, so the extractor cannot lift it and core-rules.json carries only the descriptive text. `GameDataRepository` throws on a missing row rather than falling back, so a new system that skips the file fails loudly on load. wap-v3 diverges from wap-v2 on supporting attacks for the monstrous types, on mounts (barred entirely), on Cavalry/Monstrous Cavalry Impact Hits (removed) and on Swiftstride (no type grants it).
 - **Composition percentages are per-system data**, in the hand-maintained `wwwroot/data/{system}/composition.json` — *not* core-rules.json, which `extract_core_rules.py` generates and would overwrite. A category absent from the file has no limit of that kind, which is how wap-v3 expresses having no Lords/Heroes sections. A list may carry its own `CompositionOverrides` (a percentage or a flat points figure per limit); `CompositionRules.Resolve` is the one place that decides precedence, and both the validator and the builder's progress bars go through it.
-- **Faction JSON is generated, not hand-written.** For `war`, the source of truth is the warhammer-armies-revamped repo: fix a data issue there and re-export, never here. For wap-v2 and wap-v3, it is the WAP army book PDFs run through the Python extractors in `tools/extractors/` (the PDFs themselves live outside the repo). Fix systematic data issues in the extractors if possible; hand-edits to the JSON can be overwritten by a re-extract. Every option keeps its army book line in `raw`, so a parser fix can be replayed over already-extracted data without the PDFs: `python tools/extractors/reclassify_options.py Warhammer/wwwroot/data` (use `--dry-run` first). The script skips `war`, whose files are exported, not extracted.
+- **Faction JSON is generated, not hand-written.** For `war`, the source of truth is the warhammer-armies-revamped repo: fix it there, then move the pin, never here. For wap-v2 and wap-v3, it is the WAP army book PDFs run through the Python extractors in `tools/extractors/` (the PDFs themselves live outside the repo). Fix systematic data issues in the extractors if possible; hand-edits to the JSON can be overwritten by a re-extract. Every option keeps its army book line in `raw`, so a parser fix can be replayed over already-extracted data without the PDFs: `python tools/extractors/reclassify_options.py Warhammer/wwwroot/data` (use `--dry-run` first). The script skips `war`, whose files are exported, not extracted.
 - **Portraits**: run `tools/PortraitFetcher` (console app; supports per-faction and `--dry-run` args) to fetch PNGs from the Total War fandom wiki and regenerate `portrait-manifest.json`. `PortraitService.Slugify` must stay in sync with the fetcher's filename slugging. Manual name mismatches go in `tools/PortraitFetcher/portrait-overrides.json`.
 - **Builder state vs simulation state.** `UnitConfiguration.Loadout` (an `ArmyLoadout`) holds army-builder-only state: custom name, wizard level/lore/spells, magic banner, General/BSB flags, faction upgrade picks. The combat engine never reads `Loadout`. Simulation-relevant choices (model count, weapon, command group, modifiers) live directly on `UnitConfiguration`. The Builder renders `UnitConfigurator` with `ForArmyList`, which leaves out the calculator-only controls (frontage, "Fight with", faction abilities, custom modifiers) and sets `SelectedWeapon` from `ListedWeapon`, the weapon the entry bought.
 - **Faction abilities are modifiers.** Shadow Dances and Tree Aspects (Wood Elves) compile to `UnitModifier` instances via `UnitConfiguration.FactionAbilityModifiers`, flowing through `EffectiveSpecialRules`/`AggregateModifier` like magic items. The Calculator has no faction-specific enums — add new faction abilities the same way, not as engine special cases. (Tree Whack remains a rule-flag-gated attack mode in `AttackResolver`.)

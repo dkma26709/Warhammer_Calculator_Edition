@@ -1,11 +1,12 @@
-"""Replace Git LFS pointer files with a 1x1 PNG, so export.py runs on a checkout without LFS.
+"""Replace Git LFS pointer files with a 1x1 PNG, so export.py runs on a source tree without LFS.
 
-Docker's `ADD <git url>` checks warhammer-armies-revamped out without its Git LFS objects, so
-the army books' cover art arrives as pointer text, which typst refuses to decode as an image.
-The export reads each record's metadata, never the pictures, so a placeholder image yields
-the same files as a full checkout, without fetching ~50 MB of covers on every build.
+fetch.py exports warhammer-armies-revamped from GitHub's tarball of a commit, which holds Git LFS
+files as their pointers, so the army books' cover art arrives as pointer text, which typst
+refuses to decode as an image. The export reads each record's metadata, never the pictures, so
+a placeholder image yields the same files as a full checkout, without fetching ~50 MB of covers
+on every export.
 
-    python stub_lfs_images.py <checkout>
+    python stub_lfs_images.py <source tree>
 """
 from __future__ import annotations
 

@@ -7,18 +7,13 @@
 #   docker compose -f docker-compose.yml pull
 #   docker compose -f docker-compose.yml up -d
 #
-# The WAR army data is exported from warhammer-armies-revamped during the
-# build, at the commit the Dockerfile pins (WAR_PIN). To build from another
-# branch, tag or full commit SHA, set WAR_REF (PowerShell / bash):
-#   $env:WAR_REF = "<ref>"; docker compose up --build
-#   WAR_REF=<ref> docker compose up --build
-# The image's tests run against that data, so a ref this app does not support
-# yet fails the build.
+# The image exports the WAR army data from warhammer-armies-revamped at the
+# commit in tools/war-data/pin. To run the app on other upstream data, skip
+# Docker and run it from the source:
+#   python tools/war-data/fetch.py --ref <branch, tag or full commit SHA>
+#   cd Warhammer && dotnet run
 services:
   web:
     image: warhammer_calculator_edition:local
     build:
       context: .
-      args:
-        # No value: passed only when WAR_REF is set, else the Dockerfile's pin.
-        - WAR_REF
