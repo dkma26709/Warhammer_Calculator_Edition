@@ -567,6 +567,7 @@ public class ArmyListSerializerTests
                     [
                         new UpgradeEntry { Name = "First", Points = "5" },
                         new UpgradeEntry { Name = "Second", Points = "10" },
+                        new UpgradeEntry { Name = "Third", Points = "15" },
                     ],
                 },
             },
@@ -574,7 +575,8 @@ public class ArmyListSerializerTests
         return new ArmyListSerializer(repo, WapV2System());
     }
 
-    private static string ListWithUpgrades(string category) => $$"""
+    /// <summary>A list saving <paramref name="picks"/> (by default First and Second) on the stub unit.</summary>
+    private static string ListWithUpgrades(string category, params string[] picks) => $$"""
         {
           "schema": "wap-army-list/v1",
           "faction": "the-empire",
@@ -584,7 +586,7 @@ public class ArmyListSerializerTests
             {
               "unitName": "Knights",
               "modelCount": 5,
-              "selectedFactionUpgrades": { "{{category}}": ["First", "Second"] }
+              "selectedFactionUpgrades": { "{{category}}": [{{string.Join(", ", (picks.Length > 0 ? picks : ["First", "Second"]).Select(p => $"\"{p}\""))}}] }
             }
           ]
         }
@@ -621,15 +623,16 @@ public class ArmyListSerializerTests
 
     // ─── Cumulative runes: n copies saved as the name n times ───────
 
-    private static readonly Unit Thane = TestHelpers.MakeUnit(name: "Thane", troopType: "Infantry (Character, Dwarf)",
-        points: 60, unitSize: "1",
-        options: [new UnitOption
-        {
-            Type = "faction_upgrade", FactionUpgrade = "runic_items",
-            Raw = "A Thane may take Magic Items and/or Runic Items up to a total of 50 points",
-        }]);
+    private const string AnyRunes = "A Thane may take Magic Items and/or Runic Items up to a total of 50 points";
 
-    private static ArmyListSerializer RuneSerializer() => new(new StubRepo(Thane)
+    /// <summary>A Thane offering runic_items through the book line <paramref name="raw"/>.</summary>
+    private static Unit ThaneOffering(string raw) => TestHelpers.MakeUnit(name: "Thane", troopType: "Infantry (Character, Dwarf)",
+        points: 60, unitSize: "1",
+        options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = "runic_items", Raw = raw }]);
+
+    private static readonly Unit Thane = ThaneOffering(AnyRunes);
+
+    private static ArmyListSerializer RuneSerializer(string raw = AnyRunes) => new(new StubRepo(ThaneOffering(raw))
     {
         Extras = new FactionExtrasData
         {
@@ -726,6 +729,31 @@ public class ArmyListSerializerTests
     }
 
     [Fact]
+    public async Task CumulativeRune_Repeated_InAOnePickCategory_IsOnePick_WithoutWarning()
+    {
+        var result = await RuneSerializer("May take a Runic Item").DeserializeAsync(
+            ThaneWithRunes("RUNE OF FURY", "RUNE OF FURY"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"]);
+        Assert.Equal(("RUNE OF FURY", 2, 40d), (pick.Name, pick.Copies, pick.PointsCost));
+        Assert.Empty(result.Warnings);
+    }
+
+    [Fact]
+    public async Task OnePickCategory_ASecondRune_IsDropped_KeepingTheFirstRunesCopies()
+    {
+        var result = await RuneSerializer("May take a Runic Item").DeserializeAsync(
+            ThaneWithRunes("RUNE OF FURY", "RUNE OF FURY", "MASTER RUNE OF SMITING"));
+
+        Assert.True(result.Success);
+        var pick = Assert.Single(result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"]);
+        Assert.Equal(("RUNE OF FURY", 2), (pick.Name, pick.Copies));
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("kept 'RUNE OF FURY', dropped 'MASTER RUNE OF SMITING'", warning);
+    }
+
+    [Fact]
     public async Task NonCumulativeName_Repeated_InAMultiPickCategory_KeepsEachPick()
     {
         var result = await RuneSerializer().DeserializeAsync(
@@ -735,6 +763,34 @@ public class ArmyListSerializerTests
         var picks = result.List!.Units[0].Loadout.SelectedFactionUpgrades["runic_items"];
         Assert.Equal([("MASTER RUNE OF SMITING", 1, 35d), ("MASTER RUNE OF SMITING", 1, 35d)],
             picks.Select(p => (p.Name, p.Copies, p.PointsCost)));
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_ThreeSpawningsOnACoreUnit_KeepsTheFirstTwo_AndWarns()
+    {
+        var serializer = SerializerForUpgradeLine("blessed_spawnings", "May take a Blessed Spawning +1 point/model");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("blessed_spawnings", "First", "Second", "Third"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"].Select(p => p.Name));
+        var warning = Assert.Single(result.Warnings);
+        Assert.Contains("may take only 2 blessed spawnings", warning);
+        Assert.Contains("dropped 'Third'", warning);
+    }
+
+    [Fact]
+    public async Task DeserializeAsync_TwoSpawningsOnACoreUnit_KeepsBoth_WithoutWarning()
+    {
+        var serializer = SerializerForUpgradeLine("blessed_spawnings", "May take a Blessed Spawning +1 point/model");
+
+        var result = await serializer.DeserializeAsync(ListWithUpgrades("blessed_spawnings", "First", "Second"));
+
+        Assert.True(result.Success);
+        Assert.Equal(["First", "Second"],
+            result.List!.Units[0].Loadout.SelectedFactionUpgrades["blessed_spawnings"].Select(p => p.Name));
+        Assert.Empty(result.Warnings);
     }
 
     [Fact]

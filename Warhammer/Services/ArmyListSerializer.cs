@@ -240,17 +240,8 @@ public class ArmyListSerializer
         foreach (var p in dto.CommandUpgrades ?? [])
             cfg.SelectedCommandUpgrades.Add(new CommandUpgradePick(p.OptionIndex, p.SubOptionIndex, p.ChoiceIndex));
 
-        foreach (var (category, saved) in dto.SelectedFactionUpgrades)
+        foreach (var (category, names) in dto.SelectedFactionUpgrades)
         {
-            var names = saved;
-            // A hand-edited or older file can hold several picks where the book allows one.
-            if (names.Count > 1 && cfg.IsSingleChoiceCategory(category))
-            {
-                names = names.Take(1).ToList();
-                var dropped = string.Join(", ", saved.Skip(1).Select(n => $"'{n}'"));
-                warnings.Add($"Unit '{cfg.DisplayName}' may take only one {category.Replace('_', ' ')} — kept '{names[0]}', dropped {dropped}.");
-            }
-
             upgradeCosts.TryGetValue(category, out var byName);
             var picks = new List<SelectedFactionUpgrade>();
             foreach (var name in names)
@@ -273,6 +264,15 @@ public class ArmyListSerializer
                 // An unknown name, or one this troop type has no tier for, imports free.
                 var price = text is not null ? cfg.ResolveUpgradePrice(text) ?? default : default;
                 picks.Add(new SelectedFactionUpgrade(name, price.Points, price.PerModel));
+            }
+
+            // A hand-edited or older file can hold more picks than the book allows; a rune's copies are one pick.
+            if (cfg.MaxPicks(category) is { } max && picks.Count > max)
+            {
+                var kept = string.Join(", ", picks.Take(max).Select(p => $"'{p.Name}'"));
+                var dropped = string.Join(", ", picks.Skip(max).Select(p => $"'{p.Name}'"));
+                warnings.Add($"Unit '{cfg.DisplayName}' may take only {(max == 1 ? "one" : max.ToString())} {category.Replace('_', ' ')} — kept {kept}, dropped {dropped}.");
+                picks = picks.Take(max).ToList();
             }
             cfg.Loadout.SelectedFactionUpgrades[category] = picks;
         }

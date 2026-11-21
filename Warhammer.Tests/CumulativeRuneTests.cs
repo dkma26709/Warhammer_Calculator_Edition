@@ -167,6 +167,44 @@ public class CumulativeRuneTests
         Assert.False(cannon.UpgradeFitsAllowance(RunicItems, Copies(1)));  // 30 + 30
     }
 
+    // ─── Copies against a pick limit ─────────────────────────────
+
+    /// <summary>A Core unit offering <paramref name="category"/> through the book line <paramref name="raw"/>.</summary>
+    private static UnitConfiguration UnitOffering(string category, string raw) => new(TestHelpers.MakeUnit(
+        name: "Runesmiths", options: [new UnitOption { Type = "faction_upgrade", FactionUpgrade = category, Raw = raw }]));
+
+    [Fact]
+    public void Copies_AtAFullLimitAboveOne_RefuseANewRune_ButStillChangeATakenOne()
+    {
+        // Blessed Spawnings are the only family with a limit above one; on a Core unit it is two.
+        const string category = "blessed_spawnings";
+        var unit = UnitOffering(category, "May take a Blessed Spawning");
+        Assert.Equal(2, unit.MaxPicks(category));
+
+        Assert.True(unit.SetFactionUpgradeCopies(category, "A", 1, "15/25/50"));
+        Assert.True(unit.SetFactionUpgradeCopies(category, "B", 2, "15/25/50"));
+        Assert.False(unit.SetFactionUpgradeCopies(category, "C", 1, "15/25/50"));
+        Assert.True(unit.SetFactionUpgradeCopies(category, "B", 3, "15/25/50"));
+
+        Assert.Equal([("A", 1), ("B", 3)], unit.Loadout.SelectedFactionUpgrades[category].Select(p => (p.Name, p.Copies)));
+
+        Assert.True(unit.SetFactionUpgradeCopies(category, "A", 0, "15/25/50"));
+        Assert.True(unit.SetFactionUpgradeCopies(category, "C", 1, "15/25/50"));
+        Assert.Equal(["B", "C"], unit.Loadout.SelectedFactionUpgrades[category].Select(p => p.Name));
+    }
+
+    [Fact]
+    public void Copies_InAOnePickCategory_OfANewRune_ReplaceTheTakenOne()
+    {
+        var unit = UnitOffering(RunicItems, "May take a Runic Item");
+
+        Assert.True(unit.SetFactionUpgradeCopies(RunicItems, "A", 2, "15/25/50"));
+        Assert.True(unit.SetFactionUpgradeCopies(RunicItems, "B", 1, "15/25/50"));
+
+        var pick = Assert.Single(unit.Loadout.SelectedFactionUpgrades[RunicItems]);
+        Assert.Equal(("B", 1, 15d), (pick.Name, pick.Copies, pick.PointsCost));
+    }
+
     // ─── wap-v2: runes as ordinary magic items ───────────────────
 
     private static async Task<List<MagicItemEntry>> WapV2DwarfItems() =>
