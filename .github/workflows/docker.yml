@@ -4,21 +4,16 @@ name: Docker image
 # main:          build and push ghcr.io/<owner>/<repo>:latest and :sha-<short>.
 # v* tags:       push :<version> and :<major>.<minor> (e.g. v1.2.0 -> 1.2.0, 1.2);
 #                never :latest, which stays with main.
-# Manual run:    on main or a v* tag, rebuilds and pushes as above. With war_ref
-#                set, or on any other branch, it builds and tests only: an image
-#                whose data is not the pinned data is never pushed, so :latest and
-#                :sha-<short> always mean the repo's own data.
+# Manual run:    on main or a v* tag, rebuilds and pushes as above; on any other
+#                branch it builds and tests only.
+# Every image holds the WAR data exported at the tools/war-data/pin of the
+# commit it is built from.
 on:
   push:
     branches: [main]
     tags: ['v*']
   pull_request:
   workflow_dispatch:
-    inputs:
-      war_ref:
-        description: Build and test only, exporting the WAR data from this warhammer-armies-revamped branch, tag or full commit SHA instead of the Dockerfile's pin
-        required: false
-        default: ''
 
 permissions:
   contents: read
@@ -30,7 +25,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  PUSH: ${{ github.event_name != 'pull_request' && !inputs.war_ref && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
+  PUSH: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
 
 jobs:
   image:
@@ -74,12 +69,10 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: ${{ env.PUSH == 'true' }}
-          # Only a manual run with war_ref set passes WAR_REF; otherwise the
-          # Dockerfile exports at its pin. Pull requests skip the image's test
-          # run: test.yml already runs the suite on the same data, and nothing
-          # is pushed. Pushes keep it, so a failing suite never reaches GHCR.
+          # Pull requests skip the image's test run: test.yml already runs the
+          # suite on the same data, and nothing is pushed. Pushes keep it, so a
+          # failing suite never reaches GHCR.
           build-args: |
-            ${{ inputs.war_ref && format('WAR_REF={0}', inputs.war_ref) || '' }}
             ${{ github.event_name == 'pull_request' && 'RUN_TESTS=false' || '' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

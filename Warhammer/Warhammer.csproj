@@ -12,4 +12,24 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.0" PrivateAssets="all"/>
     </ItemGroup>
 
+    <!-- A guard, not an Exec of fetch.py: static web assets are gathered at evaluation, before any target runs, so files a target wrote would miss this build's output. -->
+    <Target Name="CheckWarData" BeforeTargets="BeforeBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+        <PropertyGroup>
+            <WarDataPinFile>$(MSBuildProjectDirectory)/../tools/war-data/pin</WarDataPinFile>
+            <WarDataStampFile>$(MSBuildProjectDirectory)/../tools/war-data/.exported</WarDataStampFile>
+            <WarDataPin Condition="Exists('$(WarDataPinFile)')">$([System.IO.File]::ReadAllText('$(WarDataPinFile)').Trim())</WarDataPin>
+            <WarDataStamp Condition="Exists('$(WarDataStampFile)')">$([System.IO.File]::ReadAllText('$(WarDataStampFile)').Trim())</WarDataStamp>
+            <!-- The stamp is "<commit> pin" or "<commit> ref:<ref>". -->
+            <WarDataCommit>$([System.Text.RegularExpressions.Regex]::Replace('$(WarDataStamp)', ' .*$', ''))</WarDataCommit>
+            <WarDataSource>$([System.Text.RegularExpressions.Regex]::Replace('$(WarDataStamp)', '^\S* ?', ''))</WarDataSource>
+            <WarDataRef Condition="$(WarDataSource.StartsWith('ref:'))">$(WarDataSource.Substring(4))</WarDataRef>
+        </PropertyGroup>
+        <Error Condition="!Exists('$(MSBuildProjectDirectory)/wwwroot/data/war/manifest.json') Or '$(WarDataStamp)' == ''"
+               Text="The WAR army data is missing: run python tools/war-data/fetch.py" />
+        <Error Condition="'$(WarDataSource)' == 'pin' And '$(WarDataCommit)' != '$(WarDataPin)'"
+               Text="The WAR army data is from $(WarDataCommit), not the pin $(WarDataPin): run python tools/war-data/fetch.py" />
+        <Warning Condition="'$(WarDataRef)' != '' And '$(WarDataCommit)' != '$(WarDataPin)'"
+                 Text="The WAR army data is from $(WarDataRef) ($(WarDataCommit)), not the pin $(WarDataPin); run python tools/war-data/fetch.py to go back to it" />
+    </Target>
+
 </Project>

@@ -31,7 +31,7 @@ ALLOWANCE_TYPES = {"magic_items", "magic_standard"}
 # allowance and produce a duplicate, so companions are left alone.
 COMPANION_TYPE = "faction_upgrade"
 
-# Systems whose faction files are exported from another repo and copied here;
+# Systems whose faction files are exported from another repo (tools/war-data/fetch.py);
 # fixes belong upstream, so the replay never rewrites them.
 EXPORTED_SYSTEMS = {"war"}
 

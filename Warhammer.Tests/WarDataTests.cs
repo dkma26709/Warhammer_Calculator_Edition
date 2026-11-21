@@ -6,9 +6,10 @@ namespace Warhammer.Tests;
 
 /// <summary>
 /// The Warhammer Armies Revamped data folder, wwwroot/data/war/: exported by export.py in the
-/// warhammer-armies-revamped repo and copied here on a release, all but core-rules.json and
-/// troop-types.json, which are hand-maintained here. The exported files are generated, never
-/// hand-edited; these tests are the guard against a half-copied folder. The tests that run over
+/// warhammer-armies-revamped repo, at the commit in tools/war-data/pin, by
+/// tools/war-data/fetch.py, all but core-rules.json and troop-types.json, which are
+/// hand-maintained here. The exported files are generated, never hand-edited; these tests are
+/// the guard against a half-copied folder. The tests that run over
 /// every enabled system check what is in the files.
 /// </summary>
 public class WarDataTests
@@ -33,9 +34,9 @@ public class WarDataTests
     }
 
     /// <summary>
-    /// The export's copy overwrites the files it writes and never deletes one, so a file left
-    /// from an earlier copy — an army since renamed, or the one-file war.json this folder used to
-    /// hold — would sit here looking current while nothing reads it.
+    /// fetch.py clears the folder before it copies the export in, but a file put here any other
+    /// way — copied by hand, say an army since renamed, or the one-file war.json this folder used
+    /// to hold — would sit here looking current while nothing reads it.
     /// </summary>
     [Fact]
     public void TheFolderHoldsExactlyTheFilesTheSystemReads()
