@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      war_ref:
+        description: Test against the WAR data exported from this warhammer-armies-revamped branch, tag or full commit SHA instead of the pin
+        required: false
+        default: ''
 
 jobs:
   test:
@@ -15,6 +21,23 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+      # The WAR army data at tools/war-data/pin, or at war_ref on a manual run.
+      # The input goes through env, never into the script text.
+      - name: Fetch WAR data
+        env:
+          DATA_REF: ${{ inputs.war_ref }}
+        run: |
+          if [ -n "$DATA_REF" ]; then
+            python tools/war-data/fetch.py --ref "$DATA_REF"
+          else
+            python tools/war-data/fetch.py
+          fi
 
       - name: Restore
         run: dotnet restore Warhammer/Warhammer.sln

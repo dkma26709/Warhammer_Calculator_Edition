@@ -1,0 +1,19 @@
+# Local builds. Compose merges this file into docker-compose.yml whenever both
+# sit in the same folder, so in a checkout:
+#   docker compose up --build        -> http://localhost:8080
+# The build is tagged warhammer_calculator_edition:local, not GHCR's :latest,
+# so a local build and the published image never overwrite each other. To run
+# the published image from a checkout, name the base file alone:
+#   docker compose -f docker-compose.yml pull
+#   docker compose -f docker-compose.yml up -d
+#
+# The image exports the WAR army data from warhammer-armies-revamped at the
+# commit in tools/war-data/pin. To run the app on other upstream data, skip
+# Docker and run it from the source:
+#   python tools/war-data/fetch.py --ref <branch, tag or full commit SHA>
+#   cd Warhammer && dotnet run
+services:
+  web:
+    image: warhammer_calculator_edition:local
+    build:
+      context: .

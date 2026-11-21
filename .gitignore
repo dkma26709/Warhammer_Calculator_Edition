@@ -9,3 +9,11 @@ __pycache__/
 
 # PortraitFetcher generated output
 tools/PortraitFetcher/portrait-report.json
+
+# The WAR army data is exported at tools/war-data/pin by tools/war-data/fetch.py;
+# only the two files this repo maintains itself are committed.
+Warhammer/wwwroot/data/war/*
+!Warhammer/wwwroot/data/war/core-rules.json
+!Warhammer/wwwroot/data/war/troop-types.json
+tools/war-data/.cache/
+tools/war-data/.exported

@@ -1,0 +1,80 @@
+name: Docker image
+
+# Pull requests: build the image only (the suite runs in test.yml).
+# main:          build and push ghcr.io/<owner>/<repo>:latest and :sha-<short>.
+# v* tags:       push :<version> and :<major>.<minor> (e.g. v1.2.0 -> 1.2.0, 1.2);
+#                never :latest, which stays with main.
+# Manual run:    on main or a v* tag, rebuilds and pushes as above; on any other
+#                branch it builds and tests only.
+# Every image holds the WAR data exported at the tools/war-data/pin of the
+# commit it is built from.
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+# Pull requests drop superseded runs; pushes queue, so every merge's image is built.
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  PUSH: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) }}
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Log in to GHCR
+        if: env.PUSH == 'true'
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Lowercases the image name (GHCR requires it) and derives the tags.
+      # latest=false: a version tag must not move :latest (say, a hotfix tag on
+      # an older commit); only the explicit main rule below sets it.
+      - name: Image tags
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/${{ github.repository }}
+          flavor: latest=false
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=ref,event=pr
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ env.PUSH == 'true' }}
+          # Pull requests skip the image's test run: test.yml already runs the
+          # suite on the same data, and nothing is pushed. Pushes keep it, so a
+          # failing suite never reaches GHCR.
+          build-args: |
+            ${{ github.event_name == 'pull_request' && 'RUN_TESTS=false' || '' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

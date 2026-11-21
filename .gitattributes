@@ -19,6 +19,11 @@
 # Shell scripts must stay LF even on Windows
 *.sh        text eol=lf
 
+# Files read inside Linux containers: LF even in a Windows working tree
+Dockerfile      text eol=lf
+.dockerignore   text eol=lf
+*.conf          text eol=lf
+
 # Windows scripts must stay CRLF even on Linux
 *.bat       text eol=crlf
 *.cmd       text eol=crlf

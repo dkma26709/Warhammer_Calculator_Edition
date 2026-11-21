@@ -1,0 +1,22 @@
+# The image is built from Warhammer/ (the app), Warhammer.Tests/ (run against
+# the exported data before publishing), docker/ (nginx config) and
+# tools/war-data/ (the pin and the export script) only. Everything else is
+# excluded so tools, docs and local build output never enter the build context
+# or bust the layer cache. So are a local export of the WAR data and its stamp
+# and typst cache: the image always exports the data at the pin itself.
+*
+!Warhammer/
+!Warhammer.Tests/
+!docker/
+!tools/war-data/
+
+**/bin/
+**/obj/
+**/__pycache__/
+Warhammer/docs/
+**/*.user
+tools/war-data/.cache/
+tools/war-data/.exported
+Warhammer/wwwroot/data/war/*
+!Warhammer/wwwroot/data/war/core-rules.json
+!Warhammer/wwwroot/data/war/troop-types.json
