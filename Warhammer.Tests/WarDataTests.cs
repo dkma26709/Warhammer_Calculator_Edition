@@ -14,8 +14,8 @@ namespace Warhammer.Tests;
 /// </summary>
 public class WarDataTests
 {
-    /// <summary>The army books the edition has. Update when a book is added.</summary>
-    private const int FactionCount = 30;
+    /// <summary>The army books the edition has. Update when a book is added or removed.</summary>
+    private const int FactionCount = 18;
 
     private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 

@@ -18,4 +18,11 @@ public static class ArmyListStorage
     /// — renaming the list, for one — never trigger it.
     /// </summary>
     public static string PrintKey(string system) => $"warhammer.armylist.print.{system}";
+
+    /// <summary>
+    /// An autosave the Builder could not open (its army left the system, say), moved out of
+    /// <see cref="ActiveKey"/> so the next edit does not overwrite it. The Builder offers it
+    /// again once it opens. One per system: a later list that will not open takes its place.
+    /// </summary>
+    public static string ShelvedKey(string system) => $"warhammer.armylist.shelved.{system}";
 }

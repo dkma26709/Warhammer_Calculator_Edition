@@ -48,10 +48,12 @@ public class SingleChoiceUpgradeTests
                         && UnitConfiguration.IsSingleChoice(option))
                         found.Add(category);
 
+        // Clan Mon (Nippon) and Sagas (Norsca) left with their books; IsSingleChoice still reads
+        // their wording above, ready for when the books come back.
         string[] expected =
         [
             "knightly_orders", "virtues_of_the_chivalric_knight", "elven_honours",
-            "clan_mon", "sagas", "blessed_spawnings",
+            "blessed_spawnings",
         ];
         Assert.Equal(expected.Order(), found.Order());
     }
