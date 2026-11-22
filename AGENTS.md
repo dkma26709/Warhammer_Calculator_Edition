@@ -92,7 +92,7 @@ Warhammer/                  # Main Blazor WASM project (also contains Warhammer.
     │   ├── manifest.json               # Lists the factions available in that system
     │   ├── core-rules.json             # To-hit/to-wound tables, weapons, armour, rules
     │   ├── common-magic-items.json
-    │   ├── factions/{faction}.json          # Unit rosters (15 factions in wap-v2, 30 in war)
+    │   ├── factions/{faction}.json          # Unit rosters (15 factions in wap-v2, 18 in war)
     │   └── factions/{faction}-extras.json   # Army rules, magic items, lores, upgrades
     ├── data/war/                       # Warhammer Armies Revamped, laid out like any system. Only
     │                                   #   core-rules.json and troop-types.json are in git; the rest is

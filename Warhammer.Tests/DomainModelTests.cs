@@ -63,7 +63,8 @@ public class DomainModelTests
     [Fact]
     public void FactionKey_AllFactions_Returns30()
     {
-        // Every army of every system: wap-v2 and wap-v3 list 15 of them, WAR all 30.
+        // Every army of every system: wap-v2 and wap-v3 list 15 of them, WAR 18. The twelve
+        // WAR dropped keep their keys, so their books can come back without a new enum.
         Assert.Equal(30, FactionKeyExtensions.All.Count);
     }
 
