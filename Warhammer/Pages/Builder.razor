@@ -88,6 +88,23 @@
             @_statusMessage
         </div>
     }
+
+    @if (_shelvedList != null)
+    {
+        <div class="alert alert-info py-1 px-2 small mt-3 mb-0 d-flex flex-wrap align-items-center gap-2" role="status">
+            <span>
+                Your list '@_shelvedList.Name' (@_shelvedList.Faction.ToDisplayName()) can be opened
+                again; it was set aside when it would not open. Opening it replaces the list on
+                screen, so export that first to keep it.
+            </span>
+            <span class="ms-auto d-flex gap-1">
+                <button type="button" class="btn btn-sm btn-outline-primary py-0"
+                        @onclick="OpenShelvedList">Open</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary py-0"
+                        @onclick="DiscardShelvedList">Discard</button>
+            </span>
+        </div>
+    }
 </section>
 
 @if (_factionKey == null)
@@ -438,28 +455,118 @@ else
         }
         catch { return; }
 
-        if (string.IsNullOrWhiteSpace(saved)) return;
-
-        var result = await Serializer.DeserializeAsync(saved);
-        if (result.Success && result.List != null)
+        if (!string.IsNullOrWhiteSpace(saved))
         {
-            _armyList = result.List;
-            _factionKey = result.List.Faction.ToJsonKey();
-            _pointsText = result.List.PointsTarget.ToString();
-            _factionUnits = await Repo.GetUnitsAsync(result.List.Faction);
-            _factionExtras = await Repo.GetFactionExtrasAsync(result.List.Faction);
-            Revalidate();
-
-            if (fromLegacyKey)
+            var result = await Serializer.DeserializeAsync(saved);
+            if (result.Success && result.List != null)
             {
-                try
+                _armyList = result.List;
+                _factionKey = result.List.Faction.ToJsonKey();
+                _pointsText = result.List.PointsTarget.ToString();
+                _factionUnits = await Repo.GetUnitsAsync(result.List.Faction);
+                _factionExtras = await Repo.GetFactionExtrasAsync(result.List.Faction);
+                Revalidate();
+
+                if (fromLegacyKey)
                 {
-                    await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, saved);
-                    await JS.InvokeVoidAsync("armyBuilder.clearLocal", ArmyListStorage.LegacyActiveKey);
+                    try
+                    {
+                        await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, saved);
+                        await JS.InvokeVoidAsync("armyBuilder.clearLocal", ArmyListStorage.LegacyActiveKey);
+                    }
+                    catch { }
                 }
-                catch { }
+            }
+            // A legacy autosave that will not open is left where it is: nothing writes the
+            // unsuffixed key any more, so no edit can overwrite it.
+            else if (!fromLegacyKey)
+            {
+                await ShelveAsync(saved, result.Errors);
+                return;
             }
         }
+
+        await OfferShelvedAsync();
+    }
+
+    // ─── Set-aside lists ──────────────────────────────────────────
+
+    /// <summary>A set-aside list that opens again, offered rather than loaded so it never
+    /// replaces the list on screen unasked.</summary>
+    private ArmyList? _shelvedList;
+    private List<string> _shelvedWarnings = new();
+
+    private string ShelvedKey => ArmyListStorage.ShelvedKey(SystemService.CurrentSystem);
+
+    /// <summary>
+    /// Move an autosave that will not open out of the autosave key, which the first edit
+    /// would overwrite, and say why it did not open.
+    /// </summary>
+    private async Task ShelveAsync(string saved, List<string> errors)
+    {
+        var why = $"Your saved list could not be opened: {string.Join("; ", errors)}";
+        try
+        {
+            await JS.InvokeVoidAsync("armyBuilder.saveLocal", ShelvedKey, saved);
+            await JS.InvokeVoidAsync("armyBuilder.clearLocal", StorageKey);
+        }
+        catch
+        {
+            // Storage is unavailable, so the autosave cannot overwrite the list either.
+            SetStatus(why, isError: true);
+            return;
+        }
+        SetStatus($"{why} It has been set aside, and the Builder will offer it again once it opens.",
+            isError: true);
+    }
+
+    /// <summary>Offer the set-aside list if it opens now, say because its army is back.</summary>
+    private async Task OfferShelvedAsync()
+    {
+        string? shelved;
+        try { shelved = await JS.InvokeAsync<string?>("armyBuilder.loadLocal", ShelvedKey); }
+        catch { return; }
+        if (string.IsNullOrWhiteSpace(shelved)) return;
+
+        var result = await Serializer.DeserializeAsync(shelved);
+        if (result.Success && result.List != null)
+        {
+            _shelvedList = result.List;
+            _shelvedWarnings = result.Warnings;
+        }
+    }
+
+    private async Task OpenShelvedList()
+    {
+        if (_shelvedList is not { } list) return;
+        _shelvedList = null;
+
+        _armyList = list;
+        _factionKey = list.Faction.ToJsonKey();
+        _pointsText = list.PointsTarget.ToString();
+        _factionUnits = await Repo.GetUnitsAsync(list.Faction);
+        _factionExtras = await Repo.GetFactionExtrasAsync(list.Faction);
+        _expanded.Clear();
+
+        // Written and awaited before the shelf is cleared, so the list is never in neither key.
+        try
+        {
+            await JS.InvokeVoidAsync("armyBuilder.saveLocal", StorageKey, Serializer.Serialize(list));
+            await JS.InvokeVoidAsync("armyBuilder.clearLocal", ShelvedKey);
+        }
+        catch { }
+        Revalidate();
+
+        var msg = $"Opened '{list.Name}'.";
+        if (_shelvedWarnings.Count > 0) msg += " Warnings: " + string.Join("; ", _shelvedWarnings);
+        SetStatus(msg, isError: false);
+    }
+
+    private async Task DiscardShelvedList()
+    {
+        _shelvedList = null;
+        try { await JS.InvokeVoidAsync("armyBuilder.clearLocal", ShelvedKey); }
+        catch { }
     }
 
     // ─── Faction + points + name ──────────────────────────────────
